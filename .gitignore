@@ -1,0 +1,7 @@
+node_modules
+coverage
+.idea/
+dist/
+package-lock.json
+*.js
+*.map
