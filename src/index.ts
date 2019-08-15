@@ -1,10 +1,50 @@
+import paper = require("paper")
 
 export function StartClock() {
     console.log("starting clock...");
     // Below is the way to call animation
-    const canvas = <HTMLCanvasElement>document.getElementById('clockCanvasId');
+    const canvas = <HTMLCanvasElement>document.getElementById('canvasId');
     new Clock(canvas);
 }
+
+export function TryPaperJs() {
+    console.log("trying paper js");
+    const canvas = <HTMLCanvasElement>document.getElementById('canvasId');
+    paper.setup(canvas);
+
+    // Circle
+    let path = new paper.Path.Circle({
+        center: [80, 50],
+        radius: 35,
+        fillColor: 'red'
+    });
+
+    // Dotted Line Tool
+    let dottedLinePath: paper.Path = new paper.Path;
+    let dottedLineTool = new paper.Tool();
+
+    dottedLineTool.onMouseDown = function(event: any) {
+        new paper.Layer().activate();
+        dottedLinePath = new paper.Path();
+        dottedLinePath.strokeColor = '#00';
+        dottedLinePath.strokeWidth = 2;
+        dottedLinePath.dashArray = [5, 8];
+        dottedLinePath.strokeCap = 'round';
+        dottedLinePath.strokeJoin = 'round';
+        dottedLinePath.add(event.point);
+    };
+
+    dottedLineTool.onMouseDrag = function(event: any) {
+        dottedLinePath.add(event.point);
+    };
+
+    dottedLineTool.onMouseUp = function(event: any) {
+        dottedLinePath.smooth();
+        dottedLinePath.simplify();
+    };
+
+}
+
 
 export class Clock {
     private readonly ctx: CanvasRenderingContext2D;
