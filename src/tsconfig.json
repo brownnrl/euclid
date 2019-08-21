@@ -8,6 +8,7 @@
     "strictNullChecks": false,
     "removeComments": false,
     "moduleResolution": "node",
-    "declaration": true
-  }
+    "declaration": true,
+  },
+  "include": ["./**/*"]
 }

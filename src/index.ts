@@ -1,4 +1,45 @@
 import paper = require("paper")
+import {GeomElement} from "./elements/GeomElement"
+
+export class ImplementedGeomElement extends GeomElement {
+    protected drawEdge(): void {
+    }
+
+    protected drawFace(): void {
+    }
+
+    protected drawName(d: paper.Rectangle): void {
+    }
+
+    protected drawVertex(): void {
+    }
+
+    protected rotate(pivot: paper.Point, ac: number, as: number): void {
+    }
+
+    protected translate(dx: number, dy: number): void {
+    }
+
+    protected update(): void {
+    }
+}
+
+export enum ShapeKind {
+  Circle,
+  Square,
+}
+
+interface Circle {
+  kind: ShapeKind.Circle;
+  radius: number;
+}
+
+interface Square {
+    kind: ShapeKind.Square;
+    sideLength: number;
+}
+
+let c: Circle = {kind: ShapeKind.Circle, radius: 100}
 
 export function StartClock() {
     console.log("starting clock...");
