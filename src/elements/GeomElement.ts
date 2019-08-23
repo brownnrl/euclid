@@ -10,8 +10,7 @@ export enum Position {
 
 export abstract class GeomElement {
 
-    constructor(canvas: HTMLCanvasElement) {
-        this._canvas = canvas;
+    constructor() {
     }
 
     protected _canvas: HTMLCanvasElement;
@@ -29,6 +28,14 @@ export abstract class GeomElement {
 
     protected _shouldHighlight : boolean;
     protected _pixelTolerance : number;
+
+    public set canvas(c: HTMLCanvasElement) {
+        this._canvas = c
+    }
+
+    public get canvas() : HTMLCanvasElement{
+        return this._canvas
+    }
 
     drawString(ix : number, iy : number, d: Rectangle) {
         let p = new Point(ix, iy);
