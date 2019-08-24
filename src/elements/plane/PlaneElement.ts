@@ -1,18 +1,38 @@
+/*----------------------------------------------------------------------+
+|    Title:	PlaneElement.ts                                             |
+|                                                                       |
+|    Author:    David E. Joyce                                          |
+|        Department of Mathematics and Computer Science                 |
+|        Clark University                                               |
+|        Worcester, MA 01610-1477                                       |
+|        U.S.A.                                                         |
+|                                                                       |
+|        http://aleph0.clarku.edu/~djoyce/home.html                     |
+|        djoyce@clarku.edu                                              |
+|                                                                       |
+|    Date:    February, 1996.   Version 2.0.0 May, 1997.                |
+|    TypeScript Port: 2019, Nelson Brown, brownnrl@gmail.com            |
+|                           https://www.nelsonbrown.net/                |
++----------------------------------------------------------------------*/
+
 import {GeomElement} from "../GeomElement";
 import {PointElement} from "../point/PointElement";
 
 export class PlaneElement extends GeomElement {
 
-    protected _A : PointElement;
-    protected _B : PointElement;
-    protected _C : PointElement;
-    protected _S : PointElement;
-    protected _T : PointElement;
-    protected _U : PointElement;
+    public A : PointElement;
+    public B : PointElement;
+    public C : PointElement;
+    public S : PointElement;
+    public T : PointElement;
+    public U : PointElement;
+
+    public isScreen : boolean;
 
 
-    constructor(canvas: HTMLCanvasElement) {
-        super(canvas);
+    constructor() {
+        super();
+        this.isScreen = false;
     }
 
     protected drawEdge(): void {
