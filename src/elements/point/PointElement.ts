@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------+
 |    Title:	PointElement.ts                                             |
-|                                                                       |
+|    A port of the software Geometry Applet by                          |
 |    Author:    David E. Joyce                                          |
 |        Department of Mathematics and Computer Science                 |
 |        Clark University                                               |
@@ -17,6 +17,7 @@
 
 import {GeomElement} from "../GeomElement";
 import {PlaneElement} from "../plane/PlaneElement";
+import {CircleElement} from "../circle/CircleElement";
 
 export interface IPointElementConstruction {
     x : number;
@@ -201,7 +202,58 @@ export class PointElement extends GeomElement {
         return this;
     }
 
-    protected drawEdge(): void {
+    toCircle (C: CircleElement) : PointElement {
+        /*---------------------------------------------------------------------+
+        | Move this point to the nearest point on the circle C.                |
+        +---------------------------------------------------------------------*/
+        if (C.AP.isScreen) {
+            let factor : number = C.radius / this.distance(C.Center);
+            this._x = C.Center.x + factor*(this._x - C.Center.x);
+            this._y = C.Center.y + factor*(this._y - C.Center.y);
+            this._z = 0.0;
+        } else { // 3d case: project to plane of circle then move to sphere of circle
+            this.toPlane(C.AP);
+            this.toSphere(C.Center,C.radius);
+        }
+        return this;
+    }
+
+    toSphere (Center : PointElement, radius : number) : PointElement{
+        /*---------------------------------------------------------------------+
+        | Move this point to the nearest point on the sphere S.                |
+        +---------------------------------------------------------------------*/
+        let factor : number = radius / this.distance(Center);
+        this._x = Center.x + factor*(this._x - Center.x);
+        this._y = Center.y + factor*(this._y - Center.y);
+        this._z = Center.z + factor*(this._z - Center.z);
+        return this;
+    }
+
+    public static area(A: PointElement, B: PointElement, C: PointElement) {
+        // return the area of the triangle ABC
+        let U : PointElement = PointElement.difference(B,A);
+        let V : PointElement = PointElement.difference(C,A);
+        return this.cross(U,V).length()/2.0;
+    }
+
+    public angle(B: PointElement, C: PointElement, P: PlaneElement) : number {
+        // Determine the angle BAC in the plane P where this is A.
+        // The angle lies between -pi and pi (-180 degrees and 180 degrees)
+        let Bx : number = B.x - this._x, Cx = C.x - this._x;
+        let By : number = B.y - this._y, Cy = C.y - this._y;
+        if (P.isScreen) {
+            return Math.atan2 (Bx*Cy - By*Cx, Bx*Cx + By*Cy);
+        } else { // 3d case.  First get P-coordinates for B and C
+            let Bz : number = B.z -this._z, Cz = C.z -this._z;
+            let Bs : number = Bx * P.S.x + By * P.S.y + Bz * P.S.z;
+            let Bt : number = Bx * P.T.x + By * P.T.y + Bz * P.T.z;
+            let Cs : number = Cx * P.S.x + Cy * P.S.y + Cz * P.S.z;
+            let Ct : number = Cx * P.T.x + Cy * P.T.y + Cz * P.T.z;
+            return Math.atan2(Bs * Ct - Bt * Cs, Bs * Cs + Bt * Ct);
+        }
+    }
+
+protected drawEdge(): void {
     }
 
     protected drawFace(): void {

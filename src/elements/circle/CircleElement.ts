@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------+
-|    Title:	PlaneElement.ts                                             |
+|    Title:	CircleElement.ts                                            |
 |    A port of the software Geometry Applet by                          |
 |    Author:    David E. Joyce                                          |
 |        Department of Mathematics and Computer Science                 |
@@ -16,23 +16,27 @@
 +----------------------------------------------------------------------*/
 
 import {GeomElement} from "../GeomElement";
+import {PlaneElement} from "../plane/PlaneElement";
 import {PointElement} from "../point/PointElement";
 
-export class PlaneElement extends GeomElement {
+export class CircleElement extends GeomElement {
 
+    public Center : PointElement;
     public A : PointElement;
     public B : PointElement;
-    public C : PointElement;
-    public S : PointElement;
-    public T : PointElement;
-    public U : PointElement;
-
-    public isScreen : boolean;
-
+    public AP : PlaneElement;
 
     constructor() {
         super();
-        this.isScreen = false;
+        this._dimension = 2;
+    }
+
+    get radius() {
+        return this.A.distance(this.B);
+    }
+
+    get radius2() {
+        return this.A.distance2(this.B);
     }
 
     protected drawEdge(): void {
@@ -55,4 +59,5 @@ export class PlaneElement extends GeomElement {
 
     protected update(): void {
     }
+
 }
