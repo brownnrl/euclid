@@ -16,6 +16,7 @@
 +----------------------------------------------------------------------*/
 
 import {Point, PointText, Rectangle, Color} from "paper";
+import {PointElement} from "./point/PointElement"
 
 export enum Position {
     CENTRAL,
@@ -38,6 +39,11 @@ export abstract class GeomElement {
     protected _edgeColor : Color;
     protected _faceColor : Color;
 
+    protected _nameHighlightColor   : Color = new Color(255, 0, 0); // Color.red;
+    protected _vertexHighlightColor : Color = new Color(255,255,255); // Color.WHITE;
+    protected _edgeHighlightColor   : Color = new Color(255,255,255); // Color.white;
+    protected _faceHighlightColor   : Color = new Color(0, 255, 255); // Color.CYAN;
+
     protected _draggable : boolean;
     protected _dimension : number;
 
@@ -45,6 +51,8 @@ export abstract class GeomElement {
 
     protected _shouldHighlight : boolean;
     protected _pixelTolerance : number;
+
+    protected _paperJSNameLabel : PointText = null;
 
     public set canvas(c: HTMLCanvasElement) {
         this._canvas = c
@@ -56,7 +64,12 @@ export abstract class GeomElement {
 
     drawString(ix : number, iy : number, d: Rectangle) {
         let p = new Point(ix, iy);
-        let text = new PointText(p);
+        if(this._paperJSNameLabel == null) {
+            this._paperJSNameLabel = new PointText(p);
+        } else {
+            this._paperJSNameLabel.position = p;
+        }
+        let text = this._paperJSNameLabel;
         text.content = this._name;
         let w = text.bounds.width;
         let h = text.bounds.height;
@@ -107,7 +120,7 @@ export abstract class GeomElement {
     protected defined() : boolean { return false; }
     protected abstract update() : void;
     protected abstract translate(dx: number, dy: number) : void;
-    protected abstract rotate(pivot : Point, ac : number, as: number) : void;
+    protected abstract rotate(pivot : PointElement, ac : number, as: number) : void;
     protected abstract drawName(d: Rectangle) : void;
     protected abstract drawFace() : void;
     protected abstract drawEdge() : void;

@@ -18,6 +18,9 @@
 import {GeomElement} from "../GeomElement";
 import {PlaneElement} from "../plane/PlaneElement";
 import {CircleElement} from "../circle/CircleElement";
+import Point = paper.Point;
+import Color = paper.Color;
+import Circle = paper.Path.Circle;
 
 export interface IPointElementConstruction {
     x : number;
@@ -34,6 +37,7 @@ export class PointElement extends GeomElement {
     protected _y : number;
     protected _z : number;
     protected _AP : PlaneElement;
+    protected _PaperJSElement : Circle = null;
 
     constructor(ip? : IPointElementConstruction) {
         super();
@@ -253,24 +257,161 @@ export class PointElement extends GeomElement {
         }
     }
 
-protected drawEdge(): void {
+    toIntersection (
+        A: PointElement,
+        B: PointElement,
+        C: PointElement,
+        D: PointElement,
+        P: PlaneElement) : PointElement {
+        if (P.isScreen) {
+            // move this point to where the two lines AB and CD meet
+            let d0 : number = A.x*B.y - A.y*B.x;
+            let d1 : number = C.x*D.y - C.y*D.x;
+            let den : number = (B.y-A.y)*(C.x-D.x) - (A.x-B.x)*(D.y-C.y);
+            this._x = (d0*(C.x-D.x) - d1*(A.x-B.x)) / den;
+            this._y = (d1*(B.y-A.y) - d0*(D.y-C.y)) / den;
+        } else { // 3d case
+            let AmA : PointElement = PointElement.difference(A,P.A);
+            let BmA : PointElement = PointElement.difference(B,P.A);
+            let CmA : PointElement = PointElement.difference(C,P.A);
+            let DmA : PointElement = PointElement.difference(D,P.A);
+            let Ax = PointElement.dot(AmA,P.S);
+            let Ay = PointElement.dot(AmA,P.T);
+            let Bx = PointElement.dot(BmA,P.S);
+            let By = PointElement.dot(BmA,P.T);
+            let Cx = PointElement.dot(CmA,P.S);
+            let Cy = PointElement.dot(CmA,P.T);
+            let Dx = PointElement.dot(DmA,P.S);
+            let Dy = PointElement.dot(DmA,P.T);
+            let d0 = Ax*By - Ay*Bx;
+            let d1 = Cx*Dy - Cy*Dx;
+            let den = (By-Ay)*(Cx-Dx) - (Ax-Bx)*(Dy-Cy);
+            let s = (d0*(Cx-Dx) - d1*(Ax-Bx)) / den;
+            let t = (d1*(By-Ay) - d0*(Dy-Cy)) / den;
+            this.to(P.S).times(s).plus(PointElement.product(t,P.T)).plus(P.A);
+        }
+        return this;
     }
 
-    protected drawFace(): void {
+    toIntersectionPL (
+        P: PlaneElement,
+        D: PointElement,
+        E: PointElement) : PointElement {
+        // move this point to where the plane P meets the line DE
+        this.to(E).minus(D);
+        let DmA : PointElement = PointElement.difference(D,P.A);
+        let u : number =   -PointElement.triple(P.S,P.T,DmA)
+                          / PointElement.triple(P.S,P.T,this);
+        return this.times(u).plus(D);
+    }
+
+    toInvertPoint (A: PointElement, C: CircleElement) : PointElement {
+        // move this point to the inversion of the point A in the circle C
+        let factor : number = C.radius2 / A.distance2(C.Center);
+        return this.to(A).minus(C.Center).times(factor).plus(C.Center);
+    }
+
+    toSimilar (
+        A: PointElement,
+        B: PointElement,
+        P : PlaneElement,
+        D: PointElement,
+        E: PointElement,
+        F: PointElement,
+        Q: PlaneElement) : PointElement {
+        // move this point to the location C so that triangle ABC is similar
+        // to triangle DEF.
+        let theta : number = D.angle(E,F,Q);
+        let co : number = Math.cos(theta), si  : number = Math.sin(theta);
+        let factor : number = D.distance(F) / D.distance(E);
+        if (P.isScreen) {
+            this._x = B.x;
+            this._y = B.y;
+            this.rotate(A,co,si,P);
+            this._x = A.x + factor*(this._x - A.x);
+            this._y = A.y + factor*(this._y - A.y);
+            this._z = 0.0;
+        } else {
+            let BmA : PointElement = PointElement.difference(B,A);
+            let  s : number = PointElement.dot(BmA,P.S);
+            let  t : number = PointElement.dot(BmA,P.T);
+            let ss : number = factor*(co*s - si*t);
+            let tt : number = factor*(si*s + co*t);
+            this._x = ss*P.S.x + tt*P.T.x + A.x;
+            this._y = ss*P.S.y + tt*P.T.y + A.y;
+            this._z = ss*P.S.z + tt*P.T.z + A.z;
+        }
+        return this;
+    }
+
+    protected rotate ( pivot : PointElement,
+                       ac : number,
+                       as : number,
+                       plane?: PlaneElement) : void {
+        /*--------------------------------------------------------------------------+
+        | Scale and rotate this point around the axis through the pivot and		|
+        | perpendicular to the plane.  Scale by a factor of a, and rotate by the	|
+        | angle theta where ac = a cos theta, and as = a sin theta.			|
+        +--------------------------------------------------------------------------*/
+        if (plane == null) plane = pivot._AP;
+        if (this == pivot) return;
+        if (plane.isScreen) {
+            let dx : number = this.x - pivot.x;
+            let dy : number = this.y - pivot.y;
+            this._x = pivot.x + ac*dx - as*dy;
+            this._y = pivot.y + as*dx + ac*dy;
+        } else {
+            this.minus(pivot);
+            let S : PointElement = plane.S;
+            let T : PointElement = plane.T;
+            let U : PointElement = plane.U;
+            let s : number = PointElement.dot(this,S);
+            let t : number = PointElement.dot(this,T);
+            let z1 : number = PointElement.dot(this,U);
+            let x1 : number = ac*s - as*t;
+            let y1 : number = as*s + ac*t;
+            this._x = pivot.x + x1*S.x + y1*T.x + z1*U.x;
+            this._y = pivot.y + x1*S.y + y1*T.y + z1*U.y;
+            this._z = pivot.z + x1*S.z + y1*T.z + z1*U.z;
+        }
     }
 
     protected drawName(d: paper.Rectangle): void {
+        if (this._nameColor != null && this._name != null && this.defined()) {
+            this.drawString(Math.round(this.x), Math.round(this.y), d)
+        }
     }
 
-    protected drawVertex(): void {
+    protected drawVertex(c?: Color): void {
+        let pointCenter = new Point(this._x, this._y);
+        if (c == null) {
+            if (!this._shouldHighlight) {
+                c = this._vertexHighlightColor;
+            } else {
+                c = this._vertexColor;
+            }
+        }
+        if (this._PaperJSElement == null) {
+            this._PaperJSElement = new Circle({
+                center: pointCenter,
+                radius: 2
+            })
+        }
+        this._PaperJSElement.position = pointCenter;
     }
 
-    protected rotate(pivot: paper.Point, ac: number, as: number): void {
-    }
 
     protected translate(dx: number, dy: number): void {
+        this._x += dx;
+        this._y += dy;
     }
 
     protected update(): void {
+    }
+
+    protected drawEdge(): void {
+    }
+
+    protected drawFace(): void {
     }
 }

@@ -47,7 +47,7 @@ export class PlaneElement extends GeomElement {
     protected drawVertex(): void {
     }
 
-    protected rotate(pivot: paper.Point, ac: number, as: number): void {
+    protected rotate(pivot: PointElement, ac: number, as: number): void {
     }
 
     protected translate(dx: number, dy: number): void {
