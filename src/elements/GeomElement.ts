@@ -18,7 +18,8 @@
 import {Point, PointText, Rectangle, Color} from "paper";
 import {PointElement} from "./point/PointElement"
 
-export enum Position {
+
+export enum Align {
     CENTRAL,
     LEFT,
     RIGHT,
@@ -30,8 +31,6 @@ export abstract class GeomElement {
 
     constructor() {
     }
-
-    protected _canvas: HTMLCanvasElement;
 
     protected _name: string;
     protected _nameColor: Color;
@@ -47,20 +46,12 @@ export abstract class GeomElement {
     protected _draggable : boolean;
     protected _dimension : number;
 
-    protected _align : Position;
+    protected _align : Align;
 
     protected _shouldHighlight : boolean;
     protected _pixelTolerance : number;
 
     protected _paperJSNameLabel : PointText = null;
-
-    public set canvas(c: HTMLCanvasElement) {
-        this._canvas = c
-    }
-
-    public get canvas() : HTMLCanvasElement{
-        return this._canvas
-    }
 
     drawString(ix : number, iy : number, d: Rectangle) {
         let p = new Point(ix, iy);
@@ -75,16 +66,16 @@ export abstract class GeomElement {
         let h = text.bounds.height;
 
         switch (this._align) {
-            case Position.LEFT:
+            case Align.LEFT:
                 text.point = new Point(ix-w-6, iy+h/2-4);
                 return;
-            case Position.RIGHT:
+            case Align.RIGHT:
                 text.point = new Point(ix+2, iy+h/2-4);
                 return;
-            case Position.ABOVE:
+            case Align.ABOVE:
                 text.point = new Point(ix-w/2, iy+h/2+4);
                 return;
-            case Position.BELOW:
+            case Align.BELOW:
                 text.point = new Point(ix-w/2, iy+h/2+6);
                 return;
         }
@@ -108,6 +99,10 @@ export abstract class GeomElement {
 
     public get name() {
         return this._name;
+    }
+
+    public set name(n : string) {
+        this._name = n;
     }
 
     public hitTest(x : number, y: number) : boolean {

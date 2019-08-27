@@ -51,7 +51,9 @@ export class PointElement extends GeomElement {
     get y() { return this._y }
     get z() { return this._z }
 
-    protected defined() : boolean {
+    get AP() { return this._AP; }
+
+    public defined() : boolean {
         return !isNaN(this._x) && !isNaN(this._y) && ! isNaN(this._z);
     }
 

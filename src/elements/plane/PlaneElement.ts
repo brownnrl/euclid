@@ -18,8 +18,23 @@
 import {GeomElement} from "../GeomElement";
 import {PointElement} from "../point/PointElement";
 
+
+export interface IPlaneElementConstruction {
+    A : PointElement;
+    B : PointElement;
+    C : PointElement;
+}
+
+type iplec = IPlaneElementConstruction
+
 export class PlaneElement extends GeomElement {
 
+    /*--------------------------------------------------------------------+
+    | The plane is represented by three points on it.  It's displayed as  |
+    | a parallelogram with three vertices A, B, and C,projected onto the  |
+    | xy-plane. S is a unit vector in the direction AB, T is a            |
+    | perpendicular unit in the plane, and U is perpendicular to both.    |
+    +--------------------------------------------------------------------*/
     public A : PointElement;
     public B : PointElement;
     public C : PointElement;
@@ -29,10 +44,18 @@ export class PlaneElement extends GeomElement {
 
     public isScreen : boolean;
 
-
-    constructor() {
+    constructor(ip? : IPlaneElementConstruction) {
         super();
+        this._dimension = 2;
         this.isScreen = false;
+        if (ip != null) {
+            this.A = ip.A;
+            this.B = ip.B;
+            this.C = ip.C;
+            this.S = new PointElement();
+            this.T = new PointElement();
+            this.U = new PointElement();
+        }
     }
 
     protected drawEdge(): void {

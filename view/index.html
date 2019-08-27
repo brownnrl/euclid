@@ -10,6 +10,31 @@
 <script type="text/javascript">
     console.log(geomlib);
     geomlib.TryPaperJs();
+    let c = geomlib.Color;
+    let a = geomlib.Align;
+    let E = geomlib.E;
+    geomlib.init({
+        background: new c(35, 19, 100),
+        title: "Post.1",
+        align: Align.ABOVE,
+        elements: [
+            {
+                name: "A",
+                construction: E.C.Point.free,
+                params: [40, 40]
+            },
+            {
+                name: "B",
+                construction: E.C.Point.free,
+                params: [160, 40]
+            },
+            {
+                name: "AB",
+                construction: E.C.Line.connect,
+                params: ["A", "B"]
+            },
+        ]
+    })
 
 </script>
 </body>

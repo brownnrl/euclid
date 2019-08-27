@@ -1,6 +1,11 @@
 import paper = require("paper")
-import {GeomElement} from "./elements/GeomElement"
+import {GeomElement, Align} from "./elements/GeomElement"
+import {E} from "./elements/Constructions"
 import {PointElement} from "./elements/point/PointElement";
+
+export type Color = paper.Color;
+export type Align = Align
+export type E = E
 
 export class ImplementedGeomElement extends GeomElement {
     protected drawEdge(): void {
