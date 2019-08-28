@@ -43,6 +43,7 @@ export abstract class GeomElement {
     protected _edgeHighlightColor   : Color = new Color(255,255,255); // Color.white;
     protected _faceHighlightColor   : Color = new Color(0, 255, 255); // Color.CYAN;
 
+    protected _inTest : boolean;
     protected _draggable : boolean;
     protected _dimension : number;
 

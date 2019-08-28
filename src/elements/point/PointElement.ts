@@ -15,6 +15,7 @@
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
 
+import paper = require('paper');
 import {GeomElement} from "../GeomElement";
 import {PlaneElement} from "../plane/PlaneElement";
 import {CircleElement} from "../circle/CircleElement";

@@ -105,19 +105,16 @@ export enum PolyhedraConstructions {
     pyramid = 704
 }
 
-export class E {
-    public static C = {
-        Point : PointConstructions,
-        Line : LineConstructions,
-        Circle: CircleConstructions,
-        Polygon: PolygonConstructions,
-        Sector: SectorConstructions,
-        Plane: PlaneConstructions,
-        Sphere: SphereConstructions,
-        Polyhedra: PolyhedraConstructions
-    }
-
-}
+export var E =  {
+    Point : PointConstructions,
+    Line : LineConstructions,
+    Circle: CircleConstructions,
+    Polygon: PolygonConstructions,
+    Sector: SectorConstructions,
+    Plane: PlaneConstructions,
+    Sphere: SphereConstructions,
+    Polyhedra: PolyhedraConstructions
+};
 
 export type AllConstructions =
     PointConstructions   |
@@ -167,8 +164,7 @@ export abstract class Construction {
                     return false;
             }
         }
-
-
+        return true;
     }
 }
 

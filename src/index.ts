@@ -1,13 +1,13 @@
 import paper = require("paper")
 import {GeomElement, Align} from "./elements/GeomElement"
-import {AllConstructions, E} from "./elements/Constructions"
+import {AllConstructions, E as e} from "./elements/Constructions"
 import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
 
 export type AllConstructions = AllConstructions;
 export type Color = paper.Color;
 export type Align = Align
-export type E = E
+export var E = e;
 export const slate = new Slate();
 
 interface IConstructionInfo {

@@ -15,6 +15,8 @@
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
 
+import paper = require('paper');
+import Rectangle = paper.Rectangle;
 import {GeomElement} from "../GeomElement";
 import {PointElement} from "../point/PointElement";
 
@@ -64,7 +66,7 @@ export class PlaneElement extends GeomElement {
     protected drawFace(): void {
     }
 
-    protected drawName(d: paper.Rectangle): void {
+    protected drawName(d: Rectangle): void {
     }
 
     protected drawVertex(): void {
