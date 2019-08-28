@@ -5,17 +5,6 @@ import {PointElement} from "./point/PointElement";
 import {PlaneSlider} from "./point/PlaneSlider";
 import {Midpoint} from "./point/Midpoint";
 
-export enum ConstructableElements {
-    PointElement,
-    LineElement,
-    CircleElement,
-    PlaneElement,
-    PolygonElement,
-    SectorElement,
-    SphereElement,
-    PolyhedronElement
-}
-
 export enum ConstructionTypes {
     Integer,
     PointElement,
@@ -130,7 +119,7 @@ export class E {
 
 }
 
-type AllConstructions =
+export type AllConstructions =
     PointConstructions   |
     LineConstructions    |
     CircleConstructions  |
@@ -139,12 +128,12 @@ type AllConstructions =
     SectorConstructions  |
     PolyhedraConstructions;
 
-abstract class Construction {
-    public abstract constructableType : ConstructableElements;
+export abstract class Construction {
     public abstract constructionMethod : AllConstructions;
     public abstract signature: ConstructionTypes[];
     public abstract construct(screen: PlaneElement, params: any[]) : GeomElement;
-    public validateSignature(params: any[]) : boolean {
+    public validateSignature(cm : AllConstructions, params: any[]) : boolean {
+        if (cm != this.constructionMethod) return false;
         const sigCopy : ConstructionTypes[] = [...this.signature].reverse();
         if (sigCopy.length != params.length) return false;
         for(let param of params) {
@@ -185,11 +174,9 @@ abstract class Construction {
 
 let ct = ConstructionTypes;
 
-class FreePointConstruction extends Construction {
+export class FreePointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.free;
-    constructableType: ConstructableElements = ConstructableElements.PointElement;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer];
-
     construct(screen : PlaneElement, params: any[]): GeomElement {
         let x : number = params[0];
         let y : number = params[1];
@@ -199,19 +186,20 @@ class FreePointConstruction extends Construction {
 
 }
 
-
-class MidPointConstruction extends Construction {
+export class MidPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.midpoint;
-    constructableType: ConstructableElements = ConstructableElements.PointElement;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-
     construct(screen : PlaneElement, params: any[]): GeomElement {
         let a : PointElement = params[0];
         let b : PointElement = params[1];
 
         return new Midpoint(a, b);
     }
-
 }
+
+export const constructions : Construction[] = [
+    new FreePointConstruction(),
+    new MidPointConstruction()
+];
 
 

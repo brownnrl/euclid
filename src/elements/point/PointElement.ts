@@ -29,8 +29,6 @@ export interface IPointElementConstruction {
     AP : PlaneElement;
 }
 
-type ipec = IPointElementConstruction
-
 export class PointElement extends GeomElement {
 
     protected _x : number;

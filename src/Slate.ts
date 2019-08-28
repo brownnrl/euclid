@@ -1,16 +1,15 @@
 import {GeomElement} from "./elements/GeomElement";
 import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
+import {AllConstructions, Construction, constructions} from "./elements/Constructions";
 
 export class Slate {
-    protected _elements : GeomElement[];
-    protected _preexists : boolean[];
 
+    protected _elements : GeomElement[];
     protected _screen : PlaneElement;
 
     constructor() {
         this._elements = [];
-        this._preexists = [];
 
         let screen_origin = new FixedPoint(0,0,0);
         screen_origin.name = "screen_origin";
@@ -29,10 +28,60 @@ export class Slate {
         for(let e of [screen_origin, screen_x, screen_y, screen]) {
             this._elements.push(e);
         }
-
     }
 
     get elements() : GeomElement[] {
         return this._elements;
     }
+
+    lookupElement(name: string) : GeomElement {
+        for (let elem of this._elements) {
+            if (elem.name == name) {
+                return elem;
+            }
+        }
+        return null;
+    }
+
+    convertParams(params: any[]) : any[] {
+        let converted_params : any[] = [];
+        for(let param of params) {
+            switch(typeof(param)) {
+                case "string":
+                    let g : GeomElement = this.lookupElement(param);
+                    if ( g == null )
+                        throw new TypeError(`Element with name ${param} not found.`)
+                    converted_params.push(g);
+                    break;
+                case "number":
+                    converted_params.push(param);
+                    break;
+                default:
+                    throw new TypeError("Expecting only named elements (strings) or numbers.");
+            }
+        }
+        return converted_params;
+    }
+
+    findConstruction(cm : AllConstructions, params: any[]) : Construction {
+        for(let c of constructions) {
+            if(c.validateSignature(cm, params)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    createElement(cm : AllConstructions, params: any[], name?: string) : GeomElement {
+        params = this.convertParams(params);
+        let c : Construction = this.findConstruction(cm, params);
+        if(c == null)
+            throw new TypeError(`Construction not found for ${cm} with params ${params}`);
+        let g : GeomElement = c.construct(this._screen, params);
+        if(name != null)
+            g.name = name;
+        this._elements.push(g);
+        return g;
+    }
+
 }
