@@ -10,7 +10,7 @@ export type Align = Align
 export var E = e;
 export const slate = new Slate();
 
-interface IConstructionInfo {
+export interface IConstructionInfo {
     name: string;
     construction: AllConstructions;
     params: any[];

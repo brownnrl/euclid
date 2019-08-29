@@ -14,7 +14,7 @@ export class Midpoint extends PointElement {
         }
     }
 
-    protected update() : void {
+    public update() : void {
         this._x = (this._A.x + this._B.x) / 2.0;
         this._y = (this._A.y + this._B.y) / 2.0;
         this._z = (this._A.z + this._B.z) / 2.0;

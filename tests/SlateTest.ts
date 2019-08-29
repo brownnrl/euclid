@@ -2,12 +2,25 @@ import "mocha";
 import * as assert from "assert";
 import paper = require('paper');
 import {Slate} from "../src/Slate";
-import {E} from "../src/index";
+import {E, IConstructionInfo} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
 import {LineElement} from "../src/elements/line/LineElement";
 
 describe("slate", ()=> {
+
+    let connected_line_data : IConstructionInfo[] = [
+        { construction: E.Point.free,   name: "A",  params: [100,100]},
+        { construction: E.Point.free,   name: "B",  params: [10,100]},
+        { construction: E.Line.connect, name: "AB", params: ["A","B"]},
+    ];
+
+    function toElements(slate : Slate, data : IConstructionInfo[]) {
+        return data.map(
+            cld => slate.createElement(cld.construction, cld.params, cld.name)
+        );
+    }
+
     it("should create a free point as a PlaneSlider", () => {
         let slate : Slate = new Slate();
         let e = slate.createElement(E.Point.free, [100,100], "A");
@@ -20,11 +33,17 @@ describe("slate", ()=> {
 
     it("should create a connection as a LineElement", () => {
         let slate : Slate = new Slate();
-        let p1 = slate.createElement(E.Point.free, [100,100], "A") as PointElement;
-        let p2 = slate.createElement(E.Point.free, [10,100], "B") as PointElement;
-        let l1 = slate.createElement(E.Line.connect, ["A", "B"], "AB") as LineElement;
+        let elms = toElements(slate, connected_line_data);
+        let p1 = elms[0] as PointElement;
+        let p2 = elms[1] as PointElement;
+        let l1 = elms[2] as LineElement;
         assert.ok(p1 == l1.A);
         assert.ok(p2 == l1.B);
+    });
 
+    it("should facilitate updates", () => {
+        let slate : Slate = new Slate();
+        let elms = toElements(slate, connected_line_data);
+        slate.elements.forEach(e => e.update());
     });
 });

@@ -21,11 +21,11 @@ export class PlaneSlider extends PointElement {
         this._z = this._initz = zVal;
     }
 
-    protected update() : void {
+    public update() : void {
         this.toPlane(this._AP);
     }
 
-    protected drag(tox : number, toy : number) : boolean {
+    public drag(tox : number, toy : number) : boolean {
         this._x = tox;
         this._y = toy;
         if (!this.defined()) { this._z = this._initz; }

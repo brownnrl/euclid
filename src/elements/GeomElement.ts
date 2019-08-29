@@ -110,16 +110,16 @@ export abstract class GeomElement {
         return false;
     }
 
-    protected reset() { this.update(); }
+    public abstract update() : void;
+    public reset() { this.update(); }
+    public defined() : boolean { return false; }
+    public drag(tox: number, toy: number) : boolean { return false; }
     // drag returns true when the element is actually dragged
-    protected drag(tox: number, toy: number) : boolean { return false; }
-    protected defined() : boolean { return false; }
-    protected abstract update() : void;
-    protected abstract translate(dx: number, dy: number) : void;
-    protected abstract rotate(pivot : PointElement, ac : number, as: number) : void;
-    protected abstract drawName(d: Rectangle) : void;
-    protected abstract drawFace() : void;
-    protected abstract drawEdge() : void;
-    protected abstract drawVertex() : void;
+    public abstract translate(dx: number, dy: number) : void;
+    public abstract rotate(pivot : PointElement, ac : number, as: number) : void;
+    public abstract drawName(d: Rectangle) : void;
+    public abstract drawFace() : void;
+    public abstract drawEdge() : void;
+    public abstract drawVertex() : void;
 
 }

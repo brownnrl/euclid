@@ -15,7 +15,7 @@ export class FixedPoint extends PointElement {
         this._z = this._initz = zVal;
     }
 
-    protected reset() : void {
+    public reset() : void {
         this._x = this._initx;
         this._y = this._inity;
         this._z = this._initz;

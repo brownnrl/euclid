@@ -24,6 +24,7 @@ export class Slate {
                 C: screen_y
         });
         screen.name = "screen";
+        this._screen = screen;
 
         for(let e of [screen_origin, screen_x, screen_y, screen]) {
             this._elements.push(e);

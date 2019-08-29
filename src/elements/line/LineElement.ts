@@ -40,24 +40,24 @@ export class LineElement extends GeomElement {
         this._B = ile && ile.B || null;
     }
 
-    protected drawEdge(): void {
+    public drawEdge(): void {
     }
 
-    protected drawFace(): void {
+    public drawFace(): void {
     }
 
-    protected drawName(d: Rectangle): void {
+    public drawName(d: Rectangle): void {
     }
 
-    protected drawVertex(): void {
+    public drawVertex(): void {
     }
 
-    protected rotate(pivot: PointElement, ac: number, as: number): void {
+    public rotate(pivot: PointElement, ac: number, as: number): void {
     }
 
-    protected translate(dx: number, dy: number): void {
+    public translate(dx: number, dy: number): void {
     }
 
-    protected update(): void {
+    public update(): void {
     }
 }

@@ -345,7 +345,7 @@ export class PointElement extends GeomElement {
         return this;
     }
 
-    protected rotate ( pivot : PointElement,
+    public rotate ( pivot : PointElement,
                        ac : number,
                        as : number,
                        plane?: PlaneElement) : void {
@@ -377,13 +377,13 @@ export class PointElement extends GeomElement {
         }
     }
 
-    protected drawName(d: paper.Rectangle): void {
+    public drawName(d: paper.Rectangle): void {
         if (this._nameColor != null && this._name != null && this.defined()) {
             this.drawString(Math.round(this.x), Math.round(this.y), d)
         }
     }
 
-    protected drawVertex(c?: Color): void {
+    public drawVertex(c?: Color): void {
         let pointCenter = new Point(this._x, this._y);
         if (c == null) {
             if (!this._shouldHighlight) {
@@ -402,17 +402,17 @@ export class PointElement extends GeomElement {
     }
 
 
-    protected translate(dx: number, dy: number): void {
+    public translate(dx: number, dy: number): void {
         this._x += dx;
         this._y += dy;
     }
 
-    protected update(): void {
+    public update(): void {
     }
 
-    protected drawEdge(): void {
+    public drawEdge(): void {
     }
 
-    protected drawFace(): void {
+    public drawFace(): void {
     }
 }
