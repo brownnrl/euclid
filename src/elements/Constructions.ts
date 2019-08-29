@@ -207,7 +207,8 @@ export class LineConnectConstruction extends Construction {
 
 export const constructions : Construction[] = [
     new FreePointConstruction(),
-    new MidPointConstruction()
+    new MidPointConstruction(),
+    new LineConnectConstruction()
 ];
 
 

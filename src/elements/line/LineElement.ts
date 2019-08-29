@@ -37,7 +37,7 @@ export class LineElement extends GeomElement {
         super();
         this._dimension = 1;
         this._A = ile && ile.A || null;
-        this._B = ile && ile.A || null;
+        this._B = ile && ile.B || null;
     }
 
     protected drawEdge(): void {
