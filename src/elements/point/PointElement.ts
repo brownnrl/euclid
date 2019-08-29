@@ -26,8 +26,8 @@ import Circle = paper.Path.Circle;
 export interface IPointElementConstruction {
     x : number;
     y : number;
-    z : number;
-    AP : PlaneElement;
+    z? : number;
+    AP? : PlaneElement;
 }
 
 export class PointElement extends GeomElement {
