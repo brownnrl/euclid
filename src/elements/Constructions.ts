@@ -4,6 +4,7 @@ import {PlaneElement} from "./plane/PlaneElement";
 import {PointElement} from "./point/PointElement";
 import {PlaneSlider} from "./point/PlaneSlider";
 import {Midpoint} from "./point/Midpoint";
+import {LineElement} from "./line/LineElement";
 
 export enum ConstructionTypes {
     Integer,
@@ -190,6 +191,17 @@ export class MidPointConstruction extends Construction {
         let b : PointElement = params[1];
 
         return new Midpoint(a, b);
+    }
+}
+
+export class LineConnectConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.connect;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): GeomElement {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+
+        return new LineElement({A:a, B:b});
     }
 }
 
