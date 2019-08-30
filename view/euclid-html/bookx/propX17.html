@@ -1,0 +1,160 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 17</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<h1>Proposition 17</h1>
+
+<div class="theorem">
+
+<a name=lemma></a>
+
+<h1>Lemma.</h1>
+
+<div class="statement">If to any straight line there is applied a parallelogram but falling short by a square, then the applied parallelogram equals the rectangle contained by the segments of the straight line resulting from the application.</div>
+
+<p>Apply to the straight line <i>AB</i> the parallelogram <i>AD</i> but falling short by the square <i>DB</i>.
+
+<div class="rdiagram"><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=130>
+<img src="propX17l.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Lemma">
+<param name=e[1] value="A0;point;free;-1000,90;0;0">
+<param name=e[2] value="A3;point;free;1000,90;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,200,0">
+<param name=e[5] value="C;point;lineSlider;A0,A3,140,0">
+<param name=e[6] value="BD;polygon;square;C,B;0;0;black;random">
+<param name=e[7] value="D;point;vertex;BD,4">
+<param name=e[8] value="AD;polygon;parallelogram;A,C,D;0;0;black;random">
+</applet></div>
+
+<p>I say that <i>AD</i> equals the rectangle <i>AC</i> by <i>CB</i>.
+
+<p>This is indeed at once clear, for, since <i>DB</i> is a square, <i>DC</i> equals <i>CB</i>, and <i>AD</i> is the rectangle <i>AC</i> by <i>CD</i>, that is, the rectangle <i>AC</i> by <i>CB</i>.
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<br>
+
+<div class="theorem">
+
+<h1>Proposition 17</h1>
+
+<div class="statement">If there are two unequal straight lines, and to the greater there is applied a parallelogram equal to the fourth part of the square on the less minus a square figure, and if it divides it into parts  commensurable in length, then the square on the greater is greater than the square on the less by the square on a straight line commensurable with the greater.  And if the square on the greater is greater than the square on the less by the square on a straight line commensurable with the greater, and if there is applied to the greater a parallelogram equal to the fourth part of the square on the less minus a square figure, then it divides it into parts  commensurable in length.</div>
+
+<div class="just"><a href=#lemma>Lemma</a></div>
+<p>Let <i>A</i> and <i>BC</i> be two unequal straight lines, of which <i>BC</i> is the greater, and let there be applied to <i>BC</i> a parallelogram equal to the fourth part of the square on the less, <i>A</i>, that is, equal to the square on the half of <i>A</i> but falling short by a square figure. Let this be the rectangle <i>BD</i> by <i>DC</i>, and let <i>BD</i> be commensurable in length with <i>DC</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=170>
+<img src="propX17.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.17">
+<param name=align value=below>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,140;0;0">
+<param name=e[4] value="B3;point;free;1000,140;0;0">
+<param name=e[5] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[6] value="A2;point;lineSlider;A0,A3,200,0;0">
+<param name=e[7] value="A;line;connect;A1,A2;black">
+
+<param name=e[8] value="B;point;lineSlider;B0,B3,30,0">
+<param name=e[9] value="C;point;lineSlider;B0,B3,220,0">
+<param name=e[10] value="BC;line;connect;B,C">
+<param name=e[11] value="E;point;midpoint;B,C">
+<param name=e[12] value="a;point;midpoint;A1,A2;0;0">
+<param name=e[13] value="b;point;midpoint;B,E;0;0">
+<param name=e[14] value="bcirc;circle;radius;b,B;0;0;0;0">
+<param name=e[15] value="Bcirc;circle;radius;B,A1,a;0;0;0;0">
+<param name=e[16] value="cc';line;bichord;bcirc,Bcirc;0;0;0">
+<param name=e[17] value="c;point;first;cc';0;0">
+<param name=e[18] value="D;point;cutoff;E,C,E,c">
+<param name=e[19] value="F;point;cutoff;E,B,D,E">
+<param name=e[20] value="d;point;perpendicular;D,C;0;0">
+<param name=e[21] value="rect;polygon;parallelogram;B,D,d;0;0;black;random">
+</applet></div>
+
+<p>I say that the square on <i>BC</i> is greater than the square on <i>A</i> by the square on a straight line commensurable with <i>BC</i>.
+
+<div class="just"><a href=../bookI/propI10.html>I.10</a>,
+<a href=../bookI/propI3.html>I.3</a></div>
+<p>Bisect <i>BC</i> at the point <i>E</i>, and make <i>EF</i> equal to <i>DE</i>.
+
+<div class="just"><a href=../bookII/propII5.html>II.5</a></div>
+<p>Therefore the remainder <i>DC</i> equals <i>BF</i>. And, since the straight line <i>BC</i> was cut into equal parts at <i>E</i>, and into unequal parts at <i>D</i>, therefore the rectangle <i>BD</i> by <i>DC</i>, together with the square on <i>ED</i>, equals the square on <i>EC</i>.
+
+<p>And the same is true of their quadruples, therefore four times the rectangle <i>BD</i> by <i>DC</i>, together with four times the square on <i>DE</i>, equals four times the square on <i>EC</i>.
+
+<p>But the square on <i>A</i> equals four times the rectangle <i>BD</i> by <i>DC</i>, and the square on <i>DF</i> equals four times the square on <i>DE</i>, for <i>DF</i> is double <i>DE</i>. And the square on <i>BC</i> equals four times the square on <i>EC</i>, for again <i>BC</i> is double <i>CE</i>.
+
+<p>Therefore the sum of the squares on <i>A</i> and <i>DF</i> equals the square on <i>BC</i>, so that the square on <i>BC</i> is greater than the square on <i>A</i> by the square on <i>DF</i>.
+
+<p>It is to be proved that <i>BC</i> is also commensurable with <i>DF</i>.
+
+<div class="just"><a href=propX15.html>X.15</a></div>
+<p>Since <i>BD</i> is commensurable in length with <i>DC</i>, therefore <i>BC</i> is also commensurable in length with <i>CD</i>.
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>But <i>CD</i> is commensurable in length with <i>CD</i> and <i>BF</i>, for <i>CD</i> equals <i>BF</i>.
+
+<div class="just"><a href=propX12.html>X.12</a></small>
+<br><a href=propX15.html>X.15</a></div>
+<p>Therefore <i>BC</i> is also commensurable in length with <i>BF</i> and <i>CD</i>, so that <i>BC</i> is also commensurable in length with the remainder <i>FD</i>. Therefore the square on <i>BC</i> is greater than the square on <i>A</i> by the square on a straight line commensurable with <i>BC</i>.
+
+<hr width=50%>
+
+<p>Next, let the square on <i>BC</i> be greater than the square on <i>A</i> by the square on a straight line commensurable with <i>BC</i>. Apply to <i>BC</i> a parallelogram equal to the fourth part of the square on <i>A</i> but falling short by a square figure, and let it be the rectangle <i>BD</i> by <i>DC</i>.
+
+<p>It is to be proved that <i>BD</i> is commensurable in length with <i>DC</i>.
+
+<p>With the same construction, we can prove similarly that the square on <i>BC</i> is greater than the square on <i>A</i> by the square on <i>FD</i>.
+
+<p>But the square on <i>BC</i> is greater than the square on <i>A</i> by the square on a straight line commensurable with <i>BC</i>.
+
+<div class="just"><a href=propX15.html>X.15</a></div>
+<p>Therefore <i>BC</i> is commensurable in length with <i>FD</i>, so that <i>BC</i> is also commensurable in length with the remainder, the sum of <i>BF</i> and <i>DC</i>.
+
+<div class="just"><a href=propX6.html>X.6</a>,
+<a href=propX12.html>X.12</a>
+<br><a href=propX15.html>X.15</a></div>
+<p>But the sum of <i>BF</i> and <i>DC</i> is commensurable with <i>DC</i>, so that <i>BC</i> is also commensurable in length with <i>CD</i>,  and therefore, taken separately, <i>BD</i> is commensurable in length with <i>DC</i>.
+
+<p>
+<p>Therefore, <i>if there are two unequal straight lines, and to the greater there is applied a parallelogram equal to the fourth part of the square on the less minus a square figure, and if it divides it into parts commensurable in length, then the square on the greater is greater than the square on the less by the square on a straight line commensurable with the greater.  And if the square on the greater is greater than the square on the less by the square on a straight line commensurable with the greater, and if there is applied to the greater a parallelogram equal to the fourth part of the square on the less minus a square figure, then it divides it into parts commensurable in length.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>The construction solves the equation
+
+<p><center>
+<i>x</i><sup>2</sup>&nbsp;=&nbsp;<i>bx</i>&nbsp;&ndash;&nbsp;<i>a</i><sup>2</sup>/4,
+</center><p>
+
+where <i>b</i> denotes denotes the greater line <i>BC</i> and <i>a</i> denotes the lesser line <i>A</i>.  The solution is the line <i>DC</i>, which is 
+
+<p><center><img src=propX17a.gif alt="x equals half of b minus the square root of the quantity b squared minus a squared" width=145 height=50>
+</center><p>
+
+Then the proposition asserts that the ratio <i>b</i> : <i>x</i> is a numeric ratio if and only if the ratio &radic;(<i>b</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>a</i><sup>2</sup>) : <i>b</i> is a numeric ratio.  Since <i>x</i>/<i>b</i> is equal to 1/2&nbsp;&ndash;&nbsp; &radic;(<i>b</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>a</i><sup>2</sup>)/<i>b</i>, it&rsquo;s clear why one would be a numeric ratio if and only if the other is.
+
+<h4>Use of this proposition</h4>
+
+<p>The lemma is also used in the next proposition. The proposition is used in several times in Book X starting with <a href=propX54.html>X.54</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

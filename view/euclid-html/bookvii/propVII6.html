@@ -1,0 +1,79 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 6</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 6</h1>
+
+<div class="statement">If a number is parts of a number, and another is the same parts of another, then the sum is also the same parts of the sum that the one is of the one.</div>
+
+<p>Let the number <i>AB</i> be parts of the number <i>C,</i> and another number <i>DE</i> be the same parts of another number <i>F</i> that <i>AB</i> is of <i>C.</i>
+<p>I say that the sum of <i>AB</i> and <i>DE</i> is also the same parts of the sum of <i>C</i> and <i>F</i> that <i>AB</i> is of <i>C.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=150 height=210 >
+<img src=propVII6.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.6">
+<param name=align value=right>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,30">
+<param name=e[4] value="C0;point;free;60,-1000;0;0">
+<param name=e[5] value="C3;point;free;60,1000;0;0">
+<param name=e[6] value="C1;point;lineSlider;C0,C3,60,30;0">
+<param name=e[7] value="D0;point;free;90,-1000;0;0">
+<param name=e[8] value="D3;point;free;90,1000;0;0">
+<param name=e[9] value="D;point;lineSlider;D0,D3,90,30">
+<param name=e[10] value="F0;point;free;120,-1000;0;0">
+<param name=e[11] value="F3;point;free;120,1000;0;0">
+<param name=e[12] value="F1;point;lineSlider;F0,F3,120,30;0">
+<param name=e[13] value="G;point;lineSlider;A0,A3,30,80">
+<param name=e[14] value="B;point;cutoff;G,A3,A,G">
+<param name=e[15] value="AB;line;connect;A,B">
+<param name=e[16] value="C';point;cutoff;C1,C3,A,B;0;0">
+<param name=e[17] value="C2;point;cutoff;C',C3,A,G;0">
+<param name=e[18] value="C;line;connect;C1,C2;black">
+<param name=e[19] value="H;point;lineSlider;D0,D3,30,70">
+<param name=e[20] value="E;point;cutoff;H,D3,D,H">
+<param name=e[21] value="DE;line;connect;D,E">
+<param name=e[22] value="F';point;cutoff;F1,F3,D,E;0;0">
+<param name=e[23] value="F2;point;cutoff;F',F3,D,H;0">
+<param name=e[24] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<p>Since there are as many parts of <i>DE</i> in <i>F</i> as there are parts <i>AB</i> is of <i>C,</i> therefore there are as many parts of <i>F</i> in <i>DE</i> as there are parts of <i>C</i> in <i>AB.</i>
+
+<p>Divide <i>AB</i> into the parts of <i>C,</i> namely <i>AG</i> and <i>GB,</i> and divide <i>DE</i> into the parts of <i>F,</i> namely <i>DH,</i> and <i>HE.</i> Then the multitude of <i>AG</i> and <i>GB</i> equals the multitude of <i>DH</i> and <i>HE.</i>
+
+<div class="just"><a href="propVII5.html">VII.5</a></div>
+<p>And since <i>DH</i> is the same part of <i>F</i> that <i>AG</i> is of <i>C,</i> therefore the sum of <i>AG</i> and <i>DH</i> is the same part of the sum of <i>C</i> and <i>F</i> that <i>AG</i> is of <i>C.</i> For the same reason, the sum of <i>GB</i> and <i>HE</i> is the same parts of the sum of <i>C</i> and <i>F</i> that <i>GB</i> is of <i>C.</i>
+
+<p>Therefore the sum of <i>AB</i> and <i>DE</i> is the same parts of the sum of <i>C</i> and <i>F</i> that <i>AB</i> is of <i>C.</i>
+
+<p>Therefore, <i>if a number is parts of a number, and another is the same parts of another, then the sum is also the same parts of the sum that the one is of the one.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says multiplication by fractions distributes over addition. Algebraically, if <i>a</i>&nbsp;=&nbsp;(<i>m/n</i>)<i>b</i> and <i>d</i>&nbsp;=&nbsp;(<i>m/n</i>)<i>e</i> then <i>a</i>&nbsp;+&nbsp;<i>d</i>&nbsp;=&nbsp;(<i>m/n</i>)(<i>b</i>&nbsp;+&nbsp;<i>e</i>).  As an equation, this says
+<p><center>
+(<i>m/n</i>)<i>b</i> + (<i>m/n</i>)<i>e</i> = (<i>m/n</i>)(<i>b</i> + <i>e</i>).
+</center><p>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in a few of the propositions coming up starting with <a href=propVII9.html>VII.9</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

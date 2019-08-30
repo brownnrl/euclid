@@ -1,0 +1,101 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 11</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 11</h1>
+
+<div class="statement">
+To draw a straight line perpendicular to a given plane from a given elevated point.</div>
+
+<p>Let <i>A</i> be the given elevated point, and the plane of reference the given plane.
+
+<p>It is required to draw from the point <i>A</i> a straight line perpendicular to the plane of reference.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=310 height=300 >
+<img src="propXI11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.11">
+<param name=e[1] value="origin;point;free;120,160;0;0,50,100">
+<param name=e[2] value="x;point;fixed;280,160,100;0;darkGray">
+<param name=e[3] value="yzplane;plane;perpendicular;origin,x;0;0;0;0">
+<param name=e[4] value="y;point;planeSlider;yzplane,-90,260,40;0;0,50,100">
+<param name=e[5] value="xyplane;plane;3points;origin,x,y;0;0;lightGray">
+<param name=e[6] value="z1;point;perpendicular;origin,y,yzplane;0;0">
+<param name=e[7] value="z;point;lineSlider;origin,z1,50,50,100;0">
+<param name=e[8] value="Oz;line;connect;origin,z;0;0;lightGray">
+<param name=e[9] value="ceiling;plane;parallel;xyplane,z;0;0;0;0">
+
+<param name=e[10] value="A;point;planeSlider;ceiling,140,100,180">
+<param name=e[11] value="B;point;planeSlider;xyplane,208,270,140">
+<param name=e[12] value="C;point;planeSlider;xyplane,245,190,80">
+<param name=e[13] value="BC;line;connect;B,C">
+<param name=e[14] value="D;point;foot;A,BC">
+<param name=e[15] value="AD;line;connect;A,D">
+<param name=e[16] value="E';point;perpendicular;D,C,xyplane;0;0">
+<param name=e[17] value="E;point;lineSlider;D,E',100,120,80">
+<param name=e[18] value="DE;line;connect;D,E">
+<param name=e[19] value="F;point;foot;A,D,E;black;green">
+<param name=pivot value="F,xyplane">
+<param name=e[20] value="AF;line;connect;A,F">
+<param name=e[21] value="G;point;parallelogram;B,D,F">
+<param name=e[22] value="H;point;parallelogram;C,D,F">
+<param name=e[23] value="GH;line;connect;G,H">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI12.html">I.12</a></div>
+<p>Draw any straight line <i>BC</i> at random in the plane of reference, and draw <i>AD</i> from the point <i>A</i> perpendicular to <i>BC.</i>
+
+<p>Then if <i>AD</i> is also perpendicular to the plane of reference, then that which was proposed is done.
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a>,
+<a href="../bookI/propI12.html">I.12</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>But if not, draw <i>DE</i> from the point <i>D</i> at right angles to <i>BC</i> and in the plane of reference, draw <i>AF</i> from <i>A</i> perpendicular to <i>DE,</i> and draw <i>GH</i> through the point <i>F</i> parallel to <i>BC.</i>
+
+<div class="just"><a href="propXI4.html">XI.4</a></div>
+<p>Now, since <i>BC</i> is at right angles to each of the straight lines <i>DA</i> and <i>DE,</i> therefore <i>BC</i> is also at right angles to the plane through <i>ED</i> and <i>DA.</i>
+
+<div class="just"><a href="propXI8.html">XI.8</a></div>
+<p>And <i>GH</i> is parallel to it, but if two straight lines are parallel, and one of them is at right angles to any plane, then the remaining one is also at right angles to the same plane, therefore <i>GH</i> is also at right angles to the plane through <i>ED</i> and <i>DA.</i>
+
+<div class="just"><a href="propXI8.html">XI.8</a></div>
+<p>And <i>GH</i> is parallel to it, but if two straight lines are parallel, and one of them is at right angles to any plane, then the remaining one is also at right angles to the same plane, therefore <i>GH</i> is also at right angles to the plane through <i>ED</i> and <i>DA.</i>
+
+<div class="just"><a href=defXI3.html>XI.Def.3</a></div>
+<p>Therefore <i>GH</i> is also at right angles to all the straight lines which meet it and are in the plane through <i>ED</i> and <i>DA.</i>
+
+<p>But <i>AF</i> meets it and lies in the plane through <i>ED</i> and <i>DA,</i> therefore <i>GH</i> is at right angles to <i>FA,</i> so that <i>FA</i> is also at right angles to <i>GH.</i>  But <i>AF</i> is also at right angles to <i>DE,</i> therefore <i>AF</i> is at right angles to each of the straight lines <i>GH</i> and <i>DE.</i>
+
+<p>But if a straight is set up at right angles to two straight lines which cut one another at their intersection point, then it also is at right angles to the plane through them.  Therefore <i>FA</i> is at right angles to the plane through <i>ED</i> and <i>GH.</i>
+<div class="just"><a href="propXI4.html">XI.4</a></div>
+
+<p>But the plane through <i>ED</i> and <i>GH</i> is the plane of reference, therefore <i>AF</i> is at right angles to the plane of reference.
+
+<p>Therefore from the given elevated point <i>A</i> the straight line <i>AF</i> has been drawn perpendicular to the plane of reference.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+In the proof, before the line <i>AD</i> can be drawn from the point <i>A</i> perpendicular to the line <i>BC,</i> it is necessary to know that the point and line belong to the same plane.  Such a plane can be specified by taking the line <i>BC</i> and a line from <i>A</i> to any point on <i>BC</i> since two intersecting lines determine a plane (<a href="propXI2.html">XI.2</a>).
+
+
+<h4>Use of this proposition</h4>
+
+The construction in this proposition is used frequently in the last three books of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

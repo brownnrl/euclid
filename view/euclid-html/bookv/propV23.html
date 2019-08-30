@@ -1,0 +1,147 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 23</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 23</h1>
+
+<div class="statement">If there are three magnitudes, and others equal to them in multitude, which taken two and two together are in the same ratio, and the proportion of them be perturbed, then they are also in the same ratio <i>ex aequali.</i></div>
+
+<div class="just"><a href=defV17.html>V.Def.18</a></div>
+<p>Let there be three magnitudes <i>A, B,</i> and <i>C,</i> and others <i>D, E,</i> and <i>F,</i> equal to them in multitude, which, taken two and two together, are in the same proportion, and let the proportion of them be perturbed, so that <i>A</i> is to <i>B</i> as <i>E</i> is to <i>F,</i> and <i>B</i> is to <i>C</i> as <i>D</i> is to <i>E.</i>
+
+<p>I say that <i>A</i> is to <i>C</i> as <i>D</i> is to <i>F.</i>
+
+<p>Take equimultiples <i>G, H,</i> and <i>K</i> of <i>A, B,</i> and <i>D,</i> and take other, arbitrary, equimultiples <i>L, M,</i> and <i>N</i> of <i>C, E,</i> and <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=500 height=150>
+<img src=propV23.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.23">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+<param name=e[7] value="X0;point;free;-1000,130;0;0">
+<param name=e[8] value="X1;point;free;1000,130;0;0">
+
+<param name=e[9] value="A;point;lineSlider;U0,U1,30,30">
+<param name=e[10] value="A1;point;lineSlider;U0,U1,70,30;0">
+<param name=e[11] value="AA1;line;connect;A,A1;0;0;magenta">
+<param name=e[12] value="B;point;lineSlider;U0,U1,200,30">
+<param name=e[13] value="B1;point;lineSlider;U0,U1,250,30;0">
+<param name=e[14] value="BB1;line;connect;B,B1;0;0;magenta">
+<param name=e[15] value="C;point;lineSlider;U0,U1,370,30">
+<param name=e[16] value="C1;point;lineSlider;U0,U1,430,30;0">
+<param name=e[17] value="CC1;line;connect;C,C1;0;0;magenta">
+
+<param name=e[18] value="D;point;lineSlider;V0,V1,30,60">
+<param name=e[19] value="D1;point;lineSlider;V0,V1,70,60;0">
+<param name=e[20] value="DD1;line;connect;D,D1;0;0;blue">
+<param name=e[21] value="E;point;lineSlider;V0,V1,200,60">
+<param name=e[22] value="E1;point;proportion;B,B1,C,C1,D,D1,E,V1;0">
+<param name=e[23] value="EE1;line;connect;E,E1;0;0;blue">
+<param name=e[24] value="F;point;lineSlider;V0,V1,370,60">
+<param name=e[25] value="F1;point;proportion;A,A1,B,B1,E,E1,F,V1;0">
+<param name=e[26] value="FF1;line;connect;F,F1;0;0;blue">
+
+<param name=e[27] value="G;point;lineSlider;W0,W1,30,30">
+<param name=e[28] value="G1;point;cutoff;G,W1,A,A1;0;lightGray">
+<param name=e[29] value="G2;point;cutoff;G1,W1,A,A1;0;lightGray">
+<param name=e[30] value="G3;point;cutoff;G2,W1,A,A1;0">
+<param name=e[31] value="GG3;line;connect;G,G3;0;0;magenta">
+<param name=e[32] value="K;point;lineSlider;X0,X1,30,60">
+<param name=e[33] value="K1;point;cutoff;K,X1,D,D1;0;lightGray">
+<param name=e[34] value="K2;point;cutoff;K1,X1,D,D1;0;lightGray">
+<param name=e[35] value="K3;point;cutoff;K2,X1,D,D1;0">
+<param name=e[36] value="KK3;line;connect;K,K3;0;0;blue">
+
+<param name=e[37] value="H;point;lineSlider;W0,W1,200,30">
+<param name=e[38] value="H1;point;cutoff;H,W1,B,B1;0;lightGray">
+<param name=e[39] value="H2;point;cutoff;H1,W1,B,B1;0;lightGray">
+<param name=e[40] value="H3;point;cutoff;H2,W1,B,B1;0">
+<param name=e[41] value="HH3;line;connect;H,H3;0;0;magenta">
+<param name=e[42] value="M;point;lineSlider;X0,X1,200,60">
+<param name=e[43] value="M1;point;cutoff;M,X1,E,E1;0;lightGray">
+<param name=e[44] value="M2;point;cutoff;M1,X1,E,E1;0">
+<param name=e[45] value="MM2;line;connect;M,M2;0;0;blue">
+
+<param name=e[46] value="L;point;lineSlider;W0,W1,370,30">
+<param name=e[47] value="L1;point;cutoff;L,W1,C,C1;0;lightGray">
+<param name=e[48] value="L2;point;cutoff;L1,W1,C,C1;0">
+<param name=e[49] value="LL2;line;connect;L,L2;0;0;magenta">
+<param name=e[50] value="N;point;lineSlider;X0,X1,370,60">
+<param name=e[51] value="N1;point;cutoff;N,X1,F,F1;0;lightGray">
+<param name=e[52] value="N2;point;cutoff;N1,X1,F,F1;0">
+<param name=e[53] value="NN2;line;connect;N,N2;0;0;blue">
+</applet></div>
+
+<div class="just"><a href=propV15.html>V.15</a></div>
+<p>Then, since <i>G</i> and <i>H</i> are equimultiples of <i>A</i> and <i>B,</i> and parts have the same ratio as their multiples, therefore <i>A</i> is to <i>B</i> as <i>G</i> is to <i>H.</i>
+
+<div class="just"><a href=propV11.html>V.11</a></div>
+<p>For the same reason <i>E</i> is to <i>F</i> as <i>M</i> is to <i>N.</i> And <i>A</i> is to <i>B</i> as <i>E</i> is to <i>F,</i> therefore <i>G</i> is to <i>H</i> as <i>M</i> is to <i>N.</i>
+
+<div class="just">(<a href=propV16.html>V.16</a>)</div>
+<p>Next, since <i>B</i> is to <i>C</i> as <i>D</i> is to <i>E,</i> alternately, also, <i>B</i> is to <i>D</i> as <i>C</i> is to <i>E.</i>
+
+<div class="just"><a href=propV15.html>V.15</a></div>
+<p>And, since <i>H</i> and <i>K</i> are equimultiples of <i>B</i> and <i>D,</i> and parts have the same ratio as their equimultiples, therefore <i>B</i> is to <i>D</i> as <i>H</i> is to <i>K.</i>
+
+<div class="just"><a href=propV11.html>V.11</a></div>
+<p>But <i>B</i> is to <i>D</i> as <i>C</i> is to <i>E,</i> therefore also,  <i>H</i> is to <i>K</i> as <i>C</i> is to <i>E.</i>
+
+<div class="just"><a href=propV15.html>V.15</a></div>
+<p>Again, since <i>L</i> and <i>M</i> are equimultiples of <i>C</i> and <i>E,</i> therefore <i>C</i> is to <i>E</i> as <i>L</i> is to <i>M.</i>
+
+<div class="just"><a href=propV11.html>V.11</a>,
+(<a href=propV16.html>V.16</a>)</div>
+<p>But <i>C</i> is to <i>E</i> as <i>H</i> is to <i>K,</i> therefore also, <i>H</i> is to <i>K</i> as <i>L</i> is to <i>M,</i> and, alternately, <i>H</i> is to <i>L</i> as <i>K</i> is to <i>M.</i>
+
+<p>But it was also proved that <i>G</i> is to <i>H</i> as <i>M</i> is to <i>N.</i>
+
+<div class="just"><a href="propV21.html">V.21</a></div>
+<p>Since, then, there are three magnitudes <i>G, H,</i> and <i>L,</i> and others equal to them in multitude <i>K, M,</i> and <i>N,</i> which taken two and two together are in the same ratio, and the proportion of them is perturbed, therefore, <i>ex aequali,</i> if <i>G</i> is in excess of <i>L, K</i> is also in excess of <i>N</i>; if equal, equal; and if less, less.
+
+<p>And <i>G</i> and <i>K</i> are equimultiples of <i>A</i> and <i>D,</i> and <i>L</i> and <i>N</i> of <i>C</i> and <i>F.</i>
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>Therefore <i>A</i> is to <i>C</i> as <i>D</i> is to <i>F.</i>
+
+<p>Therefore, <i>if there are three magnitudes, and others equal to them in multitude, which taken two and two together are in the same ratio, and the proportion of them be perturbed, then they are also in the same ratio ex aequali.</i></i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says that when <i>a, b,</i> and <i>c</i> are of one kind, and <i>d, e,</i> and <i>f</i> are of the same or another kind, if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f</i> and <i>b</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;<i>e,</i> then <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;<i>f.</i>
+
+<p>The proof given here uses proposition V.16 and alternate ratios, and that means it only applies when all six magnitudes are of the same kind. 
+It is also rather clumsy, since it uses V.15 and V.11 instead of V.4 as the previous proposition V.22 did.  It doesn&rsquo;t seem likely that this proof would be written when the better proof of V.22 could serve as a guide, so it seems likely that V.4 was inserted later and an older proof of V.22 was cleaned up, but that of V.23 wasn&rsquo;t for some reason such as its relative unimportance.  After all, it is not used in the rest of the <i>Elements.</i>
+
+<p>Here&rsquo;s a summary of the proof as given.  
+<ul>Assume <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f,</i> and <i>b</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;<i>e.</i>  To show <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;<i>f.</i>
+<p>Let <i>n</i> and <i>m</i> be two arbitrary numbers.  By <a href=propV15.html>V.15</a>, both <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>na</i>&nbsp;:&nbsp;<i>nb,</i> and
+<i>e</i>&nbsp;:&nbsp;<i>f</i>&nbsp;=&nbsp;<i>me</i>&nbsp;:&nbsp;<i>mf.</i>  Therefore, by <a href=propV11.html>V.11</a>,  <i>na</i>&nbsp;:&nbsp;<i>nb</i>&nbsp;=&nbsp;<i>me</i>&nbsp;:&nbsp;<i>mf.</i> (The last two sentences would reduce to one with <a href=propV4.html>V.4</a>.)
+<p>Using alternation <a href=propV16.html>V.16</a> on the other proportion <i>b</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;<i>e</i> yields <i>b</i>&nbsp;:&nbsp;<i>d</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>e</i> (but that requires that all the magnitudes are of the same kind).
+<p>For similar reasons <i>nb</i>&nbsp;:&nbsp;<i>nd</i>&nbsp;=&nbsp<i>b</i>&nbsp;:&nbsp;<i>d</i>&nbsp;= <i>c</i>&nbsp;:&nbsp;<i>e</i>&nbsp;= <i>mc</i>&nbsp;:&nbsp;<i>me.</i>  Therefore, alternately, <i>nb</i>&nbsp;:&nbsp;<i>mc</i>&nbsp;=&nbsp<i>nd</i>&nbsp;:&nbsp;<i>me.</i> 
+<p>Now use <a href=propV21.html>V.21</a> on the two proportions <i>nb</i>&nbsp;:&nbsp;<i>mc</i>&nbsp;=&nbsp<i>nd</i>&nbsp;:&nbsp;<i>me</i> and  <i>na</i>&nbsp;:&nbsp;<i>nb</i>&nbsp;=&nbsp;<i>me</i>&nbsp;:&nbsp;<i>mf,</i> to conclude
+<center><i>na</i>&nbsp;>=<&nbsp;<i>mc</i> implies <i>nd</i>&nbsp;>=<&nbsp;<i>mf</i></center>
+Therefore, <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;<i>f.</i> <font size=-1>Q.E.D.</font></ul>
+
+<p>Although the last proposition on proportions <i>ex aequali</i> did not depend on treating <a href=defV4.html>V.Def.4</a> as an axiom of comparability, this proposition on perturbed proportions <i>ex aequali</i> does.  For a counterexample involving infinitesimals, take <i>a</i>&nbsp;=&nbsp;<i>c</i>&nbsp;=&nbsp;<i>e, b</i>&nbsp;=&nbsp;<i>e</i>&nbsp;=&nbsp;(<i>a</i>&nbsp;+&nbsp;<i>y</i>), and <i>f</i>&nbsp;=&nbsp;(<i>a</i>&nbsp;+&nbsp;2<i>y</i>), where <i>y</i> is infinitesimal with respect to <i>a.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

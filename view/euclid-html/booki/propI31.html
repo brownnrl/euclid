@@ -1,0 +1,75 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 31</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 31</h1>
+
+<div class="statement">To draw a straight line through a given point parallel to a given straight line.</div>
+
+<p>Let <i>A</i> be the given point, and <i>BC</i> the given straight line.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=160 width=230>
+<img src="propI31.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.31">
+<param name=e[1] value="A;point;free;130,40">
+<param name=e[2] value="B;point;free;40,120">
+<param name=e[3] value="C;point;free;180,120">
+<param name=e[4] value="D;point;lineSlider;B,C,100,120">
+<param name=e[5] value="BC;line;connect;B,C">
+<param name=e[6] value="AD;line;connect;A,D">
+<param name=e[7] value="AE;line;similar;A,D,D,A,C">
+<param name=e[8] value="E;point;last;AE">
+<param name=e[9] value="AF;line;extend;E,A,B,D">
+<param name=e[10] value="F;point;last;AF">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI31.gif" hspace=10 vspace=10 alt="I.31">';
+</script>
+</div>
+
+<p>It is required to draw a straight line through the point <i>A</i> parallel to the straight line <i>BC.</i>
+
+<div class="just"><a href=post1.html>I.Post.1</a>
+<br><a href=propI23.html>I.23</a>
+<br><a href=post2.html>I.Post.2</a></div>
+<p>Take a point <i>D</i> at random on <i>BC.</i> Join <i>AD.</i>  Construct the angle <i>DAE</i> equal to the angle <i>ADC</i> on the straight line <i>DA</i> and at the point <i>A</i> on it.  Produce the straight line <i>AF</i> in a straight line with <i>EA.</i>
+
+<div class="just"><a href=propI27.html>I.27</a></div>
+<p>Since the straight line <i>AD</i> falling on the two straight lines <i>BC</i> and <i>EF</i> makes the alternate angles <i>EAD</i> and <i>ADC</i> equal to one another, therefore <i>EAF</i> is parallel to <i>BC.</i>
+
+<p>Therefore the straight line <i>EAF</i> has been drawn through the given point <i>A</i> parallel to the given straight line <i>BC.</i> 
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+The parallel line <i>EF</i> constructed in this proposition is the only one passing through the point <i>A.</i>  If there were another, then the interior angles on one side or the other of <i>AD</i> it makes with <i>BC</i> would be less than two right angles, and therefore by the parallel postulate <a href=post5.html>I.Post.5</a>, it would meet <i>BC,</i> a contradiction.
+
+<p>Incidentally, this construction also works in hyperbolic geometry, although different parallel lines through <i>A</i> are constructed for different points <i>D.</i>
+
+<h4>Construction steps</h4>
+
+The construction needed is that of <a href=propI23.html>I.23</a> to construct an angle.  That construction required ten circles and one line in general.  In the specific case needed here, however, one of the distances does not have to be transferred, and that eliminates the need to construct four of the circles.  Therefore this construction actually only requires six circles and a line.
+
+<h4>Use of Proposition 31</h4>
+
+This construction is frequently used in the remainder of Book I starting with the next proposition.  It is also frequently used in Books II, IV, VI, XI, XII, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996. 1997");
+</script>
+</BODY></HTML>

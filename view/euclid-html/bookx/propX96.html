@@ -1,0 +1,124 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 96</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 96</h1>
+
+<div class="statement">If an area is contained by a rational straight line and a sixth apotome, then the side of the area is a straight line which produces with a medial area a medial whole.</div>
+
+<p>Let the area <i>AB</i> be contained by the rational straight line <i>AC</i> and the sixth apotome <i>AD</i>.
+
+<p>I say that the side of the area <i>AB</i> is a straight line which produces with a medial area a medial whole.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=410 height=190>
+<img src="propX92.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.96">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="D;point;lineSlider;A0,A3,90,0">
+<param name=e[5] value="C';point;perpendicular;A,D;0;0">
+<param name=e[6] value="C;point;lineSlider;A,C',0,150">
+<param name=e[7] value="B;point;parallelogram;C,A,D">
+<param name=e[8] value="ACBD;polygon;quadrilateral;A,C,B,D;0;0;black;random">
+<param name=e[9] value="G;point;lineSlider;A0,A3,210,0">
+<param name=e[10] value="E;point;midpoint;G,D">
+
+<param name=e[11] value="AGmid;point;midpoint;A,G;0;0">
+<param name=e[12] value="AGquar;point;midpoint;G,AGmid;0;0">
+<param name=e[13] value="GEcirc;circle;radius;G,E;0;0;0;0">
+<param name=e[14] value="GAcirc;circle;radius;AGquar,G;0;0;0;0">
+<param name=e[15] value="bich;line;bichord;GEcirc,GAcirc;0;0;0">
+<param name=e[16] value="F';point;first;bich;0;0">
+<param name=e[17] value="F;point;cutoff;AGmid,G,AGmid,F'">
+
+<param name=e[18] value="H;point;parallelogram;C,A,E">
+<param name=e[19] value="I;point;parallelogram;C,A,F">
+<param name=e[20] value="K;point;parallelogram;C,A,G">
+<param name=e[21] value="DFIB;polygon;quadrilateral;D,F,I,B;0;0;black;random">
+<param name=e[22] value="EH;line;connect;E,H">
+<param name=e[23] value="IFGK;polygon;quadrilateral;I,F,G,K;0;0;black;310,80,100">
+
+<param name=e[24] value="R0;point;free;-1000,160;0;0">
+<param name=e[25] value="R3;point;free;1000,160;0;0">
+<param name=e[26] value="R;point;lineSlider;R0,R3,240,0">
+<param name=e[27] value="M;point;meanProportional;A,F,F,I,R,R3">
+<param name=e[28] value="RMPL;polygon;square;R,M;0;0;black;random">
+<param name=e[29] value="P;point;vertex;RMPL,3">
+<param name=e[30] value="L;point;vertex;RMPL,4">
+<param name=e[31] value="N;point;meanProportional;F,I,I,K,P,L">
+<param name=e[32] value="PNQO;polygon;square;P,N;0;0;black;310,80,100">
+<param name=e[33] value="O;point;vertex;PNQO,4">
+<param name=e[34] value="Q;point;vertex;PNQO,3">
+<param name=e[35] value="S;point;intersection;L,R,Q,O">
+<param name=e[36] value="T;point;intersection;R,M,Q,N">
+<param name=e[37] value="SQ;line;connect;S,Q">
+<param name=e[38] value="TQ;line;connect;T,Q">
+<param name=e[39] value="RP;line;connect;R,P">
+<param name=e[40] value="Z;point;midpoint;Q,O;0;0">
+<param name=e[41] value="U;point;cutoff;Q,S,Q,Z">
+<param name=e[42] value="V;point;cutoff;Q,P,Q,Z">
+<param name=e[43] value="W;point;cutoff;Q,T,Q,Z">
+<param name=e[44] value="UVW;sector;arc;W,V,U;0;0;gray;0">
+</applet></div>
+
+<div class="just"><a href=defX.III.html#6>X.Def.III.6</a></div>
+<p>Let <i>DG</i> be the annex to <i>AD</i>.  Then <i>AG</i> and <i>GD</i> are rational straight lines commensurable in square only, neither of them is commensurable in length with the rational straight line <i>AC</i> set out, and the square on the whole <i>AG</i> is greater than the square on the annex <i>DG</i> by the square on a straight line incommensurable in length with <i>AG</i>.
+
+<div class="just"><a href=propX18.html>X.18</a></div>
+<p>Since the square on <i>AG</i> is greater than the square on <i>GD</i> by the square on a straight line incommensurable in length with <i>AG</i>, therefore, if there is applied to <i>AG</i> a parallelogram equal to the fourth part of the square on <i>DG</i> and deficient by a square figure, then it  divides it into incommensurable parts.
+
+<p>Bisect <i>DG</i> at <i>E</i>, apply to <i>AG</i> a parallelogram equal to the square on <i>EG</i> and deficient by a square figure, and let it be the rectangle <i>AF</i> by <i>FG</i>. Then <i>AF</i> is incommensurable in length with <i>FG</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>But <i>AF</i> is to <i>FG</i> as <i>AI</i> is to <i>FK</i>, therefore <i>AI</i> is incommensurable with <i>FK</i>.
+
+<div class="just"><a href=propX21.html>X.21</a></div>
+<p>Since <i>AG</i> and <i>AC</i> are rational straight lines commensurable in square only, therefore <i>AK</i> is medial. Again, since <i>AC</i> and <i>DG</i> are rational straight lines and incommensurable in length, <i>DK</i> is also medial.
+
+<p>Now, since <i>AG</i> and <i>GD</i> are commensurable in square only, therefore <i>AG</i> is incommensurable in length with <i>GD</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>,
+<a href=propX11.html>X.11</a></div>
+<p>But <i>AG</i> is to <i>GD</i> as <i>AK</i> is to <i>KD</i>, therefore <i>AK</i> is incommensurable with <i>KD</i>.
+
+<div class="just"><a href=../bookVI/propVI26.html>VI.26</a></div>
+<p>Now construct the square <i>LM</i> equal to <i>AI</i>, and subtract <i>NO</i>, equal to <i>FK</i>, about the same angle.  Then the squares <i>LM</i> and <i>NO</i> are about the same diameter. 
+
+<p>Let <i>PR</i> be their diameter, and draw the figure. Then in manner similar to the above we can prove that <i>LN</i> is the side of the area <i>AB</i>.
+
+<p>I say that <i>LN</i> is a straight line which produces with a medial area a medial whole.
+
+<p>Since <i>AK</i> was proved medial and equals the sum of the squares on <i>LP</i> and <i>PN</i>, therefore the sum of the squares on <i>LP</i> and <i>PN</i> is medial. Again, since <i>DK</i> was proved medial and equals twice the rectangle <i>LP</i> by <i>PN</i>, therefore twice the rectangle <i>LP</i> by <i>PN</i> is also medial.
+
+<p>Since <i>AK</i> was proved incommensurable with <i>DK</i>, therefore the sum of the squares on <i>LP</i> and <i>PN</i> is also incommensurable with twice the rectangle <i>LP</i> by <i>PN</i>. And, since <i>AI</i> is incommensurable with <i>FK</i>, therefore the square on <i>LP</i> is also incommensurable with the square on <i>PN</i>. 
+
+<p>Therefore <i>LP</i> and <i>PN</i> are straight lines incommensurable in square which make the sum of the squares on them medial, twice the rectangle contained by them medial, and further, the sum of the squares on them incommensurable with twice the rectangle contained by them.
+
+<div class="just"><a href=propX78.html>X.78</a></div>
+<p>Therefore <i>LN</i> is the irrational straight line called that which produces with a medial area a medial whole, and it is the side of the area <i>AB</i>.  Therefore the side of the area is a straight line which produces with a medial area a medial whole.
+
+<p>Therefore, <i>if an area is contained by a rational straight line and a sixth apotome, then the side of the area is a straight line which produces with a medial area a medial whole.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in <a href=propX110.html>X.110</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

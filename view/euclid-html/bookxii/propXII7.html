@@ -1,0 +1,89 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 7</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 7</h1>
+
+<div class="statement">
+Any prism with a triangular base is divided into three pyramids equal to one another with triangular bases.</div>
+
+<p>Let there be a prism with the triangular base <i>ABC</i> and <i>DEF</i> opposite.
+<p>I say that the prism <i>ABCDEF</i> is divided into three pyramids equal to one another, which have triangular bases. 
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=250 >
+<img src="propXII7.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.7">
+<param name=e[1] value="origin;point;fixed;-10,250,0;0;0">
+<param name=e[2] value="1X;point;fixed;242,250,-91;0;0">
+<param name=e[3] value="1Y;point;fixed;-105,550,-120;0;0">
+<param name=e[4] value="1Z;point;fixed;14,375,288;0;0">
+<param name=e[5] value="floor;plane;3points;origin,1X,1Y;0;0;0;0">
+<param name=e[6] value="E;point;lineSlider;origin,1Y,-10,10,0">
+<param name=e[7] value="A;point;planeSlider;floor,240,237,0">
+<param name=e[8] value="B;point;planeSlider;floor,80,210,0">
+<param name=e[9] value="C;point;planeSlider;floor,170,180,0">
+<param name=e[10] value="BAC;polygon;triangle;B,A,C;0;0;0;random">
+<param name=e[11] value="pris;polyhedron;prism;BAC,B,E;0;0;black;0">
+<param name=e[12] value="EDF;polygon;face;pris,2;0;0;0;random">
+<param name=e[13] value="D;point;vertex;EDF,2">
+<param name=e[14] value="F;point;vertex;EDF,3">
+<param name=e[15] value="BD;line;connect;B,D">
+<param name=e[16] value="CD;line;connect;C,D">
+<param name=e[17] value="CE;line;connect;C,E">
+</applet></div>
+
+<p>Join <i>BD, EC,</i> and <i>CD.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a>
+<br><a href="propXII5.html">XII.5</a></div>
+<p>Since <i>ABED</i> is a parallelogram, and <i>BD</i> is its diameter, therefore the triangle <i>ABD</i> equals the triangle <i>EBD.</i> Therefore the pyramid with triangular base <i>ABD</i>  and vertex <i>C</i> equals the pyramid with triangular base <i>DEB</i> and vertex <i>C.</i>
+
+<p>But the pyramid with triangular base <i>DEB</i>  and vertex <i>C</i> is identical with the pyramid with triangular base <i>EBC</i> and vertex <i>D,</i> for they are contained by the same planes.
+
+<p>Therefore the pyramid with triangular base <i>ABD</i>  vertex <i>C</i> is also equal to the pyramid with triangular base <i>EBC</i> and vertex <i>D.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>Again, since <i>FCBE</i> is a parallelogram, and <i>CE</i> is its diameter, therefore the triangle <i>CEF</i> equals the triangle <i>CBE.</i>
+
+<div class="just"><a href="propXII5.html">XII.5</a></div>
+<p>Therefore the pyramid with triangular base <i>BCE</i> and vertex <i>D</i> equals the pyramid with triangular base <i>ECF</i> and vertex <i>D.</i>
+
+<p>But the pyramid with triangular base <i>BCE</i>  and vertex <i>D</i> was proved equal to the pyramid with triangular base <i>ABD</i> and vertex <i>C,</i> therefore the pyramid with triangular base <i>CEF</i> and vertex <i>D</i> equals the pyramid with triangular base <i>ABD</i> and vertex <i>C.</i>  Therefore the prism <i>ABCDEF</i> is divided into three pyramids equal to one another which have triangular bases.
+
+<p>And, since the pyramid with triangular base <i>ABD</i> and vertex <i>C</i> is identical with the pyramid with triangular base <i>CAB</i> and vertex <i>D,</i> for they are contained by the same planes, while the pyramid with triangular base <i>ABD</i>  vertex <i>C</i> was proved to be a third of the prism with triangular base <i>ABC</i>  and <i>DEF</i> opposite, therefore the pyramid with triangular base <i>ABC</i> and vertex <i>D</i> is a third of the prism with the same base <i>ABC,</i> and <i>DEF</i> opposite.</tr>
+
+<p>Therefore, <i>any prism with a triangular base is divided into three pyramids equal to one another with triangular bases.</i>
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">From this it is clear that any pyramid is a third part of the prism with the same base and equal height.</div>
+</div>
+
+<h2>Guide</h2>
+
+The proof of this proposition is easier than it looks.  The triangles <i>ABD</i> and <i>EBD</i> are equal since each is half the parallelogram <i>ABED</i>. Now since the pyramids  <i>ABDC</i> and <i>DEBC</i> have equal bases and the same altitude, by <a href="propXII5.html">XII.5</a>, they are equal pyramids.  A similar argument shows pyramids  <i>BCED</i>and <i>ECFD</i> are equal.  But <i>DEBC</i>
+and <i>BCED</i> are the same pyramid named differently.  So the prism is
+divided into three equal pyramids.
+
+<h4>Use of this proposition</h4>
+This proposition is used in the next two propositions about volumes of pyramids and in <a href=propXII10.html>XII.10</a> following them about volumes of cones and cylinders.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

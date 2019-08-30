@@ -1,0 +1,150 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 11</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 11</h1>
+
+<div class="statement">
+Cones and cylinders of the same height are to one another as their bases.</div>
+
+<p>Let there be cones and cylinders of the same height, let the circles <i>ABCD</i> and <i>EFGH</i> be their bases, <i>KL</i> and <i>MN</i> their axes, and <i>AC</i> and <i>EG</i> the diameters of their bases.
+<p>I say that the circle <i>ABCD</i> is to the circle <i>EFGH</i> as the cone <i>AL</i> is to the cone <i>EN.</i>
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=560 height=300 >
+<img src="propXII11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.11">
+<param name=e[1] value="A0;point;free;-1000,160;0;0">
+<param name=e[2] value="A3;point;free;1000,160;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="C;point;lineSlider;A0,A3,210,0">
+<param name=e[5] value="K;point;midpoint;A,C">
+<param name=e[6] value="Kcirc;circle;radius;K,A;0;0;black;random">
+<param name=e[7] value="B;point;perpendicular;K,A">
+<param name=e[8] value="D;point;extend;B,K,K,A">
+<param name=e[9] value="U';point;midpoint;A,B;0;0">
+<param name=e[10] value="U;point;cutoff;K,U',K,A">
+<param name=e[11] value="V';point;midpoint;B,C;0;0">
+<param name=e[12] value="V;point;cutoff;K,V',K,A">
+<param name=e[13] value="W';point;midpoint;C,D;0;0">
+<param name=e[14] value="W;point;cutoff;K,W',K,A">
+<param name=e[15] value="T';point;midpoint;D,A;0;0">
+<param name=e[16] value="T;point;cutoff;K,T',K,A">
+<param name=e[17] value="AUBVCWDT;polygon;octagon;A,U,B,V,C,W,D,T;0;0;black;random">
+<param name=e[18] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;black;random">
+<param name=e[19] value="AC;line;connect;A,C">
+
+<param name=e[20] value="E;point;lineSlider;A0,A3,260,0">
+<param name=e[21] value="G;point;lineSlider;A0,A3,390,0">
+<param name=e[22] value="M;point;midpoint;E,G">
+<param name=e[23] value="Mcirc;circle;radius;M,E;0;0;black;random">
+<param name=e[24] value="F;point;perpendicular;M,E">
+<param name=e[25] value="H;point;extend;F,M,M,E">
+<param name=e[26] value="Q';point;midpoint;E,F;0;0">
+<param name=e[27] value="Q;point;cutoff;M,Q',M,E">
+<param name=e[28] value="R';point;midpoint;F,G;0;0">
+<param name=e[29] value="R;point;cutoff;M,R',M,E">
+<param name=e[30] value="S';point;midpoint;G,H;0;0">
+<param name=e[31] value="S;point;cutoff;M,S',M,E">
+<param name=e[32] value="P';point;midpoint;H,E;0;0">
+<param name=e[33] value="P;point;cutoff;M,P',M,E">
+<param name=e[34] value="EQFRGSHP;polygon;octagon;E,Q,F,R,G,S,H,P;0;0;black;random">
+<param name=e[35] value="EFGH;polygon;quadrilateral;E,F,G,H;0;0;black;random">
+<param name=e[36] value="EG;line;connect;E,G">
+
+<param name=e[37] value="L3;point;free;2000,-10000;0;0">
+<param name=e[38] value="L;point;lineSlider;K,L3,130,40">
+<param name=e[39] value="KL;line;connect;K,L">
+<param name=e[40] value="N;point;cutoff;M,L3,K,L">
+<param name=e[41] value="MN;line;connect;M,N">
+
+<param name=e[42] value="O0;point;free;440,240;0;0">
+<param name=e[43] value="O1;point;free;440,160;0;0">
+<param name=e[44] value="O2;point;free;480,210;0;0">
+<param name=e[45] value="O3;point;free;510,240;0;0">
+<param name=e[46] value="O;polyhedron;parallelepiped;O0,O1,O2,O3;black;0;black;random">
+<param name=e[47] value="X0;point;free;480,100;0;0">
+<param name=e[48] value="X1;point;free;480,60;0;0">
+<param name=e[49] value="X2;point;free;500,80;0;0">
+<param name=e[50] value="X3;point;free;530,100;0;0">
+<param name=e[51] value="X;polyhedron;parallelepiped;X0,X1,X2,X3;black;0;black;random">
+</applet></center>
+
+<p>For, if not, then the circle <i>ABCD</i> is to the circle <i>EFGH</i> as the cone <i>AL</i> is either to some solid less than the cone <i>EN</i> or to a greater.
+
+<p>First, let it be in that ratio to a less solid <i>O,</i> and let the solid <i>X</i> be equal to that by which the solid <i>O</i> is less than the cone <i>EN.</i>  Therefore the cone <i>EN</i> equals the sum of the solids <i>O</i> and <i>X.</i>
+
+<div class="just"><a href="../bookIV/propIV6.html">IV.6</a></div>
+<p>Inscribe the square <i>EFGH</i>  in the circle <i>EFGH.</i> Therefore the square is greater than the half of the circle.
+
+<div class="just"><a href="propXII6.html">XII.6</a></div>
+<p>Set up from the square <i>EFGH</i> a pyramid of equal height with the cone. Therefore the pyramid so set up is greater than the half of the cone, for if we circumscribe a square about the circle, and set up from it a pyramid of equal height with the cone, then the inscribed pyramid is half of the circumscribed pyramid, for they are to one another as their bases, while the cone is less than the circumscribed pyramid.
+
+<p>Bisect the circumferences <i>EF, FG, GH,</i> and <i>HE</i> at the points <i>P, Q, R,</i> and <i>S,</i> and join <i>HP, PE, EQ, QF, FR, RG, GS,</i> and <i>SH.</i>
+
+<p>Therefore each of the triangles <i>HPE, EQF, FRG,</i> and <i>GSH</i> is greater than the half of that segment of the circle about it.
+
+<p>Set up on each of the triangles <i>HPE, EQF, FRG,</i> and <i>GSH</i>  a pyramid of equal height with the cone.  Therefore each of the pyramids so set up is also greater than the half of that segment of the cone about it.
+
+<div class="just"><a href="../bookX/propX1.html">X.1</a></div>
+<p>Thus, bisecting the circumferences which are left, joining straight lines, setting up on each of the triangles pyramids of equal height with the cone, and doing this repeatedly, we shall leave some segments of the cone which are less than the solid <i>X.</i>
+
+<p>Let such be left, and let them be the segments on <i>HP, PE, EQ, QF, FR, RG, GS,</i> and <i>SH.</i>  Therefore the remainder, the pyramid with the polygonal base <i>HPEQFRGS</i> and the same height as that of the cone, is greater than the solid <i>O.</i>
+
+<p>Now inscribe in the circle <i>ABCD</i> the polygon <i>DTAUBVCW</i> similar and similarly situated to the polygon <i>HPEQFRGS,</i> and on it set up a pyramid of equal height with the cone <i>AL.</i>
+
+<div class="just"><a href="propXII1.html">XII.1</a>
+<br><a href="propXII2.html">XII.2</a></div>
+<p>Since then the square on <i>AC</i> is to the square on <i>EG</i> as the polygon <i>DTAUBVCW</i> is to the polygon <i>HPEQFRGS,</i> while the square on <i>AC</i> is to the square on <i>EG</i> as the circle <i>ABCD</i> is to the circle <i>EFGH,</i> therefore the circle <i>ABCD</i> is to the circle <i>EFGH</i> as the polygon <i>DTAUBVCW</i> is to the polygon <i>HPEQFRGS.</i>
+
+<div class="just"><a href="propXII6.html">XII.6</a></div>
+<p>But the circle <i>ABCD</i> is to the circle <i>EFGH</i> as the cone <i>AL</i> is to the solid 0, and the polygon <i>DTAUBVCW</i> is to the polygon <i>HPEQFRGS</i> as the pyramid with the polygonal base <i>DTAUBVCW</i> and the vertex <i>L</i> is to the pyramid with the polygonal base <i>HPEQFRGS</i> and the vertex <i>N.</i>
+
+<div class="just"><a href="../bookV/propV11.html">V.11</a>
+<br><a href="../bookV/propV16.html">V.16</a></div>
+<p>Therefore the cone <i>AL</i> is to the solid <i>O</i> as the pyramid with the polygonal base <i>DTAUBVCW</i> and vertex <i>L</i> is to the pyramid with the polygonal base <i>HPEQFRGS</i> and vertex <i>N.</i>  Therefore, alternately the cone <i>AL</i> is to the pyramid in it as the solid <i>O</i> is to the pyramid in the cone <i>EN.</i>
+
+<p>But the cone <i>AL</i> is greater than the pyramid in it, therefore the solid <i>O</i> is also greater than the pyramid in the cone <i>EN.</i>
+
+<p>But it is also less, which is absurd.
+
+<p>Therefore the cone <i>AL</i> is not to any solid less than the cone <i>EN</i> as the circle <i>ABCD</i> is to the circle <i>EFGH.</i>
+
+<p>Similarly we can prove that neither is the cone <i>EN</i> to any solid less than the cone <i>AL</i> as the circle <i>EFGH</i> is to the circle <i>ABCD.</i>
+
+<p>I say next that neither is the cone <i>AL</i> to any solid greater than the cone <i>EN</i> as the circle <i>ABCD</i> is to the circle <i>EFGH.</i>
+
+<p>For, if possible, let it be in that ratio to a greater solid <i>O.</i>  Therefore, inversely the circle <i>EFGH</i> is to the circle <i>ABCD</i> as the solid <i>O</i> is to the cone <i>AL.</i>
+
+<p>But the solid <i>O</i> is to the cone <i>AL</i> as the cone <i>EN</i> to some solid less than the cone <i>AL,</i> therefore the circle <i>EFGH</i> is to the circle <i>ABCD</i> as the cone <i>EN</i> is to some solid less than the cone <i>AL,</i> which was proved impossible.
+
+<p>Therefore the cone <i>AL</i> is not to any solid greater than the cone <i>EN</i> as the circle <i>ABCD</i> is to the circle <i>EFGH.</i>
+
+<p>But it was proved that neither is it in this ratio to a less solid, therefore the circle <i>ABCD</i> is to the circle <i>EFGH</i> as the cone <i>AL</i> is to the cone <i>EN.</i>
+
+<div class="just"><a href="propXII10.html">XII.10</a></div>
+<p>But the cone is to the cone as the cylinder is to the cylinder, for each is triple each. Therefore the circle <i>ABCD</i> is to the circle <i>EFGH</i> as are the cylinders on them of equal height.
+
+<p>Therefore, <i>cones and cylinders of the same height are to one another as their bases.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proofs of <a href=propXII13.html>XII.13</a> and <a href=propXII14.html>XII.14</a> when the cylinders under question have the same height and equal bases, and in the proof of <a href=propXII15.html>XII.15</a> for cylinders of different heights.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

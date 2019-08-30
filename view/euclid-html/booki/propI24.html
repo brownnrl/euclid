@@ -1,0 +1,79 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 24</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 24</h1>
+
+<div class="statement">If two triangles have two sides equal to two sides respectively, but have one of the angles contained by the equal straight lines greater than the other, then they also have the base greater than the base.</div>
+
+<p>Let <i>ABC</i> and <i>DEF</i> be two triangles having the two sides <i>AB</i> and <i>AC</i> equal to the two sides <i>DE</i> and <i>DF</i> respectively, so that <i>AB</i> equals <i>DE,</i> and <i>AC</i> equals <i>DF,</i> and let the angle at <i>A</i> be greater than the angle at <i>D.</i>
+
+<p>I say that the base <i>BC</i> is greater than the base <i>EF.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=330 height=270>
+<img src="propI24.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.24">
+<param name=e[1] value="D;point;free;225,40">
+<param name=e[2] value="E;point;free;300,180">
+<param name=e[3] value="F;point;free;230,240">
+<param name=e[4] value="DEF;polygon;triangle;D,E,F;0;0;0,0,0;random">
+<param name=e[5] value="A;point;free;80,40">
+<param name=e[6] value="ABcirc;circle;radius;A,D,E;0;0;0;0">
+<param name=e[7] value="ACcirc;circle;radius;A,D,F;0;0;0;0">
+<param name=e[8] value="B;point;circleSlider;ABcirc,140,150">
+<param name=e[9] value="C;point;circleSlider;ACcirc,40,170">
+<param name=e[10] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[11] value="DEG;polygon;similar;D,E,A,B,C;0;0;0,0,0;0">
+<param name=e[12] value="G;point;vertex;DEG,3">
+<param name=e[13] value="FG;line;connect;F,G">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI24.gif" hspace=10 vspace=10 alt="I.24">';
+</script>
+</div>
+
+<div class="just"><a href="propI23.html">I.23</a>
+<br><a href="propI3.html">I.3</a>
+<br><a href=post1.html>I.Post.1</a></div>
+<p>Since the angle <i>BAC</i> is greater than the angle <i>EDF,</i> construct  the angle <i>EDG</i> equal to the angle <i>BAC</i> at the point <i>D</i> on the straight line <i>DE.</i>  Make <i>DG</i> equal to either of the two straight lines <i>AC</i> or <i>DF.</i>  Join <i>EG</i> and <i>FG.</i>
+
+<div class="just"><a href="propI4.html">I.4</a></div>
+<p>Since <i>AB</i> equals <i>DE,</i> and <i>AC</i> equals <i>DG,</i>  the two sides <i>BA</i> and <i>AC</i> equal the two sides <i>ED</i> and <i>DG,</i> respectively, and the angle <i>BAC</i> equals the angle <i>EDG,</i> therefore the base <i>BC</i> equals the base <i>EG.</i>
+
+<div class="just"><a href="propI5.html">I.5</a></div>
+<p>Again, since <i>DF</i> equals <i>DG,</i> therefore the angle <i>DGF</i> equals the angle <i>DFG.</i> Therefore the angle <i>DFG</i> is greater than the angle <i>EGF.</i>
+
+<p>Therefore the angle <i>EFG</i> is much greater than the angle <i>EGF.</i>
+
+<div class="just"><a href="propI19.html">I.19</a></div>
+<p>Since <i>EFG</i> is a triangle having the angle <i>EFG</i> greater than the angle <i>EGF,</i> and side opposite the greater angle is greater, therefore the side <i>EG</i> is also greater than <i>EF.</i>
+
+<p>But <i>EG</i> equals <i>BC,</i> therefore <i>BC</i> is also greater than <i>EF.</i>
+
+<p>Therefore <i>if two triangles have two sides equal to two sides respectively, but have one of the angles contained by the equal straight lines greater than the other, then they also have the base greater than the base.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<h4>Use of Proposition 24</h4>
+
+This proposition is used in the next proposition as well as a few in Book III and <a href=../bookXI/propXI22.html>XI.22</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

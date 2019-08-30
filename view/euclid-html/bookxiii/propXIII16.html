@@ -1,0 +1,309 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 16</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 16</h1>
+
+<div class="statement">
+To construct an icosahedron and comprehend it in a sphere, like the aforesaid figures; and to prove that the square on the side of the icosahedron is the irrational straight line called minor.</div>
+
+<div class="just"><a href="../bookVI/propVI9.html">VI.9</a>
+<br><a href="../bookI/propI11.html">I.11</a></div>
+<p>Set out the diameter <i>AB</i> of the given sphere, and cut it at <i>C</i> so that <i>AC</i> is quadruple <i>CB,</i> describe the semicircle <i>ADB</i> on <i>AB,</i> draw the straight line <i>CD</i> from <i>C</i> at right angles to <i>AB,</i> and join <i>DB.</i>
+
+<div class="just"><a href="../bookIV/propIV11.html">IV.11</a>
+<br><a href="../bookI/propI9.html">I.9</a></div>
+<p>Set out the circle <i>EFGHK,</i> and let its radius be equal to <i>DB.</i>  Inscribe the equilateral and equiangular pentagon <i>EFGHK</i> in the circle <i>EFGHK,</i> bisect the circumferences <i>EF, FG, GH, HK,</i> and <i>KE</i> at the points <i>L, M, N, O,</i> and <i>P,</i> and join <i>LM, MN, NO, OP, PL,</i> and  <i>EP.</i>
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=600 height=400 >
+<img src="propXIII16.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.16">
+<param name=e[1] value="A0;point;free;25,-1000;0;0">
+<param name=e[2] value="A3;point;free;25,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,0,40">
+<param name=e[4] value="B;point;lineSlider;A0,A3,0,360">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="ABmid;point;midpoint;A,B;0;0">
+<param name=e[7] value="ABcirc;circle;radius;ABmid,B;0;0;0;0">
+<param name=e[8] value="semi;sector;sector;ABmid,B,A;0;0;black;random">
+<param name=e[9] value="A1;point;perpendicular;A,B;0;0">
+<param name=e[10] value="A2;point;extend;A,A1,A,A1;0;0">
+<param name=e[11] value="A4;point;extend;A,A2,A,A2;0;0">
+<param name=e[12] value="B1;point;perpendicular;B,A;0;0">
+<param name=e[13] value="C;point;intersection;A,B,A4,B1">
+<param name=e[14] value="D';point;perpendicular;C,A;0;0">
+<param name=e[15] value="Dch;line;chord;C,D',ABcirc;0;0;0">
+<param name=e[16] value="D;point;last;Dch">
+<param name=e[17] value="CD;line;connect;C,D">
+<param name=e[18] value="BD;line;connect;B,D">
+
+<param name=e[19] value="a;point;free;410,200;0">
+<param name=e[20] value="sphere;sphere;radius;a,ABmid,A;0;0;lightGray">
+<param name=e[21] value="X;point;sphereSlider;sphere,410,160,100">
+<param name=e[22] value="Z;point;extend;X,a,X,a">
+<param name=e[23] value="XZ;line;connect;X,Z">
+<param name=e[24] value="b;point;midpoint;B,D;0;0">
+<param name=e[25] value="V;point;cutoff;a,X,b,B">
+<param name=e[26] value="W;point;extend;V,a,V,a">
+
+<param name=e[27] value="Vplane;plane;perpendicular;V,a;0;0;0;0">
+<param name=e[28] value="Vcirc;circle;radius;V,D,B,Vplane;0;0;black;0">
+<param name=e[29] value="E;point;circleSlider;Vcirc,240,30,-20">
+<param name=e[30] value="ELcirc;circle;radius;E,W,Z,Vplane;0;0;0;0">
+<param name=e[31] value="LP;line;bichord;Vcirc,ELcirc;0;0">
+<param name=e[32] value="L;point;first;LP">
+<param name=e[33] value="dec;polygon;regularPolygon;L,E,10,Vplane;0;0;black;0">
+<param name=e[34] value="P;point;vertex;dec,3">
+<param name=e[35] value="K;point;vertex;dec,4">
+<param name=e[36] value="O;point;vertex;dec,5">
+<param name=e[37] value="H;point;vertex;dec,6">
+<param name=e[38] value="N;point;vertex;dec,7">
+<param name=e[39] value="G;point;vertex;dec,8">
+<param name=e[40] value="M;point;vertex;dec,9">
+<param name=e[41] value="F;point;vertex;dec,10">
+<param name=e[42] value="EFpent;polygon;pentagon;E,F,G,H,K;0;0;black;0">
+<param name=e[43] value="LMpent;polygon;pentagon;L,M,N,O,P;0;0;black;0">
+
+<param name=e[44] value="Q;point;perpendicular;E,Vplane,D,B">
+<param name=e[45] value="EQ;line;connect;E,Q">
+<param name=e[46] value="R;point;perpendicular;F,Vplane,D,B">
+<param name=e[47] value="FR;line;connect;F,R">
+<param name=e[48] value="S;point;perpendicular;G,Vplane,D,B">
+<param name=e[49] value="GS;line;connect;G,S">
+<param name=e[50] value="T;point;perpendicular;H,Vplane,D,B">
+<param name=e[51] value="HT;line;connect;H,T">
+<param name=e[52] value="U;point;perpendicular;K,Vplane,D,B">
+<param name=e[53] value="KU;line;connect;K,U">
+
+<param name=e[54] value="LQR;polygon;triangle;L,Q,R;0;0;black;90,50,100">
+<param name=e[55] value="MRS;polygon;triangle;M,R,S;0;0;black;90,50,100">
+<param name=e[56] value="NST;polygon;triangle;N,S,T;0;0;black;90,50,100">
+<param name=e[57] value="OUT;polygon;triangle;O,U,T;0;0;black;90,50,100">
+<param name=e[58] value="QUP;polygon;triangle;Q,U,P;0;0;black;90,50,100">
+<param name=e[59] value="LMR;polygon;triangle;L,M,R;0;0;black;50,50,100">
+<param name=e[60] value="MNS;polygon;triangle;M,N,S;0;0;black;50,50,100">
+<param name=e[61] value="NOT;polygon;triangle;N,O,T;0;0;black;50,50,100">
+<param name=e[62] value="POU;polygon;triangle;P,O,U;0;0;black;50,50,100">
+<param name=e[63] value="LPQ;polygon;triangle;L,P,Q;0;0;black;50,50,100">
+
+<param name=e[64] value="QZ;line;connect;Q,Z">
+<param name=e[65] value="QW;line;connect;Q,W">
+<param name=e[66] value="UZ;line;connect;U,Z">
+<param name=e[67] value="EV;line;connect;E,V">
+<param name=e[68] value="LV;line;connect;L,V">
+<param name=e[69] value="LX;line;connect;L,X">
+<param name=e[70] value="XM;line;connect;X,M">
+</applet></center>
+
+<p>Therefore the pentagon <i>LMNOP</i> is also equilateral, and the straight line <i>EP</i> belongs to a decagon.
+
+<div class="just"><a href=../bookXI/propXI12.html>XI.12</a>
+<br><a href=../bookI/propI3.html>I.3</a></div>
+<p>Now from the points <i>E, F, G, H,</i> and <i>K</i> set up the straight lines <i>EQ, FR, GS, HT,</i> and <i>KU</i>  at right angles to the plane of the circle, and make them equal to the radius of the circle <i>EFGHK.</i>  Join <i>QR, RS, ST, TU, UQ, QL, LR, RM, MS, SN, NT, TO, OU, UP,</i> and <i>PQ.</i>
+
+<p>Now, since each of the straight lines <i>EQ</i> and <i>KU</i> is at right angles to the same plane, therefore <i>EQ</i> is parallel to <i>KU.</i>
+
+<div class="just"><a href="../bookI/propI33.html">I.33</a></div>
+<p>But it is also equal to it, and the straight lines joining those ends of equal and parallel straight lines which are in the same direction are equal and parallel.  Therefore <i>QU</i> is equal and parallel to <i>EK.</i>
+
+<p>But <i>EK</i> belongs to an equilateral pentagon, therefore <i>QU</i> also belongs to the equilateral pentagon inscribed in the circle <i>EFGHK.</i>
+
+<p>For the same reason each of the straight lines <i>QR, RS, ST,</i> and <i>TU</i> also belongs to the equilateral pentagon inscribed in the circle <i>EFGHK.</i>  Therefore the pentagon <i>QRSTU</i> is equilateral.
+
+<div class="just"><a href="propXIII10.html">XIII.10</a></div>
+<p>And, since <i>QE</i> belongs to a hexagon, and <i>EP</i> to a decagon, and the angle <i>QEP</i> is right, therefore <i>QP</i> belongs to a pentagon, for the square on the side of the pentagon equals the sum of the square on the side of the hexagon and the square on the side of the decagon inscribed in the same circle.
+
+<p>For the same reason <i>PU</i> is also a side of a pentagon. But <i>QU</i> also belongs to a pentagon, therefore the triangle <i>QPU</i> is equilateral. For the same reason each of the triangles <i>QLR, RMS, SNT,</i> and <i>TOU</i> is also equilateral.
+
+<p>And, since each of the straight lines <i>QL</i> and <i>QP</i> was proved to belong to a pentagon, and <i>LP</i> also belongs to a pentagon, therefore the triangle <i>QLP</i> is equilateral.
+
+<p>For the same reason each of the triangles <i>LRM, MSN, NTO,</i> and <i>OUP</i> is also equilateral.
+
+<div class="just"><a href="../bookIII/propIII1.html">III.1</a>
+<br><a href=../bookXI/propXI12.html>XI.12</a></div>
+<p>Take the center <i>V</i> of the circle <i>EFGHK,</i> set <i>VZ</i> up from <i>V</i> at right angles to the plane of the circle, and produce it in the other direction <i>VX.</i>  Cut off <i>VW,</i> the side of a hexagon, and each of the straight lines <i>VX</i> and <i>WZ,</i> sides of a decagon.  Join <i>QZ, QW, UZ, EV, LV, LX,</i> and <i>XM.</i>
+
+<div class="just"><a href="../bookXI/propXI6.html">XI.6</a>
+<br><a href="../bookI/propI33.html">I.33</a></div>
+<p>Now, since each of the straight lines <i>VW</i> and <i>QE</i> is at right angles to the plane of the circle, therefore <i>VW</i> is parallel to <i>QE.</i> But they are also equal, therefore <i>EV</i> and <i>QW</i> are also equal and parallel.
+
+<div class="just"><a href="propXIII10.html">XIII.10</a></div>
+<p>But <i>EV</i> belongs to a hexagon, therefore <i>QW</i> also belongs to a hexagon. And, since <i>QW</i> belongs to a hexagon,  and <i>WZ</i> to a decagon,  and the angle <i>QWZ</i> is right,  therefore <i>QZ</i> belongs to a pentagon.
+
+<div class="just"><a href="../bookIV/propIV15.html#cor">IV.15,Cor.</a>
+<br><a href="propXIII10.html">XIII.10</a></div>
+<p>For the same reason  <i>UZ</i> also belongs to a pentagon, for if we join <i>VK</i> and <i>WU,</i> then they will be equal and opposite, and <i>VK,</i> being a radius, belongs to a hexagon, therefore <i>WU</i> also belongs to a hexagon. But <i>WZ</i> belongs to a decagon, and the angle <i>UWZ</i> is right, therefore <i>UZ</i> belongs to a pentagon.
+
+<p>But <i>QU</i> also belongs to a pentagon, therefore the triangle <i>QUZ</i> is equilateral. For the same reason each of the remaining triangles of which the straight lines <i>QR, RS, ST,</i> and <i>TU</i> are the bases, and the point <i>Z</i> the vertex, is also equilateral.
+
+<div class="just"><a href="propXIII10.html">XIII.10</a></div>
+<p>Again, since <i>VL</i> belongs to a hexagon, and <i>VX</i> to a decagon, and the angle <i>LVX</i> is right, therefore <i>LX</i> belongs to a pentagon.
+
+<p>For the same reason, if we join <i>MV,</i> which belongs to a hexagon, <i>MX</i> is also inferred to belong to a pentagon.
+
+<p>But <i>LM</i> also belongs to a pentagon, therefore the triangle <i>LMX</i> is equilateral.
+
+<p>Similarly it can be proved that each of the remaining triangles of which <i>MN, NO, OP,</i> and <i>PL</i> are the bases and the point <i>X</i> the vertex, is also equilateral.
+
+<div class="just"><a href=../bookXI/defXI25.html>XI.Def.27</a></div>
+<p>Therefore an icosahedron has been constructed which is contained by twenty equilateral triangles.
+
+<hr width=50%>
+
+<p>It is next required to comprehend it in the given sphere, and to prove that the side of the icosahedron is the irrational straight line called minor.
+
+<div class="just"><a href="propXIII9.html">XIII.9</a></div>
+<p>Since <i>VW</i> belongs to a hexagon, and <i>WZ</i> to a decagon, therefore <i>VZ</i> is cut in extreme and mean ratio at <i>W,</i> and <i>VW</i> is its greater segment. Therefore as <i>ZV</i> is to <i>VW</i> as <i>VW</i> is to <i>WZ.</i>
+
+<p>But <i>VW</i> equals <i>VE,</i> and <i>WZ</i> equals <i>VX,</i> therefore <i>ZV</i> is to <i>VE</i> as <i>EV</i> is to <i>VX.</i> 
+
+<p>And the angles <i>ZVE</i> and <i>EVX</i> are right, therefore, if we join the straight line <i>EZ,</i> then the angle <i>XEZ</i> will be right since the triangles <i>XEZ</i> and <i>VEZ</i> are similar.
+
+<p>For the same reason, since <i>ZV</i> is to <i>VW</i> as <i>VW</i> is to <i>WZ,</i> and <i>ZV</i> equals <i>XW,</i> and <i>VW</i> equals <i>WQ,</i> therefore <i>XW</i> is to <i>WQ</i> as <i>QW</i> is to <i>WZ.</i>
+
+<div class="just"><a href="../bookVI/propVI8.html">VI.8</a>,
+<a href="../bookIII/propIII31.html">III.31</a></div>
+<p>And for this reason again, if we join <i>QX,</i> then the angle at <i>Q</i> will be right, therefore the semicircle described on <i>XZ</i> will also pass through <i>Q.</i>
+
+<p>And if, <i>XZ</i> remaining fixed, the semicircle is carried round and restored to the same position from which it began to be moved, then it will pass through <i>Q</i> and the remaining angular points of the icosahedron, and the icosahedron will have been comprehended in a sphere.
+
+<hr width=50%>
+
+<p>I say next that it is also comprehended in the given sphere.
+
+<div class="just"><a href=../bookI/propI9.html>I.9</a></div>
+<p>Bisect <i>VW</i> at <i>A'.</i>
+
+<div class="just"><a href="propXIII3.html">XIII.3</a></div>
+<p>Then, since the straight line <i>VZ</i> is cut in extreme and mean ratio at <i>W,</i> and <i>ZW</i> is its lesser segment, therefore the square on <i>ZW</i> added to the half of the greater segment, that is <i>WA',</i> is five times the square on the half of the greater segment. Therefore the square on <i>ZA'</i> is five times the square on <i>A'W.</i>
+
+<p>And <i>ZX</i> is double <i>ZA',</i> and <i>VW</i> is double <i>A'W,</i> therefore the square on <i>ZX</i> is five times the square on <i>WV.</i>  And, since <i>AC</i> is quadruple <i>CB,</i> therefore <i>AB</i> is five times <i>BC.</i>
+
+<div class="just"><a href="../bookVI/propVI8.html">VI.8</a>,
+<a href=../bookV/defV8.html>V.Def.9</a></div>
+<p>But <i>AB</i> is to <i>BC</i> as the square on <i>AB</i> is to the square on <i>BD,</i> therefore the square on <i>AB</i> is five times the square on <i>BD.</i>
+
+<p>But the square on <i>ZX</i> was also proved to be five times the square on <i>VW.</i> And <i>DB</i> equals <i>VW,</i>  for each of them equals the radius of the circle <i>EFGHK,</i> therefore <i>AB</i> also equals <i>XZ.</i>  And <i>AB</i> is the diameter of the given sphere, therefore <i>XZ</i> also equals the diameter of the given sphere.
+
+<p>Therefore the icosahedron has been comprehended in the given sphere.
+
+<p>I say next that the side of the icosahedron is the irrational straight line called minor.
+
+<div class="just"><a href="propXIII11.html">XIII.11</a></div>
+<p>Since the diameter of the sphere is rational, and the square on it is five times the square on the radius of the circle <i>EFGHK,</i> therefore the radius of the circle <i>EFGHK</i> is also rational, hence its diameter is also rational.  But, if an equilateral pentagon is inscribed in a circle which has its diameter rational, then the side of the pentagon is the irrational straight line called minor.
+
+<p>And the side of the pentagon <i>EFGHK</i> is the side of the icosahedron.
+
+<p>Therefore the side of the icosahedron is the irrational straight line called minor.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<br>
+
+<a name=#cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+From this it is clear that the square on the diameter of the sphere is five times the square on the radius of the circle from which the icosahedron has been described, and that the diameter of the sphere is composed of the side of the hexagon and two of the sides of the decagon inscribed in the same circle.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<h4>The icosahedron</h4>
+
+The regular icosahedron is composed of 20 faces, each face an equilateral triangle, with five triangles meeting at each vertex.  There are 12 vertices, and there are 30 edges.  
+
+<p>Unlike most of the Euclid&rsquo;s illustrations, the diagram he used for this proposition is highly schematic; it is not intended to be an accurate projection of the icosahedron.  Of course, it could be that the diagram changed over the centuries of copying, but his diagram has the advantage of spreading out the vertices to be readable.  The figure shown in the proof above is a standard orthogonal projection of the icosahedron.  The same icosahedron is shown directly below without all the auxiliary lines.
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=600 height=460 >
+<img src="propXIII16a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="The icosahedron">
+<param name=e[1] value="A0;point;free;35,-1000;0;0">
+<param name=e[2] value="A3;point;free;35,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,0,40">
+<param name=e[4] value="B;point;lineSlider;A0,A3,0,420">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="ABmid;point;midpoint;A,B;0;0">
+<param name=e[7] value="ABcirc;circle;radius;ABmid,B;0;0;0;0">
+<param name=e[8] value="A1;point;perpendicular;A,B;0;0">
+<param name=e[9] value="A2;point;extend;A,A1,A,A1;0;0">
+<param name=e[10] value="A4;point;extend;A,A2,A,A2;0;0">
+<param name=e[11] value="B1;point;perpendicular;B,A;0;0">
+<param name=e[12] value="C;point;intersection;A,B,A4,B1;0;0">
+<param name=e[13] value="D';point;perpendicular;C,A;0;0">
+<param name=e[14] value="Dch;line;chord;C,D',ABcirc;0;0;0">
+<param name=e[15] value="D;point;last;Dch;0;0">
+
+<param name=e[16] value="a;point;free;320,230;0">
+<param name=e[17] value="sphere;sphere;radius;a,ABmid,A;0;0;0;0">
+<param name=e[18] value="X;point;sphereSlider;sphere,410,205,100">
+<param name=e[19] value="Z;point;extend;X,a,X,a">
+<param name=e[20] value="b;point;midpoint;B,D;0;0">
+<param name=e[21] value="V;point;cutoff;a,X,b,B;0;0">
+<param name=e[22] value="W;point;extend;V,a,V,a;0;0">
+
+<param name=e[23] value="Vplane;plane;perpendicular;V,a;0;0;0;0">
+<param name=e[24] value="Vcirc;circle;radius;V,D,B,Vplane;0;0;0;0">
+<param name=e[25] value="L;point;circleSlider;Vcirc,340,80,-20">
+<param name=e[26] value="LEcirc;circle;radius;L,W,Z,Vplane;0;0;0;0">
+<param name=e[27] value="FE;line;bichord;Vcirc,LEcirc;0;0;0">
+<param name=e[28] value="E;point;last;FE;0;0">
+<param name=e[29] value="dec;polygon;regularPolygon;L,E,10,Vplane;0;0;0;0">
+<param name=e[30] value="P;point;vertex;dec,3">
+<param name=e[31] value="K;point;vertex;dec,4;0;0">
+<param name=e[32] value="O;point;vertex;dec,5">
+<param name=e[33] value="H;point;vertex;dec,6;0;0">
+<param name=e[34] value="N;point;vertex;dec,7">
+<param name=e[35] value="G;point;vertex;dec,8;0;0">
+<param name=e[36] value="M;point;vertex;dec,9">
+<param name=e[37] value="F;point;vertex;dec,10;0;0">
+
+<param name=e[38] value="Q;point;perpendicular;E,Vplane,D,B">
+<param name=e[39] value="R;point;perpendicular;F,Vplane,D,B">
+<param name=e[40] value="S;point;perpendicular;G,Vplane,D,B">
+<param name=e[41] value="T;point;perpendicular;H,Vplane,D,B">
+<param name=e[42] value="U;point;perpendicular;K,Vplane,D,B">
+
+<param name=e[43] value="LQR;polygon;triangle;L,Q,R">
+<param name=e[44] value="MRS;polygon;triangle;M,R,S">
+<param name=e[45] value="NST;polygon;triangle;N,S,T">
+<param name=e[46] value="OUT;polygon;triangle;O,U,T">
+<param name=e[47] value="QUP;polygon;triangle;Q,U,P">
+<param name=e[48] value="LMR;polygon;triangle;L,M,R">
+<param name=e[49] value="MNS;polygon;triangle;M,N,S">
+<param name=e[50] value="NOT;polygon;triangle;N,O,T">
+<param name=e[51] value="POU;polygon;triangle;P,O,U">
+<param name=e[52] value="LPQ;polygon;triangle;L,P,Q">
+<param name=e[53] value="QRZ;polygon;triangle;Q,R,Z">
+<param name=e[54] value="RSZ;polygon;triangle;R,S,Z">
+<param name=e[55] value="STZ;polygon;triangle;S,T,Z">
+<param name=e[56] value="TUZ;polygon;triangle;T,U,Z">
+<param name=e[57] value="UQZ;polygon;triangle;U,Q,Z">
+<param name=e[58] value="LMX;polygon;triangle;L,M,X">
+<param name=e[59] value="MNX;polygon;triangle;M,N,X">
+<param name=e[60] value="NOX;polygon;triangle;N,O,X">
+<param name=e[61] value="OPX;polygon;triangle;O,P,X">
+<param name=e[62] value="PLX;polygon;triangle;P,L,X">
+</applet></center>
+
+<h4>Use of this construction</h4>
+Constructing a icosahedron is an end in itself. This construction and the corollary are also used in <a href=propXIII18.html>XIII.18</a> where the five regular polyhedra are compared.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

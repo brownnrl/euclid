@@ -1,0 +1,75 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 12</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 12</h1>
+
+<div class="statement">If two circles touch one another externally, then the straight line joining their centers passes through the point of contact.</div>
+
+<div class="just"><a href="propIII1.html">III.1</a></div>
+<p>Let the two circles <i>ABC</i> and <i>ADE</i> touch one another externally at the point <i>A.</i>  Take the center <i>F</i> of <i>ABC,</i> and the center <i>G</i> of <i>ADE.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=320>
+<img src=propIII12.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.12">
+<param name=e[1] value="A;point;free;150,110">
+<param name=e[2] value="B;point;free;70,30;black;0">
+<param name=e[3] value="C';point;free;126,130;0">
+<param name=e[4] value="E;point;free;280,150;black;0">
+<param name=e[5] value="F;point;free;70,90">
+<param name=e[6] value="G;point;free;180,170">
+<param name=e[7] value="ABC;circle;circumcircle;A,B,C';0;0;black;random">
+<param name=e[8] value="O;point;center;ABC;0;0">
+<param name=e[9] value="M;point;midpoint;A,E;0;0">
+<param name=e[10] value="MM';line;perpendicular;M,E;0;0;0">
+<param name=e[11] value="M';point;last;MM';0;0">
+<param name=e[12] value="P;point;intersection;M,M',O,A;0;0">
+<param name=e[13] value="ADE;circle;radius;P,A;0;0;black;random">
+<param name=e[14] value="FA;line;connect;F,A">
+<param name=e[15] value="AG;line;connect;A,G">
+<param name=e[16] value="FG;line;connect;F,G">
+<param name=e[17] value="DD';line;chord;FG,ADE;0;0;0">
+<param name=e[18] value="D;point;first;DD'">
+<param name=e[19] value="C''C;line;chord;FG,ABC;0;0;0">
+<param name=e[20] value="C;point;last;C''C">
+</applet></div>
+
+<p>I say that the straight line joined from <i>F</i> to <i>G</i> passes through the point of contact at <i>A.</i>
+
+<p>For suppose it does not, but, if possible, let it pass as <i>FCDG.</i>  Join <i>AF</i> and <i>AG.</i> 
+
+<p>Then, since the point <i>F</i> is the center of the circle <i>ABC, FA</i> equals <i>FC.</i> 
+
+<p>Again, since the point <i>G</i> is the center of the circle <i>ADE, GA</i> equals GD.
+
+<div class="just"><a href="../bookI/propI20.html">I.20</a></div>
+<p>But <i>FA</i> was also proved equal to <i>FC,</i> therefore <i>FA</i> and <i>AG</i> equal <i>FC</i> and <i>GD,</i> so that the whole <i>FG</i> is greater than <i>FA</i> and <i>AG,</i> but it is also less, which is impossible.
+
+<p>Therefore the straight line joined from <i>F</i> to <i>G</i> does not fail to pass through the point of contact at <i>A,</i> therefore it passes through it.
+
+<p>Therefore <i>if two circles touch one another externally, then the straight line joining their centers passes through the point of contact.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition was probably added to the <i>Elements</i> after Euclid, perhaps by Heron or a later commentator.
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

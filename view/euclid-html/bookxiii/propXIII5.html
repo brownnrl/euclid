@@ -1,0 +1,77 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 5</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 5</h1>
+
+<div class="statement">
+If a straight line is cut in extreme and mean ratio, and a straight line equal to the greater segment is added to it, then the whole straight line has been cut in extreme and mean ratio, and the original straight line is the greater segment.</div>
+
+<p>Let the straight line <i>AB</i> be cut in extreme and mean ratio at the point <i>C,</i>  let <i>AC</i> be the greater segment, and let <i>AD</i> be equal to <i>AC.</i>
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=200 >
+<img src="propXIII5.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.5">
+<param name=e[1] value="A;point;free;110,40">
+<param name=e[2] value="B;point;free;230,40">
+<param name=e[3] value="BATE;polygon;square;B,A;0;0;black;random">
+<param name=e[4] value="T;point;vertex;BATE,3;0;0">
+<param name=e[5] value="E;point;vertex;BATE,4">
+<param name=e[6] value="X;point;midpoint;A,B;0;0">
+<param name=e[7] value="Y;point;extend;A,X,X,E;0;0">
+<param name=e[8] value="C;point;cutoff;A,B,B,Y">
+<param name=e[9] value="D;point;extend;C,A,C,A">
+<param name=e[10] value="ADLH;polygon;square;A,D;0;0;black;random">
+<param name=e[11] value="L;point;vertex;ADLH,3">
+<param name=e[12] value="H;point;vertex;ADLH,4">
+<param name=e[13] value="K;point;intersection;L,H,B,E">
+<param name=e[14] value="HK;line;connect;H,K">
+<param name=e[15] value="AE;line;connect;A,E">
+<param name=e[16] value="CC';line;parallel;C,B,E">
+</applet></div>
+
+<p>I say that the straight line <i>DB</i> is cut in extreme and mean ratio at <i>A,</i> and the original straight line <i>AB</i> is the greater segment.
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a></div>
+<p>Describe the square <i>AE</i> on <i>AB,</i> and draw the figure.
+
+<div class="just"><a href="../bookVI/devVI3.html">I.Def.3</a>,
+<a href="../bookVI/propVI17.html">VI.17</a></div>
+<p>Since <i>AB</i> is cut in extreme and mean ratio at <i>C,</i> therefore the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>AC.</i>
+
+<p>And <i>CE</i> is the rectangle <i>AB</i> by <i>BC,</i> and <i>CH</i> is the square on <i>AC,</i> therefore <i>CE</i> equals <i>HC.</i>
+
+<p>But <i>HE</i> equals <i>CE,</i> and <i>DH</i> equals <i>HC,</i> therefore <i>DH</i> also equals <i>HE.</i> Therefore the whole <i>DK</i> is equal to the whole <i>AE.</i>
+ <p>
+And <i>DK</i> is the rectangle <i>BD</i> by <i>DA,</i> for <i>AD</i> equals <i>DL,</i> and <i>AE</i> is the square on <i>AB,</i> therefore the rectangle <i>BD</i> by <i>DA</i> equals the square on <i>AB.</i>
+
+<div class="just"><a href="../bookVI/propVI17.html">VI.17</a>,
+<a href="../bookV/defV5.html">V.Def.5</a></div>
+<p>Therefore <i>DB</i> is to <i>BA</i> as <i>BA</i> is to <i>AD.</i>  And <i>DB</i> is greater than <i>BA,</i> therefore <i>BA</i> is also greater than <i>AD.</i>
+
+<p>Therefore <i>DB</i> has been cut in extreme and mean ratio at <i>A,</i> and <i>AB</i> is the greater segment. 
+
+<p>Therefore, <i>if a straight line is cut in extreme and mean ratio, and a straight line equal to the greater segment is added to it, then the whole straight line has been cut in extreme and mean ratio, and the original straight line is the greater segment.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used <a href=propXIII17.html>XIII.17</a> where a dodecahedron is constructed.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

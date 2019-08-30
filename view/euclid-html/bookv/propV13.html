@@ -1,0 +1,124 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 13</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 13</h1>
+
+<div class="statement">If a first magnitude has to a second the same ratio as a third to a fourth, and the third has to the fourth a greater ratio than a fifth has to a sixth, then the first also has to the second a greater ratio than the fifth to the sixth.</div>
+
+<p>Let a first magnitude <i>A</i> have to a second <i>B</i> the same ratio as a third <i>C</i> has to a fourth <i>D,</i> and let the third <i>C</i> have to the fourth <i>D</i> a greater ratio than a fifth <i>E</i> has to a sixth <i>F.</i>
+
+<p>I say that the first <i>A</i> also has to the second <i>B</i> a greater ratio than the fifth <i>E</i> to the sixth <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=500 height=150>
+<img src=propV13.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.13">
+<param name=align value=left>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+<param name=e[7] value="X0;point;free;-1000,130;0;0">
+<param name=e[8] value="X1;point;free;1000,130;0;0">
+<param name=e[9] value="A;point;lineSlider;U0,U1,30,30">
+<param name=e[10] value="A1;point;lineSlider;U0,U1,90,30;0">
+<param name=e[11] value="AA1;line;connect;A,A1;0;0;magenta">
+<param name=e[12] value="B;point;lineSlider;V0,V1,30,60">
+<param name=e[13] value="B1;point;lineSlider;V0,V1,65,60;0">
+<param name=e[14] value="BB1;line;connect;B,B1;0;0;magenta">
+<param name=e[15] value="C;point;lineSlider;U0,U1,200,30">
+<param name=e[16] value="C1;point;lineSlider;U0,U1,260,30;0">
+<param name=e[17] value="CC1;line;connect;C,C1;0;0;blue">
+<param name=e[18] value="D;point;lineSlider;V0,V1,200,60">
+<param name=e[19] value="D1;point;proportion;A,A1,B,B1,C,C1,D,V1;0">
+<param name=e[20] value="DD1;line;connect;D,D1;0;0;blue">
+<param name=e[21] value="E;point;lineSlider;U0,U1,370,30">
+<param name=e[22] value="E1;point;lineSlider;U0,U1,405,30;0">
+<param name=e[23] value="EE1;line;connect;E,E1;0;0;green">
+<param name=e[24] value="F;point;lineSlider;V0,V1,370,60">
+<param name=e[25] value="F1;point;lineSlider;V0,V1,380,60;0;0">
+<param name=e[26] value="F2;point;proportion;A,A1,B,B1,E,E1,F1,V1;0">
+<param name=e[27] value="FF2;line;connect;F,F2;0;0;green">
+
+<param name=e[28] value="G;point;lineSlider;W0,W1,200,30">
+<param name=e[29] value="G1;point;cutoff;G,W1,C,C1;0;lightGray">
+<param name=e[30] value="G2;point;cutoff;G1,W1,C,C1;0">
+<param name=e[31] value="GG2;line;connect;G,G2;0;0;blue">
+<param name=e[32] value="L;point;lineSlider;X0,X1,370,60">
+<param name=e[33] value="L1;point;cutoff;L,X1,F,F2;0;lightGray">
+<param name=e[34] value="L2;point;cutoff;L1,X1,F,F2;0;lightGray">
+<param name=e[35] value="L3;point;cutoff;L2,X1,F,F2;0">
+<param name=e[36] value="LL3;line;connect;L,L3;0;0;green">
+
+<param name=e[37] value="H;point;lineSlider;W0,W1,370,30">
+<param name=e[38] value="H1;point;cutoff;H,W1,E,E1;0;lightGray">
+<param name=e[39] value="H2;point;cutoff;H1,W1,E,E1;0">
+<param name=e[40] value="HH2;line;connect;H,H2;0;0;green">
+<param name=e[41] value="M;point;lineSlider;W0,W1,30,60">
+<param name=e[42] value="M1;point;cutoff;M,W1,A,A1;0;lightGray">
+<param name=e[43] value="M2;point;cutoff;M1,W1,A,A1;0">
+<param name=e[44] value="MM2;line;connect;M,M2;0;0;magenta">
+
+<param name=e[45] value="K;point;lineSlider;X0,X1,200,30">
+<param name=e[46] value="K1;point;cutoff;K,X1,D,D1;0;lightGray">
+<param name=e[47] value="K2;point;cutoff;K1,X1,D,D1;0;lightGray">
+<param name=e[48] value="K3;point;cutoff;K2,X1,D,D1;0">
+<param name=e[49] value="KK3;line;connect;K,K3;0;0;blue">
+<param name=e[50] value="N;point;lineSlider;X0,X1,30,60">
+<param name=e[51] value="N1;point;cutoff;N,X1,B,B1;0;lightGray">
+<param name=e[52] value="N2;point;cutoff;N1,X1,B,B1;0">
+<param name=e[53] value="NN2;line;connect;N,N2;0;0;magenta">
+</applet>
+</div>
+
+<div class="just"><a href=defV7.html>V.Def.7</a></div>
+<p>Since there are some equimultiples of <i>C</i> and <i>E,</i> and of <i>D</i> and <i>F</i> other equimultiples, such that the multiple of <i>C</i> is in excess of the multiple of <i>D,</i> while the multiple of <i>E</i> is not in excess of the multiple of <i>F,</i> let them be taken.  Let <i>G</i> and <i>H</i> be equimultiples of <i>C</i> and <i>E,</i> and <i>K</i> and <i>L</i> other, arbitrary, equimultiples of <i>D</i> and <i>F,</i> so that <i>G</i> is in excess of <i>K,</i> but <i>H</i> is not in excess of <i>L.</i>  Whatever multiple <i>G</i> is of <i>C,</i> let <i>M</i> also be that multiple of <i>A,</i> and, whatever multiple <i>K</i> is of <i>D,</i> let <i>N</i> also be that multiple of <i>B.</i>
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>Now, since <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D,</i> and of <i>A</i> and <i>C</i> equimultiples <i>M</i> and <i>G</i> have been taken, and of <i>B</i> and <i>D</i> other, arbitrary, equimultiples <i>N</i> and <i>K,</i> therefore, if <i>M</i> is in excess of <i>N, G</i> is also in excess of <i>K</i>; if equal, equal; and if less, less.
+
+<p>But <i>G</i> is in excess of <i>K,</i> therefore <i>M</i> is also in excess of <i>N.</i>
+
+<div class="just"><a href=defV7.html>V.Def.7</a></div>
+<p>But <i>H</i> is not in excess of <i>L,</i> and <i>M</i> and <i>H</i> are equimultiples of <i>A</i> and <i>E,</i> and <i>N</i> and <i>L</i> other, arbitrary, equimultiples of <i>B</i> and <i>F,</i> therefore A has to <i>B</i> a greater ratio than <i>E</i> has to <i>F.</i>
+
+<p>Therefore, <i>if a first magnitude has to a second the same ratio as a third to a fourth, and the third has to the fourth a greater ratio than a fifth has to a sixth, then the first also has to the second a greater ratio than the fifth to the sixth.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition states that if two ratios are equal, and one is greater than a third, then so is the other.  That is, 
+
+<p><center>if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d</i> and <i>c</i>&nbsp;:&nbsp;<i>d</i>&nbsp;>&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f,</i> then <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;>&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f.</i>  
+</center><p>
+
+The magnitudes may be of three different kinds with <i>a</i> and <i>b</i> of one kind, <i>c</i> and <i>d</i> of a second kind, and <i>e</i> and <i>f</i> of a third kind.
+
+<p>The analogous statement for lesser ratios isn&rsquo;t stated, but, of course, it holds as well.  Euclid uses it as well as this proposition, in <a href=propV20.html>V.20</a>.
+
+<p>Transitivity of the greater than relation also holds: 
+
+<p><center>if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;>&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d</i> and <i>c</i>&nbsp;:&nbsp;<i>d</i>&nbsp;>&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f,</i> then <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;>&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f.</i>
+</center><p>
+
+The proof isn&rsquo;t difficult, but without symbolic algebra it becomes unwieldy.  Euclid would have required 20 lines in his diagram.
+
+<p>This proposition is used in the next one as well as <a href=propV20.html>V.20</a> and <a href=propV21.html>V.21</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

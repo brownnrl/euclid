@@ -1,0 +1,96 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 5</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 5</h1>
+
+<div class="statement">If a number is part of a number, and another is the same part of another, then the sum is also the same part of the sum that the one is of the one.</div>
+
+<p>Let the number <i>A</i> be a part of <i>BC,</i> and another number <i>D</i> be the same part of another number <i>EF</i> that <i>A</i> is of <i>BC.</i>
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=150 height=220 >
+<img src=propVII5.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.5">
+<param name=align value="right">
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="B0;point;free;60,-1000;0;0">
+<param name=e[5] value="B3;point;free;60,1000;0;0">
+<param name=e[6] value="B;point;lineSlider;B0,B3,60,30">
+<param name=e[7] value="D0;point;free;90,-1000;0;0">
+<param name=e[8] value="D3;point;free;90,1000;0;0">
+<param name=e[9] value="D1;point;lineSlider;D0,D3,90,30;0">
+<param name=e[10] value="E0;point;free;120,-1000;0;0">
+<param name=e[11] value="E3;point;free;120,1000;0;0">
+<param name=e[12] value="E;point;lineSlider;E0,E3,120,30">
+<param name=e[13] value="A2;point;lineSlider;A0,A3,30,110;0">
+<param name=e[14] value="A;line;connect;A1,A2;black">
+<param name=e[15] value="G;point;cutoff;B,B3,A1,A2">
+<param name=e[16] value="C;point;cutoff;G,B3,A1,A2">
+<param name=e[17] value="BC;line;connect;B,C">
+<param name=e[18] value="D2;point;lineSlider;D0,D3,30,80;0">
+<param name=e[19] value="D;line;connect;D1,D2;black">
+<param name=e[20] value="H;point;cutoff;E,E3,D1,D2">
+<param name=e[21] value="F;point;cutoff;H,E3,D1,D2">
+<param name=e[22] value="EF;line;connect;E,F">
+</applet></div>
+
+<p>I say that the sum of <i>A</i> and <i>D</i> is also the same part of the sum of <i>BC</i> and <i>EF</i> that <i>A</i> is of <i>BC.</i>
+
+<p>Since, whatever part <i>A</i> is of <i>BC, D</i> is also the same part of <i>EF,</i> therefore, there are as many numbers equal to <i>D</i> in <i>EF</i> as there are in <i>BC</i> equal to <i>A.</i>
+
+<p>Divide <i>BC</i> into the numbers equal to <i>A,</i> namely <i>BG</i> and <i>GC,</i> and <i>EF</i> into the numbers equal to <i>D,</i> namely <i>EH</i> and <i>HF.</i> Then the multitude of <i>BG</i> and <i>GC</i> equals the multitude of <i>EH</i> and <i>HF.</i>
+
+<p>And, since <i>BG</i> equals <i>A,</i> and <i>EH</i> equals <i>D,</i> therefore the sum of <i>BG</i> and <i>EH</i> also equals the sum of <i>A</i> and <i>D.</i> For the same reason the sum of <i>GC</i> and <i>HF</i> also equals the sum of <i>A</i> and <i>D.</i>
+
+<p>Therefore there are as many numbers in <i>BC</i> and <i>EF</i> equal to <i>A</i> and <i>D</i> as there are in <i>BC</i> equal to <i>A.</i>  Therefore, the sum of <i>BC</i> and <i>EF</i> is the same multiple of the sum of <i>A</i> and <i>D</i> that <i>BC</i> is of <i>A.</i> Therefore, the sum of <i>A</i> and <i>D</i> is the same part of the sum of <i>BC</i> and <i>EF</i> that <i>A</i> is of <i>BC.</i>
+
+<p>Therefore, <i>if a number is part of a number, and another is the same part of another, then the sum is also the same part of the sum that the one is of the one.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This is the first of four propositions that deal with distributivity of division and multiplication over addition and subtraction.  
+
+<p> If a number <i>a</i> is one <i>n</i><sup>th</sup> of a number <i>b</i>, and if <i>d</i> is 
+one <i>n</i><sup>th</sup> of <i>e,</i> then <i>a</i>&nbsp;+&nbsp;<i>d</i> is one <i>n</i><sup>th</sup>
+of <i>b</i>&nbsp;+&nbsp;<i>e.</i>
+ 
+As a single algebraic equation this says 
+<p><center>
+<i>b/n</i>&nbsp;+&nbsp;<i>d/n</i>&nbsp;=&nbsp;(<i>b</i>&nbsp;+&nbsp;<i>d</i>)/<i>n.</i>
+</center><p>
+
+The sample value taken for 1/<i>n</i> in the proof is 1/2.
+
+<p>Although this proposition is only stated for the sum of two numbers, it is used for sums of arbitrary size. 
+
+<h4>Outline and critique of the proof</h4>
+
+<p>Suppose that <i>a</i> is one <i>n</i><sup>th</sup> of <i>b</i> and  <i>d</i> is one <i>n</i><sup>th</sup> of <i>e</i>.  Then <i>b</i> is a sum of <i>n</i> <i>a</i>&rsquo;s while <i>e</i> is a sum of <i>n</i> <i>d</i>&rsquo;s.  Therefore, <i>b</i>&nbsp;+&nbsp;<i>e</i> is a sum of <i>n</i> (<i>a</i>&nbsp;+&nbsp;<i>d</i>)&rsquo;s.  Therefore, <i>a</i>&nbsp;+&nbsp;<i>d</i> is one <i>n</i><sup>th</sup>
+of <i>b</i>&nbsp;+&nbsp;<i>e.</i>
+
+<p>Note that there are no justifications that we can give for the steps in the proof.  Even the definition of number <a href=defVII1.html>VII.Def.2</a> is not relevant.  The argument is completely based in principles of informal addition, namely unrestricted commutativity and associativity of addition where the number of terms <i>n</i> is unrestricted.
+
+<p>In the middle of the proof it is shown that <i>n</i>(<i>a</i>&nbsp;+&nbsp;<i>b</i>)&nbsp;=&nbsp;<i>na</i>&nbsp;+&nbsp;<i>nb</i>. In particular, when <i>b</i>&nbsp;=&nbsp;<i>a</i>, that says, <i>n</i>(2<i>a</i>)&nbsp;=&nbsp;2(<i>na</i>).  As the proposition is used for more than 2 terms, and the proof works as well for <i>m</i> terms, it can be used to show <i>n</i>(<i>ma</i>)&nbsp;=&nbsp;<i>m</i>(<i>na</i>), which is done in <a href=propVII16.html>VII.16</a>, the proposition preceding the statement for commutativity of multiplication of numbers.
+
+<p>Thus, the foundations of formal number theory in the <i>Elements</i> are principles of informal number theory.
+
+<h4>Use of this proposition</h4> It is used in the proofs of five of the next seven propositions and indirectly on the rest of the theory of numbers.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

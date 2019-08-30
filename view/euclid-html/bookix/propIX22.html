@@ -1,0 +1,57 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 22</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 22</h1>
+
+<div class="statement">If as many odd numbers as we please are added together, and their multitude is even, then the sum is even.</div>
+
+<p>Let as many odd numbers as we please, <i>AB, BC, CD,</i> and <i>DE,</i> even in multitude, be added together.
+
+<p>I say that the sum <i>AE</i> is even.</td>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=60 >
+<img src="propIX21.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.21">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,72,0">
+<param name=e[5] value="C;point;lineSlider;A0,A3,120,0">
+<param name=e[6] value="D;point;lineSlider;A0,A3,194,0">
+<param name=e[7] value="E;point;lineSlider;A0,A3,220,0">
+<param name=e[8] value="AE;line;connect;A,E">
+</applet></div>
+
+<div class="just">(<a href="../bookVII/defVII6.html">VII.Def.7</a>)
+<br><a href="propIX21.html">IX.21</a></div>
+<p>Since each of the numbers <i>AB, BC, CD,</i> and <i>DE</i> is odd, if a unit is subtracted from each, then each of the remainders is even,  so that the sum of them is even. But the multitude of the units is also even. Therefore the sum <i>AE</i> is also even.
+
+<p>Therefore, <i>if as many odd numbers as we please are added together, and their multitude is even, then the sum is even.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+A critical step in the proof is the claim that if 1 is subracted from an odd number, then the remainder is even.  This was mentioned in <a href="../bookVII/defVII6.html">VII.Def.7</a>, but never proved.  See the <a href="../bookVII/defVII6.html#guide">Guide</a> for that definition for details.  Unless that gap is filled, this proposition, along with many that depend upon it, are unjustified.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

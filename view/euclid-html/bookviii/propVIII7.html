@@ -1,0 +1,69 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 7</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 7</h1>
+
+<div class="statement">If there are as many numbers as we please in continued proportion, and the first measures the last, then it also measures the second.</div>
+
+<p>Let there are as many numbers as we please, <i>A, B, C,</i> and <i>D,</i> in continued proportion, and let <i>A</i> measure <i>D.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=170 >
+<img src="propVIII7.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.7">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="D0;point;free;-1000,145;0;0">
+<param name=e[8] value="D3;point;free;1000,145;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[13] value="B2;point;lineSlider;B0,B3,120,0;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[16] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+<param name=e[18] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[19] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<p>I say that <i>A</i> also measures <i>B.</i>
+
+<div class="just"><a href=propVIII6.html>VIII.6</a></div>
+<p>If <i>A</i> does not measure <i>B,</i> neither does any other of the numbers measure any  other. But <i>A</i> measures <i>D.</i> Therefore <i>A</i> also measures <i>B.</i>
+
+<p>Therefore, <i>if there are as many numbers as we please in continued proportion, and the first measures the last, then it also measures the second.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is the contrapositive of the previous theorem.
+
+<h4>Use of this theorem</h4>
+
+This proposition is used in propositions <a href=propVIII14.html>VIII.14</a> and <a href=propVIII15.html>VIII.15</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,149 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 11</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 11</h1>
+
+<div class="statement">To cut a given straight line so that the rectangle contained by the whole and one of the segments equals the square on the remaining segment.</div>
+
+<p>Let <i>AB</i> be the given straight line.
+
+<p>It is required to cut <i>AB</i> so that the rectangle contained by the whole and one of the segments equals the square on the remaining segment.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=280 width=250>
+<img src="propII11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.11">
+<param name=e[1] value="A0;point;free;-1000,120;0,0">
+<param name=e[2] value="A3;point;free;1000,120;0,0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,50,100">
+<param name=e[4] value="B;point;lineSlider;A0,A3,190,100">
+<param name=e[5] value="BD;line;perpendicular;B,A;0;0;0">
+<param name=e[6] value="D;point;last;BD">
+<param name=e[7] value="ABDC;polygon;parallelogram;A,B,D;0;0;0,0,0;random">
+<param name=e[8] value="C;point;vertex;ABDC,4">
+<param name=e[9] value="E;point;midpoint;A,C">
+<param name=e[10] value="BE;line;connect;B,E">
+<param name=e[11] value="F;point;extend;C,E,E,B">
+<param name=e[12] value="FAHG;polygon;square;F,A;0;0;0,0,0;random">
+<param name=e[13] value="H;point;vertex;FAHG,3">
+<param name=e[14] value="G;point;vertex;FAHG,4">
+<param name=e[15] value="HK;line;parallel;H,A,C">
+<param name=e[16] value="K;point;last;HK">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII11.gif" hspace=10 alt="II.11">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a>,
+<a href="../bookI/propI10.html">I.10</a></div>
+<p>Describe the square <i>ABDC</i> on <i>AB.</i>  Bisect <i>AC</i> at the point <i>E,</i> and join <i>BE.</i>  
+
+<div class="just"><a href="../bookI/propI3.html">I.3</a>
+<br><a href="../bookI/propI46.html">I.46</a></div>
+<p>Draw <i>CA</i> through to <i>F,</i> and make <i>EF</i> equal to <i>BE.</i>  Describe the square <i>FH</i> on <i>AF,</i> and draw <i>GH</i> through to <i>K.</i>
+
+<p>I say that <i>AB</i> has been cut at <i>H</i> so that the rectangle <i>AB</i> by <i>BH</i> equals the square on <i>AH.</i>
+
+<div class="just"><a href="propII6.html">II.6</a></div>
+<p>Since the straight line <i>AC</i> has been bisected at <i>E,</i> and <i>FA</i> is added to it, the rectangle <i>CF</i> by <i>FA</i> together with the square on <i>AE</i> equals the square on <i>EF.</i>
+
+<p>But <i>EF</i> equals <i>EB,</i> therefore the rectangle <i>CF</i> by <i>FA</i> together with the square on <i>AE</i> equals the square on <i>EB.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the sum of the squares on <i>BA</i> and <i>AE</i> equals the square on <i>EB,</i> for the angle at <i>A</i> is right,  therefore the rectangle <i>CF</i> by <i>FA</i> together with the square on <i>AE</i> equals the sum of the squares on <i>BA</i> and <i>AE.</i>
+
+<p>Subtract the square on <i>AE</i>  from each. Therefore the remaining rectangle <i>CF</i> by <i>FA</i> equals the square on <i>AB.</i>
+
+<p>Now the rectangle <i>CF</i> by <i>FA</i> is <i>FK,</i> for <i>AF</i> equals <i>FG,</i> and the square on <i>AB</i> is <i>AD,</i> therefore <i>FK</i> equals <i>AD.</i>
+
+<p>Subtract <i>AK</i> from each. Therefore <i>FH,</i> which remains, equals <i>HD.</i>
+
+<p>And <i>HD</i> is the rectangle <i>AB</i> by <i>BH,</i> for <i>AB</i> equals <i>BD,</i> and <i>FH</i> is the square on <i>AH,</i> therefore the rectangle  <i>AB</i> by <i>BH</i> equals the square on <i>HA.</i>
+
+<p>Therefore the given straight line <i>AB</i> has been cut at <i>H</i> so that the rectangle  <i>AB</i> by <i>BH</i>  equals the square on <i>HA.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+This construction cuts a line into two parts to solve the equation <i>a</i> (<i>a</i>&nbsp;&ndash;&nbsp;<i>x</i>)&nbsp;=&nbsp;<i>x</i><sup>2</sup> geometrically.
+
+<p>This construction is used in the proof of <a href=../bookIV/propIV10.html>IV.10</a>, which is later used to construct a regular pentagon.  It accomplishes the same thing as the construction of proposition <a href=../bookVI/propVI30.html>VI.30</a>, which cuts a line into extreme and mean ratio, defined in <a href=../bookVI/defVI3.html>VI.Def.3</a>, and that construction is used
+later in <a href=../bookXIII/propXIII17.html>XIII.17</a>.
+
+
+<table cellpadding=5>
+<tr><td>
+<p>The difference between this proposition and VI.30 is a matter of terminology.  Propositions dealing with ratios of lines are postponed until Book VI, but any ratio concerning lines can be converted into a statement about areas of rectangles.  Proposition <a href=../bookVI/propVI16.html>VI.16</a> states that the line <i>A</i> is to the line <i>B</i> as the line <i>C</i> is to the line <i>D</i> is equivalent to the statement that the rectangle <i>A</i> by <i>D</i> equals the rectangle <i>B</i> by <i>C.</i>
+
+<p>The construction of this proposition cuts a line into two parts <i>A</i> and <i>B</i> so that the rectangle <i>A</i>&nbsp;+&nbsp;<i>B</i> by <i>A</i> equals the square <i>B</i> by <i>B.</i>  The construction in VI.30 cuts a line so that <i>A</i>&nbsp;+&nbsp;<i>B</i> : <i>B</i>&nbsp;=&nbsp;<i>B</i> : <i>A,</i> which by VI.16, or by its special case <a href=../bookVI/propVI17.html>VI.17</a>, is the same thing.
+
+<h4>Construction steps</h4>
+
+<p>For the purposes of cutting the line <i>AB,</i> the entire diagram does not have to be constructed.  The points <i>D, G,</i> and <i>K</i> are unnecessary.  In the diagram to the right, only those lines and circles necessary for the construction are shown, and only those parts of them that are relevant.
+
+<p>Altogether, there are six circles to be drawn, two lines connected, and one line extended. In order, they are as follows. Extend <i>BA</i> and draw a circle centered at <i>A</i> with radius <i>AB</i> to determine the point <i>L.</i> Draw circles centered at <i>B</i> and <i>L</i> with radius <i>BL</i> to determine points <i>M</i> and <i>N.</i>  Draw the straight line <i>MN.</i> Then <i>C</i> is where it meets the circle centered at <i>A.</i>  Draw a circle centered at <i>C</i> with radius <i>CA,</i> and connect the two points where it meets the circle centered at <i>A.</i>  Then <i>E</i> is where that line meets <i>AC.</i>  Draw the circle centered at <i>E</i> with radius <i>EB</i> to determine <i>F.</i>  Draw the circle centered at <i>A</i> with radius <i>F</i> to determine <i>H,</i> the desired point to cut <i>AB.</i></td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=360 width=280>
+<img src="propII11a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Extreme and mean ratio">
+<param name=e[1] value="A;point;free;140,180">
+<param name=e[2] value="B;point;free;220,180">
+<param name=e[3] value="L;point;extend;B,A,B,A">
+<param name=e[4] value="LB;line;connect;L,B">
+<param name=e[5] value="Lcirc;circle;radius;L,B;0;0;0;0">
+<param name=e[6] value="Bcirc;circle;radius;B,L;0;0;0;0">
+<param name=e[7] value="MN;line;bichord;Lcirc,Bcirc">
+<param name=e[8] value="M;point;last;MN">
+<param name=e[9] value="N;point;first;MN">
+<param name=e[10] value="MLNarc;sector;sector;B,M,N;0;0;black;0">
+<param name=e[11] value="NBMarc;sector;sector;L,N,M;0;0;black;0">
+<param name=e[12] value="Acirc;circle;radius;A,B;0;0;0;0">
+<param name=e[13] value="LBarc;sector;sector;A,L,B;0;0;black;0">
+<param name=e[14] value="C;point;cutoff;A,N,A,B">
+<param name=e[15] value="Ccirc;circle;radius;C,A;0;0;0;0">
+<param name=e[16] value="Eline;line;bichord;Acirc,Ccirc">
+<param name=e[17] value="E1;point;first;Eline;0">
+<param name=e[18] value="E2;point;last;Eline;0">
+<param name=e[19] value="Carc;sector;sector;C,E2,E1;0;0;black;0">
+<param name=e[20] value="E;point;intersection;A,C,Eline">
+<param name=e[21] value="F;point;cutoff;E,A,E,B">
+<param name=e[22] value="FBarc;sector;sector;E,B,F;0;0;black;0">
+<param name=e[23] value="H;point;cutoff;A,B,A,F">
+<param name=e[24] value="FHarc;sector;sector;A,H,F;0;0;black;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propII11a.gif" hspace=10 alt="Extreme and mean ratio">';
+</script>
+
+</td></tr></table>
+
+<h4>The golden ratio, the 36&deg;-72&deg;-72&deg; triangle, and regular pentagons</h4>
+
+This is the first of several propositions in the <i>Elements</i> that treats these concepts. At this point, ratios have not been introduced, so Euclid describes it in basic terms, that a given straight line is cut so that &ldquo;the rectangle contained by the whole and one of the segments equals the square on the remaining segment.&rdquo;
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

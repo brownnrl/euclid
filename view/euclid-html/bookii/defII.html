@@ -1,0 +1,82 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book II, Definitions</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 1</h1>
+
+<div class="statement">Any rectangular parallelogram is said to be</i> contained <i>by the two straight lines containing the right angle.</i></div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 2</h1>
+
+<div class="statement"><i>And in any parallelogrammic area let any one whatever of the parallelograms about its diameter with the two complements be called a</i> gnomon.</div>
+</div>
+
+<h3>Guide</h3>
+
+Euclid didn&rsquo;t a single word for rectangle, but two words meaning right-angled parallelogram.
+
+<p><center>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=500>
+<img src="defII.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Def.II">
+<param name=e[1] value="A;point;free;50,40">
+<param name=e[2] value="B;point;free;140,40">
+<param name=e[3] value="C';point;perpendicular;B,A;0;0">
+<param name=e[4] value="C;point;lineSlider;B,C',140,180">
+<param name=e[5] value="D;point;parallelogram;A,B,C">
+<param name=e[6] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;black;random">
+
+<param name=e[7] value="E;point;free;270,40">
+<param name=e[8] value="F;point;free;450,40">
+<param name=e[9] value="G;point;free;400,180">
+<param name=e[10] value="H;point;parallelogram;E,F,G">
+<param name=e[11] value="EFGH;polygon;quadrilateral;E,F,G,H;0;0;black;random">
+<param name=e[12] value="EG;line;connect;E,G">
+<param name=e[13] value="L;point;lineSlider;EG,300,110">
+<param name=e[14] value="K';point;parallelogram;E,H,L;0;0">
+<param name=e[15] value="K;point;intersection;E,F,K',L">
+<param name=e[16] value="M;point;parallelogram;E,K,L">
+<param name=e[17] value="EKLM;polygon;quadrilateral;E,K,L,M;0;0;black;random">
+<param name=e[18] value="N;point;intersection;K,L,H,G">
+<param name=e[19] value="LN;line;connect;L,N">
+<param name=e[20] value="O;point;intersection;M,L,F,G">
+<param name=e[21] value="LO;line;connect;L,O">
+
+<param name=e[22] value="Q';point;midpoint;L,G;0;0">
+<param name=e[23] value="Q;point;midpoint;L,Q';black;gray">
+<param name=e[24] value="P;point;cutoff;L,K,L,Q;black;gray">
+<param name=e[25] value="R;point;cutoff;L,M,L,Q;black;gray">
+<param name=e[26] value="PQR;sector;arc;R,Q,P;0;0;gray;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="defII.gif" hspace=10 alt="II.Def.1">';
+</script>
+</center><p>
+
+According to the first definition, the rectangle <i>ABCD</i> illustrated on the left is contained by the lines <i>AB</i> and <i>BC,</i> and this rectangle can be called the rectangle <i>AB</i> by <i>BC.</i>  Of course, it could also be called the rectangle <i>BC</i> by <i>CD,</i> or two other names.
+
+<p>On the right, in the parallelogram <i>EFGH,</i> there is a diameter <i>EG</i> with a parallelogram <i>LNGO</i> about it and the two complements <i>KLOF</i> and <i>MHNL,</i> and these three parallelograms together make up the gnomon.  In other words a gnomon is an L-shaped figure made by removing a parallelogram from a larger similar parallelogram. 
+
+<p>The word <i>gnomon</i> comes from the Greek word meaning carpenter&rsquo;s square. A carpenter&rsquo;s square is an L-shaped tool with its two sides at right angles.  Euclid&rsquo;s use of the word is looser as he doesn&rsquo;t require that the sides be at right angles.
+
+<p>Euclid illustrated gnomons by arcs of circles around the inner vertex.  In this example, the gnomon is called the gnomon <i>PQR.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,79 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 18</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 18</h1>
+
+<div class="statement">
+If a straight line is at right angles to any plane, then all the planes through it are also at right angles to the same plane.</div>
+
+<p>Let any straight line <i>AB</i> be at right angles to the plane of reference.
+
+<p>I say that all the planes through <i>AB</i> are also at right angles to the plane of reference.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=220 >
+<img src="propXI18.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.18">
+<param name=e[1] value="X;point;free;100000,200">
+<param name=e[2] value="Y;point;free;200,-100000">
+<param name=e[3] value="Z;point;free;30000,-100000">
+<param name=e[4] value="P0;point;free;30,200;0;0,75,100">
+<param name=e[5] value="P2;point;free;260,70;0;0,75,100">
+<param name=e[6] value="P1;point;intersection;P0,X,P2,Z;0;0">
+<param name=e[7] value="P3;point;intersection;P2,X,P0,Z;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;P0,P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[9] value="A;point;free;180,40">
+<param name=e[10] value="B;point;lineSlider;A,Y,180,140">
+<param name=e[11] value="AB;line;connect;A,B">
+<param name=e[12] value="E;point;lineSlider;P1,P2,200,120">
+<param name=e[13] value="C;point;intersection;E,B,P0,P3">
+<param name=e[14] value="D;point;parallelogram;A,B,C">
+<param name=e[15] value="DE;polygon;parallelogram;D,C,E;0;0;black;random">
+<param name=e[16] value="F;point;lineSlider;C,E,100,150">
+<param name=e[17] value="G;point;intersection;A,D,F,Y">
+<param name=e[18] value="FG;line;connect;F,G">
+</applet></div>
+
+<p>Let the plane <i>DE</i> be drawn through <i>AB.</i>  Let <i>CE</i> be the intersection of the plane <i>DE</i> and the plane of reference.
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a></div>
+<p>Take a point <i>F</i> at random on <i>CE,</i> and draw <i>FG</i> from <i>F</i> at right angles to <i>CE</i> in the plane <i>DE.</i>
+
+<div class="just"><a href=defXI3.html>XI.Def.3</a></div>
+<p>Now, since <i>AB</i> is at right angles to the plane of reference, therefore <i>AB</i> is also at right angles to all the straight lines which meet it and lie in the plane of reference, so that it is also at right angles to <i>CE.</i>  Therefore the angle <i>ABF</i> is right.
+
+<div class="just"><a href="../bookI/propI28.html">I.28</a></div>
+<p>But the angle <i>GFB</i> is also right, therefore <i>AB</i> is parallel to <i>FG.</i>
+
+<div class="just"><a href="propXI8.html">XI.8</a></div>
+<p>But <i>AB</i> is at right angles to the plane of reference, therefore <i>FG</i> is also at right angles to the plane of reference.
+
+<div class="just"><a href=defXI3.html>XI.Def.4</a></a></div>
+<p>Now a plane is at right angles to a plane when the straight lines drawn in one of the planes at right angles to the intersection of the planes are at right angles to the remaining plane.  And <i>FG,</i> drawn in one of the planes <i>DE</i> at right angles to <i>CE,</i> the intersection of the planes, was proved to be at right angles to the plane of reference.  Therefore the plane <i>DE</i> is at right angles to the plane of reference.
+
+<p>Similarly it can also be proved that all the planes through <i>AB</i> are at right angles to the plane of reference.
+
+<p>Therefore, <i>if a straight line is at right angles to any plane, then all the planes through it are also at right angles to the same plane.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is used in the proof of proposition <a href=../bookXII/propXII17.html>XII.17</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

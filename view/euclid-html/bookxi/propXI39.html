@@ -1,0 +1,95 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 39</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 39</h1>
+
+<div class="statement">
+If there are two prisms of equal height, and one has a parallelogram as base and the other a triangle, and if the parallelogram is double the triangle, then the prisms are equal.</div>
+
+<p>Let <i>ABCDEF</i> and <i>GHKLMN</i> be two prisms of equal height, let one have the parallelogram <i>AF</i> as base, and the other the triangle <i>GHK,</i> and let the parallelogram <i>AF</i> be double the triangle <i>GHK.</i>
+
+<p>I say that the prism <i>ABCDEF</i> equals the prism <i>GHKLMN.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=400 height=230 >
+<img src="propXI39.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.39">
+<param name=e[1] value="origin;point;fixed;60,150,0;0;0">
+<param name=e[2] value="1X;point;fixed;260,123,36;0;0">
+<param name=e[3] value="1Y;point;fixed;5,30,160;0;0">
+<param name=e[4] value="1Z;point;fixed;60,294,123;0;0">
+<param name=e[5] value="floor;plane;3points;origin,1X,1Y;0;0;0;0">
+<param name=e[6] value="A;point;planeSlider;floor,60,150,0">
+<param name=e[7] value="B;point;lineSlider;origin,1Z,0,-30,0">
+<param name=e[8] value="E;point;planeSlider;floor,90,250,0">
+<param name=e[9] value="C;point;planeSlider;floor,140,150,0">
+<param name=e[10] value="D;point;parallelogram;B,A,C">
+<param name=e[11] value="F;point;parallelogram;C,A,E">
+<param name=e[12] value="O;point;parallelogram;B,A,F">
+<param name=e[13] value="a;point;parallelogram;B,A,E;0">
+<param name=e[14] value="ABE;polygon;triangle;A,B,E;0;0;0;0">
+<param name=e[15] value="ABCDEF;polyhedron;prism;ABE,A,C;0;0;black;random">
+<param name=e[16] value="BDOa;polygon;quadrilateral;B,D,O,a;0;0;black;0">
+<param name=e[17] value="Ea;line;connect;E,a">
+<param name=e[18] value="OF;line;connect;O,F">
+
+<param name=e[19] value="H;point;planeSlider;floor,200,170,0">
+<param name=e[20] value="ceiling;plane;parallel;floor,B;0;0;0;0">
+<param name=e[21] value="M;point;planeSlider;ceiling,200,170,0">
+<param name=e[22] value="b;point;planeSlider;floor,300,170,0;0">
+<param name=e[23] value="E1;point;perpendicular;A,C,floor;0;0">
+<param name=e[24] value="E2;point;intersection;A,E1,E,F,floor;0;0">
+<param name=e[25] value="G1;point;perpendicular;H,b,floor;0;0">
+<param name=e[26] value="G2;point;proportion;H,b,A,E2,A,C,H,G1;0;0">
+<param name=e[27] value="G3;point;parallelogram;b,H,G2;0;0">
+<param name=e[28] value="G;point;lineSlider;G2,G3,250,230,0">
+<param name=e[29] value="K;point;parallelogram;G,H,b">
+<param name=e[30] value="L;point;parallelogram;M,H,G">
+<param name=e[31] value="N;point;parallelogram;M,H,K">
+<param name=e[32] value="P;point;parallelogram;M,H,b">
+<param name=e[33] value="GHK;polygon;triangle;G,H,K;0;0;0;0">
+<param name=e[34] value="GHKLMN;polyhedron;prism;GHK,G,L;0;0;black;random">
+<param name=e[35] value="HMPb;polygon;quadrilateral;H,M,P,b;0;0;black;0">
+<param name=e[36] value="NP;line;connect;N,P">
+<param name=e[37] value="bK;line;connect;b,K">
+</applet></div>
+
+<p>Complete the solids <i>AO</i> and <i>GP.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>Since the parallelogram <i>AF</i> is double the triangle <i>GHK,</i> and the parallelogram <i>HK</i> is also double the triangle <i>GHK,</i>  therefore the parallelogram <i>AF</i> equals the parallelogram <i>HK.</i>
+
+<div class="just"><a href="propXI31.html">XI.31</a></div>
+<p>But parallelepipedal solids on equal bases of the same height equal one another,  therefore the solid <i>AO</i> equals the solid <i>GP.</i>
+
+<div class="just"><a href="propXI28.html">XI.28</a></div>
+<p>And the prism <i>ABCDEF</i> is half of the solid <i>AO,</i> and the prism <i>GHKLMN</i> is half of the solid <i>GP,</i>  therefore the prism <i>ABCDEF</i> equals the prism <i>GMKLMN.</i>
+
+<p>Therefore, <i>if there are two prisms of equal height, and one has a parallelogram as base and the other a triangle, and if the parallelogram is double the triangle, then the prisms are equal.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is designed specifically to take care of a situation that occurs in propositions <a href=../bookXII/propXII3.html>XII.3</a> and <a href=../bookXII/propXII4.html>XII.4</a> on the way to proving <a href=../bookXII/propXII5.html>XII.5</a> concerning the volume of a pyramid.
+
+<p>Both of the prisms in this proposition are triangular, but the base of the first is taken to be one of the parallelograms <i>ACFE</i> on its side while the base of the second is a triangular end <i>GHK.</i>  To say that they have the height means the distance from the vertex <i>B</i> to the plane of the parallelogram <i>ACEF</i> is the same as the distance from the vertex <i>M</i> to the plane of the triangle <i>GHK.</i>
+
+<p>When the solids are completed, they are doubled to create two parallelepipeds of the same height and equal bases, which therefore are equal, and so are their halves, the original prisms.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

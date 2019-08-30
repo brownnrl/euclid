@@ -1,0 +1,106 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 15</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 15</h1>
+
+<div class="statement">If a cubic number measures a cubic number, then the side also measures the side; and, if the side measures the side, then the cube also measures the cube.</div>
+
+<p>Let the cubic number <i>A</i> measure the cube <i>B,</i> and let <i>C</i> be the side of <i>A</i> and <i>D</i> the side of <i>B.</i>
+
+<p>I say that <i>C</i> measures <i>D.</i>
+
+<p>Multiply <i>C</i> by itself to make <i>E,</i> multiply <i>D</i> by itself to make <i>G,</i> multiply <i>C</i> by <i>D</i> to make <i>F,</i> and multiply <i>C</i> and <i>D</i> by <i>F</i> to make <i>H</i> and <i>K</i> respectively.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=410 height=170 >
+<img src="propVIII12.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.15">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="E0;point;free;-1000,50;0;0">
+<param name=e[4] value="E3;point;free;1000,50;0;0">
+<param name=e[5] value="C0;point;free;-1000,70;0;0">
+<param name=e[6] value="C3;point;free;1000,70;0;0">
+<param name=e[7] value="F0;point;free;-1000,90;0;0">
+<param name=e[8] value="F3;point;free;1000,90;0;0">
+<param name=e[9] value="D0;point;free;-1000,110;0;0">
+<param name=e[10] value="D3;point;free;1000,110;0;0">
+<param name=e[11] value="G0;point;free;-1000,130;0;0">
+<param name=e[12] value="G3;point;free;1000,130;0;0">
+<param name=e[13] value="B0;point;free;-1000,150;0;0">
+<param name=e[14] value="B3;point;free;1000,150;0;0">
+
+<param name=e[15] value="U1;point;lineSlider;F0,F3,0,0;0;0">
+<param name=e[16] value="U2;point;lineSlider;F0,F3,25,0;0;0">
+<param name=e[17] value="U;line;connect;U1,U2;0;0;0">
+<param name=e[18] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[19] value="C2;point;lineSlider;C0,C3,65,0;0">
+<param name=e[20] value="C;line;connect;C1,C2;black">
+<param name=e[21] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[22] value="D2;point;lineSlider;D0,D3,75,0;0">
+<param name=e[23] value="D;line;connect;D1,D2;black">
+<param name=e[24] value="E1;point;lineSlider;E0,E3,110,0;0">
+<param name=e[25] value="E2;point;proportion;U1,U2,C1,C2,C1,C2,E1,E3;0">
+<param name=e[26] value="E;line;connect;E1,E2;black">
+<param name=e[27] value="G1;point;lineSlider;G0,G3,110,0;0">
+<param name=e[28] value="G2;point;proportion;U1,U2,D1,D2,D1,D2,G1,G3;0">
+<param name=e[29] value="G;line;connect;G1,G2;black">
+<param name=e[30] value="A1;point;lineSlider;A0,A3,240,0;0">
+<param name=e[31] value="A2;point;proportion;U1,U2,C1,C2,E1,E2,A1,A3;0">
+<param name=e[32] value="A;line;connect;A1,A2;black">
+<param name=e[33] value="B1;point;lineSlider;B0,B3,240,0;0">
+<param name=e[34] value="B2;point;proportion;U1,U2,D1,D2,G1,G2,B1,B3;0">
+<param name=e[35] value="B;line;connect;B1,B2;black">
+
+<param name=e[36] value="F1;point;lineSlider;F0,F3,110,0;0">
+<param name=e[37] value="F2;point;proportion;U1,U2,C1,C2,D1,D2,F1,F3;0">
+<param name=e[38] value="F;line;connect;F1,F2;black">
+<param name=e[39] value="H1;point;lineSlider;C0,C3,240,0;0">
+<param name=e[40] value="H2;point;proportion;U1,U2,C1,C2,F1,F2,H1,C3;0">
+<param name=e[41] value="H;line;connect;H1,H2;black">
+<param name=e[42] value="K1;point;lineSlider;D0,D3,240,0;0">
+<param name=e[43] value="K2;point;proportion;U1,U2,D1,D2,F1,F2,K1,D3;0">
+<param name=e[44] value="K;line;connect;K1,K2;black">
+</applet></div>
+
+<div class="just"><a href=propVIII11.html>VIII.11</a>
+<br><a href=propVIII12.html>VIII.12</a>
+<br><a href=propVIII7.html>VIII.7</a></div>
+<p>Now it is clear that <i>E, F,</i> and <i>G</i> and <i>A, H, K,</i> and <i>B</i> are continuously proportional in the ratio of <i>C</i> to <i>D.</i> And, since <i>A, H, K,</i> and <i>B</i> are continuously proportional, and <i>A</i> measures <i>B</i> and <i>G</i> therefore it also measures <i>H.</i>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>And <i>A</i> is to <i>H</i> as <i>C</i> is to <i>D,</i> therefore <i>C</i> also measures <i>D.</i>
+
+<hr width=50%>
+<p>Next, let <i>C</i> measure <i>D.</i>
+
+<p>I say that <i>A</i> also measures <i>B.</i>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>With the same construction, we can prove in a similar manner that <i>A, H, K,</i> and <i>B</i> are continuously proportional in the ratio of <i>C</i> to <i>D.</i> And, since <i>C</i> measures <i>D,</i> and <i>C</i> is to <i>D</i> as <i>A</i> is to <i>H,</i> therefore <i>A</i> also measures <i>H,</i> so that <i>A</i> measures <i>B</i> also.
+
+<p>Therefore, <i>if a cubic number measures a cubic number, then the side also measures the side; and, if the side measures the side, then the cube also measures the cube.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<i>c</i><sup>3</sup> divides <i>d</i><sup>3</sup> if and only if <i>c</i> divides <i>d</i>.
+
+<p>This proposition is used to prove its contrapositive, <a href=propVIII17.html>VIII.17</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

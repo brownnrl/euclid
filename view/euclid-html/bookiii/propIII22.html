@@ -1,0 +1,63 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 22</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 22</h1>
+
+<div class="statement">The sum of the opposite angles of quadrilaterals in circles equals two right angles. </div>
+
+<p>Let <i>ABCD</i> be a circle, and let <i>ABCD</i> be a quadrilateral in it.  
+
+<p>I say that the sum of the opposite angles equals two right angles.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=260>
+<img src=propIII22.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.22">
+<param name=e[1] value="A;point;free;50,50">
+<param name=e[2] value="B;point;free;200,40">
+<param name=e[3] value="C;point;free;200,180">
+<param name=e[4] value="ABCD;circle;circumcircle;A,B,C;0;0;0,0,0;random">
+<param name=e[5] value="D;point;circleSlider;ABCD,120,200">
+<param name=e[6] value="AB;line;connect;A,B">
+<param name=e[7] value="AC;line;connect;A,C">
+<param name=e[8] value="AD;line;connect;A,D">
+<param name=e[9] value="BC;line;connect;B,C">
+<param name=e[10] value="BD;line;connect;B,D">
+<param name=e[11] value="CD;line;connect;C,D">
+</applet></div>
+
+<p>Join <i>AC</i> and <i>BD.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>Then, since in any triangle the sum of the three angles equals two right angles, the sum of the three angles <i>CAB, ABC,</i> and <i>BCA</i> of the triangle <i>ABC</i> equals two right angles.
+
+<div class="just"><a href="propIII21.html">III.21</a></div>
+<p>But the angle <i>CAB</i> equals the angle <i>BDC,</i> for they are in the same segment <i>BADC,</i> and the angle <i>ACB</i> equals the angle <i>ADB,</i> for they are in the same segment <i>ADCB,</i> therefore the whole angle <i>ADC</i> equals the sum of the angles <i>BAC</i> and <i>ACB.</i>
+
+<p>Add the angle <i>ABC</i> to each. Therefore the sum of the angles <i>ABC, BAC,</i> and <i>ACB</i> equals the sum of the angles <i>ABC</i> and <i>ADC.</i>  But the sum of the angles <i>ABC, BAC,</i> and <i>ACB</i> equals two right angles, therefore the sum of the angles <i>ABC</i> and <i>ADC</i> also equal two right angles.
+
+<p>Similarly we can prove that the sum of the angles <i>BAD</i> and <i>DCB</i> also equals two right angles.
+
+<p>Therefore <i>the sum of the opposite angles of quadrilaterals in circles equals two right angles. </i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in <a href=propIII31.html>III.31</a> and <a href=propIII32.html>III.32</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

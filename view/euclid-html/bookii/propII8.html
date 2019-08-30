@@ -1,0 +1,118 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 8</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">If a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment equals the square described on the whole and the aforesaid segment as on one straight line.</div>
+
+<p>Let a straight line <i>AB</i> be cut at random at the point <i>C.</i>
+
+<p>I say that four times the rectangle <i>AB</i> by <i>BC</i> plus the square on <i>AC</i> equals the square described on <i>AB</i> and <i>BC</i> as on one straight line.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=300>
+<img src="propII8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.8">
+<param name=e[1] value="A0;point;free;-1000,40;0,0">
+<param name=e[2] value="A3;point;free;1000,40;0,0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,210,0">
+<param name=e[5] value="C;point;lineSlider;A0,A3,160,0">
+<param name=e[6] value="D;point;extend;A,B,C,B">
+<param name=e[7] value="DAEF;polygon;square;D,A">
+<param name=e[8] value="E;point;vertex;DAEF,3">
+<param name=e[9] value="F;point;vertex;DAEF,4">
+<param name=e[10] value="DE;line;connect;D,E">
+<param name=e[11] value="CH;line;parallel;C,D,F">
+<param name=e[12] value="H;point;last;CH">
+<param name=e[13] value="BL;line;parallel;B,D,F">
+<param name=e[14] value="L;point;last;BL">
+<param name=e[15] value="K;point;intersection;D,E,B,L">
+<param name=e[16] value="Q;point;intersection;D,E,C,H">
+<param name=e[17] value="M;point;parallelogram;K,B,A">
+<param name=e[18] value="O;point;parallelogram;Q,C,A">
+<param name=e[19] value="MN;line;parallel;M,A,D">
+<param name=e[20] value="OP;line;parallel;O,A,D">
+<param name=e[21] value="N;point;last;MN">
+<param name=e[22] value="P;point;last;OP">
+<param name=e[23] value="G;point;intersection;M,N,C,H">
+<param name=e[24] value="R;point;intersection;B,L,O,P">
+<param name=e[25] value="OQHE;polygon;quadrilateral;O,Q,H,E;0;0;0;random">
+<param name=e[26] value="N';point;midpoint;K,N;0;0">
+<param name=e[27] value="S;point;cutoff;Q,O,K,N';black;lightGray">
+<param name=e[28] value="T;point;cutoff;K,D,K,N';black;lightGray">
+<param name=e[29] value="U;point;cutoff;Q,H,K,N';black;lightGray">
+<param name=e[30] value="UTS;sector;arc;U,T,S;0;0;lightGray;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII8.gif" hspace=10 alt="II.8">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI3.html">I.3</a>,
+<a href="../bookI/propI46.html">I.46</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Produce the straight line <i>BD</i> in a straight line with <i>AB,</i> and make <i>BD</i> equal to <i>CB.</i> Describe the square <i>AEFD</i> on <i>AD,</i> and let the figure be drawn.
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>Then, since <i>CB</i> equals <i>BD,</i> while <i>CB</i> equals <i>GK,</i> and <i>BD</i> equals <i>KN,</i> therefore <i>GK</i> also equals <i>KN.</i>
+
+<p>For the same reason <i>QR</i> also equals <i>RP.</i>
+
+<div class="just"><a href="../bookI/propI36.html">I.36</a></div>
+<p>And, since <i>BC</i> equals <i>BD,</i> and <i>GK</i> equals <i>KN,</i> therefore <i>CK</i> also equals <i>KD,</i> and <i>GR</i> equals <i>RN.</i>
+
+<div class="just"><a href="../bookI/propI43.html">I.43</a></div>
+<p>But <i>CK</i> equals <i>RN,</i> for they are complements of the parallelogram <i>CP.</i> Therefore <i>KD</i> also equals <i>GR.</i>  Therefore the four areas <i>DK, CK, GR, RN</i> equal one another. Therefore the four are quadruple of <i>CK.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>Again, since <i>CB</i> equals <i>BD,</i> while <i>BD</i> equals <i>BK,</i> that is <i>CG,</i> and <i>CB</i> equals <i>GK,</i> that is <i>GQ,</i> therefore <i>CG</i> also equals <i>GQ.</i>
+
+<div class="just"><a href="../bookI/propI36.html">I.36</a></div>
+<p>And, since <i>CG</i> equals <i>GQ,</i> and <i>QR</i> equals <i>RP, AG</i> also equals <i>MQ,</i> and <i>QL</i> equals <i>RF.</i>
+
+<div class="just"><a href="../bookI/propI43.html">I.43</a></div>
+<p>But <i>MQ</i> equals <i>QL,</i> for they are complements of the parallelogram <i>ML,</i> therefore <i>AG</i> also equals <i>RF.</i>  Therefore the four areas <i>AG, MQ, QL, RF</i> equal one another. Therefore the four are quadruple of <i>AG.</i> But the four areas <i>CK, KD, GR, RN</i> were proved to be quadruple of <i>CK,</i> therefore the eight areas, which contain the gnomon <i>STU,</i> are quadruple of <i>AK.</i>
+
+<p>Now, since <i>AK</i> is the rectangle <i>AB</i> by <i>BD,</i> for <i>BK</i> equals <i>BD,</i> therefore four times the rectangle <i>AB</i> by <i>BD</i> is quadruple of <i>AK.</i>
+
+<p>But the gnomon <i>STU</i> was also proved to be quadruple of <i>AK,</i> therefore four times the rectangle <i>AB</i> by <i>BD</i> equals the gnomon <i>STU</i>.
+
+<p>Add <i>OH,</i> which equals the square on <i>AC,</i> to each.  Therefore four times the rectangle <i>AB</i> by <i>BD</i> plus the square on <i>AC</i> equals the gnomon <i>STU</i> plus <i>OH.</i>
+
+<p>But the gnomon <i>STU</i> and <i>OH</i> are the whole square <i>AEFD,</i> which is described on <i>AD.</i> Therefore four times the rectangle <i>AB</i> by <i>BD</i> plus the square on <i>AC</i> equals the square on <i>AD.</i>
+
+<p>But <i>BD</i> equals <i>BC.</i> 
+
+<p>Therefore four times the rectangle <i>AB</i> by <i>BC</i> together with the square on <i>AC</i> equals the square on <i>AD,</i> that is to the square described on <i>AB</i> and <i>BC</i> as on one straight line.
+
+<p>Therefore <i>if a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment equals the square described on the whole and the aforesaid segment as on one straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+Algebraically, if <i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;+&nbsp;<i>z,</i> then 4<i>xy</i>&nbsp;+&nbsp;<i>z</i><sup>2</sup>&nbsp;=&nbsp;(<i>x</i>&nbsp;+&nbsp;<i>y</i>)<sup>2</sup>.  As an identity,
+<p><center>4<i>xy</i>&nbsp;+&nbsp;(<i>x</i>&nbsp;&ndash;&nbsp;<i>y</i>)<sup>2</sup>&nbsp;=&nbsp;(<i>x</i>&nbsp;+&nbsp;<i>y</i>)<sup>2</sup>.</center>
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

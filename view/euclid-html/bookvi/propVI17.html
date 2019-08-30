@@ -1,0 +1,91 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 17</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 17</h1>
+
+<div class="statement">
+If three straight lines are proportional, then the rectangle contained by the extremes equals the square on the mean; and, if the rectangle contained by the extremes equals the square on the mean, then the three straight lines are proportional.
+</div>
+
+<p>Let the three straight lines <i>A</i> and <i>B</i> and <i>C</i> be proportional, so that <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C.</i>
+
+<p>I say that the rectangle <i>A</i> by <i>C</i> equals the square on <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=160>
+<img src=propVI17.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.17">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,0,30;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,0,190;0">
+<param name=e[5] value="A;line;connect;A1,A2;black">
+<param name=e[6] value="B0;point;free;65,-1000;0;0">
+<param name=e[7] value="B3;point;free;65,1000;0;0">
+<param name=e[8] value="B1;point;lineSlider;B0,B3,0,30;0">
+<param name=e[9] value="B2;point;lineSlider;B0,B3,0,160;0">
+<param name=e[10] value="B;line;connect;B1,B2;black">
+<param name=e[11] value="C0;point;free;100,-1000;0;0">
+<param name=e[12] value="C3;point;free;100,1000;0;0">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,0,30;0">
+<param name=e[14] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+<param name=e[16] value="D0;point;free;130,-1000;0;0">
+<param name=e[17] value="D3;point;free;130,1000;0;0">
+<param name=e[18] value="D1;point;lineSlider;D0,D3,0,30;0">
+<param name=e[19] value="D2;point;cutoff;D1,D3,B1,B2;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+</applet>
+</div>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a></div>
+<p>Make <i>D</i> equal to <i>B.</i>
+
+<div class="just"><a href=../bookV/propV7.html>V.7</a>
+<br><a href=../bookV/propV11.html>V.11</a></div>
+<p>Then, since <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C,</i> and <i>B</i> equals <i>D,</i> therefore <i>A</i> is to <i>B</i> as <i>D</i> is to <i>C.</i>
+
+<div class="just"><a href=propVI16.html>VI.16</a></div>
+<p>But, if four straight lines are proportional, then the rectangle contained by the extremes equals the rectangle contained by the means.
+
+<p>Therefore the rectangle <i>A</i> by <i>C</i> equals the rectangle <i>B</i> by <i>D.</i>  But the rectangle <i>B</i> by <i>D</i> is the square on <i>B,</i> for <i>B</i> equals <i>D,</i> therefore the rectangle <i>A</i> by <i>C</i> equals the square on <i>B.</i>
+
+<hr width=50%>
+
+<p>Next, let the rectangle <i>A</i> by <i>C</i> equal the square on <i>B.</i>
+
+<p>I say that <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C.</i>
+
+<p>With the same construction, since the rectangle <i>A</i> by <i>C</i> equals the square on <i>B,</i> while the square on <i>B</i> is the rectangle <i>B</i> by <i>D,</i> for <i>B</i> equals <i>D,</i> therefore the rectangle <i>A</i> by <i>C</i> equals the rectangle <i>B</i> by <i>D.</i>
+
+<div class="just"><a href=propVI16.html>VI.16</a></div>
+<p>But, if the rectangle contained by the extremes equals that contained by the means, then the four straight lines are proportional.
+
+<p>Therefore <i>A</i> is to <i>B</i> as <i>D</i> is to <i>C.</i>
+
+<p>But <i>B</i> equals <i>D,</i> therefore <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C.</i>
+
+<p>Therefore, <i>if three straight lines are proportional, then the rectangle contained by the extremes equals the square on the mean; and, if the rectangle contained by the extremes equals the square on the mean, then the three straight lines are proportional.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This is obviously a special case of the previous proposition.  It is used very frequently in Books X and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

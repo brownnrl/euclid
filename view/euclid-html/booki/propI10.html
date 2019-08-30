@@ -1,0 +1,102 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 10</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">To bisect a given finite straight line.</div>
+
+<p>Let <i>AB</i> be the given finite straight line.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=240>
+<img src="propI10.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.10">
+<param name=e[1] value="A;point;free;40,170">
+<param name=e[2] value="B;point;free;200,170">
+<param name=e[3] value="ABC;polygon;equilateralTriangle;A,B;0;0;black;random">
+<param name=e[4] value="C;point;vertex;ABC,3">
+<param name=e[5] value="D;point;midpoint;A,B;black;green">
+<param name=pivot value="D">
+<param name=e[6] value="CD;line;connect;C,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI10.gif" hspace=10 vspace=10 alt="I.10">';
+</script>
+</div>
+
+<p>It is required to bisect the finite straight line <i>AB.</i>
+<div class="just"><a href=propI1.html>I.1</a>,
+<a href=propI9.html>I.9</a></div>
+
+<p>Construct the equilateral triangle <i>ABC</i> on it, and bisect the angle <i>ACB</i> by the straight line <i>CD.</i>
+
+<p>I say that the straight line <i>AB</i> is bisected at the point <i>D.</i>
+
+<div class="just"><a href=defI20.html>I.Def.20</a>
+<br><a href=propI4.html>I.4</a></div>
+<p>Since <i>CA</i> equals <i>CB,</i> and <i>CD</i> is common, therefore the two sides <i>CA</i> and <i>CD</i> equal the two sides <i>CB</i> and <i>CD</i> respectively, and the angle <i>ACD</i> equals the angle <i>BCD,</i> therefore the base <i>AD</i> equals the base <i>BD.</i>
+
+<p>Therefore the given straight line <i>AB</i> is bisected at <i>D.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+While this construction divides a line into two equal parts, the construction in proposition <a href=../bookVI/propVI9.html>VI.9</a> divides a line into any given number of equal parts. 
+
+<h4>Construction steps</h4>
+This method for bisecting lines takes less actual work than it appears to.   It is really no more than the double-equilateral-triangle.
+
+<p>
+<table cellpadding=5>
+<tr><td>
+First, the equilateral triangle <i>ABC</i> needs to be constructed.  According to <a href=propI1.html>I.1</a> two circles need to be drawn: one with center <i>A</i> and radius <i>AB,</i> the other with center <i>B</i> and radius <i>BA.</i>  One of the points of intersection of the two circles is <i>C.</i>  Then to bisect angle <i>ACB,</i> according to <a href=propI9.html>I.9</a>, an arbitrary point is chosen on one side of the angle, and it might as well be the point <i>A</i> on the side <i>AC,</i> and a point equally far from <i>C</i> on the side <i>BC,</i> which is, of course, <i>B.</i>  Then an equilateral triangle is constructed on the line <i>AB.</i>  There are two such equilateral triangles, the one already constructed <i>ACB,</i> and another one, call it <i>AEB.</i>  The point <i>E</i> is the other intersection of the two circles already drawn.  Then, by I.9, the line <i>CE</i> bisects the angle <i>ACB,</i> and according to this proposition, the point <i>D</i> bisects the line <i>AB.</i> 
+
+<p>Actually, only two circles and the straight line <i>CE</i> need to be drawn.  The straight lines <i>AC, CB, AE,</i> and <i>EB,</i> aren&rsquo;t necessary for the construction; they are only used to show that the construction is correct.
+</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=240>
+<img src="propI10a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.10">
+<param name=e[1] value="A;point;free;65,125">
+<param name=e[2] value="B;point;free;175,125">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="Acirc;circle;radius;A,B;0;0;black;300,30,100">
+<param name=e[5] value="Bcirc;circle;radius;B,A;0;0;black;300,30,100">
+<param name=e[6] value="CE;line;bichord;Acirc,Bcirc">
+<param name=e[7] value="E;point;first;CE">
+<param name=e[8] value="C;point;last;CE">
+<param name=e[9] value="D;point;intersection;A,B,C,E">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI10a.gif" hspace=10 vspace=10 alt="I.10">';
+</script>
+</td></tr></table>
+
+<h4>Use of Proposition 10</h4>
+
+The construction of this proposition in Book I is used in propositions <a href=propI12.html>I.12</a>, <a href=propI16.html>I.16</a>, and <a href=propI42.html>I.42</a>. It is also used in several propositions in the Books II, III, IV, X, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,82 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 17</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 17</h1>
+
+<div class="statement">If there are as many numbers as we please in continued proportion, and the extremes of them are relatively prime, then the last is not to any other number as the first is to the second.</div>
+
+<p>Let there be as many numbers as we please, <i>A, B, C,</i> and <i>D,</i> in continued proportion, and let the extremes of them, <i>A</i> and <i>D,</i> be relatively prime.
+
+<p>I say that <i>D</i> is not to any other number as <i>A</i> is to <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=200 >
+<img src="propIX11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.17">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="C0;point;free;-1000,100;0;0">
+<param name=e[6] value="C3;point;free;1000,100;0;0">
+<param name=e[7] value="D0;point;free;-1000,135;0;0">
+<param name=e[8] value="D3;point;free;1000,135;0;0">
+<param name=e[9] value="E0;point;free;-1000,170;0;0">
+<param name=e[10] value="E3;point;free;1000,170;0;0">
+
+<param name=e[11] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[12] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[13] value="A;line;connect;A1,A2;black">
+<param name=e[14] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[15] value="B2;point;lineSlider;B0,B3,110,0;0">
+<param name=e[16] value="B;line;connect;B1,B2;black">
+<param name=e[17] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[18] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[19] value="C;line;connect;C1,C2;black">
+<param name=e[20] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[21] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[22] value="D;line;connect;D1,D2;black">
+<param name=e[23] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[24] value="E2;point;proportion;A1,A2,B1,B2,D1,D2,E1,E3;0">
+<param name=e[25] value="E;line;connect;E1,E2;black">
+</applet></div>
+
+<div class="just"><a href="../bookVII/propVII13.html">VII.13</a></div>
+<p>If possible <i>A</i> is to <i>B,</i> so let <i>D</i> be to <i>E,</i> therefore, alternately <i>A</i> is to <i>D</i> as <i>B</i> is to <i>E.</i>
+
+<div class="just"><a href="../bookVII/propVII21.html">VII.21</a>
+<br><a href="../bookVII/propVII20.html">VII.20</a></div>
+<p>But <i>A</i> and <i>D</i> are prime, primes are also least, and the least numbers measure those which have the same ratio the same number of times, the antecedent the antecedent and the consequent the consequent. Therefore <i>A</i> measures <i>B.</i> And <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C.</i> Therefore <i>B</i> also measures <i>C,</i> so that <i>A</i> also measures <i>C.</i>
+
+<p>And since <i>B</i> is to <i>C</i> as <i>C</i> is to <i>D,</i> and <i>B</i> measures <i>C,</i> therefore <i>C</i> also measures <i>D.</i> But <i>A</i> measures <i>C,</i> so that <i>A</i> also measures <i>D.</i> But it also measures itself, therefore <i>A</i> measures <i>A</i> and <i>D</i> which are relatively prime, which is impossible.
+
+<p>Therefore <i>D</i> is not to any other number as <i>A</i> is to <i>B.</i>
+
+<p>Therefore, <i>if there are as many numbers as we please in continued proportion, and the extremes of them are relatively prime, then the last is not to any other number as the first is to the second.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition generalizes the previous proposition from a ratio of two terms to a continued proportion of arbitrarily many.  It says that a continued proportion in lowest terms cannot be extended.
+
+<h4>Outline of the proof</h4>
+
+Consider a continued proportion in lowest terms with the first term <i>a</i> relatively prime to the last term <i>d,</i> and having the ratio <i>a</i>&nbsp;:&nbsp;<i>b.</i> Suppose it can be extended to <i>e</i> so that <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;<i>e.</i>  Alternately, <i>a</i>&nbsp;:&nbsp;<i>d</i>&nbsp;=&nbsp;<i>b</i>&nbsp;:&nbsp;<i>e.</i>  Since the first ratio <i>a</i>&nbsp;:&nbsp;<i>d</i> is in lowest terms, therefore <i>a</i> divides <i>b.</i> Then each term of the continued proportion divides the next, hence <i>a</i> divides <i>d.</i> But that&rsquo;s impossible since <i>a</i> and <i>d</i> are relatively prime.  Therefore, the continued proportion cannot be extended.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

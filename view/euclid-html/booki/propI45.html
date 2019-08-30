@@ -1,0 +1,114 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 45</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 45</h1>
+
+<div class="statement">To construct a parallelogram equal to a given rectilinear figure in a given rectilinear angle.</div>
+
+<p>Let <i>ABCD</i> be the given rectilinear figure and <i>E</i> the given rectilinear angle.
+
+<p>It is required to construct a parallelogram equal to the rectilinear figure <i>ABCD</i> in the given angle <i>E.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=400>
+<img src="propI45.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.45">
+<param name=e[1] value="A;point;free;40,60">
+<param name=e[2] value="B;point;free;100,200">
+<param name=e[3] value="C;point;free;150,80">
+<param name=e[4] value="D;point;free;100,40">
+<param name=e[5] value="BD;line;connect;B,D">
+<param name=e[6] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;0,0,0;random">
+<param name=e[7] value="E1;point;free;180,120;0">
+<param name=e[8] value="E2;point;free;170,150;0">
+<param name=e[9] value="E3;point;free;200,150;0">
+<param name=e[10] value="E1E2;line;connect;E1,E2">
+<param name=e[11] value="E2E3;line;connect;E2,E3">
+<param name=e[12] value="E;polygon;triangle;E1,E2,E3;0,0,0;0;0;0">
+<param name=e[13] value="K;point;free;230,190">
+<param name=e[14] value="F;point;free;270,70">
+<param name=e[15] value="H';point;similar;F,K,E1,E2,E3;0;0">
+<param name=e[16] value="ABD;polygon;triangle;A,B,D;0;0;0;0">
+<param name=e[17] value="DBC;polygon;triangle;D,B,C;0;0;0;0">
+<param name=e[18] value="KFGH;polygon;application;ABD,K,F,H';0;0;0,0,0;random">
+<param name=e[19] value="H;point;vertex;KFGH,4">
+<param name=e[20] value="G;point;vertex;KFGH,3">
+<param name=e[21] value="M';point;similar;G,H,E1,E2,E3;0;0">
+<param name=e[22] value="HGLM;polygon;application;DBC,H,G,M';0;0;0,0,0;random">
+<param name=e[23] value="M;point;vertex;HGLM,4">
+<param name=e[24] value="L;point;vertex;HGLM,3">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI45.gif" hspace=10 vspace=10 alt="I.45">';
+</script>
+</div>
+
+<div class="just"><a href=post1.html>I.Post.1</a>
+<br><a href="propI42.html">I.42</a>
+<br><a href="propI44.html">I.44</a></div>
+<p>Join <i>DB.</i>  Construct the parallelogram <i>FH</i> equal to the triangle <i>ABD</i>  in the angle <i>HKF</i> which equals <i>E.</i>  Apply the parallelogram <i>GM</i> equal to the triangle <i>DBC</i> to the straight line <i>GH</i> in the angle <i>GHM</i> which equals <i>E.</i>
+
+<div class="just"><a href=cn.html>C.N.1</a></div>
+<p>Since the angle <i>E</i> equals each of the angles <i>HKF</i> and <i>GHM,</i> therefore the angle <i>HKF</i> also equals the angle <i>GHM.</i>
+
+<div class="just"><a href=cn.html>C.N.2</a></div>
+<p>Add the angle <i>KHG</i> to each. Therefore the sum of the angles <i>FKH</i> and <i>KHG</i> equals the sum of the angles <i>KHG</i> and <i>GHM.</i>
+
+<div class="just"><a href="propI29.html">I.29</a>
+<br><a href=cn.html>C.N.1</a></div>
+<p>But the sum of the angles <i>FKH</i> and <i>KHG</i> equals two right angles, therefore the sum of the angles <i>KHG</i> and <i>GHM</i> also equals  two right angles.
+
+<div class="just"><a href="propI14.html">I.14</a></div>
+<p>Thus, with a straight line <i>GH,</i> and at the point <i>H</i> on it, two straight lines <i>KH</i> and <i>HM</i> not lying on the same side make the adjacent angles together equal to two right angles, therefore <i>KH</i> is in a straight line with <i>HM.</i>
+
+<div class="just"><a href="propI29.html">I.29</a></div>
+<p>Since the straight line <i>HG</i> falls upon the parallels <i>KM</i> and <i>FG,</i> therefore the alternate angles <i>MHG</i> and <i>HGF</i> equal one another.
+
+<div class="just"><a href=cn.html>C.N.2</a></div>
+<p>Add the angle <i>HGL</i> to each. Then the sum of the angles <i>MHG</i> and <i>HGL</i> equals the sum of the angles <i>HGF</i> and <i>HGL.</i>
+
+<div class="just"><a href="propI29.html">I.29</a>,
+<a href=cn.html>C.N.1</a>
+<br><a href="propI14.html">I.14</a></div>
+<p>But the sum of the angles <i>MHG</i> and <i>HGL</i> equals two right angles, therefore the sum of the angles <i>HGF</i> and <i>HGL</i> also equals two right angles.  Therefore <i>FG</i> is in a straight line with <i>GL.</i>
+
+<div class="just"><a href="propI34.html">I.34</a>,
+<a href="propI30.html">I.30</a>
+<br><a href=cn.html>C.N.1</a>,
+<a href="propI33.html">I.33</a></div>
+<p>Since <i>FK</i> is equal and parallel to <i>HG,</i> and <i>HG</i> equal and parallel to <i>ML</i> also, therefore <i>KF</i> is also equal and parallel to <i>ML,</i> and the straight lines <i>KM</i> and <i>FL</i> join them at their ends. Therefore <i>KM</i> and <i>FL</i> are also equal and parallel.  Therefore <i>KFLM</i> is a parallelogram.
+
+<div class="just"><a href=cn.html>C.N.2</a></div>
+<p>Since the triangle <i>ABD</i> equals the parallelogram <i>FH,</i> and <i>DBC</i> equals <i>GM,</i> therefore the whole rectilinear figure <i>ABCD</i> equals the whole parallelogram <i>KFLM.</i>
+
+<p>Therefore the parallelogram <i>KFLM</i> has been constructed equal to the given rectilinear figure <i>ABCD</i> in the angle <i>FKM</i> which equals the given angle <i>E.</i> 
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<p>With this construction any rectilinear area can be applied to a line in an angle, that is, it can be transformed into a parallelogram with whatever angle you want and with one side whatever you want.  That is a satisfactory solution to the question &ldquo;what&rsquo;s the area of this figure?&rdquo;
+
+<p>But the question &ldquo;what&rsquo;s the area of a circle?&rdquo; is not answered in the <i>Elements.</i>  See the note on <a href=../bookII/propII14.html#squaring>squaring the circle</a> after proposition II.14 for more discussion of this question.
+
+<h4>Use of Proposition 45</h4>
+
+This construction is used in propositions <a href=../bookII/propII14.html>II.14</a>, <a href=../bookVI/propVI25.html>VI.25</a>, and <a href=../bookXI/propXI32.html>XI.32</a>. Like many of the other constructions in Book I, it is used to make constructions in different planes as is done in XI.32.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

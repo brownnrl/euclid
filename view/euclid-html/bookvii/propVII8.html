@@ -1,0 +1,96 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 8</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">If a number is the same parts of a number that a subtracted number is of a  subtracted number, then the remainder is also the same parts of the remainder that the whole is of the whole.</div>
+
+<p>Let the number <i>AB</i> be the same parts of the number <i>CD</i> that <i>AE</i> subtracted is of <i>CF</i> subtracted.
+
+<p>I say that the remainder <i>EB</i> is also the same parts of the remainder <i>FD</i> that the whole <i>AB</i> is of the whole <i>CD.</i>
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=150 >
+<img src=propVII8.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.8">
+<param name=align value=above>
+<param name=e[1] value="C0;point;free;-1000,40;0;0">
+<param name=e[2] value="C3;point;free;1000,40;0;0">
+<param name=e[3] value="G0;point;free;-1000,75;0;0">
+<param name=e[4] value="G3;point;free;1000,75;0;0">
+<param name=e[5] value="A0;point;free;-1000,110;0;0">
+<param name=e[6] value="A3;point;free;1000,110;0;0">
+<param name=e[7] value="A;point;lineSlider;A0,A3,40,110">
+<param name=e[8] value="B;point;lineSlider;A0,A3,200,110">
+<param name=e[9] value="AB;line;connect;A,B">
+<param name=e[10] value="C;point;lineSlider;C0,C3,40,40">
+<param name=e[11] value="D;point;lineSlider;C0,C3,240,110">
+<param name=e[12] value="CD;line;connect;C,D">
+<param name=e[13] value="P0;point;free;1000,1000;0;0">
+<param name=e[14] value="P1;point;free;1000,1100;0;0">
+<param name=e[15] value="P2;point;extend;P0,P1,P0,P1;0;0">
+<param name=e[16] value="P3;point;extend;P1,P2,P0,P1;0;0">
+<param name=e[17] value="E;point;proportion;P0,P3,P0,P2,A,B,A,B">
+<param name=e[18] value="F;point;proportion;P0,P3,P0,P2,C,D,C,D">
+<param name=e[19] value="G;point;lineSlider;G0,G3,40,75">
+<param name=e[20] value="H;point;cutoff;G,G3,A,B">
+<param name=e[21] value="GH;line;connect;G,H">
+<param name=e[22] value="K;point;midpoint;G,H">
+<param name=e[23] value="L;point;midpoint;A,E">
+<param name=e[24] value="M;point;cutoff;G,H,A,L">
+<param name=e[25] value="N;point;cutoff;K,H,E,B">
+</applet></div>
+
+<p>Make <i>GH</i> equal to <i>AB.</i>
+
+<p>Therefore <i>AE</i> is the same parts of <i>CF</i> that  <i>GH</i> is of <i>CD.</i>
+
+<p>Divide <i>GH</i> into the parts of <i>CD,</i> namely <i>GK</i> and <i>KH,</i> and divide <i>AE</i> into the parts of <i>CF,</i> namely <i>AL</i> and <i>LE.</i> Then the multitude of <i>GK</i> and <i>KH</i> equals the multitude of <i>AL</i> and <i>LE.</i>
+
+<p>Now since <i>AL</i> is the same part of <i>CF</i> that <i>GK</i> is of <i>CD,</i> and <i>CD</i> is greater than <i>CF,</i> therefore <i>GK</i> is also greater than <i>AL.</i>
+
+<p>Make <i>GM</i> equal to <i>AL.</i>
+
+<div class="just"><a href="propVII7.html">VII.7</a></div>
+<p>Then <i>GK</i> is the same part of <i>CD</i> that  <i>GM</i> is of <i>CF.</i> Therefore the remainder <i>MK</i> is the same part of the remainder <i>FD</i> that the whole <i>GK</i> is of the whole <i>CD.</i>
+
+<p>Again, since <i>EL</i> is the same part of <i>CF</i> that <i>KH</i> is of <i>CD,</i> and <i>CD</i> is greater than <i>CF,</i> therefore <i>HK</i> is also greater than <i>EL.</i>
+
+<p>Make <i>KN</i> equal to <i>EL.</i>
+
+<div class="just"><a href="propVII7.html">VII.7</a></div>
+<p>Therefore <i>KN</i> is the same part of <i>CF</i> that <i>KH</i> is of <i>CD.</i> Therefore the remainder <i>NH</i> is the same part of the remainder <i>FD</i> that the whole <i>KH</i> is of the whole <i>CD.</i>
+
+<p>But the remainder <i>MK</i> was proved to be the same part of the remainder <i>FD</i> that the whole <i>GK</i> is of the whole <i>CD,</i> therefore the sum of <i>MK</i> and <i>NH</i> is the same parts of <i>DF</i> that the whole <i>HG</i> is of the whole <i>CD.</i>
+
+<p>But the sum of <i>MK</i> and <i>NH</i> equals <i>EB,</i> and <i>HG</i> equals <i>BA,</i> therefore the remainder <i>EB</i> is the same parts of the remainder <i>FD</i> that the whole <i>AB</i> is of the whole <i>CD.</i>
+
+<p>Therefore, <i>if a number is the same parts of a number that a subtracted number is of a  subtracted number, then the remainder is also the same parts of the remainder that the whole is of the whole.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says multiplication by fractions distributes over subtraction. Algebraically, 
+
+<p><center>
+(<i>m/n</i>)<i>b</i>&nbsp;+&nbsp;(<i>m/n</i>)<i>e,</i>&nbsp;=&nbsp;(<i>m/n</i>)(<i>b</i>&nbsp;+&nbsp;<i>e</i>).
+</center>
+
+<p>The sample value taken for <i>m/n</i> in the proof is 2/3.
+
+<p>This proposition is used in <a href=propVII11.html>VII.11</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

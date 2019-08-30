@@ -1,0 +1,142 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 21</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 21</h1>
+
+<div class="statement">If two mean proportional numbers fall between two numbers, then the numbers are similar solid numbers.</div>
+
+<p>Let two mean proportional numbers <i>C</i> and <i>D</i> fall between the two numbers <i>A</i> and <i>B.</i>
+
+<p>I say that <i>A</i> and <i>B</i> are similar solid numbers.
+
+<div class="just"><a href=../bookVII/propVII33.html>VII.33</a> or
+<br><a href=propVIII2.html>VIII.2</a>,
+<a href=propVIII3.html>VIII.3</a></div>
+<p>Take three numbers <i>E, F,</i> and <i>G,</i> the least of those which have the same ratio with <i>A, C,</i> and <i>D.</i>  Then the extremes of them <i>E</i> and <i>G</i> are relatively prime.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=510 height=170 >
+<img src="propVIII21.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.21">
+<param name=align value=above>
+<param name=e[1] value="U1;point;free;0,0;0;0">
+<param name=e[2] value="U2;point;free;25,0;0;0">
+<param name=e[3] value="U;line;connect;U1,U2;0;0;0">
+
+<param name=e[4] value="H1;point;free;30,30;0">
+<param name=e[5] value="H3;point;parallelogram;H1,U;0;0">
+<param name=e[6] value="H2;point;lineSlider;H1,H3,65,0;0">
+<param name=e[7] value="H;line;connect;H1,H2;black">
+<param name=e[8] value="K1;point;free;30,70;0">
+<param name=e[9] value="K3;point;parallelogram;K1,U;0;0">
+<param name=e[10] value="K2;point;lineSlider;K1,K3,80,0;0">
+<param name=e[11] value="K;line;connect;K1,K2;black">
+<param name=e[12] value="N1;point;free;30,110;0">
+<param name=e[13] value="N3;point;parallelogram;N1,U;0;0">
+<param name=e[14] value="N2;point;lineSlider;N1,N3,70,0;0">
+<param name=e[15] value="N;line;connect;N1,N2;black">
+
+<param name=e[16] value="L1;point;free;100,50;0">
+<param name=e[17] value="L3;point;parallelogram;L1,U;0;0">
+<param name=e[18] value="L2;point;lineSlider;L1,L3,140,0;0">
+<param name=e[19] value="L;line;connect;L1,L2;black">
+<param name=e[20] value="M1;point;free;100,90;0">
+<param name=e[21] value="M3;point;parallelogram;M1,U;0;0">
+<param name=e[22] value="M2;point;proportion;H,K,L,M1,M3;0">
+<param name=e[23] value="M;line;connect;M1,M2;black">
+<param name=e[24] value="O1;point;free;100,130;0">
+<param name=e[25] value="O3;point;parallelogram;O1,U;0;0">
+<param name=e[26] value="O2;point;proportion;H,L,N,O1,O3;0">
+<param name=e[27] value="O;line;connect;O1,O2;black">
+
+<param name=e[28] value="E1;point;free;190,50;0">
+<param name=e[29] value="E3;point;parallelogram;E1,U;0;0">
+<param name=e[30] value="E2;point;proportion;U,H,K,E1,E3;0">
+<param name=e[31] value="E;line;connect;E1,E2;black">
+<param name=e[32] value="G1;point;free;190,130;0">
+<param name=e[33] value="G3;point;parallelogram;G1,U;0;0">
+<param name=e[34] value="G2;point;proportion;U,L,M,G1,G3;0">
+<param name=e[35] value="G;line;connect;G1,G2;black">
+<param name=e[36] value="F1;point;free;190,90;0">
+<param name=e[37] value="F3;point;parallelogram;F1,U;0;0">
+<param name=e[38] value="F2;point;proportion;H,L,E,F1,F3;0">
+<param name=e[39] value="F;line;connect;F1,F2;black">
+
+<param name=e[40] value="A1;point;free;310,30;0">
+<param name=e[41] value="A3;point;parallelogram;A1,U;0;0">
+<param name=e[42] value="A2;point;proportion;U,N,E,A1,A3;0">
+<param name=e[43] value="A;line;connect;A1,A2;black">
+<param name=e[44] value="B1;point;free;310,150;0">
+<param name=e[45] value="B3;point;parallelogram;B1,U;0;0">
+<param name=e[46] value="B2;point;proportion;U,O,G,B1,B3;0">
+<param name=e[47] value="B;line;connect;B1,B2;black">
+
+<param name=e[48] value="C1;point;free;310,70;0">
+<param name=e[49] value="C3;point;parallelogram;C1,U;0;0">
+<param name=e[50] value="C2;point;proportion;H,L,A,C1,C3;0">
+<param name=e[51] value="C;line;connect;C1,C2;black">
+<param name=e[52] value="D1;point;free;310,110;0">
+<param name=e[53] value="D3;point;parallelogram;D1,U;0;0">
+<param name=e[54] value="D2;point;proportion;H,L,C,D1,D3;0">
+<param name=e[55] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<div class="just"><a href=propVIII20.html>VIII.20</a></div>
+<p>Now, since one mean proportional number <i>F</i> has fallen between <i>E</i> and <i>G,</i> therefore <i>E</i> and <i>G</i> are similar plane numbers.
+
+<p>Let, then, <i>H</i> and <i>K</i> be the sides of <i>E,</i> and <i>L</i> and <i>M</i> the sides of <i>G.</i>
+
+<p>Therefore it is manifest from the theorem before this that <i>E, F,</i> and <i>G</i> are continuously proportional in the ratio of <i>H</i> to <i>L,</i> and that of <i>K</i> to <i>M.</i>
+
+<div class="just"><a href=../bookVII/propVII14.html>VII.14</a></div>
+<p>Now, since <i>E, F,</i> and <i>G</i> are the least of the numbers which have the same ratio with <i>A, C,</i> and <i>D,</i> and the multitude of the numbers <i>E, F,</i> and <i>G</i> equals the multitude of the numbers <i>A, C,</i> and <i>D,</i> therefore, <i>ex aequali E</i> is to <i>G</i> as <i>A</i> is to <i>D.</i>
+
+<div class="just"><a href=../bookVII/propVII21.html>VII.21</a>
+<br><a href=../bookVII/propVII20.html>VII.20</a></div>
+<p>But <i>E</i> and <i>G</i> are relatively prime, primes are also least, and the least measure those which have the same ratio with them the same number of times, the greater the greater and the less the less, that is, the antecedent the antecedent and the consequent the consequent,  therefore <i>E</i> measures <i>A</i> the same number of times that <i>G</i> measures <i>D.</i>
+
+<p>Let there be as many units in <i>N</i> as times that <i>E</i> measures <i>A.</i> Then <i>N</i> multiplied by <i>E</i> makes <i>A.</i> But <i>E</i> is the product of <i>H</i> and <i>K,</i> therefore <i>N</i> multiplied by the product of <i>H</i> and <i>K</i> makes <i>A.</i>
+
+<p>Therefore <i>A</i> is solid, and <i>H, K,</i> and <i>N</i> are its sides.
+
+<p>Again, since <i>E, F,</i> and <i>G</i> are the least of the numbers which have the same ratio as <i>C, D,</i> and <i>B,</i> therefore <i>E</i> measures <i>C</i> the same number of times that <i>G</i> measures <i>B.</i>
+
+<p>Let there be as many units in <i>O</i> as times that <i>E</i> measures <i>C.</i>  Then <i>G</i> measures <i>B</i> according to the units in <i>O,</i> therefore <i>O</i> multiplied by <i>G</i> makes <i>B.</i> 
+
+<p>But <i>G</i> is the product of <i>L</i> and <i>M,</i> therefore <i>O</i> multiplied by the product of <i>L</i> and <i>M</i> makes <i>B.</i> Therefore <i>B</i> is solid, and <i>L, M,</i> and <i>O</i> are its sides. Therefore <i>A</i> and <i>B</i> are solid.
+
+<p>I say that they are also similar.
+
+<div class="just"><a href=../bookVII/propVII18.html>VII.18</a></div>
+<p>Since <i>N</i> and <i>O</i> multiplied by <i>E</i> make <i>A</i> and <i>C,</i> therefore <i>N</i> is to <i>O</i> as <i>A</i> is to <i>C,</i> that is, <i>E</i> to <i>F.</i>
+
+<p>But <i>E</i> is to <i>F</i> as <i>H</i> is to <i>L,</i> and as <i>K</i> is to <i>M,</i> therefore <i>H</i> is to <i>L</i> as <i>K</i> is to <i>M,</i> and as <i>N</i> is to <i>O.</i>
+
+<p>And <i>H, K,</i> and <i>N</i> are the sides of <i>A,</i> and <i>O, L,</i> and <i>M</i> the sides of <i>B.</i> Therefore <i>A</i> and <i>B</i> are similar solid numbers.
+
+<p>Therefore, <i>if two mean proportional numbers fall between two numbers, then the numbers are similar solid numbers.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This is a partial converse of <a href="propVIII19.html">VIII.19</a>.  It says that if two numbers have two mean proportionals, then they can be viewed as two similar solid numbers.  Its proof is analogous the previous proposition dealing with plane numbers, but naturally, it is longer and more involved.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in <a href=propVIII23.html>VIII.23</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

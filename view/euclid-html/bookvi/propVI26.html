@@ -1,0 +1,77 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 26</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 26</h1>
+
+<div class="statement">
+If from a parallelogram there is taken away a parallelogram similar and similarly situated to the whole and having a common angle with it, then it is about the same diameter with the whole.
+</div>
+
+<p>From the parallelogram <i>ABCD</i> let there be taken away the parallelogram <i>AF</i> similar and similarly situated to <i>ABCD,</i> and having the angle <i>DAB</i> common with it.
+
+<p>I say that  <i>ABCD</i> is about the same diameter with <i>AF.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=330>
+<img src=propVI26.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.26">
+<param name=e[1] value="A;point;free;60,40">
+<param name=e[2] value="B;point;free;40,210">
+<param name=e[3] value="C;point;free;260,210">
+<param name=e[4] value="ABCD;polygon;parallelogram;A,B,C;0;0;black;random">
+<param name=e[5] value="D;point;vertex;ABCD,4">
+<param name=e[6] value="E;point;lineSlider;A,B,50,100">
+<param name=e[7] value="F';point;parallelogram;A,D,E;0;0">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="F;point;intersection;A,C,E,F'">
+<param name=e[10] value="AEFG;polygon;parallelogram;A,E,F;0;0;black;random">
+<param name=e[11] value="G;point;vertex;AEFG,4">
+<param name=e[12] value="H;point;lineSlider;F,G,80,120">
+<param name=e[13] value="FH;line;connect;F,H">
+<param name=e[14] value="HK;line;parallel;H,G,A">
+<param name=e[15] value="K;point;last;HK">
+<param name=e[16] value="AH;line;connect;A,H">
+<param name=e[17] value="CH;line;connect;C,H">
+</applet>
+</div>
+
+<div class="just"><a href="../bookI/propI31.html">I.31</a></div>
+<p>For suppose it is not, but, if possible, let <i>AHC</i> be the diameter.  Produce <i>GF</i> and carry it through to <i>H.</i>  Draw <i>HK</i> through <i>H</i> parallel to either of the straight lines <i>AD</i> or <i>BC.</i>
+
+<div class="just"><a href="propVI24.html">VI.24</a></div>
+<p>Since, then, <i>ABCD</i> is about the same diameter with <i>KG,</i> therefore <i>DA</i> is to <i>AB</i> as <i>GA</i> is to <i>AK.</i>
+
+<div class="just"><a href=defVI1.html>VI.Def.1</a>
+<br><a href="../bookV/propV11.html">V.11</a></div>
+<p>But also, since <i>ABCD</i> and <i>EG</i> are similar, therefore <i>DA</i> is to <i>AB</i> as <i>GA</i> is to <i>AE.</i>  Therefore  <i>GA</i> is to <i>AK</i> as <i>GA</i> is to <i>AE.</i>
+
+<p>Therefore <i>GA</i> has the same ratio to each of the straight lines <i>AK</i> and <i>AE.</i>
+
+<div class="just"><a href="../bookV/propV9.html">V.9</a></div> 
+<p>Therefore <i>AE</i> equals <i>AK</i> the less equals the greater, which is impossible.
+
+<p>Therefore <i>ABCD</i> cannot fail to be about the same diameter with <i>AF.</i>  Therefore the parallelogram <i>ABCD</i> is about the same diameter with the parallelogram <i>AF.</i>
+
+<p>Therefore, <i>if from a parallelogram there is taken away a parallelogram similar and similarly situated to the whole and having a common angle with it, then it is about the same diameter with the whole.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is the converse of <a href=propVI24.html>VI.24</a>.  It is used in the proofs of the next three and for a few propositions in Book X. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

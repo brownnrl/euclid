@@ -1,0 +1,79 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 14</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">If with any straight line, and at a point on it, two straight lines not lying on the same side make the sum of the adjacent angles equal to two right angles, then the two straight lines are in a straight line with one another. </div>
+
+<p>With any straight line <i>AB,</i> and at the point <i>B</i> on it, let the two straight lines <i>BC</i> and <i>BD</i> not lying on the same side make the sum of the adjacent angles <i>ABC</i> and <i>ABD</i> equal to two right angles.
+<p>I say that <i>BD</i> is in a straight line with <i>CB.</i> 
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=210 width=220>
+<img src="propI14.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.14">
+<param name=e[1] value="A;point;free;60,60">
+<param name=e[2] value="B;point;free;70,180">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;free;40,180">
+<param name=e[5] value="D;point;lineSlider;B,C,170,180">
+<param name=e[6] value="CD;line;connect;C,D">
+<param name=e[7] value="Acirc;circle;radius;A,B;0;0;0;0">
+<param name=e[8] value="E;point;circleSlider;Acirc,160,150">
+<param name=e[9] value="BE;line;connect;B,E">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI14.gif" hspace=10 vspace=10 alt="I.14">';
+</script>
+</div>
+
+<div class="just"><a href=post2.html>I.Post.2</a></div>
+<p>If <i>BD</i> is not in a straight line with <i>BC,</i> then produce <i>BE</i> in a straight line with <i>CB.</i>
+
+<div class="just"><a href=propI13.html>I.13</a>
+<br><a href=post4.html>I.Post.4</a>
+<br><a href=cn.html>C.N.1</a></div>
+<p>Since the straight line <i>AB</i> stands on the straight line <i>CBE,</i>  therefore the sum of the angles <i>ABC</i> and <i>ABE</i> equals two right angles.   But the sum of the angles <i>ABC</i> and <i>ABD</i> also equals two right angles, therefore the sum of the angles <i>CBA</i> and <i>ABE</i> equals the sum of the angles <i>CBA</i> and <i>ABD.</i> 
+
+<div class="just"><a href=cn.html>C.N.3</a></div></tr>
+<p>Subtract the angle <i>CBA</i> from each.  Then the remaining angle <i>ABE</i> equals the remaining angle <i>ABD,</i> the less equals the greater, which is impossible. Therefore <i>BE</i> is not in a straight line with <i>CB.</i>
+
+<p>Similarly we can prove that neither is any other straight line except <i>BD.</i> Therefore <i>CB</i> is in a straight line with <i>BD.</i>
+
+<p>Therefore <i>if with any straight line, and at a point on it, two straight lines not lying on the same side make the sum of the adjacent angles equal to two right angles, then the two straight lines are in a straight line with one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+This is a converse of the last proposition.
+
+<p>This is a proposition in plane geometry.  If <i>A, B, C,</i> and <i>D</i> do not lie in a plane, then <i>CBD</i> cannot be a straight line.  An ambient plane is necessary to talk about the sides of the line <i>AB</i>
+
+<p>The qualifying sentence, &ldquo;Similarly we can prove that neither is any other straight line except <i>BD,</i>&rdquo; is meant to take care of the cases when <i>E</i> does not lie inside the angle <i>ABD.</i>
+
+<p>This is the first use of <a href=post4.html>Postulate 4</a> that all right angles are equal.
+
+<h4>Use of Proposition 14</h4>
+
+This proposition is used in propositions
+<a href=propI45.html>I.45</a>,
+<a href=propI47.html>I.47</a>, and a few in Books VI and XI.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2011");
+</script>
+</BODY></HTML>

@@ -1,0 +1,89 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 11</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 11</h1>
+
+<div class="statement">Between two square numbers there is one mean proportional number, and the square has to the square the duplicate ratio of that which the side has to the side.</div>
+
+<p>Let <i>A</i> and <i>B</i> be square numbers, and let <i>C</i> be the side of <i>A,</i> and <i>D</i> of <i>B.</i>
+
+<p>I say that between <i>A</i> and <i>B</i> there is one mean proportional number, and <i>A</i> has to <i>B</i> the ratio duplicate of that which <i>C</i> has to <i>D.</i>
+
+<p>Multiply <i>C</i> by <i>D</i> to make <i>E.</i>
+
+<p>Now, since <i>A</i> is a square and <i>C</i> is its side, therefore <i>C</i> multiplied by itself makes <i>A.</i> For the same reason also, <i>D</i> multiplied by itself makes <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=200 >
+<img src="propVIII11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.11">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="E0;point;free;-1000,145;0;0">
+<param name=e[8] value="E3;point;free;1000,145;0;0">
+<param name=e[9] value="U1;point;free;0,1000;0;0">
+<param name=e[10] value="U2;point;free;0,1025;0;0">
+
+<param name=e[11] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[12] value="C2;point;lineSlider;C0,C3,80,0;0">
+<param name=e[13] value="C;line;connect;C1,C2;black">
+<param name=e[14] value="D1;point;lineSlider;C0,C3,130,0;0">
+<param name=e[15] value="D2;point;lineSlider;C0,C3,200,0;0">
+<param name=e[16] value="D;line;connect;D1,D2;black">
+<param name=e[17] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[18] value="A2;point;proportion;U1,U2,C1,C2,C1,C2,A1,A3;0">
+<param name=e[19] value="A;line;connect;A1,A2;black">
+<param name=e[20] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[21] value="B2;point;proportion;U1,U2,D1,D2,D1,D2,B1,B3;0">
+<param name=e[22] value="B;line;connect;B1,B2;black">
+<param name=e[23] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[24] value="E2;point;proportion;U1,U2,C1,C2,D1,D2,E1,E3;0">
+<param name=e[25] value="E;line;connect;E1,E2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>Since, then, <i>C</i> multiplied by the numbers <i>C</i> and <i>D</i> makes <i>A</i> and <i>E</i> respectively, therefore <i>C</i> is to <i>D</i> as <i>A</i> is to <i>E.</i>
+
+<div class="just"><a href=../bookVII/propVII18.html>VII.18</a></div>
+<p>For the same reason also <i>C</i> is to <i>D</i> as <i>E</i> is to <i>B.</i> Therefore <i>A</i> is to <i>E</i> as <i>E</i> is to <i>B.</i> Therefore between <i>A</i> and <i>B</i> there is one mean proportional number.
+
+<p>I say next that <i>A</i> also has to <i>B</i> the ratio duplicate of that which <i>C</i> has to <i>D.</i>
+
+<div class="just"><a href=../bookV/defV8.html>V.Def.9</a></div>
+<p>Since <i>A, E,</i> and <i>B</i> are three numbers in proportion, therefore <i>A</i> has to <i>B</i> the ratio duplicate of that which <i>A</i> has to <i>E.</i>
+
+<p>But <i>A</i> is to <i>E</i> as <i>C</i> is to <i>D,</i> therefore <i>A</i> has to <i>B</i> the ratio duplicate of that which the side <i>C</i> has to <i>D.</i>
+
+<p>Therefore, <i>between two square numbers there is one mean proportional number, and the square has to the square the duplicate ratio of that which the side has to the side.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Between <i>c</i><sup>2</sup> and <i>d</i><sup>2</sup> is the mean proportional <i>cd,</i>
+and the ratio <i>c</i><sup>2</sup>&nbsp;:&nbsp;<i>d</i><sup>2</sup> is the duplicate ratio of <i>c</i>&nbsp;:&nbsp;<i>d.</i>
+The argument for the latter statement is that <i>c</i><sup>2</sup>&nbsp;:&nbsp;<i>d</i><sup>2</sup> is compounded of the two ratios <i>c</i><sup>2</sup>&nbsp;:&nbsp;<i>cd</i> and <i>cd</i>&nbsp;:&nbsp;<i>d</i><sup>2</sup>, but both of those are the same ratio as <i>c</i>&nbsp;:&nbsp;<i>d.</i>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in propositions <a href=propVIII14.html>VIII.14</a>, <a href=propVIII15.html>VIII.15</a>, and <a href=../bookX/propX9.html>X.9</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

@@ -1,0 +1,106 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 38</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 38</h1>
+
+<div class="statement">
+If the sides of the opposite planes of a cube are bisected, and the planes are carried through the points of section, then the intersection of the planes and the diameter of the cube bisect one another.</div>
+
+<p>Let the sides of the opposite planes <i>CF</i> and <i>AH</i> of the cube <i>AF</i> be bisected at the points <i>K, L, M, N, O, Q, P,</i> and <i>R,</i> and through the points of section let the planes <i>KN</i> and <i>OR</i> be carried. Let <i>US</i> be the common section of the planes, and <i>DG</i> the diameter of the cube <i>AF.</i>
+
+<p>I say that <i>UT</i> equals <i>TS,</i> and <i>DT</i> equals <i>TG.</i>
+
+<p>Join <i>DU, UE, BS,</i> and <i>SG.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=340 >
+<img src="propXI38.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.38">
+<param name=e[1] value="A;point;fixed;140,300,0">
+<param name=e[2] value="1X;point;fixed;340,273,36;0;0">
+<param name=e[3] value="1Y;point;fixed;85,180,160;0;0">
+<param name=e[4] value="1Z;point;fixed;140,444,123;0;0">
+<param name=e[5] value="floor;plane;3points;A,1X,1Y;0;0;0;0">
+<param name=e[6] value="C;point;lineSlider;A,1Z,160,80,0">
+<param name=e[7] value="circ;circle;radius;A,A,C,floor;0;0;0;0">
+<param name=e[8] value="B;point;circleSlider;circ,120,210,0">
+<param name=e[9] value="G;point;perpendicular;A,B,floor">
+<param name=e[10] value="D;point;parallelogram;B,A,C">
+<param name=e[11] value="E;point;parallelogram;G,A,C">
+<param name=e[12] value="H;point;parallelogram;B,A,G">
+<param name=e[13] value="F;point;parallelogram;H,A,C">
+<param name=e[14] value="BDFH;polygon;quadrilateral;B,D,F,H;0;0;black;330,30,100">
+<param name=e[15] value="BDEG;polygon;quadrilateral;B,D,E,G;0;0;black;330,30,100">
+<param name=e[16] value="GHFE;polygon;quadrilateral;G,H,F,E;0;0;black;330,30,100">
+<param name=e[17] value="ACEG;polygon;quadrilateral;A,C,E,G;0;0;black;0">
+<param name=e[18] value="AB;line;connect;A,B">
+<param name=e[19] value="CD;line;connect;C,D">
+
+<param name=e[20] value="K;point;midpoint;D,F">
+<param name=e[21] value="L;point;midpoint;C,E">
+<param name=e[22] value="M;point;midpoint;B,H">
+<param name=e[23] value="N;point;midpoint;A,G">
+<param name=e[24] value="O;point;midpoint;C,D">
+<param name=e[25] value="P;point;midpoint;E,F">
+<param name=e[26] value="Q;point;midpoint;A,B">
+<param name=e[27] value="R;point;midpoint;G,H">
+<param name=e[28] value="KLNM;polygon;quadrilateral;K,L,N,M;0;0;black;0">
+<param name=e[29] value="OPRQ;polygon;quadrilateral;O,P,R,Q;0;0;black;0">
+<param name=e[30] value="S;point;midpoint;B,G">
+<param name=e[31] value="U;point;midpoint;D,E">
+<param name=e[32] value="DE;line;connect;D,E">
+<param name=e[33] value="BG;line;connect;B,G">
+<param name=e[34] value="SU;line;connect;S,U">
+<param name=e[35] value="DG;line;connect;D,G">
+<param name=e[36] value="T;point;midpoint;D,G;black;green">
+<param name=pivot value=T>
+</applet></div>
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a></div>
+<p>Then, since <i>DO</i> is parallel to <i>PE,</i> therefore the alternate angles <i>DOU</i> and <i>UPE</i> equal one another.
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Since <i>DO</i> equals <i>PE,</i> and <i>OU</i> equals <i>UP,</i> and they contain equal angles, therefore the base <i>DU</i> equals the base <i>UE,</i> the triangle <i>DOU</i> equals the triangle <i>PUE,</i> and the remaining angles equal the remaining angles. Therefore the angle <i>OUD</i> equals the angle <i>PUE.</i> 
+
+<div class="just"><a href="../bookI/propI14.html">I.14</a></div>
+<p>Therefore <i>DUE</i> is a straight line.  For the same reason <i>BSG</i> is also a straight line, and <i>BS</i> equals <i>SG.</i>
+
+<div class="just"><a href=propXI9.html>XI.9</a></div>
+<p>Now, since <i>CA</i> equals and is parallel to <i>DB,</i> while <i>CA</i> also equals and is parallel to <i>EG,</i> therefore <i>DB</i> equals and is parallel to <i>EG.</i>
+
+<div class="just"><a href="../bookI/propI33.html">I.33</a></div>
+<p>And the straight lines <i>DE</i> and <i>BG</i> join their ends, therefore <i>DE</i> is parallel to <i>BG.</i>
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a>,
+<a href="../bookI/propI15.html">I.15</a></div>
+<p>Therefore the angle <i>EDT</i> equals the angle <i>BGT,</i> for they are alternate,  and the angle <i>DTU</i> equals the angle <i>GTS.</i>
+
+<div class="just"><a href="../bookI/propI26.html">I.26</a></div>
+<p>Therefore <i>DTU</i> and <i>GTS</i> are two triangles which have two angles equal to two angles and one side equal to one side, namely that opposite one of the equal angles, that is, <i>DU</i> equals <i>GS,</i> for they are the halves of <i>DE</i> and <i>BG,</i> therefore the remaining sides equal the remaining sides.  Therefore <i>DT</i> equals <i>TG,</i> and <i>UT</i> equals <i>TS.</i>
+
+<p>Therefore, <i>if the sides of the opposite planes of a cube are bisected, and the planes are carried through the points of section, then the intersection of the planes and the diameter of the cube bisect one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition takes care of a specific situation that occurs in proposition <a href=../bookXIII/propXIII17.html>XIII.17</a>.  In XIII.17 a dodecahedron is constructed based on a cube, and the fact proven here in XI.38 is needed to show that the point <i>T</i> where <i>SU</i> intersects <i>DG</i> is the center of a sphere circumscribing the cube.
+
+<p>There are a couple of details missing from this proof.  For instance, it is not shown that <i>KL</i> and <i>MN</i> actually lie in one plane, and that the line <i>SU</i> actually intersects the line <i>DG.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

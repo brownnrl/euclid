@@ -1,0 +1,64 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 5</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 5</h1>
+
+<div class="statement">If two circles cut one another, then they do not have the same center.</div>
+
+<p>Let the circles <i>ABC</i> and <i>CDG</i> cut one another at the points <i>B</i> and <i>C.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=270>
+<img src=propIII5.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.5">
+<param name=e[1] value="A;point;free;50,50">
+<param name=e[2] value="B;point;free;50,180">
+<param name=e[3] value="C;point;free;190,60">
+<param name=e[4] value="ABC;circle;circumcircle;A,B,C">
+<param name=e[5] value="D;point;free;70,70">
+<param name=e[6] value="DBC;circle;circumcircle;D,B,C">
+<param name=e[7] value="E;point;free;130,130">
+<param name=e[8] value="G;point;circleSlider;DBC,220,170">
+<param name=e[9] value="EG;line;connect;E,G">
+<param name=e[10] value="FF';line;chord;EG,ABC;0;0;0">
+<param name=e[11] value="F;point;first;FF'">
+<param name=e[12] value="EC;line;connect;E,C">
+</applet></div>
+
+<p>I say that they do not have the same center.
+
+<p>For, if possible, let it be <I>E.</i>  Join <i>EC,</i> and draw <i>EFG</i> through at random.
+
+<div class="just"><a href=../bookI/defI15.html>I.Def.15</a></div>
+<p>Then, since the point <i>E</i> is the center of the circle <i>ABC, EC</i> equals <i>EF.</i> Again, since the point <i>E</i> is the center of the circle <i>CDG, EC</i> equals <i>EG.</i>
+
+<p>But <i>EC</i> was proved equal to <i>EF</i> also, therefore <i>EF</i> also equals <i>EG,</i> the less equals the greater which is impossible. 
+
+<p>Therefore the point <i>E</i> is not the center of the circles <i>ABC</i> and <i>CDG.</i>
+
+<p>Therefore <i>if two circles cut one another, then they do not have the same center.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Note that no use was made in the proof of the point <i>B.</i>  That means the proof actually shows that <i>if two circles meet, then they do not have the same center,</i> and that covers not only this proposition but the next, too, where the two touch each other.
+
+<p>This proposition is used in <a href=propIII10.html>III.10</a> which states that circles cannot intersect at more than two points. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

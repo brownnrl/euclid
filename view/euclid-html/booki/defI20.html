@@ -1,0 +1,114 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book I, Definitions 20 and 21</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 20</h1>
+
+<div class="statement">Of trilateral figures, an <i>equilateral triangle</i> is that which has its three sides equal, an <i>isosceles triangle</i> that which has two of its sides alone equal, and a <i>scalene triangle</i> that which has its three sides unequal.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 21</h1>
+
+<div class="statement">Further, of trilateral figures, a <i>right-angled triangle</i> is that which has a right angle, an <i>obtuse-angled triangle</i> that which has an obtuse angle, and an <i>acute-angled triangle</i> that which has its three angles acute.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<h4>About Definition 20</h4>
+
+<p>This definition classifies triangles by their symmetries, while definition 21 classifies them by the kinds of angles they contain.
+
+<p><center>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=440>
+<img src="defI20.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Def.I.20">
+<param name=e[1] value="A1;point;free;40,160;0">
+<param name=e[2] value="A2;point;free;150,160;0">
+<param name=e[3] value="A;polygon;regularPolygon
+;A1,A2,3;black;0;black;random">
+<param name=e[4] value="A3;point;vertex;A,3;0">
+<param name=e[5] value="A4;line;angleBisector;A2,A1,A3;0;0;lightGray">
+<param name=e[6] value="A5;line;angleBisector;A2,A3,A1;0;0;lightGray">
+<param name=e[7] value="A6;line;angleBisector;A1,A2,A3;0;0;lightGray">
+
+<param name=e[8] value="B1;point;free;200,160;0">
+<param name=e[9] value="B2;point;free;270,160;0">
+<param name=e[10] value="B3;point;midpoint;B1,B2;0;0">
+<param name=e[11] value="B4;point;perpendicular;B3,B1;0;0">
+<param name=e[12] value="B5;point;lineSlider;B3,B4,0,40;0">
+<param name=e[13] value="B;polygon;triangle;B1,B2,B5;black;0;black;random">
+<param name=e[14] value="Bline;line;angleBisector;B1,B5,B2;0;0;lightGray">
+
+<param name=e[15] value="C1;point;free;290,40;0">
+<param name=e[16] value="C2;point;free;370,40;0">
+<param name=e[17] value="C3;point;free;400,160;0">
+<param name=e[18] value="C;polygon;triangle;C1,C2,C3;black;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="defI20.gif" hspace=10 vspace=10 alt="I.Def.20">';
+</script>
+</center>
+
+<p>The scalene triangle <i>C</i> has no symmetries, but the isosceles triangle <i>B</i> has a bilateral symmetry.  The equilateral triangle <i>A</i> not only has three bilateral symmetries, but also has 120&deg;-rotational symmetries.  
+
+<p>According to this definition, an equilateral triangle is not to be considered as an isosceles triangle.  The term isosceles triangle is first used in proposition <a href=propI5.html>I.5</a> and later in Books II and IV.  The way that the term isosceles triangle is used in the <i>Elements</i> does not exclude equilateral triangles.  That agrees with modern practice. It is only required that at least two sides be equal in order for a triangle to be isosceles.
+
+<p>Equilateral triangles are constructed in the very first proposition of the Elements, <a href=propI1.html>I.1</a>.  An alternate characterization of isosceles triangles, namely that their base angles are equal, is demonstrated in propositions <a href=propI5.html>I.5</a> and <a href=propI6.html>I.6</a>.
+
+<h4>About Definition 21</h4>
+<center>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=440>
+<img src="defI21.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Def.I.21">
+<param name=e[1] value="D1;point;free;40,40;0">
+<param name=e[2] value="D2;point;free;40,160;0">
+<param name=e[3] value="D3;point;perpendicular;D1,D2;0;0">
+<param name=e[4] value="D4;point;lineSlider;D1,D3,100,30;0">
+<param name=e[5] value="D;polygon;triangle;D1,D2,D4;black;0;black;random">
+<param name=e[6] value="E1;point;free;170,40;0">
+<param name=e[7] value="E2;point;free;170,130;0">
+<param name=e[8] value="G;point;extend;E1,E2,E1,E2;0;0">
+<param name=e[9] value="Gcirc;circle;radius;G,E2;0;0;0;0">
+<param name=e[10] value="E3;point;circleSlider;Gcirc,220,160;0">
+<param name=e[11] value="E;polygon;triangle;E1,E2,E3;black;0;black;random">
+
+<param name=e[12] value="F1;point;free;300,50;0">
+<param name=e[13] value="F2;point;free;360,160;0">
+<param name=e[14] value="M;point;midpoint;F1,F2;0;0">
+<param name=e[15] value="N;point;perpendicular;M,F2;0;0">
+<param name=e[16] value="O;point;cutoff;M,N,F1,F2;0;0">
+<param name=e[17] value="Ocirc;circle;radius;O,N;0;0;0;0">
+<param name=e[18] value="F3;point;circleSlider;Ocirc,360,30;0">
+<param name=e[19] value="F;polygon;triangle;F1,F2,F3;black;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="defI21.gif" hspace=10 vspace=10 alt="I.Def.21">';
+</script>
+</center>
+
+<p>Since triangle <i>D</i> has a right angle, it is a right triangle.  Proposition <a href=propI17.html>I.17</a> states that the sum of any two angles in a triangle is less than two right angles, therefore, no triangle can contain more than one right angle. Furthermore, there can be at most one obtuse angle, and a right angle and an obtuse angle cannot occur in the same triangle.
+
+<p>Triangle <i>E</i> is an obtuse triangle since it has an obtuse angle, while triangle <i>F</i> is an acute triangle since all its angles are acute.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

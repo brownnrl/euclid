@@ -1,0 +1,111 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book XI, Proposition 4</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 4</h1>
+
+<div class="statement">
+If a straight line is set up at right angles to two straight lines which cut one another at their common point of section, then it is also at right angles to the plane passing through them.</div>
+
+<p>For let a straight line <i>EF</i> be set up at right angles to the two straight lines <i>AB</i> and <i>CD</i> at <i>E,</i> the point at which the lines cut one another.
+
+<p>I say that <i>EF</i> is also at right angles to the plane passing through <i>AB</i> and <i>CD.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=320 height=250 >
+<img src="propXI4.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.4">
+<param name=e[1] value="P1;point;fixed;30,210,100;0;0">
+<param name=e[2] value="P2;point;fixed;250,210,100;0;0">
+<param name=e[3] value="P3;point;fixed;70,60,0;0;0">
+<param name=e[4] value="baseplane;plane;3points;P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[5] value="A;point;planeSlider;baseplane,90,50,80">
+<param name=e[6] value="E;point;planeSlider;baseplane,160,150,0">
+<param name=e[7] value="B;point;extend;A,E,A,E">
+<param name=e[8] value="C;point;planeSlider;baseplane,250,30,90">
+<param name=e[9] value="D;point;extend;C,E,C,E">
+<param name=e[10] value="Z;point;fixed;100,100000,0">
+<param name=e[11] value="F;point;lineSlider;E,Z,160,40,0">
+<param name=e[12] value="EF;line;connect;E,F">
+<param name=e[13] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;black;random">
+<param name=e[14] value="AF;line;connect;A,F">
+<param name=e[15] value="BF;line;connect;B,F">
+<param name=e[16] value="CF;line;connect;C,F">
+<param name=e[17] value="DF;line;connect;D,F">
+<param name=e[18] value="G;point;lineSlider;A,D,80,140,40">
+<param name=e[19] value="H;point;intersection;G,E,B,C">
+<param name=e[20] value="GH;line;connect;G,H">
+<param name=e[21] value="GF;line;connect;G,F">
+<param name=e[22] value="HF;line;connect;H,F">
+</applet></div>
+
+<div class="just"><a href="propXI2.html">XI.2</a>
+<br><a href="../bookI/propI3.html">I.3</a></div>
+<p>Cut off <i>AE, EB, CE,</i> and <i>ED</i> equal to one another.  Draw any straight line <i>GEH</i> across through <i>E</i> at random. Join <i>AD</i> and <i>CB,</i> and join <i>FA, FG, FD,</i>  <i>FC, FH,</i> and <i>FB</i> from a point <i>F</i> taken at random on <i>EF.</i>
+
+<div class="just"><a href="../bookI/propI15.html">I.15</a>
+<br><a href="../bookI/propI4.html">I.4</a></div>
+<p>Now, since the two straight lines <i>AE</i> and <i>ED</i> equal the two straight lines <i>CE</i> and <i>EB</i> and contain equal angles, therefore the base <i>AD</i> equals the base <i>CB,</i> and the triangle <i>AED</i> equals the triangle <i>CEB,</i> so that the angle <i>DAE</i> equals the angle <i>EBC.</i>
+
+<div class="just"><a href=../bookI/propI15.html>I.15</a>
+<br><a href=../bookI/propI26.html>I.26</a></div>
+<p>But the angle <i>AEG</i> also equals the angle <i>BEH,</i> therefore <i>AGE</i> and <i>BEH</i> are two triangles which have two angles equal to two angles respectively, and one side equal to one side, namely that adjacent to the equal angles, that is to say, <i>AE</i> equals <i>EB.</i>  Therefore they also have the remaining sides equals to the remaining sides, that is, <i>GE</i> equals <i>EH,</i> and <i>AG</i> equals <i>BH.</i>
+
+<p>And, since <i>AE</i> equals <i>EB,</i> while <i>FE</i> is common and at right angles, therefore the base <i>FA</i> equals the base <i>FB.</i> 
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+
+<p>For the same reason, <i>FC</i> equals <i>FD.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>And, since <i>AD</i> equals <i>CB,</i> and <i>FA</i> also equals <i>FB,</i> the two sides <i>FA</i> and <i>AD</i> equal the two sides <i>FB</i> and <i>BC</i> respectively, and the base <i>FD</i> was proved equal to the the base <i>FC,</i> therefore the angle <i>FAD</i> also equals the angle <i>FBC.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>And since, again, <i>AG</i> was proved equal to <i>BH,</i> and further, <i>FA</i> also equal to <i>FB,</i> the two sides <i>FA</i> and <i>AG</i> equal the two sides <i>FB</i> and <i>BH,</i>  and the angle <i>FAG</i> was proved equal to the angle <i>FBH,</i> therefore the base <i>FG</i> equals the base <i>FH.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>Again, since <i>GE</i> was proved equal to <i>EH,</i> and <i>EF</i> is common, the two sides <i>GE</i> and <i>EF</i> equal the two sides <i>HE</i> and <i>EF,</i> and the base <i>FG</i> equals the base <i>FH,</i> therefore the angle <i>GEF</i> equals the angle <i>HEF.</i>
+
+<p>Therefore each of the angles <i>GEF</i> and <i>HEF</i> is right.
+
+<p>Therefore <i>FE</i> is at right angles to <i>GH</i> drawn at random through <i>E.</i>
+
+<p>Similarly we can prove that <i>FE</i> also makes right angles with all the straight lines which meet it and are in the plane of reference.
+
+<div class="just"><a href="defXI3.html">XI.Def.3</a></div>
+<p>But a straight line is at right angles to a plane when it makes right angles with all the straight lines which meet it and are in that same plane, therefore <i>FE</i> is at right angles to the plane of reference.
+
+<p>But the plane of reference is the plane through the straight lines <i>AB</i> and <i>CD.</i>
+
+<p>Therefore <i>FE</i> is at right angles to the plane through <i>AB</i> and <I>CD.</i>
+
+<p>Therefore <i>if a straight line is set up at right angles to two straight lines which cut one another at their common point of section, then it is also at right angles to the plane passing through them.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition says that if a line passing through a point is perpendicular to two other lines passing through that point, then it is perpendicular to all the lines which pass through that point and which lie in the plane of those two other lines.
+
+<p>After the preceding three dubious proofs, this one is a relief.  It is a little long, but it is clear.
+
+<p>Near the beginning of the proof, proposition <a href="propXI2.html">XI.2</a> is needed to conclude that the two lines <i>AB</i> and <i>CD</i> determine a plane.  The line <i>GH</i> is to be any line that passes through <i>E</i> and lies in that plane.  Then, by XI.2 again, the lines <i>AD</i> and <i>BC</i> lie in this plane.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used frequently starting with the proof of the next proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

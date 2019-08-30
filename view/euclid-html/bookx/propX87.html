@@ -1,0 +1,121 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 87</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 87</h1>
+
+<div class="statement">To find the third apotome.</div>
+
+<p>Set out a rational straight line <i>A</i>.  Set out three numbers <i>E</i>, <i>BC</i>, and <i>CD</i> which do not have to one another the ratio which a square number has to a square number, but let <i>CB</i> have to <i>BD</i> the ratio which a square number has to a square number.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=220 height=195>
+<img src="propX87.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.87">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="F0;point;free;-1000,65;0;0">
+<param name=e[4] value="F3;point;free;1000,65;0;0">
+<param name=e[5] value="K0;point;free;-1000,100;0;0">
+<param name=e[6] value="K3;point;free;1000,100;0;0">
+<param name=e[7] value="E0;point;free;-1000,135;0;0">
+<param name=e[8] value="E3;point;free;1000,135;0;0">
+<param name=e[9] value="B0;point;free;-1000,170;0;0">
+<param name=e[10] value="B3;point;free;1000,170;0;0">
+
+<param name=e[11] value="A1;point;lineSlider;A0,A3,60,0;0">
+<param name=e[12] value="A2;point;lineSlider;A0,A3,180,0;0">
+<param name=e[13] value="A;line;connect;A1,A2;black">
+<param name=e[14] value="E1;point;lineSlider;E0,E3,110,0;0">
+<param name=e[15] value="E2;point;lineSlider;E0,E3,175,0;0">
+<param name=e[16] value="E;line;connect;E1,E2;black;0;blue">
+<param name=e[17] value="B;point;lineSlider;B0,B3,90,0">
+<param name=e[18] value="C;point;lineSlider;B0,B3,190,0">
+<param name=e[19] value="D;point;lineSlider;B0,B3,130,0">
+<param name=e[20] value="BC;line;connect;B,C;0;0;blue">
+
+<param name=e[21] value="F;point;lineSlider;F0,F3,30,0">
+<param name=e[22] value="G';point;proportion;E1,E2,B,C,A1,A2,F,F3;0;0">
+<param name=e[23] value="G;point;meanProportional;A1,A2,F,G',F,G'">
+<param name=e[24] value="FG;line;connect;F,G">
+<param name=e[25] value="H';point;proportion;B,C,C,D,F,G,G,F0;0;0">
+<param name=e[26] value="H;point;meanProportional;F,G,G,H',G,H'">
+
+<param name=e[27] value="K1;point;lineSlider;K0,K3,90,0;0">
+<param name=e[28] value="M;point;midpoint;F,G;0;0">
+<param name=e[29] value="FGcirc;circle;radius;M,G;0;0;0;0">
+<param name=e[30] value="GHcirc;circle;radius;G,H;0;0;0;0">
+<param name=e[31] value="bich;line;bichord;FGcirc,GHcirc;0;0;0">
+<param name=e[32] value="K2';point;first;bich;0;0">
+<param name=e[33] value="K2;point;cutoff;K1,K3,G,K2';0">
+<param name=e[34] value="K;line;connect;K1,K2;black">
+</applet></div>
+
+<div class="just"><a href=propX6.html#cor>X.6,Cor.</a></div>
+<p>Let it be contrived that <i>E</i> is to <i>BC</i> as the square on <i>A</i> is to the square on <i>FG</i>, and <i>BC</i> is to <i>CD</i> as the square on <i>FG</i> is to the square on <i>GH</i>.
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>Since <i>E</i> is to <i>BC</i> as the square on <i>A</i> is to the square on <i>FG</i>, therefore the square on <i>A</i> is commensurable with the square on <i>FG</i>.
+
+<p>But the square on <i>A</i> is rational, therefore the square on <i>FG</i> is also rational, therefore <i>FG</i> is rational.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>Since <i>E</i> does not have to <i>BC</i> the ratio which a square number has to a square number, therefore neither has the square on <i>A</i> to the square on <i>FG</i> the ratio which 3 square number has to a square number. Therefore <i>A</i> is incommensurable in length with <i>FG</i>.
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>Again, since <i>BC</i> is to <i>CD</i> as the square on <i>FG</i> is to the square on <i>GH</i>, therefore the square on <i>FG</i> is commensurable with the square on <i>GH</i>.
+
+<p>But the square on <i>FG</i> is rational, therefore the square on <i>GH</i> is also rational, therefore <i>GH</i> is rational.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>Since <i>BC</i> does not have to <i>CD</i> the ratio which a square number has to a square number, therefore neither has the square on <i>FG</i> to the square on <i>GH</i> the ratio which a square number has to a square number. Therefore <i>FG</i> is incommensurable in length with <i>GH</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>And both are rational, therefore <i>FG</i> and <i>GH</i> are rational straight lines commensurable in square only. Therefore <i>FH</i> is an apotome.
+
+<p>I say next that it is also a third apotome.
+
+<div class="just"><a href=../bookV/propV22.html>V.22</a></div>
+<p>Since <i>E</i> is to <i>BC</i> as the square on <i>A</i> is to the square on <i>FG</i>, and <i>BC</i> is to <i>CD</i> as the square on <i>FG</i> is to the square on <i>HG</i>, therefore, <i>ex aequali</i>, <i>E</i> is to <i>CD</i> as the square on <i>A</i> is to the square on <i>HG</i>.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>But <i>E</i> does not have to <i>CD</i> the ratio which a square number has to a square number, therefore neither has the square on <i>A</i> to the square on <i>GH</i> the ratio which a square number has to a square number. Therefore <i>A</i> is incommensurable in length with <i>GH</i>.
+
+<p>Therefore neither of the straight lines <i>FG</i> nor <i>GH</i> is commensurable in length with the rational straight line <i>A</i> set out.
+
+<p>Now let the square on <i>K</i> be that by which the square on <i>FG</i> is greater than the square on <i>GH</i>.
+
+<div class="just"><a href=../bookV/propV19.html#cor>V.19,Cor.</a></div>
+<p>Since <i>BC</i> is to <i>CD</i> as the square on <i>FG</i> is to the square on <i>GH</i>, therefore, in conversion, <i>BC</i> is to <i>BD</i> as the square on <i>FG</i> is to the square on <i>K</i>.
+
+<p>But <i>BC</i> has to <i>BD</i> the ratio which a square number has to a square number, therefore the square on <i>FG</i> also has to the square on <i>K</i> the ratio which a square number has to a square number.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>Therefore <i>FG</i> is commensurable in length with <i>K</i>, and the square on <i>FG</i> is greater than the square on <i>GH</i> by the square on a straight line commensurable with <i>FG</i>.
+
+<div class="just"><a href=defX.III.html#3>X.Def.III.3</a></div>
+<p>And neither of the straight lines <i>FG</i> nor <i>GH</i> is commensurable in length with  the rational straight line <i>A</i> set out, therefore <i>FH</i> is a third apotome.
+
+<p>Therefore the third apotome <i>FH</i> has been found.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

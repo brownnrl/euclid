@@ -1,0 +1,76 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 16</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 16</h1>
+
+<div class="statement">If two incommensurable magnitudes are added together, the sum is also  incommensurable with each of them; but, if the sum is incommensurable with one of them, then the original magnitudes are also incommensurable.</div>
+
+<p>Let the two incommensurable magnitudes <i>AB</i> and <i>BC</i> be added together.
+
+<p>I say that the whole <i>AC</i> is also incommensurable with each of the magnitudes <i>AB</i> and <i>BC</i>.
+
+<p>For, if <i>CA</i> and <i>AB</i> are not incommensurable, then some magnitude  <i>D</i> measures them.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=110 height=270>
+<img src="propX16.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.16">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;40,-1000;0;0">
+<param name=e[2] value="A3;point;free;40,1000;0;0">
+<param name=e[3] value="D0;point;free;75,-1000;0;0">
+<param name=e[4] value="D3;point;free;75,1000;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,0,40">
+<param name=e[6] value="B;point;lineSlider;A0,A3,0,170">
+<param name=e[7] value="C;point;lineSlider;A0,A3,0,240">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="D1;point;lineSlider;D0,D3,0,40;0">
+<param name=e[10] value="D2;point;lineSlider;D0,D3,0,70;0">
+<param name=e[11] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<p>Since then <i>D</i> measures <i>CA</i> and <i>AB</i>, therefore it also measures the remainder <i>BC</i>. But it also measures <i>AB</i>, therefore <i>D</i> measures <i>AB</i> and <i>BC</i>.  Therefore <i>AB</i> and <i>BC</i> are commensurable, but they were also, by hypothesis, incommensurable, which is impossible.
+
+<div class="just"><a href=defX.I.html#1>X.Def.I.1</a></div>
+<p>Therefore no magnitude measures <i>CA</i> and <i>AB</i>. Therefore <i>CA</i> and <i>AB</i> are incommensurable.
+
+<p>Similarly we can prove that <i>AC</i> and <i>CB</i> are also incommensurable. Therefore <i>AC</i> is incommensurable with each of the magnitudes <i>AB</i> and <i>BC</i>.
+
+<hr width=50%>
+
+<p>Next, let <i>AC</i> be incommensurable with one of the magnitudes <i>AB</i> or <i>BC</i>.
+
+<p>First, let it be incommensurable with <i>AB</i>.
+
+<p>I say that <i>AB</i> and <i>BC</i> are also incommensurable.
+
+<p>For, if they are commensurable, then some magnitude <i>D</i> measures them. 
+
+<p>Since, then, <i>D</i> measures <i>AB</i> and <i>BC</i>, therefore it also measures the whole <i>AC</i>. But it also measures <i>AB</i>, therefore <i>D</i> measures <i>CA</i> and <i>AB</i>. Therefore <i>CA</i> and <i>AB</i> are commensurable, but they were also, by hypothesis, incommensurable, which is impossible.
+
+<div class="just"><a href=defX.I.html#1>X.Def.I.1</a></div>
+<p>Therefore no magnitude measures <i>AB</i> and <i>BC</i>. Therefore <i>AB</i> and <i>BC</i> are incommensurable.
+
+<p>Therefore, <i>if two incommensurable magnitudes are added together, the sum is also  incommensurable with each of them; but, if the sum is incommensurable with one of them, then the original magnitudes are also incommensurable.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+This proposition is a logical variant of the previous one, but it is proved afresh.  It is used in several others in Book X starting with <a href=propX18.html>X.18</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,268 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 10</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">If a straight line is bisected, and a straight line is added to it in a straight line, then the square on the whole with the added straight line and the square on the added straight line both together are double the sum of the square on the half and the square described on the straight line made up of the half and the added straight line as on one straight line.</div>
+
+<p>Let a straight line <i>AB</i> be bisected at <i>C,</i> and let a straight line <i>BD</i> be added to it in a straight line.
+
+<p>I say that the sum of the squares on <i>AD</i> and <i>DB</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=280>
+<img src="propII10.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.10">
+<param name=e[1] value="A;point;free;30,150">
+<param name=e[2] value="B;point;free;180,150">
+<param name=e[3] value="C;point;midpoint;A,B">
+<param name=e[4] value="D;point;lineSlider;A,B,240,150">
+<param name=e[5] value="AD;line;connect;A,D">
+<param name=e[6] value="CE;line;perpendicular;C,B">
+<param name=e[7] value="E;point;last;CE">
+<param name=e[8] value="AE;line;connect;A,E">
+<param name=e[9] value="BE;line;connect;B,E">
+<param name=e[10] value="ECDF;polygon;parallelogram;E,C,D;0;0;0,0,0;0">
+<param name=e[11] value="F;point;vertex;ECDF,4">
+<param name=e[12] value="G;point;intersection;E,B,F,D">
+<param name=e[13] value="AG;line;connect;A,G">
+<param name=e[14] value="BG;line;connect;B,G">
+<param name=e[15] value="DG;line;connect;D,G">
+<param name=e[16] value="DB;line;connect;D,B">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII10.gif" hspace=10 alt="II.10">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a>,
+<a href="../bookI/propI3.html">I.3</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Draw <i>CE</i> from the point <i>C</i> at right angles to <i>AB</i> and equal to either <i>AC</i> or <i>CB.</i>  Join <i>EA</i> and <i>EB.</i>  Draw <i>EF</i> through <i>E</i> parallel to <i>AD,</i> and draw <i>FD</i> through <i>D</i> parallel to <i>CE.</i>
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a></div>
+<p>Then, since a straight line <i>EF</i> falls on the parallel straight lines <i>EC</i> and <i>FD,</i> the sum of the angles <i>CEF</i> and <i>EFD</i>  equals two right angles.  Therefore the sum of the angles <i>FEB</i> and <i>EFD</i> is less than two right angles.
+
+<div class="just"><a href=../bookI/post1.html>Post.5</a></div>
+<p>But straight lines produced from angles less than two right angles meet. Therefore <i>EB</i> and <i>FD,</i> if produced in the direction <i>B</i> and <i>D,</i> will meet.
+
+<p>Let them be produced and meet at <i>G,</i> and join <i>AG.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a>
+<br><a href="../bookI/propI32.html">I.32</a></div>
+<p>Then, since <i>AC</i> equals <i>CE,</i> the angle <i>EAC</i> also equals the angle <i>AEC.</i> The angle at <i>C</i> is right, therefore each of the angles <i>EAC</i> and <i>AEC</i> is half of a right angle.
+
+<p>For the same reason each of the angles <i>CEB</i> and <i>EBC</i> is also half of a right angle, therefore the angle <i>AEB</i> is right.
+
+<div class="just"><a href="../bookI/propI15.html">I.15</a>,
+<a href="../bookI/propI29.html">I.29</a>
+<br><a href="../bookI/propI32.html">I.32</a>,
+<a href="../bookI/propI6.html">I.6</a></div>
+<p>And, since the angle <i>EBC</i> is half of a right angle, the angle <i>DBG</i> is also half of a right angle.  But the angle <i>BDG</i> is also right, for it equals the angle <i>DCE,</i> since they are alternate.  Therefore the remaining angle <i>DGB</i> is half of a right angle. Therefore the angle <i>DGB</i> equals the angle <i>DBG,</i> so that the side <i>BD</i> also equals the side <i>GD.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a>,
+<a href="../bookI/propI32.html">I.32</a>
+<br><a href="../bookI/propI6.html">I.6</a></div>
+<p>Again, since the angle <i>EGF</i> is half of a right angle, and the angle at <i>F</i> is right, for it equals the opposite angle, the angle at <i>C,</i>  the remaining angle <i>FEG</i> is half of a right angle. Therefore the angle <i>EGF</i> equals the angle <i>FEG,</i> so that the side <i>GF</i> also equals the side <i>EF.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>Now, since the square on <i>EC</i> equals the square on <i>CA,</i> the sum of the squares on <i>EC</i> and <i>CA</i> is double the square on <i>CA.</i>  But the square on EA</i> equals the sum of the squares on <i>EC</i> and <i>CA,</i> therefore the square on <i>EA</i> is double the square on <i>AC.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>Again, since <i>FG</i> equals <i>EF,</i> the square on <i>FG</i> also equals the square on <i>FE.</i>  Therefore the sum of the squares on <i>GF</i> and <i>FE</i> is double the square on <i>EF.</i>  But the square on <i>EG</i> equals the sum of the squares on <i>GF</i> and <i>FE,</i>  therefore the square on <i>EG</i> is double the square on <i>EF.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>And <i>EF</i> equals <i>CD,</i> therefore the square on <i>EG</i> is double the square on <i>CD.</i> But the square on <i>EA</i> was also proved to be double the square on <i>AC,</i> therefore the sum of the squares on <i>AE</i> and <i>EG</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>And the square on <i>AG</i> equals the sum of the squares on <i>AE</i> and <i>EG,</i>  therefore the square on <i>AG</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i> But the sum of the squares on <i>AD</i> and <i>DG</i> equals the square on <i>AG,</i> therefore the sum of the squares on <i>AD</i> and <i>DG</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i>
+
+<p>And <i>DG</i> equals <i>DB,</i> therefore the sum of the squares on <i>AD</i> and <i>DB</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i>
+
+<p>Therefore <i>if a straight line is bisected, and a straight line is added to it in a straight line, then the square on the whole with the added straight line and the square on the added straight line both together are double the sum of the square on the half and the square described on the straight line made up of the half and the added straight line as on one straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<h4>Outline of the proof</h4>
+
+The proof is almost the same as the previous proposition.  The entire situation is the same, except the point <i>D</i>  is moved past the end <i>B</i> of the line <i>AB.</i>
+
+<p><p>As before draw <i>CE</i> at right angles to <i>AB</i> and equal to half of it.  Finish the diagram.  That results in isosceles right triangles, <i>ACE, ECB,</i> and <i>EFG,</i> as well as two other right triangles, <i>AEG</i> and <i>ADG.</i> Then,
+
+<p><center><table> 
+<tr><td><i>AG</i><sup>2</sup></td><td>=</td>
+<td><i>AE</i><sup>2</sup> + <i>EG</i><sup>2</sup></td></tr>
+<tr><td></td><td>=</td>
+<td>(<i>AC</i><sup>2</sup> + <i>CE</i><sup>2</sup>) +
+(<i>EF</i><sup>2</sup> + <i>FG</i><sup>2</sup>)</td></tr>
+<tr><td></td><td>=</td>
+<td>2(<i>AC</i><sup>2</sup>+<i>CD</i><sup>2</sup>)</td></tr>
+</table></center>
+
+But also,
+
+<center><table> 
+<tr><td><i>AG</i><sup>2</sup></td><td>=</td>
+<td><i>AD</i><sup>2</sup> + <i>DG</i><sup>2</sup></td></tr>
+<tr><td></td><td>=</td>
+<td><i>AD</i><sup>2</sup> + <i>DB</i><sup>2</sup></td></tr>
+</table></center><p>
+
+Thus, <i>AD</i><sup>2</sup> + <i>DB</i><sup>2</sup> =
+2(<i>AC</i><sup>2</sup>+<i>CD</i><sup>2</sup>), as desired.
+
+
+<h4>Interpretations of this proposition</h4>
+
+This proposition can be interpreted to derive the same algebraic identities as the previous proposition. For example, when <i>y</i> is identified with <i>CD</i> and <i>z</i> is identified with <i>CB,</i>  then the proposition states that 
+<p><center>(<i>y</i>&nbsp;+&nbsp;<i>z</i>)<sup>2</sup>&nbsp;+&nbsp;(<i>y</i>&nbsp;&ndash;&nbsp;<i>z</i>)<sup>2</sup>&nbsp;=&nbsp;2 (<i>y</i><sup>2</sup>&nbsp;+&nbsp;<i>z</i><sup>2</sup>).</center>
+
+<h4>Side and diagonal numbers</h4>
+
+The diagonal of a square is incommensurable with the side of a square.  Another way of saying that is that the ratio of the diagonal to a side, what is generally known as the square root of 2, is not the ratio of two whole numbers, in other words &radic;2 is an irrational number.  See the <a href="../bookVIII/propVIII8.html#guide">Guide</a> to proposition VIII.8 for details.
+
+<p>Nonetheless, finding a close rational approximation for &radic;2 is an important goal.  For practical reasons, close approximations are useful, and for theoretical reasons, close approximations are interesting.
+
+<p>Some time before Euclid, Plato refers in his <i>Republic</i> the &ldquo;rational diameter&rdquo; of 5.  A square of side length <i>s</i>&nbsp;=&nbsp;5 has a diameter (diagonal) of <i>d</i>&nbsp;=&nbsp;&radic;50, which is irrational.  But 49 is close to 50, so 7 is close to this irrational length.  There are a number of side lengths <i>s</i> whose squares <i>s</i><sup>2</sup> differ from a square number <i>d</i><sup>2</sup> by only 1.  The first few are displayed in the table below.  The column labelled &ldquo;angle&rdquo; gives the angle opposite the diameter <i>d.</i>  By the law of cosines, the cosine of the angle equals 1&nbsp;&ndash;&nbsp;<i>d</i><sup>2</sup>/(2<i>s</i><sup>2</sup>).
+
+<p><center><table>
+<tr><th>side <i>s</i></th><th>diagonal <i>d</i></th><th>relation</th><th>angle</th><th>ratio <i>d/s</i></th></tr>
+<tr align=center valign=bottom><td>1</td><td>1</td>
+    <td>2&nbsp;<sup>.</sup>&nbsp;1<sup>2</sup>&nbsp;&ndash;&nbsp;1&nbsp;=&nbsp;1<sup>2</sup>
+    <td>60&deg;</td>
+    <td>1.0
+<tr align=center valign=bottom><td>2</td><td>3</td>
+    <td>2&nbsp;<sup>.</sup>&nbsp;2<sup>2</sup>&nbsp;+&nbsp;1&nbsp;=&nbsp;3<sup>2</sup>
+    <td>97.1808&deg;</td>
+    <td>1.5
+<tr align=center valign=bottom><td>5</td><td>7</td>
+    <td>2&nbsp;<sup>.</sup>&nbsp;5<sup>2</sup>&nbsp;&ndash;&nbsp;1&nbsp;=&nbsp;7<sup>2</sup>
+    <td>88.854&deg;</td>
+    <td>1.4
+<tr align=center valign=bottom><td>12</td><td>17</td>
+    <td>2&nbsp;<sup>.</sup>&nbsp;12<sup>2</sup>&nbsp;+&nbsp;1&nbsp;=&nbsp;17<sup>2</sup>
+    <td>90.1989&deg;</td>
+    <td>1.416667
+<tr align=center valign=bottom><td>29</td><td>41</td>
+    <td>2&nbsp;<sup>.</sup>&nbsp;29<sup>2</sup>&nbsp;&ndash;&nbsp;1&nbsp;=&nbsp;41<sup>2</sup>
+    <td>89.9659&deg;</td>
+    <td>1.413793
+<tr align=center valign=bottom><td>70</td><td>99</td>
+    <td>2&nbsp;<sup>.</sup>&nbsp;70<sup>2</sup>&nbsp;+&nbsp;1&nbsp;=&nbsp;99<sup>2</sup>&nbsp;
+    <td>90.0058&deg;</td>
+    <td>1.414286
+</table></center><p>
+
+Note how the squares of the diagonals alternately are less and greater by 1 than twice the squares of the sides, and the angle correspondingly alternates between acute and obtuse, but quickly approaches a right angle. Likewise, the ratio <i>d/s</i> is alternately less and greater then the irrational number &radic;2.
+
+
+<p><table><tr>
+<td>
+<p>Note how the squares of the diagonals alternately are less and greater by 1 than twice the squares of the sides, and the angle correspondingly alternates between acute and obtuse, but quickly approaches a right angle. Likewise, the ratio <i>d/s</i> is alternately less and greater then the irrational number &radic;2.
+
+<p>To the right are displayed triangles for the first four lines in the table.  The first triangle has side 
+<i>s</i><sub>1</sub>&nbsp;=&nbsp;<i>OA</i>&nbsp;=&nbsp;1 and diagonal
+<i>d</i><sub>1</sub>&nbsp;=&nbsp;<i>AB</i>&nbsp;=&nbsp;1. For the others
+<i>s</i><sub>2</sub>&nbsp;=&nbsp;<i>OC</i>&nbsp;=&nbsp;2 and
+<i>d</i><sub>2</sub>&nbsp;=&nbsp;<i>CD</i>&nbsp;=&nbsp;3;
+<i>s</i><sub>3</sub>&nbsp;=&nbsp;<i>OE</i>&nbsp;=&nbsp;5 and
+<i>d</i><sub>3</sub>&nbsp;=&nbsp;<i>EF</i>&nbsp;=&nbsp;7; also
+<i>s</i><sub>4</sub>&nbsp;=&nbsp;<i>OG</i>&nbsp;=&nbsp;12 and
+<i>d</i><sub>4</sub>&nbsp;=&nbsp;<i>GH</i>&nbsp;=&nbsp;17.
+
+<p>The pattern of the lengths of the sides and diagonals is evident.  The next side <i>s'</i> is the sum of the current side and diagonal, while the next diagonal <i>d'</i> is the sum of twice the current side and diagonal:
+
+<p><center>
+<i>s'</i>  = <i>s</i> + <i>d</i></sub>
+
+<p><i>d'</i> = 2<i>s</i> + <i>d</i>.
+</center>
+</td>
+<td>
+<id id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=340 width=350>
+<img src="propII10a.gif" alt="side and diagonal numbers">
+<param name=background value="35,19,100">
+<param name=title value="side and diagonal numbers">
+<param name=e[1] value="x0;point;free;-1000,30;0;0">
+<param name=e[2] value="x1;point;free;1000,30;0;0">
+<param name=e[3] value="baseline;line;connect;x0,x1;0;0;gray">
+<param name=e[4] value="O;point;lineSlider;baseline,40,0">
+
+<param name=e[5] value="A;point;lineSlider;baseline,62,0">
+<param name=e[6] value="OA;circle;radius;O,A;0;0;0;0">
+<param name=e[7] value="AO;circle;radius;A,O;0;0;0;0">
+<param name=e[8] value="BB';line;bichord;OA,AO;0;0;0">
+<param name=e[9] value="B;point;first;BB'">
+<param name=e[10] value="OAB;polygon;triangle;O,A,B;0;0;green;0">
+
+<param name=e[11] value="C;point;extend;O,A,O,B">
+<param name=e[12] value="D1;point;extend;O,B,O,C;0;0">
+<param name=e[13] value="OD;circle;radius;O,O,C;0;0;0;0">
+<param name=e[14] value="CO;circle;radius;C,O,D1;0;0;0;0">
+<param name=e[15] value="DD';line;bichord;OD,CO;0;0;0">
+<param name=e[16] value="D;point;first;DD'">
+<param name=e[17] value="OCD;polygon;triangle;O,C,D;0;0;red;0">
+
+<param name=e[18] value="E;point;extend;O,C,C,D">
+<param name=e[19] value="F1;point;extend;O,C,O,E;0;0">
+<param name=e[20] value="OF;circle;radius;O,E;0;0;0;0">
+<param name=e[21] value="EF;circle;radius;E,O,F1;0;0;0;0">
+<param name=e[22] value="FF';line;bichord;OF,EF;0;0;0">
+<param name=e[23] value="F;point;first;FF'">
+<param name=e[24] value="OEF;polygon;triangle;O,E,F;0;0;20,80,80;0">
+
+<param name=e[25] value="G;point;extend;O,E,E,F">
+<param name=e[26] value="H1;point;extend;O,E,O,G;0;0">
+<param name=e[27] value="OH;circle;radius;O,G;0;0;0;0">
+<param name=e[28] value="GH;circle;radius;G,O,H1;0;0;0;0">
+<param name=e[29] value="HH';line;bichord;OH,GH;0;0;0">
+<param name=e[30] value="H;point;first;HH'">
+<param name=e[31] value="OGH;polygon;triangle;O,G,H;0;0;blue;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propII10a.gif" hspace=10 alt="II.10">';
+</script>
+</div>
+</tr></table>
+
+
+<p>A pattern requires a verification, and this proposition supplies that.  What needs to be verified is that if 2<i>s</i><sup>2</sup> differs from <i>d</i><sup>2</sup> by exactly 1, then so does
+2<i>s'</i><sup>2</sup> differ from <i>d'</i><sup>2</sup> by exactly 1.
+
+<p>Let <i>CD</i> equal <i>s,</i> and let <i>BC</i> equal <i>d.</i> Then <i>s'</i>&nbsp;=&nbsp;<i>AC</i>&nbsp;=&nbsp;<i>CB,</i> and
+<i>d'</i>&nbsp;=&nbsp;<i>AD.</i>  By this proposition
+<p><center>
+<i>d'</i><sup>2</sup> + <i>d</i><sup>2</sup> = 2(<i>s'</i><sup>2</sup> + <i>s</i><sup>2</sup>),
+</center>
+so that
+<center>
+<i>d'</i><sup>2</sup> &ndash; 2<i>s'</i><sup>2</sup>  = 
+ 2<i>s</i><sup>2</sup> &ndash; <i>d</i><sup>2</sup>.
+</center><p>
+
+<p>Thus, if 2<i>s</i><sup>2</sup> differs from <i>d</i><sup>2</sup> by 1, then
+2<i>s'</i><sup>2</sup> also differs from <i>d'</i><sup>2</sup> by 1.  More precisely, if one difference is +1, then the other difference is &ndash;1.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

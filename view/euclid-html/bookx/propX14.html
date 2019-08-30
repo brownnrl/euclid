@@ -1,0 +1,162 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 14</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<h1>Proposition 14</h1>
+
+<a name=lemma></a>
+
+<div class="theorem">
+
+<h1>Lemma.</h1>
+
+<div class="statement">Given two unequal straight lines, to find by what square the square on the greater is greater than the square on the less.</div>
+
+<p>Let <i>AB</i> and <i>C</i> be the given two unequal straight lines, and let <i>AB</i> be the greater of them.
+
+<p>It is required to find by what square the square on <i>AB</i> is greater than the square on <i>C</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=200>
+<img src="propX14l.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Lemma">
+<param name=e[1] value="A;point;free;30,120">
+<param name=e[2] value="B;point;free;150,120">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C1;point;free;220,30;0">
+<param name=e[5] value="C2;point;free;220,120;0">
+<param name=e[6] value="C;line;connect;C1,C2;black">
+<param name=e[7] value="M;point;midpoint;A,B;0;0">
+<param name=e[8] value="circ;circle;radius;M,A;0;0;0;0">
+<param name=e[9] value="ACcirc;circle;radius;A,C1,C2;0;0;0;0">
+<param name=e[10] value="DD';line;bichord;circ,ACcirc;0;0;0">
+<param name=e[11] value="D;point;first;DD'">
+<param name=e[12] value="semi;sector;arc;B,D,A;0;0;black;random">
+<param name=e[13] value="tri;polygon;triangle;A,B,D;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=../bookIV/propIV1.html>IV.1</a></div>
+<p>Describe the semicircle <i>ADK</i> on <i>AB</i>, fit <i>AD</i> into it equal to <i>C</i>, and join <i>DB</i>.
+
+<div class="just"><a href=../bookIII/propIII31.html>III.31</a>
+<br><a href=../bookI/propI47.html>I.47</a></div>
+<p>It is then clear that the angle <i>ADB</i> is right,  and that the square on <i>AB</i> is greater than the square on <i>AD</i>, that is, <i>C</i>, by the square on <i>DB</i>.
+
+<p>Similarly also, <i>if two straight lines are given, then the straight line the square on which equals the sum of the squares on them is found in this manner.</i>
+
+<p>Let <i>AD</i> and <i>DB</i> be the given two straight lines, and let it be required to find the straight line the square on which equals the sum of the squares on them.
+
+<p>Place them so as to contain a right angle <i>ADB</i>, and join  <i>AB</i>.
+
+<div class="just"><a href=../bookI/propI47.html>I.47</a></div>
+<p>It is again manifest that the straight line the square on which equals the sum of the squares on <i>AD</i> and <i>DB</i> is <i>AB</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+
+<a name=prop><h1>Proposition 14</h1></a>
+
+<div class="statement">If four straight lines are proportional, and the square on the first is greater than the square on the second by the square on a straight line commensurable with the first, then the square on the third is also greater than the square on the fourth by the square on a third line commensurable with the third.  And, if the square on the first is greater than the square on the second by the square on a straight line incommensurable with the first, then the square on the third is also greater than the square on the fourth by the square on a third line incommensurable with the third.</div>
+
+<div class="just"><a href=#lemma>Lemma</a></div>
+<p>Let <i>A</i>, <i>B</i>, <i>C</i>, and <i>D</i> be four straight lines in proportion, so that <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D</i>, and let the square on <i>A</i> be greater than the square on <i>B</i> by the square on <i>E</i>, and let the square on <i>C</i> be greater than the square on <i>D</i> by the square on <i>F</i>.
+
+<p>I say that, if <i>A</i> is commensurable with <i>E</i>, then <i>C</i> is also commensurable with <i>F</i>, and, if <i>A</i> is incommensurable with <i>E</i>, then <i>C</i> is also incommensurable with <i>F</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=210 height=270>
+<img src="propX14.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.14">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,30,170;0">
+<param name=e[5] value="A;line;connect;A1,A2;black">
+<param name=e[6] value="B0;point;free;60,-1000;0;0">
+<param name=e[7] value="B3;point;free;60,1000;0;0">
+<param name=e[8] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[9] value="B2;point;lineSlider;B0,B3,60,140;0">
+<param name=e[10] value="B;line;connect;B1,B2;black">
+<param name=e[11] value="C0;point;free;90,-1000;0;0">
+<param name=e[12] value="C3;point;free;90,1000;0;0">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,90,30;0">
+<param name=e[14] value="C2;point;lineSlider;C0,C3,90,240;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+<param name=e[16] value="D0;point;free;120,-1000;0;0">
+<param name=e[17] value="D3;point;free;120,1000;0;0">
+<param name=e[18] value="D1;point;lineSlider;D0,D3,120,30;0">
+<param name=e[19] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+
+<param name=e[21] value="AM;point;midpoint;A1,A2;0;0">
+<param name=e[22] value="Acirc;circle;radius;AM,A1;0;0;0;0">
+<param name=e[23] value="ABcirc;circle;radius;A1,B1,B2;0;0;0;0">
+<param name=e[24] value="AE12;line;bichord;Acirc,ABcirc;0;0;0;0">
+<param name=e[25] value="AE1;point;first;AE12;0;0">
+<param name=e[26] value="E0;point;free;150,-1000;0;0">
+<param name=e[27] value="E3;point;free;150,1000;0;0">
+<param name=e[28] value="E1;point;lineSlider;E0,E3,90,30;0">
+<param name=e[29] value="E2;point;cutoff;E1,E3,AE1,A2;0;black">
+<param name=e[30] value="E;line;connect;E1,E2;black">
+
+<param name=e[31] value="CM;point;midpoint;C1,C2;0;0">
+<param name=e[32] value="Ccirc;circle;radius;CM,C1;0;0;0;0">
+<param name=e[33] value="CDcirc;circle;radius;C1,D1,D2;0;0;0;0">
+<param name=e[34] value="CF12;line;bichord;Ccirc,CDcirc;0;0;0;0">
+<param name=e[35] value="CF1;point;first;CF12;0;0">
+<param name=e[36] value="F0;point;free;180,-1000;0;0">
+<param name=e[37] value="F3;point;free;180,1000;0;0">
+<param name=e[38] value="F1;point;lineSlider;F0,F3,180,30;0">
+<param name=e[39] value="F2;point;cutoff;F1,F3,CF1,C2;0;black">
+<param name=e[40] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVI/propVI22.html>VI.22</a></div>
+<p>Since <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D</i>, therefore the square on <i>A</i> is to the square on <i>B</i> as the square on <i>C</i> is to the square on <i>D</i>.
+
+<p>But the sum of the squares on <i>E</i> and <i>B</i> equals the square on <i>A</i>, and the sum of the squares on <i>D</i> and <i>F</i> equals the square on <i>C</i>. Therefore the sum of the squares on <i>E</i> and <i>B</i> is to the square on <i>B</i> as the sum of the squares on <i>D</i> and <i>F</i> is to the square on <i>D</i>.
+
+<div class="just"><a href=../bookV/propV17.html>V.17</a>,
+<a href=../bookVI/propVI22.html>VI.22</a>
+<br><a href=../bookV/propV7.html#cor>V.7.Cor</a></div>
+<p>Therefore, taken separately, the square on <i>E</i> is to the square on <i>B</i> as the square on <i>F</i> is to the square on <i>D</i>.  Therefore <i>E</i> is to <i>B</i> as <i>F</i> is to <i>D</i>.  Therefore, inversely, <i>B</i> is to <i>E</i> as <i>D</i> is to <i>F</i>.
+
+<div class="just"><a href=../bookV/propV22.html>V.22</a></div>
+<p>But <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D</i>, therefore, <i>ex aequali</i>, <i>A</i> is to <i>E</i> as <i>C</i> is to <i>F</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>Therefore, if <i>A</i> is commensurable with <i>E</i>, then <i>C</i> is also commensurable with <i>F</i>, but if <i>A</i> is incommensurable with <i>E</i>, then <i>C</i> is also incommensurable with <i>F</i>.
+
+<p>Therefore, <i>if four straight lines are proportional, and the square on the first is greater than the square on the second by the square on a straight line commensurable with the first, then the square on the third is also greater than the square on the fourth by the square on a third line commensurable with the third.  And, if the square on the first is greater than the square on the second by the square on a straight line incommensurable with the first, then the square on the third is also greater than the square on the fourth by the square on a third line incommensurable with the third.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h3><img src=../guide.gif alt=Guide width=83 height=37></h3></a>
+
+A little modern algebra clarifies the situation.  We assume <i>A</i>&nbsp;:&nbsp;<i>B</i> = <i>C</i>&nbsp;:&nbsp;<i>D</i>.  Then if &radic;(<i>A</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>B</i><sup>2</sup>)&nbsp;:&nbsp;<i>A</i> is a numeric ratio, then so is &radic;(<i>C</i><sup>2</sup>&nbsp;-&nbsp;<i>D</i><sup>2</sup>)&nbsp;:&nbsp;<i>C</i>.  It&rsquo;s simply because &radic;(<i>A</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>B</i><sup>2</sup>)&nbsp;:&nbsp;<i>A</i>&nbsp=&nbsp;&radic;(<i>C</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>D</i><sup>2</sup>)&nbsp;:&nbsp;<i>C</i>.
+
+<p>The lemma is the same as the <a href=../bookXI/propXI23.html#lemma>lemma</a> for proposition XI.23.
+
+<p>The proposition is used in several propositions in Book X starting with <a href=propX31.html>X.31</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>
+
+</BODY></HTML>

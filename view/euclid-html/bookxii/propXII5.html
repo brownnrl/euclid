@@ -1,0 +1,140 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 5</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 5</h1>
+
+<div class="statement">
+Pyramids of the same height with triangular bases are to one another as their bases.</div>
+
+<p>Let there be pyramids of the same height with triangular bases <i>ABC</i> and <i>DEF</i>  and vertices <i>G</i> and <i>H.</i>
+<p>I say that the base <i>ABC</i> is to the base <i>DEF</i> as the pyramid <i>ABCG</i> is to the pyramid <i>DEFH.</i>
+
+<p>For, if the pyramid <i>ABCG</i> is not to the pyramid <i>DEFH</i> as the base <i>ABC</i> is to the base <i>DEF,</i> then the base <i>ABC</i> is to the base <i>DEF</i> as the pyramid <i>ABCG</i> is either to some solid less than the pyramid <i>DEFH</i> or to a greater solid.
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=550 height=280 >
+<img src="propXII5.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.5">
+<param name=e[1] value="origin;point;fixed;-10,250,0;0;0">
+<param name=e[2] value="1X;point;fixed;242,250,-91;0;0">
+<param name=e[3] value="1Y;point;fixed;-105,550,-120;0;0">
+<param name=e[4] value="1Z;point;fixed;14,375,288;0;0">
+<param name=e[5] value="floor;plane;3points;origin,1X,1Y;0;0;0;0">
+<param name=e[6] value="G;point;lineSlider;origin,1Y,-10,0,0">
+<param name=e[7] value="A;point;planeSlider;floor,29,179,0">
+<param name=e[8] value="B;point;planeSlider;floor,115,260,0">
+<param name=e[9] value="C;point;planeSlider;floor,210,208,0">
+<param name=e[10] value="K;point;midpoint;A,B;black;green">
+<param name=basepoint value=K>
+<param name=e[11] value="O;point;midpoint;B,C">
+<param name=e[12] value="L;point;midpoint;A,C">
+<param name=e[13] value="P;point;midpoint;A,G">
+<param name=e[14] value="M;point;midpoint;B,G">
+<param name=e[15] value="N;point;midpoint;C,G">
+
+<param name=e[16] value="PMOL;polygon;quadrilateral;P,M,O,L;0;0;black;lightGray">
+<param name=e[17] value="AKLP;polyhedron;tetrahedron;A,K,L,P;0;0;black;random">
+<param name=e[18] value="PMNG;polyhedron;tetrahedron;P,M,N,G;0;0;black;random">
+<param name=e[19] value="CB;line;connect;C,B">
+<param name=e[20] value="CL;line;connect;C,L">
+<param name=e[21] value="KB;line;connect;K,B">
+<param name=e[22] value="MB;line;connect;M,B">
+<param name=e[23] value="CN;line;connect;C,N">
+
+<param name=e[24] value="GX;point;parallelogram;G,origin,1X;0;0">
+<param name=e[25] value="GY;point;parallelogram;G,origin,1Y;0;0">
+<param name=e[26] value="ceiling;plane;3points;G,GX,GY;0;0;0;0">
+<param name=e[27] value="H;point;planeSlider;ceiling,450,60,0">
+<param name=e[28] value="D;point;planeSlider;floor,310,191,0">
+<param name=e[29] value="E;point;planeSlider;floor,420,280,0">
+<param name=e[30] value="F;point;planeSlider;floor,510,224,0">
+<param name=e[31] value="Q;point;midpoint;D,E">
+<param name=e[32] value="V;point;midpoint;E,F">
+<param name=e[33] value="R;point;midpoint;D,F">
+<param name=e[34] value="S;point;midpoint;D,H">
+<param name=e[35] value="T;point;midpoint;E,H">
+<param name=e[36] value="U;point;midpoint;F,H">
+
+<param name=e[37] value="STVR;polygon;quadrilateral;S,T,V,R;0;0;black;lightGray">
+<param name=e[38] value="DQRS;polyhedron;tetrahedron;D,Q,R,S;0;0;black;random">
+<param name=e[39] value="STUH;polyhedron;tetrahedron;S,T,U,H;0;0;black;random">
+<param name=e[40] value="EF;line;connect;E,F">
+<param name=e[41] value="FR;line;connect;F,R">
+<param name=e[42] value="QE;line;connect;Q,E">
+<param name=e[43] value="TE;line;connect;T,E">
+<param name=e[44] value="FU;line;connect;F,U">
+
+<param name=e[45] value="W1;point;planeSlider;ceiling,150,20,0;0;0">
+<param name=e[46] value="W2;point;planeSlider;ceiling,170,0,0;0;0">
+<param name=e[47] value="W3;point;planeSlider;ceiling,310,46,0;0;0">
+<param name=e[48] value="W4;point;parallelogram;origin,1Y,W1;0;0">
+<param name=e[49] value="W5;point;lineSlider;W1,W4,210,99,0;0;0">
+<param name=e[50] value="W;polyhedron;parallelepiped;W1,W2,W3,W5;black;0;black;random">
+</applet></center>
+
+<p>Let it, first, be in that ratio to a less solid <i>W.</i>
+
+<p>Divide the pyramid <i>DEFH</i> into two pyramids equal to one another and similar to the whole and into two equal prisms.</td>
+
+<div class="just"><a href="propXII3.html">XII.3</a></div>
+<p>Then the two prisms are greater than the half of the whole pyramid.
+
+<div class="just"><a href="../bookX/propX1.html">X.1</a></div>
+<p>Again, divide the pyramids arising from the division similarly, and let this be done repeatedly until there are left over from the pyramid <i>DEFH</i> some pyramids which are less than the excess by which the pyramid <i>DEFH</i> exceeds the solid <i>W.</i>
+
+<p>Let such be left, and let them be, for the sake of argument, <i>DQRS</i> and <i>STUH.</i> Therefore the remainders, the prisms in the pyramid <i>DEFH,</i> are greater than the solid <i>W.</i>
+
+<div class="just"><a href="propXII4.html">XII.4</a></div>
+<p>Divide the pyramid <i>ABCG</i> similarly, and a same number of times, with the pyramid <i>DEFH.</i>  Therefore the base <i>ABC</i> is to the base <i>DEF</i> as the prisms in the pyramid <i>ABCG</i> are to the prisms in the pyramid <i>DEFH.</i>
+
+<div class="just"><a href="../bookV/propV11.html">V.11</a>
+<br><a href="../bookV/propV16.html">V.16</a></div>
+<p>But the base <i>ABC</i> is to the base <i>DEF</i> as the pyramid <i>ABCG</i> is to the solid <i>W,</i> therefore the pyramid <i>ABCG</i> is to the solid <i>W</i> as the prisms in the pyramid <i>ABCG</i> are to the prisms in the pyramid <i>DEFH.</i>  Therefore, alternately the pyramid <i>ABCG</i> is to the prisms in it as the solid <i>W</i> is to the prisms in the pyramid <i>DEFH.</i>
+
+<p>But the pyramid <i>ABCG</i> is greater than the prisms in it, therefore the solid <i>W</i> is also greater than the prisms in the pyramid <i>DEFH.</i>
+
+<p>But it is also less, which is impossible.
+
+<p>Therefore the prism <i>ABCG</i> is not to any solid less than the pyramid <i>DEFH</i> as the base <i>ABC</i> is to the base <i>DEF.</i>
+
+<p>Similarly it can be proved that neither is the pyramid <i>DEFH</i> to any solid less than the pyramid <i>ABCG</i> as the base <i>DEF</i> is to the base <i>ABC.</i>
+
+<p>I say next that neither is the pyramid <i>ABCG</i> to any solid greater than the pyramid <i>DEFH</i> as the base <i>ABC</i> is to the base <i>DEF.</i>
+
+<p>For, if possible, let it be in that ratio to a greater solid <i>W.</i>
+
+<p>Therefore, inversely the base <i>DEF</i> is to the base <i>ABC</i> as the solid <i>W</i> is to the pyramid <i>ABCG.</i>
+
+<div class="just"><a href="propXII2.html#lemma">XII.2,Lemma</a>
+<br><a href="../bookV/propV11.html">V.11</a></div>
+<p>But it was proved before that the solid <i>W</i> is to the solid <i>ABCG</i> as the pyramid <i>DEFH</i> is to some solid less than the pyramid <i>ABCG.</i> Therefore the base <i>DEF</i> is to the base <i>ABC</i> as the pyramid <i>DEFH</i> is to some solid less than the pyramid <i>ABCG,</i>  which was proved absurd.
+
+<p>Therefore the pyramid <i>ABCG</i> is not to any solid greater than the pyramid <i>DEFH</i> as the base <i>ABC</i> is to the base <i>DEF.</i>
+
+<p>But it was proved that neither is it in that ratio to a less solid.<p>
+Therefore the base <i>ABC</i> is to the base <i>DEF</i> as the pyramid <i>ABCG</i> is to the pyramid <i>DEFH.</i>
+
+<p>Therefore, <i>pyramids of the same height with triangular bases are to one another as their bases.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<h4>Use of this theorem</h4>
+
+The next proposition generalizes this one so that the bases of the pyramids may be any polygons, not just triangles.  In the following proposition, this proposition is used to show that a prism can be dissected into three equal (but not congruent) prisms.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

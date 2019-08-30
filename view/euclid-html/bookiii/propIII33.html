@@ -1,0 +1,189 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 33</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 33</h1>
+
+<div class="statement">On a given straight line to describe a segment of a circle admitting an angle equal to a given rectilinear angle.</div>
+
+<p>Let <i>AB</i> be the given straight line, and the angle at <i>C</i> the given rectilinear angle.
+
+<p>It is required to describe on the given straight line <i>AB</i> a segment of a circle admitting an angle equal to the angle at <i>C.</i> 
+
+<p>The angle at <i>C</i> is then acute, or right, or obtuse.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=330>
+<img src=propIII33a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.33a">
+<param name=e[1] value="A;point;free;210,30">
+<param name=e[2] value="B;point;free;145,160">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C1;point;free;80,60;0">
+<param name=e[5] value="C2;point;free;100,100;0">
+<param name=e[6] value="C3;point;free;30,100;0">
+<param name=e[7] value="C12;line;connect;C1,C2">
+<param name=e[8] value="C23;line;connect;C2,C3">
+<param name=e[9] value="C;polygon;triangle;C1,C2,C3;black;0;0;0">
+<param name=e[10] value="D';point;similar;B,A,C3,C2,C1;0;0">
+<param name=e[11] value="D;point;lineSlider;D',A,140,30">
+<param name=e[12] value="H;point;lineSlider;D',A,290,30;0">
+<param name=e[13] value="DH;line;connect;D,H">
+<param name=e[14] value="AE';line;perpendicular;A,D;0;0;0">
+<param name=e[15] value="F;point;midpoint;A,B">
+<param name=e[16] value="FG';line;perpendicular;F,B;0;0;0">
+<param name=e[17] value="G;point;intersection;AE',FG'">
+<param name=e[18] value="E;point;extend;A,G,A,G">
+<param name=e[19] value="ABE;circle;radius;G,A;0;0;black;random">
+<param name=e[20] value="AE;line;connect;A,E">
+<param name=e[21] value="BG;line;connect;B,G">
+<param name=e[22] value="FG;line;connect;F,G">
+<param name=e[23] value="BE;line;connect;B,E">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a></div>
+<p>First let it be acute as in the first figure.  Construct the angle <i>BAD</i> equal to the angle at <i>C</i> on the straight line <i>AB</i> and at the point <i>A.</i>  Therefore the angle <i>BAD</i> is also acute.
+
+<div class="just"><a href="../bookI/propI10.html">I.10</a>
+<br><a href="../bookI/propI12.html">I.12</a></div>
+<p>Draw <i>AE</i> at right angles to <i>DA.</i>  Bisect <i>AB</i> at <i>F.</i> Draw <i>FG</i> from the point <i>F</i> at right angles to <i>AB,</i> and join <i>GB.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since <i>AF</i> equals <i>FB,</i> and <i>FG</i> is common, the two sides <i>AF</i> and <i>FG</i> equal the two sides <i>BF</i> and <i>FG,</i> and the angle <i>AFG</i> equals the angle <i>BFG,</i> therefore the base <i>AG</i> equals the base <i>BG.</i>
+
+<p>Therefore the circle described with center <i>G</i> and radius <i>GA</i> passes through <i>B</i> also. 
+
+<p>Draw it as <i>ABE,</i> and join <i>EB.</i>
+
+<div class="just"><a href="propIII16.html#cor">III.16,Cor.</a></div>
+<p>Now, since <i>AD</i> is drawn from A, the end of the diameter <i>AE,</i> at right angles to <i>AE,</i> therefore <i>AD</i> touches the circle <i>ABE.</i>
+
+<div class="just"><a href="propIII32.html">III.32</a></div>
+<p>Since then a straight line <i>AD</i> touches the circle <i>ABE,</i> and from the point of contact at A a straight line <i>AB</i> has been drawn across in the circle <i>ABE,</i> the angle <i>DAB</i> equals the angle <i>AEB</i> in the alternate segment of the circle.
+
+<p>But the angle <i>DAB</i> equals the angle at <i>C,</i> therefore the angle at <i>C</i> also equals the angle <i>AEB.</i> 
+
+<p>Therefore on the given straight line <i>AB</i> the segment <i>AEB</i> of a circle has been described admitting the angle <i>AEB</i> equal to the given angle, the angle at <i>C.</i>
+
+<hr width=30%>
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=320>
+<img src=propIII33b.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.33b">
+<param name=e[1] value="A;point;free;200,30">
+<param name=e[2] value="B;point;free;200,210">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C1;point;free;30,130;0">
+<param name=e[5] value="C3;point;free;80,60;0">
+<param name=e[6] value="CO;point;midpoint;C1,C3;0;0">
+<param name=e[7] value="Ccirc;circle;radius;CO,C1;0;0;0;0">
+<param name=e[8] value="C2;point;circleSlider;Ccirc,80,130;0">
+<param name=e[9] value="C12;line;connect;C1,C2">
+<param name=e[10] value="C23;line;connect;C2,C3">
+<param name=e[11] value="C;polygon;triangle;C1,C2,C3;black;0;0;0">
+<param name=e[12] value="D';point;similar;B,A,C3,C2,C1;0;0">
+<param name=e[13] value="D;point;lineSlider;D',A,120,30">
+<param name=e[14] value="H;point;lineSlider;D',A,270,30;0">
+<param name=e[15] value="DH;line;connect;D,H">
+<param name=e[16] value="F;point;midpoint;A,B">
+<param name=e[17] value="ABE;circle;radius;F,A;0;0;black;random">
+<param name=e[18] value="E;point;circleSlider;ABE,80,170">
+<param name=e[19] value="AE;line;connect;A,E">
+<param name=e[20] value="BE;line;connect;B,E">
+</applet></div>
+
+<p>Next let the angle at <i>C</i> be right, and let it be again required to describe on <i>AB</i> a segment of a circle admitting an angle equal to the right angle at <i>C.</i>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a>
+<br><a href="../bookI/propI10.html">I.10</a></div>
+<p>Let the angle <i>BAD</i> be constructed equal to the right angle at <i>C,</i> as is the case in the second figure.  Bisect <i>AB</i> at <i>F.</i> Describe  the circle <i>AEB</i> with center <i>F</i> and radius either <i>FA</i> or <i>FB.</i>
+
+<div class="just"><a href="propIII16.html#cor">III.16 Cor.</a></div>
+<p>Therefore the straight line <i>AD</i> touches the circle <i>ABE,</i> because the angle at A is right.
+
+<div class="just"><a href="propIII31.html">III.31</a></div>
+<p>And the angle <i>BAD</i> equals the angle in the segment <i>AEB,</i> for the latter too is itself a right angle, being an angle in a semicircle.
+
+<p>But the angle <i>BAD</i> also equals the angle at <i>C,</i> therefore the angle <i>AEB</i> also equals the angle at <i>C.</i> 
+
+<p>Therefore again the segment <i>AEB</i> of a circle has been described on <i>AB</i> admitting an angle equal to the angle at <i>C.</i>
+
+<hr width=30%>
+
+<p>Next, let the angle at <i>C</i> be obtuse.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=320>
+<img src=propIII33c.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.33c">
+<param name=e[1] value="A;point;free;200,40">
+<param name=e[2] value="B;point;free;135,170">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C1;point;free;90,100;0">
+<param name=e[5] value="C2;point;free;40,100;0">
+<param name=e[6] value="C3;point;free;20,60;0">
+<param name=e[7] value="C12;line;connect;C1,C2">
+<param name=e[8] value="C23;line;connect;C2,C3">
+<param name=e[9] value="C;polygon;triangle;C1,C2,C3;black;0;0;0">
+<param name=e[10] value="D';point;similar;B,A,C1,C2,C3;0;0">
+<param name=e[11] value="D;point;lineSlider;D',A,280,40">
+<param name=e[12] value="AD;line;connect;A,D">
+<param name=e[13] value="AE';line;perpendicular;A,D;0;0;0">
+<param name=e[14] value="F;point;midpoint;A,B">
+<param name=e[15] value="FG';line;perpendicular;F,B;0;0;0">
+<param name=e[16] value="G;point;intersection;AE',FG'">
+<param name=e[17] value="E;point;extend;A,G,A,G">
+<param name=e[18] value="ABE;circle;radius;G,A;0;0;black;random">
+<param name=e[19] value="AE;line;connect;A,E">
+<param name=e[20] value="BG;line;connect;B,G">
+<param name=e[21] value="FG;line;connect;F,G">
+<param name=e[22] value="H;point;circleSlider;ABE,155,55">
+<param name=e[23] value="BH;line;connect;B,H">
+<param name=e[24] value="AH;line;connect;A,H">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a>
+<br><a href="../bookI/propI11.html">I.11</a>,
+<a href="../bookI/propI12.html">I.12</a></div>
+<p>Construct the angle <i>BAD</i> equal to <i>C</i> on the straight line <i>AB</i> and at the point A as is the case in the third figure.   Draw <i>AE</i> at right angles to <i>AD.</i>  Bisect <i>AB</i> again at <i>F.</i>  Draw <i>FG</i> at right angles to <i>AB,</i> and join <i>GB.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since <i>AF</i> again equals <i>FB,</i> and <i>FG</i> is common, the two sides <i>AF</i> and <i>FG</i> equal the two sides <i>BF</i> and <i>FG,</i> and the angle <i>AFG</i> equals the angle <i>BFG,</i> therefore the base <i>AG</i> equals the base <i>BG.</i>
+
+<p>Therefore the circle described with center <i>G</i> and radius <i>GA</i> also passes through <i>B.</i>  Let it so pass, as <i>AEB.</i>
+
+<div class="just"><a href="propIII16.html#cor">III.16 Cor.</a></div>
+<p>Now, since <i>AD</i> is drawn at right angles to the diameter <i>AE</i> from its end, <i>AD</i> touches the circle <i>AEB.</i>
+
+<div class="just"><a href="propIII32.html">III.32</a></div>
+<p>And <i>AB</i> has been drawn across from the point of contact at A, therefore the angle <i>BAD</i> equals the angle constructed in the alternate segment <i>AHB</i> of the circle.
+
+<p>But the angle <i>BAD</i> equals the angle at <i>C.</i> 
+
+<p>Therefore the angle in the segment <i>AHB</i> also equals the angle at <i>C.</i> 
+
+<p>Therefore on the given straight line <i>AB</i> the segment <i>AHB</i> of a circle has been described admitting an angle equal to the angle at <i>C.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,87 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">
+Similar polygons inscribed in circles are to one another as the squares on their diameters.</div>
+
+<p>Let <i>ABC</i> and <i>FGH</i> be circles, let <i>ABCDE</i> and <i>FGHKL</i> be similar polygons inscribed in them, and let <i>BM</i> and <i>GN</i> be diameters of the circles.
+<p>I say that the square on <i>BM</i> is to the square on <i>GN</i> as the polygon <i>ABCDE</i> is to the polygon <i>FGHKL.</i>
+<p>Join <i>BE, AM, GL,</i> and <i>FN.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=440 height=250 >
+<img src="propXII1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.1">
+<param name=e[1] value="A;point;free;110,40">
+<param name=e[2] value="B;point;free;50,100">
+<param name=e[3] value="C;point;free;80,200">
+<param name=e[4] value="ABC;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[5] value="D;point;circleSlider;ABC,200,180">
+<param name=e[6] value="E;point;circleSlider;ABC,210,90">
+<param name=e[7] value="F;point;free;308,50">
+<param name=e[8] value="G;point;free;260,98">
+<param name=e[9] value="H;point;similar;F,G,A,B,C">
+<param name=e[10] value="K;point;similar;F,G,A,B,D">
+<param name=e[11] value="L;point;similar;F,G,A,B,E">
+<param name=e[12] value="FGH;circle;circumcircle;F,G,H;0;0;black;random">
+<param name=e[13] value="ABCDE;polygon;pentagon;A,B,C,D,E;0;0;black;random">
+<param name=e[14] value="FGHKL;polygon;pentagon;F,G,H,K,L;0;0;black;random">
+<param name=e[15] value="ABCcenter;point;center;ABC;0;0">
+<param name=e[16] value="M;point;extend;B,ABCcenter,B,ABCcenter">
+<param name=e[17] value="FGHcenter;point;center;FGH;0;0">
+<param name=e[18] value="N;point;extend;G,FGHcenter,G,FGHcenter">
+<param name=e[19] value="BM;line;connect;B,M">
+<param name=e[20] value="GN;line;connect;G,N">
+<param name=e[21] value="AM;line;connect;A,M">
+<param name=e[22] value="FN;line;connect;F,N">
+<param name=e[23] value="BE;line;connect;B,E">
+<param name=e[24] value="GL;line;connect;G,L">
+</applet></div>
+
+<div class="just"><a href="../bookVI/defVI1.html">VI.Def.1</a></div>
+<p>Now, since the polygon <i>ABCDE</i> is similar to the polygon <i>FGHKL,</i> therefore the angle <i>BAE</i> equals the angle <i>GFL,</i> and <i>BA</i> is to <i>AE</i> as <i>GF</i> is to <i>FL.</i>
+
+<div class="just"><a href="../bookVI/propVI6.html">VI.6</a></div>
+<p>Thus <i>BAE</i> and <i>GFL</i> are two triangles which have one angle equal to one angle, namely the angle <i>BAE</i> equal to the angle <i>GFL,</i> and the sides about the equal angles proportional, therefore the triangle <i>ABE</i> is equiangular with the triangle <i>FGL.</i> Therefore the angle <i>AEB</i> equals the angle <i>FLG.</i>
+
+<div class="just"><a href="../bookIII/propIII27.html">III.27</a></div>
+<p>But the angle <i>AEB</i> equals the angle <i>AMB,</i> for they stand on the same circumference, and the angle <i>FLG</i> equals the angle <i>FNG,</i> therefore the angle <i>AMB</i> also equals the angle <i>FNG.</i>
+
+<div class="just"><a href="../bookIII/propIII31.html">III.31</a>
+<br><a href="../bookI/propI32.html">I.32</a></div>
+<p>But the right angle <i>BAM</i> also equals the right angle <i>GFN,</i> therefore the remaining angle equals the remaining angle. Therefore the triangle <i>ABM</i> is equiangular with the triangle <i>FGN.</i>
+
+<div class="just"><a href="../bookVI/propVI4.html">VI.4</a></div>
+<p>Therefore, proportionally <i>BM</i> is to <i>GN</i> as <i>BA</i> is to <i>GF.</i>
+
+<div class="just"><a href="../bookVI/propVI20.html">VI.20</a></div>
+<p>But the ratio of the square on <i>BM</i> to the square on <i>GN</i> is duplicate of the ratio of <i>BM</i> to <i>GN,</i> and the ratio of the polygon <i>ABCDE</i> to the polygon <i>FGHKL</i> is duplicate of the ratio of <i>BA</i> to <i>GF.</i>
+
+<p>Therefore the square on <i>BM</i> is to the square on <i>GN</i> as the polygon <i>ABCDE</i> is to the polygon <i>FGHKL.</i>
+
+<p>Therefore, <i>similar polygons inscribed in circles are to one another as the squares on their diameters.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Proposition <a href="../bookVI/propVI20.html">VI.20</a> states that the ratio of similar polygons is duplicate the ratio of their corresponding sides, so all that is needed is that the corresponding sides are proportional to the diameters of the circumscribed circles, a result that constitutes the bulk of the straightforward proof.
+
+<p>This proposition is in preparation for the next in which it is shown that circles are proportional to the squares on their diameters.  The connection is that the circles can be arbitrarily closely approximated by polygons, so that if the polygons are proportional to the squares, then so will the circles be proportional to the squares.  The difficulty in that proof coming up is to make that argument rigorous.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

@@ -1,0 +1,153 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Common Notions</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+
+<center><h2><a href=../elements.html><img src=../ee.gif width=276 height=37 alt="Euclid's Elements" border=0></a>
+<br><a href=bookI.html><img src=bkI.gif width=104 height=37 alt="Book I" border=0></a>
+<br>Common Notions</h2></center>
+
+<big>
+<p>C.N.1. Things which equal the same thing also equal one another.
+<p>C.N.2. If equals are added to equals, then the wholes are equal.
+<p>C.N.3. If equals are subtracted from equals, then the remainders are equal.
+<p>C.N.4. Things which coincide with one another equal one another.
+<p>C.N.5. The whole is greater than the part.
+</big>
+<a name=guide><h3><img src=../guide.gif alt=Guide width=83 height=37></h3></a>
+
+
+These common notions, sometimes called axioms, refer to magnitudes of one kind.  The various kinds of magnitudes that occur in the <i>Elements</i> include lines, angles, plane figures, and solid figures.  The first Common Notion could be applied to plane figures to say, for instance, that if a triangle equals a rectangle, and the rectangle equals a square, then the triangle also equals the square.  Magnitudes of the same kind can be compared and added, but magnitudes of different kinds cannot.  For instance, a line cannot be added to a rectangle, nor can an angle be compared to a pentagon.
+
+<p>C.N.4 requires interpretation.  On the face of it, it seems to say that if two things are identical (that is, they are the same one), then they are equal, in other words, anything equals itself.  But the way it traditionally is interpreted is as a justification of a principle of superposition, which is used, for instance, in proposition <a href=propI4.html>I.4</a>.  Using this principle, if one thing can be moved to coincide with another, then they are equal.  See the notes on I.4 for more discussion on this point.
+
+<p>C.N.5, the whole is greater than the part, could be interpreted as a definition of "greater than."  To say one magnitude <i>B</i> is a part of another <i>A</i> could be taken as saying that <i>A</i> is the sum of <i>B</i> and <i>C</i> for some third magnitude <i>C</i>, the remainder.  Symbolically, <i>A</i> > <i>B</i> means that there is some <i>C</i> such that <i>A</i> = <i>B</i> + <i>C</i>.  At any rate, Euclid frequently treats these two conditions as being equivalent. 
+
+<p>There are a number of properties of magnitudes used in Book I besides the listed Common Notions.  Here are a few of them and locations where they are used.
+
+<ul><table cellpadding=4>
+<tr><td>1.</td>
+<td>If not <i>x</i> = <i>y</i>, then <i>x</i> > <i>y</i> or <i>x</i> < <i>y</i>.</td>
+<td><a href=propI6.html>I.6</a></td></tr>
+
+<tr><td>2.</td>
+<td>Not both  <i>x</i> < <i>y</i> and <i>x</i> = <i>y</i>.</td>
+<td><a href=propI6.html>I.6</a></td></tr>
+
+<tr><td>3.</td>
+<td>If not not <i>x</i> = <i>y</i>, then <i>x</i> = <i>y</i>.</td>
+<td><a href=propI6.html>I.6</a></td></tr>
+
+<tr><td>4.</td>
+<td>If <i>x</i> < <i>y</i> and <i>y</i> = <i>z</i>, then <i>x</i> < <i>z</i>.</td>
+<td><a href=propI7.html>I.7</a></td></tr>
+
+<tr><td>5.</td>
+<td>If <i>x</i> < <i>y</i> and <i>y</i> < <i>z</i>, then <i>x</i> < <i>z</i>.</td>
+<td><a href=propI7.html>I.7</a></td></tr>
+
+<tr><td>6.</td>
+<td>If <i>x</i> = <i>y</i> and <i>y</i> < <i>z</i>, then <i>x</i> < <i>z</i>.</td>
+<td><a href=propI16.html>I.16</a></td></tr>
+
+<tr><td>7.</td>
+<td>If <i>x</i> < <i>y</i>, then <i>x</i> + <i>z</i> < <i>y</i> + <i>z</i>.</td>
+<td><a href=propI17.html>I.17</a></td></tr>
+
+<tr><td>8.</td>
+<td>If not <i>x</i> > <i>y</i>, then <i>x</i> = <i>y</i> or <i>x</i> < <i>y</i>.</td>
+<td><a href=propI19.html>I.19</a></td></tr>
+
+<tr><td>9.</td>
+<td>If not <i>x</i> < <i>y</i> and not <i>x</i> = <i>y</i>, then <i>x</i> > <i>y</i>.</td>
+<td><a href=propI19.html>I.19</a></td></tr>
+
+<tr><td>10.</td>
+<td>If 2<i>x</i> = 2<i>y</i>, then <i>x</i> = <i>y</i>.</td>
+<td><a href=propI37.html>I.37</a></td></tr>
+
+<tr><td>11.</td>
+<td>If <i>x</i> = <i>y</i>, then 2<i>x</i> = 2<i>y</i>.</td>
+<td><a href=propI42.html>I.42</a></td></tr>
+</table></ul>
+
+<p>Number 3 is an instance of the logical principle of double negation, rather than a common notion.   Number 11 is a special case of C.N.2 since doubling is a special case of addition, that is, 2<i>x</i> is just <i>x</i> + <i>x</i>.  Some of the others are logical variants of each other, for instance, numbers 1, 8, and 9 are all equivalent to the statement that at least one of the three cases <i>x</i> < <i>y</i>, <i>x</i> = <i>y</i>, or <i>x</i> > <i>y</i> holds.  Statement 2 says that two of those cases cannot simultaneously hold.  The statement that 
+<ul>for two magnitudes <i>x</i> and <i>y</i> of the same kind, exactly one of the three cases <i>x</i> < <i>y</i>, <i>x</i> = <i>y</i>, or <i>x</i> > <i>y</i> holds</ul>
+is called the <i>law of trichotomy</i> for magnitudes. This law, in particular,  really ought to have been made an explicit common notion.
+
+<h4>A modern presentation</h4>
+
+In modern mathematics, axioms such as these would form the basis of an abstract algebra.  Typically a presentation is given symbolically and in terms of set theory, although the set theory isn't necessary. Here is an outline for a presentation for magnitudes.  This outline doesn't have many of the details that would normally be included.
+
+<p>First, assume there is a binary relation on a set of magnitudes of the same kind called <i>equality</i>, denoted as usual with an equal sign as in <i>x</i> = <i>y</i>.  (This equality is not identity as we want different magnitudes, such as two different triangles, to be equal. Alternatively, we could identify equal magnitudes so that equality is identity.)  Assume that equality is what is called an <i>equivalence relation</i>, that is, it satisfies three axioms:
+
+<font color=0000ff><ul>
+Reflexivity: For each <i>x</i>, <i>x</i> = <i>x</i>.
+<p>Symmetry: If <i>x</i> = <i>y</i>, then <i>y</i> = <i>x</i>.
+<p>Transitivity: If <i>x</i> = <i>y</i> and <i>y</i> = <i>z</i>, then <i>x</i> = <i>z</i>.
+</ul></font color>
+
+Next, assume a binary operation called <i>addition</i> and written the usual way, <i>x</i> + <i>y</i>.  Furthermore, assume addition satisfies the axioms
+
+<font color=0000ff><ul>
+Substitution of equals: If <i>x</i> = <i>y</i>, then <i>x</i> + <i>z</i> = <i>y</i> + <i>z</i>, and <i>z</i> + <i>x</i> = <i>z</i> + <i>y</i>.
+<p>Associativity: For each <i>x</i>,  <i>y</i>, and  <i>z</i>, (<i>x</i> + <i>y</i>) + <i>z</i> = <i>x</i> + (<i>y</i> + <i>z</i>).
+<p>Commutativity: For each <i>x</i> and <i>y</i>, <i>x</i> + <i>y</i> = <i>y</i> + <i>x</i>.</font color></td></tr>
+</ul></font color>
+
+Associativity and commutativity together imply that the order that addition is performed is irrelevant.  An algebra satisfying only associativity is called a <i>semigroup</i>, while a semigroup that also satisfies commutativity is called a <i>commutative semigroup</i> or an <i>Abelian semigroup</i>.  When other axioms are added for zero and negation, then the algebra is called a <i>group</i>, and when commutative, an Abelian group.  Groups are some of the most important algebraic structures in modern mathematics.
+
+<p>We can now define order in terms of addition.  Define a binary relation <i>less than</i> by taking <i>x</i> < <i>y</i> to mean that there is some <i>z</i> such that <i>x</i> + <i>z</i> = <i>y</i>.  And let <i>greater than</i> just have the opposite order, that is, <i>x</i> > <i>y</i> means <i>y</i> < <i>x</i>. A number of properties of order can be easily proved.
+<ul>If <i>x</i> < <i>y</i> and <i>y</i> = <i>z</i>, then <i>x</i> < <i>z</i>.
+<p>If <i>x</i> = <i>y</i> and <i>y</i> < <i>z</i>, then <i>x</i> < <i>z</i>.
+<p>If <i>x</i> < <i>y</i> and <i>y</i> < <i>z</i>, then <i>x</i> < <i>z</i>.
+<p>If <i>x</i> < <i>y</i>, then <i>x</i> + <i>z</i> < <i>y</i> + <i>z</i>, and <i>z</i> + <i>x</i> < <i>z</i> + <i>y</i>.
+</ul>
+
+<p>Next, assume an axiom for cancellation:
+
+<font color=0000ff><ul>If <i>x</i> + <i>z</i> = <i>y</i> + <i>z</i>, then <i>x</i> = <i>y</i>.</ul></font color>
+
+With this axiom, subtraction can be defined, at least up to equality.  If <i>x</i> < <i>y</i>, that is to say, there is some <i>z</i> such that <i>x</i> + <i>z</i> = <i>y</i>, then we may define <i>y</i> - <i>x</i> as that <i>z</i>, since, under the axiom of cancelation, any other magnitude <i>w</i> such that <i>x</i> + <i>w</i> = <i>y</i> would equal <i>z</i>.  Subtraction is characterized by the property that
+
+<ul><i>x</i> + <i>z</i> = <i>y</i> if and only if <i>z</i> = <i>y</i> - <i>x</i>.</ul>
+
+The expected properties of subtraction, listed below, can be easily proved.  Whenever a difference is indicated, such as <i>x</i> - <i>y</i>, it is implicitly assumed that <i>x</i> > <i>y</i>. Only a few of these properties are used in Book I.
+
+<ul>If <i>x</i> = <i>y</i>, then <i>x</i> - <i>z</i> = <i>y</i> - <i>z</i>, and <i>w</i> - <i>x</i> = <i>w</i> - <i>y</i>
+<p>If <i>x</i> = <i>y</i> and <i>w</i> = <i>z</i>, then <i>x</i> - <i>w</i> = <i>y</i> - <i>z</i>.
+<p>(<i>x</i> + <i>y</i>) - <i>y</i> = <i>x</i>.
+<p>(<i>x</i> - <i>y</i>) + <i>y</i> = <i>x</i>.
+<p>(<i>x</i> - <i>y</i>) - (<i>w</i> - <i>z</i>) = (<i>x</i> - <i>w</i>) - (<i>y</i> - <i>z</i>).
+<p>If <i>x</i> < <i>y</i>, then <i>z</i> - <i>x</i> > <i>z</i> - <i>y</i>.
+<p>If <i>x</i> < <i>y</i> and <i>w</i> = <i>z</i>, then <i>x</i> - <i>w</i> < <i>y</i> - <i>z</i>.
+<p>If <i>x</i> = <i>y</i> and <i>w</i> < <i>z</i>, then <i>x</i> - <i>w</i> > <i>y</i> - <i>z</i>.
+<p>If <i>x</i> < <i>y</i> and <i>w</i> > <i>z</i>, then <i>x</i> - <i>w</i> > <i>y</i> - <i>z</i>.
+</ul>
+
+The law of trichotomy still isn't covered.  It can be split into two parts: at most one of the three cases can occur, and at least one of the three cases occurs.  The first can be stated as an axiom of addition as
+<font color=0000ff><ul>It is not the case that <i>x</i> = <i>x</i> + <i>y</i>.</ul></font color>
+And that says it is not the case that <i>x</i> > <i>x</i>.  The other half requires the axiom
+<font color=0000ff><ul>For each <i>x</i> and <i>y</i>, either <i>x</i> = <i>y</i> or there is some <i>z</i> such that <i>x</i> + <i>z</i> = <i>y</i>, or there is some <i>z</i> such that <i>x</i> = <i>y</i> + <i>z</i>.</ul></font color>
+
+With these axioms, all the properties of magnitudes needed in the first few books of the <i>Elements</i> can be proved.  For instance, we can prove
+<ul>If 2<i>x</i> = 2<i>y</i>, then <i>x</i> = <i>y</i>.</ul>
+using the same outline that Euclid used to prove proposition <a href=propI6.html>I.6</a>.
+
+<ul>
+Let  twice <i>x</i> equal twice <i>y</i>. I say that <i>x</i> equals <i>y</i>.
+<p>
+If <i>x</i> does not equal <i>y</i>, then one of them is greater.  Let <i>x</i> be greater. Then <i>x</i> + <i>x</i> > <i>y</i> + <i>y</i>, that is,  twice <i>x</i> is greater than  twice <i>y</i>. But twice <i>x</i> was assumed to equal twice <i>y</i>, the less equals the greater, which is absurd.  Therefore <i>x</i> and <i>y</i> are not unequal.  Therefore they are equal. Q.E.D.
+</ul>
+
+<a href=../bookV/bookV.html>Book V</a> will require more properties of magnitudes, and in that book, pairs of magnitudes of different kinds will be compared by using ratios.
+
+<p><hr size=6><p>
+<a href=bookI.html>Book I Introduction</a> -
+<a href=post5.html>Postulate 5</a> -
+<a href=propI1.html>Proposition I.1</a>.
+<p>
+<small><a href=../copyright.html>&copy; 1996</a>
+<br><a href="http://aleph0.clarku.edu/~djoyce/home.html">D.E.Joyce</a>
+<br><a href=http://www.clarku.edu/>Clark University</a></small>
+</BODY>
+</HTML>

@@ -1,0 +1,75 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 39</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 39</h1>
+
+<div class="statement">Equal triangles which are on the same base and on the same side are also in the same parallels.</div>
+
+<div class="just"><a href=post1.html>I.Post.1</a></div>
+<p>Let <i>ABC</i> and <i>DBC</i> be equal triangles which are on the same base <i>BC</i> and on the same side of it.  Join <i>AD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=210 width=260>
+<img src="propI39.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.39">
+<param name=e[1] value="B;point;free;40,170">
+<param name=e[2] value="C;point;free;220,170">
+<param name=e[3] value="A;point;free;80,40">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C">
+<param name=e[5] value="AD';line;parallel;A,B,C;0;0;0">
+<param name=e[6] value="D;point;lineSlider;AD',210,40">
+<param name=e[7] value="BCD;polygon;triangle;B,C,D">
+<param name=e[8] value="AD;line;connect;A,D">
+<param name=e[9] value="E;point;lineSlider;B,D,165,40">
+<param name=e[10] value="AE;line;connect;A,E">
+<param name=e[11] value="CE;line;connect;C,E">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI39.gif" hspace=10 vspace=10 alt="I.39">';
+</script>
+</div>
+
+<p>I say that <i>AD</i> is parallel to <i>BC.</i>
+
+<div class="just"><a href="propI31.html">I.31</a>,
+<a href=post1.html>I.Post.1</a></div>
+<p>If not, draw <i>AE</i> through the point <i>A</i> parallel to the straight line <i>BC,</i> and join <i>EC.</i>
+
+<div class="just"><a href="propI37.html">I.37</a></div>
+<p>Therefore the triangle <i>ABC</i> equals the triangle <i>EBC,</i> for it is on the same base <i>BC</i> with it and in the same parallels.
+
+<div class="just"><a href=cn.html>C.N.1</a></div>
+<p>But <i>ABC</i> equals <i>DBC,</i> therefore <i>DBC</i> also equals <i>EBC,</i> the greater equals the less, which is impossible.
+
+<p>Therefore <i>AE</i> is not parallel to <i>BC.</i>
+
+<p>Similarly we can prove that neither is any other straight line except <i>AD,</i> therefore <i>AD</i> is parallel to <i>BC.</i>
+
+<p>Therefore <i>equal triangles which are on the same base and on the same side are also in the same parallels.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This is a partial converse to proposition <a href=propI37.html>I.37</a>, only partial since the two triangles <i>ABC</i> and <i>DBC</i> have to be on the same side of the line <i>BC.</i>  If they weren&rsquo;t, then of course <i>AD</i> would not be parallel to <i>BC</i> but instead cross it at the midpoint
+
+<h4>Use of Proposition 39</h4>
+This proposition is used in <a href=../bookVI/propVI2.html>VI.2</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

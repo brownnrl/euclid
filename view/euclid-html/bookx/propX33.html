@@ -1,0 +1,130 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 33</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<h1>Proposition 33</h1>
+
+<div class="theorem">
+<h1>Lemma</h1>
+
+<p>Let <i>ABC</i> be a right-angled triangle having the angle <i>A</i> right, and let the perpendicular <i>AD</i> be drawn.
+
+<p>I say that the rectangle <i>CB</i> by <i>BD</i> equals the square on <i>BA</i>, the rectangle <i>BC</i> by <i>CD</i> equals the square on <i>CA</i>, the rectangle <i>BD</i> by <i>DC</i> equals the square on <i>AD</i>, and the rectangle <i>BC</i> by <i>AD</i> equals the rectangle <i>BA</i> by <i>AC</i>, and first that the rectangle <i>CB</i> by <i>BD</i> equals the square on <i>BA</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=200>
+<img src="../bookVI/propVI8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.33">
+<param name=e[1] value="B;point;free;30,170">
+<param name=e[2] value="C;point;free;250,170">
+<param name=e[3] value="M;point;midpoint;B,C;0;0">
+<param name=e[4] value="ABC;circle;radius;M,B;0;0;0;0">
+<param name=e[5] value="A;point;circleSlider;ABC,120,40">
+<param name=e[6] value="D;point;foot;A,B,C">
+<param name=e[7] value="ABD;polygon;triangle;A,B,D;0;0;black;random">
+<param name=e[8] value="ACD;polygon;triangle;A,C,D;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=../bookVI/propVI8.html>VI.8</a></div>
+<p>Since in a right-angled triangle <i>AD</i> has been drawn from the right angle perpendicular to the base, therefore the triangles <i>ABD</i> and <i>ADC</i> are similar both to the whole <i>ABC</i> and to one another.
+
+<div class="just"><a href=../bookVI/propVI4.html>VI.4</a>
+<br><a href=../bookVI/propVI17.html>VI.17</a></div>
+<p>Since the triangle <i>ABC</i> is similar to the triangle <i>ABD</i>, therefore <i>CB</i> is to <i>BA</i> as <i>BA</i> is to <i>BD</i>.  Therefore the rectangle <i>CB</i> by <i>BD</i> equals the square on <i>AB</i>.  For the same reason the rectangle <i>BC</i> by <i>CD</i> also equals the square on <i>AC</i>.
+
+<div class="just"><a href=../bookVI/propVI8.html#cor>VI.8,Cor.</a>
+<br><a href=../bookVI/propVI17.html>VI.17</a></div>
+<p>Since, if in a right-angled triangle a perpendicular is drawn from the right angle to the base, then the perpendicular so drawn is a mean proportional between the segments of the base, therefore <i>BD</i> is to <i>DA</i> as <i>AD</i> is to <i>DC</i>. Therefore the rectangle <i>BD</i> by <i>DC</i> equals the square on <i>AD</i>.
+
+<p>I say that the rectangle <i>BC</i> by <i>AD</i> also equals the rectangle <i>BA</i> by <i>AC</i>.
+
+<div class="just"><a href=../bookVI/propVI4.html>VI.4</a></div>
+<p>Since we said, <i>ABC</i> is similar to <i>ABD</i>, therefore <i>BC</i> is to <i>CA</i> as <i>BA</i> is to <i>AD</i>.
+
+<p>Therefore the rectangle <i>BC</i> by <i>AD</i> equals the rectangle <i>BA</i> by <i>AC</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+
+<div class="theorem">
+
+<h1>Proposition 33</h1>
+
+<div class="statement">To find two straight lines incommensurable in square which make the sum of the squares on them rational but the rectangle contained by them medial.</div>
+
+<div class="just"><a href=propX30.html>X.30</a></div>
+<p>Set out two rational straight lines <i>AB</i> and <i>BC</i> commensurable in square only such that the square on the greater <i>AB</i> is greater than the square on the less <i>BC</i> by the square on a straight line incommensurable with <i>AB</i>.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=330 height=200>
+<img src="propX33.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.33">
+<param name=e[1] value="A;point;free;40,160">
+<param name=e[2] value="B;point;free;200,160">
+<param name=e[3] value="C;point;lineSlider;A,B,290,160">
+<param name=e[4] value="BC;line;connect;B,C">
+<param name=e[5] value="M;point;midpoint;A,B;0;0">
+<param name=e[6] value="AFB;circle;radius;M,B;0;0;0;0">
+<param name=e[7] value="D;point;midpoint;B,C">
+<param name=e[8] value="E;point;lineSlider;A,B,170,160">
+<param name=e[9] value="EF';line;perpendicular;E,A;0;0;0">
+<param name=e[10] value="FF';line;chord;EF',AFB;0;0;0">
+<param name=e[11] value="F;point;last;FF'">
+<param name=e[12] value="semi;sector;arc;B,F,A;0;0;black;random">
+<param name=e[13] value="ABB;polygon;triangle;A,B,F;0;0;black;random">
+<param name=e[14] value="EF;line;connect;E,F">
+</applet></div>
+
+<div class="just"><a href=../bookVI/propVI28.html>VI.28</a></div>
+<p>Bisect <i>BC</i> at <i>D</i>. Apply to <i>AB</i> a parallelogram equal to the square on either of the straight lines <i>BD</i> or <i>DC</i> and deficient by a square figure, and let it be the rectangle <i>AE</i> by <i>EB</i>.
+
+<p>Describe the semicircle <i>AFB</i> on <i>AB</i>, draw <i>EF</i> at right angles to <i>AB</i>, and join <i>AF</i> and <i>FB</i>.
+
+<div class="just"><a href=propX18.html>X.18</a></div>
+<p>Since <i>AB</i> and <i>BC</i> are unequal straight lines, and the square on <i>AB</i> is greater than the square on <i>BC</i> by the square on a straight line incommensurable with <i>AB</i>, while there was applied to <i>AB</i> a parallelogram equal to the fourth part of the square on <i>BC</i>, that is, to the square on half of it, and deficient by a square figure, making the rectangle <i>AE</i> by <i>EB</i>, therefore <i>AE</i> is incommensurable with <i>EB</i>.
+
+<p>And <i>AE</i> is to <i>EB</i> as the rectangle <i>BA</i> by <i>AE</i> is to the rectangle <i>AB</i> by <i>BE</i>, while the rectangle <i>BA</i> by <i>AE</i> equals the square on <i>AF</i>, and the rectangle <i>AB</i> by <i>BE</i> is to the square on <i>BF</i>, therefore the square on <i>AF</i> is incommensurable with the square on <i>FB</i>. Therefore <i>AF</i> and <i>FB</i> are incommensurable in square.
+
+<div class="just"><a href=../bookI/propI47.html>I.47</a></div>
+<p>Since <i>AB</i> is rational, therefore the square on <i>AB</i> is also rational, so that the sum of the squares on <i>AF</i> and <i>FB</i> is also rational.
+
+<p>Since, again, the rectangle <i>AE</i> by <i>EB</i> equals the square on <i>EF</i>, and, by hypothesis, the rectangle <i>AE</i> by <i>EB</i> also equals the square on <i>BD</i>, therefore <i>FE</i> equals <i>BD</i>. Therefore <i>BC</i> is double <i>FE</i>, so that the rectangle <i>AB</i> by <i>BC</i> is also commensurable with the rectangle <i>ABEF</i>.
+
+<div class="just"><a href=propX21.html>X.21</a>,
+<a href=propX23.html#cor>X.23,Cor.</a></div>
+<p>But the rectangle <i>AB</i> by <i>BC</i> is medial, 
+<br>therefore the rectangle <i>AB</i> by <i>EF</i> is also medial.
+
+<div class="just"><a href=#lemma>Lemma</a></div>
+<p>But the rectangle <i>AB</i> by <i>EF</i> equals the rectangle <i>AF</i> by <i>FB</i>, therefore the rectangle <i>AF</i> by <i>FB</i> is also medial.
+
+<p>But it was also proved that the sum of the squares on these straight lines is rational.
+
+<p>Therefore two straight lines <i>AF</i> and <i>FB</i> incommensurable in square have been found which make the sum of the squares on them rational, but the rectangle contained by them medial.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The first part of the lemma encompasses proposition <a href=../bookI/propI47.html>I.47</a>, but the proof of it depends on the theory of similar triangles developed in Book VI, unlike Euclid&rsquo;s proof of I.47.
+
+<p>This proposition is used in propositions <a href=propX39.html>X.39</a> and <a href=propX76.html>X.76</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

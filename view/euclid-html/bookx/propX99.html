@@ -1,0 +1,118 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 99</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 99</h1>
+
+<div class="statement">The square on a second apotome of a medial straight line applied to a rational straight line produces as breadth a third apotome.</div>
+
+<p>Let <i>AB</i> be a second apotome of a medial straight line, and <i>CD</i> rational, and to <i>CD</i> let there be applied <i>CE</i> equal to the square on <i>AB</i> producing <i>CF</i> as breadth.
+
+<p>I say that <i>CF</i> is a third apotome.
+
+<div class="just"><a href=propX75.html>X.75</a></div>
+<p>Let <i>BG</i> be the annex to <i>AB</i>, therefore <i>AG</i> and <i>GB</i> are medial straight lines commensurable in square only which contains a medial rectangle.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=370 height=170>
+<img src="propX97.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.99">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="C0;point;free;40,-1000;0;0">
+<param name=e[4] value="C3;point;free;40,1000;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,120,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,190,0">
+<param name=e[7] value="C;point;lineSlider;C0,C3,0,70">
+<param name=e[8] value="D;point;lineSlider;C0,C3,0,140">
+<param name=e[9] value="CD;line;connect;C,D">
+
+<param name=e[10] value="F';point;parallelogram;C,A0,A3;0;0">
+<param name=e[11] value="F;point;proportion;C,D,A,B,A,B,C,F'">
+<param name=e[12] value="E;point;parallelogram;D,C,F">
+<param name=e[13] value="DCFE;polygon;quadrilateral;D,C,F,E;0;0;black;random">
+<param name=e[14] value="G;point;lineSlider;A0,A3,250,0">
+<param name=e[15] value="AG;line;connect;A,G">
+<param name=e[16] value="K;point;proportion;C,D,A,G,A,G,C,F'">
+<param name=e[17] value="H;point;parallelogram;D,C,K">
+<param name=e[18] value="FKHE;polygon;quadrilateral;F,K,H,E;0;0;black;random">
+<param name=e[19] value="M;point;proportion;C,D,B,G,B,G,K,F'">
+<param name=e[20] value="L;point;parallelogram;D,C,M">
+<param name=e[21] value="HKML;polygon;quadrilateral;H,K,M,L;0;0;black;random">
+<param name=e[22] value="N;point;midpoint;F,M">
+<param name=e[23] value="O;point;parallelogram;D,C,N">
+<param name=e[24] value="NO;line;connect;N,O">
+</applet></div>
+
+<div class="just"><a href=propX15.html>X.15</a>
+<br><a href=propX23.html#cor>X.23,Cor.</a></div>
+<p>Apply <i>CH</i>, equal to the square on <i>AG</i>, to <i>CD</i> producing <i>CK</i> as breadth, and apply <i>KL</i>, equal to the square on <i>BG</i>,  to <i>KH</i> producing <i>KM</i> as breadth.  Then the whole <i>CL</i> equals the sum of the squares on <i>AG</i> and <i>GB</i>.  Therefore <i>CL</i> is also medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And it is applied to the rational straight line <i>CD</i> producing <i>CM</i> as breadth, therefore <i>CM</i> is rational and incommensurable in length with <i>CD</i>.
+
+<div class="just"><a href=../bookII/propII7.html>II.7</a></div>
+<p>Now, since the whole <i>CL</i> equals the sum of the squares on <i>AG</i> and <i>GB</i>, and, in these, <i>CE</i> equals the square on <i>AB</i>, therefore the remainder <i>LF</i> equals twice the rectangle <i>AG</i> by <i>GB</i>.
+
+<p>Bisect <i>FM</i> at the point <i>N</i>, and draw <i>NO</i> parallel to <i>CD</i>.  Then each of the rectangles <i>FO</i> and <i>NL</i> equals the rectangle <i>AG</i> by <i>GB</i>.
+
+<p>But the rectangle <i>AG</i> by <i>GB</i> is medial, therefore <i>FL</i> is also medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And it is applied to the rational straight line <i>EF</i> producing <i>FM</i> as breadth, therefore <i>FM</i> is also rational and incommensurable in length with <i>CD</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>Since <i>AG</i> and <i>GB</i> are commensurable in square only, therefore <i>AG</i> is incommensurable in length with <i>GB</i>. Therefore the square on <i>AG</i> is also incommensurable with the rectangle <i>AG</i> by <i>GB</i>.
+
+<div class="just"><a href=propX13.html>X.13</a></div>
+<p>But the sum of the squares on <i>AG</i> and <i>GB</i> is commensurable with the square on <i>AG</i>, and twice the rectangle <i>AG</i> by <i>GB</i> with the rectangle <i>AG</i> by <i>GB</i>, therefore the sum of the squares on <i>AG</i> and <i>GB</i> is incommensurable with twice the rectangle <i>AG</i> by <i>GB</i>.
+
+<p>But <i>CL</i> equals the sum of the squares on <i>AG</i> and <i>GB</i>, and <i>FL</i> equals twice the rectangle <i>AG</i> by <i>GB</i>, therefore <i>CL</i> is also incommensurable with <i>FL</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a></div>
+<p>But <i>CL</i> is to <i>FL</i> as <i>CM</i> is to <i>FM</i>, therefore <i>CM</i> is incommensurable in length with <i>FM</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>And both are rational, therefore <i>CM</i> and <i>MF</i> are rational straight lines commensurable in square only, therefore <i>CF</i> is an apotome.
+
+<p>I say next that it is also a third apotome.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>,
+<a href=propX11.html>X.11</a></div>
+<p>Since the square on <i>AG</i> is commensurable with the square on <i>GB</i>, therefore <i>CH</i> is also commensurable with <i>KL</i>, so that <i>CK</i> is also commensurable with <i>KM</i>.
+
+<p>Since the rectangle <i>AG</i> by <i>GB</i> is a mean proportional between the squares on <i>AG</i> and <i>GB</i>, <i>CH</i> equals the square on <i>AG</i>, <i>KL</i> equals the square on <i>GB</i>, and <i>NL</i> equals the rectangle <i>AG</i> by <i>GB</i>, therefore <i>NL</i> is also a mean proportional between <i>CH</i> and <i>KL</i>. Therefore <i>CH</i> is to <i>NL</i> as <i>NL</i> is to <i>KL</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=../bookV/propV11.html>V.11</a></div>
+<p>But <i>CH</i> is to <i>NL</i> as <i>CK</i> is to <i>NM</i>, and <i>NL</i> is to <i>KL</i> as <i>NM</i> is to <i>KM</i>, therefore <i>CK</i> is to <i>MN</i> as <i>MN</i> is to <i>KM</i>. Therefore the rectangle <i>CK</i> by <i>KM</i> equals the square on <i>MN</i>, that is, to the fourth part of the square on <i>FM</i>.
+
+<div class="just"><a href=propX17.html>X.17</a></div>
+<p>Since, then, <i>CM</i> and <i>MF</i> are two unequal straight lines, and a parallelogram equal to the fourth part of the square on <i>FM</i> and deficient by a square figure has been applied to <i>CM</i>, and divides it into commensurable parts, therefore the square on <i>CM</i> is greater than the square on <i>MF</i> by the square on a straight line commensurable with <i>CM</i>.
+
+<div class="just"><a href=defX.III.html#3>X.Def.III.3</a></div>
+<p>And neither of the straight lines <i>CM</i> nor <i>MF</i> is commensurable in length with the rational straight line <i>CD</i> set out, therefore <i>CF</i> is a third apotome.
+
+<p>Therefore, <i>the square on a second apotome of a medial straight line applied to a rational straight line produces as breadth a third apotome.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+This proposition is used in <a href=propX111.html>X.111</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

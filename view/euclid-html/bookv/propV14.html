@@ -1,0 +1,103 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 14</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">If a first magnitude has to a second the same ratio as a third has to a fourth, and the first is greater than the third, then the second is also greater than the fourth; if equal, equal; and if less, less.</div>
+
+<p>Let a first magnitude <i>A</i> have the same ratio to a second <i>B</i> as a third <i>C</i> has to a fourth <i>D,</i> and let <i>A</i> be greater than <i>C.</i>
+
+<p>I say that <i>B</i> is also greater than <i>D.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=120>
+<img src=propV14.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.14">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,40;0;0">
+<param name=e[2] value="U1;point;free;1000,40;0;0">
+<param name=e[3] value="V0;point;free;-1000,80;0;0">
+<param name=e[4] value="V1;point;free;1000,80;0;0">
+
+<param name=e[5] value="A0;point;lineSlider;U0,U1,30,40;0">
+<param name=e[6] value="A1;point;lineSlider;U0,U1,120,40;0">
+<param name=e[7] value="A;line;connect;A0,A1;black;0;red">
+<param name=e[8] value="C0;point;lineSlider;V0,V1,30,80;0">
+<param name=e[9] value="C1;point;lineSlider;V0,V1,100,80;0">
+<param name=e[10] value="C;line;connect;C0,C1;black;0;red">
+
+<param name=e[11] value="B0;point;lineSlider;U0,U1,150,40;0">
+<param name=e[12] value="B1;point;lineSlider;U0,U1,220,40;0">
+<param name=e[13] value="B;line;connect;B0,B1;black;0;red">
+<param name=e[14] value="D0;point;lineSlider;V0,V1,150,80;0">
+<param name=e[15] value="D1;point;proportion;A0,A1,B0,B1,C0,C1,D0,V1;0">
+<param name=e[16] value="D;line;connect;D0,D1;black;0;red">
+</applet></div>
+
+<div class="just"><a href="propV8.html">V.8</a></div>
+<p>Since <i>A</i> is greater than <i>C,</i> and <i>B</i> is another, arbitrary, magnitude, therefore <i>A</i> has to <i>B</i> a greater ratio than <i>C</i> has to <i>B.</i>
+
+<div class="just"><a href=propV13.html>V.13</a></div>
+<p>But <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D,</i> therefore <i>C</i> has to <i>D</i> a greater ratio than <i>C</i> has to <i>B.</i>
+
+<div class="just"><a href="propV10.html">V.10</a></div>
+<p>But that to which the same has a greater ratio is less,  therefore <i>D</i> is less than <i>B,</i> so that <i>B</i> is greater than <i>D.</i>
+
+<p>Similarly we can prove that, if <i>A</i> equals <i>C,</i> then <i>B</i> equals <i>D,</i> and, if <i>A</i> is less than <i>C,</i> then <i>B</i> is less than <i>D.</i>
+
+<p>Therefore, <i>if a first magnitude has to a second the same ratio as a third has to a fourth, and the first is greater than the third, then the second is also greater than the fourth; if equal, equal; and if less, less.
+</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The statement is that 
+<ul>if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d</i> and <i>a</i>&nbsp;>=<&nbsp;<i>c,</i> then <i>b</i>&nbsp;>=<&nbsp;<i>d.</i></ul>
+In this form all four magnitudes need to be of the same kind. 
+
+<h4>The alternate form of the proposition</h4>
+
+Sometimes the alternate form of this proposition 
+
+<p><center>if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d</i> and <i>a</i>&nbsp;>=<&nbsp;<i>b,</i> then <i>c</i>&nbsp;>=<&nbsp;<i>d</i>
+</center><p>
+
+is invoked. The alternate form is just the definition of proportion, <a href=defV5.html>V.Def.5</a>,
+
+<p><center>
+<i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d</i> means for numbers <i>n</i> and <i>m</i> that <i>na</i>&nbsp;>=<&nbsp;<i>mb,</i> implies <i>nc</i>&nbsp;>=<&nbsp;<i>md</i>
+</center><p>
+
+when <i>n</i> and <i>m</i> are both 1.  There is some slippage in the meaning of number as used in the <i>Elements</i>; sometimes 1 is included as a number, but other times it is not and 2 is the smallest number.  Convenience often forces convention, and it&rsquo;s convenient to include 1 as a number.
+
+<p>This other form is more general since <i>a</i> and <i>b</i> may be of one kind while <i>c</i> and <i>d</i> can be of a different kind.   (See definition <a href=defV11.html>V.Def.12</a> and proposition <a href=propV16.html>V.16</a> for alternate proportions.) For example, in proposition <a href=../bookVI/propVI25.html>VI.25</a> there are the statements:
+<ul>...the triangle <i>ABC</i> is to the triangle <i>KGH</i> as the parallelogram <i>BE</i> is to the parallelogram <i>EF.</i>  Therefore, alternately, the triangle <i>ABC</i> is to the parallelogram <i>BE</i> as the triangle <i>KGH</i> is to the parallelogram <i>EF.</i>
+But the triangle <i>ABC</i> equals the parallelogram <i>BE,</i> therefore the triangle <i>KGH</i> also equals the parallelogram <i>EF.</i></ul>
+First, the proportion is converted to its alternate form by <a href=propV16.html>V.16</a>.  Then, it is claimed that since the first equals the second, therefore the third equals the fourth.  Clearly, V.14 is not being invoked otherwise the alternate form of the proportion would not be mentioned.
+
+<p>Another example comes from <a href=../bookX/propX112.html>X.112</a>.
+<ul>... the rectangle <i>BC</i> by <i>EF</i> equals the rectangle <i>BD</i> by <i>G,</i> therefore <i>CB</i> is to <i>BD</i> as <i>G</i> is to <i>EF.</i> But <i>CB</i> is greater than <i>BD,</i> therefore <i>G</i> is also greater than <i>EF.</i></ul>
+Here the first is greater than the second, so the third is greater than the fourth.  Proposition <a href=../bookVI/propVI16.html>VI.16</a> (if the rectangle contained by the extremes equals the rectangle contained by the means, then the four straight lines are proportional) was used to derive the proportion <i>CB</i>&nbsp;:&nbsp;<i>BD</i>&nbsp;=&nbsp;<i>G</i>&nbsp;:&nbsp;<i>EF</i> from the equality of the rectangles, but it would have been just as easy to conclude <i>CB</i>&nbsp;:&nbsp;<i>G</i>&nbsp;=&nbsp;<i>BD</i>&nbsp;:&nbsp;<i>EF,</i> and then V.14 could be used.
+
+<p>Clearly, this proposition V.14 is not being invoked in either of these propositions, but the alternate form is used instead.
+
+<p>Although this alternate form does not rely on using V.Def.4 as an axiom of comparability, the original form does.  The statement of the proposition  is false when infinitesimals are allowed.  For a particular example, take the proportion <i>x</i>:(<i>x</i>&nbsp;+&nbsp;<i>y</i>)&nbsp;=&nbsp;<i>x</i>: (<i>x</i>&nbsp;+&nbsp;2<i>y</i>) or its inverse.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in <a href=propV16.html>V.16</a> and a few other propositions in Books V, VI, X, XII, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997, 2013");
+</script>
+</BODY></HTML>

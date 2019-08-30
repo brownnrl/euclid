@@ -1,0 +1,58 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book V, Definitions 1 and 2</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 1</h1>
+
+<div class="statement">A magnitude is a <i>part</i> of a magnitude, the less of the greater, when it measures the greater.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 2</h1>
+
+<div class="statement">The greater is a <i>multiple</i> of the less when it is measured by the less.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<table cellspacing=5>
+<tr><td colspan=2>The two magnitudes mentioned in each definition are of the same kind.  Following Euclid, they are illustrated here as lines, but they could both be planar figures, or solids, or angles, or any other kind of magnitude so long as they are of the same kind.</td></tr>
+
+<tr><td>
+The illustration shows two magnitudes, <i>A</i> and <i>B,</i> and <i>A</i> is one third of <i>B</i> since <i>A</i> measures <i>B</i> three times.  Thus, <i>A</i> is a <i>part</i> of <i>B,</i> and <i>B</i> is a multiple of <i>A.</i></td>
+
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  archive=Geometry.zip height=100 width=270>
+<img src=defV1.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.Def.1-2">
+<param name=align value=above>
+<param name=e[1] value="U1;point;free;0,0;0;0">
+<param name=e[2] value="U2;point;free;25,0;0;0">
+<param name=e[3] value="U;line;connect;U1,U2;0;0;0">
+
+<param name=e[4] value="A1;point;free;30,40;0">
+<param name=e[5] value="A3;point;parallelogram;A1,U;0;0">
+<param name=e[6] value="A2;point;lineSlider;A1,A3,90,0;0">
+<param name=e[7] value="A;line;connect;A1,A2;black;0;blue">
+
+<param name=e[8] value="B0;point;free;30,80;0">
+<param name=e[9] value="B4;point;parallelogram;B0,U;0;0">
+<param name=e[10] value="B1;point;cutoff;B0,B4,A;0;lightGray">
+<param name=e[11] value="B2;point;extend;B0,B1,A;0;lightGray">
+<param name=e[12] value="B3;point;extend;B0,B2,A;0">
+<param name=e[13] value="B;line;connect;B0,B3;black;0;blue">
+</applet></td></tr></table>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

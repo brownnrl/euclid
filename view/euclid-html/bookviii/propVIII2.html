@@ -1,0 +1,137 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 2</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">To find as many numbers as are prescribed in continued proportion, and the least that are in a given ratio.</div>
+
+<p>Let the ratio of <i>A</i> to <i>B</i> be the given ratio in least numbers.
+
+<p>It is required to find numbers in continued proportion, as many as may be prescribed, the least that are in the ratio of <i>A</i> to <i>B.</i>
+
+<p>Let four be prescribed. Multiply <i>A</i> by itself to make <i>C,</i> and by <i>B</i> to make <i>D.</i> Multiply <i>B</i> by itself to make <i>E.</i> Also multiply <i>A</i> by <i>C, D,</i> and <i>E</i> to make <i>F, G,</i> and <i>H,</i> and multiply <i>B</i> by <i>E</i> to make <i>K.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=350 height=180 >
+<img src="propVIII2.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.2">
+<param name=align value=above>
+<param name=e[1] value="F0;point;free;-1000,40;0;0">
+<param name=e[2] value="F3;point;free;1000,40;0;0">
+<param name=e[3] value="A0;point;free;-1000,80;0;0">
+<param name=e[4] value="A3;point;free;1000,80;0;0">
+<param name=e[5] value="B0;point;free;-1000,120;0;0">
+<param name=e[6] value="B3;point;free;1000,120;0;0">
+<param name=e[7] value="K0;point;free;-1000,160;0;0">
+<param name=e[8] value="K3;point;free;1000,160;0;0">
+<param name=e[9] value="C0;point;free;-1000,60;0;0">
+<param name=e[10] value="C3;point;free;1000,60;0;0">
+<param name=e[11] value="D0;point;free;-1000,100;0;0">
+<param name=e[12] value="D3;point;free;1000,100;0;0">
+<param name=e[13] value="E0;point;free;-1000,140;0;0">
+<param name=e[14] value="E3;point;free;1000,140;0;0">
+<param name=e[15] value="U0;point;free;1000,0;0;0">
+<param name=e[16] value="U1;point;free;1000,20;0;0">
+
+<param name=e[17] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[18] value="A2;point;lineSlider;A0,A3,60,0;0">
+<param name=e[19] value="A;line;connect;A1,A2;black">
+<param name=e[20] value="C1;point;lineSlider;C0,C3,100,0;0">
+<param name=e[21] value="C2;point;proportion;U0,U1,A1,A2,A1,A2,C1,C3;0">
+<param name=e[22] value="C;line;connect;C1,C2;black">
+<param name=e[23] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[24] value="B2;point;lineSlider;B0,B3,65,0;0">
+<param name=e[25] value="B;line;connect;B1,B2;black">
+<param name=e[26] value="D1;point;lineSlider;D0,D3,100,0;0">
+<param name=e[27] value="D2;point;proportion;U0,U1,A1,A2,B1,B2,D1,D3;0">
+<param name=e[28] value="D;line;connect;D1,D2;black">
+<param name=e[29] value="E1;point;lineSlider;E0,E3,100,0;0">
+<param name=e[30] value="E2;point;proportion;U0,U1,B1,B2,B1,B2,E1,E3;0">
+<param name=e[31] value="E;line;connect;E1,E2;black">
+<param name=e[32] value="F1;point;lineSlider;F0,F3,200,0;0">
+<param name=e[33] value="F2;point;proportion;U0,U1,A1,A2,C1,C2,F1,F3;0">
+<param name=e[34] value="F;line;connect;F1,F2;black">
+<param name=e[35] value="G1;point;lineSlider;A0,A3,200,0;0">
+<param name=e[36] value="G2;point;proportion;U0,U1,A1,A2,D1,D2,G1,A3;0">
+<param name=e[37] value="G;line;connect;G1,G2;black">
+<param name=e[38] value="H1;point;lineSlider;B0,B3,200,0;0">
+<param name=e[39] value="H2;point;proportion;U0,U1,A1,A2,E1,E2,H1,B3;0">
+<param name=e[40] value="H;line;connect;H1,H2;black">
+<param name=e[41] value="K1;point;lineSlider;K0,K3,200,0;0">
+<param name=e[42] value="K2;point;proportion;U0,U1,B1,B2,E1,E2,K1,K3;0">
+<param name=e[43] value="K;line;connect;K1,K2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>Now, since <i>A</i> multiplied by itself makes <i>C,</i> and multiplied by <i>B</i> makes <i>D,</i> therefore <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D.</i>
+
+<p>Again, since <i>A</i> multiplied by <i>B</i> makes <i>D,</i> and <i>B</i> multiplied by itself makes <i>E,</i> therefore the numbers <i>A</i> and <i>B</i> multiplied by <i>B</i> make the numbers <i>D</i> and <i>E</i> respectively.
+
+<div class="just"><a href=../bookVII/propVII18.html>VII.18</a></div>
+<p>Therefore <i>A</i> is to <i>B</i> as <i>D</i> is to <i>E.</i> But <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D,</i> therefore <i>C</i> is to <i>D</i> as <i>D</i> is to <i>E.</i>
+
+<div class="just"><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>And, since <i>A</i> multiplied by <i>C</i> and <i>D</i> makes <i>F</i> and <i>G,</i> therefore <i>C</i> is to <i>D</i> as <i>F</i> is to <i>G.</i>
+
+<p>But <i>C</i> is to <i>D</i> as <i>A</i> is to <i>B,</i> therefore <i>A</i> is to <i>B</i> as <i>F</i> is to <i>G.</i>
+
+<div class="just"><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>Again, since <i>A</i> multiplied by <i>D</i> and <i>E</i> makes <i>G</i> and <i>H,</i> therefore <i>D</i> is to <i>E</i> as <i>G</i> is to <i>H.</i>  But <i>D</i> is to <i>E</i> as <i>A</i> is to <i>B.</i> Therefore <i>A</i> is to <i>B</i> as <i>G</i> is to <i>H.</i>
+
+<div class="just"><a href=../bookVII/propVII18.html>VII.18</a></div>
+<p>And, since <i>A</i> and <i>B</i> multiplied by <i>E</i> make <i>H</i> and <i>K,</i> therefore <i>A</i> is to <i>B</i> as <i>H</i> is to <i>K.</i>  But <i>A</i> is to <i>B</i> as <i>F</i> is to <i>G,</i> and as <i>G</i> is to <i>H.</i> Therefore <i>F</i> is to <i>G</i> as <i>G</i> is to <i>H,</i> and as <i>H</i> is to <i>K.</i>
+
+<p>Therefore <i>C, D,</i> and <i>E,</i> and <i>F, G, H,</i> and <i>K</i> are proportional in the ratio of <i>A</i> to <i>B.</i>
+<p>I say next that they are the least numbers that are so.
+
+<div class="just"><a href=../bookVII/propVII22.html>VII.22</a></div>
+<p>Since <i>A</i> and <i>B</i> are the least of those which have the same ratio with them, and the least of those which have the same ratio are relatively prime, therefore <i>A</i> and <i>B</i> are relatively prime.
+
+<div class="just"><a href=../bookVII/propVII27.html>VII.27</a></div>
+<p>And the numbers <i>A</i> and <i>B</i> multiplied by themselves respectively make the numbers <i>C</i> and <i>E,</i> and multiplied by the numbers <i>C</i> and <i>E</i> respectively make the numbers <i>F</i> and <i>K,</i> therefore <i>C</i> and <i>E</i> and <i>F</i> and <i>K</i> are relatively prime respectively.
+
+<div class="just"><a href=propVIII1.html>VIII.1</a></div>
+<p>But, if there are as many numbers as we please in continued proportion, and the extremes of them are relatively prime, then they are the least of those which have the same ratio with them.  Therefore <i>C, D,</i> and <i>E</i> and <i>F, G, H</i> and <i>K</i> are the least of those which have the same ratio with <i>A</i> and <i>B.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+From this it is clear that, if three numbers in continued proportion are the least of those which have the same ratio with them, then the extremes are squares, and, if four numbers, cubes.</div>
+</div>
+
+<h2>Guide</h2>
+
+The problem is to construct <i>n</i> numbers in a continued proportion in lowest terms with a given constant ratio.  If the ratio is <i>a</i>&nbsp;:&nbsp;<i>b</i> in lowest terms, then the numbers in the continued proportion are
+<p><center>
+<i>a</i><sup><i>n</i>-1</sup>, <i>a</i><sup><i>n</i>-2</sup><i>b,</i> <i>a</i><sup><i>n</i>-3</sup><i>b</i><sup>2</sup>, ..., <i>a</i><sup>1</sup><i>b</i><sup><i>n</i>-2</sup>, <i>b</i><sup><i>n</i>-1</sup>
+</center><p>
+For instance, the five numbers in a continued proportion in lowest terms with a ratio of 2:3 form the sequence
+2<sup>4</sup>, 2<sup>3</sup><sup>&nbsp;.&nbsp;</sup>3, 2<sup>2</sup><sup>&nbsp;.&nbsp;</sup>3<sup>2</sup>, 2<sup>&nbsp;.&nbsp;</sup>3<sup>3</sup>, and 3<sup>4</sup>, that is, the sequence 16, 24, 36, 54, and 81.
+
+<p>The proof is not difficult.  First, adjacent terms do have the correct ratio.  Also, since <i>a</i> and <i>b</i> are relatively prime, proposition <a href="../bookVII/propVII27.html">VII.27</a> implies that the end terms  
+<i>a</i><sup><i>n</i>-1</sup> and <i>b</i><sup><i>n</i>-1</sup> are relatively prime. The result then follows from the previous proposition <a href="propVIII1.html">VIII.1</a>.
+
+<h4>Use of this proposition</h4>
+
+This proposition and its corollary are used in several propositions in Book VIII starting with the next and in proposition <a href=../bookIX/propIX15.html>IX.15</a> in the next book.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

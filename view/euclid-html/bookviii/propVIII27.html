@@ -1,0 +1,80 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 27</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 27</h1>
+
+<div class="statement">Similar solid numbers have to one another the ratio which a cubic number has to a cubic number.</div>
+
+<p>Let <i>A</i> and <i>B</i> be similar solid numbers.
+<p>I say that <i>A</i> has to <i>B</i> the ratio which cubic number has to cubic number.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=420 height=140 >
+<img src="propVIII27.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.27">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="E0;point;free;-1000,110;0;0">
+<param name=e[6] value="E3;point;free;1000,110;0;0">
+
+<param name=e[7] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,100,0;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="C1;point;lineSlider;A0,A3,250,0;0">
+<param name=e[11] value="C2;point;lineSlider;A0,A3,340,0;0">
+<param name=e[12] value="C;line;connect;C1,C2;black">
+<param name=e[13] value="D1;point;lineSlider;B0,B3,250,0;0">
+<param name=e[14] value="D2;point;proportion;A1,A2,C1,C2,C1,C2,D1,B3;0">
+<param name=e[15] value="D;line;connect;D1,D2;black">
+<param name=e[16] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[17] value="B2;point;proportion;A1,A2,C1,C2,D1,D2,B1,B3;0">
+<param name=e[18] value="B;line;connect;B1,B2;black">
+
+<param name=e[19] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[20] value="E2;point;lineSlider;E0,E3,75,0;0">
+<param name=e[21] value="E;line;connect;E1,E2;black">
+<param name=e[22] value="F1;point;lineSlider;E0,E3,110,0;0">
+<param name=e[23] value="F2;point;proportion;A1,A2,E1,E2,C1,C2,F1,E3;0">
+<param name=e[24] value="F;line;connect;F1,F2;black">
+<param name=e[25] value="G1;point;lineSlider;E0,E3,200,0;0">
+<param name=e[26] value="G2;point;proportion;A1,A2,E1,E2,D1,D2,G1,E3;0">
+<param name=e[27] value="G;line;connect;G1,G2;black">
+<param name=e[28] value="H1;point;lineSlider;E0,E3,300,0;0">
+<param name=e[29] value="H2;point;proportion;A1,A2,E1,E2,B1,B2,H1,E3;0">
+<param name=e[30] value="H;line;connect;H1,H2;black">
+</applet></div>
+
+<div class="just"><a href=propVIII19.html>VIII.19</a></div>
+<p>Since <i>A</i> and <i>B</i> are similar solid numbers, therefore two mean proportional numbers <i>C</i> and <i>D</i> fall between <i>A</i> and <i>B.</i>
+
+<div class="just"><a href=../bookVII/propVII33.html>VII.33</a> or <a href=propVIII2.html>VIII.2</a></div>
+<p>Take <i>E, F, G,</i> and <i>H,</i> the least numbers of those which have the same ratio with <i>A, C, D,</i> and <i>B,</i> and equal with them in multitude.
+
+<div class="just"><a href="propVIII2.html#cor">VIII.2,Cor.</a></div>
+<p>Therefore the extremes of them, <i>E</i> and <i>H,</i> are cubes.  And <i>E</i> is to <i>H</i> as <i>A</i> is to <i>B,</i> therefore <i>A</i> also has to <i>B</i> the ratio which a cubic number has to a cubic number.
+
+<p>Therefore, <i>similar solid numbers have to one another the ratio which a cubic number has to a cubic number.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is analogous to the previous proposition about similar plane numbers.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

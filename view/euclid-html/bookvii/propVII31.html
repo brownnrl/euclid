@@ -1,0 +1,72 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 31</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 31</h1>
+
+<div class="statement">Any composite number is measured by some prime
+ number.</div>
+
+<p>Let <i>A</i> be a composite number.
+<p>I say that <i>A</i> is measured by some prime number.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=140 >
+<img src=propVII31.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.31">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,250,0;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[11] value="B2;point;lineSlider;B0,B3,140,0;0">
+<param name=e[12] value="B;line;connect;B1,B2;black">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[14] value="C2;point;lineSlider;C0,C3,73,0;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+</applet></div>
+
+<div class="just"><a href=defVII11.html>VII.Def.13</a></div>
+<p>Since <i>A</i> is composite, therefore some number <i>B</i> measures it.
+
+<p>Now, if <i>B</i> is prime, then that which was proposed is done.
+
+<div class="just"><a href=defVII11.html>VII.Def.11,13</a></div>
+<p>But if it is composite, some number measures it. Let a number <i>C</i> measure it.
+
+<p>Then, since <i>C</i> measures <i>B,</i> and <i>B</i> measures <i>A,</i> therefore <i>C</i> also measures <i>A.</i> And, if <i>C</i> is prime, then that which was proposed is done. But if it is composite, some number measures it. Thus, if the investigation is continued in this way, then some prime number will be found which measures the number before it, which also measures <i>A.</i> If it is not found, then an infinite sequence of numbers measures the number <i>A,</i> each of which is less than the other, which is impossible in numbers.
+
+<p>Therefore some prime number will be found which measures the one before it, which also measures <i>A.</i>
+
+<p>Therefore any composite number is measured by some prime number.
+
+<p>Therefore, <i>any composite number is measured by some prime number.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+In order to prove this proposition, Euclid again uses the unstated principle that any decreasing sequence of numbers is finite. 
+
+<p>This proposition is used in the next one and in propositions <a
+href=../bookIX/propIX13.html>IX.13</a>  and <a href=../bookIX/propIX20.html>IX.20</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

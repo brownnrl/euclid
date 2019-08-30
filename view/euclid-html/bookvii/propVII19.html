@@ -1,0 +1,110 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 19</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 19</h1>
+
+<div class="statement">If four numbers are proportional, then the number produced from the first and fourth equals the number produced from the second and third; and, if the number produced from the first and fourth equals that produced from the second and third, then the four numbers are proportional.</div>
+
+<p>Let <i>A, B, C,</i> and <i>D</i> be four numbers in proportion, so that <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D,</i> and let <i>A</i> multiplied by <i>D</i> make <i>E,</i> and let <i>B</i> multiplied by <i>C</i> make <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=180 height=330 >
+<img src=propVII19.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.19">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,20;0">
+<param name=e[4] value="B0;point;free;60,-1000;0;0">
+<param name=e[5] value="B3;point;free;60,1000;0;0">
+<param name=e[6] value="B1;point;lineSlider;B0,B3,60,20;0">
+<param name=e[7] value="C0;point;free;90,-1000;0;0">
+<param name=e[8] value="C3;point;free;90,1000;0;0">
+<param name=e[9] value="C1;point;lineSlider;C0,C3,90,20;0">
+<param name=e[10] value="D0;point;free;120,-1000;0;0">
+<param name=e[11] value="D3;point;free;120,1000;0;0">
+<param name=e[12] value="D1;point;lineSlider;D0,D3,120,20;0">
+<param name=e[13] value="A2;point;lineSlider;A0,A3,30,80;0">
+<param name=e[14] value="A;line;connect;A1,A2;black">
+<param name=e[15] value="B2;point;lineSlider;B0,B3,60,90;0">
+<param name=e[16] value="B;line;connect;B1,B2;black">
+<param name=e[17] value="C2;point;lineSlider;C0,C3,90,100;0">
+<param name=e[18] value="C;line;connect;C1,C2;black">
+<param name=e[19] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+
+<param name=e[21] value="U1;point;free;1000,0;0;0">
+<param name=e[22] value="U2;point;free;1000,35;0;0">
+<param name=e[23] value="E1;point;lineSlider;A0,A3,30,150;0">
+<param name=e[24] value="E2;point;proportion;U1,U2,A1,A2,D1,D2,E1,A3;0">
+<param name=e[25] value="E;line;connect;E1,E2;black">
+<param name=e[26] value="F1;point;lineSlider;B0,B3,60,150;0">
+<param name=e[27] value="F2;point;cutoff;F1,B3,E1,E2;0">
+<param name=e[28] value="F;line;connect;F1,F2;black">
+<param name=e[29] value="G0;point;free;150,-1000;0;0">
+<param name=e[30] value="G3;point;free;150,1000;0;0">
+<param name=e[31] value="G1;point;lineSlider;G0,G3,150,20;0">
+<param name=e[32] value="G2;point;proportion;U1,U2,A1,A2,C1,C2,G1,G3;0">
+<param name=e[33] value="G;line;connect;G1,G2;black">
+</applet></div>
+
+<p>I say that <i>E</i> equals <i>F.</i>
+
+<div class="just"><a href=propVII17.html>VII.17</a>
+<br>(<a href=../bookV/propV11.html>V.11</a>)</div>
+<p>Multiply <i>A</i> by <i>C</i> to make <i>G.</i> Since, then, <i>A</i> multiplied by <i>C</i> makes <i>G,</i> and multiplied by <i>D</i> makes <i>E,</i> therefore the number <i>A</i> multiplied by the two numbers <i>C</i> and <i>D</i> makes <i>G</i> and <i>E.</i> Therefore <i>C</i> is to <i>D</i> as <i>G</i> is to <i>E.</i>  But <i>C</i> is to <i>D</i> as <i>A</i> is to <i>B,</i> therefore <i>A</i> is to <i>B</i> as <i>G</i> is to <i>E.</i>
+
+<div class="just"><a href=propVII18.html>VII.18</a></div>
+<p>Again, since <i>A</i> multiplied by <i>C</i> makes <i>G,</i> but, further, <i>B</i> multiplied by <i>C</i> makes <i>F,</i> therefore the two numbers <i>A</i> and <i>B</i> multiplied by a certain number <i>C</i> make <i>G</i> and <i>F.</i> Therefore <i>A</i> is to <i>B</i> as <i>G</i> is to <i>F.</i>
+
+<div class="just">(<a href=../bookV/propV11.html>V.11</a>)
+<br>(<a href=../bookV/propV9.html>V.9</a>)</div>
+<p>But further <i>A</i> is to <i>B</i> as <i>G</i> is to <i>E,</i> therefore <i>G</i> is to <i>E</i> as <i>G</i> is to <i>F.</i> Therefore <i>G</i> has to each of the numbers <i>E</i> and <i>F</i> the same ratio. Therefore <i>E</i> equals <i>F.</i></td>
+
+<p><hr width=50%><p>
+Again, let <i>E</i> equal <i>F.</i>
+<p>I say that <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D.</i>
+
+<div class="just">(<a href=../bookV/propV7.html>V.7</a>)</div>
+<p>With the same construction, since <i>E</i> equals <i>F,</i> therefore <i>G</i> is to <i>E</i> as <i>G</i> is to <i>F.</i>
+
+<div class="just"><a href=propVII17.html>VII.17</a>,
+<a href=propVII18.html>VII.18</a>
+<br>(<a href=../bookV/propV11.html>V.11</a>)</div>
+<p>But <i>G</i> is to <i>E</i> as <i>C</i> is to <i>D,</i>  and <i>G</i> is to <i>F</i> as <i>A</i> is to <i>B,</i>  therefore <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D.</i>
+
+<p>Therefore, <i>if four numbers are proportional, then the number produced from the first and fourth equals the number produced from the second and third; and, if the number produced from the first and fourth equals that produced from the second and third, then the four numbers are proportional.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>Symbolically, 
+
+<p><center>
+<i>a</i> : <i>b</i>&nbsp;=&nbsp;<i>c</i> : <i>d</i> if and only if <i>ad</i>&nbsp;=&nbsp;<i>bc.</i>
+</center><p>
+
+These algebraic expressions are meaningful when the variables are all numbers, but not when they are magnitudes in general.  They can be interpreted, however, when they are lines, and proposition <a href=../bookVI/propVI16.html>VI.16</a> is the analogue in that case.
+
+<p>Twice in this proof Euclid makes conclusions about proportions for numbers that he has neither stated nor proved.  These places are indicated by (V.11), (V.9), and (V.7) in the margins, the analogous justifications for magnitudes.  Some of the propositions in Book V for magnitudes are stated in proved in Book VII for numbers, in particular, <a href=../bookV/propV16.html>V.16</a> and <a href=propVII13.html>VII.13</a> correspond, and <a href=../bookV/propV22.html>V.22</a> and <a href=propVII14.html>VII.14</a> correspond.  But many of the propositions in Book V have no analogue in Book VII, such as V.11, V.9, and V.7.
+
+<p>Now it could be that Euclid considered the missing statements as being obvious, as Heath claims, but being obvious is usually not a reason for Euclid to omit a proposition.  Furthermore, other propositions in the next three books assume properties about proportions of numbers without having proofs of those propositions.  One explanation is that the books on number theory, including this one, are older, and when the material in Book V was developed by Eudoxus, or when it was incorporated into the <i>Elements</i> by Euclid, more careful attention was made to fundamental propositions like V.7, V.9, and V.11.
+ 
+
+<p>This proposition is used frequently in Books VII and IX starting with <a href=propVII24.html>VII.24</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

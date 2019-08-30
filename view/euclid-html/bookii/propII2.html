@@ -1,0 +1,78 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 2</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">If a straight line is cut at random, then the sum of the rectangles contained by the whole and each of the segments equals the square on the whole.</div>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=220>
+<img src="propII2.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.2">
+<param name=e[1] value="A0;point;free;-1000,40;0,0">
+<param name=e[2] value="A3;point;free;1000,40;0,0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,180,0">
+<param name=e[5] value="C;point;lineSlider;A0,A3,110,0">
+<param name=e[6] value="BADE;polygon;square;B,A;0;0;0,0,0;0">
+<param name=e[7] value="E;point;vertex;BADE,4">
+<param name=e[8] value="D;point;vertex;BADE,3">
+<param name=e[9] value="F;point;parallelogram;D,A,C">
+<param name=e[10] value="ACFD;polygon;quadrilateral;A,C,F,D;0;0;black;random">
+<param name=e[11] value="CBEF;polygon;quadrilateral;C,B,E,F;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII2.gif" hspace=10 alt="II.2">';
+</script>
+</div>
+
+<p>Let the straight line <i>AB</i> be cut at random at the point <i>C.</i>
+
+<p>I say that the sum of the rectangle <i>BA</i> by <i>AC</i> and the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>AB</i>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Describe the square <i>ADEB</i> on <i>AB,</i> and draw <i>CF</i> through <i>C</i> parallel to either <i>AD</i> or <i>BE.</i>
+Then <i>AE</i> equals <i>AF</i> plus <i>CE.</i>
+
+<div class="just"><a href=defII.html>II.Def.1</a></div>
+<p>Now <i>AE</i> is the square on <i>AB</i>; <i>AF</i> is the rectangle <i>BA</i> by <i>AC,</i> for it is contained by <i>DA</i> and <i>AC,</i> and <i>AD</i> equals <i>AB</i>; and <i>CE</i> is the rectangle <i>AB</i> by <i>BC,</i> for <i>BE</i> equals <i>AB.</i>
+
+<p>Therefore the sum of the rectangle <i>BA</i> by <i>AC</i> and the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>AB.</i>
+
+<p>Therefore <i>if a straight line is cut at random, then the sum of the rectangles contained by the whole and each of the segments equals the square on the whole.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+This proposition is actually a special case of <a href="propII1.html">II.1</a>.  In II.1 Euclid shows that the product of one line by a sum of any number of lines is the sum of the products of that line by each of the lines.  In this proposition, there are just two of those lines and their sum equals the one line.  Rather than using II.1 to prove II.2, Euclid proves II.2 directly.  This suggests that II.1 may have been inserted into the <i>Elements</i> after II.2 was included, either by Euclid or someone else.
+
+<p>In modern algebraic notation this proposition says that
+if <i>y</i>&nbsp;=&nbsp;<i>y</i><sub>1</sub>&nbsp;+&nbsp;<i>y</i><sub>2</sub>,</i> then <i>xy</i>&nbsp;=&nbsp;<i>x</i>&nbsp;<i>y</i><sub>1</sub>&nbsp;+&nbsp;<i>x</i>&nbsp;<i>y</i><sub>2</sub>.</i>  This can also be stated in a single equation as
+<p><center><i>x</i> (<i>y</i><sub>1</sub>&nbsp;+&nbsp;<i>y</i><sub>2</sub>)&nbsp;=&nbsp;<i>x y</i><sub>1</sub>&nbsp;+&nbsp;<i>x y</i><sub>2</sub>.</i></center><p>
+
+<h4>Use of this proposition</h4>
+
+<p>This proposition is used in the proof of proposition <a href=../bookXIII/propXIII10.html>XIII.10</a> which shows that a certain relationship holds for the sides of a regular pentagon, regular hexagon, and regular decagon that are all inscribed in the same circle, namely, the square on the side of the pentagon equals the sum of the squares on the side of a hexagon and on the side of a decagon.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

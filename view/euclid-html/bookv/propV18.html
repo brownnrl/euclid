@@ -1,0 +1,115 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 18</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 18</h1>
+
+<div class="statement">If magnitudes are proportional taken separately, then they are also proportional taken jointly.</div>
+
+<div class="just"><a href=defV14.html>V.Def.15</a></div>
+<p>Let <i>AE, EB, CF,</i> and <i>FD</i> be magnitudes proportional taken separately, so that <i>AE</i> is to <i>EB</i> as <i>CF</i> is to <i>FD.</i>
+
+<div class="just"><a href=defV14.html>V.Def.14</a></div>
+<p>I say that they are also proportional taken jointly, that is, <i>AB</i> is to <i>BE</i> as <i>CD</i> is to <i>FD.</i>
+
+<p>For, if <i>CD</i> is not to <i>DF</i> as <i>AB</i> is to <i>BE,</i> then <i>AB</i> is to <i>BE</i> as <i>CD</i> is either to some magnitude less than <i>DF</i> or to a greater.
+
+<p>First, let it be in that ratio to a less magnitude <i>DG.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=100>
+<img src=propV18.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.18">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,70;0;0">
+<param name=e[4] value="V1;point;free;1000,70;0;0">
+
+<param name=e[5] value="A;point;lineSlider;U0,U1,70,30">
+<param name=e[6] value="B;point;lineSlider;U0,U1,220,30">
+<param name=e[7] value="AB;line;connect;A,B;0;0;magenta">
+<param name=e[8] value="E;point;lineSlider;A,B,160,30">
+<param name=e[9] value="C;point;lineSlider;V0,V1,20,70">
+<param name=e[10] value="D;point;lineSlider;V0,V1,280,50">
+<param name=e[11] value="CD;line;connect;C,D;0;0;green">
+<param name=e[12] value="F;point;proportion;A,B,C,D,A,E,C,V1">
+<param name=e[13] value="G;point;proportion;A,B,F,D,A,E,F,V1">
+</applet></div>
+
+<div class="just"><a href=propV17.html>V.17</a></div>
+<p>Then, since <i>AB</i> is to <i>BE</i> as <i>CD</i> is to <i>DG,</i> they are magnitudes proportional taken jointly, so that they are also proportional taken separately. Therefore <i>AE</i> is to <i>EB</i> as <i>CG</i> is to <i>GD.</i>
+
+<div class="just"><a href=propV11.html>V.11</a></div>
+<p>But also, by hypothesis, <i>AE</i> is to <i>EB</i> as <i>CF</i> is to <i>FD.</i> Therefore <i>CG</i> is to <i>GD</i> as <i>CF</i> is to <i>FD.</i>
+
+<div class="just"><a href=propV14.html>V.14</a></div>
+<p>But the first <i>CG</i> is greater than the third <i>CF,</i> therefore the second <i>GD</i> is also greater than the fourth <i>FD.</i>
+
+<p>But it is also less, which is impossible. Therefore <i>AB</i> is to <i>BE</i> as <i>CD</i> is not to a less magnitude than <i>FD.</i>
+
+<p>Similarly we can prove that neither is it in that ratio to a greater, it is therefore in that ratio to <i>FD</i> itself.
+
+<p>Therefore, <i>if magnitudes are proportional taken separately, then they are also proportional taken jointly.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is the converse of the last one.  It says that if <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> then (<i>w</i>&nbsp;+&nbsp;<i>x</i>):<i>x</i>&nbsp;=&nbsp;(<i>y</i>&nbsp;+&nbsp;<i>z</i>):<i>z.</i>  As in the last proposition, two of the magnitudes <i>w</i> and <i>x</i> can be of one kind while the other two <i>y</i> and <i>z</i> are of another.
+
+<h4>On the existence of fourth proportionals</h4>
+
+At the beginning of this proof we have, paraphrased:
+
+<ul>If <i>CD</i>&nbsp;:&nbsp;<i>DF</i> does not equal <i>AB</i>&nbsp;:&nbsp;<i>BE,</i> then <i>AB</i>&nbsp;:&nbsp;<i>BE</i>&nbsp;=&nbsp;<i>CD</i>&nbsp;:&nbsp;<i>DG</i> where <i>DG</i> is some magnitude greater or less than <i>DF.</i></ul>
+
+Given the other three magnitudes,  a fourth proportional <i>DG</i> is assumed.  It is not asserted that the fourth proportional can be constructed; it is only hypothetical. This is the beginning of a proof by contradiction.
+
+<p>This technique of assuming the existence of a fourth proportional to derive a contradiction is also used in Book XII to prove various proportionalities of areas and volumes, for example, in proposition <a href=../bookXII/propXII2.html>XII.2</a> which shows circles are proportional to the squares on their diameters.  Eudoxus, who developed the techniques of both Books V and XII, or Euclid, or both of them, accepted this technique as valid.
+
+<p>The problem is: do fourth proportionals exist?  They certainly can&rsquo;t be constructed in all cases. The problems of doubling a cube, squaring a circle, and trisecting an angle cannot be solved by plane Euclidean methods, and they all involve inconstructable fourth proportionals.  Take doubling a cube for example.  If <i>C</i> is a cube with an edge <i>A,</i> then the inconstructable edge <i>B</i> of a cube with double the volume of <i>C</i> is the fourth proportional in <i>C</i>&nbsp;:&nbsp;(<i>C</i>+<i>C</i>)&nbsp;=&nbsp;<i>A</i>&nbsp;:&nbsp;<i>B.</i>
+
+<p>Is there a difference between existence and constructibility?  Constructibility is a fairly clear concept since there are postulates for what can be constructed.  There are no postulates for things that exist but aren&rsquo;t constructed, but the existence of a fourth proportional is a good  candidate for a such a postulate.  
+
+<p>There is a similar situation in modern mathematics with the axiom of choice for set theory.  That axiom says that in certain situations there is at least one set satisfying certain criteria.  It does not construct anything in the usual sense of "construct," and it doesn&rsquo;t even specify a particular set.  Although it is useful in many situations, mathematicians prefer not to use it unless it&rsquo;s necessary.
+
+<p>For this proposition, the assumption of the existence of fourth proportionals is unnecessary as the following alternate proof shows.
+
+<h4>An alternate proof</h4>
+
+Proposition: If <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> then (<i>w</i>&nbsp;+&nbsp;<i>x</i>):<i>x</i>&nbsp;=&nbsp;(<i>y</i>&nbsp;+&nbsp;<i>z</i>):<i>z.</i>
+
+<p>Proof: Suppose <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>  Let <i>n</i> and <i>m</i> be any numbers. Either <i>n</i>&nbsp;<&nbsp;<i>m</i> or not.
+
+<p>Case 1: <i>n</i>&nbsp;<&nbsp;<i>m.</i>  
+<ul>Suppose <i>n</i>(<i>w</i>&nbsp;+&nbsp;<i>x</i>)&nbsp;>=<&nbsp;<i>mx.</i> 
+Subtract <i>nx</i> to get 
+<i>nw</i>&nbsp;>=<&nbsp;(<i>m</i>&nbsp;&ndash;&nbsp;<i>n</i>)<i>x.</i>
+But <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> so
+<i>ny</i>&nbsp;>=<&nbsp;(<i>m</i>&nbsp;&ndash;&nbsp;<i>n</i>)<i>z.</i>
+Add <i>nz</i> to get <i>n</i>(<i>y</i>&nbsp;+&nbsp;<i>z</i>)&nbsp;>=<&nbsp;<i>mz.</i></ul>
+
+<p>Case 2: <i>n</i>  is not less than <i>m.</i>  
+<ul>Then both <i>n</i>(<i>w</i>&nbsp;+&nbsp;<i>x</i>)&nbsp;>&nbsp;<i>mx,</i> and
+<i>n</i>(<i>y</i>&nbsp;+&nbsp;<i>z</i>)&nbsp;>&nbsp;<i>mz.</i></ul> 
+
+<p>In any case <i>n</i>(<i>w</i>&nbsp;+&nbsp;<i>x</i>)&nbsp;>=<&nbsp;<i>mx</i> implies <i>n</i>(<i>y</i>&nbsp;+&nbsp;<i>z</i>)&nbsp;>=<&nbsp;<i>mz.</i> 
+Therefore (<i>w</i>&nbsp;+&nbsp;<i>x</i>):<i>x</i>&nbsp;=&nbsp;(<i>y</i>&nbsp;+&nbsp;<i>z</i>):<i>z.</i>  Q.E.D.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in proposition <a href=propV24.html>V.24</a> and a few in Books VI, X, XII, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

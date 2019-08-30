@@ -1,0 +1,86 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 5</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 5</h1>
+
+<div class="statement">Commensurable magnitudes have to one another the ratio which a number has to a number.</div>
+
+<p>Let <i>A</i> and <i>B</i> be commensurable magnitudes.
+
+<p>I say that <i>A</i> has to <i>B</i> the ratio which a number has to a number.
+
+<p>Since <i>A</i> and <i>B</i> are commensurable, some magnitude <i>C</i> measures them.
+
+<p>As many times as <i>C</i> measures <i>A</i>, let so many units be in <i>D</i>, and, as many times as <i>C</i> measures <i>B</i>, let so many units be in <i>E</i>.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=90>
+<img src="propX5.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.5">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="D0;point;free;-1000,65;0;0">
+<param name=e[4] value="D3;point;free;1000,65;0;0">
+<param name=e[5] value="U1;point;free;1000,0;0;0">
+<param name=e[6] value="U2;point;free;1000,10;0;0">
+
+<param name=e[7] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,120,0;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B1;point;lineSlider;A0,A3,150,0;0">
+<param name=e[11] value="B2;point;lineSlider;A0,A3,200,0;0">
+<param name=e[12] value="B;line;connect;B1,B2;black">
+<param name=e[13] value="C1;point;lineSlider;A0,A3,230,0;0">
+<param name=e[14] value="C2;point;lineSlider;A0,A3,245,0;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+<param name=e[16] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[17] value="D2;point;proportion;C1,C2,A1,A2,U1,U2,D1,D3;0">
+<param name=e[18] value="D;line;connect;D1,D2;black;0;blue">
+<param name=e[19] value="E1;point;lineSlider;D0,D3,150,0;0">
+<param name=e[20] value="E2;point;proportion;C1,C2,B1,B2,U1,U2,E1,D3;0">
+<param name=e[21] value="E;line;connect;E1,E2;black;0;blue">
+</applet></div>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a>
+<br><a href=../bookV/propV7.html#cor>V.7.Cor</a></div>
+<p>Since <i>C</i> measures <i>A</i> according to the units in <i>D</i>, while the unit also measures <i>D</i> according to the units in it, therefore the unit measures the number <i>D</i> the same number of times as the magnitude <i>C</i> measures <i>A</i>. Therefore <i>C</i> is to <i>A</i> as the unit is to <i>D</i>.  Therefore, inversely, <i>A</i> is to <i>C</i> as <i>D</i> is to the unit.
+
+<p>Again, since <i>C</i> measures <i>B</i> according to the units in <i>E</i>, while the unit also measures <i>E</i> according to the units in it, therefore the unit measures <i>E</i> the same number of times as <i>C</i> measures <i>B</i>. Therefore <i>C</i> is to <i>B</i> as the unit is to <i>E</i>.
+
+<div class="just"><a href=../bookV/propV22.html>V.22</a></div>
+<p>But it was also proved that <i>A</i> is to <i>C</i> as <i>D</i> is to the unit, therefore, <i>ex aequali</i>, <i>A</i> is to <i>B</i> as the number <i>D</i> is to <i>E</i>.
+
+<p>Therefore the commensurable magnitudes <i>A</i> and <i>B</i> have to one another the ratio which the number <i>D</i> has to the number <i>E</i>.
+
+<p>Therefore, <i>commensurable magnitudes have to one another the ratio which a number has to a number.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This proposition equates ratios of magnitudes to ratios of numbers.  Both magnitudes and numbers are represented as lines.  To help distinguish them in this edition of the <i>Elements</i>, lines that represent numbers are drawn in blue.
+
+<p>The proposition states that if <i>A</i> = <i>mC</i> and <i>B</i> = <i>nC</i>, then <i>A</i>&nbsp;:&nbsp;<i>B</i> = <i>m</i>&nbsp;:&nbsp;<i>n</i>.
+
+<p>The proof here assumes that numbers are magnitudes, that is to say, the two definitions of proportion <a href=../bookV/defV5.html>V.Def.5</a> and <a href=../bookVII/defVII20.html>VII.Def.20</a> are compatible. 
+
+<p>This proposition is used in <a href=propX8.html>X.8</a>, its contrapositive, and a few propositions after that.
+
+<p>The next proposition is the converse of this one, and the two following that are its contrapositive and the contrapositive of this one.  It is not clear why these four statements are separated into four propositions, but the following four statements are bundled together into one proposition <a href=propX9.html>X.9</a> instead of being separate.  Perhaps originally each group of four was bundled together, but later the first group was separated.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

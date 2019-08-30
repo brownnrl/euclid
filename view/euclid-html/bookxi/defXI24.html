@@ -1,0 +1,80 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book XI, Definition 24</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 24</h1>
+
+<div class="statement">Similar cones and cylinders are those in which the axes and the diameters of the bases are proportional.</div>
+</div>
+
+<h2>Guide</h2>
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=460 height=240 >
+<img src="defXI24.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Def.XI.24">
+<param name=e[1] value="origin;point;free;70,220;0;0">
+<param name=e[2] value="z;point;fixed;70,80,100;0;0">
+<param name=e[3] value="xyplane;plane;perpendicular;origin,z;0;0;0;0">
+<param name=e[4] value="A0;point;planeSlider;xyplane,-1000,120,0">
+<param name=e[5] value="A3;point;planeSlider;xyplane,1000,120,0">
+
+<param name=e[6] value="A;point;lineSlider;A0,A3,70,120,0">
+<param name=e[7] value="B;point;lineSlider;A0,A3,110,120,0">
+<param name=e[8] value="C';point;perpendicular;A,xyplane,A,B;0;0">
+<param name=e[9] value="C;point;lineSlider;A,C',70,160,180">
+<param name=e[10] value="D;point;lineSlider;A0,A3,180,120,0">
+<param name=e[11] value="E;point;lineSlider;A0,A3,230,120,0">
+<param name=e[12] value="F';point;perpendicular;D,xyplane,D,E;0;0">
+<param name=e[13] value="F;point;proportion;A,B,D,E,A,C,D,F'">
+
+<param name=e[14] value="G;point;lineSlider;A0,A3,280,120,0">
+<param name=e[15] value="H;point;lineSlider;A0,A3,310,120,0">
+<param name=e[16] value="K';point;perpendicular;G,xyplane,G,H;0;0">
+<param name=e[17] value="K;point;lineSlider;G,K',370,190,200">
+<param name=e[18] value="L;point;lineSlider;A0,A3,380,120,0">
+<param name=e[19] value="M;point;lineSlider;A0,A3,420,120,0">
+<param name=e[20] value="N';point;perpendicular;L,xyplane,L,M;0;0">
+<param name=e[21] value="N;point;proportion;G,H,L,M,G,K,L,N'">
+
+<param name=e[22] value="B>A;point;extend;B,A,B,A;0">
+<param name=e[23] value="Acirc;circle;radius;A,B,xyplane;0;0;black;0,40,100">
+<param name=e[24] value="Atri;polygon;triangle;B,C,B>A;0;0;black;0,40,100">
+<param name=e[25] value="AC;line;connect;A,C">
+<param name=e[26] value="E>D;point;extend;E,D,E,D;0">
+<param name=e[27] value="Dcirc;circle;radius;D,E,xyplane;0;0;black;90,40,100">
+<param name=e[28] value="Dtri;polygon;triangle;E,F,E>D;0;0;black;90,40,100">
+<param name=e[29] value="DF;line;connect;D,F">
+
+<param name=e[30] value="H>G;point;extend;H,G,H,G;0">
+<param name=e[31] value="H';point;parallelogram;K,G,H;0;0">
+<param name=e[32] value="Grect;polygon;parallelogram;H',H,H>G;0;0;black;180,40,100">
+<param name=e[33] value="GK;line;connect;G,K">
+<param name=e[34] value="Gcirc;circle;radius;G,H,xyplane;0;0;black;180,40,100">
+<param name=e[35] value="Kplane;plane;parallel;K,xyplane;0;0;0;0">
+<param name=e[36] value="Kcirc;circle;radius;K,H',xyplane;0;0;black;180,40,100">
+
+<param name=e[37] value="M>L;point;extend;M,L,M,L;0">
+<param name=e[38] value="M';point;parallelogram;N,L,M;0;0">
+<param name=e[39] value="Lrect;polygon;parallelogram;M',M,M>L;0;0;black;270,40,100">
+<param name=e[40] value="LN;line;connect;L,N">
+<param name=e[41] value="Lcirc;circle;radius;L,M,xyplane;0;0;black;270,40,100">
+<param name=e[42] value="Nplane;plane;parallel;N,xyplane;0;0;0;0">
+<param name=e[43] value="Ncirc;circle;radius;N,M',xyplane;0;0;black;270,40,100">
+</applet></center>
+
+<p>Two cones are similar if the axis of the first is to the axis of the second as the base diameter of the first is to the base diameter of the second.  Likewise, two cylinders are similar if the axis of the first is to the axis of the second as the base diameter of the first is to the base diameter of the second.
+
+<p>It can be shown that an equivalent condition is that the vertex angles of the cones are equal.  Thus, all right-angled cones are similar.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1998");
+</script>
+</BODY></HTML>

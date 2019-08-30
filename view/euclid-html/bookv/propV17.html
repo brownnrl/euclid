@@ -1,0 +1,108 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 17</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 17</h1>
+
+<div class="statement">
+If magnitudes are proportional taken jointly, then they are also proportional taken separately.</div>
+
+<div class="just"><a href=defV14.html>V.Def.14</a></div>
+<p>Let <i>AB, BE, CD,</i> and <i>DF</i> be magnitudes proportional taken jointly, so that <i>AB</i> is to <i>BE</i> as <i>CD</i> is to <i>DF.</i>
+
+<div class="just"><a href=defV14.html>V.Def.15</a></div>
+<p>I say that they are also proportional taken separately, that is, <i>AE</i> is to <i>EB</i> as <i>CF</i> is to <i>DF.</i>
+
+<p>Take equimultiples <i>GH, HK, LM,</i> and <i>MN</i> of <i>AE, EB, CF,</i> and <i>FD,</i> and take other, arbitrary, equimultiples, <i>KO</i> and <i>NP</i> of <i>EB</i> and <i>FD.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=470 height=120>
+<img src=propV17.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.17">
+<param name=align value=above>
+
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,70;0;0">
+<param name=e[4] value="V1;point;free;1000,70;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+
+<param name=e[7] value="A;point;lineSlider;U0,U1,100,30">
+<param name=e[8] value="B;point;lineSlider;U0,U1,220,30">
+<param name=e[9] value="AB;line;connect;A,B;0;0;red">
+<param name=e[10] value="C;point;lineSlider;U0,U1,280,30">
+<param name=e[11] value="D;point;lineSlider;U0,U1,370,30">
+<param name=e[12] value="CD;line;connect;C,D;0;0;green">
+<param name=e[13] value="E;point;lineSlider;A,B,180,30">
+<param name=e[14] value="F;point;proportion;A,B,C,D,A,E,C,D">
+
+<param name=e[15] value="G;point;lineSlider;V0,V1,50,70">
+<param name=e[16] value="G1;point;cutoff;G,V1,A,E;0;lightGray">
+<param name=e[17] value="H;point;cutoff;G1,V1,A,E">
+<param name=e[18] value="H1;point;cutoff;H,V1,E,B;0;lightGray">
+<param name=e[19] value="K;point;cutoff;H1,V1,E,B">
+<param name=e[20] value="K1;point;cutoff;K,V1,E,B;0;lightGray">
+<param name=e[21] value="K2;point;cutoff;K1,V1,E,B;0;lightGray">
+<param name=e[22] value="O;point;cutoff;K2,V1,E,B">
+<param name=e[23] value="GO;line;connect;G,O;0;0;red">
+
+<param name=e[24] value="L;point;lineSlider;W0,W1,100,100">
+<param name=e[25] value="L1;point;cutoff;L,W1,C,F;0;lightGray">
+<param name=e[26] value="M;point;cutoff;L1,W1,C,F">
+<param name=e[27] value="M1;point;cutoff;M,W1,F,D;0;lightGray">
+<param name=e[28] value="N;point;cutoff;M1,W1,F,D">
+<param name=e[29] value="N1;point;cutoff;N,W1,F,D;0;lightGray">
+<param name=e[30] value="N2;point;cutoff;N1,W1,F,D;0;lightGray">
+<param name=e[31] value="P;point;cutoff;N2,W1,F,D">
+<param name=e[32] value="LP;line;connect;L,P;0;0;green">
+</applet></div>
+
+<div class="just"><a href=propV1.html>V.1</a></div>
+<p>Then, since <i>GH</i> is the same multiple of <i>AE</i> that <i>HK</i> is of <i>EB,</i> therefore <i>GH</i> is the same multiple of <i>AE</i> that <i>GK</i> is of <i>AB.</i>
+
+<p>But <i>GH</i> is the same multiple of <i>AE</i> that <i>LM</i> is of <i>CF,</i> therefore <i>GK</i> is the same multiple of <i>AB</i> that <i>LM</i> is of <i>CF.</i>
+
+<div class="just"><a href=propV1.html>V.1</a></div>
+<p>Again, since <i>LM</i> is the same multiple of <i>CF</i> that <i>MN</i> is of <i>FD,</i> therefore <i>LM</i> is the same multiple of <i>CF</i> that <i>LN</i> is of <i>CD.</i>
+
+<p>But <i>LM</i> was the same multiple of <i>CF</i> that <i>GK</i> is of <i>AB,</i> therefore <i>GK</i> is the same multiple of <i>AB</i> that <i>LN</i> is of <i>CD.</i>
+
+<p>Therefore <i>GK</i> and <i>LN</i> are equimultiples of <i>AB</i> and <i>CD.</i>
+
+<div class="just"><a href="propV2.html">V.2</a></div>
+<p>Again, since <i>HK</i> is the same multiple of <i>EB</i> that <i>MN</i> is of <i>FD,</i> and <i>KO</i> is also the same multiple of <i>EB</i> that <i>NP</i> is of <i>FD,</i> therefore the sum <i>HO</i> is also the same multiple of <i>EB</i> that <i>MP</i> is of <i>FD.</i>
+
+<p>And, since <i>AB</i> is to <i>BE</i> as <i>CD</i> is to <i>DF,</i> and of <i>AB</i> and <i>CD</i> equimultiples <i>GK</i> and <i>LN</i> have been taken, and of <i>EB</i> and <i>FD</i> equimultiples <i>HO</i> and <i>MP,</i> therefore, if <i>GK</i> is in excess of <i>HO,</i> and <i>LN</i> is also in excess of <i>MP</i>; if equal, equal; and if less, less.
+
+<p>Let <i>GK</i> be in excess of <i>HO.</i>  Subtract <i>HK</i> from each.  Therefore <i>GH</i> is also in excess of <i>KO.</i>
+
+<p>But we saw that, if <i>GK</i> was in excess of <i>HO,</i> then <i>LN</i> was also in excess of <i>MP,</i> therefore <i>LN</i> is also in excess of <i>MP,</i> and, if <i>MN</i> is subtracted from each, then <i>LM</i> is also in excess of <i>NP,</i> so that, if <i>GH</i> is in excess of <i>KO,</i> then <i>LM</i> is also in excess of <i>NP.</i>
+
+<p>Similarly we can prove that, if <i>GH</i> equals <i>KO,</i> then <i>LM</i> also equals <i>NP</i>; and if less, less.
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>And <i>GH</i> and <i>LM</i> are equimultiples of <i>AE</i> and <i>CF,</i> while <i>KO</i> and <i>NP</i> are other, arbitrary, equimultiples of <i>EB</i> and <i>FD,</i> therefore <i>AE</i> is to <i>EB</i> as <i>CF</i> is to <i>FD.</i>
+
+<p>Therefore, <i>if magnitudes are proportional taken jointly, then they are also proportional taken separately.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The proposition says  that if (<i>w</i>&nbsp;+&nbsp;<i>x</i>)&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;(<i>y</i>&nbsp;+&nbsp;<i>z</i>)&nbsp;:&nbsp;<i>z,</i> then <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>  Two of the magnitudes <i>w</i> and <i>x</i> can be of one kind while the other two <i>y</i> and <i>z</i> are of another kind.
+<p>The converse is given in the next proposition.
+<p>This proposition is used in the next two propositions and a couple in Book X.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

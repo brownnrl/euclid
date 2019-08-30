@@ -1,0 +1,272 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 4</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 4</h1>
+
+<div class="statement">Given as many ratios as we please in least numbers, to find numbers in continued proportion which are the least in the given ratios.</div>
+
+<p>Let the given ratios in least numbers be that of <i>A</i> to <i>B,</i> that of <i>C</i> to <i>D,</i> and that of <i>E</i> to <i>F.</i>
+
+<p>It is required to find numbers in continued proportion which are the least that are in the ratio of <i>A</i> to <i>B,</i> in the ratio of <i>C</i> to <i>D,</i> and in the ratio of <i>E</i> to <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=400 height=280 >
+<img src="propVIII4a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.4">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="C0;point;free;-1000,75;0;0">
+<param name=e[4] value="C3;point;free;1000,75;0;0">
+<param name=e[5] value="E0;point;free;-1000,110;0;0">
+<param name=e[6] value="E3;point;free;1000,110;0;0">
+<param name=e[7] value="N0;point;free;-1000,145;0;0">
+<param name=e[8] value="N3;point;free;1000,145;0;0">
+<param name=e[9] value="O0;point;free;-1000,180;0;0">
+<param name=e[10] value="O3;point;free;1000,180;0;0">
+<param name=e[11] value="M0;point;free;-1000,215;0;0">
+<param name=e[12] value="M3;point;free;1000,215;0;0">
+<param name=e[13] value="P0;point;free;-1000,250;0;0">
+<param name=e[14] value="P3;point;free;1000,250;0;0">
+<param name=e[15] value="U0;point;free;1000,0;0;0">
+<param name=e[16] value="U1;point;free;1000,20;0;0">
+
+<param name=e[17] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[18] value="A2;point;lineSlider;A0,A3,80,0;0">
+<param name=e[19] value="A;line;connect;A1,A2;black">
+<param name=e[20] value="B1;point;lineSlider;A0,A3,200,0;0">
+<param name=e[21] value="B2;point;lineSlider;A0,A3,240,0;0">
+<param name=e[22] value="B;line;connect;B1,B2;black">
+<param name=e[23] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[24] value="C2;point;lineSlider;C0,C3,90,0;0">
+<param name=e[25] value="C;line;connect;C1,C2;black">
+<param name=e[26] value="D1;point;lineSlider;C0,C3,200,0;0">
+<param name=e[27] value="D2;point;lineSlider;C0,C3,270,0;0">
+<param name=e[28] value="D;line;connect;D1,D2;black">
+<param name=e[29] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[30] value="E2;point;lineSlider;E0,E3,100,0;0">
+<param name=e[31] value="E;line;connect;E1,E2;black">
+<param name=e[32] value="F1;point;lineSlider;E0,E3,200,0;0">
+<param name=e[33] value="F2;point;lineSlider;E0,E3,290,0;0">
+<param name=e[34] value="F;line;connect;F1,F2;black">
+
+<param name=e[35] value="G1;point;lineSlider;N0,N3,200,0;0">
+<param name=e[36] value="G2;point;proportion;U0,U1,B1,B2,C1,C2,G1,N3;0">
+<param name=e[37] value="G;line;connect;G1,G2;black">
+<param name=e[38] value="H1;point;lineSlider;O0,O3,200,0;0">
+<param name=e[39] value="H2;point;proportion;B1,B2,G1,G2,A1,A2,H1,O3;0">
+<param name=e[40] value="H;line;connect;H1,H2;black">
+<param name=e[41] value="K1;point;lineSlider;M0,M3,200,0;0">
+<param name=e[42] value="K2;point;proportion;C1,C2,G1,G2,D1,D2,K1,M3;0">
+<param name=e[43] value="K;line;connect;K1,K2;black">
+<param name=e[44] value="L1;point;lineSlider;P0,P3,200,0;0">
+<param name=e[45] value="L2;point;proportion;E1,E2,K1,K2,F1,F2,L1,P3;0">
+<param name=e[46] value="L;line;connect;L1,L2;black">
+
+<param name=e[47] value="U2;point;free;1000,32;0;0">
+<param name=e[48] value="N1;point;lineSlider;N0,N3,30,0;0">
+<param name=e[49] value="N2;point;proportion;U0,U1,U1,U2,G1,G2,N1,N3;0">
+<param name=e[50] value="N;line;connect;N1,N2;black">
+<param name=e[51] value="O1;point;lineSlider;O0,O3,30,0;0">
+<param name=e[52] value="O2;point;proportion;U0,U1,U1,U2,H1,H2,O1,O3;0">
+<param name=e[53] value="O;line;connect;O1,O2;black">
+<param name=e[54] value="M1;point;lineSlider;M0,M3,30,0;0">
+<param name=e[55] value="M2;point;proportion;U0,U1,U1,U2,K1,K2,M1,M3;0">
+<param name=e[56] value="M;line;connect;M1,M2;black">
+<param name=e[57] value="P1;point;lineSlider;P0,P3,30,0;0">
+<param name=e[58] value="P2;point;proportion;U0,U1,U1,U2,L1,L2,P1,P3;0">
+<param name=e[59] value="P;line;connect;P1,P2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/propVII34.html>VII.34</a></div>
+<p>Take <i>G,</i> the least number measured by <i>B</i> and <i>C.</i>
+
+<p>Let <i>A</i> measure <i>H</i> as many times as <i>B</i> measures <i>G,</i> and let <i>D</i> measure <i>K</i> as many times as <i>C</i> measures <i>G.</i>
+
+<p>Now <i>E</i> either measures or does not measure <i>K.</i>
+
+<p>First, let it measure it.  Let <i>K</i> measure <i>L</i> as many times as <i>E</i> measures <i>K.</i>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a>
+<br><a href=../bookVII/propVII13.html>VII.13</a></div>
+<p >Now, since <i>A</i> measures <i>H</i> the same number of times that <i>B</i> measures <i>G,</i> therefore <i>A</i> is to <i>B</i> as <i>H</i> is to <i>G.</i>
+
+<p>For the same reason <i>C</i> is to <i>D</i> as <i>G</i> is to <i>K,</i> and <i>E</i> is to <i>F</i> as <i>K</i> is to <i>L.</i> Therefore <i>H, G, K,</i> and <i>L</i> are continuously proportional in the ratio of <i>A</i> to <i>B,</i> in the ratio of <i>C</i> to <i>D,</i> and in the ratio of <i>E</i> to <i>F.</i>
+
+<p>I say next that they are also the least that have this property.
+
+<p>If <i>H, G, K,</i> and <i>L</i> are not the least numbers continuously proportional in the ratios of <i>A</i> to <i>B,</i> of <i>C</i> to <i>D,</i> and of <i>E</i> to <i>F,</i> let them be <i>N, O, M,</i> and <i>P.</i>
+
+<div class="just"><a href=../bookVII/propVII20.html>VII.20</a></div>
+<p>Then since <i>A</i> is to <i>B</i> as <i>N</i> is to <i>O,</i> while <i>A</i> and <i>B</i> are least, and the least numbers measure those which have the same ratio the same number of times, the greater the greater and the less the less, that is, the antecedent the antecedent and the consequent the consequent, therefore <i>B</i> measures <i>O.</i>
+
+<div class="just"><a href=../bookVII/propVII35.html>VII.35</a></div>
+<p>For the same reason <i>C</i> also measures <i>O.</i> Therefore <i>B</i> and <i>C</i> measure <i>O.</i> Therefore the least number measured by <i>B</i> and <i>C</i> also measures <i>O.</i>
+
+<p>But <i>G</i> is the least number measured by <i>B</i> and <i>C,</i> therefore <i>G</i> measures <i>O,</i> the greater the less, which is impossible. Therefore there are no numbers less than <i>H, G, K,</i> and <i>L</i> which are continuously in the ratio of <i>A</i> to <i>B,</i> of <i>C</i> to <i>D,</i> and of <i>E</i> to <i>F.</i>
+
+<p>Next, let <i>E</i> not measure <i>K.</i>
+
+<p>Take <i>M,</i> the least number measured by <i>E</i> and <i>K.</i>  Let <i>H</i> and <i>G</i> measure <i>N</i> and <i>O</i> as many times as <i>K</i> measures <i>M,</i> respectively, and let <i>F</i> measure <i>P</i> as many times as <i>E</i> measures <i>M.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=420 height=320 >
+<img src="propVIII4b.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.4">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="G0;point;free;-1000,110;0;0">
+<param name=e[6] value="G3;point;free;1000,110;0;0">
+<param name=e[7] value="K0;point;free;-1000,145;0;0">
+<param name=e[8] value="K3;point;free;1000,145;0;0">
+<param name=e[9] value="M0;point;free;-1000,180;0;0">
+<param name=e[10] value="M3;point;free;1000,180;0;0">
+<param name=e[11] value="N0;point;free;-1000,215;0;0">
+<param name=e[12] value="N3;point;free;1000,215;0;0">
+<param name=e[13] value="O0;point;free;-1000,250;0;0">
+<param name=e[14] value="O3;point;free;1000,250;0;0">
+<param name=e[15] value="P0;point;free;-1000,285;0;0">
+<param name=e[16] value="P3;point;free;1000,285;0;0">
+<param name=e[17] value="U0;point;free;1000,0;0;0">
+<param name=e[18] value="U1;point;free;1000,25;0;0">
+
+<param name=e[19] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[20] value="A2;point;lineSlider;A0,A3,70,0;0">
+<param name=e[21] value="A;line;connect;A1,A2;black">
+<param name=e[22] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[23] value="B2;point;lineSlider;B0,B3,80,0;0">
+<param name=e[24] value="B;line;connect;B1,B2;black">
+<param name=e[25] value="C1;point;lineSlider;A0,A3,130,0;0">
+<param name=e[26] value="C2;point;lineSlider;A0,A3,175,0;0">
+<param name=e[27] value="C;line;connect;C1,C2;black">
+<param name=e[28] value="D1;point;lineSlider;B0,B3,130,0;0">
+<param name=e[29] value="D2;point;lineSlider;B0,B3,180,0;0">
+<param name=e[30] value="D;line;connect;D1,D2;black">
+<param name=e[31] value="E1;point;lineSlider;A0,A3,260,0;0">
+<param name=e[32] value="E2;point;lineSlider;A0,A3,315,0;0">
+<param name=e[33] value="E;line;connect;E1,E2;black">
+<param name=e[34] value="F1;point;lineSlider;B0,B3,260,0;0">
+<param name=e[35] value="F2;point;lineSlider;B0,B3,320,0;0">
+<param name=e[36] value="F;line;connect;F1,F2;black">
+
+<param name=e[37] value="G1;point;lineSlider;G0,G3,30,0;0">
+<param name=e[38] value="G2;point;proportion;U0,U1,B1,B2,C1,C2,G1,G3;0">
+<param name=e[39] value="G;line;connect;G1,G2;black">
+<param name=e[40] value="H1;point;lineSlider;G0,G3,260,0;0">
+<param name=e[41] value="H2;point;proportion;B1,B2,G1,G2,A1,A2,H1,G3;0">
+<param name=e[42] value="H;line;connect;H1,H2;black">
+<param name=e[43] value="K1;point;lineSlider;K0,K3,130,0;0">
+<param name=e[44] value="K2;point;proportion;C1,C2,G1,G2,D1,D2,K1,K3;0">
+<param name=e[45] value="K;line;connect;K1,K2;black">
+
+<param name=e[46] value="U2;point;free;1000,40;0;0">
+<param name=e[47] value="M1;point;lineSlider;M0,M3,30,0;0">
+<param name=e[48] value="M2;point;proportion;U0,U2,K1,K2,E1,E2,M1,M3;0">
+<param name=e[49] value="M;line;connect;M1,M2;black">
+<param name=e[50] value="N1;point;lineSlider;N0,N3,30,0;0">
+<param name=e[51] value="N2;point;proportion;K1,K2,M1,M2,H1,H2,N1,N3;0">
+<param name=e[52] value="N;line;connect;N1,N2;black">
+<param name=e[53] value="O1;point;lineSlider;O0,O3,30,0;0">
+<param name=e[54] value="O2;point;proportion;K1,K2,M1,M2,G1,G2,O1,O3;0">
+<param name=e[55] value="O;line;connect;O1,O2;black">
+<param name=e[56] value="P1;point;lineSlider;P0,P3,30,0;0">
+<param name=e[57] value="P2;point;proportion;E1,E2,M1,M2,F1,F2,P1,P3;0">
+<param name=e[58] value="P;line;connect;P1,P2;black">
+
+<param name=e[59] value="Q1;point;lineSlider;M0,M3,260,0;0">
+<param name=e[60] value="Q2;point;proportion;U0,U2,U0,U1,M1,M2,Q1,M3;0">
+<param name=e[61] value="Q;line;connect;Q1,Q2;black">
+<param name=e[62] value="R1;point;lineSlider;O0,O3,260,0;0">
+<param name=e[63] value="R2;point;proportion;U0,U2,U0,U1,O1,O2,R1,O3;0">
+<param name=e[64] value="R;line;connect;R1,R2;black">
+<param name=e[65] value="S1;point;lineSlider;N0,N3,260,0;0">
+<param name=e[66] value="S2;point;proportion;U0,U2,U0,U1,N1,N2,S1,N3;0">
+<param name=e[67] value="S;line;connect;S1,S2;black">
+<param name=e[68] value="T1;point;lineSlider;P0,P3,260,0;0">
+<param name=e[69] value="T2;point;proportion;U0,U2,U0,U1,P1,P2,T1,P3;0">
+<param name=e[70] value="T;line;connect;T1,T2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/propVII13.html>VII.13</a>
+<br><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Since <i>H</i> measures <i>N</i> the same number of times that <i>G</i> measures <i>O,</i> therefore <i>H</i> is to <i>G</i> as <i>N</i> is to <i>O.</i>  But <i>H</i> is to <i>G</i> as <i>A</i> is to <i>B,</i> therefore <i>A</i> is to <i>B</i> as is <i>N</i> is to <i>O.</i> For the same reason <i>C</i> is to <i>D</i> as is <i>O</i> is to <i>M.</i>
+
+<div class="just"><a href=../bookVII/propVII13.html>VII.13</a>
+<br><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Again, since <i>E</i> measures <i>M</i> the same number of times that <i>F</i> measures <i>P,</i> therefore <i>E</i> is to <i>F</i> as <i>M</i> is to <i>P.</i> Therefore <i>N, O, M,</i> and <i>P</i> are continuously proportional in the ratios of <i>A</i> to <i>B,</i> of <i>C</i> to <i>D,</i> and of <i>E</i> to <i>F.</i>
+
+<p>I say next that they are also the least that are in the ratios <i>A, B, C, D, E,</i> and <i>F.</i>
+
+<p>If not, there are numbers less than <i>N, O, M,</i> and <i>P</i> continuously proportional in the ratios <i>A, B, C, D, E,</i> and <i>F.</i> Let them be <i>Q, R, S,</i> and <i>T.</i>
+
+<div class="just"><a href=../bookVII/propVII20.html>VII.20</a></div>
+<p>Now since <i>Q</i> is to <i>R</i> as <i>A</i> is to <i>B,</i> while <i>A</i> and <i>B</i> are least, and the least numbers measure those which have the same ratio with them the same number of times, the antecedent the antecedent and the consequent the consequent, therefore <i>B</i> measures <i>R.</i>  For the same reason <i>C</i> also measures <i>R,</i> therefore <i>B</i> and <i>C</i> measure <i>R.</i>
+
+<div class="just"><a href=../bookVII/propVII35.html>VII.35</a></div>
+<p>Therefore the least number measured by <i>B</i> and <i>C</i> also measures <i>R.</i> But <i>G</i> is the least number measured by <i>B</i> and <i>C,</i> therefore <i>G</i> measures <i>R.</i>
+
+<div class="just"><a href=../bookVII/propVII13.html>VII.13</a></div>
+<p>And <i>G</i> is to <i>R</i> as <i>K</i> is to <i>S,</i>  therefore <i>K</i> also measures <i>S.</i>
+
+<p>But <i>E</i> also measures <i>S.</i> Therefore <i>E</i> and <i>K</i> measure <i>S.</i>
+
+<p>Therefore the least number measured by <i>E</i> and <i>K</i> also measures <i>S.</i>  But <i>M</i> is the least number measured by <i>E</i> and <i>K,</i> therefore <i>M</i> measures <i>S,</i> the greater the less, which is impossible.
+<div class="just"><a href=../bookVII/propVII35.html>VII.35</a></div>
+
+<p>Therefore there are no numbers less than <i>N, O, M,</i> and <i>P</i> continuously proportional in the ratios of <i>A</i> to <i>B,</i> of <i>C</i> to <i>D,</i> and of <i>E</i> to <i>F.</i> Therefore <i>N, O, M,</i> and <i>P</i> are the least numbers continuously proportional in the ratios <i>A, B, C, D, E,</i> and <i>F.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This is a generalization of <a href="propVIII2.html">VIII.2</a> to a more general concept of continued proportion.  In this proposition we consider continued proportions having ratios that aren&rsquo;t necessarily constant.  These, perhaps, should be called continued ratios.  For example, the continued ratio 5&nbsp;:&nbsp;10&nbsp;:&nbsp;20 has a constant ratio of 1&nbsp;:&nbsp;2, but the continued ratio 5&nbsp;:&nbsp;10&nbsp;:&nbsp;30 does not; its first ratio is 1&nbsp;:&nbsp;2 while its second ratio is 1&nbsp;:&nbsp;3.  Note that the continued ratio 5&nbsp;:&nbsp;10&nbsp;:&nbsp;30 is not the least with those given ratios since 1&nbsp;:&nbsp;2&nbsp;:&nbsp;6 is smaller with the same ratios of 1&nbsp;:&nbsp;2 and 1&nbsp;:&nbsp;3.
+
+<p>The problem here is to construct the smallest continued ratio having the specified ratios.
+
+<p>An examination of the proof shows that Euclid has a general process to attach two continued proportions into one long one with with the same ratios. Take, for example, the problem of placing the continued ratio 3&nbsp;:&nbsp;7&nbsp;:&nbsp;2&nbsp;:&nbsp;6 in front of the continued ratio 10&nbsp;:&nbsp;4&nbsp;:&nbsp;5 to make a seven-term continued ratio where the first four terms have the ratio 3&nbsp;:&nbsp;7&nbsp;:&nbsp;2&nbsp;:&nbsp;6 and the last three terms have the ratio 10&nbsp;:&nbsp;4&nbsp;:&nbsp;5.
+The resulting seven-term ratio should be least with the given ratios.  The problem is that the last term of the first ratio, 6, does not equal the first term of the second ratio, 10.  The solution is to increase the numbers in each ratio to match these numbers.  Since 30&nbsp;=&nbsp;LCM(6,&nbsp;10),
+that can be done by multiplying each of the terms of the first ratio by 5 and each of the terms of the second ratio by 3.  The resulting ratios, 15&nbsp;:&nbsp;35&nbsp;:&nbsp;10&nbsp;:&nbsp;30 and 30&nbsp;:&nbsp;12&nbsp;:&nbsp;15 can then be merged into the desired ratio 15&nbsp;:&nbsp;35&nbsp;:&nbsp;10&nbsp;:&nbsp;30&nbsp;:&nbsp;12&nbsp;:&nbsp;15.
+
+<h4>Outline of the proof</h4>
+
+We start with three given ratios <i>a</i>&nbsp;:&nbsp;<i>b, c</i>&nbsp;:&nbsp;<i>d,</i> and <i>e</i>&nbsp;:&nbsp;<i>f,</i> all in lowest terms.
+First, the two ratios <i>a</i>&nbsp;:&nbsp;<i>b</i> and <i>c</i>&nbsp;:&nbsp;<i>d</i> are merged into a three-term ratio
+<i>h</i>&nbsp;:&nbsp;<i>g</i>&nbsp;:&nbsp;<i>k</i> so that <i>h</i>&nbsp;:&nbsp;<i>g</i>&nbsp;=&nbsp;<i>a</i>&nbsp;:&nbsp;<i>b</i> and
+<i>g</i>&nbsp;:&nbsp;<i>k</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d.</i>  These are defined equationally as
+<i>g</i>&nbsp;=&nbsp;LCM(<i>b,&nbsp;c</i>),
+<i>h</i>&nbsp;=&nbsp;(<i>g/b</i>)<i>a,</i> and
+<i>k</i>&nbsp;=&nbsp;(<i>g/c</i>)<i>d.</i> Then <i>h</i>&nbsp;:&nbsp;<i>g</i>&nbsp;:&nbsp;<i>k</i> has the proper ratios. 
+
+<p>Next, the three-term ratio <i>h</i>&nbsp;:&nbsp;<i>g</i>&nbsp;:&nbsp;<i>k</i> is merged with the ratio <i>e</i>&nbsp;:&nbsp;<i>f</i> to get a four-term ratio <i>n</i>&nbsp;:&nbsp;<i>o</i>&nbsp;:&nbsp;<i>m</i>&nbsp;:&nbsp;<i>p</i> so that
+<i>n</i>&nbsp;:&nbsp;<i>o</i>&nbsp;=&nbsp;<i>a</i>&nbsp;:&nbsp;<i>b,</i>
+<i>o</i>&nbsp;:&nbsp;<i>m</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d,</i> and
+<i>m</i>&nbsp;:&nbsp;<i>p</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d.</i>  These are defined equationally as
+<i>m</i>&nbsp;=&nbsp;LCM(<i>e,&nbsp;k</i>),
+<i>n</i>&nbsp;=&nbsp;(<i>m/k</i>)<i>h,</i> and
+<i>o</i>&nbsp;=&nbsp;(<i>m/k</i>)<i>g,</i> and
+<i>p</i>&nbsp;=&nbsp;(<i>m/e</i>)<i>f.</i>  Again, <i>n</i>&nbsp;:&nbsp;<i>o</i>&nbsp;:&nbsp;<i>m</i>&nbsp;:&nbsp;<i>p</i> has the proper ratios.
+
+<p>The bulk of the proof consists of showing that the resulting ratio <i>n</i>&nbsp;:&nbsp;<i>o</i>&nbsp;:&nbsp;<i>m</i>&nbsp;:&nbsp;<i>p</i> is the least with the given ratios.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next one and in proposition <a href=../bookX/propX12.html>X.12</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

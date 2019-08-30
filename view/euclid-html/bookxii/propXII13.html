@@ -1,0 +1,103 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 13</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 13</h1>
+
+<div class="statement">
+If a cylinder is cut by a plane parallel to its opposite planes, then the cylinder is to the cylinder as the axis is to the axis.</div>
+
+<p>Let the cylinder <i>AD</i> be cut by the plane <i>GH</i> parallel to the opposite planes <i>AB</i> and <i>CD.</i> Let the plane <i>GH</i> meet the axis at the point <i>K.</i>
+<p>I say that the cylinder <i>BG</i> is to the cylinder <i>GD</i> as the axis <i>EK</i> is to the axis <i>KF.</i>
+
+<p>Produce the axis <i>EF</i> in both directions to the points <i>L</i> and <i>M.</i> Set out any number whatever of axes <i>EN</i> and <i>NL</i> equal to the axis <i>EK,</i> and any number whatever <i>FO</i> and <i>OM</i> equal to <i>FK.</i>  Construct the cylinder <i>PW</i> on the axis <i>LM</i> with the circles <i>PQ</i> and <i>VW</i> as bases.
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=540 height=210 >
+<img src="propXII13.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.13">
+<param name=align value=above>
+<param name=e[1] value="E0;point;fixed;-10000,110,0">
+<param name=e[2] value="E3;point;fixed;10000,110,0">
+<param name=e[3] value="E;point;lineSlider;E0,E3,170,0,0">
+<param name=e[4] value="U0;point;fixed;-10000,110,-4000">
+<param name=e[5] value="K;point;lineSlider;U0,E,240,0,0">
+<param name=e[6] value="F;point;lineSlider;U0,E,340,0,0">
+<param name=e[7] value="Eplane;plane;perpendicular;E,U0;0;0;0;0">
+<param name=e[8] value="Kplane;plane;perpendicular;K,U0;0;0;0;0">
+<param name=e[9] value="Fplane;plane;perpendicular;F,U0;0;0;0;0">
+<param name=e[10] value="A';point;perpendicular;E,E0">
+<param name=e[11] value="A;point;lineSlider;E,A',0,40">
+<param name=e[12] value="B;point;extend;A,E,A,E">
+<param name=e[13] value="C;point;parallelogram;F,E,A">
+<param name=e[14] value="D;point;parallelogram;F,E,B">
+<param name=e[15] value="G;point;parallelogram;K,E,A">
+<param name=e[16] value="H;point;parallelogram;K,E,B">
+<param name=e[17] value="Ecirc;circle;radius;E,A,Eplane;0;0;black;160,60,100">
+<param name=e[18] value="ABHG;polygon;quadrilateral;A,B,H,G;0;0;0;160,60,100">
+<param name=e[19] value="Kcirc;circle;radius;K,E,A,Kplane;0;0;black;20,75,90">
+<param name=e[20] value="GHDC;polygon;quadrilateral;G,H,D,C;0;0;0;20,75,90">
+<param name=e[21] value="Fcirc;circle;radius;F,E,A,Fplane;0;0;black;20,60,100">
+
+<param name=e[22] value="N;point;extend;K,E,K,E">
+<param name=e[23] value="L;point;extend;K,N,K,E">
+<param name=e[24] value="O;point;extend;K,F,K,F">
+<param name=e[25] value="M;point;extend;K,O,K,F">
+<param name=e[26] value="LM;line;connect;L,M">
+<param name=e[27] value="Nplane;plane;perpendicular;N,U0;0;0;0;0">
+<param name=e[28] value="Lplane;plane;perpendicular;L,U0;0;0;0;0">
+<param name=e[29] value="Oplane;plane;perpendicular;O,U0;0;0;0;0">
+<param name=e[30] value="Mplane;plane;perpendicular;M,U0;0;0;0;0">
+<param name=e[31] value="Ncirc;circle;radius;N,E,A,Nplane;0;0;black;0">
+<param name=e[32] value="Lcirc;circle;radius;L,E,A,Lplane;0;0;black;0">
+<param name=e[33] value="Ocirc;circle;radius;O,E,A,Oplane;0;0;black;0">
+<param name=e[34] value="Mcirc;circle;radius;M,E,A,Mplane;0;0;black;0">
+<param name=e[35] value="P;point;parallelogram;L,E,A">
+<param name=e[36] value="Q;point;parallelogram;L,E,B">
+<param name=e[37] value="R;point;parallelogram;N,E,A">
+<param name=e[38] value="S;point;parallelogram;N,E,B">
+<param name=e[39] value="T;point;parallelogram;O,E,A">
+<param name=e[40] value="U;point;parallelogram;O,E,B">
+<param name=e[41] value="V;point;parallelogram;M,E,A">
+<param name=e[42] value="W;point;parallelogram;M,E,B">
+<param name=e[43] value="PV;line;connect;P,V">
+<param name=e[44] value="QW;line;connect;Q,W">
+</applet></center>
+
+<p>Carry the planes  through the points <i>N</i> and <i>O</i> parallel to <i>AB</i> and <i>CD</i> and to the bases of the cylinder <i>PW,</i> and let them produce the circles <i>RS</i> and <i>TU</i> about the centers <i>N, O.</i>
+
+<div class="just"><a href="propXII11.html">XII.11</a></div>
+<p>Then, since the axes <i>LN, NE,</i> and <i>EK</i> equal one another, therefore the cylinders <i>QR, RB,</i> and <i>BG</i> are to one another as their bases.
+
+<p>But the bases are equal, therefore the cylinders <i>QR, RB,</i> and <i>BG</i> also equal one another.
+
+<p>Since then the axes <i>LN, NE,</i> and <i>EK</i> equal one another, and the cylinders <i>QR, RB,</i> and <i>BG</i> also equal one another, and the multitude of the former equals the multitude of the latter, therefore, the multiple the axis <i>KL</i> is of the axis <i>EK</i> is the same multiple the cylinder <i>QG</i> is of the cylinder <i>GB.</i>
+
+<p>For the same reason, the multiple the axis <i>MK</i> is of the axis <i>KF</i> is the same multiple the cylinder <i>WG</i> is of the cylinder <i>GD.</i>
+
+<div class="just"><a href=../bookV/defV5.html>V.Def.5</a></div>
+<p>And, if the axis <i>KL</i> equals the axis <i>KM,</i> then the cylinder <i>QG</i> also equals the cylinder <i>GW</i>; if the axis is greater than the axis, then the cylinder is also greater than the cylinder; and if less, less. Thus, there being four magnitudes, the axes <i>EK</i> and <i>KF</i> and the cylinders <i>BG</i> and <i>GD,</i> there have been taken equimultiples of the axis <i>EK</i> and of the cylinder <i>BG,</i> namely the axis <i>LK</i> and the cylinder <i>QG,</i> and equimultiples of the axis <i>KF</i> and of the cylinder <i>GD,</i> namely the axis <i>KM</i> and the cylinder <i>GW,</i> and it has been proved that, if the axis <i>KL</i> is in excess of the axis <i>KM,</i> the cylinder <i>QG</i> is also in excess of the cylinder <i>GW</i>; if equal, equal; and if less, less. Therefore the axis <i>EK</i> is to the axis <i>KF</i> as the cylinder <i>BG</i> is to the cylinder <i>GD.</i>
+
+<p>Therefore, <i>if a cylinder is cut by a plane parallel to its opposite planes, then the cylinder is to the cylinder as the axis is to the axis.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<h4>Use of this proposition</h4>
+
+This proposition is preliminary to the next in which it is shown that cylinders on equal bases are proportional to their heights.  It is also used in the proposition following that.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

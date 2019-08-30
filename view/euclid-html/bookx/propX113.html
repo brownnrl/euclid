@@ -1,0 +1,122 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 113</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 113</h1>
+
+<div class="statement">The square on a rational straight line, if applied to an apotome, produces as breadth the binomial straight line the terms of which are commensurable with the terms of the apotome and in the same ratio; and further the binomial so arising has the same order as the apotome.</div>
+
+<p>Let <i>A</i> be a rational straight line and <i>BD</i> an apotome, and let the rectangle <i>BD</i> by <i>KH</i> equal the square on <i>A</i>, so that the square on the rational straight line <i>A</i> when applied to the apotome <i>BD</i> produces <i>KH</i> as breadth.
+
+<p>I say that <i>KH</i> is a binomial straight line the terms of which are commensurable with the terms of <i>BD</i> and in the same ratio, and further, <i>KH</i> has the same order as <i>BD</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=175 height=230>
+<img src="propX113.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.113">
+<param name=align value=right>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="C0;point;free;65,-1000;0;0">
+<param name=e[4] value="C3;point;free;65,1000;0;0">
+<param name=e[5] value="K0;point;free;100,-1000;0;0">
+<param name=e[6] value="K3;point;free;100,1000;0;0">
+<param name=e[7] value="G0;point;free;135,-1000;0;0">
+<param name=e[8] value="G3;point;free;135,1000;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,0,60;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,0,150;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B;point;lineSlider;C0,C3,0,205">
+<param name=e[13] value="D;point;lineSlider;C0,C3,0,140">
+<param name=e[14] value="C;point;lineSlider;C0,C3,0,30">
+<param name=e[15] value="BC;line;connect;B,C">
+<param name=e[16] value="K;point;lineSlider;K0,K3,0,30">
+<param name=e[17] value="H;point;proportion;B,D,A1,A2,A1,A2,K,K3">
+<param name=e[18] value="KH;line;connect;K,H">
+<param name=e[19] value="G1;point;lineSlider;G0,G3,0,60;0">
+<param name=e[20] value="G2;point;proportion;B,C,A1,A2,A1,A2,G1,G3;0">
+<param name=e[21] value="G;line;connect;G1,G2;black">
+<param name=e[22] value="E;point;cutoff;K,K3,G1,G2">
+<param name=e[23] value="Q;point;extend;E,H,H,K;0;0">
+<param name=e[24] value="F;point;proportion;K,Q,K,H,E,H,H,K">
+</applet></div>
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>Let <i>DC</i> be the annex to <i>BD</i>. Then <i>BC</i> and <i>CD</i> are rational straight lines commensurable in square only.  Let the rectangle <i>BC</i> by <i>G</i> also equal the square on <i>A</i>.
+
+<div class="just"><a href=propX20.html>X.20</a></div>
+<p>But the square on <i>A</i> is rational, therefore the rectangle <i>BC</i> by <i>G</i> is also rational. And it has been applied to the rational straight line <i>BC</i>, therefore <i>G</i> is rational and commensurable in length with <i>BC</i>.
+
+<div class="just"><a href=../bookVI/propVI16.html>VI.16</a>
+<br><a href=../bookV/defV5.html>V.Def.5</a></div>
+<p>Since now the rectangle <i>BC</i> by <i>G</i> equals the rectangle <i>BD</i> by <i>KH</i>, therefore, <i>CB</i> is to <i>BD</i> as <i>KH</i> is to <i>G</i>. But <i>BC</i> is greater than <i>BD</i>, therefore <i>KH</i> is also greater than <i>G</i>.
+
+<p>But <i>BC</i> is greater than <i>BD</i>, therefore <i>KH</i> is also greater than <i>G</i>.
+
+<p>Make <i>KE</i> equal to <i>G</i>. Then <i>KE</i> is commensurable in length with <i>BC</i>.
+
+<div class="just"><a href=../bookV/propV19.html#cor>V.19,Cor.</a></div>
+<p>Since <i>CB</i> is to <i>BD</i> as <i>HK</i> is to <i>KE</i>, therefore, in conversion, <i>BC</i> is to <i>CD</i> as <i>KH</i> is to <i>HE</i>.
+
+<div class="just"><a href=../bookV/propV19.html>V.19</a></div>
+<p>Let it be contrived that <i>KH</i> is to <i>HE</i> as <i>HF</i> is to <i>FE</i>. Then the remainder <i>KF</i> is to <i>FH</i> as <i>KH</i> is to <i>HE</i>, that is <i>BC</i> is to <i>CD</i>.
+
+<div class="just"><a href=../bookV/propV11.html>V.11</a></div>
+<p>But <i>BC</i> and <i>CD</i> are commensurable in square only, therefore <i>KF</i> and <i>FH</i> are also commensurable in square only.
+
+<div class="just"><a href=../bookV/propV11.html>V.11</a>
+<br><a href=../bookV/defV8.html>V.Def.9</a></div>
+<p>Since <i>KH</i> is to <i>HE</i> as <i>KF</i> is to <i>FH</i>, while <i>KH</i> is to <i>HE</i> as <i>HF</i> is to <i>FE</i>, therefore <i>KF</i> is to <i>FH</i> as <i>HF</i> is to <i>FE</i>, so that also the first is to the third as the square on the first to the square on the second.  Therefore <i>KF</i> is to <i>FE</i> as the square on <i>KF</i> is to the square on <i>FH</i>.
+
+<div class="just"><a href=propX11.html>X.11</a>
+<br><a href=propX15.html>X.15</a></div>
+<p>But the square on <i>KF</i> is commensurable with the square on <i>FH</i>, for <i>KF</i> and <i>FH</i> are commensurable in square, therefore <i>KF</i> is also commensurable in length with <i>FE</i>,  so that <i>KF</i> is also commensurable in length with <i>KE</i>.
+
+<div class="just"><a href=propX12.html>X.12</a></div>
+<p>But <i>KE</i> is rational and commensurable in length with <i>BC</i>, therefore <i>KF</i> is also rational and commensurable in length with <i>BC</i>.
+
+<div class="just"><a href=../bookV/propV16.html>V.16</a></div>
+<p>Since <i>BC</i> is to <i>CD</i> as <i>KF</i> is to <i>FH</i>, alternately, <i>BC</i> is to <i>KF</i> as <i>DC</i> is to <i>FH</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>But <i>BC</i> is commensurable with <i>KF</i>, therefore <i>FH</i> is also commensurable in length with <i>CD</i>.
+
+<div class="just"><a href=defX.I.html#1>X.Def.3</a>,
+<a href=propX36.html>X.36</a></div>
+<p>But <i>BC</i> and <i>CD</i> are rational straight lines commensurable in square only, therefore <i>KF</i> and <i>FH</i> are also rational straight lines commensurable in square only. Therefore <i>KH</i> is binomial.
+
+<div class="just"><a href=propX14.html>X.14</a></div>
+<p>If now the square on <i>BC</i> is greater than the square on <i>CD</i> by the square on a straight line commensurable with <i>BC</i>, then the square on <i>KF</i> is also greater than the square on <i>FH</i> by the square on a straight line commensurable with <i>KF</i>.
+
+<p>And, if <i>BC</i> is commensurable in length with the rational straight line set out, then <i>KF</i> is also; if <i>CD</i> is commensurable in length with the rational straight line set out, then <i>FH</i> is also; but, if neither of the straight lines <i>BC</i> nor <i>CD</i>, then neither of the straight lines <i>KF</i> nor <i>FH</i>.
+
+<div class="just"><a href=propX14.html>X.14</a></div>
+<p>But, if the square on <i>BC</i> is greater than the square on <i>CD</i> by the square on a straight line incommensurable with <i>BC</i>, then the square on <i>KF</i> is also greater than the square on <i>FH</i> by the square on a straight line incommensurable with <i>KF</i>.
+
+<p>And, if <i>BC</i> is commensurable with the rational straight line set out, then <i>KF</i> is also; if <i>CD</i> is so commensurable, then <i>FH</i> is also; but, if neither of the straight lines <i>BC</i> nor <i>CD</i>, then neither of the straight lines <i>KF</i> nor <i>FH</i>.
+
+<p>Therefore <i>KH</i> is a binomial straight line, the terms of which <i>KF</i> and <i>FH</i> are commensurable with the terms <i>BC</i> and <i>CD</i> of the apotome and in the same ratio, and further, <i>KH</i> has the same order as <i>BD</i>.
+
+<p>Therefore, <i>the square on a rational straight line, if applied to an apotome, produces as breadth the binomial straight line the terms of which are commensurable with the terms of the apotome and in the same ratio; and further the binomial so arising has the same order as the apotome.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

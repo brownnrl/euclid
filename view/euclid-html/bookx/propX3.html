@@ -1,0 +1,96 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 3</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">To find the greatest common measure of two given commensurable magnitudes.</div>
+
+<p>Let the two given commensurable magnitudes be <i>AB</i> and <i>CD</i> with <i>AB</i> the less.
+
+<p>It is required to find the greatest common measure of <i>AB</i> and <i>CD</i>.
+
+<p>Now the magnitude <i>AB</i> either measures <i>CD</i> or it does not.
+
+<p>If it measures it, and it does measures itself, then <i>AB</i> is a common measure of <i>AB</i> and <i>CD</i>. And it is manifest that it is also the greatest, for a greater magnitude than the magnitude <i>AB</i> does not measure <i>AB</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=100>
+<img src="propX3.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.3">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,35;0;0">
+<param name=e[2] value="A3;point;free;1000,35;0;0">
+<param name=e[3] value="C0;point;free;-1000,70;0;0">
+<param name=e[4] value="C3;point;free;1000,70;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,160,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,260,0">
+<param name=e[7] value="AB;line;connect;A,B">
+<param name=e[8] value="C;point;lineSlider;C0,C3,30,0">
+<param name=e[9] value="D;point;lineSlider;C0,C3,260,0">
+<param name=e[10] value="CD;line;connect;C,D">
+<param name=e[11] value="E1;point;cutoff;D,C,A,B;0;0">
+<param name=e[12] value="E;point;cutoff;E1,C,A,B">
+<param name=e[13] value="F1;point;cutoff;B,A,C,E;0;0">
+<param name=e[14] value="F;point;cutoff;F1,A,C,E">
+<param name=e[15] value="G1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[16] value="G2;point;lineSlider;A0,A3,80,0;0">
+<param name=e[17] value="G;line;connect;G1,G2;black">
+</applet></div>
+
+<p>Next, let <i>AB</i> not measure <i>CD</i>.
+
+<div class="just"><a href=propX2.html>X.2</a></div>
+<p>Then, if the less is continually subtracted in turn from the greater, then that which is left over will sometime measure the one before it, because <i>AB</i> and <i>CD</i> are not incommensurable.
+
+<p>Let <i>AB</i>, measuring <i>ED</i>, leave <i>EC</i> less than itself, let <i>EC</i>, measuring <i>FB</i>, leave <i>AF</i> less than itself, and let <i>AF</i> measure <i>CE</i>.
+
+<p>Since, then, <i>AF</i> measures <i>CE</i>, while <i>CE</i> measures <i>FB</i>, therefore <i>AF</i> also measures <i>FB</i>. But it measures itself also, therefore <i>AF</i> also measures the whole <i>AB</i>. But <i>AB</i> measures <i>DE</i>, therefore <i>AF</i> also measures <i>ED</i>. But it measures <i>CE</i> also, therefore it also measures the whole <i>CD</i>.
+
+<p>Therefore <i>AF</i> is a common measure of <i>AB</i> and <i>CD</i>.
+
+<p>I say next that it is also the greatest.
+
+<p>If not, then there there is some magnitude <i>G</i> greater than <i>AF</i> which measures <i>AB</i> and <i>CD</i>. Since then <i>G</i> measures <i>AB</i>, while <i>AB</i> measures <i>ED</i>, therefore <i>G</i> also measures <i>ED</i>.
+
+<p>But it measures the whole <i>CD</i> also, therefore <i>G</i> measures the remainder <i>CE</i>. But <i>CE</i> measures <i>FB</i>, therefore <i>G</i> also measures <i>FB</i>.
+
+<p>But it measures the whole <i>AB</i> also, and it therefore measures the remainder <i>AF</i>, the greater the less, which is impossible.
+
+<p>Therefore no magnitude greater than <i>AF</i> measures <i>AB</i> and <i>CD</i>. Therefore <i>AF</i> is the greatest common measure of <i>AB</i> and <i>CD</i>.
+
+<p>Therefore the greatest common measure of the two given commensurable magnitudes <i>AB</i> and <i>CD</i> has been found.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+<div class="theorem">
+
+<h1>Corollary.</h1>
+
+<div class="statement">From this it is clear that, <i>if a magnitude measures two magnitudes, then it also measures their greatest common measure</i>.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This is the same proposition as <a href=../bookVII/propVII3.html>VII.3</a> with the same diagram and the same corollary, only the terminology is slightly different.
+
+<p>This proposition and its corollary are used in the next proposition. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

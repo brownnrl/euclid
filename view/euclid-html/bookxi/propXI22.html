@@ -1,0 +1,90 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 22</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 22</h1>
+
+<div class="statement">
+If there are three plane angles such that the sum of any two is greater than the remaining one, and they are contained by equal straight lines, then it is possible to construct a triangle out of the straight lines joining the ends of the equal straight lines.</div>
+
+<p>Let there be three plane angles <i>ABC, DEF,</i> and <i>GHK,</i> of which the sum of any two is greater than the remaining one, so that the sum of the angles <i>ABC</i> and <i>DEF</i> is greater than the angle <i>GHK,</i> the sum of the angles <i>DEF</i> and <i>GHK</i> is greater than the angle <i>ABC,</i> and, further, the sum of the  angles <i>GHK</i> and <i>ABC</i> is greater than the angle <i>DEF.</i> Also let the straight lines <i>AB, BC, DE, EF, GH,</i> and <i>HK</i> be equal. 
+
+<p>Join <i>AC, DF,</i> and <i>GK.</i>
+
+<p>I say that it is possible to construct a triangle out of straight lines equal to <i>AC, DF,</i> and <i>GK,</i> that is, that the sum of any two of the straight lines <i>AC, DF,</i> and <i>GK</i> is greater than the remaining one.
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=550 height=200 >
+<img src="propXI22.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.22">
+<param name=e[1] value="A;point;free;40,160">
+<param name=e[2] value="B;point;free;80,55">
+<param name=e[3] value="Bcirc;circle;radius;B,A;0;0;0;0">
+<param name=e[4] value="C;point;circleSlider;Bcirc,120,160">
+<param name=e[5] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[6] value="E;point;free;260,61">
+<param name=e[7] value="Ecirc;circle;radius;E,A,B;0;0;0;0">
+<param name=e[8] value="D;point;circleSlider;Ecirc,210,160">
+<param name=e[9] value="F;point;circleSlider;Ecirc,310,160">
+<param name=e[10] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+<param name=e[11] value="H;point;free;400,50">
+<param name=e[12] value="Hcirc;circle;radius;H,A,B;0;0;0;0">
+<param name=e[13] value="G;point;circleSlider;Hcirc,380,160">
+<param name=e[14] value="K;point;circleSlider;Hcirc,420,160">
+<param name=e[15] value="GHK;polygon;triangle;G,H,K;0;0;black;random">
+<param name=e[16] value="L';point;similar;K,H,A,B,C;0;0">
+<param name=e[17] value="L;point;cutoff;H,L',A,B">
+<param name=e[18] value="HKL;polygon;triangle;H,K,L;0;0;black;random">
+<param name=e[19] value="GL;line;connect;G,L">
+</applet></center>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a>
+<br><a href="../bookI/propI1.html">I.1</a></div>
+<p>Now, if the angles <i>ABC, DEF,</i> and <i>GHK</i> equal one another, then it is clear that, <i>AC, DF,</i> and <i>GK</i> also being equal, it is possible to construct a triangle out of straight lines equal to <i>AC, DF,</i> and <i>GK.</i>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a>
+<br><a href=../bookI/propI3.html>I.3</a></div>
+<p>But, if not, let them be unequal.  Construct the angle <i>KHL</i> equal to the angle <i>ABC</i> at the point <i>H</i> on the straight line <i>HK.</i>  Make <i>HL</i> equal to any one of the straight lines <i>AB, BC, DE, EF, GH,</i> or <i>HK.</i>  Join <i>KL</i> and <i>GL.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Now, since the two sides <i>AB</i> and <i>BC</i> equal the  two sides <i>KH</i> and <i>HL,</i> and the angle at <i>B</i> equals the angle <i>KHL,</i> therefore the base <i>AC</i> equals the base <i>KL.</i>
+
+<p>And, since the sum of the angles <i>ABC</i> and <i>GHK</i> is greater than the angle <i>DEF,</i> while the angle <i>ABC</i> equals the angle <i>KHL,</i> therefore the angle <i>GHL</i> is greater than the angle <i>DEF.</i>
+
+<div class="just"><a href="../bookI/propI24.html">I.24</a></div>
+<p>And, since the two sides <i>GH</i> and <i>HL</i> equal the two sides <i>DE</i> and <i>EF,</i> and the angle <i>GHL</i> is greater than the angle <i>DEF,</i> therefore the base <i>GL</i> is greater than the base <i>DF.</i>
+
+<p>But the sum of <i>GK</i> and <i>KL</i> is greater than <i>GL.</i>  Therefore the sum of <i>GK</i> and <i>KL</i> is much greater than <i>DF.</i>
+
+<p>But <i>KL</i> equals <i>AC,</i> therefore the sum of <i>AC</i> and <i>GK</i> is greater than the remaining straight line <i>DF.</i>
+
+<p>Similarly we can prove that the sum of <i>AC</i> and <i>DF</i> is greater than <i>GK,</i> and further,  the sum of <i>DF</i> and <i>GK</i> is greater than <i>AC.</i>
+
+<td><small>(<a href="../bookI/propI22.html">I.22</a>)</small>
+<p>Therefore it is possible to construct a triangle out of straight lines equal to <i>AC, DF,</i> and <i>GK.</i></td>
+
+<p>Therefore, <i>if there are three plane angles such that the sum of any two is greater than the remaining one, and they are contained by equal straight lines, then it is possible to construct a triangle out of the straight lines joining the ends of the equal straight lines.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This construction is the first stage of the construction in the next proposition to make a solid angle given three plane angles.
+
+<p>The proof succeeds in showing that if each of the three plane angles is less than the sum of the other two, then each of the three lines <i>AC, DF,</i> and <i>DK</i> is less than the sum of the other two.  The latter is a necessary condition for a triangle to be made with its three sides equal to those three lines according to <a href="../bookI/propI20.html">I.20</a>.  But it was never shown to be sufficient to make such a triangle in <a href="../bookI/propI22.html">I.22</a>, and it is that sufficiency which is being invoked in this proof.  Thus, there is a serious flaw in the proof.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

@@ -1,0 +1,71 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book III, Definitions 4 and 5</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 4</h1>
+
+<div class="statement">Straight lines in a circle are said to be <i>equally distant</i> from the center when the perpendiculars drawn to them from the center are equal.</div>
+</div>
+
+<br>  
+
+<div class="theorem">
+<h1>Definition 5</h1>
+
+<div class="statement">And that straight line is said to be at a <i>greater distance</i> on which the greater perpendicular falls. </div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<table cellpadding=5><tr><td>
+These definitions could have been broadened to distances from a line to an arbitrary point, but Euclid&rsquo;s needs only distances from a line to the center of a circle.
+
+<p>The perpendiculars <i>AE</i> and <i>AH</i> drawn from the center <i>A</i> to the lines <i>CD</i> and <i>FG</i> respectively are equal, so the lines <i>CD</i> and <i>FG</i> are equally distant from the center.  
+
+<p>As the perpendicular <i>AM</i> is greater, the line <i>KL</i> is at a greater distance from the center.
+</td>
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=280 width=300>
+<img src=defIII4.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.Def.4-5">
+<param name=e[1] value="A;point;free;150,140;black;green">
+<param name=pivot value=A>
+<param name=e[2] value="B;point;free;150,40">
+<param name=e[3] value="Acirc;circle;radius;A,B;0;0;black;random">
+
+<param name=e[4] value="C;point;circleSlider;Acirc,40,30">
+<param name=e[5] value="D;point;circleSlider;Acirc,50,200">
+<param name=e[6] value="CD;line;connect;C,D">
+<param name=e[7] value="AE;line;foot;A,CD">
+<param name=e[8] value="E;point;last;AE">
+
+<param name=e[9] value="F;point;circleSlider;Acirc,200,50">
+<param name=e[10] value="Fcirc;circle;radius;F,CD;0;0;0;0">
+<param name=e[11] value="GG';line;bichord;Acirc,Fcirc;0;0;0">
+<param name=e[12] value="G;point;first;GG'">
+<param name=e[13] value="FG;line;connect;F,G">
+<param name=e[14] value="AH;line;foot;A,FG">
+<param name=e[15] value="H;point;last;AH">
+
+<param name=e[16] value="K;point;circleSlider;Acirc,130,200">
+<param name=e[17] value="Kcirc;circle;radius;K,C,E;0;0;0;0">
+<param name=e[18] value="L'L;line;bichord;Acirc,Kcirc;0;0;0">
+<param name=e[19] value="L;point;last;L'L">
+<param name=e[20] value="KL;line;connect;K,L">
+<param name=e[21] value="AM;line;foot;A,KL">
+<param name=e[22] value="M;point;last;AM">
+</applet>
+</td></tr></table>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

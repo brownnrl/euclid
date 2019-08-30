@@ -1,0 +1,67 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book I, Definitions 11 and 12</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+<div class="theorem">
+<h1>Definition 11</h1>
+
+<div class="statement">
+An <i>obtuse angle</i> is an angle greater than a right angle.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 12</h1>
+
+<div class="statement">
+An <i>acute angle</i> is an angle less than a right angle.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<table cellspacing=5>
+<tr><td>
+<p>The angle <i>ABD</i> in the figure is an obtuse angle.  It is greater than a right angle, but less than two right angles.  Recall that Euclid required that any angle be less than two right angles.
+
+<p>The angle <i>CBD</i> is an acute angle.  It is less than a right angle.
+
+<p>Note that there is no requirement that the angle be rectilinear, indeed, the horn angles mentioned before are not rectilinear, but they are less than right angles, and so are acute (notwithstanding Proclus&rsquo; remarks to the contrary).
+</td>
+
+<td>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=150 width=250>
+<img src="defI11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Def.I.11">
+<param name=e[1] value="A;point;free;40,110">
+<param name=e[2] value="C;point;free;210,110">
+<param name=e[3] value="AC;line;connect;A,C">
+<param name=e[4] value="B;point;lineSlider;AC,100,110">
+<param name=e[5] value="E;point;midpoint;B,C;0;0">
+<param name=e[6] value="circ;circle;radius;E,C;0;0;0;0">
+<param name=e[7] value="D;point;circleSlider;circ,140,40">
+<param name=e[8] value="D';point;extend;B,D,A,C;0;0">
+<param name=e[9] value="BD;line;connect;B,D'">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="defI11.gif" hspace=10 vspace=10 alt="I.Def.11">';
+</script>
+</td></tr>
+</table>
+
+<p>With these definitions, we see another aspect of magnitudes, namely, two magnitudes of the same kind, such as two angles, can be compared for size.  Euclid frequently uses what is known as the <i>law of trichotomy</i>: given two magnitudes <i>F</i> and <i>G</i> of the same kind, exactly one of the following three situations hold, <i>F</i> is less than <i>G, F</i> equals <i>G,</i> or <i>F</i> is greater than <i>G.</i> See the comments after the <a href=cn.html>Common Notions</a> for more discussion on magnitudes and the law of trichotomy.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

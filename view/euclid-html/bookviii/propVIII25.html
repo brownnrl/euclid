@@ -1,0 +1,78 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 25</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 25</h1>
+
+<div class="statement">If two numbers have to one another the ratio which a cubic number has to a cubic number, and the first is a cube, then the second is also a cube.</div>
+
+<p>Let the two numbers <i>A</i> and <i>B</i> have to one another the ratio which the cubic number <i>C</i> has to the cubic number <i>D,</i> and let <i>A</i> be a cube.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=175>
+<img src="propVIII25.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.25">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="D0;point;free;-1000,145;0;0">
+<param name=e[8] value="D3;point;free;1000,145;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="E1;point;lineSlider;A0,A3,170,0;0">
+<param name=e[13] value="E2;point;lineSlider;A0,A3,245,0;0">
+<param name=e[14] value="E;line;connect;E1,E2;black">
+<param name=e[15] value="F1;point;lineSlider;B0,B3,170,0;0">
+<param name=e[16] value="F2;point;proportion;A1,A2,E1,E2,E1,E2,F1,B3;0">
+<param name=e[17] value="F;line;connect;F1,F2;black">
+<param name=e[18] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[19] value="B2;point;proportion;A1,A2,E1,E2,F1,F2,B1,B3;0">
+<param name=e[20] value="B;line;connect;B1,B2;black">
+<param name=e[21] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[22] value="C2;point;lineSlider;C0,C3,130,0;0">
+<param name=e[23] value="C;line;connect;C1,C2;black">
+<param name=e[24] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[25] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[26] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<p>I say that <i>B</i> is also a cube.
+
+<div class="just"><a href=propVIII19.html>VIII.19</a></div>
+<p>Since <i>C</i> and <i>D</i> are cubes, <i>C</i> and <i>D</i> are similar solid numbers, therefore two mean proportional numbers fall between <i>C</i> and <i>D.</i>
+
+<div class="just"><a href=propVIII18.html>VIII.18</a></div>
+<p>Since as many numbers fall in continued proportion between those which have the same ratio with <i>C</i> and <i>D</i> as fall between <i>C</i> and <i>D,</i> therefore  two mean proportional numbers <i>E</i> and <i>F</i> fall between <i>A</i> and <i>B.</i>
+
+<div class="just"><a href=propVIII23.html>VIII.23</a></div>
+<p>Since, then, the four numbers <i>A, E, F,</i> and <i>B</i> are in continued proportion, and <i>A</i> is a cube, therefore <i>B</i> is also a cube.
+
+<p>Therefore, <i>if two numbers have to one another the ratio which a cubic number has to a cubic number, and the first is a cube, then the second is also a cube.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is analogous to the previous one about squares.  Its proof is straightforward.
+
+<p>This proposition is used in <a href=../bookIX/propIX10.html>IX.10</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

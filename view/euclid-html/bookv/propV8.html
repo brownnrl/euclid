@@ -1,0 +1,259 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 8</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">Of unequal magnitudes, the greater has to the same a greater ratio than the less has; and the same has to the less a greater ratio than it has to the greater.</div>
+
+<p>Let <i>AB</i> and <i>C</i> be unequal magnitudes, and let <i>AB</i> be greater, and let <i>D</i> be another, arbitrary, magnitude.
+
+<p>I say that <i>AB</i> has to <i>D</i> a greater ratio than <i>C</i> has to <i>D,</i> and <i>D</i> has to <i>C</i> a greater ratio than it has to <i>AB.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=260>
+<img src=propV8a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.8">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="V0;point;free;1000,30;0;0">
+<param name=e[3] value="U1;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="U2;point;free;-1000,90;0;0">
+<param name=e[6] value="V2;point;free;1000,90;0;0">
+<param name=e[7] value="U3;point;free;-1000,120;0;0">
+<param name=e[8] value="V3;point;free;1000,120;0;0">
+<param name=e[9] value="U4;point;free;-1000,160;0;0">
+<param name=e[10] value="V4;point;free;1000,160;0;0">
+<param name=e[11] value="U5;point;free;-1000,190;0;0">
+<param name=e[12] value="V5;point;free;1000,190;0;0">
+<param name=e[13] value="U6;point;free;-1000,220;0;0">
+<param name=e[14] value="V6;point;free;1000,220;0;0">
+<param name=e[15] value="U7;point;free;-1000,250;0;0">
+<param name=e[16] value="V7;point;free;1000,250;0;0">
+
+<param name=e[17] value="A;point;lineSlider;U0,V0,20,30">
+<param name=e[18] value="B;point;lineSlider;U0,V0,140,30">
+<param name=e[19] value="AB;line;connect;A,B;0;0;blue">
+<param name=e[20] value="C0;point;lineSlider;U1,V1,20,60;0">
+<param name=e[21] value="C1;point;lineSlider;U1,V1,110,60;0">
+<param name=e[22] value="C;line;connect;C0,C1;black;0;blue">
+<param name=e[23] value="E;point;cutoff;B,A,C">
+<param name=e[24] value="D0;point;lineSlider;U4,V4,20,160;0">
+<param name=e[25] value="D1;point;lineSlider;U4,V4,70,160;0">
+<param name=e[26] value="D;line;connect;D0,D1;black;0;blue">
+<param name=e[27] value="F;point;lineSlider;U2,V2,20,90">
+<param name=e[28] value="F1;point;cutoff;F,V2,A,E;0;lightGray">
+<param name=e[29] value="G;point;cutoff;F1,V2,A,E">
+<param name=e[30] value="G1;point;cutoff;G,V2,E,B;0;lightGray">
+<param name=e[31] value="H;point;cutoff;G1,V2,E,B">
+<param name=e[32] value="FH;line;connect;F,H;0;0;blue">
+
+<param name=e[33] value="K0;point;lineSlider;U3,V3,20,120;0">
+<param name=e[34] value="K1;point;cutoff;K0,V3,C;0;lightGray">
+<param name=e[35] value="K2;point;cutoff;K1,V3,C;0">
+<param name=e[36] value="K;line;connect;K0,K2;black;0;blue">
+
+<param name=e[37] value="L0;point;lineSlider;U5,V5,20,160;0">
+<param name=e[38] value="L1;point;cutoff;L0,V5,D;0;lightGray">
+<param name=e[39] value="L2;point;cutoff;L1,V5,D;0">
+<param name=e[40] value="L;line;connect;L0,L2;black;0;blue">
+
+<param name=e[41] value="M0;point;lineSlider;U6,V6,20,160;0">
+<param name=e[42] value="M1;point;cutoff;M0,V6,D;0;lightGray">
+<param name=e[43] value="M2;point;cutoff;M1,V6,D;0;lightGray">
+<param name=e[44] value="M3;point;cutoff;M2,V6,D;0">
+<param name=e[45] value="M;line;connect;M0,M3;black;0;blue">
+
+<param name=e[46] value="N0;point;lineSlider;U7,V7,20,190;0">
+<param name=e[47] value="N1;point;cutoff;N0,V7,D;0;lightGray">
+<param name=e[48] value="N2;point;cutoff;N1,V7,D;0;lightGray">
+<param name=e[49] value="N3;point;cutoff;N2,V7,D;0;lightGray">
+<param name=e[50] value="N4;point;cutoff;N3,V7,D;0">
+<param name=e[51] value="N;line;connect;N0,N4;black;0;blue">
+</applet></div>
+
+<div class="just">(<a href=defV4.html>V.Def.4</a>)</div>
+<p>Since <i>AB</i> is greater than <i>C,</i> make <i>EB</i> equal to <i>C.</i> Then the less of the magnitudes <i>AE</i> and <i>EB,</i> if multiplied, will eventually be greater than <i>D.</i></td>
+
+<p>First, let <i>AE</i> be less than <i>EB.</i>  Let <i>AE</i> be multiplied, and let <i>FG</i> be a multiple of it which is greater than <i>D.</i>  Make <i>GH</i> the same multiple of <i>EB</i> and <i>K</i> the same multiple of <i>C</i> that <i>FG</i> is of <i>AE.</i>
+
+<div class="just">(<a href=defV4.html>V.Def.4</a>)</div>
+<p>Take <i>L</i> double of <i>D</i> and <i>M</i> triple of it, and successive multiples increasing by one, until what is taken is the first multiple of <i>D</i> that is greater than <i>K.</i> Let it be taken, and let it be <i>N</i> which is quadruple of <i>D</i> and the first multiple of it greater than <i>K.</i></td>
+
+<p>Since <i>K</i> is less than <i>N</i> first, therefore <i>K</i> is not less than <i>M.</i>
+
+<div class="just"><a href=propV1.html>V.1</a></div>
+<p>And, since <i>FG</i> is the same multiple of <i>AE</i> that <i>GH</i> is of <i>EB,</i> therefore <i>FG</i> is the same multiple of <i>AE</i> that <i>FH</i> is of <i>AB.</i>
+
+<p>But <i>FG</i> is the same multiple of <i>AE</i> that <i>K</i> is of <i>C,</i> therefore <i>FH</i> is the same multiple of <i>AB</i> that <i>K</i> is of <i>C.</i> Therefore <i>FH</i> and <i>K</i> are equimultiples of <i>AB</i> and <i>C.</i>
+
+<p>Again, since <i>GH</i> is the same multiple of <i>EB</i> that <i>K</i> is of <i>C,</i> and <i>EB</i> equals <i>C,</i> therefore <i>GH</i> equals <i>K.</i>
+
+<p>But <i>K</i> is not less than <i>M,</i> therefore neither is <i>GH</i> less than <i>M.</i>
+
+<p>And <i>FG</i> is greater than <i>D,</i> therefore the whole <i>FH</i> is greater than the sum of <i>D</i> and <i>M.</i>
+
+<p>But the sum of <i>D</i> and <i>M</i> equals <i>N,</i> inasmuch as <i>M</i> is triple <i>D,</i> and the sum of <i>M</i> and <i>D</i> is quadruple <i>D,</i> while <i>N</i> is also quadruple <i>D,</i> therefore the sum of <i>M</i> and <i>D</i> equals <i>N.</i>
+
+<p>But <i>FH</i> is greater than the sum of <i>M</i> and <i>D,</i> therefore <i>FH</i> is in excess of <i>N,</i> while <i>K</i> is not in excess of <i>N.</i>
+
+<div class="just"><a href=defV7.html>V.Def.7</a></div>
+<p>And <i>FH</i> and <i>K</i> are equimultiples of <i>AB</i> and <i>C,</i> while <i>N</i> is another, arbitrary, multiple of <i>D,</i> therefore <i>AB</i> has to <i>D</i> a greater ratio than <i>C</i> has to <i>D.</i>
+
+<p>I say next, that <i>D</i> has to <i>C</i> a greater ratio than <i>D</i> has to <i>AB.</i>
+
+<p>With the same construction, we can prove similarly that <i>N</i> is in excess of <i>K,</i> while <i>N</i> is not in excess of <i>FH.</i></td></tr>
+
+<div class="just"><a href=defV7.html>V.Def.7</a></div>
+<p>And <i>N</i> is a multiple of <i>D,</i> while <i>FH</i> and <i>K</i> are other, arbitrary, equimultiples of <i>AB</i> and <i>C,</i> therefore <i>D</i> has to <i>C</i> a greater ratio than <i>D</i> has to <i>AB.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=260>
+<img src=propV8b.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="V0;point;free;1000,30;0;0">
+<param name=e[3] value="U1;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="U2;point;free;-1000,90;0;0">
+<param name=e[6] value="V2;point;free;1000,90;0;0">
+<param name=e[7] value="U3;point;free;-1000,120;0;0">
+<param name=e[8] value="V3;point;free;1000,120;0;0">
+<param name=e[9] value="U4;point;free;-1000,160;0;0">
+<param name=e[10] value="V4;point;free;1000,160;0;0">
+<param name=e[11] value="U5;point;free;-1000,190;0;0">
+<param name=e[12] value="V5;point;free;1000,190;0;0">
+<param name=e[13] value="U6;point;free;-1000,220;0;0">
+<param name=e[14] value="V6;point;free;1000,220;0;0">
+<param name=e[15] value="U7;point;free;-1000,250;0;0">
+<param name=e[16] value="V7;point;free;1000,250;0;0">
+
+<param name=e[17] value="A;point;lineSlider;U0,V0,20,30">
+<param name=e[18] value="B;point;lineSlider;U0,V0,150,30">
+<param name=e[19] value="AB;line;connect;A,B;0;0;blue">
+<param name=e[20] value="C0;point;lineSlider;U1,V1,20,60;0">
+<param name=e[21] value="C1;point;lineSlider;U1,V1,60,60;0">
+<param name=e[22] value="C;line;connect;C0,C1;black;0;blue">
+<param name=e[23] value="E;point;cutoff;B,A,C">
+<param name=e[24] value="D0;point;lineSlider;U4,V4,20,160;0">
+<param name=e[25] value="D1;point;lineSlider;U4,V4,70,160;0">
+<param name=e[26] value="D;line;connect;D0,D1;black;0;blue">
+
+<param name=e[27] value="F;point;lineSlider;U2,V2,20,90">
+<param name=e[28] value="F1;point;cutoff;F,V2,A,E;0;lightGray">
+<param name=e[29] value="G;point;cutoff;F1,V2,A,E">
+<param name=e[30] value="G1;point;cutoff;G,V2,E,B;0;lightGray">
+<param name=e[31] value="H;point;cutoff;G1,V2,E,B">
+<param name=e[32] value="FH;line;connect;F,H;0;0;blue">
+
+<param name=e[33] value="K0;point;lineSlider;U3,V3,20,120;0">
+<param name=e[34] value="K1;point;cutoff;K0,V3,C;0;lightGray">
+<param name=e[35] value="K2;point;cutoff;K1,V3,C;0">
+<param name=e[36] value="K;line;connect;K0,K2;black;0;blue">
+
+<param name=e[37] value="L0;point;lineSlider;U5,V5,20,160;0">
+<param name=e[38] value="L1;point;cutoff;L0,V5,D;0;lightGray">
+<param name=e[39] value="L2;point;cutoff;L1,V5,D;0">
+<param name=e[40] value="L;line;connect;L0,L2;black;0;blue">
+<param name=e[41] value="M0;point;lineSlider;U6,V6,20,160;0">
+<param name=e[42] value="M1;point;cutoff;M0,V6,D;0;lightGray">
+<param name=e[43] value="M2;point;cutoff;M1,V6,D;0;lightGray">
+<param name=e[44] value="M3;point;cutoff;M2,V6,D;0">
+<param name=e[45] value="M;line;connect;M0,M3;black;0;blue">
+<param name=e[46] value="N0;point;lineSlider;U7,V7,20,190;0">
+<param name=e[47] value="N1;point;cutoff;N0,V7,D;0;lightGray">
+<param name=e[48] value="N2;point;cutoff;N1,V7,D;0;lightGray">
+<param name=e[49] value="N3;point;cutoff;N2,V7,D;0;lightGray">
+<param name=e[50] value="N4;point;cutoff;N3,V7,D;0">
+<param name=e[51] value="N;line;connect;N0,N4;black;0;blue">
+</applet></div>
+
+<p>Next, let <i>AE</i> be greater than <i>EB.</i>
+
+<div class="just">(<a href=defV4.html>V.Def.4</a>)</div>
+<p>Then the less, <i>EB,</i> if multiplied, will eventually be greater than <i>D.</i>
+
+<p>Let it be multiplied, and let <i>GH</i> be a multiple of <i>EB</i> and greater than <i>D.</i>  Make <i>FG</i> the same multiple of <i>AE,</i> and <i>K</i> the same multiple of <i>C</i> that <i>GH</i> is of <i>EB.</i>
+
+<div class="just">(<a href=defV4.html>V.Def.4</a>)</div>
+<p>Then we can prove similarly that <i>FH</i> and <i>K</i> are equimultiples of <i>AB</i> and <i>C,</i> and, similarly, take <i>N</i> the first multiple of <i>D</i> that is greater than <i>FG,</i> so that <i>FG</i> is again not less than <i>M.</i>
+
+<p>But <i>GH</i> is greater than <i>D,</i> therefore the whole <i>FH</i> is in excess of the sum of <i>D</i> and <i>M,</i> that is, of <i>N.</i>
+
+<p>Now <i>K</i> is not in excess of <i>N,</i> inasmuch as <i>FG</i> also, which is greater than <i>GH,</i> that is, than <i>K,</i> is not in excess of <i>N.</i>
+
+<p>And in the same manner, by following the above argument, we complete the demonstration.
+
+<p>Therefore, <i>of unequal magnitudes, the greater has to the same a greater ratio than the less has; and the same has to the less a greater ratio than it has to the greater.
+</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Although the statement of this proposition is easy to comprehend, its proof is difficult.    It says that if <i>x</i>&nbsp;>&nbsp;<i>y,</i> then <i>x</i>&nbsp;:&nbsp;<i>z</i>&nbsp;>&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i> but <i>z</i>&nbsp;:&nbsp;<i>x</i>&nbsp;<&nbsp;<i>z</i>&nbsp;:&nbsp;<i>y.</i>  Its converse is proposition <a href=propV10.html>V.10</a>.
+
+<p>At four points in the proof <a href=defV4.html>V.Def.4</a> is used as an axiom of comparability rather than a definition.  The first instance:
+<ul>Then the less of the magnitudes <i>AE</i> and <i>EB,</i> if multiplied, will eventually be greater than <i>D.</i></ul>
+In fact the axiom of comparability is required for this proposition since it is false when infinitesimals are allowed.  When <i>y</i> is infinitesimal with respect to <i>x,</i> then the first statement of the proposition doesn&rsquo;t hold since <i>x</i>&nbsp;>&nbsp;<i>x</i>&nbsp;&ndash;&nbsp;<i>y</i> but it is not the case that <i>x</i>&nbsp;:&nbsp;<i>x</i>&nbsp;>&nbsp;(<i>x</i>&nbsp;&ndash;&nbsp;<i>y</i>):<i>x,</i> and the second statement doesn&rsquo;t hold since <i>x</i>&nbsp;+&nbsp;<i>y</i>&nbsp;>&nbsp;<i>x,</i> but not <i>x</i>&nbsp;:&nbsp;<i>x</i>&nbsp;>&nbsp;<i>x</i>:(<i>x</i>&nbsp;+&nbsp;<i>y</i>).
+
+<h4>Explanation of the proof</h4>
+
+The proof is slightly more comprehensible when modern algebraic notation is used since that clarifies its overall structure.  Every magnitude in Euclid&rsquo;s proof is represented by a name and illustrated by a line.  With an algebraic notation, we can refer to a magnitude by a formula.  For instance, if we let <i>a</i> be <i>AB</i> and <i>c</i> be <i>C,</i> then we can use <i>a</i>&nbsp;&ndash;&nbsp;<i>c</i> for <i>AE,</i> thus reducing the number of variables and easing comprehension.  We can also have variables for numbers, instead of having to choose a specific number as Euclid does when he takes <i>N</i> to be 4<i>D.</i>
+
+<p>But algebra obscures much, too.  Euclid carefully proved distributivity of multiplication by numbers over addition of magnitudes in <a href=propV1.html>V.1</a>, which is used in this proof.  We manipulate algebraic expressions almost automatically.  In order to be as correct as Euclid, we should verify the rules of algebra and be aware when we use them.
+
+<p>With these preliminary qualifications, let&rsquo;s look at a translation of the proof into symbolic algebra.
+
+<table cellpadding=5>
+<tr><td>To prove: if <i>a</i>&nbsp;>&nbsp;<i>c,</i> then <i>a</i>&nbsp;:&nbsp;<i>d</i>&nbsp;>&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d,</i> but <i>d</i>&nbsp;:&nbsp;<i>c</i>&nbsp;>&nbsp;<i>d</i>&nbsp;:&nbsp;<i>a.</i></td>
+<td><i>a</i>&nbsp;=&nbsp;<i>AB</i>
+<br><i>c</i>&nbsp;=&nbsp;<i>C</i>&nbsp;=&nbsp;<i>EB</i>
+<br><i>d</i>&nbsp;=&nbsp;<i>D</i></td></tr>
+
+<tr><td>Let <i>a</i>&nbsp;>&nbsp;<i>c.</i>  Either <i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>&nbsp;<&nbsp;<i>c,</i> or <i>a</i>&nbsp;&ndash;&nbsp;<i>c</i> &nbsp;>&nbsp;<i>c,</i> [or <i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>&nbsp;=&nbsp;<i>c</i>].</td>
+<td><i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>&nbsp;=&nbsp;<i>AE</i></td></tr>
+
+<tr><td>Case 1: Suppose <i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>&nbsp;<&nbsp;<i>c.</i>  Let <i>m</i> be a number such that <i>m</i>(<i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>)&nbsp;>&nbsp;<i>d.</i></td>
+<td><i>m</i>(<i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>)&nbsp;=&nbsp;<i>FG</i>
+<br><i>mc</i>&nbsp;=&nbsp;<i>GH</i>&nbsp;=&nbsp;<i>K</i></td></tr>
+
+<tr><td>Let <i>n</i> be the smallest number such that <i>nd</i>&nbsp;>&nbsp;<i>mc.</i> [What happens when <i>n</i>&nbsp;=&nbsp;1 to Euclid&rsquo;s proof?]</td>
+<td><i>nd</i>&nbsp;=&nbsp;<i>N</i>
+<br>(<i>n</i>&nbsp;&ndash;&nbsp;1)<i>d</i>&nbsp;=&nbsp;<i>M</i></td></tr>
+
+<tr><td>Since <i>mc</i> is not less than (<i>n</i></i>&nbsp;&ndash;&nbsp;1)<i>d,</i> and <i>m</i>(<i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>)&nbsp;>&nbsp;<i>d,</i> therefore, by adding, <i>ma</i>&nbsp;>&nbsp;<i>nd.</i>  But <i>mc</i> is not greater than <i>nd.</i>  Therefore <i>a</i>&nbsp;:&nbsp;<i>d</i>&nbsp;>&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d.</i></td>
+<td><i>ma</i>&nbsp;=&nbsp;<i>FH</i></td></tr>
+
+<tr><td>Also <i>nd</i>&nbsp;>&nbsp;<i>mc</i> but  <i>nd</i> is not greater than <i>ma.</i>  Therefore <i>d</i>&nbsp;:&nbsp;<i>c</i>&nbsp;>&nbsp;<i>d</i>&nbsp;:&nbsp;<i>a.</i></td></tr>
+
+<tr><td>Case 2:  Suppose <i>c</i>&nbsp;<&nbsp;<i>a</i>&nbsp;&ndash;&nbsp;<i>c.</i>  Let  Let <i>m</i> be a number such that <i>mc</i>&nbsp;>&nbsp;<i>d.</i></td>
+<td>(Same as above)</td></tr>
+
+<tr><td>Let <i>n</i> be the smallest number such that <i>nd</i>&nbsp;>&nbsp;<i>m</i>(<i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>).
+<p>Since <i>m</i>(<i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>) is not less than (<i>n</i>&nbsp;&ndash;&nbsp;1)<i>d,</i> and <i>mc</i>&nbsp;>&nbsp;<i>d,</i> therefore, by adding, <i>ma</i>&nbsp;>&nbsp; <i>nd.</i> [Euclid says to do the rest in the same manner:  Since <i>a</i>&nbsp;&ndash;&nbsp;<i>c</i> &nbsp;>&nbsp;<i>c,</i> therefore  <i>m</i>(<i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>) &nbsp;>&nbsp;<i>mc.</i>  But <i>nd</i>&nbsp;>&nbsp;<i>m</i>(<i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>), therefore  <i>nd</i>&nbsp;>&nbsp;<i>mc.</i>  But <i>ma</i>&nbsp;>&nbsp; <i>nd,</i> therefore <i>a</i>&nbsp;:&nbsp;<i>d</i>&nbsp;>&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d.</i>
+
+<p>Also <i>nd</i>&nbsp;>&nbsp;<i>mc</i> but  <i>nd</i> is not greater than <i>ma.</i>  Therefore <i>d</i>&nbsp;:&nbsp;<i>c</i>&nbsp;>&nbsp;<i>d</i>&nbsp;:&nbsp;<i>a.</i>]
+<p> 
+[Case 3 when <i>a</i>&nbsp;&ndash;&nbsp;<i>c</i>&nbsp;=&nbsp;<i>c</i> is left to the reader.]
+<p>Thus, the conclusion is reached in any case.  <font size=-1>Q.E.D.</font size>
+</td></tr></table>
+
+<h4>Use of this proposition</h4>
+
+Proposition V.8 is used a few times in Book V starting with the next proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

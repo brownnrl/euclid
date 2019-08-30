@@ -1,0 +1,128 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VII, Definitions 15 through 19</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definitions 15&ndash;19</h1>
+<div class="statement">
+<p>15. A number is said to <i>multiply</i> a number when the latter is added as many times as there are units in the former.
+
+<p>16. And, when two numbers having multiplied one another make some number,  the number so produced be called <i>plane,</i> and its <i>sides</i> are the numbers which have multiplied one another.
+
+<p>17. And, when three numbers having multiplied one another make some number, the number so produced be called <i>solid,</i> and its <i>sides</i> are the numbers which have multiplied one another.
+
+<p>18. A <i>square number</i> is equal multiplied by equal, or a number which is contained by two equal numbers.
+
+<p>19. And a <i>cube</i> is equal multiplied by equal and again by equal, or a number which is contained by three equal numbers.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>Notice that Euclid doesn&rsquo;t define addition and subtraction. For an example where addition of numbers appears, see <a href=propVII28.html>VII.28</a>. Formal definitions for them could be given, but those operations are assumed to be understood in the same way that any number <i>a</i> is a multiple of units <i>u</i>.
+
+<p>Multiplication and proportion are formally defined, and proportion is defined next in <a href=defVII20.html>VII.Def.20</a>. 
+
+<h4>On Definition 15</h4>
+Definition 15 defines multiplication in terms of addition as a kind of composition.  For instance, to multiply <i>a</i>&nbsp;=&nbsp;4<i>u</i> and <i>b</i>&nbsp;=&nbsp;5<i>u</i>, since <i>a</i> consists of 4 units, add 4 <i>b</i>&rsquo;s together, that is, add 5<i>u</i>, 5<i>u</i>, 5<i>u</i>, and 5<i>u</i>.  
+
+<p>Note that Euclid did not think of addition as a binary operation, but as an operation with any number of arguments.  Definition 15 uses the informal operation of addition to define the formal operation of multiplication.
+
+<p>The first proposition on multiplication is <a href=propVII16.html>VII.16</a> which says multiplication is commutative.   For our example, that would say <i>a</i> times <i>b</i> equals <i>b</i> times <i>a</i>.  Since <i>b</i>&nbsp;=&nbsp;5<i>u</i> and <i>a</i>&nbsp;=&nbsp;4<i>u</i>, therefore <i>b</i> times <i>a</i> requires adding 4<i>u</i>, 4<i>u</i>, 4<i>u</i>, 4<i>u</i>, and 4<i>u</i>.
+
+<h4>Figurate numbers</h4>
+
+<p>Although Euclid never displays numbers except as lines, the Pythagoreans before him evidently did, that is, they displayed numbers as figures. The figures were in various shapes, such as triangles, squares, and so forth. Definitions 16 through 19 deal with figurate numbers, but without the figures.  
+
+<table cellpadding=5>
+<tr><td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=130 height=215>
+<img src=defVII16a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.Def.16">
+<param name=e[1] value="a;point;free;40,165;0">
+<param name=e[2] value="b;point;free;65,165;0">
+<param name=e[3] value="c;point;extend;a,b,a,b;0">
+<param name=e[4] value="d;point;perpendicular;a,b;0">
+<param name=e[5] value="e;point;parallelogram;d,a,b;0">
+<param name=e[6] value="f;point;extend;d,e,d,e;0">
+<param name=e[7] value="g;point;extend;a,d,a,d;0">
+<param name=e[8] value="h;point;extend;b,e,b,e;0">
+<param name=e[9] value="i;point;extend;c,f,c,f;0">
+<param name=e[10] value="j;point;extend;d,g,d,g;0">
+<param name=e[11] value="k;point;extend;e,h,e,h;0">
+<param name=e[12] value="l;point;extend;f,i,f,i;0">
+<param name=e[13] value="m;point;extend;g,j,g,j;0">
+<param name=e[14] value="n;point;extend;h,k,h,k;0">
+<param name=e[15] value="o;point;extend;i,l,i,l;0">
+<param name=e[16] value="p;point;extend;j,m,j,m;0">
+<param name=e[17] value="q;point;extend;k,n,k,n;0">
+<param name=e[18] value="r;point;extend;l,o,l,o;0">
+</applet></td>
+
+<td>
+<p>Euclid defines a plane number as a number which is the product of two numbers.  Remember that for Euclid, 1 is the unit, not a number, so a prime number is not a plane number, even though it is a product of 1 and itself.
+
+<p>Plane numbers are the composite numbers. Each composite number can be a plane number in at least one way, but most in more than one way.  For instance, 16 can be viewed as a plane number either with sides 2 and 8 or with sides 4 and 4, that is, as a square number.
+
+<p>Plane numbers can be displayed as rectangular configurations of dots as the plane number 6 times 3 is illustrated on the left.  Alternatively, these &ldquo;rectangular numbers&rdquo; can be displayed as a configuration of squares on the right.  But most of the other figurate numbers, such as triangular numbers, could only easily be displayed by dots.
+</td>
+
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=145 height=215>
+<img src=defVII16b.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.Def.16">
+<param name=e[1] value="a;point;free;35,180;0">
+<param name=e[2] value="b;point;free;60,180;0">
+<param name=e[3] value="c;point;extend;a,b,a,b;0;0">
+<param name=e[4] value="d;point;extend;b,c,a,b;0;0">
+<param name=e[5] value="e;point;perpendicular;a,b;0;0">
+<param name=e[6] value="eline;line;parallel;e,a,d">
+<param name=e[7] value="f;point;extend;a,e,a,e;0;0">
+<param name=e[8] value="fline;line;parallel;f,a,d">
+<param name=e[9] value="g;point;extend;a,f,a,e;0;0">
+<param name=e[10] value="gline;line;parallel;g,a,d">
+<param name=e[11] value="h;point;extend;a,g,a,e;0;0">
+<param name=e[12] value="hline;line;parallel;h,a,d">
+<param name=e[13] value="i;point;extend;a,h,a,e;0;0">
+<param name=e[14] value="iline;line;parallel;i,a,d">
+<param name=e[15] value="j;point;extend;a,i,a,e;0;0">
+<param name=e[16] value="rect;polygon;parallelogram;j,a,d;0;0;black;random">
+<param name=e[17] value="bline;line;parallel;b,a,j">
+<param name=e[18] value="cline;line;parallel;c,a,j">
+</applet></td></tr>
+</table>
+
+<table cellpadding=5><tr><td>
+<p>Perhaps for the Pythagoreans, the most important figures were the triangular numbers: 3, 6, especially 10, 15, 21, etc.  Each could be formed from the previous by adding a new row one unit longer.  So, for instance, 10&nbsp;=&nbsp;1&nbsp;+&nbsp;2&nbsp;+&nbsp;3&nbsp;+&nbsp;4.  For some reason, Euclid doesn&rsquo;t mention triangular numbers.  Indeed, he doesn&rsquo;t address sums of arithmetic progressions at all, a subject of interest in many ancient cultures.  Euclid does give the sum of a geometric progression, that is, a continued proportion, in proposition <a href=../bookIX/propIX35.html>IX.35</a>.</td>
+
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=145 height=130>
+<img src=defVII16c.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.Def.16">
+<param name=e[1] value="a;point;free;33,100;0">
+<param name=e[2] value="b;point;free;60,100;0">
+<param name=e[3] value="c;point;extend;a,b,a,b;0">
+<param name=e[4] value="d;point;extend;a,c,a,b;0">
+<param name=e[5] value="abe;polygon;equilateralTriangle;a,b;0;0;0;0">
+<param name=e[6] value="e;point;vertex;abe,3;0">
+<param name=e[7] value="f;point;parallelogram;e,a,b;0">
+<param name=e[8] value="g;point;extend;e,f,e,f;0">
+<param name=e[9] value="h;point;extend;a,e,a,e;0">
+<param name=e[10] value="i;point;extend;b,f,b,f;0">
+<param name=e[11] value="j;point;extend;e,h,e,h;0">
+</applet>
+</td></tr></table>
+
+<p>Definition 18 defines solid numbers.  For example, if 18 is presented as 3 times 3 times 2, then it is given as a solid number with three sides 3, 3, and 2.  Solid numbers can be represented as a configuration of dots or cubes in three dimensions.
+
+<p>Squares and cubes are are described as certain symmetric plane and solid numbers.  Of course, some numbers, such as 64, can be simultaneously squares and cubes.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2012, 2013");
+</script>
+</BODY></HTML>

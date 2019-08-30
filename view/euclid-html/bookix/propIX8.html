@@ -1,0 +1,99 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 8</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">If as many numbers as we please beginning from a unit are in continued proportion, then the third from the unit is square as are also those which successively leave out one, the fourth is cubic as are also all those which leave out two, and the seventh is at once cubic and square are also those which leave out five.</div>
+
+<p>Let there be as many numbers as we please, <i>A, B, C, D, E,</i> and <i>F,</i> beginning from a unit and in continued proportion.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=230>
+<img src="propIX8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.8">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="C0;point;free;-1000,100;0;0">
+<param name=e[6] value="C3;point;free;1000,100;0;0">
+<param name=e[7] value="D0;point;free;-1000,135;0;0">
+<param name=e[8] value="D3;point;free;1000,135;0;0">
+<param name=e[9] value="E0;point;free;-1000,170;0;0">
+<param name=e[10] value="E3;point;free;1000,170;0;0">
+<param name=e[11] value="F0;point;free;-1000,205;0;0">
+<param name=e[12] value="F3;point;free;1000,205;0;0">
+
+<param name=e[13] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[14] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[15] value="A;line;connect;A1,A2;black">
+<param name=e[16] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[17] value="B2;point;lineSlider;B0,B3,105,0;0">
+<param name=e[18] value="B;line;connect;B1,B2;black">
+<param name=e[19] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[20] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[21] value="C;line;connect;C1,C2;black">
+<param name=e[22] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[23] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[24] value="D;line;connect;D1,D2;black">
+<param name=e[25] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[26] value="E2;point;proportion;A1,A2,B1,B2,D1,D2,E1,E3;0">
+<param name=e[27] value="E;line;connect;E1,E2;black">
+<param name=e[28] value="F1;point;lineSlider;F0,F3,30,0;0">
+<param name=e[29] value="F2;point;proportion;A1,A2,B1,B2,E1,E2,F1,F3;0">
+<param name=e[30] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<p>I say that <i>B,</i> the third from the unit, is square as are all those which leave out one; <i>C,</i> the fourth, is cubic  as are all those which leave out two; and <i>F,</i> the seventh, is at once cubic and square as are all those which leave out five.
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Since the unit is to <i>A</i> as <i>A</i> is to <i>B,</i> therefore the unit measures the number <i>A</i> the same number of times that <i>A</i> measures <i>B.</i> But the unit measures the number <i>A</i> according to the units in it, therefore <i>A</i> also measures <i>B</i> according to the units in <i>A.</i>
+
+<div class="just"><a href="../bookVIII/propVIII22.html">VIII.22</a></div>
+<p>Therefore <i>A</i> multiplied by itself makes <i>B,</i> therefore <i>B</i> is square. And, since <i>B, C,</i> and <i>D</i> are in continued proportion, and <i>B</i> is square, therefore <i>D</i> is also square.  For the same reason <i>F</i> is also square.
+
+<p>Similarly we can prove that all those which leave out one are square.
+
+<p>I say next that <i>C,</i> the fourth from the unit, is cubic are also all those which leave out two.
+
+<p>Since the unit is to <i>A</i> as <i>B</i> is to <i>C,</i> therefore the unit measures the number <i>A</i> the same number of times that <i>B</i> measures <i>C.</i> But the unit measures the number <i>A</i> according to the units in <i>A,</i> therefore <i>B</i> also measures <i>C</i> according to the units in <i>A.</i> Therefore <i>A</i> multiplied by <i>B</i> makes <i>C.</i> Since then <i>A</i> multiplied by itself makes <i>B,</i> and multiplied by <i>B</i> makes <i>C,</i> therefore <i>C</i> is cubic.
+
+<div class="just"><a href="../bookVIII/propVIII23.html">VIII.23</a></div>
+<p>And, since <i>C, D, E,</i> and <i>F</i> are in continued proportion, and <i>C</i> is cubic, therefore <i>F</i> is also cubic.  But it was also proved square, therefore the seventh from the unit is both cubic and square. Similarly we can prove that all the numbers which leave out five are also both cubic and square.
+
+<p>Therefore, <i> if as many numbers as we please beginning from a unit are in continued proportion, then the third from the unit is square as are also those which successively leave out one, the fourth is cubic as are also all those which leave out two, and the seventh is at once cubic and square are also those which leave out five. </i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<p>It&rsquo;s unfortunate that Euclid didn't have the concept or notation for exponentiation.
+
+<p>In the continued proportion
+<ul>
+1, <i>a,</i> <i>a</i><sup>2</sup>, <i>a</i><sup>3</sup>, <i>a</i><sup>4</sup>, <i>a</i><sup>5</sup>, <i>a</i><sup>6</sup>, <i>a</i><sup>7</sup>, etc.,
+<p>every second, <i>a</i><sup>2</sup>, <i>a</i><sup>4</sup>, <i>a</i><sup>6</sup>, <i>a</i><sup>8</sup>, etc., is a square;
+<p>every third, <i>a</i><sup>3</sup>, <i>a</i><sup>6</sup>, <i>a</i><sup>9</sup>, <i>a</i><sup>12</sup>, etc., is a cube; and
+<p>every sixth, <i>a</i><sup>6</sup>, <i>a</i><sup>12</sup>, <i>a</i><sup>18</sup>, <i>a</i><sup>24</sup>, etc., is both a square and a cube.
+</ul>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in four of the next five propositions. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,311 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 29</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<h1>Proposition 29</h1>
+
+<div class="theorem">
+
+<a name=lemma1></a>
+<h1>Lemma 1.</h1>
+
+<div class="statement">
+To find two square numbers such that their sum is also square.</div>
+
+<div class="just"><a href=../bookIX/propIX24.html>IX.24</a>
+<br><a href=../bookIX/propIX26.html>IX.26</a></div>
+<p>Set out two numbers <i>AB</i> and <i>BC</i>, and let them be either both even or both odd. Then since, whether an even number is subtracted from an even number, or an odd number from an odd number, the remainder is even, therefore the remainder <i>AC</i> is even.
+
+<p> Bisect <i>AC</i> at <i>D</i>. Let <i>AB</i> and <i>BC</i> also be either similar plane numbers, or square numbers, which are themselves also similar plane numbers.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=60>
+<img src="propX29l1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Lemma 1">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,230,0">
+<param name=e[5] value="AB;line;connect;A,B;0;0;blue">
+<param name=e[6] value="C;point;lineSlider;A0,A3,180,0">
+<param name=e[7] value="D;point;midpoint;A,C">
+</applet></div>
+
+<div class="just"><a href=../bookII/propII6.html>II.6</a>
+<br><a href=../bookIX/propIX1.html>IX.1</a></div>
+<p>Now the product of <i>AB</i> and <i>BC</i> together with the square on <i>CD</i> equals the square on <i>BD</i>.  And the product of <i>AB</i> and <i>BC</i> is square, inasmuch as it was proved that, if two similar plane numbers multiplied by one another make some number, the product is square.  Therefore two square numbers, the product of <i>AB</i> and <i>BC</i>, and the square on <i>CD</i>, have been found which, when added together, make the square on <i>BD</i>.
+
+<p>And it is clear that two square numbers, the square on <i>BD</i> and the square on <i>CD</i>, have again been found such that their difference, the product of <i>AB</i> and <i>BC</i>, is a square, whenever <i>AB</i> and <i>BC</i> are similar plane numbers. But when they are not similar plane numbers, two square numbers, the square on <i>BD</i> and the square on <i>DC</i>, have been found such that their difference, the product of <i>AB</i> and <i>BC</i>, is not square.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+
+<a name=lemma1></a>
+<h1>Lemma 2.</h1>
+
+<div class="statement">
+To find two square numbers such that their sum is not square.</div>
+
+<p>Let the product of <i>AB</i> and <i>BC</i> we said, be square, and <i>CA</i> even.  Bisect <i>CA</i> by <i>D</i>.
+
+<div class="just"><a href=#lemma1>Lemma 1</a></div>
+<p>It is then clear that the square product of <i>AB</i> and <i>BC</i> together with the square on <i>CD</i> equals the square on <i>BD</i>.
+
+<p>Subtract the unit <i>DE</i>. Therefore the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i> is less than the square on <i>BD</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=350 height=60>
+<img src="propX29l2.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Lemma 2">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,310,0">
+<param name=e[5] value="AB;line;connect;A,B;0;0;blue">
+<param name=e[6] value="C;point;lineSlider;A0,A3,250,0">
+<param name=e[7] value="D;point;midpoint;A,C">
+
+<param name=e[8] value="U1;point;free;0,1000;0;0">
+<param name=e[9] value="U2;point;free;20,1000;0;0">
+<param name=e[10] value="E;point;cutoff;D,B,U1,U2">
+<param name=e[11] value="F;point;cutoff;E,B,U1,U2">
+<param name=e[12] value="G';point;cutoff;A,B,U1,U2;0;0">
+<param name=e[13] value="G;point;cutoff;G',B,U1,U2">
+<param name=e[14] value="H';point;cutoff;A,B,D,F;0;0">
+<param name=e[15] value="H;point;cutoff;H',B,D,F">
+</applet></div>
+
+<p>I say then that the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i> is not square. 
+
+<p>If it is square, then it either equals the square on <i>BE</i>, or is less than the square on <i>BE</i>, but cannot be greater lest the unit be divided.
+
+<p>First, if possible, let the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i> equal the square on <i>BE</i>, and let <i>GA</i> be double the unit <i>DE</i>.
+
+<p>Since the whole <i>AC</i> is double the whole <i>CD</i>, and in them <i>AG</i> is double <i>DE</i>, therefore the remainder <i>GC</i> is also double the remainder <i>EC</i>. Therefore <i>GC</i> is bisected by <i>E</i>.
+
+<div class="just"><a href=../bookII/propII6.html>II.6</a></div>
+<p>Therefore the product of <i>GB</i> and <i>BC</i> together with the square on <i>CE</i> equals the square on <i>BE</i>
+
+<p>But the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i> also, by hypothesis, equals the square on <i>BE</i>, therefore the product of <i>GB</i> and <i>BC</i> together with the square on <i>CE</i> equals the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i>.
+
+<p>And, if the common square on <i>CE</i> is subtracted, then it follows that <i>AB</i> equals <i>GB</i>, which is absurd.
+
+<p>Therefore the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i> does not equal the square on <i>BE</i>.
+
+<p>I say next that neither is it less than the square on <i>BE</i>.
+
+<p>For, if possible, let it equal the square on <i>BF</i>, and let <i>HA</i> be double <i>DF</i>.
+
+<div class="just"><a href=../bookII/propII6.html>II.6</a></div>
+<p>Now it will again follow that <i>HC</i> is double <i>CF</i>, so that <i>CH</i> is bisected at <i>F</i>, and for this reason the product of <i>HB</i> and <i>BC</i> together with the square on <i>FC</i> equals the square on <i>BF</i>.
+
+<p>But, by hypothesis, the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i> also equals the square on <i>BF</i>.
+
+<p>Thus the product of <i>HB</i> and <i>BC</i> together with the square on <i>CF</i> also equals the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i>, which is absurd.
+
+<p>Therefore the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i> is not less than the square on <i>BE</i>.
+
+<p>And it was proved that neither does it equal the square on <i>BE</i>.
+
+<p>Therefore the product of <i>AB</i> and <i>BC</i> together with the square on <i>CE</i> is not square.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<p><a name=prop></a>
+<div class="theorem">
+
+<a name=lemma1></a>
+<h1>Proposition 29</h1>
+
+<div class="statement">To find two rational straight lines commensurable in square only such that the square on the greater is greater than the square on the less by the square on a straight line commensurable in length with the greater.</div>
+
+<p>Set out any rational straight line <i>AB</i>, and two square numbers <i>CD</i> and <i>DE</i> such that their difference <i>CE</i> is not square.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=200>
+<img src="propX29.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.29">
+<param name=e[1] value="A0;point;free;-1000,130;0;0">
+<param name=e[2] value="A3;point;free;1000,130;0;0">
+<param name=e[3] value="C0;point;free;-1000,160;0;0">
+<param name=e[4] value="C3;point;free;1000,160;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,230,0">
+<param name=e[7] value="AB;line;connect;A,B">
+
+<param name=e[8] value="C;point;lineSlider;C0,C3,40,0">
+<param name=e[9] value="D;point;lineSlider;C0,C3,200,0">
+<param name=e[10] value="CD;line;connect;C,D;0;0;blue">
+<param name=e[11] value="E;point;lineSlider;C0,C3,130,0">
+<param name=e[12] value="M;point;midpoint;A,B;0;0">
+<param name=e[13] value="ABF;circle;radius;M,A;0;0;0;0">
+
+<param name=e[14] value="G;point;meanProportional;D,C,C,E,C,D;0;0">
+<param name=e[15] value="F';point;proportion;D,C,C,G,A,B,A,B;0;0">
+<param name=e[16] value="AFcirc;circle;radius;A,F';0;0;0;0">
+<param name=e[17] value="FF'';line;bichord;ABF,AFcirc;0;0;0">
+<param name=e[18] value="F;point;first;FF''">
+<param name=e[19] value="semi;sector;arc;B,F,A;0;0;black;random">
+<param name=e[20] value="tri;polygon;triangle;A,B,F;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=propX6.html#cor>X.6,Cor.</a></div>
+<p>Describe the semicircle <i>AFB</i> on <i>AB</i>, and let it be contrived that <i>DC</i> is to <i>CE</i> as the square on <i>BA</i> is to the square on <i>AF</i>.  Join <i>FB</i>.
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>Since the square on <i>BA</i> is to the square on <i>AF</i> as <i>DC</i> is to <i>CE</i>, therefore the square on <i>BA</i> has to the square on <i>AF</i> the ratio which the number <i>DC</i> has to the number <i>CE</i>. Therefore the square on <i>BA</i> is commensurable with the square on <i>AF</i>.
+
+<div class="just"><a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>But the square on <i>AB</i> is rational, therefore the square on <i>AF</i> is also rational. Therefore <i>AF</i> is also rational.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>And, since <i>DC</i> does not have to <i>CE</i> the ratio which a square number has to a square number, neither does the square on <i>BA</i> have to the square on <i>AF</i> the ratio which a square number has to a square number, therefore <i>AB</i> is incommensurable in length with <i>AF</i>.
+
+<p>Therefore <i>BA</i> and <i>AF</i> are rational straight lines commensurable in square only.
+
+<div class="just"><a href=../bookV/propV19.html#cor>V.19,Cor.</a>
+<br><a href=../bookIII/propIII31.html>III.31</a>,
+<a href=../bookI/propI47.html>I.47</a></div>
+<p>And since <i>DC</i> is to <i>CE</i> as the square on <i>BA</i> is to the square on <i>AF</i>, therefore, in conversion, <i>CD</i> is to <i>DE</i> as the square on <i>AB</i> is to the square on <i>BF</i>.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>But <i>CD</i> has to <i>DE</i> the ratio which a square number has to a square number, therefore the square on <i>AB</i> has to the square on <i>BF</i> the ratio which a square number has to a square number. Therefore <i>AB</i> is commensurable in length with <i>BF</i>.
+
+<p>And the square on <i>AB</i> equals the sum of the squares on <i>AF</i> and <i>FB</i>, therefore the square on <i>AB</i> is greater than the square on <i>AF</i> by the square on <i>BF</i> commensurable with <i>AB</i>.
+
+<p>Therefore there have been found two rational straight lines <i>BA</i> and <i>AF</i> commensurable in square only such that the square on the greater <i>AB</i> is greater than the square on the less <i>AF</i> by the square on <i>BF</i> commensurable in length with <i>AB</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<h4>About Lemma 1</h4>
+
+Euclid records in Lemma 1 a method to generate Pythagorean triples.  As it depends only on the material in Book IX, logically, it could have appeared there rather than here in Book X. It appears here since it is needed in the proof of the proposition.  It is likely much older than the rest of Book X.
+
+<p>Here is a paraphrase of the method of lemma 1, written in a modern algebraic notation.  Let <i>n</i><sup>2</sup> (=&nbsp;<i>AB</i>) and <i>m</i><sup>2</sup> (=&nbsp;<i>BC</i>) be two numbers of the same parity with <i>n</i><sup>2</sup> larger.  Then <i>n</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>m</i><sup>2</sup> is an even number, so let <i>k</i> (=&nbsp;<i>CD</i>) be its half.  Then 
+<p><center>
+<i>n</i><sup>2</sup><i>m</i><sup>2</sup> + <i>k</i><sup>2</sup> =
+ (<i>m</i><sup>2</sup> + <i>k</i> )<sup>2</sup>.
+</center>
+Therefore,
+<center>
+(<i>nm</i>)<sup>2</sup> + ((<i>n</i><sup>2</sup> &#150 <i>m</i><sup>2</sup>)/2)<sup>2</sup> 
+= ((<i>n</i><sup>2</sup> + <i>m</i><sup>2</sup>)/2)<sup>2</sup>,
+</center><p>
+which gives the two square numbers (<i>nm</i>)<sup>2</sup> and  ((<i>n</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>m</i><sup>2</sup>)/2)<sup>2</sup> whose sum is also a square.
+
+<h4>Pythagorean triples</h4>
+
+Three numbers <i>x, y,</i> and <i>z</i> where the sum of squares of the first two is the square of the
+third form what is now called a <i>Pythagorean triple</i> <i>x</i>&nbsp;:&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i>. 
+This lemma shows that if <i>n</i> and <i>m</i> have the same parity and <i>n</i>&nbsp;>&nbsp;<i>m</i>, then 
+<i>n</i> and <i>m</i> generate the Pythagorean triple
+<p><center>
+<table border=0><tr align=center>
+  <td><i>nm</i>&nbsp;:&nbsp;</td>
+  <td><i>n</i><sup>2</sup> &#150 <i>m</i><sup>2</sup><hr size=1 noshade>2</td>
+  <td>&nbsp;:&nbsp;</td>
+  <td><i>n</i><sup>2</sup> + <i>m</i><sup>2</sup><hr size=1 noshade>2</td>
+</tr></table>
+</center><p>
+
+<p>It is easy to see that if <i>x</i>&nbsp;:&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i>
+is a Pythagorean triple, then so is any multiple 
+<i>ax</i>&nbsp;:&nbsp;<i>ay</i>&nbsp;:&nbsp;<i>az</i>
+of it.  A Pythagorean triple that is not a multiple of another Pythagorean triple is called a
+<i>primitive</i> Pythagorean triple.  The numbers <i>n</i> and <i>m</i> are relatively prime if and only if
+the Pythagorean triple that they generate is primitive.  Thus, when <i>n</i> and <i>m</i> are relatively
+prime odd numbers and <i>n</i>&nbsp;>&nbsp;<i>m,</i> then a primitive Pythagorean triple is generated.
+
+<p>Here&rsquo;s a table of a few small Pythagorean triples, indexed by <i>n</i> and <i>m.</i>  Those that
+aren&rsquo;t primitive are colored with a gray background.
+
+<p><center>
+<table border=1 cellpadding=3 bgcolor=ffffff>
+<tr align=center>
+   <th></th><th>1</th><th>3</th><th>5</th><th>7</th><th>9</th>
+   <th>11</th><th>13</th>
+</tr>
+<tr align=center><th>3</th>
+   <td>3&nbsp;:&nbsp;4&nbsp;:&nbsp;5</td>
+</tr>
+<tr align=center><th>5</th>
+   <td>5&nbsp;:&nbsp;12&nbsp;:&nbsp;13</td>
+   <td>15&nbsp;:&nbsp;8&nbsp;:&nbsp;17</td>
+</tr>
+<tr align=center><th>7</th>
+   <td>7&nbsp;:&nbsp;24&nbsp;:&nbsp;25</td>
+   <td>21&nbsp;:&nbsp;20&nbsp;:&nbsp;29</td>
+   <td>35&nbsp;:&nbsp;12&nbsp;:&nbsp;37</td>
+</tr>
+<tr align=center><th>9</th>
+   <td>9&nbsp;:&nbsp;40&nbsp;:&nbsp;41</td>
+   <td bgcolor=cccccc>27&nbsp;:&nbsp;36&nbsp;:&nbsp;45</td>
+   <td>45&nbsp;:&nbsp;28&nbsp;:&nbsp;53</td>
+   <td>63&nbsp;:&nbsp;16&nbsp;:&nbsp;65</td>
+</tr>
+<tr align=center><th>11</th>
+   <td>11&nbsp;:&nbsp;60&nbsp;:&nbsp;61</td>
+   <td>33&nbsp;:&nbsp;56&nbsp;:&nbsp;65</td>
+   <td>55&nbsp;:&nbsp;48&nbsp;:&nbsp;73</td>
+   <td>77&nbsp;:&nbsp;36&nbsp;:&nbsp;85</td>
+   <td>99&nbsp;:&nbsp;20&nbsp;:&nbsp;101</td>
+</tr>
+<tr align=center><th>13</th>
+   <td>13&nbsp;:&nbsp;84&nbsp;:&nbsp;85</td>
+   <td>39&nbsp;:&nbsp;80&nbsp;:&nbsp;89</td>
+   <td>65&nbsp;:&nbsp;72&nbsp;:&nbsp;97</td>
+   <td>91&nbsp;:&nbsp;60&nbsp;:&nbsp;109</td>
+   <td>117&nbsp;:&nbsp;44&nbsp;:&nbsp;125</td>
+   <td>143&nbsp;:&nbsp;24&nbsp;:&nbsp;145</td>
+</tr>
+<tr align=center><th>15</th>
+   <td>15&nbsp;:&nbsp;112&nbsp;:&nbsp;113</td>
+   <td bgcolor=cccccc>45&nbsp;:&nbsp;108&nbsp;:&nbsp;117</td>
+   <td bgcolor=cccccc>75&nbsp;:&nbsp;100&nbsp;:&nbsp;125</td>
+   <td>105&nbsp;:&nbsp;88&nbsp;:&nbsp;137</td>
+   <td bgcolor=cccccc>135&nbsp;:&nbsp;72&nbsp;:&nbsp;153</td>
+   <td>165&nbsp;:&nbsp;52&nbsp;:&nbsp;173</td>
+   <td>195&nbsp;:&nbsp;28&nbsp;:&nbsp;197</td>
+</tr>
+</table></center>
+
+<h4>About Proposition 29</h4>
+
+<p>This proposition constructs a right triangle <i>ABF</i> with right angle at <i>F</i> so that sides <i>AB</i> and <i>AF</i> are rational lines commensurable in square only so that <i>BF</i> is commensurable to <i>AB</i>. 
+
+<p>If we let <i>a</i>, <i>b</i>, and <i>f</i> be the lengths of the sides opposite the angles <i>A</i>, <i>B</i>, and <i>F</i>, respectively, that means that <i>f</i><sup>&nbsp;2</sup>&nbsp;=&nbsp;<i>a</i><sup>2</sup>&nbsp;+&nbsp;<i>b</i><sup>2</sup>; <i>a</i><sup>2</sup>, <i>b</i><sup>2</sup>, and <i>c</i><sup>2</sup> are all rational numbers; <i>f</i>&nbsp;/<i>b</i> is irrational; and <i>f</i>&nbsp;/<i>a</i> is rational. That can be accomplished by making the proportion <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;:&nbsp;<i>f</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;&radic;(<i>c</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>d</i><sup>2</sup>)&nbsp;:&nbsp;<i>c</i>, where <i>c</i> and <i>d</i> are (whole) numbers such that <i>c</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>d</i><sup>2</sup> is not a square.
+
+<p>That&rsquo;s what&rsquo;s done here, where <i>c</i><sup>2</sup> is <i>CD</i>, and <i>d</i><sup>2</sup> is <i>DE</i>.
+
+<h4>Use of this proposition</h4>
+
+Proposition X.29 is used in <a href=propX31.html>X.31</a> and <a href=propX32.html>X.32</a>.  Lemma 2 is used in <a href=propX30.html>X.30</a>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

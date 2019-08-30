@@ -1,0 +1,134 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 31</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 31</h1>
+
+<div class="statement">
+In right-angled triangles the figure on the side opposite the right angle equals the sum of the similar and similarly described figures on the sides containing the right angle.
+</div>
+
+<p>Let <i>ABC</i> be a right-angled triangle having the angle <i>BAC</i> right.
+
+<p>I say that the figure on <i>BC</i> equals the sum of the similar and similarly described figures on <i>BA</i> and <i>AC.</i>
+
+<div class="just"><a href="../bookI/propI12.html">I.12</a></div>
+<p>Draw the perpendicular <i>AD.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=280 width=380>
+<img src=propVI31.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.31">
+<param name=e[1] value="B;point;free;60,180">
+<param name=e[2] value="C;point;free;300,180">
+<param name=e[3] value="M;point;midpoint;B,C;0;0">
+<param name=e[4] value="circ;circle;radius;M,B;0;0;0;0">
+<param name=e[5] value="A;point;circleSlider;circ,120,80">
+<param name=e[6] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[7] value="D;point;foot;A,B,C;black;green">
+<param name=pivot value=D>
+<param name=e[8] value="AD;line;connect;A,D">
+<param name=e[9] value="E;point;free;60,260;0">
+<param name=e[10] value="F;point;free;300,260;0">
+<param name=e[11] value="BCFE;polygon;quadrilateral;B,C,F,E;0;0;black;random">
+<param name=e[12] value="G;point;similar;A,B,B,C,E;0">
+<param name=e[13] value="H;point;similar;A,B,B,C,F;0">
+<param name=e[14] value="ABHG;polygon;quadrilateral;A,B,H,G;0;0;black;random">
+<param name=e[15] value="K;point;similar;C,A,B,C,E;0">
+<param name=e[16] value="N;point;similar;C,A,B,C,F;0">
+<param name=e[17] value="CANK;polygon;quadrilateral;C,A,N,K;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=propVI8.html>VI.8</a></div>
+<p>Then, since in the right-angled triangle <i>ABC, AD</i> has been drawn from the right angle at <i>A</i> perpendicular to the base <i>BC,</i> therefore the triangles <i>DBA</i> and <i>DAC</i> adjoining the perpendicular are similar both to the whole <i>ABC</i> and to one another.
+
+<div class="just"><a href=defVI1.html>VI.Def.1</a></div>
+<p>And, since <i>ABC</i> is similar to <i>DBA,</i> therefore <i>BC</i> is to <i>BA</i> as <i>BA</i> is to <i>BD.</i>
+
+<div class="just"><a href="propVI19.html#cor">VI.19,Cor</a></div>
+<p>And, since three straight lines are proportional, the first is to the third as the figure on the first is to the similar and similarly described figure on the second.
+
+<p>Therefore <i>BC</i> is to <i>BD</i> as the figure on <i>BC</i> is to the similar and similarly described figure on <i>BA.</i>
+
+<div class="just"><a href="../bookV/propV24.html">V.24</a></div>
+<p>For the same reason also, <i>BC</i> is to <i>CD</i> as the figure on <i>BC</i> is to that on <i>CA,</i> so that, in addition, <i>BC</i> is to the sum of <i>BD</i> and <i>DC</i> as the figure on <i>BC</i> is to the sum of the similar and similarly described figures on <i>BA</i> and <i>AC.</i>
+
+<p>But <i>BC</i> equals the sum of <i>BD</i> and <i>DC,</i> therefore the figure on <i>BC</i> equals the sum of the similar and similarly described figures on <i>BA</i> and <i>AC.</i>
+
+<p>Therefore, <i>in right-angled triangles the figure on the side opposite the right angle equals the sum of the similar and similarly described figures on the sides containing the right angle.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is a generalization of <a href=../bookI/propI47.html>I.47</a> where the squares in I.47 are replaced by any similar rectilinear figures.
+
+<h4>Hippocrates&rsquo; quadrature of lunes</h4>
+
+Proclus says that this proposition is Euclid&rsquo;s own, and the proof may be his, but
+the result, if not the proof, was known long before Euclid, at least in the time
+of Hippocrates a century before Euclid.
+
+<p>The broad problem Hippocrates was investigating was that of quadrature of a circle, also called squaring a circle, which is to find a square (or any other polygon) with the same area as a given
+ circle.  Hippocrates did not solve that problem, but he did solve a related one involving lunes.  A <i>lune</i> (also called a <i>crescent</i>) is a region of nonoverlap of two intersecting circles.
+ Hippocrates did not succeed in squaring an arbitrary lune, but he did succeed in a couple special cases.  Here is a summary of the simplest case.
+
+<table>
+<tr><td>Draw a square <i>ABCD</i> with diameters <i>AC</i> and <i>BD</i> meeting at <i>E.</i> Circumscribe a semicircle <i>AGBHC</i> about the right isosceles triangle <i>ABC.</i>  Draw the arc
+ <i>AFC</i> from <i>A</i> to <i>C</i> of a circle with center <i>D</i> and radius <i>DA.</i>
+
+<p>Hippocrates finds the area of the lune formed between the semicircle <i>AGBHC</i> and the arc <i>AF</i> as follows.
+
+<p>Note that there are three segments of circles in the diagram; two of them are small, namely,
+<i>AGB</i> with base <i>AB,</i> and <i>BHC</i> with base <i>BC,</i> and one is large, namely, <i>AFC</i> with base <i>AC.</i>  The first two are congruent, and the third is similar to them since all
+ three are segments in quarters of circles.
+</td>
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=280 width=280>
+<img src=propVI31a.gif alt="Hippocrates' lune">
+<param name=background value="35,19,100">
+<param name=title value="Hippocrates' lune">
+<param name=e[1] value="A;point;free;65,250">
+<param name=e[2] value="C;point;free;250,65">
+<param name=e[3] value="AC;line;connect;A,C">
+<param name=e[4] value="E;point;midpoint;AC">
+<param name=e[5] value="B;point;perpendicular;E,C">
+<param name=e[6] value="D;point;extend;B,E,B,E">
+<param name=e[7] value="BD;line;connect;B,D">
+<param name=e[8] value="F;point;cutoff;D,B,D,A;black;0">
+<param name=e[9] value="G1;point;midpoint;A,B;0;0">
+<param name=e[10] value="G;point;cutoff;E,G1,E,A;black;0">
+<param name=e[11] value="H1;point;midpoint;C,B;0;0">
+<param name=e[12] value="H;point;cutoff;E,H1,E,A;black;0">
+<param name=e[13] value="ACsemi;sector;sector;E,C,A;0;0;black;random">
+<param name=e[14] value="ABC;polygon;triangle;A,B,C;0;0;black;0">
+<param name=e[15] value="ACsector;sector;sector;D,C,A;0;0;black;35,19,100">
+<param name=e[16] value="ACD;polygon;triangle;A,C,D;0;0;black;35,19,100">
+</applet>
+</td></tr>
+</table>
+
+Hippocrates then uses a version of this proposition VI.31&#151;generalized so the figures don&rsquo;t have to be rectilinear but may have curved sides&#151; to conclude that the sum of the two small segments, <i>AGB</i>&nbsp;+&nbsp;<i>BHC,</i> equals the large segment <i>AFC,</i> since the bases of the small segments are sides of a right triangle while the base of the large segment is the triangle&rsquo;s hypotenuse.
+
+<p>Therefore, the lune, which is the semicircle minus the large segment, equals the semicircle minus the sum of the small segments.  But the semicircle minus the sum of the small segments is just the right triangle <i>ABC.</i>  Thus, a rectilinear figure (the triangle) has been found equal to the lune, as required.
+
+<p>Note that at Hippocrates&rsquo; time, Eudoxus&rsquo; theory of proportion had not been developed, so the understanding of the theory of similar figures (<a href="../bookV/bookV.html">Book V</a>) was not as
+ complete as it was after Eudoxus.  Also, Eudoxus&rsquo; principle of exhaustion (see <a href="../bookXII/bookXII.html">Book XI</a> and proposition <a href="../bookX/propX1.html">X.1</a>) for finding areas
+ of curved figures was still to come, so the concept of area of curved figures was on shaky ground, too.  Such a situation is common in mathematics&#151;mathematics advances into new territory long
+ before the foundations of mathematics are developed to logically justify those advances.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

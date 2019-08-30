@@ -1,0 +1,89 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 21</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 21</h1>
+
+<div class="statement">Numbers relatively prime are the least of those which have the same ratio with them.</div>
+
+<p>Let <i>A</i> and <i>B</i> be numbers relatively prime.
+<p>I say that <i>A</i> and <i>B</i> are the least of those which have the same ratio with them.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=200 height=250 >
+<img src=propVII21.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.21">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,30,230;0">
+<param name=e[5] value="A;line;connect;A1,A2;black">
+<param name=e[6] value="B0;point;free;60,-1000;0;0">
+<param name=e[7] value="B3;point;free;60,1000;0;0">
+<param name=e[8] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[9] value="B2;point;lineSlider;B0,B3,60,180;0">
+<param name=e[10] value="B;line;connect;B1,B2;black">
+
+<param name=e[11] value="C0;point;free;100,-1000;0;0">
+<param name=e[12] value="C3;point;free;100,1000;0;0">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,100,30;0">
+<param name=e[14] value="M;point;midpoint;A1,A2;0;0">
+<param name=e[15] value="C2;point;cutoff;C1,C3,A1,M;0">
+<param name=e[16] value="C;line;connect;C1,C2;black">
+<param name=e[17] value="D0;point;free;130,-1000;0;0">
+<param name=e[18] value="D3;point;free;130,1000;0;0">
+<param name=e[19] value="D1;point;lineSlider;D0,D3,130,30;0">
+<param name=e[20] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[21] value="D;line;connect;D1,D2;black">
+
+<param name=e[22] value="E0;point;free;170,-1000;0;0">
+<param name=e[23] value="E3;point;free;170,1000;0;0">
+<param name=e[24] value="E1;point;lineSlider;E0,E3,130,30;0;black">
+<param name=e[25] value="E2;point;lineSlider;E0,E3,130,50;0;black">
+<param name=e[26] value="E;line;connect;E1,E2;black">
+</applet></div>
+
+<p>If not, there are some numbers less than <i>A</i> and <i>B</i> in the same ratio with <i>A</i> and <i>B.</i> Let them be <i>C</i> and <i>D.</i>
+
+<div class="just"><a href="propVII20.html">VII.20</a></div>
+<p>Since, then, the least numbers of those which have the same ratio measure those which have the same ratio the same number of times, the greater the greater, and the less the less, that is, the antecedent the antecedent and the consequent the consequent, therefore <i>C</i> measures <i>A</i> the same number of times that <i>D</i> measures <i>B.</i>
+
+<p>Let there be as many units in <i>E</i> as the times that <i>C</i> measures <i>A.</i> Then <i>D</i> also measures <i>B</i> according to the units in <i>E.</i>
+
+<div class="just"><a href=propVII16.html>VII.16</a></div>
+<p>And, since <i>C</i> measures <i>A</i> according to the units in <i>E,</i> therefore <i>E</i> also measures <i>A</i> according to the units in <i>C.</i> For the same reason <i>E</i> also measures <i>B</i> according to the units in <i>D.</i>
+
+<div class="just"><a href=defVII11.html>VII.Def.12</a></div>
+<p>Therefore <i>E</i> measures <i>A</i> and <i>B</i> which are relatively prime, which is impossible.
+
+<p>Therefore there are no numbers less than <i>A</i> and <i>B</i> which are in the same ratio with <i>A</i> and <i>B.</i> Therefore <i>A</i> and <i>B</i> are the least of those which have the same ratio with them.
+
+<p>Therefore, <i>numbers relatively prime are the least of those which have the same ratio with them.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The next proposition is the converse of this one.  Together they say that a ratio <i>a</i>&nbsp;:&nbsp;<i>b</i> is reduced to lowest terms if and only if <i>a</i> is relatively prime to <i>b.</i>
+
+<p>Although it appears that this proposition is about pairs of numbers and their ratios, it is used in proposition <a href=propVII33.html>VII.33</a> with any quantity of numbers.  Stated in terms of three numbers <i>a, b,</i> and <i>c,</i> that proposition says that of all triples with the same ratio as 
+<i>a, b,</i> and <i>c,</i> have, the triple of relatively prime numbers is least.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used frequently in Books VII through IX starting with <a href=propVII24.html>VII.24</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

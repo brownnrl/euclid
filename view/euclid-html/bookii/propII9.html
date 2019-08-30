@@ -1,0 +1,210 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 9</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 9</h1>
+
+<div class="statement">If a straight line is cut into equal and unequal segments, then the sum of the squares on the unequal segments of the whole is double the sum of the square on the half and the square on the straight line between the points of section.</div>
+
+<p>Let a straight line <i>AB</i> be cut into equal segments at <i>C,</i> and into unequal segments at <i>D.</i>
+
+<p>I say that the sum of the squares on <i>AD</i> and <i>DB</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=310>
+<img src="propII9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.9">
+<param name=e[1] value="A;point;free;40,190">
+<param name=e[2] value="B;point;free;270,190">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;midpoint;AB">
+<param name=e[5] value="D;point;lineSlider;AB,200,190">
+<param name=e[6] value="CE;line;perpendicular;C,B">
+<param name=e[7] value="E;point;last;CE">
+<param name=e[8] value="AE;line;connect;A,E">
+<param name=e[9] value="BE;line;connect;B,E">
+<param name=e[10] value="F';point;parallelogram;E,C,D;0;0">
+<param name=e[11] value="F;point;intersection;D,F',B,E">
+<param name=e[12] value="FG;line;parallel;F,D,C">
+<param name=e[13] value="G;point;last;FG">
+<param name=e[14] value="AF;line;connect;A,F">
+<param name=e[15] value="DF;line;connect;D,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII9.gif" hspace=10 alt="II.9">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a>,
+<a href="../bookI/propI3.html">I.3</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Draw <i>CE</i> from <i>C</i> at right angles to <i>AB,</i> and make it equal to either <i>AC</i> or <i>CB.</i> Join <i>EA</i> and <i>EB.</i> Draw <i>DF</i> through <i>D</i> parallel to <i>EC</i> and <i>FG</i> through <i>F</i> parallel to <i>AB.</i> Join <i>AF.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>Then, since <i>AC</i> equals <i>CE,</i> the angle <i>EAC</i> also equals the angle <i>AEC.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>And, since the angle at <i>C</i> is right, the sum of the remaining angles <i>EAC</i> and <i>AEC</i> equals one right angle.
+
+<p>And they are equal, therefore each of the angles <i>CEA</i> and <i>CAE</i> is half of a right angle.
+
+<p>For the same reason each of the angles <i>CEB</i> and <i>EBC</i> is also half of a right angle, therefore the whole angle <i>AEB</i> is right.
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a>
+<br><a href="../bookI/propI32.html">I.32</a>
+<br><a href="../bookI/propI6.html">I.6</a></div>
+<p>And, since the angle <i>GEF</i> is half of a right angle, and the angle <i>EGF</i> is right, for it equals the interior and opposite angle <i>ECB,</i> the remaining angle <i>EFG</i> is half of a right angle.  Therefore the angle <i>GEF</i> equals the angle <i>EFG,</i> so that the side <i>EG</i> also equals <i>GF.</i> 
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a>
+<br><a href="../bookI/propI32.html">I.32</a>
+<br><a href="../bookI/propI6.html">I.6</a></div>
+<p>Again, since the angle at <i>B</i> is half of a right angle, and the angle <i>FDB</i> is right, for it is again equal to the interior and opposite angle <i>ECB,</i> the remaining angle <i>BFD</i> is half of a right angle.  Therefore the angle at <i>B</i> equals the angle <i>DFB,</i> so that the side <i>FD</i> also equals the side <i>DB.</i> 
+
+<p>Now, since <i>AC</i> equals <i>CE,</i> the square on <i>AC</i> also equals the square on <i>CE,</i> therefore the sum of the squares on <i>AC</i> and <i>CE</i> is double the square on <i>AC.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the square on <i>EA</i> equals the sum of the squares on <i>AC</i> and <i>CE,</i> for the angle <i>ACE</i> is right, therefore the square on <i>EA</i> is double the square on <i>AC.</i>
+
+<p>Again, since <i>EG</i> equals <i>GF,</i> the square on <i>EG</i> also equals the square on <i>GF.</i>  Therefore the sum of the squares on <i>EG</i> and <i>GF</i> is double the square on <i>GF.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the square on <i>EF</i> equals the sum of the squares on <i>EG</i> and <i>GF,</i> therefore the square on <i>EF</i> is double the square on <i>GF.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>But <i>GF</i> equals <i>CD,</i> therefore the square on <i>EF</i> is double the square on <i>CD.</i>
+
+<p>But the square on <i>EA</i> is also double of the square on <i>AC,</i> therefore the sum of the squares on <i>AE</i> and <i>EF</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>And the square on <i>AF</i> equals sum of the squares on <i>AE</i> and <i>EF,</i> for the angle <i>AEF</i> is right.  Therefore the square on <i>AF</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the sum of the squares on <i>AD</i> and <i>DF</i> equals the square on <i>AF,</i> for the angle at <i>D</i> is right, therefore the sum of the squares on <i>AD</i> and <i>DF</i> is double the sum the squares on <i>AC</i> and <i>CD.</i>
+
+<p>And <i>DF</i> equals <i>DB.</i>
+<p>Therefore the sum of the squares on <i>AD</i> and <i>DB</i> is double the sum of the squares on <i>AC</i> and <i>CD.</i>
+
+<p>Therefore <i>if a straight line is cut into equal and unequal segments, then the sum of the squares on the unequal segments of the whole is double the sum of the square on the half and the square on the straight line between the points of section.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<h4>Outline of the proof</h4>
+
+Start with the given line <i>AB</i> bisected at <i>C</i> and cut at another point <i>D.</i>  The construction will result in a line <i>AF</i> whose square is
+simultaneously equal to both <i>AD</i><sup>2</sup>&nbsp;+&nbsp;<i>DB</i><sup>2</sup> and 2(<i>AC</i><sup>2</sup>+<i>CD</i><sup>2</sup>).
+
+<p>Draw <i>CE</i> at right angles to <i>AB</i> and equal to half of it.  Finish the diagram by drawing parallel lines and connecting points.  That results in four isosceles right triangles, <i>ACE, ECB, EGF,</i> and <i>FDB,</i>
+as well as two other right triangles, <i>AEB</i> and <i>AEF.</i> Then,
+
+<p><center><table> 
+<tr><td><i>AF</i><sup>2</sup></td><td>=</td>
+<td><i>AE</i><sup>2</sup> + <i>EF</i><sup>2</sup></td></tr>
+<tr><td></td><td>=</td>
+<td>(<i>AC</i><sup>2</sup> + <i>CE</i><sup>2</sup>) +
+(<i>EG</i><sup>2</sup> + <i>GF</i><sup>2</sup>)</td></tr>
+<tr><td></td><td>=</td>
+<td>2(<i>AC</i><sup>2</sup>+<i>CD</i><sup>2</sup>)</td></tr>
+</table></center>
+
+But also,
+
+<center><table> 
+<tr><td><i>AF</i><sup>2</sup></td><td>=</td>
+<td><i>AD</i><sup>2</sup> + <i>DF</i><sup>2</sup></td></tr>
+<tr><td></td><td>=</td>
+<td><i>AD</i><sup>2</sup> + <i>DB</i><sup>2</sup></td></tr>
+</table></center><p>
+
+Thus, <i>AD</i><sup>2</sup> + <i>DB</i><sup>2</sup> = 2(<i>AC</i><sup>2</sup>+<i>CD</i><sup>2</sup>), as desired.
+
+<h4>An alternate cut-and-paste proof</h4>
+
+<table>
+<tr><td>
+Up until this proposition, Euclid has only used cut-and-paste proofs, and such a proof can  be made for this proposition as well.  It would start with the same line <i>AB</i> bisected at <i>C</i> and also cut at <i>D.</i>  Then lines at right angles and parallel to line <i>AB</i> would be constructed to make squares and rectangles of various sizes.
+
+<p>The goal is to show that
+
+<p><center>
+<i>AD</i><sup>2</sup> + <i>DB</i><sup>2</sup> = 2(<i>AC</i><sup>2</sup> + <i>CD</i><sup>2</sup>).
+</center><p>
+
+The left hand side of the equation is displayed to the right as the two squares <i>AR</i> plus <i>RF.</i>  Cut out the rectangle <i>KQ</i> and move it to the right to cover the rectangle <i>MP.</i>  Also move the rectangle <i>CN</i> up to the rectangle <i>MH.</i> Now the upper right square <i>MF</i> is completely covered once, with two extra coverings of the small square <i>MR.</i> That is, two squares of size <i>AC</i><sup>2</sup> are covered as well as two squares of size <i>CD</i><sup>2</sup>.  The two sides of the equation are, therefore, equal.
+</td><td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=280 width=280>
+<img src="propII9a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.9">
+<param name=e[1] value="A;point;free;40,240">
+<param name=e[2] value="B;point;free;240,240">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;midpoint;AB">
+<param name=e[5] value="D;point;lineSlider;AB,180,0">
+<param name=e[6] value="E;point;perpendicular;A,B">
+<param name=e[7] value="F;point;parallelogram;B,A,E">
+<param name=e[8] value="AEFB;polygon;quadrilateral;A,E,F,B">
+<param name=e[9] value="G;point;parallelogram;C,A,E">
+<param name=e[10] value="CG;line;connect;C,G">
+<param name=e[11] value="H;point;parallelogram;D,A,E">
+<param name=e[12] value="DH;line;connect;D,H">
+<param name=e[13] value="K;point;midpoint;A,E">
+<param name=e[14] value="L;point;midpoint;F,B">
+<param name=e[15] value="KL;line;connect;K,L">
+<param name=e[16] value="M;point;intersection;C,G,K,L">
+<param name=e[17] value="N;point;intersection;D,H,K,L">
+<param name=e[18] value="O;point;cutoff;A,E,A,D">
+<param name=e[19] value="P;point;cutoff;B,F,A,D">
+<param name=e[20] value="Q;point;intersection;C,G,O,P">
+<param name=e[21] value="R;point;intersection;H,D,O,P">
+<param name=e[22] value="OP;line;connect;O,P">
+<param name=e[23] value="ADRO;polygon;quadrilateral;A,D,R,O;0;0;0;random">
+<param name=e[24] value="PRHF;polygon;quadrilateral;P,R,H,F;0;0;0;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propII9a.gif" hspace=10 alt="II.9">';
+</script>
+</div>
+</tr></table>
+
+
+<h4>Interpretations of the proposition</h4>
+
+The equation, <i>AD</i><sup>2</sup> + <i>DB</i><sup>2</sup> =
+2(<i>AC</i><sup>2</sup>+<i>CD</i><sup>2</sup>), can be interpreted in various ways depending on which information are taken as given. These interpretations are more of an aid to the modern reader than as intrinsic aspects of the proposition, since they are interpretations in modern symbolic algebra.
+
+<p>For instance, when <i>AC</i> and <i>CB</i> are set to <i>y</i> while <i>CD</i> is set to <i>z,</i> then the algebraic identity
+<p><center>(<i>y</i>&nbsp;+&nbsp;<i>z</i>)<sup>2</sup>&nbsp;+&nbsp;(<i>y</i>&nbsp;&ndash;&nbsp;<i>z</i>)<sup>2</sup>&nbsp;=&nbsp;2 (<i>y</i><sup>2</sup>&nbsp;+&nbsp;<i>z</i><sup>2</sup>)</center><p>
+results.  
+
+<p>Alternatively, when <i>AC</i> and <i>CB</i> are set to <i>y</i> while <i>BC</i> is set to <i>x,</i>, then we get the identity
+<p><center>(2<i>y</i> &ndash; <i>x</i>)<sup>2</sup> + <i>x</i><sup>2</sup> = 2 (<i>y</i><sup>2</sup> + (<i>y</i> &ndash; <i>x</i>)<sup>2</sup>)</center><p>
+
+<p>There are yet other interpretations. This proposition is used in Book X to prove a lemma for <a href=../bookX/propX60.html>X.60</a>, and in that lemma, <i>w</i>&nbsp;=&nbsp;<i>AD</i> and <i>x</i>&nbsp;=&nbsp;<i>DB</i> are given first, so that 
+<p><center>
+<i>w</i><sup>2</sup> + <i>x</i><sup>2</sup> = 
+2 (((<i>w</i> + <i>x</i>)/2)<sup>2</sup> +
+   ((<i>w</i> &ndash; <i>x</i>)/2)<sup>2</sup>)
+</center><p>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

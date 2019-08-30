@@ -1,0 +1,47 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book XI, Definition 11</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 11</h1>
+
+<div class="statement">A solid angle is the inclination constituted by more than two lines which meet one another and are not in the same surface, towards all the lines, that is, a solid angle is that which is contained by more than two plane angles which are not in the same plane and are constructed to one point.</div>
+</div>
+
+<h2>Guide</h2>
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  width=320 height=250 >
+<img src="defXI11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.Def.11">
+<param name=e[1] value="X;point;free;100000,200">
+<param name=e[2] value="Y;point;free;200,-100000">
+<param name=e[3] value="Z;point;free;30000,-100000">
+<param name=e[4] value="P0;point;free;30,210;0;0,75,100">
+<param name=e[5] value="P2;point;free;280,80;0;0,75,100">
+<param name=e[6] value="P1;point;intersection;P0,X,P2,Z;0;0">
+<param name=e[7] value="P3;point;intersection;P2,X,P0,Z;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;P0,P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[9] value="A;point;free;150,35">
+<param name=e[10] value="B;point;lineSlider;P0,P3,40,160">
+<param name=e[11] value="C;point;lineSlider;P0,P1,150,200">
+<param name=e[12] value="D;point;lineSlider;P1,P2,200,120">
+<param name=e[13] value="ABD;polygon;triangle;A,B,D;0;0;black;120,100,80">
+<param name=e[14] value="ABC;polygon;triangle;A,B,C;0;0;black;90,100,100">
+<param name=e[15] value="ACD;polygon;triangle;A,C,D;0;0;black;110,100,100">
+</applet></center>
+
+<p>A solid angle is intended to be bounded by three or more planes meeting at a point.  The solid angle at <i>A</i> is bounded by the three planes <i>ABC, ACD,</i> and <i>ADB.</i>  The figure <i>ABCD</i> is a triangular pyramid.  Pyramids are defined in  definition <a href=defXI12.html>XI.Def.12</a> coming next.
+
+<p>The two definitions given here for solid angle are not strictly equivalent.  In the first the lines mentioned are not specified as being straight, and the surfaces are not specified as being planes.  In the second the surfaces are specified as being planes, and since planes meet in straight lines (<a href=propXI3.html>XI.3</a>), the lines must be straight.  The difference, however, may well be an oversight.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1998");
+</script>
+</BODY></HTML>

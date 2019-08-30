@@ -1,0 +1,84 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 31</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 31</h1>
+
+<div class="statement">To find two medial straight lines commensurable in square only, containing a rational rectangle, such that the square on the greater is greater than the square on the less by the square on a straight line commensurable in length with the greater.</div>
+
+<div class="just"><a href=propX29.html>X.29</a></div>
+<p>Set out two rational straight lines <i>A</i> and <i>B</i> commensurable in square only such that the square on <i>A</i>, being the greater, is greater than the square on <i>B</i> the less by the square on a straight line commensurable in length with <i>A</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=150 height=200>
+<img src="propX31.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.31">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,30,170;0">
+<param name=e[5] value="A;line;connect;A1,A2;black">
+<param name=e[6] value="B0;point;free;60,-1000;0;0">
+<param name=e[7] value="B3;point;free;60,1000;0;0">
+<param name=e[8] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[9] value="B2;point;lineSlider;B0,B3,60,140;0">
+<param name=e[10] value="B;line;connect;B1,B2;black">
+<param name=e[11] value="C0;point;free;90,-1000;0;0">
+<param name=e[12] value="C3;point;free;90,1000;0;0">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,90,30;0">
+<param name=e[14] value="C2;point;meanProportional;A1,A2,B1,B2,C1,C3;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+<param name=e[16] value="D0;point;free;120,-1000;0;0">
+<param name=e[17] value="D3;point;free;120,1000;0;0">
+<param name=e[18] value="D1;point;lineSlider;D0,D3,120,30;0">
+<param name=e[19] value="D2;point;proportion;C1,C2,B1,B2,B1,B2,D1,D3;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<p>Let the square on <i>C</i> equal the rectangle <i>A</i> by <i>B</i>.
+
+<div class="just"><a href=propX21.html>X.21</a></div>
+<p>Now the rectangle <i>A</i> by <i>B</i> is medial, therefore the square on <i>C</i> is also medial. Therefore <i>C</i> is also medial.
+
+<p>Let the rectangle <i>C</i> by <i>D</i> equal the square on <i>B</i>.
+
+<div class="just"><a href=propX22.html#lemma>X.22.Lem</a></div>
+<p>Now the square on <i>B</i> is rational, therefore the rectangle <i>C</i> by <i>D</i> is also rational. And since <i>A</i> is to <i>B</i> as the rectangle <i>A</i> by <i>B</i> is to the square on <i>B</i>, while the square on <i>C</i> equals the rectangle <i>A</i> by <i>B</i>, and the rectangle <i>C</i> by <i>D</i> equals the square on <i>B</i>, therefore <i>A</i> is to <i>B</i> as the square on <i>C</i> is to the rectangle <i>C</i> by <i>D</i>.
+
+<p>But the square on <i>C</i> is to the rectangle <i>C</i> by <i>D</i> as <i>C</i> is to <i>D</i>, therefore <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>But <i>A</i> is commensurable with <i>B</i> in square only, therefore <i>C</i> is also commensurable with <i>D</i> in square only.
+
+<div class="just"><a href=propX23.html#note>X.23,Note</a></div>
+<p>And <i>C</i> is medial, therefore <i>D</i> is also medial.
+
+<div class="just"><a href=propX14.html>X.14</a></div>
+<p>Since <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D</i>, and the square on <i>A</i> is greater than the square on <i>B</i> by the square on a straight line commensurable with <i>A</i>, therefore the square on <i>C</i> is greater than the square on <i>D</i> by the square on a straight line commensurable with <i>C</i>.
+
+<p>Therefore two medial straight lines <i>C</i> and <i>D</i>, commensurable in square only and containing a rational rectangle, have been found, and the square on <i>C</i> is greater than the square on <i>D</i> by the square on a straight line commensurable in length with <i>C</i>.
+
+<div class="just"><a href=propX30.html>X.30</a></div>
+<p>Similarly also it can be proved that the square on <i>C</i> exceeds the square on <i>D</i> by the square on a straight line incommensurable with <i>C</i>, when the square on <i>A</i> is greater than the square on <i>B</i> by the square on a straight line incommensurable with <i>A</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in <a href=propX34.html>X.34</a> and <a href=propX35.html>X.35</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

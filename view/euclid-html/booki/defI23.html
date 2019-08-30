@@ -1,0 +1,48 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book I, Definition 23</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 23</h1>
+
+<div class="statement"><i>Parallel</i> straight lines are straight lines which, being in the same plane and being produced indefinitely in both directions, do not meet one another in either direction.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<table cellspacing=5>
+<tr><td>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=160 width=250>
+<img src="defI23.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.Def.23">
+<param name=e[1] value="A1;point;free;40,40;0">
+<param name=e[2] value="A2;point;free;200,60;0">
+<param name=e[3] value="A;line;connect;A1,A2;black">
+<param name=e[4] value="B1;point;free;50,100;0">
+<param name=e[5] value="B2;point;parallelogram;B1,A1,A2;0;0">
+<param name=e[6] value="B3;point;lineSlider;B1,B2,200,100;0">
+<param name=e[7] value="B;line;connect;B1,B3;black">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="defI23.gif" hspace=10 vspace=10 alt="I.Def.23">';
+</script>
+</td>
+
+<td>This definition only defines what it means for straight lines to be parallel; it does not say that there are any parallel lines.  Proposition <a href=propI31.html>I.31</a> gives a construction for a line parallel to a given line through a given point.
+</td></tr></table>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

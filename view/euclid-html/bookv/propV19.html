@@ -1,0 +1,84 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 19</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 19</h1>
+
+<div class="statement">If a whole is to a whole as a part subtracted is to a part subtracted, then the remainder is also to the remainder as the whole is to the whole.</div>
+
+<p>Let the whole <i>AB</i> be to the whole <i>CD</i> as the part <i>AE</i> subtracted is to the part <i>CF</i> subtracted.
+
+<p>I say that the remainder <i>EB</i> is also to the remainder <i>FD</i> as the whole <i>AB</i> is to the whole <i>CD.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=80>
+<img src=propV19.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.19">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,70;0;0">
+<param name=e[4] value="V1;point;free;1000,70;0;0">
+<param name=e[5] value="A;point;lineSlider;U0,U1,70,30">
+<param name=e[6] value="B;point;lineSlider;U0,U1,220,30">
+<param name=e[7] value="AB;line;connect;A,B;0;0;blue">
+<param name=e[8] value="E;point;lineSlider;A,B,160,30">
+<param name=e[9] value="C;point;lineSlider;V0,V1,20,70">
+<param name=e[10] value="D;point;lineSlider;V0,V1,260,50">
+<param name=e[11] value="CD;line;connect;C,D;0;0;red">
+<param name=e[12] value="F;point;proportion;A,B,C,D,A,E,C,V1">
+</applet></div>
+
+<div class="just"><a href=propV16.html>V.16</a></div>
+<p>Since <i>AB</i> is to <i>CD</i> as <i>AE</i> is to <i>CF,</i> therefore alternately, <i>BA</i> is to <i>AE</i> as <i>DC</i> is to <i>CF.</i>
+
+<div class="just"><a href=propV17.html>V.17</a>
+<br><a href=propV16.html>V.16</a></div>
+<p>And, since the magnitudes are proportional taken jointly, they are also proportional taken separately, that is, <i>BE</i> is to <i>EA</i> as <i>DF</i> is to <i>CF,</i> and, alternately, <i>BE</i> is to <i>DF</i> as <i>EA</i> is to <i>FC.</i>
+
+<p>But, by hypothesis, <i>AE</i> is to <i>CF</i> as is the whole <i>AB</i> to the whole <i>CD.</i></td></tr>
+
+<div class="just"><a href=propV11.html>V.11</a></div>
+<p>Therefore the remainder <i>EB</i> is also to the remainder <i>FD</i> as the whole <i>AB</i> is to the whole <i>CD.</i>
+
+<p>Therefore <i>if a whole is to a whole as a part subtracted is to a part subtracted, then the remainder is also to the remainder as the whole is to the whole.</i></td></tr>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+<div class="theorem">
+<h1>Corollary</h2>
+<div class="statement">
+From this it is manifest that, <i>if magnitudes are proportional taken jointly, then they are also proportional in conversion.</i>
+<div class="just"><a href=defV14.html>V.Def.16</a></div>
+</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says that if (<i>u</i>&nbsp;+&nbsp;<i>v</i>)&nbsp;:&nbsp;(<i>x</i>&nbsp;+&nbsp;<i>y</i>) equals <i>v</i>&nbsp;:&nbsp;<i>y,</i> then it also equals <i>u</i>&nbsp;:&nbsp;<i>x.</i>
+
+<p>The transformations of proportions taken jointly, taken separately, and in conversion are summarized in the <a href=defV14.html#guide>Guide</a> for V.Def.14.
+
+<p>The magnitudes in this proposition must all be of the same kind, but those in the corollary can be of two different kinds.  Thus, the corollary is out of place.  It should probably be after the last proposition since it follows from the previous two propositions by inversion.  As Heiberg and Heath agree, the corollary was probably interpolated before Theon&rsquo;s time. 
+
+<p>This proposition relies on using <a href=defV4.html>V.Def.4</a> as an axiom of comparability.  (Infinitesimal counterexample: when <i>y</i> is infinitesimal with respect to <i>x,</i> then 2<i>x</i>&nbsp;:&nbsp;(2<i>x</i>&nbsp;+&nbsp;2<i>y</i>) equals <i>x</i>&nbsp;:&nbsp;(<i>x</i>&nbsp;+&nbsp;2<i>y</i>) but does not equal <i>x</i>&nbsp;:&nbsp;<i>x.</i>)  The corollary, however, does not rely on an axiom of comparability.
+
+<h4>Use of the proposition and the corollary</h4>
+
+This proposition is used in <a href=propV25.html>V.25</a> and a few propositions in Book X.  The corollary is used once in each of Books VI and XIII and fairly often in Book X.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

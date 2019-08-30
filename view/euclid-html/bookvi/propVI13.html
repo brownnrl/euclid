@@ -1,0 +1,67 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 13</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 13</h1>
+
+<div class="statement">To find a mean proportional to two given straight lines.</div>
+
+<p>Let <i>AB</i> and <i>BC</i> be the two given straight lines.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=300>
+<img src=propVI13.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.13">
+<param name=e[1] value="A;point;free;40,150">
+<param name=e[2] value="C;point;free;250,150">
+<param name=e[3] value="B;point;lineSlider;A,C,170,150">
+<param name=e[4] value="M;point;midpoint;A,C;0;0">
+<param name=e[5] value="ADC;sector;sector;M,C,A;0;0;black;random">
+<param name=e[6] value="circ;circle;radius;M,A;0;0;0;0">
+<param name=e[7] value="D';point;perpendicular;B,C;0;0">
+<param name=e[8] value="D'D;line;chord;B,D',circ;0;0;0">
+<param name=e[9] value="D;point;first;D'D">
+<param name=e[10] value="BD;line;connect;B,D">
+<param name=e[11] value="ACD;polygon;triangle;A,C,D;0;0;black;random">
+</applet></div>
+
+<p>It is required to find a mean proportional to <i>AB</i> and <i>BC.</i>
+
+<div class="just"><a href="../bookII/propII1.html">I.11</a></div>
+<p>Place them in a straight line, and describe the semicircle <i>ADC</i> on <i>AC.</i>  Draw <i>BD</i> from the point <i>B</i> at right angles to the straight line <i>AC,</i> and join <i>AD</i> and <i>DC.</i>
+
+<div class="just"><a href="../bookIII/propIII31.html">III.31</a></div>
+<p>Since the angle <i>ADC</i> is an angle in a semicircle, it is right.
+
+<div class="just"><a href="propVI8.html#cor">VI.8,Cor</a></div>
+<p>And, since, in the right-angled triangle <i>ADC, BD</i> has been drawn from the right angle perpendicular to the base, therefore <i>BD</i> is a mean proportional between the segments of the base, <i>AB</i> and <i>BC.</i>
+
+<p>Therefore a mean proportional <i>BD</i> has been found to the two given straight lines <i>AB</i> and <i>BC.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This construction of the mean proportional was used before in <a href=../bookII/propII14.html>II.4</a> to find a square equal to a given rectangle.  By proposition <a href=propVI17.html>VI.17</a> coming up, the two constructions are equivalent.  That is the mean proportional between two lines is the side of a square equal to the rectangle contained by the two lines.  Algebraically,  <i>a</i> : <i>x</i>&nbsp;=&nbsp;<i>x</i> : <i>b</i> if and only if <i>ab</i>&nbsp;=&nbsp;<i>x</i><sup>2</sup>. Thus, <i>x</i> is the square root of <i>ab.</i>  This mean proportional between <i>a</i> and <i>b</i> is also called the <i>geometric mean</i> of <i>a</i> and <i>b</i>.
+
+<p>When <i>b</i> is taken to have unit length, this construction gives the construction for the square root of <i>a.</i>
+
+<h4>Use of this proposition</h4>
+
+This construction is used in the proofs of propositions <a href=propVI25.html>VI.25</a>, <a href=../bookX/propX27.html>X.27</a>,  and <a href=../bookX/propX28.html>X.28</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

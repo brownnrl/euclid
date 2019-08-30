@@ -1,0 +1,68 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 13</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 13</h1>
+
+<div class="statement">
+From the same point two straight lines cannot be set up at right angles to the same plane on the same side.</div>
+
+<p>For, if possible, from the same point <i>A</i> let the two straight lines <i>AB</i> and <i>AC</i> be set up at right angles to the plane of reference and on the same side.
+
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=250 >
+<img src="propXI13.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.13">
+<param name=e[1] value="X;point;free;100000,100">
+<param name=e[2] value="Y;point;free;-10000,-100000">
+<param name=e[3] value="Y';point;free;10000,-100000">
+<param name=e[4] value="Z;point;free;50000,-100000">
+<param name=e[5] value="P0;point;free;30,220;0;0,75,100">
+<param name=e[6] value="P1;point;lineSlider;P0,X,180,220;0;30,75,100">
+<param name=e[7] value="P3;point;lineSlider;P0,Z,100,120;0;30,75,100">
+<param name=e[8] value="P2;point;parallelogram;P3,P0,P1;0;0">
+<param name=e[9] value="P;polygon;quadrilateral;P0,P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[10] value="A;point;free;130,170">
+<param name=e[11] value="B;point;lineSlider;A,Y,130,40">
+<param name=e[12] value="C;point;lineSlider;A,Y',130,40">
+<param name=e[13] value="AB;line;connect;A,B">
+<param name=e[14] value="AC;line;connect;A,C">
+<param name=e[15] value="D;point;lineSlider;P0,P3,40,140">
+<param name=e[16] value="E;point;intersection;A,D,P1,P2">
+<param name=e[17] value="DE;line;connect;D,E">
+</applet></div>
+
+<div class="just"><a href="propXI3.html">XI.3</a></div>
+<p>Draw a plane through <i>BA</i> and <i>AC.</i>  It intersects the plane of reference in a straight line through <i>A.</i>  Let the line be <i>DAE.</i>
+
+<div class="just"><a href=defXI3.html>XI.Def.3</a></div>
+<p>Therefore the straight lines <i>AB, AC,</i> and <i>DAE</i> lie in one plane.  And, since <i>CA</i> is at right angles to the plane of reference, it also makes right angles with all the straight lines which meet it and lie in the plane of reference.
+
+<p>But <i>DAE</i> meets it and lies in the plane of reference, therefore the angle <i>CAE</i> is right.  For the same reason the angle <i>BAE</i> is also right.  Therefore the angle <i>CAE</i> equals the angle <i>BAE.</i>
+
+<p>And they lie in one plane, which is impossible.
+
+<p>Therefore, <i>from the same point two straight lines cannot be set up at right angles to the same plane on the same side.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is used in the proof of proposition <a href=propXI19.html>XI.19</a>.  Also, the result of this proposition is implicitly used in the proof of <a href=propXI6.html>XI.6</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

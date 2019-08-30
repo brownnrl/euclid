@@ -1,0 +1,91 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 6</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 6</h1>
+
+<div class="statement">If in a triangle two angles equal one another, then the sides opposite the equal angles also equal one another.</div>
+
+<p>Let <i>ABC</i> be a triangle having the angle <i>ABC</i> equal to the angle <i>ACB.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=210 width=200>
+<img src=propI6.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.6">
+<param name=e[1] value="A;point;free;100,40">
+<param name=e[2] value="B;point;free;40,180">
+<param name=e[3] value="C;point;free;160,180">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C">
+<param name=e[5] value="D;point;lineSlider;A,B,85,75">
+<param name=e[6] value="CD;line;connect;C,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI6.gif" hspace=10 vspace=10 alt="I.6">';
+</script>
+</div>
+
+<p>I say that the side <i>AB</i> also equals the side <i>AC.</i>
+
+<div class="just"><a href=cn.html>C.N</a></div>
+<p>If <i>AB</i> does not equal <i>AC,</i> then one of them is greater.
+
+<div class="just"><a href="propI3.html">I.3</a>,
+<a href=post1.html>I.Post.1</a></div>
+<p>Let <i>AB</i> be greater.  Cut off <i>DB</i> from <i>AB</i> the greater equal to <i>AC</i> the less, and join <i>DC.</i>
+
+<div class="just"><a href=propI4.html>I.4</a>
+<br><a href=cn.html>C.N.5</a></div>
+<p>Since <i>DB</i> equals <i>AC,</i> and <i>BC</i> is common, therefore the two sides <i>DB</i> and <i>BC</i> equal the two sides <i>AC</i> and <i>CB</i> respectively, and the angle <i>DBC</i> equals the angle <i>ACB.</i> Therefore the base <i>DC</i> equals the base <i>AB,</i> and the triangle <i>DBC</i> equals the triangle <i>ACB,</i> the less equals the greater, which is absurd. Therefore <i>AB</i> is not unequal to <i>AC,</i> it therefore equals it. 
+
+<p>Therefore <i>if in a triangle two angles equal one another, then the sides opposite the equal angles also equal one another.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<h4>Converses of propositions</h4>
+
+This is the converse of (part of) the previous proposition I.5.  Proposition I.6 says that if angle <i>B</i> equals angle <i>C,</i> then side <i>AB</i> equals side <i>AC.</i>  Proposition I.5 says that if side <i>AB</i> equals side <i>AC,</i> then angle <i>B</i> equals angle <i>C.</i>  In general, the converse of a proposition of the form &ldquo;If <i>P,</i> then <i>Q</i>&rdquo; is the proposition &ldquo;If <i>Q,</i> then <i>P.</i>&rdquo;  When both a proposition and its converse are valid, Euclid tends to prove the converse soon after the proposition, a practice that has continued to this day.
+
+<p>A proposition and its converse are <i>not</i> logically equivalent.  There are examples where &ldquo;If <i>P,</i> then <i>Q</i>&rdquo; is valid, but &ldquo;If <i>Q,</i> then <i>P</i>&rdquo; is not valid.  An example from the <i>Elements</i> is proposition III.5 which states &ldquo;If two circles cut one another, then they do not have the same center.&rdquo;  The converse would be &ldquo;If two circles do not have the same center, then they cut one another&rdquo; which is certainly not valid since if one circle lies entirely outside the other, then they don&rsquo;t cut one another.
+
+<h4>Proofs by contradiction</h4>
+
+This is the first proof by contradiction, also called <i>reductio ad absurdum</i>, in the <i>Elements.</i>  In this proof, in order to prove <i>AB</i> equals <i>AC,</i> Euclid assumes they are unequal and derives a contradiction, namely, that the triangle <i>ACB</i> equals a part of itself,
+triangle <i>DBC,</i> which contradicts C.N.5, the whole is greater than the part.  The contradiction is that triangle <i>ACB</i> both equals and does not equal triangle <i>DBC.</i>
+
+<p>In general, to prove a statement of the form &ldquo;<i>P</i>&rdquo; with a proof by contradiction, begin with an assumption &ldquo;not <i>P</i>&rdquo; and derive some contradiction &ldquo;<i>Q</i> and not <i>Q</i>,&rdquo; and finally conclude &ldquo;<i>P</i>.&rdquo;  
+
+<p>Euclid often uses proofs by contradiction, but he does not use them to conclude the existence of geometric objects.  That is, he does not use them in constructions.  But he does use them to show what has been constructed is correct.  
+
+<p>In modern mathematics nonconstructive proofs by contradiction do occur.  Famous examples are Brouwer&rsquo;s fixed point theorems published in 1912.  One of these states that any continuous transformation <i>f</i> of a circle (circular disk) to itself has a fixed point <i>x,</i> that is, a point such that <i>f</i>(<i>x</i>)&nbsp;=&nbsp;<i>x.</i>  In his proof, he assumed that such a point did not exist and derived a contradiction.  Although his proof is logically correct, he was not satisfied since the proof does not help in constructing a fixed point.  Brouwer was an adherent of a philosophy of mathematics called intuitionism that holds, among other things, that mathematical objects have not been shown to exist until constructions have been given for them.
+
+<h4>The law of trichotomy in practice</h4>
+
+The proof uses the law of trichotomy for lines:  &ldquo;If <i>AB</i> does not equal <i>AC,</i> then one of them is greater.&rdquo;  There are three cases: <i>AB</i> < <i>AC, AB</i>&nbsp;=&nbsp;<i>AC,</i> or <i>AB</i> > <i>AC.</i>  If the middle possibility is excluded, then only the two others remain, so one of the lines is greater.  The law of trichotomy is not explicitly stated as a <a href=cn.html>Common Notion</a>, but it is the sort of property of magnitudes listed as Common Notions.
+
+<p>Proposition <a href=propI3.html>I.3</a> can be read as a construction to determine whether one line is less than, equal to, or greater than another.  Using I.3, one line is laid along another, and it will fall short, fall equal, or extend beyond the other.  For this proposition I.6, the construction simplifies since the two lines <i>AB</i> and <i>AC</i> already have one end in common.
+
+<p>The other part of the law of trichotomy is also used in the proof, the part that says only one of the three cases can occur: &ldquo;... the triangle <i>DBC</i> equals the triangle <i>ACB,</i> the less equals the greater, which is absurd.&rdquo; <a href=cn.html>C.N.5</a>, the whole is greater than the part, allows the conclusion that triangle <i>DBC</i> (the part) is less than triangle <i>ACB</i> (the whole).  But the contradiction arises because only one of the two cases <i>DBC</i>&nbsp;=&nbsp;<i>ACB</i> and <i>DBC</i> < <i>ACB</i> can occur.
+
+<h4>Use of Proposition 6</h4>
+This proposition is not used in the proofs of any of the later propositions
+in Book I, but it is used in Books II, III, IV, VI, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

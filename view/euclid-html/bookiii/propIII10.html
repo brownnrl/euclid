@@ -1,0 +1,95 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 10</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">A circle does not cut a circle at more than two points. </div>
+
+<p>For, if possible, let the circle <i>ABC</i> cut the circle <i>DEF</i> at more points than two, namely <i>B, G, F,</i> and <i>H.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=300>
+<img src=propIII10.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.10">
+<param name=e[1] value="B;point;free;150,40">
+<param name=e[2] value="F;point;free;150,260">
+<param name=e[3] value="H;point;free;40,180">
+<param name=e[4] value="ABC;circle;circumcircle;B,F,H;0;0;black;random">
+<param name=e[5] value="P;point;center;ABC;black;green">
+<param name=pivot value="P">
+<param name=e[6] value="G;point;circleSlider;ABC,210,150">
+
+<param name=e[7] value="HB;line;connect;H,B">
+<param name=e[8] value="BG;line;connect;B,G">
+<param name=e[9] value="K;point;midpoint;HB">
+<param name=e[10] value="L;point;midpoint;BG">
+
+<param name=e[11] value="S;point;midpoint;H,F;0;0">
+<param name=e[12] value="BHY;polygon;equilateralTriangle;B,H;0;0;0;0">
+<param name=e[13] value="Y;point;vertex;BHY,3;0;0">
+<param name=e[14] value="Z;point;intersection;H,Y,S,P;0;0">
+<param name=e[15] value="W;point;intersection;B,Y,L,P;0;0">
+<param name=e[16] value="X;point;intersection;F,Z,G,W;0;0">
+<param name=e[17] value="arcFG;sector;sector;X,F,G;0;0;black;0">
+<param name=e[18] value="arcGB;sector;sector;W,G,B;0;0;black;0">
+<param name=e[19] value="arcBH;sector;sector;Y,B,H;0;0;black;0">
+<param name=e[20] value="arcHF;sector;sector;Z,H,F;0;0;black;0">
+
+<param name=e[21] value="A;point;cutoff;P,K,P,B">
+<param name=e[22] value="C;point;extend;A,P,A,P">
+<param name=e[23] value="AC;line;connect;A,C">
+<param name=e[24] value="O;point;cutoff;P,L,P,B">
+<param name=e[25] value="N;point;extend;O,P,O,P">
+
+<param name=e[26] value="circGB;circle;radius;W,B;0;0;0;0">
+<param name=e[27] value="circHF;circle;radius;Z,H;0;0;0;0">
+<param name=e[28] value="EE';line;chord;N,O,circGB;0;0;0">
+<param name=e[29] value="MM';line;chord;N,O,circHF;0;0;0">
+<param name=e[30] value="E;point;last;EE'">
+<param name=e[31] value="M;point;first;MM'">
+<param name=e[32] value="EM;line;connect;E,M">
+<param name=e[33] value="D;point;cutoff;Y,A,Y,B;black;0">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI10.html">I.10</a>
+<br><a href="../bookI/propI11.html">I.11</a></div>
+<p>Join <i>BH</i> and <i>BG,</i> and bisect them at the points <i>K</i> and <i>L.</i> Draw  <i>KC</i> and <i>LM</i> from <i>K</i> and <i>L</i> at right angles to <i>BH</i> and <i>BG,</i>  and carry them through to the points <i>A</i> and <i>E.</i>
+
+<div class="just"><a href="propIII1.html#cor">III.1,Cor</a></div>
+<p>Then, since in the circle <i>ABC</i> a straight line <i>AC</i> cuts a straight line <i>BH</i> into two equal parts and at right angles, the center of the circle <i>ABC</i> lies on <i>AC.</i>  Again, since in the same circle <i>ABC</i> a straight line <i>NO</i> cuts a straight line <i>BG</i> into two equal parts and at right angles, the center of the circle <i>ABC</i> lies on <i>NO.</i>>
+
+<p>But it was also proved to lie on <i>AC,</i> and the straight lines <i>AC</i> and <i>NO</i> meet at no point except at <i>P,</i> therefore the point <i>P</i> is the center of the circle <i>ABC.</i>
+
+<div class="just"><a href="propIII5.html">III.5</a></div>
+<p>Similarly we can prove that <i>P</i> is also the center of the circle <i>DEF,</i> therefore the two circles <i>ABC</i> and <i>DEF</i> which cut one another have the same center <i>P,</i> which is impossible.
+
+<p>Therefore <i>a circle does not cut a circle at more than two points.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The figure is another impossible figure.  Both curves are supposed to be circumferences of circles, but, of course, they cannot both be drawn as circles since the situation is proved not to occur.  Although Euclid names four points where the circles meet, only three, <i>B, G,</i> and <i>H,</i> are used in the proof.
+
+<p>The proof actually shows that the two circles cannot <i>meet</i> in more than two points, where &ldquo;meet&rdquo; could be either cut or touch.
+
+<p>Heath remarks that the lines bisecting <i>BG</i> and <i>BH</i> have not been shown to meet.  In fact, they have, since the center of the circle <i>ABC</i> has been shown to be on both.
+
+<p>This proposition is used in <a href=propIII24.html>III.24</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

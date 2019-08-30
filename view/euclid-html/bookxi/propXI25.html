@@ -1,0 +1,144 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 25</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 25</h1>
+
+<div class="statement">If a parallelepipedal solid is cut by a plane parallel to the opposite planes, then the base is to the base as the solid is to the solid.
+</div>
+
+<p>Let the parallelepipedal solid <i>ABCD</i> be cut by the plane <i>FG</i> which is parallel to the opposite planes <i>RA</i> and <i>DH.</i>
+
+<p>I say that the base <i>AEFV</i> is to the base <i>FHCF</i> as the solid <i>ABFU</i> is to the solid <i>EGCD.</i>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a>
+<br><a href=../bookI/propI31.html>I.31</a></div>
+<p>Produce <i>AH</i>  in each direction.  Make any number of straight lines  <i>AK</i> and <i>KL</i>  equal to <i>AE,</i> and any number <i>HM</i> and <i>MN</i> equal to <i>EH.</i>  Complete the parallelograms <i>LP, KV, HW,</i> and <i>MS</i> and the solids <i>LQ, KR, DM,</i> and <i>MT.</i>
+
+<p><center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=600 height=220 >
+<img src="propXI25.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.25">
+<param name=e[1] value="A;point;free;220,180">
+<param name=e[2] value="B;point;free;195,80">
+<param name=e[3] value="C;point;free;395,135">
+<param name=e[4] value="D;point;parallelogram;B,A,C">
+<param name=e[5] value="H;point;free;380,180">
+<param name=e[6] value="V;point;parallelogram;C,H,A">
+<param name=e[7] value="R;point;parallelogram;B,H,C">
+<param name=e[8] value="H';point;parallelogram;B,A,H;0">
+<param name=e[9] value="E;point;lineSlider;A,H,290,180">
+<param name=e[10] value="F;point;parallelogram;E,A,V">
+<param name=e[11] value="G;point;parallelogram;E,A,B">
+<param name=e[12] value="U;point;parallelogram;E,A,R">
+<param name=e[13] value="RUFV;polygon;quadrilateral;R,U,F,V;0;0;black;240,60,100">
+<param name=e[14] value="VFEA;polygon;quadrilateral;V,F,E,A;0;0;black;240,60,100">
+<param name=e[15] value="ABRV;polygon;quadrilateral;A,B,R,V;0;0;black;240,60,100">
+<param name=e[16] value="UDCF;polygon;quadrilateral;U,D,C,F;0;0;black;65,70,100">
+<param name=e[17] value="EFCH;polygon;quadrilateral;E,F,C,H;0;0;black;65,70,100">
+<param name=e[18] value="DCHH';polygon;quadrilateral;D,C,H,H';0;0;black;60,70,100">
+<param name=e[19] value="BH';line;connect;B,H'">
+<param name=e[20] value="GE;line;connect;G,E">
+<param name=e[21] value="GU;line;connect;G,U">
+
+<param name=e[22] value="K;point;extend;E,A,E,A">
+<param name=e[23] value="L;point;extend;A,K,E,A">
+<param name=e[24] value="VK;polygon;parallelogram;V,A,K;0;0;black;0">
+<param name=e[25] value="P;point;vertex;VK,4">
+<param name=e[26] value="PL;polygon;parallelogram;P,K,L;0;0;black;0">
+<param name=e[27] value="BQ;polygon;parallelogram;R,V,P;0;0;black;0">
+<param name=e[28] value="Q;point;vertex;BQ,4">
+<param name=e[29] value="KQ;polygon;parallelogram;K,P,Q;0;0;black;0">
+<param name=e[30] value="BL;polygon;parallelogram;B,A,L;0;0;black;0">
+<param name=e[31] value="O;point;vertex;BL,4">
+<param name=e[32] value="X;point;parallelogram;A,E,Q">
+<param name=e[33] value="XO;line;connect;X,O">
+<param name=e[34] value="XQ;line;connect;X,Q">
+<param name=e[35] value="X';point;vertex;PL,4;0">
+<param name=e[36] value="XX';line;connect;X,X'">
+
+<param name=e[37] value="M;point;extend;E,H,E,H">
+<param name=e[38] value="N;point;extend;H,M,E,H">
+<param name=e[39] value="CM;polygon;parallelogram;C,H,M;0;0;black;0">
+<param name=e[40] value="W;point;vertex;CM,4">
+<param name=e[41] value="WN;polygon;parallelogram;W,M,N;0;0;black;0">
+<param name=e[42] value="S;point;vertex;WN,4">
+<param name=e[43] value="DW;polygon;parallelogram;D,C,W;0;0;black;0">
+<param name=e[44] value="Y;point;vertex;DW,4">
+<param name=e[45] value="SY;polygon;parallelogram;S,W,Y;0;0;black;0">
+<param name=e[46] value="T;point;vertex;SY,4">
+<param name=e[47] value="HI;polygon;parallelogram;M,H,H';0;0;black;0">
+<param name=e[48] value="I;point;vertex;HI,4">
+<param name=e[49] value="IT;polygon;parallelogram;I,Y,T;0;0;black;0">
+<param name=e[50] value="N';point;vertex;IT,4">
+<param name=e[51] value="NN';line;connect;N,N'">
+</applet></center>
+
+<div class="just"><a href="propXI24.html">XI.24</a></div>
+<p>Then, since the straight lines <i>LK, KA,</i> and <i>AE</i> equal one another, therefore the parallelograms <i>LP, KV,</i> and <i>AF</i> equal one another, <i>KO, KB,</i> and <i>AG</i> equal one another, and further <i>LX, KQ,</i> and <i>AR</i> equal one another, for they are opposite.  For the same reason the parallelograms <i>EC, HW,</i> and <i>MS</i> are  equal one another, <i>HG, HI,</i> and <i>IN</i> equal one another, and further, <i>DH, MY, NT</i> and equal one another.
+
+<div class="just"><a href=defXI9.html>XI.Def.10</a></div>
+<p>Therefore in the solids <i>LQ, KR,</i> and <i>AU</i> three planes equal three planes. But the three planes equal the three opposite, therefore the three solids <i>LQ, KR,</i> and <i>AU</i> equal one another. For the same reason the three solids <i>ED, DM,</i> and <i>MT</i> also equal one another. Therefore, the solid <i>LU</i> is the same multiple of the solid <i>AU</i> that the base <i>LF</i> is of the base <i>AF.</i>  For the same reason, the solid <i>NU</i> is the same multiple of the solid <i>HU</i> that the base <i>NF</i> is of the base <i>FH.</i>
+
+<p>And, if the base <i>LF</i> equals the base <i>NF,</i> then the solid <i>LU</i> also equals the solid <i>NU</i>; if the base <i>LF</i> exceeds the base <i>NF,</i> then the solid <i>LU</i> also exceeds the solid <i>NU</i>; and, if one falls short, then the other falls short.
+
+<div class="just"><a href=../bookV/defV5.html>V.Def.5</a></div>
+<p>Therefore, there being four magnitudes, the two bases <i>AF</i> and <i>FH,</i> and the two solids <i>AU</i> and <i>UH,</i> equimultiples have been taken of the base <i>AF</i> and the solid <i>AU,</i> namely the  base <i>LF</i> and the solid <i>LU,</i> and equimultiples of the base <i>HF</i> and the solid <i>HU,</i> namely the base <i>NF</i> and the solid <i>NU,</i> and it has been proved that, if the base <i>LF</i> exceeds the base <i>FN,</i> then the solid <i>LU</i> also exceeds the solid <i>NU</i>; if the bases are equal, then the solids are equal; and if the base falls short, then the solid falls short. Therefore, the base <i>AF</i> is to the base <i>FH</i> as the solid <i>AU</i> is to the solid <i>UH.</i>
+
+<p>Therefore <i>If a parallelepipedal solid is cut by a plane  parallel to the opposite planes, then the base is to the base as the solid is to the solid.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This is the first of the propositions on volumes of solids.  Most of the rest of this book deals with volumes of parallelepipeds, and Book XII develops the theory of volumes for pyramids, prisms, cones, cylinders, and spheres.
+
+<p>Euclid&rsquo;s foundations for volume are (1) his definition <a href=defXI9.html>XI.Def.10</a> which says that if two solid figures have congruent faces, then the solids are equal, and (2) solids are magnitudes for which cut and paste principles hold.  See the comments on XI.Def.10 for details.
+
+<h4>Outline of the proof</h4>
+
+The analogous proposition for two dimensions is proposition <a href="../bookVI/propVI1.html">VI.1</a>.  In both propositions the ratio of two figures in one dimension is shown to be equal to the ratio of two figures in another dimension.  In this proposition, the dimensions are 2 and 3, while in VI.1, the dimensions are 1 and 2. Eudoxus&rsquo; definition of proportion, <a href="../bookV/defV5.html">V.Def.5</a>, allows these ratios of different kinds to be compared.
+
+<p>The goal of this proof is to show that the ratio of the bases of the the two parallelepipeds is the same as the ratio of the two parallelepipeds themselves.  The parallelepiped <i>AU</i> has the parallelogram <i>AF</i> as its base, while the parallelepiped <i>HU</i> has the parallelogram <i>HF</i> as its base.  Thus, the goal is to derive the proportion
+
+<p><center>
+<i>AU</i>&nbsp;:&nbsp;<i>HU</i> = <i>AF</i>&nbsp;:&nbsp;<i>HF.</i>
+</center><p>
+
+  By the definition of proportion, <a href=../bookV/defV5.html>V.Def.5</a>, that means for any number <i>m</i> and any number <i>n</i> that
+
+<p><center>
+<i>m AF</i>&nbsp;>=<&nbsp;<i>n HF</i> when <i>m AU</i>&nbsp;>=<&nbsp;<i>n HU.</i>
+</center><p>
+Note that Euclid takes both <i>m</i> and <i>n</i> to be 3 in his proof, just as he did in VI.1.
+Now <i>m AU</i> equals the parallelepiped <i>LU, n HU</i> equals the parallelepiped <i>NU, m AF</i> equals the parallelogram <i>LF,</i> and <i>n HF</i> equals the parallelogram <i>NF.</i>  So what has to be shown is that
+
+<p><center>
+<i>LF</i>&nbsp;>=<&nbsp;<i>NF</i> when <i>LU</i>&nbsp;>=<&nbsp;<i>NU.</i>
+</center><p>
+Euclid makes no attempt to show that; he just states it as fact:
+<ul>
+And, if the base <i>LF</i> equals the base <i>NF,</i> then the solid <i>LU</i> also equals the solid <i>NU</i>; if the base <i>LF</i> exceeds the base <i>NF,</i> then the solid <i>LU</i> also exceeds the solid <i>NU</i>; and, if one falls short, then the other falls short.
+</ul>
+The case of equality is based directly on definition <a href=defXI9.html>XI.Def.10</a>, for if the bases are equal, then all the planes bounding the solids are equal, which is the definition of the solids being equal.  The two cases when one base exceeds or falls short of the other implicitly depend on finding a part of one solid equal to the whole of the other solid, equality again using XI.Def.10, then concluding that one whole solid is greater than the other whole solid (<a href="../bookI/cn.html">C.N.5</a>).
+
+
+<h4>Use of this proposition</h4>
+
+This proposition is used for the proofs of propositions <a href=propXI31.html>XI.31</a>, <a href=propXI32.html>XI.32</a>, and <a href=propXI34.html>XI.34</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

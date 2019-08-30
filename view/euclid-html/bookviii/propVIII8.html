@@ -1,0 +1,141 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 8</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">If between two numbers there fall numbers in continued proportion with them, then, however many numbers fall between them in continued proportion, so many also fall in continued proportion between the numbers which have the same ratios with the original numbers.</div>
+
+<p>Let the numbers <i>C</i> and <i>D</i> fall between the two numbers <i>A</i> and <i>B</i> in continued proportion with them, and make <i>E</i> in the same ratio to <i>F</i> as <i>A</i> is to <i>B.</i>
+
+<p>I say that, as many numbers as have fallen between <i>A</i> and <i>B</i> in continued proportion, so many also fall between <i>E</i> and <i>F</i> in continued proportion.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=310 >
+<img src="propVIII8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.8">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="C0;point;free;-1000,75;0;0">
+<param name=e[4] value="C3;point;free;1000,75;0;0">
+<param name=e[5] value="D0;point;free;-1000,110;0;0">
+<param name=e[6] value="D3;point;free;1000,110;0;0">
+<param name=e[7] value="B0;point;free;-1000,145;0;0">
+<param name=e[8] value="B3;point;free;1000,145;0;0">
+<param name=e[9] value="G0;point;free;-1000,180;0;0">
+<param name=e[10] value="G3;point;free;1000,180;0;0">
+<param name=e[11] value="H0;point;free;-1000,215;0;0">
+<param name=e[12] value="H3;point;free;1000,215;0;0">
+<param name=e[13] value="K0;point;free;-1000,250;0;0">
+<param name=e[14] value="K3;point;free;1000,250;0;0">
+<param name=e[15] value="L0;point;free;-1000,285;0;0">
+<param name=e[16] value="L3;point;free;1000,285;0;0">
+<param name=e[17] value="U0;point;free;1000,0;0;0">
+<param name=e[18] value="U1;point;free;1000,20;0;0">
+<param name=e[19] value="U2;point;free;1000,50;0;0">
+
+<param name=e[20] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[21] value="A2;point;lineSlider;A0,A3,100,0;0">
+<param name=e[22] value="A;line;connect;A1,A2;black">
+<param name=e[23] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[24] value="C2;point;lineSlider;C0,C3,110,0;0">
+<param name=e[25] value="C;line;connect;C1,C2;black">
+<param name=e[26] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[27] value="D2;point;proportion;A1,A2,C1,C2,C1,C2,D1,D3;0">
+<param name=e[28] value="D;line;connect;D1,D2;black">
+<param name=e[29] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[30] value="B2;point;proportion;A1,A2,C1,C2,D1,D2,B1,B3;0">
+<param name=e[31] value="B;line;connect;B1,B2;black">
+<param name=e[32] value="E1;point;lineSlider;A0,A3,180,0;0">
+<param name=e[33] value="E2;point;lineSlider;A0,A3,230,0;0">
+<param name=e[34] value="E;line;connect;E1,E2;black">
+
+<param name=e[35] value="F1;point;lineSlider;B0,B3,180,0;0">
+<param name=e[36] value="F2;point;proportion;A1,A2,B1,B2,E1,E2,F1,B3;0">
+<param name=e[37] value="F;line;connect;F1,F2;black">
+<param name=e[38] value="G1;point;lineSlider;G0,G3,30,0;0">
+<param name=e[39] value="G2;point;proportion;U0,U2,U1,U2,A1,A2,G1,G3;0">
+<param name=e[40] value="G;line;connect;G1,G2;black">
+<param name=e[41] value="H1;point;lineSlider;H0,H3,30,0;0">
+<param name=e[42] value="H2;point;proportion;U0,U2,U1,U2,C1,C2,H1,H3;0">
+<param name=e[43] value="H;line;connect;H1,H2;black">
+<param name=e[44] value="K1;point;lineSlider;K0,K3,30,0;0">
+<param name=e[45] value="K2;point;proportion;U0,U2,U1,U2,D1,D2,K1,K3;0">
+<param name=e[46] value="K;line;connect;K1,K2;black">
+<param name=e[47] value="L1;point;lineSlider;L0,L3,30,0;0">
+<param name=e[48] value="L2;point;proportion;U0,U2,U1,U2,B1,B2,L1,L3;0">
+<param name=e[49] value="L;line;connect;L1,L2;black">
+<param name=e[50] value="M1;point;lineSlider;C0,C3,180,0;0">
+<param name=e[51] value="M2;point;proportion;G1,G2,E1,E2,H1,H2,M1,C3;0">
+<param name=e[52] value="M;line;connect;M1,M2;black">
+<param name=e[53] value="N1;point;lineSlider;D0,D3,180,0;0">
+<param name=e[54] value="N2;point;proportion;G1,G2,E1,E2,K1,K2,N1,D3;0">
+<param name=e[55] value="N;line;connect;N1,N2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/propVII33.html>VII.33</a>
+<br><a href=propVIII3.html>VIII.3</a></div>
+<p>As many as <i>A, B, C,</i> and <i>D</i> are in multitude, take so many numbers <i>G, H, K,</i> and <i>L,</i> the least of those which have the same ratio with <i>A, C, D,</i> and <i>B.</i> Then the extremes of them <i>G</i> and <i>L</i> are relatively prime.
+
+<div class="just"><a href=../bookVII/propVII14.html>VII.14</a></div>
+<p>Now, since <i>A, C, D,</i> and <i>B</i> are in the same ratio with <i>G, H, K,</i> and <i>L,</i> and the multitude of the numbers <i>A, C, D,</i> and <i>B</i> equals the multitude of the numbers <i>G, H, K,</i> and <i>L,</i> therefore, <i>ex aequali A</i> is to <i>B</i> as <i>G</i> is to <i>L.</i>
+
+<td><small>(<a href=../bookV/propV11.html>V.11</a>)</small>
+<p>But <i>A</i> is to <i>B</i> as <i>E</i> is to <i>F,</i> therefore <i>G</i> is to <i>L</i> as <i>E</i> is to <i>F.</i></td>
+
+<div class="just"><a href=../bookVII/propVII21.html>VII.21</a>
+<br><a href=../bookVII/propVII20.html>VII.20</a></div>
+<p>But <i>G</i> and <i>L</i> are relatively prime, numbers which are relatively prime are also least, and the least numbers measure those which have the same ratio the same number of times, the greater the greater and the less the less, that is, the antecedent the antecedent and the consequent the consequent.
+
+<p>Therefore <i>G</i> measures <i>E</i> the same number of times as <i>L</i> measures <i>F.</i>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Next, let <i>H</i> and <i>K</i> measure <i>M</i> and <i>N,</i> respectively, as many times as <i>G</i> measures <i>E.</i> Then <i>G, H, K,</i> and <i>L</i> measure <i>E, M, N,</i> and <i>F</i> the same number of times. Therefore <i>G, H, K,</i> and <i>L</i> are in the same ratio with <i>E, M, N,</i> and <i>F.</i>
+
+<p>But <i>G, H, K,</i> and <i>L</i> are in the same ratio with <i>A, C, D,</i> and <i>B,</i> therefore <i>A, C, D,</i> and <i>B</i> are also in the same ratio with <i>E, M, N,</i> and <i>F.</i>
+
+<p>But <i>A, C, D,</i> and <i>B</i> are in continued proportion, therefore <i>E, M, N,</i> and <i>F</i> are also in continued proportion. Therefore, as many numbers as have fallen between <i>A</i> and <i>B</i> in continued proportion with them, so many numbers have also fallen between <i>E</i> and <i>F</i> in continued proportion.
+
+<p>Therefore, <i>if between two numbers there fall numbers in continued proportion with them, then, however many numbers fall between them in continued proportion, so many also fall in continued proportion between the numbers which have the same ratios with the original numbers.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+The proposition says that if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f</i> and you can fit some number of terms between <i>a</i> and <i>b</i> in continued proportion (with a constant ratio), then you can fit the same number of terms between <i>e</i> and <i>f</i> in continued proportion.
+
+<p>For example, 18&nbsp;:&nbsp;50&nbsp;=&nbsp;63&nbsp;:&nbsp;175, with  18&nbsp;:&nbsp;30&nbsp;:&nbsp;50 a continued proportion, so one number can be fit between 63 and 175 in continued proportion.  You can find it by reducing the original continued proportion to lowest terms 9&nbsp;:&nbsp;15&nbsp;:&nbsp;25, then scaling that up to the desired continued proportion 63&nbsp;:&nbsp;105&nbsp;:&nbsp;175.
+
+
+<h4>Outline of the proof</h4>
+
+Suppose that <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f</i> and the sequence <i>a, c, d,</i> ..., <i>b</i> are in continued proportion.  Use <a href=../bookVII/propVII33.html>VII.33</a> to reduce that sequence to lowest terms <i>g, h, k,</i> ..., <i>l.</i> According to <a href=propVIII3.html>VIII.3</a>, the ends of that sequence <i>g</i> and <i>l</i> are relatively prime.
+Since <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f,</i> we also have <i>g</i>&nbsp;:&nbsp;<i>l</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f.</i>  But <i>g</i> is relatively prime to <i>l,</i> so the ratio <i>g</i>&nbsp;:&nbsp;<i>l</i> is in lowest terms (<a href=../bookVII/propVII21.html>VII.21</a>), and therefore <i>g</i> divides <i>e</i> the same number of times, say <i>n,</i> that <i>l</i> divides <i>f</i> (<a href=../bookVII/propVII20.html>VII.20</a>).  Then the sequence <i>ng, nh, nk,</i> ..., <i>nl</i> is in continued proportion and starts with <i>e</i> and ends with <i>f</i> as required.
+
+<h4>Implications</h4>
+
+<p>This proposition implies, among other things, that  there is no number which forms a mean proportional between a number <i>n</i> and the number 2<i>n,</i> for if there were, there would be a number <i>m</i> so that 2, <i>m,</i> and 4 would form a continued proportion, but the only number between 2 and 4 is 3, and 2, 3, and 4 do not form a continued proportion.  (If 1 is considered to be a number, the argument simplifies.)  
+
+<p>We can translate this conclusion to modern terminology.  The statement that there is no mean proportional between <i>n</i> and 2<i>n</i> says there is no number <i>m</i> such that  <i>n</i>&nbsp;:&nbsp;<i>m</i>&nbsp;=&nbsp;<i>m</i>&nbsp;:&nbsp;2<i>n</i>, and that says there is not rational number <i>m</i>/<i>n</i> whose square is 2.  Thus, &radic;2 is not a rational number.
+ 
+<p>See proposition <a href=../bookX/propX9.html>X.9</a> for implications of this conclusion for incommensurability of line segments, that is, irrationality of surds like &radic;2.
+
+
+<h4>Use of this proposition</h4>
+
+Although this proposition is not used in Book VIII, it is used in the first six propositions of <a href=../bookIX/bookIX.html>Book IX</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002, 2013");
+</script>
+</BODY></HTML>

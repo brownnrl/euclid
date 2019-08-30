@@ -1,0 +1,123 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 10</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">If numbers fall between two numbers and a unit in continued proportion, then however many numbers fall between each of them and a unit in continued proportion, so many also fall between the numbers themselves in continued proportion.</div>
+
+<p>Let the numbers <i>D</i> and <i>E</i> and the numbers <i>F</i> and <i>G</i> respectively fall between the two numbers <i>A</i> and <i>B</i> and the unit <i>C</i> in continued proportion.
+
+<p>I say that, as many numbers have fallen between each of the numbers <i>A</i> and <i>B</i> and the unit <i>C</i> in continued proportion as fall between <i>A</i> and <i>B</i> in continued proportion.
+
+<p>Multiply <i>D</i> by <i>F</i> to make <i>H,</i> and multiply the numbers <i>D</i> and <i>F</i> by <i>H</i> to make <i>K</i> and <i>L</i> respectively.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=450 height=170 >
+<img src="propVIII10.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.10">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="E0;point;free;-1000,50;0;0">
+<param name=e[4] value="E3;point;free;1000,50;0;0">
+<param name=e[5] value="D0;point;free;-1000,70;0;0">
+<param name=e[6] value="D3;point;free;1000,70;0;0">
+<param name=e[7] value="C0;point;free;-1000,90;0;0">
+<param name=e[8] value="C3;point;free;1000,90;0;0">
+<param name=e[9] value="F0;point;free;-1000,110;0;0">
+<param name=e[10] value="F3;point;free;1000,110;0;0">
+<param name=e[11] value="G0;point;free;-1000,130;0;0">
+<param name=e[12] value="G3;point;free;1000,130;0;0">
+<param name=e[13] value="B0;point;free;-1000,150;0;0">
+<param name=e[14] value="B3;point;free;1000,150;0;0">
+
+<param name=e[15] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[16] value="C2;point;lineSlider;C0,C3,55,0;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+<param name=e[18] value="D1;point;lineSlider;D0,D3,90,0;0">
+<param name=e[19] value="D2;point;lineSlider;D0,D3,125,0;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+<param name=e[21] value="F1;point;lineSlider;F0,F3,90,0;0">
+<param name=e[22] value="F2;point;lineSlider;F0,F3,135,0;0">
+<param name=e[23] value="F;line;connect;F1,F2;black">
+<param name=e[24] value="E1;point;lineSlider;E0,E3,170,0;0">
+<param name=e[25] value="E2;point;proportion;C1,C2,D1,D2,D1,D2,E1,E3;0">
+<param name=e[26] value="E;line;connect;E1,E2;black">
+<param name=e[27] value="G1;point;lineSlider;G0,G3,170,0;0">
+<param name=e[28] value="G2;point;proportion;C1,C2,F1,F2,F1,F2,G1,G3;0">
+<param name=e[29] value="G;line;connect;G1,G2;black">
+<param name=e[30] value="A1;point;lineSlider;A0,A3,300,0;0">
+<param name=e[31] value="A2;point;proportion;C1,C2,D1,D2,E1,E2,A1,A3;0">
+<param name=e[32] value="A;line;connect;A1,A2;black">
+<param name=e[33] value="B1;point;lineSlider;B0,B3,300,0;0">
+<param name=e[34] value="B2;point;proportion;C1,C2,F1,F2,G1,G2,B1,B3;0">
+<param name=e[35] value="B;line;connect;B1,B2;black">
+
+<param name=e[36] value="H1;point;lineSlider;C0,C3,170,0;0">
+<param name=e[37] value="H2;point;proportion;C1,C2,D1,D2,F1,F2,H1,C3;0">
+<param name=e[38] value="H;line;connect;H1,H2;black">
+<param name=e[39] value="K1;point;lineSlider;D0,D3,300,0;0">
+<param name=e[40] value="K2;point;proportion;C1,C2,D1,D2,H1,H2,K1,D3;0">
+<param name=e[41] value="K;line;connect;K1,K2;black">
+<param name=e[42] value="L1;point;lineSlider;F0,F3,300,0;0">
+<param name=e[43] value="L2;point;proportion;C1,C2,F1,F2,H1,H2,L1,F3;0">
+<param name=e[44] value="L;line;connect;L1,L2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Now, since the unit <i>C</i> is to the number <i>D</i> as <i>D</i> is to <i>E,</i> therefore the unit <i>C</i> measures the number <i>D</i> the same number of times as <i>D</i> measures <i>E.</i> But the unit <i>C</i> measures the number <i>D</i> according to the units in <i>D,</i> therefore the number <i>D</i> also measures <i>E</i> according to the units in <i>D.</i> Therefore <i>D</i> multiplied by itself makes <i>E.</i>
+
+<p>Again, since <i>C</i> is to the number <i>D</i> as <i>E</i> is to <i>A,</i> therefore the unit <i>C</i> measures the number <i>D</i> the same number of times as <i>E</i> measures <i>A.</i> But the unit <i>C</i> measures the number <i>D</i> according to the units in <i>D,</i> therefore <i>E</i> also measures <i>A</i> according to the units in <i>D.</i> Therefore <i>D</i> multiplied by <i>E</i> makes <i>A.</i>
+
+<p>For the same reason also <i>F</i> multiplied by itself makes <i>G,</i> and multiplied by <i>G</i> makes <i>B.</i>
+
+<div class="just"><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>And, since <i>D</i> multiplied by itself makes <i>E</i> and multiplied by <i>F</i> makes <i>H,</i> therefore <i>D</i> is to <i>F</i> as <i>E</i> is to <i>H.</i>
+
+<div class="just"><a href=../bookVII/propVII18.html>VII.18</a></div>
+<p>For the same reason also <i>D</i> is to <i>F</i> as <i>H</i> is to <i>G.</i> Therefore <i>E</i> is to <i>H</i> as <i>H</i> is to <i>G.</i>
+
+<div class="just"><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>Again, since <i>D</i> multiplied by the numbers <i>E</i> and <i>H</i> makes <i>A</i> and <i>K</i> respectively, therefore <i>E</i> is to <i>H</i> as <i>A</i> is to <i>K.</i> But <i>E</i> is to <i>H</i> as <i>D</i> is to <i>F,</i> therefore <i>D</i> is to <i>F</i> as <i>A</i> is to <i>K.</i>
+
+<div class="just"><a href=../bookVII/propVII18.html>VII.18</a>
+<br><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>Again, since the numbers <i>D</i> and <i>F</i> multiplied by <i>H</i> make <i>K</i> and <i>L</i> respectively, therefore <i>D</i> is to <i>F</i> as <i>K</i> is to <i>L.</i> But <i>D</i> is to <i>F</i> as <i>A</i> is to <i>K,</i> therefore <i>A</i> is to <i>K</i> as <i>K</i> is to <i>L.</i> Further, since <i>F</i> multiplied by the numbers <i>H</i> and <i>G</i> makes <i>L</i> and <i>B</i> respectively, therefore <i>H</i> is to <i>G</i> as <i>L</i> is to <i>B.</i>
+
+<p>But <i>H</i> is to <i>G</i> as <i>D</i> is to <i>F,</i> therefore <i>D</i> is to <i>F</i> as <i>L</i> is to <i>B.</i> But it was also proved that <i>D</i> is to <i>F</i> as <i>A</i> is to <i>K</i> and as <i>K</i> is to <i>L,</i> therefore <i>A</i> is to <i>K</i> as <i>K</i> is to <i>L</i> and as <i>L</i> is to <i>B.</i> Therefore <i>A, K, L,</i> and <i>B</i> are in continued proportion.
+
+<p>Therefore, as many numbers as fall between each of the numbers <i>A</i> and <i>B</i> and the unit <i>C</i> in continued proportion, so many also fall between <i>A</i> and <i>B</i> in continued proportion.
+
+<p>Therefore, <i>if numbers fall between two numbers and a unit in continued proportion, then however many numbers fall between each of them and a unit in continued proportion, so many also fall between the numbers themselves in continued proportion.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<p>Essentially, the proposition says that if <i>a</i> and <i>b</i> are (<i>n</i>&ndash;1)<sup>st</sup> powers of <i>d</i> and <i>f</i>, respectively, then the sequence
+<p><center>
+<i>d</i><sup><i>n</i>-1</sup>, <i>d</i><sup><i>n</i>-2</sup><i>f</i>, <i>d</i><sup><i>n</i>-3</sup><i>f</i><sup>&nbsp;2</sup>, ... ,
+<i>d</i><i>f</i><sup>&nbsp;<i>n</i>-2</sup>, <i>f</i><sup>&nbsp;<i>n</i>-1</sup>
+</center><p>
+
+is in continued proportion.
+
+<p>This is a partial converse to the previous proposition; it doesn&rsquo;t require that the generating numbers <i>d</i> and <i>f</i> be relatively prime. 
+
+<p>The next two propositions are special cases of this proposition when the powers are squares and cubes.  
+
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,107 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 7</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 7</h1>
+
+<div class="statement">Equal magnitudes have to the same the same ratio; and the same has to equal magnitudes the same ratio.</div>
+
+<p>Let <i>A</i> and <i>B</i> be equal magnitudes and <i>C</i> an arbitrary magnitude.
+
+<p>I say that each of the magnitudes <i>A</i> and <i>B</i> has the same ratio to <i>C,</i> and <i>C</i> has the same ratio to each of the magnitudes <i>A</i> and <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=350 height=130>
+<img src=propV7.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.7">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,70;0;0">
+<param name=e[4] value="V1;point;free;1000,70;0;0">
+<param name=e[5] value="W0;point;free;-1000,110;0;0">
+<param name=e[6] value="W1;point;free;1000,110;0;0">
+<param name=e[7] value="A0;point;lineSlider;U0,U1,20,30;0">
+<param name=e[8] value="A1;point;lineSlider;U0,U1,65,30;0">
+<param name=e[9] value="A;line;connect;A0,A1;black;0;30,100,80">
+<param name=e[10] value="B0;point;lineSlider;V0,V1,20,70;0">
+<param name=e[11] value="B1;point;cutoff;B0,V1,A0,A1;0">
+<param name=e[12] value="B;line;connect;B0,B1;black;0;30,100,80">
+<param name=e[13] value="C0;point;lineSlider;W0,W1,20,110;0">
+<param name=e[14] value="C1;point;lineSlider;W0,W1,85,110;0">
+<param name=e[15] value="C;line;connect;C0,C1;black;0;30,100,80">
+
+<param name=e[16] value="D0;point;lineSlider;U0,U1,120,30;0">
+<param name=e[17] value="D1;point;cutoff;D0,U1,A0,A1;0;lightGray">
+<param name=e[18] value="D2;point;cutoff;D1,U1,A0,A1;0;lightGray">
+<param name=e[19] value="D3;point;cutoff;D2,U1,A0,A1;0">
+<param name=e[20] value="D;line;connect;D0,D3;black;0;30,100,80">
+
+<param name=e[21] value="E0;point;lineSlider;V0,V1,120,70;0">
+<param name=e[22] value="E1;point;cutoff;E0,V1,A0,A1;0;lightGray">
+<param name=e[23] value="E2;point;cutoff;E1,V1,A0,A1;0;lightGray">
+<param name=e[24] value="E3;point;cutoff;E2,V1,A0,A1;0">
+<param name=e[25] value="E;line;connect;E0,E3;black;0;30,100,80">
+
+<param name=e[26] value="F0;point;lineSlider;W0,W1,120,110;0">
+<param name=e[27] value="F1;point;cutoff;F0,W1,C0,C1;0;lightGray">
+<param name=e[28] value="F2;point;cutoff;F1,W1,C0,C1;0;lightGray">
+<param name=e[29] value="F3;point;cutoff;F2,W1,C0,C1;0">
+<param name=e[30] value="F;line;connect;F0,F3;black;0;30,100,80">
+</applet></div>
+
+<p>Take equimultiples <i>D</i> and <i>E</i> of <i>A</i> and <i>B,</i> and take an arbitrary multiple <i>F</i> of <i>C.</i> 
+
+<p>Then, since <i>D</i> is the same multiple of <i>A</i> that <i>E</i> is of <i>B,</i> and <i>A</i> equals <i>B,</i> therefore <i>D</i> equals <i>E.</i>
+
+<p>But <i>F</i> is another, arbitrary, magnitude.  If therefore <i>D</i> is in excess of <i>F,</i> then <i>E</i> is also in excess of <i>F</i>; if equal, equal; and, if less, less.
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>And <i>D</i> and <i>E</i> are equimultiples of <i>A</i> and <i>B,</i> while <i>F</i> is another, arbitrary, multiple of <i>C,</i> therefore <i>A</i> is to <i>C</i> as <i>B</i> is to <i>C.</i>
+
+<hr width=50%>
+
+<p>I say next that <i>C</i> also has the same ratio to each of the magnitudes <i>A</i> and <i>B.</i>
+
+<p>With the same construction, we can prove similarly that <i>D</i> equals <i>E,</i> and <i>F</i> is some other magnitude.  If therefore <i>F</i> is in excess of <i>D,</i> it is also in excess of <i>E</i>; if equal, equal; and, if less, less.
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>And <i>F</i> is a multiple of <i>C,</i> while <i>D</i> and <i>E</i> are other, arbitrary, equimultiples of <i>A</i> and <i>B,</i> therefore <i>C</i> is to <i>A</i> as <i>C</i> is to <i>B.</i>
+
+<p>Therefore, <i>equal magnitudes have to the same the same ratio; and the same has to equal magnitudes the same ratio.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+From this it is clear that, <i>if any magnitudes are proportional, then they are also proportional inversely.</i> 
+</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says that if <i>a</i>&nbsp;=&nbsp;<i>b,</i> then <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c,</i> and <i>c</i>&nbsp;:&nbsp;<i>a</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>b.</i>  The proposition is evident.  Its converse is given in <a href=propV9.html>V.9</a>.
+
+<p>The corollary is misplaced.  There is nothing relevant in the proposition.  There&rsquo;s no way it could yield the corollary since the proposition requires all the magnitudes to be of the same kind and the corollary doesn&rsquo;t.  But the corollary is valid, and it follows easily from definition <a href=defV5.html>V.Def.5</a>.
+
+<h4>Use of this proposition</h4>
+
+Such a basic property of ratios as this is used frequently when ratios are mentioned.  It is used in a few times in Book V starting with <a href=propV10.html>V.10</a>, frequently in Book VI, and occasionally in later books.  
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

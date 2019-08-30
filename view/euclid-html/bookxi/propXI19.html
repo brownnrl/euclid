@@ -1,0 +1,78 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 19</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 19</h1>
+
+<div class="statement">
+If two planes which cut one another are at right angles to any plane, then their intersection is also at right angles to the same plane.</div>
+
+<p>Let the two planes <i>AB</i> and <i>BC</i> be at right angles to the plane of reference, and let <i>BC</i> be their intersection.
+
+<p>I say that <i>BD</i> is at right angles to the plane of reference.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=270 >
+<img src="propXI19.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.19">
+<param name=e[1] value="X;point;free;100000,200">
+<param name=e[2] value="Y;point;free;200,-100000">
+<param name=e[3] value="Z;point;free;30000,-100000">
+<param name=e[4] value="P0;point;free;20,240;0;0,75,100">
+<param name=e[5] value="P2;point;free;270,120;0;0,75,100">
+<param name=e[6] value="P1;point;intersection;P0,X,P2,Z;0;0">
+<param name=e[7] value="P3;point;intersection;P2,X,P0,Z;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;P0,P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[9] value="A;point;lineSlider;P0,P1,60,240">
+<param name=e[10] value="B;point;free;140,70">
+<param name=e[11] value="C;point;lineSlider;P0,P1,190,240">
+<param name=e[12] value="D;point;lineSlider;B,Y,140,180">
+<param name=e[13] value="A1;point;intersection;A,D,P2,P3;0;0">
+<param name=e[14] value="Aback;polygon;parallelogram;B,D,A1;0;0;lightGray;pink">
+<param name=e[15] value="C1;point;intersection;C,D,P2,P3;0;0">
+<param name=e[16] value="Cback;polygon;parallelogram;B,D,C1;0;0;lightGray;yellow">
+<param name=e[17] value="Afront;polygon;parallelogram;B,D,A;0;0;lightGray;pink">
+<param name=e[18] value="Cfront;polygon;parallelogram;B,D,C;0;0;lightGray;yellow">
+<param name=e[19] value="A3;point;vertex;Afront,4;0;0">
+<param name=e[20] value="E;point;lineSlider;B,A3,120,80">
+<param name=e[21] value="DE;line;connect;D,E">
+<param name=e[22] value="C3;point;vertex;Cfront,4;0;0">
+<param name=e[23] value="F;point;lineSlider;B,C3,160,80">
+<param name=e[24] value="DF;line;connect;D,F">
+<param name=e[25] value="DB;line;connect;D,B">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a></div>
+<p>Suppose it is not.  From the point <i>D</i>  draw <i>DE</i> at right angles to the straight line <i>AD</i> in the plane <i>AB,</i> and draw <i>DF</i> at right angles to <i>CD</i> in the plane <i>BC.</i>
+
+<div class="just"><a href=defXI3.html>XI.Def.4</a></div>
+<p>Now, since the plane <i>AB</i> is at right angles to the plane of reference, and <i>DE</i> is at right angles in the plane <i>AB</i> to <i>AD,</i> their intersection, therefore <i>DE</i> is at right angles to the plane of reference.
+
+<div class="just"><a href="propXI13.html">XI.13</a></div>
+<p>Similarly we can prove that <i>DF</i> is also at right angles to the plane of reference.  Therefore from the same point <i>D</i> two straight lines have been set up at right angles to the plane of reference on the same side, which is impossible.
+
+<p>Therefore no straight line except the intersection <i>DB</i> of the planes <i>AB</i> and <i>BC</i> can be set up from the point <i>D</i> at right angles to the plane of reference.
+
+<p>Therefore, <i>if two planes which cut one another are at right angles to any plane, then their intersection is also at right angles to the same plane.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

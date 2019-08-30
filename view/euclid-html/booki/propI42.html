@@ -1,0 +1,97 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 42</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 42</h1>
+
+<div class="statement">To construct a parallelogram equal to a given triangle in a given rectilinear angle.</div>
+
+<p>Let <i>ABC</i> be the given triangle, and <i>D</i> the given rectilinear angle.
+
+<p>It is required to construct in <i>D</i> a parallelogram equal to the triangle <i>ABC</i> in the rectilinear angle.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=210 width=320>
+<img src="propI42.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.42">
+<param name=e[1] value="B0;point;free;-1000,180;0;0">
+<param name=e[2] value="B3;point;free;1000,180;0;0">
+<param name=e[3] value="B;point;lineSlider;B0,B3,90,0">
+<param name=e[4] value="C;point;lineSlider;B0,B3,210,0">
+<param name=e[5] value="A;point;free;120,30">
+<param name=e[6] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[7] value="D1;point;free;45,25;0">
+<param name=e[8] value="D2;point;free;30,75;0">
+<param name=e[9] value="D3;point;free;80,75;0">
+<param name=e[10] value="D1D2;line;connect;D1,D2">
+<param name=e[11] value="D2D3;line;connect;D2,D3">
+<param name=e[12] value="D;polygon;triangle;D1,D2,D3;0,0,0;0;0;0">
+<param name=e[13] value="E;point;midpoint;B,C">
+<param name=e[14] value="AE;line;connect;A,E">
+<param name=e[15] value="F';point;similar;C,E,D3,D2,D1;0;0">
+<param name=e[16] value="G';point;parallelogram;C,B,A;0;0">
+<param name=e[17] value="F;point;intersection;A,G',E,F'">
+<param name=e[18] value="EF;line;connect;E,F">
+<param name=e[19] value="G;point;parallelogram;C,E,F">
+<param name=e[20] value="CG;line;connect;C,G">
+<param name=e[21] value="AG;line;connect;A,G">
+<param name=e[22] value="FG;line;connect;F,G">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI42.gif" hspace=10 vspace=10 alt="I.42">';
+</script>
+</div>
+
+<div class="just"><a href="propI10.html">I.10</a>
+<br><a href=post1.html>I.Post.1</a>
+<br><a href="propI23.html">I.23</a>,
+<a href="propI31.html">I.31</a></div>
+<p>Bisect <i>BC</i> at <i>E,</i> and join <i>AE.</i> Construct the angle <i>CEF</i> on the straight line <i>EC</i> at the point <i>E</i> on it equal to the angle <i>D.</i> Draw <i>AG</i> through <i>A</i> parallel to <i>EC,</i> and draw <i>CG</i> through <i>C</i> parallel to <i>EF.</i>
+
+<p>Then <i>FECG</i> is a parallelogram.
+
+<div class="just"><a href="propI38.html">I.38</a></div>
+<p>Since <i>BE</i> equals <i>EC,</i> therefore the triangle <i>ABE</i> also equals the triangle <i>AEC,</i> for they are on equal bases <i>BE</i> and <i>EC</i> and in the same parallels <i>BC</i> and <i>AG.</i> Therefore the triangle <i>ABC</i> is double the triangle <i>AEC.</i>
+
+<div class="just"><a href="propI41.html">I.41</a>
+<br><a href=cn.html>C.N.1</a></div>
+<p>But the parallelogram <i>FECG</i> is also double the triangle <i>AEC,</i> for it has the same base with it and is in the same parallels with it, therefore the parallelogram <i>FECG</i> equals the triangle <i>ABC.</i>
+
+<p>And it has the angle <i>CEF</i> equal to the given angle <i>D.</i>
+
+<p>Therefore the parallelogram <i>FECG</i> has been constructed equal to the given triangle <i>ABC,</i> in the angle <i>CEF</i> which equals <i>D.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+The idea of the construction is as follows.  First make a triangle half the size of the given triangle.  Next skew the half-size triangle to make one of its angles the desired angle without changing its area.  Complete the resulting half-size triangle to a parallelogram.   that&rsquo;s the desired parallelogram equal to the original triangle in the desired angle.
+
+<h4>Application of areas</h4>
+
+With this proposition Euclid moves to the next phase in his study of areas, the application of areas.  Before this, he has exhibited various situations when triangles or parallelograms have equal areas, or when a triangle has half the area of a parallelogram.  But now he&rsquo;s interested in constructing another figure with the same area as a given figure.  
+
+<p>In this proposition, he constructs a parallelogram that has a given angle and has the same area as a given triangle.  But his goals are coming up, application of areas in I.45 and quadrature in II.14.  In proposition <a href=propI45.html>I.45</a>, given a rectilinear figure an equal parallelogram is constructed on a given side within a given angle.  This kind of construction is called &ldquo;applying&rdquo; an area to a side.  The area is sort of laid along the line.  It may be that before Euclid the area was always applied to a rectangle along the line, but Euclid generalized the construction to parallelograms.  This extra generalization is not often used.
+
+<p>Later, in  proposition <a href=../bookII/propII14.html>II.14</a> a square is constructed equal to a given rectilinear figure, a process called quadrature (making into a square) of the figure.  This square is a canonical measure of the area.  
+
+<h4>Use of Proposition 42</h4>
+
+This construction is used as part of the constructions in the two propositions following the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

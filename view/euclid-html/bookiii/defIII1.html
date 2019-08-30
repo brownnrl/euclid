@@ -1,0 +1,46 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book III, Definition 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 1</h1>
+
+<div class="statement"><i>Equal circles</i> are those whose diameters are equal, or whose radii are equal.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This should not be a definition but a postulate or a theorem.  The subject of the area of circles is developed in Proposition <a href=../bookXII/propXII2.html>XII.2</a> and this definition is not used there.  Instead the concept of equality, or rather, inequality is the same as it is in the rest of the <i>Elements.</i>  For instance, if one figure is the contained in another, then the first is less than the other.  Thus, there is a prior definition for the equality of two figures.
+
+<p><center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=370>
+<img src=defIII1.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.Def.1">
+<param name=e[1] value="A;point;free;100,100">
+<param name=e[2] value="B;point;free;100,30">
+<param name=e[3] value="Acirc;circle;radius;A,B;0;0;black;random">
+<param name=e[4] value="C;point;extend;B,A,B,A">
+<param name=e[5] value="BC;line;connect;B,C">
+<param name=e[6] value="D;point;circleSlider;Acirc,40,40">
+
+<param name=e[7] value="E;point;free;270,100">
+<param name=e[8] value="Ecirc;circle;radius;E,A,B;0;0;black;random">
+<param name=e[9] value="F;point;circleSlider;Ecirc,300,50">
+<param name=e[10] value="G;point;extend;F,E,F,E">
+<param name=e[11] value="FG;line;connect;F,G">
+<param name=e[12] value="H;point;circleSlider;Ecirc,210,40">
+</applet></center>
+
+<p>Two circles are illustrated, namely circle <i>BCD</i> and circle <i>FGH.</i>  The center of circle <i>BCD</i> is <i>A,</i> while the center of circle <i>FGH</i> is <i>E.</i>  They are equal by Euclid&rsquo;s definition since their diameters <i>BC</i> and <i>FG</i> are equal, or since their radii <i>AB</i> and <i>EF</i> are equal.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

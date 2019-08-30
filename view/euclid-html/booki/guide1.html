@@ -1,0 +1,103 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Guide</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+</h2>
+
+<h2>Guide: A gentle introduction to Book I</h2></center>
+
+For someone unfamiliar with the <i>Elements</i> it may take a while to see what&rsquo;s going on.  The place to start is here, in Book I, the first of 13 books.  It includes basic plane geometry.  In the nineteenth century it was common for students to take a year to study the content of Books I and II, usually in slightly simplified form.  The to take is that there is a lot of material in the book, and it&rsquo;s not especially easy.
+
+<p>Book I contains 23 definitions, five postulates, five common notions, and 47 propositions.  Each proposition includes a proof based on the definitions, postulates, common notions, and earlier propositions.  Although one could study book I sequentially, perhaps a better program is to start with the propositions and refer back to the definitions, postulates, and common notions as needed, and that is what&rsquo;s done here.  We&rsquo;ll begin with the first proposition,  I.1, and continue through the third, I.3, and refer back to the earlier material only as needed.
+
+<font color=bb0033>
+<h4>Proposition I.1</h4>
+<ul><i>To construct an equilateral triangle on a given finite straight line.</i></ul>
+</font>
+
+The very first proposition is a construction of an equilateral triangle given one of its sides.  The page for this proposition has what Euclid wrote as well as a more detailed guide for the proposition.  Click <a href=propI1.html target=elements>here</a> to get the page to appear in a separate window.
+
+<p>At the top you see the statement:
+
+<ul><i>To construct an equilateral triangle on a given finite straight line.</i></ul>
+
+Below the statement is a proof which (1) gives a construction, and (2) shows that the resulting figure includes an equilateral triangle.  There is also a figure which illustrates the proposition.  (Typically, each proposition in the <i>Elements</i> includes one figure.)
+
+<p>What does Euclid mean by a "construction"?  His meaning is very limited.
+You are allowed (1) to draw a straight line between two points and extend that line indefinitely in either direction, and (2) draw a circle given its center and a point on its circumference.  A construction consists of a sequence of these two operations.
+
+<img src=propI1.gif align=right vspace=10 hspace=10>
+
+<p>When you look at the figure and read the first few sentences, it is apparent what the construction is.  You start with a line <i>AB</i>, draw a couple circles and a couple lines, and you're done.
+
+<p>There are, however, many things that need clarification before beginning.  Let&rsquo;s start with the concept of <i>equilateral triangle</i>.  In his 20th definition in the book, <a href=defI20.html target=elements>Def.I.20</a>, Euclid defines and <i>equilateral triangle</i> as a triangle with three equal sides.  Note that he doesn&rsquo;t include in his definition that the three angles must be equal, too; that would be called an <i>equiangular triangle.</i>  Now, we all know that equilateral triangles are equiangular, but at this stage that has not been proved.  If you skip forward to <a href=propI5.html target=elements>I.5</a>, you&rsquo;ll see a proposition that implies that equilateral triangles are equiangular, and the next proposition, <a href=propI6.html target=elements>I.6</a>, implies that equiangular triangles are equilateral.  But they come later.  Here in <a href=propI1.html target=elements>I.1</a> we only need to construct a triangle with three equal sides.
+
+<p>The next thing to clarify is the concept of <b>straight line</b>.  What Euclid usually meant by this is a line segment, that is, a piece of a straight line with two endpoints.  His actual definition, which is found in <a href=defI2.html target=elements>Def.I.2</a>
+through <a href=defI4.html target=elements>Def.I.4</a>, has no more useful information than the intuitive idea.
+
+<p>A remaining concept to clarify is that of <b>triangle</b>.  Paraphrasing Euclid&rsquo;s definition in <a href=defI19.html target=elements>Def.I.19</a>, (which relies on <a href=defI3.html target=elements>Def.I.13</a> and Def.I.14) a <i>triangle</i> is a two-dimensional figure bounded by three straight lines as sides.  There are actually a lot of subtleties in these definitions, but in a gentle introduction like this, it is best to pass over them.
+
+<p>Let&rsquo;s return to the construction in <a href=propI1.html target=elements>I.1</a>.  We begin with a straight line <i>AB</i> which is to be one side of the constructed equilateral triangle.  That is the given datum.  We are then instructed to draw a circle with center <i>A</i> and radius <i>AB</i>.  Over to the right of this statement is a reference to Postulate 3.  This brings us to the concept of "postulate".  For Euclid, a "postulate" was a statement about the particular subject of geometry that is to be <i>assumed</i> true.  Postulates do not have proofs; they&rsquo;re literally taken for granted.  This particular one, <a href=post3.html target=elements>Post.3</a>, says that given a point, such as <i>A</i>, which is to be the center of a circle, and another point <i>B</i>, which is to be on the circumference of a circle, you can construct the required circle.  This postulate is an assumed construction, something that says a particular thing, in this case a circle, exists.  So Post.3 is the <i>justification</i> required for the first construction in I.1.  Every statement in a proof requires some kind of justification.  Post.3 is also the justification for the next circle, the one with center <i>B</i> and radius <i>BA</i>.
+
+<p>Now, the two circles meet, so let <i>C</i> be one of the points where they meet.  You&rsquo;ll notice that this is not justified, even though it&rsquo;s obvious.  But obvious isn&rsquo;t enough.  Sometimes statements seem obvious, but they&rsquo;re actually wrong.  It&rsquo;s important in mathematics to know why you accept a statement, not just that you accept a statement.  In this case Euclid should have included some postulate about when circles intersect.
+
+<p>The next construction is to draw straight lines <i>CA</i> and <i>CB</i>.  These are justified by <a href=post1.html target=elements>Post.1</a>, which states that given two points, there is a line that has them as endpoints.
+
+<p>That concludes the construction part of the proof.  The rest of it shows what has been constructed is an equilateral triangle.  First, using the definition of a circle, <a href=defI15.html target=elements>Def.I.15</a> that all radii in a circle are equal, we conclude that line <i>AC</i> equals line <i>AB</i>, also that line <i>BC</i> equals line <i>BA</i>.
+
+<p>Next, we get to use a common notion as justification:
+<a href=cn.html target=elements>C.N.1</a>.  For Euclid,  a "common notion" was a statement about magnitudes in general that is to be <i>assumed</i> true.  They are like postulates, but instead of being about geometry in particular, they&rsquo;re about magnitudes.  Logically postulates and common notions are both axioms--explicitly assumed statements.  The magnitudes that appear in I.1 are the three straight lines <i>AB</i>, <i>AC</i>, and <i>BC</i>.  Although Euclid does not explicitly state how, straight lines can be added, compared, and subtracted.  All we need here is the case when straight lines are equal, and C.N.1. says
+<ul><i>Things which equal the same thing also equal one another.</i></ul></i>
+Since <i>AC</i> and <i>BC</i> both equal <i>AB</i>, C.N.1 justifies the conclusion that <i>AC</i> and <i>BC</i> are equal.
+
+<p>We now know that the three sides of the figure are equal straight lines.  Therefore, we&rsquo; constructed an equilateral triangle on the given straight line <i>AB</i>, as required.  The <a href=propI1.html#guide target=elements>Guide</a> below I.1 goes into further detail about critiques of the proof, but we will continue on with
+
+<font color=bb0033>
+<h4>Proposition I.2</h4>
+<ul><i>To place a straight line equal to a given straight line with one end at a given point.</i></ul>
+</font color>
+
+This second proposition, <a href=propI2.html target=elements>I.2</a> is also a construction.  This time, the data include a point and a straight line (finite as usual), and the goal is to move the line over to the point; more precisely, to draw a line with one endpoint at the given point and equal to the given line.
+
+<p>This is the basic construction associated with a compass.  You usually open the compass to a certain size, the length of a given line, and then draw a circle with a given center and that radius.  But Euclid did not take this basic compass construction as a postulate because it is enough to assume a more limited postulate,
+<a href=post3.html target=elements>Post.3</a>, the one we used in the first proposition.  That corresponds to a compass that doesn&rsquo;t transfer distances.  Such a limited compass, which probably never actually existed, is called a "collapsible" compass.
+ The reason that a more limited postulate is enough is in the proof of this second proposition, <a href=propI2.html target=elements>I.2</a>.
+
+<img src=propI2.gif align=left vspace=10 hspace=10>
+
+<p>Note that the figure in <a href=propI2.html target=elements>I.2</a> varies quite a bit in its appearance depending on the relative positions and distances of the data.
+
+<p>As you study the construction, you&rsquo;ll note that the construction we just made for an equilateral triangle is needed.  Many of the propositions in the <i>Elements</i>, especially those in Book I, directly depend on the preceding proposition.  Postulates 1 and three are used again, and for the first time <a href=post2.html target=elements>Post.2</a>, which allows a finite straight line to be extended indefinitely.  Also I.Def.15, about equal radii in a circle, is used again,
+as is C.N.1.
+
+<p><a href=cn.html target=elements>C.N.3</a> is used for the first time:
+<ul><i>If equals are subtracted from equals, then the remainders are equal.</i></ul>
+This common notion is used in the last step of the proof.
+
+<p>The construction and the proof in this proposition take time to understand well enough to reproduce.  Nonetheless, it&rsquo;s rewarding to completely comprehend them, and valuable to understand that an ordinary compass can be simulated by a collapsible compass.  Mathematicians often search for the simplest axioms and definitions for any field.
+
+<font color=bb0033>
+<h4>Proposition I.3</h4>
+<ul><i>To cut off from the greater of two given unequal straight lines a straight line equal to the less.</i></ul>
+</font color>
+
+<img src=propI3.gif align=right vspace=10 hspace=10>
+
+The third proposition, <a href=propI3.html target=elements>I.3</a>, is also a construction.  It performs a subtraction of straight lines, that is, it is a construction to cut a smaller line off from a greater line.  The construction is quite easy, given the previous construction in  <a href=propI2.html target=elements>I.2</a>, as is the proof that the construction works.  Simply move the shorter line so that one of its endpoints coincides with an endpoint of the longer line, and draw a circle with that point as center and the moved shorter line as radius.  That circle will cut off the correct length from the longer line.
+
+<p>No new definitions, postulates, or common notions are needed in the proof of I.3.
+
+<p>As mentioned in the <a href=propI3.html target=elements>guide</a> to I.3, this proposition is used more than any other proposition in the <i>Elements</i>. <p><hr size=6><p>
+<p><a href=guide2.html>Guide to Book I, continued</a>
+
+<p><a href=bookI.html>Book I Introduction</a>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1999");
+</script>
+</BODY></HTML>

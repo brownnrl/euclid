@@ -1,0 +1,94 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 5</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 5</h1>
+
+<div class="statement">In isosceles triangles the angles at the base equal one another, and, if the equal straight lines are produced further, then the angles under the base equal one another.</div>
+
+<div class="just"><a href=defI20.html>I.Def.20</a>
+<br><a href=post2.html>I.Post.2</a></div>
+<p>Let <i>ABC</i> be an isosceles triangle having the side <i>AB</i> equal to the side <i>AC,</i> and let the straight lines <i>BD</i> and <i>CE</i> be produced further in a straight line with <i>AB</i> and <i>AC.</i>
+
+<p>I say that the angle <i>ABC</i> equals the angle <i>ACB,</i> and the angle <i>CBD</i> equals the angle <i>BCE.</i>
+
+<div class="just"><a href=propI3.html>I.3.</a>
+<br><a href=post1.html>I.Post.1</a></div>
+<p>Take an arbitrary point <i>F</i> on <i>BD.</i> Cut off <i>AG</i> from <i>AE</i> the greater equal to <i>AF</i> the less, and join the straight lines <i>FC</i> and <i>GB.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=350 width=300>
+<img src="propI5.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.5">
+<param name=e[1] value="B;point;free;100,180">
+<param name=e[2] value="C;point;free;200,180">
+<param name=e[3] value="M;point;midpoint;B,C;0;0">
+<param name=pivot value="M">
+<param name=e[4] value="MM';line;perpendicular;M,B;0;0;0">
+<param name=e[5] value="A;point;lineSlider;MM',150,50">
+<param name=e[6] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[7] value="BD;line;extend;A,B,A,B">
+<param name=e[8] value="D;point;last;BD;0,0,0;0">
+<param name=e[9] value="CE;line;extend;A,C,A,C">
+<param name=e[10] value="E;point;last;CE;0,0,0;0">
+<param name=e[11] value="F;point;lineSlider;BD,50,240">
+<param name=e[12] value="AG;line;cutoff;A,E,A,F;0;0;0">
+<param name=e[13] value="G;point;last;AG">
+<param name=e[14] value="FC;line;connect;F,C">
+<param name=e[15] value="BG;line;connect;B,G">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI5.gif" hspace=10 vspace=10 alt="I.5">';
+</script>
+</div>
+
+<p>Since <i>AF</i> equals AG,</i> and <i>AB</i> equals <i>AC,</i> therefore the two sides <i>FA</i> and <i>AC</i> equal the two sides <i>GA</i> and <i> AB,</i> respectively, and they contain a common angle, the angle <i>FAG.</i>
+
+<div class="just"><a href=propI4.html>I.4</a></div>
+<p>Therefore the base <i>FC</i> equals the base <i>GB,</i> the triangle <i>AFC</i> equals the triangle <i>AGB,</i> and the remaining angles equal the remaining angles respectively, namely those opposite the equal sides, that is, the angle <i>ACF</i> equals the angle <i>ABG,</i> and the angle <i>AFC</i> equals the angle <i>AGB.</i>
+
+<div class="just"><a href=cn.html>C.N.3</a></div>
+<p>Since the whole <i>AF</i> equals the whole <i>AG,</i> and in these <i>AB</i> equals <i>AC,</i> therefore the remainder <i>BF</i> equals the remainder <i>CG.</i>
+
+<div class="just"><a href=propI4.html>I.4</a></div>
+<p>But <i>FC</i> was also proved equal to <i>GB,</i> therefore the two sides <i>BF</i> and <i>FC</i> equal the two sides <i>CG</i> and <i>GB</i> respectively, and the angle <i>BFC</i> equals the angle <i>CGB,</i> while the base <i>BC</i> is common to them.  Therefore the triangle <i>BFC</i> also equals the triangle <i>CGB,</i> and the remaining angles  equal the remaining angles respectively, namely those opposite the equal sides.  Therefore the angle <i>FBC</i> equals the angle <i>GCB,</i> and the angle <i>BCF</i> equals the angle <i>CBG.</i>
+
+<div class="just"><a href=cn.html>C.N.3</a></div>
+<p>Accordingly, since the whole angle <i>ABG</i> was proved equal to the angle <i>ACF,</i> and in these the angle <i>CBG</i> equals the angle <i>BCF,</i> the remaining angle <i>ABC</i> equals the remaining angle <i>ACB,</i> and they are at the base of the triangle <i>ABC.</i>  But the angle <i>FBC</i> was also proved equal to the angle <i>GCB,</i> and they are under the base.
+
+<p>Therefore <i>in isosceles triangles the angles at the base equal one another, and, if the equal straight lines are produced further, then the angles under the base equal one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+There are two conclusions for this proposition, first that the internal base angles <i>ABC</i> and <i>ACB</i> are equal, second that the external base angles <i>FBC</i> and <i>GCB</i> are equal.  From the diagram it looks like it would be easy to prove the second conclusion from the first by simply subtracting the equal angles <i>ABC</i> and <i>ACB</i> the straight angles <i>ABF</i> and <i>ACG,</i> respectively.  But Euclid doesn&rsquo;t accept straight angles, and even if he did, he hasn&rsquo;t proved that all straight angles are equal.  Proposition <a href=propI13.html>I.13</a> would be enough, since it implies the sum of angles <i>ABC</i> and <i>FBC</i> equals two right angles, and  the sum of angles <i>ACB</i> and <i>GCB</i> also equals two right angles, and so the two sums are equal effectively saying all straight angles are equal.
+
+<p>Unfortunately, such an argument would be circular.  I.13 depends on I.11, I.11 on I.8, I.8 on I.7, and I.7 on I.5.  Thus, I.13 cannot be used in the proof of I.5. It may appear that I.7 only depends on the first conclusion of I.5, but a case of I.7 that Euclid does not discuss relies on the second conclusion of I.5. 
+
+<p>This proposition has been called the <i>Pons Asinorum</i>, or Asses&rsquo; Bridge.  Whether this name is due to its difficulty (which it isn&rsquo;t) or the resemblance of its figure to a bridge is not clear.  Very few of the propositions in the <i>Elements</i> are known by names.
+
+<h4>Pappus&rsquo; proof</h4>
+
+Pappus (fl. ca. 320 C.E.) gave a much shorter proof of the first conclusion, but it is also conceptually more difficult.  The two triangles <i>BAC</i> and <i>CAB</i> have two sides equal to two sides, namely side <i>BA</i> of the first triangle equals side <i>CA</i> of the second triangle, and side <i>AC</i> of the first triangle equal to side <i>AB</i> of the second, and the contained angles are equal, namely angle <i>BAC</i> of the first triangle equals angle <i>CAB</i> of the second, therefore, by I.4, the corresponding parts of the two triangles are equal, in particular, the angle <i>B</i> in the first triangle equals the angle <i>C</i> of the second.
+
+<p>The difficulty lies in treating one triangle as two, or in making a correspondence between a triangle and itself, but not the correspondence of identity.  There is nothing wrong with this proof formally, but it might be more difficult for a student just learning geometry.
+
+<h4>Use of Proposition 5</h4>
+This proposition is used in Book I for the proofs of several propositions starting with <a href=propI7.html>I.7</a>  It is also used frequently in Books II, III, IV, VI, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

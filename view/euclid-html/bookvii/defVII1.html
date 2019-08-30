@@ -1,0 +1,99 @@
+
+<HTML><HEAD><TITLE>Euclid's Elements, Book VII, Definitions 1 and 2</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 1</h1>
+
+<div class="statement">A <i>unit</i> is that by virtue of which each of the things that exist is called one.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 2</h1>
+
+<div class="statement">A <i>number</i> is a multitude composed of units.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+These 23 definitions at the beginning of Book VII are the definitions for all three books VII through IX on number theory.  Some won&rsquo;t be used until Books VIII or IX.
+
+<h4>What are numbers?</h4>
+
+All the numbers Euclid deals with in Books VII through IX are whole positive numbers, but there are two kinds of them.  On the one hand, he uses numbers as objects of a theory, the things that are defined in Definition 2 and appear in every proposition in these books.  On the other hand, he uses numbers to talk about them and to prove things about them. These are numbers in the metalanguage. They&rsquo;re not multiples of the unit. Thus, there are two kinds of numbers here, the formal numbers in the object language which are multiples of the unit, and informal numbers in the metalanguage.
+
+<p>In the Guides, letters at the beginning of the alphabet like <i>a</i>, <i>b</i>, and <i>c</i> will be used for the formal numbers treated by Euclid, except <i>u</i> will denote the unit.  Letters near the middle of the alphabet like <i>m</i> and <i>n</i> will be used for numbers in the informal metalanguage.
+
+<p>The barrier between the two is frequently breached as properties about the informal numbers in the metalanguage are used to prove properties about numbers in the object language.  The barrier would have been stronger if Euclid had explicitly stated axioms about numbers and used them to prove properties about those numbers, but he, and his successors for over two thousand years, did not do that.
+
+<p>Definition 2 says that a number <i>a</i> is a multitude of units.  If we let <i>n</i> be the number of units <i>u</i> that make up <i>a</i>, then we could summarize definition 2 by the equation <i>a</i>&nbsp;=&nbsp;<i>nu</i>.  
+
+<p>Euclid never names the informal number <i>n</i>, but needs to refer to it frequently.  For example, <a href=defVII15.html>VII.Def.15</a> defines the product <i>ab</i> of numbers as the result when <i>b</i> is added as many times as there are units in <i>a</i>.  That is, <i>ab</i> is the sum of <i>n</i> <i>b</i>&rsquo;s where the unit <i>u</i> measures <i>a</i> <i>n</i> times.  Thus, every formal number <i>a</i>&nbsp;=&nbsp;<i>nu</i> is shadowed by the unnamed informal number <i>n</i>.
+
+<p>Since a formal number, <i>a</i>, in the object language corresponds, by definition, to an unnamed informal number <i>n</i> in the metalanguage, it&rsquo;s easy to be confused and end up, as Euclid did, proving propositions in the formal language by properties of informal numbers in the metalanguage.
+
+<h4>Is the unit a number?</h4>
+
+<p>The numbers in definition 2 are meant to be whole positive numbers greater than 1, and Definition 1 is meant to define the unit as 1.  The word &ldquo;monad,&rdquo; derived directly from the Greek, is sometimes used instead of &ldquo;unit.&rdquo;
+
+<p>Euclid treats the unit, 1, separately from numbers, 2, 3, and so forth.  This makes his proofs awkward in some cases. Rarely Euclid does treat 1 as a number.  Chrysippus (280&ndash;207), a Stoic philosopher, claimed that 1 is a number, but his pronouncement was not accepted for some time.
+
+<p>The numbers in definition 2 are meant to be whole positive numbers greater than 1, and definition 1 is meant to define the unit as 1.  The word &ldquo;monad,&rdquo; derived directly from the Greek, is sometimes used instead of &ldquo;unit.&rdquo;
+
+<h4>Representation of numbers in the <i>Elements</i></h4>
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  height=70 width=310>
+<img src=defVII1.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.Def.1-2">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0,0">
+<param name=e[2] value="A3;point;free;1000,40;0,0">
+
+<param name=e[3] value="A1;point;lineSlider;A0,A3,40,0;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,80,0;0">
+<param name=e[5] value="A;line;connect;A1,A2;black;0;blue">
+<param name=e[6] value="B;point;lineSlider;A0,A3,140,0">
+<param name=e[7] value="C;point;cutoff;B,A3,A1,A2">
+<param name=e[8] value="D;point;cutoff;C,A3,A1,A2">
+<param name=e[9] value="E;point;cutoff;D,A3,A1,A2">
+<param name=e[10] value="BE;line;connect;B,E;0;0;blue">
+</applet></center>
+
+<p>Throughout these three books on number theory Euclid exhibits his formal numbers as lines. The unit is represented as one line, the line <i>A</i> in the diagram above.  Unlike lines in the preceding books on plane geometry, this unit line <i>A</i> is meant to be indivisible. In the diagram, <i>BD</i> represents 2, and so does <i>CE</i>, while <i>BE</i> represents the number 3. Although numbers are represented as lines, Euclid never calls them lines.
+
+<p>It is not clear what the nature of these numbers is supposed to be, but their nature is irrelevant.  Euclid could illustrate the unit as a line, a point, or a magnitude of any kind, and numbers would then be illustrated as multiples of that unit.
+
+<p>As mentioned above, Euclid has no postulates to elaborate the concept of number (other than the  <a href=../bookI/cn.html>Common Notions</a> which apparently are meant to apply to numbers as well as magnitudes of various kinds). 
+
+<h4>Mathematical induction</h4>
+
+Mathematicians did not develop foundations for number theory until the late nineteenth century.   The Dedekind/Peano axioms for numbers are the best known.  The most important of these axioms encodes the principle of mathematical induction which states that
+<ol>
+  <li>if a property of numbers holds for 1,
+  <li>and whenever property holds for a number <i>n</i> then it also holds for <i>n</i>&nbsp;+&nbsp;1,
+  <li>then the property holds for all numbers.
+</ol>
+Euclid does not use the principle of mathematical induction, but he does use a  equivalent similar principle for numbers, namely, that any decreasing sequence of numbers is finite.  That property is sometimes known as the <i>descending chain condition</i>. It&rsquo;s closely related to the <i>well-ordering principle</i> which says that any nonempty set of numbers contains a least number.
+
+<h4>The Dedekind/Peano axioms for numbers</h4>
+
+<p>Dedekind defined the natural numbers as a set <b>N</b> whose elements are called <i>numbers,</i> along with a specific number 1 and a <i>successor</i> function which associates with each number another number satisfying the following conditions
+<ul>
+  <li>1 is not the successor of any number.
+  <li>No two distinct numbers have the same successor.
+  <li>The smallest subset of <b>N</b> that contains 1 and is closed under the successor function is <b>N</b> itself.
+</ul>
+The last condition assures that the principle of mathematical induction holds on  <b>N</b>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2003, 2010, 2013");
+</script>
+</BODY></HTML>

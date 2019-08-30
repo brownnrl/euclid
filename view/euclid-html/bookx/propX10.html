@@ -1,0 +1,91 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 10</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">To find two straight lines incommensurable, the one in length only, and the other in square also, with an assigned straight line.</div>
+
+<p>Let <i>A</i> be the assigned straight line.
+
+<p>It is required to find two straight lines incommensurable, the one in length only, and the other in square also, with <i>A</i>.
+
+<div class="just"><a href=propX6.html#cor>X.6,Cor.</a></div>
+<p>Set out two numbers <i>B</i> and <i>C</i> which do not have to one another the ratio which a square number has to a square number, that is, which are not similar plane numbers, and let it be contrived that <i>B</i> is to <i>C</i> as the square on <i>A</i> is to the square on <i>D</i>, for we have learned how to do this.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=180 height=200>
+<img src="propX10.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.10">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="D0;point;free;-1000,65;0;0">
+<param name=e[4] value="D3;point;free;1000,65;0;0">
+<param name=e[5] value="E0;point;free;-1000,100;0;0">
+<param name=e[6] value="E3;point;free;1000,100;0;0">
+<param name=e[7] value="B0;point;free;-1000,135;0;0">
+<param name=e[8] value="B3;point;free;1000,135;0;0">
+<param name=e[9] value="C0;point;free;-1000,170;0;0">
+<param name=e[10] value="C3;point;free;1000,170;0;0">
+<param name=e[11] value="U1;point;free;1000,0;0;0">
+<param name=e[12] value="U2;point;free;1000,10;0;0">
+
+<param name=e[13] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[14] value="A2;point;lineSlider;A0,A3,120,0;0">
+<param name=e[15] value="A;line;connect;A1,A2;black">
+<param name=e[16] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[17] value="B2;point;lineSlider;B0,B3,70,0;0">
+<param name=e[18] value="B;line;connect;B1,B2;black;0;blue">
+<param name=e[19] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[20] value="C2;point;lineSlider;C0,C3,100,0;0">
+<param name=e[21] value="C;line;connect;C1,C2;black;0;blue">
+<param name=e[22] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[23] value="D*;point;proportion;B1,B2,C1,C2,A1,A2,D1,D3;0;0">
+<param name=e[24] value="D2;point;meanProportional;A1,A2,D1,D*,D1,D3;0">
+<param name=e[25] value="D;line;connect;D1,D2;black">
+<param name=e[26] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[27] value="E2;point;meanProportional;A1,A2,D1,D2,E1,E3;0">
+<param name=e[28] value="E;line;connect;E1,E2;black">
+</applet></div>
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>Therefore the square on <i>A</i> is commensurable with the square on <i>D</i>.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>And, since <i>B</i> does not have to <i>C</i> the ratio which a square number has to a square number, therefore neither has the square on <i>A</i> to the square on <i>D</i> the ratio which a square number has to a square number, therefore <i>A</i> is incommensurable in length with <i>D</i>.
+
+<div class="just"><a href=../bookV/defV8.html>V.Def.9</a></div>
+<p>Take a mean proportional <i>E</i> between <i>A</i> and <i>D</i>.  Then <i>A</i> is to <i>D</i> as the square on <i>A</i> is to the square on <i>E</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>But <i>A</i> is incommensurable in length with <i>D</i>, therefore the square on <i>A</i> is also incommensurable with the square on <i>E</i>.  Therefore <i>A</i> is incommensurable in square with <i>E</i>.
+
+<p>Therefore two straight lines <i>D</i> and <i>E</i> have been found incommensurable, <i>D</i> in length only, and <i>E</i> in square and of course in length also, with the assigned straight line <i>A</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition exhibits the lines promised in <a href=defX.I.html#3>X.Def.I.3</a>.  Just take a line <i>D</i> so that the square on <i>A</i> to the square on <i>D</i> is the ratio of two numbers which are not a square number to a square number.  For instance, if <i>A</i> is the side of a square and <i>D</i> the diagonal of that square, then the square on <i>A</i> to the square on <i>D</i> is in the ratio 1:2, which is not the ratio of square number to a square number.   Therefore <i>D</i> is commensurable in square only with <i>A</i>.  (The ratio  <i>D</i>&nbsp;:&nbsp;<i>A</i> is the square root of 2.)
+
+<p>Next, if <i>E</i> is the mean proportional between <i>A</i> and <i>D</i>, then <i>E</i> is incommensurable in square with <i>A</i>. (The ratio <i>E</i>&nbsp;:&nbsp;<i>A</i> is the fourth root of 2.)
+
+<p>It is certain that this proposition is not genuine.  For one thing, its proof uses the next proposition. Also, the phrase &ldquo;for we have learned how to do this&rdquo; is the sort of thing a student would write.  Finally, in the manuscript P (the primary one used by Peyrard and Heiberg)  this proposition is not numbered and the next one is numbered 10.
+
+<p>Although not genuine, this proposition ought to be, since it is used in proposition <a href=propX27.html>X.27</a> and others.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

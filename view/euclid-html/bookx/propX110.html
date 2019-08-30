@@ -1,0 +1,85 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 110</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 110</h1>
+
+<div class="statement">If a medial area incommensurable with the whole is subtracted from a medial area, then two remaining irrational straight lines arise, either a second apotome of a medial straight line or a straight line which produces with a medial area a medial whole.</div>
+
+<p>As in the foregoing figures, let there be subtracted the medial area <i>BD</i> incommensurable with the whole from the medial area <i>BC</i>.
+
+<p>I say that the side of <i>EC</i> is one of two irrational straight lines, either a second apotome of a medial straight line or a straight line which produces with a medial area a medial whole.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=240>
+<img src="propX109.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.110">
+<param name=e[1] value="B0;point;free;30,-1000;0;0">
+<param name=e[2] value="B3;point;free;30,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;B0,B3,0,190">
+<param name=e[4] value="B;point;lineSlider;B0,B3,0,70">
+<param name=e[5] value="C';point;perpendicular;A,B;0;0;0">
+<param name=e[6] value="C;point;lineSlider;A,C',130,0">
+<param name=e[7] value="BC;polygon;parallelogram;B,A,C;0;0;black;150,100,100">
+<param name=e[8] value="D;point;lineSlider;A,C,90,0">
+<param name=e[9] value="E;point;parallelogram;B,A,D">
+<param name=e[10] value="BD;polygon;parallelogram;B,A,D;0;0;black;190,100,100">
+
+<param name=e[11] value="F0;point;free;-1000,30;0;0">
+<param name=e[12] value="F3;point;free;1000,30;0;0">
+<param name=e[13] value="F;point;lineSlider;F0,F3,170,0">
+<param name=e[14] value="G';point;perpendicular;F,F3;0;0">
+<param name=e[15] value="G;point;lineSlider;F,G',0,210">
+<param name=e[16] value="H;point;proportion;F,G,A,C,B,A,F,F3">
+<param name=e[17] value="GH;polygon;parallelogram;G,F,H;0;0;black;150,100,100">
+<param name=e[18] value="K;point;proportion;F,G,A,D,B,A,F,F3">
+<param name=e[19] value="L;point;parallelogram;G,F,K">
+<param name=e[20] value="GFKL;polygon;quadrilateral;G,F,K,L;0;0;black;190,100,100">
+</applet></div>
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>Since each of the rectangles <i>BC</i> and <i>BD</i> is medial, and <i>BC</i> is incommensurable with <i>BD</i>, therefore each of the straight lines <i>FH</i> and <i>FK</i> is rational and incommensurable in length with <i>FG</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>,
+<a href=propX11.html>X.11</a></div>
+<p>Since <i>BC</i> is incommensurable with <i>BD</i>, that is, <i>GH</i> with <i>GK</i>, therefore <i>HF</i> is also incommensurable with <i>FK</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>Therefore <i>FH</i> and <i>FK</i> are rational straight lines commensurable in square only. Therefore <i>KH</i> is an apotome.
+
+<div class="just"><a href=defX.III.html#3>X.Def.III.3</a></div>
+<p>If then the square on <i>FH</i> is greater than the square on <i>FK</i> by the square on a straight line commensurable with <i>FH</i>, while neither of the straight lines <i>FH</i> nor <i>FK</i> is commensurable in length with the rational straight line <i>FG</i> set out, then <i>KH</i> is a third apotome.
+
+<div class="just"><a href=propX93.html>X.93</a></div>
+<p>But <i>KL</i> is rational, and the rectangle contained by a rational straight line and a third apotome is irrational, and the side of it is irrational, and is called a second apotome of a medial straight line, so that the side of <i>LH</i>, that is, of <i>EC</i>, is a second apotome of a medial straight line.
+
+<div class="just"><a href=defX.III.html#6>X.Def.III.6</a></div>
+<p>But, if the square on <i>FH</i> is greater than the square on <i>FK</i> by the square on a straight line incommensurable with <i>FH</i>, while neither of the straight lines <i>HF</i> nor <i>FK</i> is commensurable in length with <i>FG</i>, then <i>KH</i> is a sixth apotome.
+
+<p>But the side of the rectangle contained by a rational straight line and a sixth apotome is a straight line which produces with a medial area a medial whole.
+<div class="just"><a href=propX96.html>X.96</a></div>
+
+<p>Therefore the side of <i>LH</i>, that is, of <i>EC</i>, is a straight line which produces with a medial area a medial whole.
+
+<p>Therefore, <i>if a medial area incommensurable with the whole is subtracted from a medial area, then two remaining irrational straight lines arise, either a second apotome of a medial straight line or a straight line which produces with a medial area a medial whole.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

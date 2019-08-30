@@ -1,0 +1,98 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 56</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 56</h1>
+
+<div class="statement">If an area is contained by a rational straight line and the third binomial, then the side of the area is the irrational straight line called a second bimedial.</div>
+
+<p>Let the area <i>ABCD</i> be contained by the rational straight line <i>AB</i> and the third binomial <i>AD</i> divided into its terms at <i>E</i>, of which terms <i>AE</i> is the greater.
+
+<p>I say that the side of the area <i>AC</i> is the irrational straight line called a second bimedial.
+
+<p>Make the same construction as before.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=400 height=210>
+<img src="propX54.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.56">
+<param name=e[1] value="A0;point;free;-1000,60;0;0">
+<param name=e[2] value="A3;point;free;1000,60;0;0">
+
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[4] value="D;point;lineSlider;A0,A3,200,0">
+<param name=e[5] value="B';point;perpendicular;A,D;0;0">
+<param name=e[6] value="B;point;lineSlider;A,B',0,150">
+<param name=e[7] value="C;point;parallelogram;B,A,D">
+<param name=e[8] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;black;random">
+<param name=e[9] value="E;point;lineSlider;A,D,120,0">
+<param name=e[10] value="F;point;midpoint;E,D">
+
+<param name=e[11] value="AEmid;point;midpoint;A,E;0;0">
+<param name=e[12] value="AEquar;point;midpoint;E,AEmid;0;0">
+<param name=e[13] value="EFcirc;circle;radius;E,F;0;0;0;0">
+<param name=e[14] value="EAcirc;circle;radius;AEquar,E;0;0;0;0">
+<param name=e[15] value="bich;line;bichord;EFcirc,EAcirc;0;0;0">
+<param name=e[16] value="G';point;first;bich;0;0">
+<param name=e[17] value="G;point;cutoff;AEmid,D,AEmid,G'">
+
+<param name=e[18] value="H;point;parallelogram;B,A,G">
+<param name=e[19] value="K;point;parallelogram;B,A,E">
+<param name=e[20] value="L;point;parallelogram;B,A,F">
+<param name=e[21] value="HGEK;polygon;quadrilateral;H,G,E,K;0;0;black;0,80,100">
+<param name=e[22] value="FL;line;connect;F,L">
+<param name=e[23] value="AH;polygon;quadrilateral;A,B,H,G;0;0;0;45,80,100">
+
+<param name=e[24] value="S0;point;free;-1000,175;0;0">
+<param name=e[25] value="S3;point;free;1000,175;0;0">
+<param name=e[26] value="S;point;lineSlider;S0,S3,240,0">
+<param name=e[27] value="P;point;meanProportional;A,G,G,H,S,S3">
+<param name=e[28] value="SPNM;polygon;square;S,P;0;0;black;45,80,100">
+<param name=e[29] value="M;point;vertex;SPNM,4">
+<param name=e[30] value="N;point;vertex;SPNM,3">
+<param name=e[31] value="T;point;meanProportional;G,E,E,K,P,S3;0">
+<param name=e[32] value="O;point;parallelogram;M,S,T">
+<param name=e[33] value="NOQR;polygon;square;N,O;0;0;black;0,80,100">
+<param name=e[34] value="Q;point;vertex;NOQR,3">
+<param name=e[35] value="R;point;vertex;NOQR,4">
+<param name=e[36] value="SQ;polygon;parallelogram;S,T,Q;0;0;black;0">
+</applet></div>
+
+<div class="just"><a href=defX.II.html#3>X.Def.II.3</a></div>
+<p>Now, since <i>AD</i> is a third binomial straight line, therefore <i>AE</i> and <i>ED</i> are rational straight lines commensurable in square only, the square on <i>AE</i> is greater than the square on <i>ED</i> by the square on a straight line commensurable with <i>AE</i>, and neither of the terms <i>AE</i> and <i>ED</i> is commensurable in length with <i>AB</i>.
+
+<p>Then, in manner similar to the foregoing, we shall prove that <i>MO</i> is the side of the area <i>AC</i>, and <i>MN</i> and <i>NO</i> are medial straight lines commensurable in square only, so that <i>MO</i> is bimedial.
+
+<p>It is next to be proved that it is also a second bimedial straight line.
+
+<div class="just"><a href=propX13.html>X.13</a></div>
+<p>Since <i>DE</i> is incommensurable in length with <i>AB</i>, that is, with <i>EK</i>, and <i>DE</i> is commensurable with <i>EF</i>, therefore <i>EF</i> is incommensurable in length with <i>EK</i>.
+
+<div class="just"><a href=propX21.html>X.21</a></div>
+<p>And they are rational, therefore <i>FE</i> and <i>EK</i> are rational straight lines commensurable in square only. Therefore <i>EL</i>, that is, <i>MR</i>, is medial.
+
+<div class="just"><a href=propX38.html>X.38</a></div>
+<p>And it is contained by <i>MN</i> and <i>NO</i>, therefore the rectangle <i>MN</i> by <i>NO</i> is medial. Therefore <i>MO</i> is a second bimedial straight line.
+
+<p>Therefore, <i>if an area is contained by a rational straight line and the third binomial, then the side of the area is the irrational straight line called a second bimedial.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in <a href=propX72.html>X.72</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,86 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book I, Definition 9</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 9</h1>
+
+<div class="statement">And when the lines containing the angle are straight, the angle is called <i>rectilinear.</i></div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<table cellspacing=5>
+<tr><td>This continues the previous definition of angle.  Nearly all the angles that appear in the <i>Elements</i> are rectilinear as is the illustrated angle <i>BAC.</i>  Angles usually are named by three points, the middle point the vertex of the angle.  When there is no ambiguity it is sufficient to name the angle by its vertex, in this example, <i>A.</i></td>
+
+<td>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry"  archive=Geometry.zip height=140 width=270>
+<img src="defI9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.Def.9">
+<param name=e[1] value="A;point;free;40,110">
+<param name=e[2] value="B;point;free;210,110">
+<param name=e[3] value="B';point;extend;A,B,A,B;0;0">
+<param name=e[4] value="AB;line;connect;A,B'">
+<param name=e[5] value="D;point;perpendicular;A,B;0;0">
+<param name=e[6] value="circ;circle;radius;D,A;0;0;0;0">
+<param name=e[7] value="C;point;circleSlider;circ,180,50">
+<param name=e[8] value="C';point;extend;A,C,A,B;0;0">
+<param name=e[9] value="AC;line;connect;A,C'">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="defI9.gif" hspace=10 vspace=10 alt="I.Def.9">';
+</script>
+</table>
+
+<h4>Angles as magnitudes</h4>
+
+<table cellpadding=5>
+<tr><td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry"  archive=Geometry.zip height=200 width=290>
+<img src="defI9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.Def.9">
+<param name=e[1] value="A;point;free;140,160">
+<param name=e[2] value="B;point;free;250,160">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;free;180,60">
+<param name=e[5] value="AC;line;connect;A,C">
+<param name=e[6] value="D;point;free;40,50">
+<param name=e[7] value="AD;line;connect;A,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="defI9a.gif" hspace=10 vspace=10 alt="Adding angles">';
+</script>
+</td>
+<td>
+<p>As treated by Euclid, rectilinear angles are magnitudes that can be added together.  When they are angles that share a side, and their sum is less than two right angles, then their sum is the angle between the two outer sides.  For example, angles <i>BAC</i> and <i>CAD</i> shown to the left share the side <i>AC</i>, so their sum is angle <i>BAD</i>
+
+<p>When the sum of angles happens greater than two right angles, it is continued to be treated as a sum of angles rather than an individual angle.  For instance, in proposition <a href=propI32.html>I.32</a> it is proved that the sum of the interior angles of a triangle equals two right angles. 
+</td></tr>
+</table>
+
+<h4>Measuring angles</h4>
+
+Treating angles as magnitudes should not be confused with measuring angles. The angles themselves are the magnitudes. The only measurement of angles in the <i>Elements</i> is in terms of right angles (defined in the next definition).  Degree measurement and radian measurement were not used until later.  In terms of degrees a right angle is 90&deg;, while in terms of radians a right angle is <i>&pi;</i>/2 radians.
+
+<p>Throughout ancient Greek mathematics, only positive magnitudes were considered.  Zero and negative magnitudes were not conceived.  For the most part, a lack of zero and negative magnitudes complicates mathematics, but occasionally simplifies it.  In any case, the power of a mathematics without zero and negative magnitudes is no less in the sense that any statement made using the language of zero or negative magnitudes can be translated into a statement that doesn&rsquo;t use them, although the translated statement may be longer and less understandable.
+
+<p>Although in modern mathematics, angles can be positive, negative, or zero, and can be greater than a full circle (360&deg; or 2<i>&pi;</i> radians), in the <i>Elements</i> angles are always greater than zero and less than two right angles (180&deg; or <i>&pi;</i> radians), except perhaps in one interpretation of proposition <a href=../bookIII/propIII20.html>III.20</a> where the central angle of a circle could be greater than two right angles.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2014");
+</script>
+</BODY></HTML>

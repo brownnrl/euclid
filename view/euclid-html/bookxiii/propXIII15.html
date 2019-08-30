@@ -1,0 +1,158 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 15</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 15</h1>
+
+<div class="statement">
+To construct a cube and comprehend it in a sphere, like the pyramid; and to prove that the square on the diameter of the sphere is triple the square on the side of the cube.</div>
+
+
+<div class="just"><a href="../bookVI/propVI9.html">VI.9</a>,
+<a href="../bookI/propI11.html">I.11</a>
+<br><a href="../bookI/propI46.html">I.46</a>
+<br><a href="../bookXI/propXI12.html">XI.12</a>
+<br><a href=../bookI/propI3.html>I.3</a></div>
+<p>
+Set out the diameter <i>AB</i> of the given sphere, and cut it at <i>C</i> so that <i>AC</i> is double <i>CB.</i>  Describe the semicircle <i>ADB</i> on <i>AB,</i> draw <i>CD</i> from <i>C</i> at right angles to <i>AB,</i> and join <i>DB.</i> Set out the square <i>EFGH</i> having its side equal to <i>DB,</i> draw <i>EK, FL, GM,</i> and <i>HN</i> from <i>E, F, G,</i> and <i>H</i> at right angles to the plane of the square <i>EFGH,</i> and cut <i>EK, FL, GM,</i> and <i>HN</i> off from <i>EK, FL, GM,</i> and <i>HN</i>  respectively equal to one of the straight lines <i>EF, FG, GH,</i> or <i>HE.</i> Join <i>KL, LM, MN,</i> and <i>NK.</i>
+
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=550 height=320>
+<img src="propXIII15.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.15">
+<param name=e[1] value="A0;point;free;40,-1000;0;0">
+<param name=e[2] value="A3;point;free;40,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,0,40">
+<param name=e[4] value="B;point;lineSlider;A0,A3,0,280">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="ABmid;point;midpoint;A,B;0;0">
+<param name=e[7] value="ABcirc;circle;radius;ABmid,B;0;0;0;0">
+<param name=e[8] value="semi;sector;sector;ABmid,B,A;0;0;black;random">
+<param name=e[9] value="A1;point;perpendicular;A,B;0;0">
+<param name=e[10] value="A2;point;extend;A,A1,A,A1;0;0">
+<param name=e[11] value="B1;point;perpendicular;B,A;0;0">
+<param name=e[12] value="C;point;intersection;A,B,A2,B1">
+<param name=e[13] value="D';point;perpendicular;C,A;0;0">
+<param name=e[14] value="Dch;line;chord;C,D',ABcirc;0;0;0">
+<param name=e[15] value="D;point;last;Dch">
+<param name=e[16] value="CD;line;connect;C,D">
+<param name=e[17] value="BD;line;connect;B,D">
+
+<param name=e[18] value="P;point;free;380,160;0">
+<param name=e[19] value="Psphere;sphere;radius;P,A,ABmid;0;0;lightGray">
+<param name=e[20] value="E;point;sphereSlider;Psphere,340,130,-40">
+<param name=e[21] value="M;point;extend;E,P,P,E">
+<param name=e[22] value="Esphere;sphere;radius;E,D,B;0;0;0;0">
+<param name=e[23] value="Fcircle;circle;intersection;Esphere,Psphere;0;0;0;0">
+<param name=e[24] value="F;point;circleSlider;Fcircle,430,200,30">
+<param name=e[25] value="N;point;extend;F,P,P,E">
+<param name=e[26] value="ENplane;plane;perpendicular;E,F;0;0;0;0">
+<param name=e[27] value="Q;point;midpoint;E,N;0;0">
+<param name=e[28] value="H;point;perpendicular;Q,E,ENplane">
+<param name=e[29] value="K;point;parallelogram;E,H,N">
+<param name=e[30] value="L;point;extend;H,P,P,E">
+<param name=e[31] value="G;point;extend;K,P,P,E">
+<param name=e[32] value="cube;polyhedron;parallelepiped;E,F,H,K;0;0;black;random">
+<param name=e[33] value="EG;line;connect;E,G">
+<param name=e[34] value="GK;line;connect;G,K">
+</applet></center>
+
+<div class="just"><a href=../bookXI/defXI25.html>XI.Def.25</a></div>
+<p>Therefore the cube <i>FN</i> has been constructed which is contained by six equal squares.
+
+<p>It is then required to comprehend it in the given sphere, and to prove that the square on the diameter of the sphere is triple the square on the side of the cube.
+
+<p>Join <i>KG</i> and <i>EG.</i>
+
+<div class="just"><a href=../bookXI/defXI3.html>XI.Def.3</a></div>
+<p>Then, since the angle <i>KEG</i> is right, for <i>KE</i> is also at right angles to the plane <i>EG</i> and of course to the straight line <i>EG</i> also,  therefore the semicircle described on <i>KG</i> passes through the point <i>E.</i>
+
+<p>Again, since <i>GF</i> is at right angles to each of the straight lines <i>FL</i> and <i>FE,</i> therefore <i>GF</i> is also at right angles to the plane <i>FK.</i> Hence also, if we join <i>FK,</i> then <i>GF</i> will be at right angles to <i>FK.</i> For this reason the semicircle described on <i>GK</i> also passes through <i>F.</i>
+
+<p>Similarly it also passes through the remaining angular points of the cube.
+
+<p>If then, <i>KG</i> remaining fixed, the semicircle is carried round and restored to the same position from which it began to be moved, then the cube is comprehended in a sphere.
+
+<p>I say next that it is also comprehended in the given sphere.
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>For, since <i>GF</i> equals <i>FE,</i> and the angle at <i>F</i> is right, therefore the square on <i>EG</i> is double the square on <i>EF.</i>  But <i>EF</i> equals <i>EK,</i>  therefore the square on <i>EG</i> is double the square on <i>EK.</i> Hence the sum of the squares on <i>GE</i> and <i>EK,</i> that is the square on <i>GK,</i> is triple the square on <i>EK.</i>
+
+<p>And, since <i>AB</i> is triple <i>BC,</i> while <i>AB</i> is to <i>BC</i> as the square on <i>AB</i> is to the square on <i>BD,</i> therefore the square on <i>AB</i> is triple the square on <i>BD.</i>
+
+<p>But the square on <i>GK</i> was also proved triple the square on <i>KE.</i> And <i>KE</i> was made equal to <i>DB,</i> therefore <i>KG</i> also equals <i>AB.</i> And <i>AB</i> is the diameter of the given sphere, therefore <i>KG</i> also equals the diameter of the given sphere.
+
+<p>Therefore the cube has been comprehended in the given sphere, and it has been demonstrated at the same time that the square on the diameter of the sphere is triple the square on the side of the cube. 
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<h4>Special relationships between regular tetrahedra and cubes</h4>
+
+<p>Note that the beginning of this construction of a cube is the same as that for the tetrahedron in proposition <a href=propXIII13.html>XIII.13</a>, namely, the points <i>C</i> and <i>D</i> are the same.  The difference is that the line <i>AD</i> is the edge of a tetrahedron while the line <i>BD</i> is the edge of a cube.  Following through the construction, you will see that four of the eight vertices of the cube are the four vertices of the tetrahedron.  Using the labelling of this proposition, they may be taken as <i>E, G, L,</i> and <i>N.</i>
+
+<p>
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=440 height=280>
+<img src="propXIII15a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Cube and tetrahedron">
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,0,40">
+<param name=e[4] value="B;point;lineSlider;A0,A3,0,240">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="ABmid;point;midpoint;A,B;0;0">
+<param name=e[7] value="ABcirc;circle;radius;ABmid,B;0;0;0;0">
+<param name=e[8] value="semi;sector;sector;ABmid,B,A;0;0;black;random">
+<param name=e[9] value="A1;point;perpendicular;A,B;0;0">
+<param name=e[10] value="A2;point;extend;A,A1,A,A1;0;0">
+<param name=e[11] value="B1;point;perpendicular;B,A;0;0">
+<param name=e[12] value="C;point;intersection;A,B,A2,B1">
+<param name=e[13] value="D';point;perpendicular;C,A;0;0">
+<param name=e[14] value="Dch;line;chord;C,D',ABcirc;0;0;0">
+<param name=e[15] value="D;point;last;Dch">
+<param name=e[16] value="CD;line;connect;C,D">
+<param name=e[17] value="BD;line;connect;B,D;0;0;red">
+<param name=e[18] value="AD;line;connect;A,D;0;0;blue">
+
+<param name=e[19] value="P;point;free;280,140;0">
+<param name=e[20] value="Psphere;sphere;radius;P,A,ABmid;0;0;lightGray">
+<param name=e[21] value="E;point;sphereSlider;Psphere,240,100,-40">
+<param name=e[22] value="M;point;extend;E,P,P,E">
+<param name=e[23] value="Esphere;sphere;radius;E,D,B;0;0;0;0">
+<param name=e[24] value="Fcircle;circle;intersection;Esphere,Psphere;0;0;0;0">
+<param name=e[25] value="F;point;circleSlider;Fcircle,330,200,30">
+<param name=e[26] value="N;point;extend;F,P,P,E">
+<param name=e[27] value="ENplane;plane;perpendicular;E,F;0;0;0;0">
+<param name=e[28] value="Q;point;midpoint;E,N;0;0">
+<param name=e[29] value="H;point;perpendicular;Q,E,ENplane">
+<param name=e[30] value="K;point;parallelogram;E,H,N">
+<param name=e[31] value="L;point;extend;H,P,P,E">
+<param name=e[32] value="G;point;extend;K,P,P,E">
+<param name=e[33] value="cube;polyhedron;parallelepiped;E,F,H,K;0;0;red;0">
+<param name=e[34] value="tet;polyhedron;tetrahedron;E,N,L,G;0;0;blue;random">
+</applet></center>
+
+<p>Alternatively, the other four vertices of the cube, <i>F, H, K,</i> and <i>M,</i> form the vertices of a regular tetrahedron.  See the <a href="propXIII13.html#guide">Guide</a> to XIII.13 for more on this connection which involves placing coordinates on the vertices of the cube and tetrahedron.
+
+<p>The volumes of the tetrahedron and cube are easily compared.  When the tetrahedron is removed from the cube, there are four remaining pyramids, <i>EGHN</i> is one of them. By proposition <a href=../bookXII/propXII9.html>XII.9</a> the volume of each pyramid is one-third of the volume of a prism, for instance, <i>EGHN</i> is one-third of the triangular prism <i>EFKHGN,</i> which in turn is half of the cube. Therefore each pyramid is one-sixth of the cube. Since the four pyramids together make four-sixths of the cube, that leaves one-third of the cube for the regular tetrahedron <i>EGLN.</i>
+
+<h4>Use of this construction</h4>
+Constructing a cube is an end in itself, but Euclid also starts with a cube to construct a dodecahedron in proposition <a href=propXIII17.html>XIII.17</a>. Finally, this construction is used in <a href=propXIII18.html>XIII.18</a> where the five regular polyhedra are compared.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 1998");
+</script>
+</BODY></HTML>

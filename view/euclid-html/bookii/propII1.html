@@ -1,0 +1,103 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 1</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">If there are two straight lines, and one of them is cut into any number of segments whatever, then the rectangle contained by the two straight lines equals the sum of the rectangles contained by the uncut straight line and each of the segments.</div>
+
+<p>Let <i>A</i> and <i>BC</i> be two straight lines, and let <i>BC</i> be cut at random at the points <i>D</i> and <i>E.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=330>
+<img src="propII1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.1">
+<param name=e[1] value="A0;point;free;-1000,40;0,0">
+<param name=e[2] value="A3;point;free;1000,40;0,0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,90,40;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,200,40;0">
+<param name=e[5] value="A;line;connect;A1,A2;0,0,0">
+<param name=e[6] value="B;point;free;40,70">
+<param name=e[7] value="C';point;parallelogram;B,A;0;0">
+<param name=e[8] value="C;point;lineSlider;B,C',290,70">
+<param name=e[9] value="BC;line;connect;B,C">
+<param name=e[10] value="D;point;lineSlider;BC,110,70">
+<param name=e[11] value="E;point;lineSlider;BC,220,70">
+<param name=e[12] value="BF';line;perpendicular;B,C;0;0;0">
+<param name=e[13] value="F;point;lineSlider;BF',30,210">
+<param name=e[14] value="BF;line;connect;B,F">
+<param name=e[15] value="G;point;cutoff;BF,A">
+<param name=e[16] value="DBGK;polygon;parallelogram;D,B,G;0;0;0,0,0;random">
+<param name=e[17] value="K;point;vertex;DBGK,4">
+<param name=e[18] value="EDKL;polygon;parallelogram;E,D,K;0;0;0,0,0;random">
+<param name=e[19] value="L;point;vertex;EDKL,4">
+<param name=e[20] value="CELH;polygon;parallelogram;C,E,L;0;0;0,0,0;random">
+<param name=e[21] value="H;point;vertex;CELH,4">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII1.gif" hspace=10 alt="II.1">';
+</script>
+</div>
+
+<p>I say that the rectangle <i>A</i> by <i>BC</i> equals the sum of the rectangle <i>A</i> by <i>BD,</i> the rectangle <i>A</i> by <i>DE,</i> and the rectangle <i>A</i> by <i>EC.</i>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a>,
+<a href="../bookI/propI3.html">I.3</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Draw <i>BF</i> from <i>B</i> at right angles to <i>BC.</i>  Make <i>BG</i> equal to <i>A.</i>  Draw <i>GH</i> through <i>G</i> parallel to <i>BC.</i>   Through <i>D, E,</i> and <i>C</i> draw <i>DK, EL,</i> and <i>CH</i> parallel to <i>BG.</i>
+
+<p>Then <i>BH</i> equals the sum of <i>BK, DL,</i> and <i>EH.</i>
+
+<div class="just"><a href=defII.html>II.Def.1</a>
+<br><a href="../bookI/propI34.html">I.34</a></div>
+<p>Now <i>BH</i> is the rectangle <i>A</i> by <i>BC,</i> for it is contained by <i>GB</i> and <i>BC,</i> and <i>BG</i> equals <i>A</i>; <i>BK</i> is the rectangle <i>A</i> by <i>BD,</i> for it is contained by <i>GB</i> and <i>BD,</i> and <i>BG</i> equals <i>A</i>; and <i>DL</i> is the rectangle <i>A</i> by <i>DE,</i> for <i>DK,</i> that is <i>BG,</i> equals <i>A.</i>  Similarly also <i>EH</i> is the rectangle <i>A</i> by <i>EC.</i>
+
+<p>Therefore the rectangle <i>A</i> by <i>BC</i> equals the sum of the rectangle <i>A</i> by <i>BD,</i> the rectangle <i>A</i> by <i>DE,</i> and the rectangle <i>A</i> by <i>EC.</i>
+
+<p>Therefore <i>if there are two straight lines, and one of them is cut into any number of segments whatever, then the rectangle contained by the two straight lines equals the sum of the rectangles contained by the uncut straight line and each of the segments.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>As described in <a href=defII.html>II.Def.1</a>, the phrase &ldquo;the rectangle contained by the two straight lines&rdquo; means any rectangle constructed with two sides equal to the two given sides.  In some sense this is the product of the two lines.
+When the sides have names, such as <i>A</i> and <i>BC,</i> we will refer to that rectangle by &ldquo;the rectangle <i>A</i> by <i>BC</i>&rdquo; since that is a little clearer than Euclid&rsquo;s terse &ldquo;the rectangle <i>A, BC.</i>&rdquo;
+
+<p>In this proposition Euclid proves that if 
+<p><center>
+<i>BC</i>&nbsp;=&nbsp;<i>BD</i>&nbsp;+&nbsp;<i>DE</i>&nbsp;+&nbsp;<i>EC,</i>
+</center>
+then
+<center>
+(<i>A</i> by <i>BC</i>)&nbsp;=&nbsp;(<i>A</i> by <i>BD</i>)&nbsp;+&nbsp;(<i>A</i> by <i>DE</i>)&nbsp;+&nbsp;(<i>A</i> by <i>EC</i>).
+</center><p>
+
+  In modern algebraic notation this could be stated as follows:
+If <i>y</i>&nbsp;=&nbsp;<i>y</i><sub>1</sub>&nbsp;+&nbsp;<i>y</i><sub>2</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>y<sub>n</sub>,</i> then <i>xy</i>&nbsp;=&nbsp;<i>x</i>&nbsp;<i>y</i><sub>1</sub>&nbsp;+&nbsp;<i>x</i>&nbsp;<i>y</i><sub>2</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>x&nbsp;y<sub>n</sub>.</i>  This can also be stated in a single equation as
+<p><center><i>x</i>&nbsp;(<i>y</i><sub>1</sub>&nbsp;+&nbsp;<i>y</i><sub>2</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>y<sub>n</sub></i>)&nbsp;=&nbsp;<i>x&nbsp;y</i><sub>1</sub>&nbsp;+&nbsp;<i>x&nbsp;y</i><sub>2</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>x y<sub>n</sub>.</i></center><p>
+
+Here <i>x</i> and the various <i>y<sub>i</sub></i>&rsquo;s are all lines, and <i>n</i> is an arbitrary number.   In modern terminology this identity is called the <i>distributive law</i> for multiplication over addition.
+
+<h4>Use of this proposition</h4>
+
+This proposition is not specifically invoked in the rest of the <i>Elements.</i>  The next two propositions, however, are special cases of it, and they are each explicitly used once.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>
+

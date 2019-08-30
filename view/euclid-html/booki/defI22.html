@@ -1,0 +1,73 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book I, Definition 22</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 22</h1>
+
+<div class="statement">Of quadrilateral figures, a <i>square</i> is that which is both equilateral and right-angled; an <i>oblong</i> that which is right-angled but not equilateral; a <i>rhombus</i> that which is equilateral but not right-angled; and a <i>rhomboid</i> that which has its opposite sides and angles equal to one another but is neither equilateral nor right-angled.  And let quadrilaterals other than these be called <i>trapezia.</i></div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<center>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=420>
+<img src="defI22.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.Def.22">
+<param name=e[1] value="A1;point;free;40,110;0">
+<param name=e[2] value="A2;point;free;110,110;0">
+<param name=e[3] value="A;polygon;square;A1,A2;black;0;black;random">
+
+<param name=e[4] value="B1;point;free;160,100;0">
+<param name=e[5] value="B2;point;free;240,100;0">
+<param name=e[6] value="B3;point;perpendicular;B2,B1;0;0">
+<param name=e[7] value="B4;point;lineSlider;B2,B3,240,40;0">
+<param name=e[8] value="B;polygon;parallelogram;B1,B2,B4;black;0;black;random">
+
+<param name=e[9] value="C1;point;free;360,110;0">
+<param name=e[10] value="C2;point;free;290,110;0">
+<param name=e[11] value="Ccirc;circle;radius;C2,C1;0;0;0;0">
+<param name=e[12] value="C3;point;circleSlider;Ccirc,300,60;0">
+<param name=e[13] value="C;polygon;parallelogram;C1,C2,C3;black;0;black;random">
+
+<param name=e[14] value="D1;point;free;60,220;0">
+<param name=e[15] value="D2;point;free;170,220;0">
+<param name=e[16] value="D3;point;free;130,150;0">
+<param name=e[17] value="D4;point;parallelogram;D1,D2,D3;0;0">
+<param name=e[18] value="D5;point;lineSlider;D3,D4,80,150;0">
+<param name=e[19] value="D;polygon;quadrilateral;D1,D2,D3,D5;black;0;black;random">
+
+<param name=e[20] value="E1;point;free;260,220;0">
+<param name=e[21] value="E2;point;free;360,220;0">
+<param name=e[22] value="E3;point;free;320,150;0">
+<param name=e[23] value="E;polygon;parallelogram;E1,E2,E3;black;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="defI22.gif" hspace=10 vspace=10 alt="I.Def.22">';
+</script>
+</center>
+
+<p>The figure <i>A</i> is, of course, a square. Figure <i>B</i> is an oblong, or a rectangle. Figure <i>C</i> is a rhombus.  Figure <i>D</i> is a trapezium (also called a trapeze or trapezoid).  And figure <i>E</i> is a parallelogram, not defined here.
+
+<p>The only figure defined here that Euclid actually uses is the square.  The other names of figures may have been common at the time of Euclid&rsquo;s writing, or they may have been left over from earlier authors&rsquo; versions of the <i>Elements,</i> or they may have been added later.
+
+<p>Euclid makes much use of parallelogram, or parallelogrammic area, which he does not define, but clearly means quadrilateral with parallel opposite sides.  Parallelograms include rhombi and rhomboids as special cases. And rather than oblong, he uses the term rectangle, or rectangular parallelogram, which includes both squares and oblongs.  
+
+<p>Squares and oblongs are defined to be right-angled.  Of course, that is intended to mean that all four angles are right angles.  Sometimes these definitions are too brief, but the intended meaning can easily be determined from the way the definitions are used. In particular, proposition <a href=propI46.html>I.46</a> constructs a square, and all four angles are constructed to be right, not just one of them. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,186 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 14</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">
+To construct an octahedron and comprehend it in a sphere, as in the preceding case; and to prove that the square on the diameter of the sphere is double the square on the side of the octahedron.</div>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a></div>
+<p>Set out the diameter <i>AB</i> of the given sphere, bisect it at <i>C,</i> describe the semicircle <i>ADB</i> on <i>AB,</i> draw <i>CD</i> from <i>C</i> at right angles to <i>AB,</i> and join <i>DB.</i>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a>
+<br><a href="../bookXI/propXI12.html">XI.12</a></div>
+<p>Set out the square <i>EFGH,</i> having each of its sides equal to <i>DB,</i> join <i>HF</i> and <i>EG,</i> set up the straight line <i>KL</i> from the point <i>K</i> at right angles to the plane of the square <i>EFGH,</i> and  carry it through to the other side of the plane <i>KM.</i>
+
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=540 height=320 >
+<img src="propXIII14.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.14">
+<param name=e[1] value="A0;point;free;40,-1000;0;0">
+<param name=e[2] value="A3;point;free;40,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,0,40">
+<param name=e[4] value="B;point;lineSlider;A0,A3,0,280">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="C;point;midpoint;AB">
+<param name=e[7] value="BDA;sector;sector;C,B,A;0;0;black;random">
+<param name=e[8] value="D;point;perpendicular;C,B">
+<param name=e[9] value="CD;line;connect;C,D">
+<param name=e[10] value="BD;line;connect;B,D">
+
+<param name=e[11] value="K;point;free;360,160">
+<param name=e[12] value="Ksphere;sphere;radius;K,C,A;0;0;lightGray">
+<param name=e[13] value="E;point;sphereSlider;Ksphere,340,170,40">
+<param name=e[14] value="G;point;extend;E,K,K,E">
+<param name=e[15] value="equpl;plane;perpendicular;K,E;0;0;0;0">
+<param name=e[16] value="equator;circle;radius;K,E,equpl;0;0;0;0">
+<param name=e[17] value="F;point;circleSlider;equator,230,300">
+<param name=e[18] value="H;point;extend;F,K,K,E">
+<param name=e[19] value="EFGH;polygon;quadrilateral;E,F,G,H;0;0;0;0">
+<param name=e[20] value="HF;line;connect;H,F">
+<param name=e[21] value="EG;line;connect;E,G">
+<param name=e[22] value="L;point;perpendicular;K,F,equpl">
+<param name=e[23] value="M;point;extend;L,K,K,E">
+<param name=e[24] value="LM;line;connect;L,M">
+<param name=e[25] value="Lpyr;polyhedron;pyramid;EFGH,L;0;0;black;random">
+<param name=e[26] value="Mpyr;polyhedron;pyramid;EFGH,M;0;0;black;random">
+</applet></center>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a></div>
+<p>Cut off <i>KL</i> and <i>KM</i>  from the straight lines <i>KL</i> and <i>KM</i> respectively equal to one of the straight lines <i>EK, FK, GK,</i> or <i>HK,</i> and join <i>LE, LF, LG, LH, ME, MF, MG,</i> and <i>MH.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>Then, since <i>KE</i> equals <i>KH,</i> and the angle <i>EKH</i> is right, therefore the square on <i>HE</i> is double the square on <i>EK.</i> Again, since <i>LK</i> equals <i>KE,</i> and the angle <i>LKE</i> is right, therefore the square on <i>EL</i> is double the square on <i>EK.</i> 
+
+<p>But the square on <i>HE</i> was also proved double the square on <i>EK,</i> therefore the square on <i>LE</i> equals the square on <i>EH.</i>  Therefore <i>LE</i> equals <i>EH.</i>  For the same reason <i>LH</i> also equals <i>HE.</i>
+
+<p>Therefore the triangle <i>LEH</i> is equilateral.
+
+<div class="just"><a href=../bookXI/defXI25.html>XI.Def.26</a></div>
+<p>Similarly we can prove that each of the remaining triangles of which the sides of the square <i>EFGH</i> are the bases and the points <i>L</i> and <i>M</i> are the vertices, is equilateral, therefore an octahedron has been constructed which is contained by eight equilateral triangles.
+
+<p>It is next required to comprehend it in the given sphere, and to prove that the square on the diameter of the sphere is double the square on the side of the octahedron.
+
+<p>Since the three straight lines <i>LK, KM,</i> and <i>KE</i> equal one another, therefore the semicircle described on <i>LM</i>  passes through <i>E.</i>  And for the same reason, if, <i>LM</i> remaining fixed, the semicircle be carried round and restored to the same position from which it began to be moved, then  it also passes through the points <i>F, G,</i> and <i>H,</i> and the octahedron will be comprehended in a sphere.
+
+<p>I say next that it is also comprehended in the given sphere.
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>For, since <i>LK</i> equals <i>KM,</i> while <i>KE</i> is common, and they contain right angles, therefore the base <i>LE</i> equals the base <i>EM.</i>
+
+<div class="just"><a href="../bookIII/propIII31.html">III.31</a>,
+<a href="../bookI/propI47.html">I.47</a></div>
+<p>And, since the angle <i>LEM</i> is right, for it is in a semicircle,  therefore the square on <i>LM</i> is double the square on <i>LE.</i>
+
+<p>Again, since <i>AC</i> equals <i>CB,</i> therefore <i>AB</i> is double <i>BC.</i> But <i>AB</i> is to <i>BC</i> as the square on <i>AB</i> is to the square on <i>BD,</i> therefore the square on <i>AB</i> is double the square on <i>BD.</i>
+
+<p>But the square on <i>LM</i> was also proved double the square on <i>LE.</i>  And the square on <i>DB</i> equals the square on <i>LE,</i> for <i>EH</i> was made equal to <i>DB.</i> Therefore the square on <i>AB</i> equals the square on <i>LM.</i> Therefore <i>AB</i> equals <i>LM.</i>
+
+<p>And <i>AB</i> is the diameter of the given sphere, therefore <i>LM</i> equals the diameter of the given sphere.
+
+<p>Therefore the octahedron has been comprehended in the given sphere, and it has been demonstrated at the same time that the square on the diameter of the sphere is double the square on the side of the octahedron. 
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+Of the five regular polyhedra to be constructed in a sphere, the octahedron has the easiest construction.  Relative to the center of the sphere <i>K,</i> the lines to the six verices <i>KE, KF, KG, KH, KL,</i> and <i>KM</i> form three mutually perpendicular diameters.  Also, the 12 sides group into three groups of four lines, each group forming the vertices of a square&#151;<i>EFGH, EMGL,</i> and <i>FMHL.</i>
+
+<p>Since the center of each square is the center of the sphere, therefore two sides, <i>EF</i> and <i>FG,</i> along with the one diameter <i>EG</i> of the octahedron form a 45&deg;-45&deg;-90&deg; triangle.  Thus, the square on the diameter of the sphere is twice the square on the side of the octahedron.
+
+<h4>Coordinates for the vertices of the octahedron</h4>
+
+If the sphere circumscribing the octahedron is the unit sphere, then a natural coordinate system to impose would have the three coordinate axes be the three perpendicular diameters.  Then the points a unit distance from the origin are the six vertices of the octahedron, namely, 
+<p><center>
+(1,0,0) &nbsp; (&ndash;1,0,0) &nbsp; (0,1,0) &nbsp; (0,&ndash;1,0) &nbsp; (0,0,1) &nbsp; (0,0,&ndash;1)
+</center><p>
+
+<h4>Duals of the regular polyhedra</h4>
+
+As will be shown in proposition <a href=propXIII18.html>XIII.18</a>, there are exactly five regular polyhedra.  The accompanying table lists these five polyhedra along with the numbers of the their faces, edges, and vertices.  Their names are taken from the number of their faces, except, of course, the cube, which otherwise would be called a hexahedron.
+
+<p><center><table cellpadding=5 bgcolor=ffffcc border=1>
+<tr><th>Polyhedron</th><th>Faces</th><th>Edges</th><th>Vertices</th></tr>
+<tr><td>tetrahedron</td><td>4</td><td>6</td><td>4
+<tr><td>octahedron</td><td>8</td><td>12</td><td>6
+<tr><td>cube</td><td>6</td><td>12</td><td>8
+<tr><td>icosahedron</td><td>20</td><td>30</td><td>12
+<tr><td>dodecahedron</td><td>12</td><td>30</td><td>20
+</table></center>
+
+<p>Note that there are two pairs of polyhedra in this table where the numbers are related.  One pair is the octahedron and cube, the other is the icosahedron and dodecahedron.  For these pairs the number of faces of one of the pair equals the number of vertices of the other, and both of the pair have the same number of edges.  These are the pairs of &ldquo;duals.&rdquo;  The numbers for the tetrahedron indicate that it dual to itself.
+
+<p><table cellpadding=5>
+<tr><td>
+<p>We can see the correspondence between the parts of one of these polyhedra and the parts of its dual.  Consider the octahedron.  Place a point in the circumcenter of each of the eight faces.  Connect two of these points if the faces that contain them share an edge.  For each of the six vertices of the octahedron, connect the four circumcenters of the adjacent faces to make a square.  What results is a cube with six vertices, 12 edges, and eight faces.
+
+<p>An analogous construction for the cube yields an octahedron.  Likewise the constructions for the icosahedron and dodecahedron yield each other, and the construction for a tetrahedron yields another tetrahedron.
+
+<p><small>(Spin the figure by dragging around the orange vertices.)</small>
+</td>
+
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=310 >
+<img src="propXIII14a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Octahedron and cube">
+<param name=e[1] value="A0;point;free;-1000,20;0;0">
+<param name=e[2] value="A3;point;free;1000,20;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0;0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,270,0;0">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="C;point;midpoint;AB;0;0">
+<param name=e[7] value="D;point;perpendicular;C,B;0;0">
+
+<param name=e[8] value="K;point;free;150,165;0">
+<param name=e[9] value="Ksphere;sphere;radius;K,C,A;0;0;0;0">
+<param name=e[10] value="E;point;sphereSlider;Ksphere,225,120,60;0">
+<param name=e[11] value="G;point;extend;E,K,K,E;0">
+<param name=e[12] value="equpl;plane;perpendicular;K,E;0;0;0;0">
+<param name=e[13] value="equator;circle;radius;K,E,equpl;0;0;0;0">
+<param name=e[14] value="F;point;circleSlider;equator,230,180;0">
+<param name=e[15] value="H;point;extend;F,K,K,E;0">
+<param name=e[16] value="EFGH;polygon;quadrilateral;E,F,G,H;0;0;0;0">
+<param name=e[17] value="L;point;perpendicular;K,F,equpl;0">
+<param name=e[18] value="M;point;extend;L,K,K,E;0">
+<param name=e[19] value="Lpyr;polyhedron;pyramid;EFGH,L;0;0;blue;0">
+<param name=e[20] value="Mpyr;polyhedron;pyramid;EFGH,M;0;0;blue;0">
+
+<param name=e[21] value="EFMplane;plane;3points;E,F,M;0;0;0;0">
+<param name=e[22] value="EFmid;point;midpoint;E,F;0;0">
+<param name=e[23] value="EMmid;point;midpoint;E,M;0;0">
+<param name=e[24] value="EFMc;point;intersection;F,EMmid,M,EFmid,EFMplane;0;0">
+<param name=e[25] value="GHLc;point;extend;EFMc,K,EFMc,K;0;0">
+<param name=e[26] value="EFLplane;plane;3points;E,F,L;0;0;0;0">
+<param name=e[27] value="ELmid;point;midpoint;E,L;0;0">
+<param name=e[28] value="EFLc;point;intersection;F,ELmid,L,EFmid,EFLplane;0;0">
+<param name=e[29] value="GHMc;point;extend;EFLc,K,EFLc,K;0;0">
+
+<param name=e[30] value="EHMplane;plane;3points;E,H,M;0;0;0;0">
+<param name=e[31] value="EHmid;point;midpoint;E,H;0;0">
+<param name=e[32] value="EHMc;point;intersection;H,EMmid,M,EHmid,EHMplane;0;0">
+<param name=e[33] value="FGLc;point;extend;EHMc,K,EHMc,K;0;0">
+<param name=e[34] value="square;polygon;parallelogram;EHMc,EFMc,EFLc;0;0;0;0">
+<param name=e[35] value="cube;polyhedron;prism;square,EFLc,FGLc;0;0;green;random">
+</applet></table>
+
+
+<h4>Use of this construction</h4>
+
+Constructing this octahedron is an end in itself.  The construction is also used in proposition <a href=propXIII18.html>XIII.18</a> where the five regular polyhedra are compared.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

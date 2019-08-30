@@ -1,0 +1,107 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 15</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 15</h1>
+
+<div class="statement">If a unit measures any number, and another number measures any other number the same number of times, then alternately, the unit measures the third number the same number of times that the second measures the fourth.</div>
+
+<p>Let the unit <i>A</i> measure any number <i>BC,</i> and let another number <i>D</i> measure any other number <i>EF</i> the same number of times.
+
+<p>I say that, alternately also, the unit measures the number <i>D</i> the same number of times that <i>BC</i> measures <i>EF.</i>
+
+<div class=rdiagram>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=140 >
+<img src=propVII15.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.15">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="D0;point;free;-1000,75;0;0">
+<param name=e[4] value="D3;point;free;1000,75;0;0">
+<param name=e[5] value="E0;point;free;-1000,110;0;0">
+<param name=e[6] value="E3;point;free;1000,110;0;0">
+<param name=e[7] value="A1;point;lineSlider;A0,A3,30,40;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,65,40;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B;point;lineSlider;A0,A3,110,40">
+<param name=e[11] value="G;point;cutoff;B,A3,A1,A2">
+<param name=e[12] value="H;point;cutoff;G,A3,A1,A2">
+<param name=e[13] value="C;point;cutoff;H,A3,A1,A2">
+<param name=e[14] value="BC;line;connect;B,C">
+<param name=e[15] value="D1;point;lineSlider;D0,D3,100,40;0">
+<param name=e[16] value="D2;point;cutoff;D1,D3,B,H;0">
+<param name=e[17] value="D;line;connect;D1,D2;black">
+<param name=e[18] value="E;point;lineSlider;E0,E3,30,40">
+<param name=e[19] value="K;point;cutoff;E,E3,D1,D2">
+<param name=e[20] value="L;point;cutoff;K,E3,D1,D2">
+<param name=e[21] value="F;point;cutoff;L,E3,D1,D2">
+<param name=e[22] value="EF;line;connect;E,F">
+</applet></div>
+
+<p>Since the unit <i>A</i> measures the number <i>BC</i> the same number of times that <i>D</i> measures <i>EF,</i> therefore there are as many numbers equal to <i>D</i> in <i>EF</i> as there are units in <i>BC.</i>
+
+<p>Divide <i>BC</i> into the units in it, <i>BG, GH,</i> and <i>HC,</i> and divide <i>EF</i> into the numbers <i>EK, KL,</i> and <i>LF</i> equal to <i>D.</i> Then the multitude of <i>BG, GH,</i> and <i>HC</i> equals the multitude of <i>EK, KL,</i> and <i>LF.</i>
+
+<p>And, since the units <i>BG, GH,</i> and <i>HC</i> equal one another, and the numbers <i>EK, KL,</i> and <i>LF</i> also equal one another, while the multitude of the units <i>BG, GH,</i> and <i>HC</i> equals the multitude of the numbers <i>EK, KL,</i> and <i>LF,</i> therefore the unit <i>BG</i> is to the number <i>EK</i> as the unit <i>GH</i> is to the number <i>KL,</i> and as the unit <i>HC</i> is to the number <i>LF.</i>
+
+<div class="just"><a href="propVII12.html">VII.12</a></div>
+<p>Since one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents, therefore the unit <i>BG</i> is to the number <i>EK</i> as <i>BC</i> is to <i>EF.</i>
+
+<p>But the unit <i>BG</i> equals the unit <i>A,</i> and the number <i>EK</i> equals the number <i>D.</i> Therefore the unit <i>A</i> is to the number <i>D</i> as <i>BC</i> is to <i>EF.</i> 
+
+<div class="just"><a href="defVII20.html">VII.Def.20</a></div>
+<p>Therefore the unit <i>A</i> measures the number <i>D</i> the same number of times that <i>BC</i> measures <i>EF.</i>
+
+<p>Therefore, <i>if a unit number measures any number, and another number measures any other number the same number of times, then alternately, the unit measures the third number the same number of times that the second measures the fourth.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>Euclid shows that if <i>b</i> = <i>nu</i>, and <i>e</i> = <i>nd</i>, and <i>d</i> = <i>mu</i>, then <i>e</i> = <i>mb</i>.  As a single equation,
+
+<p><center>
+<i>n</i>(<i>mu</i>) = <i>m</i>(<i>nu</i>)
+</center>
+
+<p>This proposition expresses the commutativity of multiplication, but it is a commutativity with regard multiple multiples of the the unit <i>u</i>.  The next proposition states a commutativity of multiplication of formal numbers.
+
+<h4>Outline of the proof</h4>
+
+<p>Proposition <a href="propVII12.html">VII.12</a> said that 
+
+<p><center>if <i>a</i><sub>1</sub>&nbsp;:&nbsp;<i>b</i><sub>1</sub>&nbsp;=&nbsp;<i>a</i><sub>2</sub>&nbsp;:&nbsp;<i>b</i><sub>2</sub>&nbsp;=&nbsp;... =
+<i>a<sub>n</sub></i>&nbsp;:&nbsp;<i>b<sub>n</sub>,</i>
+</center><p>
+
+then each of these ratios also equals the ratio 
+
+<p><center>(<i>a</i><sub>1</sub>&nbsp;+&nbsp;<i>a</i><sub>2</sub>&nbsp;+&nbsp;... +
+<i>a<sub>n</sub></i>)&nbsp;:&nbsp;(<i>b</i><sub>1</sub>&nbsp;+&nbsp;<i>b</i><sub>2</sub>&nbsp;+&nbsp;... +
+<i>b<sub>n</sub></i>).
+</center><p>
+
+Now take all the <i>a<sub>i</sub></i>&rsquo;s to be the unit <i>u</i>, all the <i>b<sub>i</sub></i>&rsquo;s to be <i>d</i>, then conclude
+
+<p><center>
+<i>u</i> : <i>d</i> = <i>nu</i> : <i>nd</i>.
+</center><p>
+
+But <i>d</i> = <i>mu</i>. Therefore <i>nd</i> = <i>m</i>(<i>nu</i>), as required. <small>Q.E.D.</small>
+
+<p>This proposition is used in the next proposition and a few others in Books VII and IX. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,141 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 33</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 33</h1>
+
+<div class="statement">
+Similar parallelepipedal solids are to one another in the triplicate ratio of their corresponding sides.
+</div>
+
+<p>Let <i>AB</i> and <i>CD</i> be similar parallelepipedal solids, and let <i>AE</i> be the side corresponding to <i>CF.</i>
+
+<p> I say that the solid <i>AB</i> has to the solid <i>CD</i> the ratio triplicate of that which <i>AE</i> has to <i>CF.</i>
+
+<div class="just"><a href="../bookI/propI3.html">I.3</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Produce <i>EK, EL,</i> and <i>EM</i> in a straight line with <i>AE, GE,</i> and <i>HE.</i>  Make <i>EK</i> equal to <i>CF, EL</i> equal to <i>FN,</i> and  <i>EM</i> equal to <i>FR.</i>  Complete the parallelogram <i>KL</i> and the solid <i>KP.</i>
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=500 height=350 >
+<img src="propXI33.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.33">
+<param name=e[1] value="C0;point;free;-1000,80;0;0">
+<param name=e[2] value="C3;point;free;1000,80;0;0">
+<param name=e[3] value="C;point;lineSlider;C0,C3,40,0">
+<param name=e[4] value="F;point;lineSlider;C0,C3,120,0">
+<param name=e[5] value="N;point;free;140,45">
+<param name=e[6] value="R;point;free;150,160">
+<param name=e[7] value="D;point;parallelogram;N,F,R;black;green">
+<param name=basepoint value=D>
+<param name=e[8] value="a;point;parallelogram;N,F,C;0">
+<param name=e[9] value="b;point;parallelogram;C,F,R;0">
+<param name=e[10] value="c;point;parallelogram;D,N,a;0">
+<param name=e[11] value="aCFN;polygon;quadrilateral;a,C,F,N;0;0;black;80,50,100">
+<param name=e[12] value="FNDR;polygon;quadrilateral;F,N,D,R;0;0;black;80,75,100">
+<param name=e[13] value="bCFR;polygon;quadrilateral;b,C,F,R;0;0;black;80,100,100">
+<param name=e[14] value="ac;line;connect;a,c">
+<param name=e[15] value="bc;line;connect;b,c">
+<param name=e[16] value="Dc;line;connect;D,c">
+
+<param name=e[17] value="d;point;lineSlider;C0,C3,200,0;0">
+<param name=e[18] value="H;point;lineSlider;C0,C3,300,0">
+<param name=e[19] value="B';point;parallelogram;N,F,H;0;0">
+<param name=e[20] value="B;point;proportion;C,F,F,N,d,H,H,B'">
+<param name=e[21] value="e;point;parallelogram;d,H,B;0">
+<param name=e[22] value="E';point;parallelogram;R,F,H;0;0">
+<param name=e[23] value="E;point;proportion;C,F,F,R,d,H,H,E'">
+<param name=e[24] value="A;point;parallelogram;d,H,E">
+<param name=e[25] value="G;point;parallelogram;B,H,E">
+<param name=e[26] value="f;point;parallelogram;e,H,E;0">
+<param name=e[27] value="edHB;polygon;quadrilateral;e,d,H,B;0;0;black;150,50,100">
+<param name=e[28] value="HBGE;polygon;quadrilateral;H,B,G,E;0;0;black;150,75,100">
+<param name=e[29] value="AdHE;polygon;quadrilateral;A,d,H,E;0;0;black;150,100,100">
+<param name=e[30] value="ef;line;connect;e,f">
+<param name=e[31] value="Af;line;connect;A,f">
+<param name=e[32] value="Gf;line;connect;G,f">
+
+<param name=e[33] value="K;point;extend;A,E,C,F">
+<param name=e[34] value="L;point;extend;G,E,F,N">
+<param name=e[35] value="M;point;extend;H,E,F,R">
+<param name=e[36] value="P;point;parallelogram;L,E,M">
+<param name=e[37] value="g;point;parallelogram;L,E,K;0;0">
+<param name=e[38] value="h;point;parallelogram;K,E,M;0;0">
+<param name=e[39] value="i;point;parallelogram;L,E,h;0;0">
+<param name=e[40] value="ELgK;polygon;quadrilateral;E,L,g,K;0;0;black;20,40,100">
+<param name=e[41] value="gKhi;polygon;quadrilateral;g,K,h,i;0;0;black;20,70,100">
+<param name=e[42] value="PLgi;polygon;quadrilateral;P,L,g,i;0;0;black;20,90,100">
+<param name=e[43] value="EM;line;connect;E,M">
+<param name=e[44] value="PM;line;connect;P,M">
+<param name=e[45] value="hM;line;connect;h,M">
+
+<param name=e[46] value="j;point;parallelogram;G,E,K;0">
+<param name=e[47] value="Q;point;parallelogram;H,E,K">
+<param name=e[48] value="O;point;parallelogram;B,E,K">
+<param name=e[49] value="k;point;parallelogram;H,E,L;0">
+<param name=e[50] value="l;point;parallelogram;Q,E,L;0">
+<param name=e[51] value="KjOQ;polygon;quadrilateral;K,j,O,Q;0;0;black;0">
+<param name=e[52] value="Gj;line;connect;G,j">
+<param name=e[53] value="HQlk;polygon;quadrilateral;H,Q,l,k;0;0;black;0">
+<param name=e[54] value="kL;line;connect;k,L">
+<param name=e[55] value="lg;line;connect;l,g">
+<param name=e[56] value="BO;line;connect;B,O">
+</applet></center>
+
+<p>Now, since the two sides <i>KE</i> and <i>EL</i> equal the two sides <i>CF</i> and <i>FN,</i> while the angle <i>KEL</i> equals the angle <i>CFN,</i> for the angle <i>AEG</i> also equals the angle <i>CFN</i> because <i>AB</i> and <i>CD</i> are similar solids, therefore the parallelogram <i>KL</i> equals and is similar to the parallelogram <i>CN.</i>  For the same reason the parallelogram <i>KM</i> equals and is similar to <i>CR,</i> and <i>EP</i> equals and is similar to <i>DF.</i>
+
+<div class="just"><a href="propXI24.html">XI.24</a>
+<br><a href=defXI9.html>XI.Def.10</a></div>
+<p>Therefore three parallelograms of the solid <i>KP</i> equal and are similar to three parallelograms of the solid <i>CD.</i>  But the former three parallelograms equal and are similar to their opposites, and the latter three equal and are similar to their opposites,  therefore the whole solid <i>KP</i> equals and is similar to the whole solid <i>CD.</i>
+
+<div class="just"><a href="../bookI/propI31.html">I.31</a></div>
+<p>Complete the parallelogram <i>GK,</i> and complete the solids <i>EO</i> and <i>LQ</i> on the parallelograms <i>GK</i> and <i>KL</i> as bases with the same height as that of <i>AB.</i>
+
+<div class="just"><a href=defXI9.html>XI.Def.9</a></div>
+<p>Then since the solids <i>AB</i> and <i>CD</i> are similar, therefore <i>AE</i> is to <i>CF</i> as <i>EG</i> is to <i>FN,</i> and as <i>EH</i> is to <i>FR.</i>  And <i>CF</i> equals <i>EK, FN</i> equals <i>EL,</i> and <i>FR</i> equals <i>EM,</i> therefore <i>AE</i> is to <i>EK</i> as <i>GE</i> is to <i>EL,</i> and as <i>HE</i> is to <i>EM.</i>
+
+<div class="just"><a href="../bookVI/propVI1.html">VI.1</a></div>
+<p>But <i>AE</i> is to <i>EK</i> as <i>AG</i> is to the parallelogram <i>GK,</i> therefore <i>GE</i> is to <i>EL</i> as <i>GK</i> is to <i>KL,</i> and <i>HE</i> is to <i>EM</i> as <i>QE</i> is to <i>KM.</i>  Therefore the parallelogram <i>AG</i> is to <i>GK</i> as <i>GK</i> to is <i>KL,</i> and as <i>QE</i> is to <i>KM.</i>
+
+<div class="just"><a href="propXI32.html">XI.32</a></div>
+<p>But <i>AG</i> is to <i>GK</i> as the solid <i>AB</i> is to the solid <i>EO, GK</i> is to <i>KL</i> as the solid <i>OE</i> is to the solid <i>QL,</i> and  <i>QE</i> is to <i>KM</i> as the solid <i>QL</i> is to the solid <i>KP,</i> therefore the solid <i>AB</i> is to <i>EO</i> as <i>EO</i> is <i>to QL,</i> and as <i>QL</i> is to <i>KP.</i>
+
+<div class="just"><a href=../bookV/defV8.html>V.Def.10</a></div>
+<p>But, if four magnitudes are continuously proportional, then the first has to the fourth the ratio triplicate of that which it has to the second, therefore the solid <i>AB</i> has to <i>KP</i> the ratio triplicate of that which <i>AB</i> has to <i>EO.</i>
+
+<div class="just"><a href="../bookVI/propVI1.html">VI.1</a></div>
+<p>But <i>AB</i> is to <i>EO</i> as the parallelogram <i>AG</i> is to <i>GK,</i> and as the straight line <i>AE</i> is to <i>EK,</i> hence the solid <i>AB</i> also has to <i>KP</i> the ratio triplicate of that which <i>AE</i> has to <i>EK.</i>
+
+<p>But the solid <i>KP</i> equals the solid <i>CD,</i> and the straight line <i>EK</i> equals <i>CF,</i> therefore the solid <i>AB</i> has also to the solid <i>CD</i> the ratio triplicate of that which  the corresponding side of it, <i>AE,</i> has to the corresponding side <i>CF.</i>
+
+<p>Therefore, <i>Similar parallelepipedal solids are to one another in the triplicate ratio of their corresponding sides.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name="cor"></a>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">If four straight lines are continuously proportional, then the first is to the fourth as a parallelepipedal solid on the first is to the similar and similarly situated parallelepipedal solid on the second, in as much as the first has to the fourth the ratio triplicate of that which it has to the second.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is used in the proof of proposition <a href=propXI37.html>XI.37</a> and later in <a href=../bookXII/propXII8.html>XII.8</a>, an analogous proposition about similar pyramids.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

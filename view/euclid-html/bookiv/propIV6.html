@@ -1,0 +1,78 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 6</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 6</h1>
+
+<div class="statement">
+To inscribe a square in a given circle.</div>
+
+<p>Let <i>ABCD</i> be the given circle.
+
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=290 width=290>
+<img src="propIV6.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.6">
+<param name=e[1] value="A;point;free;145,30">
+<param name=e[2] value="C;point;free;145,260">
+<param name=e[3] value="E;point;midpoint;A,C;black;green">
+<param name=pivot value=E>
+<param name=e[4] value="ABCD;circle;radius;E,A;0;0;black;random">
+<param name=e[5] value="B;point;perpendicular;E,A">
+<param name=e[6] value="D;point;perpendicular;E,C">
+<param name=e[7] value="square;polygon;quadrilateral;A,B,C,D;0;0;black;random">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="BD;line;connect;B,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV6.gif" hspace=10 alt="IV6">';
+</script>
+</div>
+
+<p>It is required to inscribe a square in the circle <i>ABCD.</i>
+
+<div class="just"><a href="../bookIII/propIII1.html">III.1</a>,
+<a href="../bookI/propI11.html">I.11</a></small></div>
+<p>Draw two diameters <i>AC</i> and <i>BD</i> of the circle <i>ABCD</i> at right angles to one another, and join <i>AB, BC, CD,</i> and <i>DA.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since <i>BE</i> equals <i>ED,</i> for <i>E</i> is the center, and <i>EA</i> is common and at right angles, therefore the base <i>AB</i> equals the base <i>AD.</i>
+
+<p>For the same reason each of the straight lines <i>BC</i> and <i>CD</i> also equals each of the straight lines <i>AB</i> and <i>AD.</i>  Therefore the quadrilateral <i>ABCD</i> is equilateral.
+
+<p>I say next that it is also right-angled.
+
+<div class="just"><a href="../bookIII/propIII31.html">III.31</a></div>
+<p>For, since the straight line <i>BD</i> is a diameter of the circle <i>ABCD,</i> therefore <i>BAD</i> is a semicircle, therefore the angle <i>BAD</i> is right.
+
+<p>For the same reason each of the angles <i>ABC, BCD,</i> and <i>CDA</i> is also right.  Therefore the quadrilateral <i>ABCD</i> is right-angled.
+
+<p>But it was also proved equilateral, therefore it is a square, and it has been inscribed in the circle <i>ABCD.</i>
+
+<p>Therefore the square <i>ABCD</i> has been inscribed in the given circle.
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+This construction is used in a few propositions of Book XII, the first being <a href=../bookXII/propXII2.html>XII.2</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

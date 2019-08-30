@@ -1,0 +1,75 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 28</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 28</h1>
+
+<div class="statement">
+If a parallelepipedal solid is cut by a plane through the diagonals of the opposite planes, then the solid is bisected by the plane.</div>
+
+<p> Let the parallelepipedal solid <i>AB</i> be cut by the plane <i>CDEF</i> through the diagonals <i>CF</i> and <i>DE</i> of opposite planes.
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=280 >
+<img src="propXI28.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.28">
+<param name=e[1] value="D0;point;free;-1000,250;0;0">
+<param name=e[2] value="D3;point;free;1000,250;0;0">
+<param name=e[3] value="A;point;lineSlider;D0,D3,195,0">
+<param name=e[4] value="D;point;lineSlider;D0,D3,40,0">
+<param name=e[5] value="H;point;free;60,100">
+<param name=e[6] value="G;point;free;240,180">
+<param name=e[7] value="C;point;parallelogram;G,A,D">
+<param name=e[8] value="B;point;parallelogram;H,D,C">
+<param name=e[9] value="E;point;parallelogram;H,D,A">
+<param name=e[10] value="F;point;parallelogram;E,A,G">
+<param name=e[11] value="CDEF;polygon;quadrilateral;C,D,E,F;0;0;black;60,70,100">
+<param name=e[12] value="AEFG;polygon;quadrilateral;A,E,F,G;0;0;black;60,100,80">
+<param name=e[13] value="ADE;polygon;triangle;A,D,E;0;0;black;60,100,100">
+<param name=e[14] value="CG;line;connect;C,G">
+<param name=e[15] value="BCDH;polygon;quadrilateral;B,C,D,H;0;0;black;0">
+<param name=e[16] value="BF;line;connect;B,F">
+<param name=e[17] value="HE;line;connect;H,E">
+</applet></div>
+
+<p>I say that the solid <i>AB</i> is bisected by the plane <i>CDEF.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a>
+<br><a href=defXI9.html>XI.Def.10</a></div>
+<p>Since the triangle <i>CGF</i> equals the triangle <i>CFB,</i> and <i>ADE</i> equals <i>DEH,</i> while the parallelogram <i>CA</i> equals the parallelogram <i>EB,</i> for they are opposite, and <i>GE</i> equals <i>CH,</i>  therefore the prism contained by the two triangles <i>CGF</i> and <i>ADE</i> and the three parallelograms <i>GE, AC,</i> and <i>CE</i> equals the prism contained by the two triangles <i>CFB</i> and <i>DEH</i> and the three parallelograms <i>CH, BE,</i> and <i>CE,</i> for they are contained by planes equal both in multitude and in magnitude.
+
+<p>Hence the whole solid <i>AB</i> is bisected by the plane <i>CDEF.</i> 
+
+<p>Therefore, <i>if a parallelepipedal solid is cut by a plane through the diagonals of the opposite planes, then the solid is bisected by the plane.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+<p>This is the second proposition concerning volumes. The first was <a href=propXI25.html>XI.25</a>.
+
+<p>A minor point missing from the beginning of the proof of is that the two diagonals <i>CF</i> and <i>DE</i> lie in one plane, but it is easy to show that the lines <i>CD</i> and <i>EF</i> are parallel, and therefore, by <a href=propXI7.html>XI.7</a>, <i>CF</i> and <i>DE</i> lie in the plane spanned by <i>CD</i> and <i>EF.</i>
+
+<p>The final conclusion of the proof here is justified by <a href=defXI9.html>XI.Def.10</a>: since the faces of the two prisms are congruent, therefore the prisms are equal and similar (that is, congruent).  Several authors have criticized this conclusion because the two prisms are mirror images of each other and cannot be applied to each other in the sense of moving one in space to coincide with the other.
+
+<p>From some points of view this criticism is valid.  But the method of superposition is subject to even greater criticism.  In modern geometry, depending on the style of geometry, superposition is either eliminated entirely or else completely formalized using the theory of group transformations.
+
+<h4>Use of this proposition</h4>
+
+Although this proposition is not used in the rest of this book, it is used for several propositions in the next book that deal with triangular prisms.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

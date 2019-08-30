@@ -1,0 +1,76 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 32</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 32</h1>
+
+<div class="statement">If a straight line touches a circle, and from the point of contact there is drawn across, in the circle, a straight line cutting the circle, then the angles which it makes with the tangent equal the angles in the alternate segments of the circle.</div>
+
+<p>For let a straight line <i>EF</i> touch the circle <i>ABCD</i> at the point <i>B,</i> and from the point <i>B</i> let there be drawn across, in the circle <i>ABCD,</i> a straight line <i>BD</i> cutting it.
+
+<p>I say that the angles which <i>BD</i> makes with the tangent <i>EF</i> equal the angles in the alternate segments of the circle, that is, that the angle <i>FBD</i> equals the angle constructed in the segment <i>BAD,</i> and the angle <i>EBD</i> equals the angle constructed in the segment <i>DCB.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=270>
+<img src=propIII32.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.32">
+<param name=e[1] value="A;point;free;130,30">
+<param name=e[2] value="B;point;free;130,230">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="O;point;midpoint;AB;0;0">
+<param name=e[5] value="ABC;circle;radius;O,B;0;0;black;random">
+<param name=e[6] value="C;point;circleSlider;ABC,200,120">
+<param name=e[7] value="D;point;circleSlider;ABC,160,80">
+<param name=e[8] value="AD;line;connect;A,D">
+<param name=e[9] value="BD;line;connect;B,D">
+<param name=e[10] value="BC;line;connect;B,C">
+<param name=e[11] value="CD;line;connect;C,D">
+<param name=e[12] value="BE';line;perpendicular;B,A;0;0;0">
+<param name=e[13] value="E;point;lineSlider;BE',30,230">
+<param name=e[14] value="F;point;lineSlider;BE',230,230">
+<param name=e[15] value="EF;line;connect;E,F">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a></div>
+<p>Draw <i>BA</i> from <i>B</i> at right angles to <i>EF,</i> take a point <i>C</i> at random on the circumference <i>BD,</i> and join <i>AD, DC,</i> and <i>CB.</i>
+
+<div class="just"><a href="propIII19.html">III.19</a></div>
+<p>Then, since a straight line <i>EF</i> touches the circle <i>ABCD</i> at <i>B,</i> and <i>BA</i> has been drawn from the point of contact at right angles to the tangent, the center of the circle <i>ABCD</i> is on <i>BA.</i>
+
+<div class="just"><a href="propIII31.html">III.31</a></div>
+<p>Therefore <i>BA</i> is a diameter of the circle <i>ABCD.</i>  Therefore the angle <i>ADB,</i> being an angle in a semicircle, is right.
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>Therefore the sum of the remaining angles <i>BAD</i> and <i>ABD</i> equals one right angle.
+
+<p>But the angle <i>ABF</i> is also right, therefore the angle <i>ABF</i> equals the sum of the angles <i>BAD</i> and <i>ABD.</i> 
+
+<p>Subtract the angle <i>ABD</i> from each.  Therefore the remaining angle <i>DBF</i> equals the angle <i>BAD</i> in the alternate segment of the circle.
+
+<div class="just"><a href="propIII22.html">III.22</a></div>
+<p>Next, since <i>ABCD</i> is a quadrilateral in a circle, the sum of its opposite angles equals two right angles.
+
+<p>But the sum of the angles <i>DBF</i> and <i>DBE</i> also equals two right angles, therefore the sum of the angles <i>DBF</i> and <i>DBE</i> equals the sum of the angles <i>BAD</i> and <i>BCD,</i> of which the angle <i>BAD</i> was proved equal to the angle <i>DBF,</i> therefore the remaining angle <i>DBE</i> equals the angle <i>DCB</i> in the alternate segment <i>DCB</i> of the circle.
+
+<p>Therefore <i>if a straight line touches a circle, and from the point of contact there is drawn across, in the circle, a straight line cutting the circle, then the angles which it makes with the tangent equal the angles in the alternate segments of the circle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in the next two propositions and a couple of the propositions in Book IV. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

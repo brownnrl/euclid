@@ -1,0 +1,68 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 7</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 7</h1>
+
+<div class="statement">
+If two straight lines are parallel and points are taken at random on each of them, then the straight line joining the points is in the same plane with the parallel straight lines.</div>
+
+<p>Let <i>AB</i> and <i>CD</i> be two parallel straight lines, and let points <i>E</i> and <i>F</i> be taken at random on them respectively.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=200 >
+<img src="propXI7.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.7">
+<param name=e[1] value="A;point;free;40,40">
+<param name=e[2] value="B;point;free;210,40">
+<param name=e[3] value="C;point;free;40,160">
+<param name=e[4] value="D';point;parallelogram;B,A,C;0;0">
+<param name=e[5] value="D;point;lineSlider;C,D',210,160">
+<param name=e[6] value="AB;line;connect;A,B">
+<param name=e[7] value="CD;line;connect;C,D">
+<param name=e[8] value="E;point;lineSlider;A,B,100,40">
+<param name=e[9] value="F;point;lineSlider;C,D,150,160">
+<param name=e[10] value="EF;line;connect;E,F">
+<param name=e[11] value="H;point;midpoint;E,F">
+<param name=e[12] value="Z;point;free;100000,-100000">
+<param name=e[13] value="M;point;midpoint;E,H;0;0">
+<param name=e[14] value="G;point;cutoff;H,Z,E,M">
+<param name=e[15] value="FGE;sector;arc;F,G,E;0;0;black;0">
+</applet></div>
+
+<p>I say that the straight line joining the points <i>E</i> and <i>F</i> lies in the same plane with the parallel straight lines.
+
+<div class="just"><a href="propXI3.html">XI.3</a></div>
+<p>For suppose it is not, but, if possible, let it be in a more elevated plane as <i>EGF.</i>  Draw a plane through <i>EGF.</i>  Its intersection with the plane of reference is a straight line.  Let it be <i>EF.</i>
+
+<p>Therefore the two straight lines <i>EGF</i> and <i>EF</i> enclose an area, which is impossible.  Therefore the straight line joined from <i>E</i> to <i>F</i> is not in a plane more elevated.  Therefore the straight line joined from <i>E</i> to <i>F</i> lies in the plane through the parallel straight lines <i>AB</i> and <i>CD.</i>
+
+<p>Therefore, <i>if two straight lines are parallel and points are taken at random on each of them, then the straight line joining the points is in the same plane with the parallel straight lines.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+The existence of this proposition is a good argument that Euclid&rsquo;s definition <a href=../bookI/defI7.html>I.Def.7</a> of a plane (it lies evenly with the straight lines on itself) does not mean that if two points lie in a plane, then the line joining them also lies in the plane.  If it did, then this proposition would be true by definition, and no proof would be required at all.
+
+<p>Note that this proof assumes that every line lies in a plane, a conclusion that has not been justified.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proof of the next as well as proposition <a href=../bookXII/propXII17.html>XII.17</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

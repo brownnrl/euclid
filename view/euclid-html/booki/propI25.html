@@ -1,0 +1,68 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 25</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 25</h1>
+
+<div class="statement">If two triangles have two sides equal to two sides respectively, but have the base greater than the base, then they also have the one of the angles contained by the equal straight lines greater than the other.</div>
+
+<p>Let <i>ABC</i> and <i>DEF</i> be two triangles having two sides <i>AB</i> and <i>AC</i> equal to two sides <i>DE</i> and <i>DF</i> respectively, namely <i>AB</i> to <i>DE,</i> and <i>AC</i> to <i>DF,</i> and let the base <i>BC</i> be greater than the base <i>EF.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=220>
+<img src="propI25.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.25">
+<param name=e[1] value="D;point;free;210,40">
+<param name=e[2] value="E;point;free;200,180">
+<param name=e[3] value="F;point;free;260,180">
+<param name=e[4] value="DEF;polygon;triangle;D,E,F;0;0;0,0,0;random">
+<param name=e[5] value="A;point;free;70,40">
+<param name=e[6] value="ABcirc;circle;radius;A,D,E;0;0;0;0">
+<param name=e[7] value="ACcirc;circle;radius;A,D,F;0;0;0;0">
+<param name=e[8] value="B;point;circleSlider;ABcirc,30,170">
+<param name=e[9] value="C;point;circleSlider;ACcirc,135,178">
+<param name=e[10] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI25.gif" hspace=10 vspace=10 alt="I.25">';
+</script>
+</div>
+
+<p>I say that the angle <i>BAC</i> is also greater than the angle <i>EDF.</i>
+
+<p>If not, it either equals it or is less.
+
+<div class="just"><a href="propI4.html">I.4</a></div>
+<p>Now the angle <i>BAC</i> does not equal the angle <i>EDF,</i> for then the base <i>BC</i> would equal the base <i>EF,</i> but it is not.  Therefore the angle <i>BAC</i> does not equal the angle <i>EDF.</i>
+
+<div class="just"><a href="propI24.html">I.24</a></div>
+<p>Neither is the angle <i>BAC</i> less than the angle <i>EDF,</i> for then the base <i>BC</i> would be less than the base <i>EF,</i> but it is not. Therefore the angle <i>BAC</i> is not less than the angle <i>EDF.</i>
+
+<p>But it was proved that it is not equal either. Therefore the angle <i>BAC</i> is greater than the angle <i>EDF.</i>
+
+<p>Therefore <i>if two triangles have two sides equal to two sides respectively, but have the base greater than the base, then they also have the one of the angles contained by the equal straight lines greater than the other.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The conclusions of this proposition and the previous are partial converses of each other.  Together they say that if two triangles have two sides equal to two sides respectively, then the base greater than the base if and only if the one of the angles contained by the equal straight lines greater than the other.
+
+<h4>Use of Proposition 25</h4>
+This proposition is not used in the rest of Book I, but it is used in <a href=../bookXI/propXI20.html>XI.20</a> and <a href=../bookXI/propXI23.html>XI.23</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

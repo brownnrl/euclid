@@ -1,0 +1,113 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 112</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 112</h1>
+
+<div class="statement">The square on a rational straight line applied to the binomial straight line produces as breadth an apotome the terms of which are commensurable with the terms of the binomial straight line and moreover in the same ratio; and further the  apotome so arising has the same order as the binomial straight line.</div>
+
+<p>Let <i>A</i> be a rational straight line, let <i>BC</i> be a binomial, let <i>DC</i> be its greater term, and let the rectangle <i>BC</i> by <i>EF</i> equal the square on <i>A</i>.
+
+<p>I say that <i>EF</i> is an apotome the terms of which are commensurable with <i>CD</i> and <i>DB</i>, and in the same ratio, and further, <i>EF</i> has  the same order as <i>BC</i>.
+
+<p>Again let the rectangle <i>BD</i> by <i>G</i> equal the square on <i>A</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=125>
+<img src="propX112.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.112">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="K0;point;free;-1000,100;0;0">
+<param name=e[6] value="K3;point;free;1000,100;0;0">
+
+<param name=e[7] value="A1;point;lineSlider;A0,A3,40,0;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,120,0;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B;point;lineSlider;B0,B3,30,0">
+<param name=e[11] value="C;point;lineSlider;B0,B3,180,0">
+<param name=e[12] value="D;point;lineSlider;B0,B3,90,0">
+<param name=e[13] value="BC;line;connect;B,C">
+<param name=e[14] value="E;point;lineSlider;K0,K3,130,0">
+<param name=e[15] value="F;point;proportion;B,C,A1,A2,A1,A2,E,K3">
+<param name=e[16] value="G1;point;lineSlider;B0,B3,220,0;0">
+<param name=e[17] value="G2;point;proportion;B,D,A1,A2,A1,A2,G1,B3;0">
+<param name=e[18] value="G;line;connect;G1,G2;black">
+<param name=e[19] value="H;point;cutoff;E,K3,G1,G2">
+<param name=e[20] value="Q;point;cutoff;H,F,F,E;0;0">
+<param name=e[21] value="K;point;proportion;F,Q,E,F,E,F,E,K0">
+<param name=e[22] value="KH;line;connect;K,H">
+</applet></div>
+
+<div class="just"><a href=../bookVI/propVI16.html>VI.16</a>
+<br><a href=../bookV/defV5.html>V.Def.5</a></div>
+<p>Since, then, the rectangle <i>BC</i> by <i>EF</i> equals the rectangle <i>BD</i> by <i>G</i>, therefore <i>CB</i> is to <i>BD</i> as <i>G</i> is to <i>EF</i>. But <i>CB</i> is greater than <i>BD</i>, therefore <i>G</i> is also greater than <i>EF</i>.
+
+<div class="just"><a href=../bookV/propV17.html>V.17</a></div>
+<p>Let <i>EH</i> equal <i>G</i>. Then <i>CB</i> is to <i>BD</i> as <i>HE</i> is to <i>EF</i>, therefore, taken separately, <i>CD</i> is to <i>BD</i> as <i>HF</i> is to <i>FE</i>.
+
+<div class="just"><a href=../bookV/propV12.html>V.12</a></div>
+<p>Let it be contrived that <i>HF</i> is to <i>FE</i> as <i>FK</i> is to <i>KE</i>. Then the whole <i>HK</i> is to the whole <i>KF</i> as <i>FK</i> is to <i>KE</i>, for one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents.
+
+<div class="just"><a href=../bookV/propV11.html>V.11</a></div>
+<p>But <i>FK</i> is to <i>KE</i> as <i>CD</i> is to <i>DB</i>,  therefore <i>HK</i> is to <i>KF</i> as <i>CD</i> is to <i>DB</i>.
+
+<div class="just"><a href=propX36.html>X.36</a>,
+<a href=../bookVI/propVI22.html>VI.22</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>But the square on <i>CD</i> is commensurable with the square on <i>DB</i>, therefore the square on <i>HK</i> is commensurable with the square on <i>KF</i>.
+
+<div class="just"><a href=../bookV/defV8.html>V.Def.9</a>
+<br><a href=propX15.html>X.15</a></div>
+<p>And the square on <i>HK</i> is to the square on <i>KF</i> as <i>HK</i> is to <i>KE</i>, since the three straight lines <i>HK</i>, <i>KF</i>, and <i>KE</i> are proportional. Therefore <i>HK</i> is commensurable in length with <i>KE</i>, so that <i>HE</i> is also commensurable in length with <i>EK</i>.
+
+<p>Now, since the square on <i>A</i> equals the rectangle <i>EH</i> by <i>BD</i>, while the square on <i>A</i> is rational, therefore the rectangle <i>EH</i> by <i>BD</i> is also rational.
+
+<div class="just"><a href=propX20.html>X.20</a></div>
+<p>And it is applied to the rational straight line <i>BD</i>, therefore <i>EH</i> is rational and commensurable in length with <i>BD</i>, so that <i>EK</i>, being commensurable with it, is also rational and commensurable in length with <i>BD</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>Since, then <i>CD</i> is to <i>DB</i> as <i>FK</i> is to <i>KE</i>, while <i>CD</i> and <i>DB</i> are straight lines commensurable in square only, therefore <i>FK</i> and <i>KE</i> are also commensurable in square only. But <i>KE</i> is rational, therefore <i>FK</i> is also rational.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>Therefore <i>FK</i> and <i>KE</i> are rational straight lines commensurable in square only, therefore <i>EF</i> is an apotome.
+
+<p>Now the square on <i>CD</i> is greater than the square on <i>DB</i> either by the square on a straight line commensurable with <i>CD</i> or by the square on a straight line incommensurable with it.
+
+<div class="just"><a href=propX14.html>X.14</a></div>
+<p>If the square on <i>CD</i> is greater than the square on <i>DB</i> by the square on a straight line commensurable with <i>CD</i>, then the square on <i>FK</i> is also greater than the square on <i>KE</i> by the square on a straight line commensurable with <i>FK</i>.
+
+<div class="just"><a href=propX11.html>X.11</a>
+<br><a href=propX12.html>X.12</a></div>
+<p>And, if <i>CD</i> is commensurable in length with the rational straight line set out, then <i>FK</i> is also;  if <i>BD</i> is so commensurable, then <i>KE</i> is also;  but, if neither of the straight lines <i>CD</i> nor <i>DB</i> is so commensurable, then neither of the straight lines <i>FK</i> nor <i>KE</i> is so.
+
+<div class="just"><a href=propX14.html>X.14</a></div>
+<p>But, if the square on <i>CD</i> is greater than the square on <i>DB</i> by the square on a straight line incommensurable with <i>CD</i>, then the square on <i>FK</i> is also greater than the square on <i>KE</i> by the square on a straight line incommensurable with <i>FK</i>.
+
+<p>And, if <i>CD</i> is commensurable with the rational straight line set out, then <i>FK</i> is also; if <i>BD</i> is so commensurable, then <i>KE</i> is also; but, if neither of the straight lines <i>CD</i> nor <i>DB</i> is so commensurable, then neither of the straight lines <i>FK</i> nor <i>KE</i> is so, so that <i>FE</i> is an apotome, the terms of which, <i>FK</i> and <i>KE</i> are commensurable with the terms <i>CD</i> and <i>DB</i> of the binomial straight line and in the same ratio, and it has the same order as <i>BC</i>.
+
+<p>Therefore, <i>the square on a rational straight line applied to the binomial straight line produces as breadth an apotome the terms of which are commensurable with the terms of the binomial straight line and moreover in the same ratio; and further the  apotome so arising has the same order as the binomial straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

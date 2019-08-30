@@ -1,0 +1,119 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 9</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 9</h1>
+
+<div class="statement">To bisect a given rectilinear angle.</div>
+
+<p>Let the angle <i>BAC</i> be the given rectilinear angle.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=300>
+<img src="propI9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.9">
+<param name=e[1] value="A;point;free;150,40">
+<param name=e[2] value="B;point;free;50,150">
+<param name=e[3] value="C;point;free;250,150">
+<param name=e[4] value="D;point;lineSlider;A,B,75,90">
+<param name=e[5] value="E;point;cutoff;A,C,A,D">
+<param name=e[6] value="AB;line;connect;A,B">
+<param name=e[7] value="AC;line;connect;A,C">
+<param name=e[8] value="EDF;polygon;equilateralTriangle;E,D;0;0;black;random">
+<param name=e[9] value="F;point;vertex;EDF,3;black;green">
+<param name=pivot value="F">
+<param name=e[10] value="AF;line;connect;A,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI9.gif" hspace=10 vspace=10 alt="I.9">';
+</script>
+</div>
+
+<p>It is required to bisect it.
+
+<div class="just"><a href="propI3.html">I.3</a>
+<br><a href=post1.html>I.Post.1</a>,
+<a href="propI1.html">I.1</a></div>
+<p>Take an arbitrary point <i>D</i> on <i>AB.</i> Cut off <i>AE</i> from <i>AC</i> equal to <i>AD,</i> and join <i>DE.</i>  Construct the equilateral triangle <i>DEF</i> on <i>DE,</i> and join <i>AF.</i>
+
+<p>I say that the angle <i>BAC</i> is bisected by the straight line <i>AF.</i>
+
+<p>Since <i>AD</i> equals <i>AE,</i> and <i>AF</i> is common, therefore the two sides <i>AD</i> and <i>AF</i> equal the two sides <i>EA</i> and <i>AF</i> respectively.</td>
+<td></tr>
+
+<div class="just"><a href=defI20.html>I.Def.20</a>,
+<a href="propI8.html">I.8</a></div>
+<p>And the base <i>DF</i> equals the base <i>EF,</i> therefore the angle <i>DAF</i> equals the angle <i>EAF.</i>
+
+<p>Therefore the given rectilinear angle <i>BAC</i> is bisected by the straight line <i>AF.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<table cellpadding=5>
+<tr><td>
+<h4>Construction steps</h4>
+When using a compass and a straightedge to perform this construction, three circles and the final bisecting line need to be drawn. One circle with center <i>A</i> and radius <i>AD</i> is needed to determine the point <i>E.</i> The other two circles with centers at <i>D</i> and <i>E</i> and common radius <i>DE</i> intersect to give the point <i>F.</i> The sides of the equilateral triangle aren&rsquo;t needed for the construction.
+
+<p>There is an alternate construction where the circles centered at <i>D</i> and <i>E</i> have a different radius, namely, <i>AD,</i> which equals <i>AE.</i>  A different proof is required to show that this alternate construction works.</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=320>
+<img src="propI9a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.9">
+<param name=e[1] value="A;point;free;160,30">
+<param name=e[2] value="B;point;free;90,220">
+<param name=e[3] value="C;point;free;230,220">
+<param name=e[4] value="AB;line;connect;A,B">
+<param name=e[5] value="AC;line;connect;A,C">
+<param name=e[6] value="D;point;lineSlider;A,B,80,140">
+<param name=e[7] value="E;point;cutoff;A,C,A,D">
+<param name=e[8] value="ADE;sector;sector;A,D,E;0;0;black;0">
+<param name=e[9] value="DEcirc;circle;radius;D,E">
+<param name=e[10] value="EDcirc;circle;radius;E,D">
+<param name=e[11] value="FF';line;bichord;DEcirc,EDcirc;0;0;0">
+<param name=e[12] value="F;point;first;FF';black;green">
+<param name=pivot value="F">
+<param name=e[13] value="AF;line;connect;A,F;0;0;blue">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI9a.gif" hspace=10 vspace=10 alt="I.9">';
+</script>
+</td></tr></table>
+
+<h4>On angle trisection</h4>
+
+Angle bisection is an easy construction to make using Euclidean tools of straightedge and compass.  Also, line bisection is quite easy (see the next proposition <a href=propI10.html>I.10</a>), and division of a line into any number of equal parts is not especially difficult (see proposition <a href=../bookVI/propVI9.html>VI.9</a>).
+
+<p>Dividing an angle into an odd number of equal parts is not so easy, in fact, it is impossible to trisect a 60&deg;-angle using Euclidean tools (the Postulates 1 through 3). Euclid&rsquo;s predecessors employed a variety higher curves for this purpose.  Archimedes, after Euclid, created two constructions: his spiral could divide an angle into any number of parts, and his neusis construction could trisect angles (see the note on <a href=post2.html>I.Post.2</a>). By Pappus&rsquo; time it was believed that angle trisection was not possible using Euclidean tools, but that wasn&rsquo;t proven until 1837 when Wantzel (1814&ndash;1838) published his proof.
+
+<p>Nevertheless, amateur geometers continue to search in vain for such a construction and frequently bother mathematicians with their purported solutions.  Their solutions are of two forms.  Sometimes they simply construct approximate trisections.  Other times they use neusis or some other other tool that goes beyond Euclid&rsquo;s tools.
+
+<p>Students of geometry are cautioned not to waste their time on this problem and, if they do, not to bother others with their purported solutions.  Much better would be to study Galois theory, the mathematics that proves the impossibility of angle trisection.
+
+<h4>Use of Proposition 9</h4>
+
+The construction of this proposition is used in the next one and a few propositions in Books IV, VI, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>
+

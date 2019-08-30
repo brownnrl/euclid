@@ -1,0 +1,92 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 6</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 6</h1>
+
+<div class="statement">If two magnitudes are equimultiples of two magnitudes, and any magnitudes subtracted from them are equimultiples of the same, then the remainders either equal the same or are equimultiples of them.</div>
+
+<p>Let two magnitudes <i>AB</i> and <i>CD</i> be equimultiples of two magnitudes <i>E</i> and <i>F,</i> and let <i>AG</i> and <i>CH</i> subtracted from them be equimultiples of the same two <i>E</i> and <i>F.</i>
+
+<p>I say that the remainders <i>GB</i> and <i>HD</i> either equal <i>E</i> and <i>F</i> or are equimultiples of them.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=400 height=145>
+<img src=propV6.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.6">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+<param name=e[7] value="X0;point;free;-1000,130;0;0">
+<param name=e[8] value="X1;point;free;1000,130;0;0">
+
+<param name=e[9] value="E0;point;lineSlider;W0,W1,40,100;0">
+<param name=e[10] value="E1;point;lineSlider;W0,W1,80,100;0">
+<param name=e[11] value="E;line;connect;E0,E1;black;0;cyan">
+<param name=e[12] value="F0;point;lineSlider;X0,X1,40,130;0">
+<param name=e[13] value="F1;point;lineSlider;X0,X1,105,130;0">
+<param name=e[14] value="F;line;connect;F0,F1;black;0;red">
+<param name=e[15] value="A;point;lineSlider;U0,U1,40,30">
+<param name=e[16] value="A1;point;cutoff;A,U1,E0,E1;0;lightGray">
+<param name=e[17] value="A2;point;cutoff;A1,U1,E0,E1;0;lightGray">
+<param name=e[18] value="G;point;cutoff;A2,U1,E0,E1">
+<param name=e[19] value="B;point;cutoff;G,U1,E0,E1">
+<param name=e[20] value="AB;line;connect;A,B;0;0;cyan">
+<param name=e[21] value="C;point;lineSlider;V0,V1,105,130">
+<param name=e[22] value="K;point;cutoff;C,V0,F0,F1">
+<param name=e[23] value="C1;point;cutoff;C,V1,F0,F1;0;lightGray">
+<param name=e[24] value="C2;point;cutoff;C1,V1,F0,F1;0;lightGray">
+<param name=e[25] value="H;point;cutoff;C2,V1,F0,F1">
+<param name=e[26] value="D;point;cutoff;H,V1,F0,F1">
+<param name=e[27] value="KD;line;connect;K,D;0;0;red">
+</applet></div>
+
+<p>First, let <i>GB</i> equal <i>E.</i>
+
+<p>I say that <i>HD</i> also equals <i>F.</i>
+
+<p>Make <i>CK</i> equal to <i>F.</i>
+
+<div class="just"><a href="propV2.html">V.2</a></div>
+<p>Since <i>AG</i> is the same multiple of <i>E</i> that <i>CH</i> is of <i>F,</i> while <i>GB</i> equals <i>E,</i> and <i>KC</i> equals <i>F,</i> therefore <i>AB</i> is the same multiple of <i>E</i> that <i>KH</i> is of <i>F.</i>
+
+<p>But, by hypothesis, <i>AB</i> is the same multiple of <i>E</i> that <i>CD</i> is of <i>F,</i> therefore <i>KH</i> is the same multiple of <i>F</i> that <i>CD</i> is of <i>F.</i>
+
+<p>Since then each of the magnitudes <i>KH</i> and <i>CD</i> is the same multiple of <i>F,</i> therefore <i>KH</i> equals <i>CD.</i>
+
+<p>Subtract <i>CH</i> from each.  Then the remainder <i>KC</i> equals the remainder <i>HD.</i>
+
+<p>But <i>F</i> equals <i>KC,</i> therefore <i>HD</i> also equals <i>F.</i>
+
+<p>Hence, if <i>GB</i> equals <i>E, HD</i> also equals <i>F.</i>
+
+<p>Similarly we can prove that, even if <i>GB</i> is a multiple of <i>E, HD</i> is also the same multiple of <i>F.</i>
+
+<p>Therefore, <i>if two magnitudes are equimultiples of two magnitudes, and any magnitudes subtracted from them are equimultiples of the same, then the remainders either equal the same or are equimultiples of them.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The proposition states that if <i>ma</i> and <i>mb</i> are equimultiples of <i>a</i> and <i>b,</i> and <i>na</i> and <i>nb</i> are also equimultiples, then the differences, <i>ma</i>&nbsp;&ndash;&nbsp;<i>na</i>  and <i>mb</i>&nbsp;&ndash;&nbsp;<i>nb</i> are more equimultiples.  It&rsquo;s analogous to proposition <a href=propV2.html>V.2</a> which was for addition.
+
+<p>Its proof depends on a distributivity, namely that multiplication by magnitudes distributes over subtraction of numbers: (<i>m</i>&nbsp;&ndash;&nbsp;<i>n</i>)<i>a</i>&nbsp;=&nbsp;<i>ma</i>&nbsp;&ndash;&nbsp;<i>na.</i>  Euclid takes 4 as <i>m</i> and 3 as <i>n.</i>  He has two cases since since he doesn&rsquo;t take 1 to be a number. 
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

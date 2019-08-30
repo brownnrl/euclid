@@ -1,0 +1,64 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 13</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 13</h1>
+
+<div class="statement">In acute-angled triangles the square on the side opposite the acute angle is less than the sum of the squares on the sides containing the acute angle by twice the rectangle contained by one of the sides about the acute angle, namely that on which the perpendicular falls, and the straight line cut off within by the perpendicular towards the acute angle.</div>
+
+<div class="just"><a href="../bookI/propI12.html">I.12</a></div>
+<p>Let <i>ABC</i> be a triangle having the angle at <i>B</i> acute, and draw <i>AD</i> from the point <i>A</i> perpendicular to <i>BC.</i>
+
+<p>I say that the square on <i>AC</i> is less than the sum of the squares on <i>CB</i> and <i>BA</i> by twice the rectangle <i>CB</i> by <i>BD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=250>
+<img src="propII13.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.13">
+<param name=e[1] value="A;point;free;100,30">
+<param name=e[2] value="B;point;free;30,200">
+<param name=e[3] value="C;point;free;200,200">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[5] value="AD;line;foot;A,B,C">
+<param name=e[6] value="D;point;last;AD">
+<param name=e[7] value="DA;line;connect;D,A">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII13.gif" hspace=10 alt="II.13">';
+</script>
+</div>
+
+<div class="just"><a href="propII7.html">II.7</a></div>
+<p>Since the straight line <i>CB</i> has been cut at random at <i>D,</i> the sum of the squares on <i>CB</i> and <i>BD</i> equals twice the rectangle <i>CB</i> by <i>BD</i> plus the square on <i>DC.</i> 
+
+<p>Add the square on <i>DA</i> to each.  Therefore the sum of the squares on <i>CB,</i> <i>BD,</i> and <i>DA</i> equals twice the rectangle <i>CB</i> by <i>BD</i> plus the sum of the  squares on <i>AD</i> and <i>DC.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the square on <i>AB</i> equals the sum of the squares on <i>BD</i> and  <i>DA,</i> for the angle at <i>D</i> is right,  and the square on <i>AC</i> equals the sum of the squares on <i>AD</i> and <i>DC,</i> therefore the sum of the squares on <i>CB</i> and <i>BA</i> equals the square on <i>AC</i> plus twice the rectangle <i>CB</i> by <i>BD,</i> so that the square on <i>AC</i> alone is less than the sum of the squares on <i>CB</i> and <i>BA</i> by twice the rectangle <i>CB</i> by <i>BD.</i>
+
+<p>Therefore <i>in acute-angled triangles the square on the side opposite the acute angle is less than the sum of the squares on the sides containing the acute angle by twice the rectangle contained by one of the sides about the acute angle, namely that on which the perpendicular falls, and the straight line cut off within by the perpendicular towards the acute angle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+See the guide for the previous proposition <a href="propII12.html#guide">II.12</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>
+

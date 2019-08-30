@@ -1,0 +1,101 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 19</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 19</h1>
+
+<div class="statement">In any triangle the side opposite the greater angle is greater.</div>
+
+<p>Let <i>ABC</i> be a triangle having the angle <i>ABC</i> greater than the angle <i>BCA.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=170>
+<img src="propI19.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.19">
+<param name=e[1] value="A;point;free;130,40">
+<param name=e[2] value="B;point;free;40,80">
+<param name=e[3] value="C;point;free;70,180">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI19.gif" hspace=10 vspace=10 alt="I.19">';
+</script>
+</div>
+
+<p>I say that the side <i>AC</i> is greater than the side <i>AB.</i>
+
+<p>If not, either  <i>AC</i> equals <i>AB</i> or it is less than it.
+
+<div class="just"><a href=propI5.html>I.5</a></div>
+<p>Now <i>AC</i> does not equal <i>AB,</i> for then the angle <i>ABC</i> would equal the angle <i>ACB,</i> but it does not.  Therefore <i>AC</i> does not equal <i>AB.</i>
+
+<div class="just"><a href=propI18.html>I.18</a></div>
+<p>Neither is <i>AC</i> less than <i>AB,</i> for then the angle <i>ABC</i> would be less than the angle <i>ACB,</i> but it is not. Therefore <i>AC</i> is not less than <i>AB.</i>
+
+<p>And it was proved that it is not equal either.  Therefore <i>AC</i> is greater than <i>AB.</i>
+
+<p>Therefore <i>in any triangle the side opposite the greater angle is greater.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+As mentioned before, this proposition is a disguised converse of the previous one.  As Euclid often does, he uses a proof by contradiction involving the already proved converse to prove this proposition.  It is not that there is a logical connection between this statement and its converse that makes this tactic work, but some kind of symmetry involved. In this case, if one side is less than another, then the other is greater than the one, and the previous proposition applies.  So the relevant symmetry is between &ldquo;lesser&rdquo; and &ldquo;greater.&rdquo;
+
+<h4>The law of sines</h4>
+
+Although some of the geometric underpinnings of trigonometry appear in the <i>Elements,</i> trigonometry itself does not.  Trigonometry makes its appearance among later Greek mathematics where the the basic trigonometric function is the <i>chord,</i> which is related to the <i>sine.</i>
+
+<table cellpadding=5>
+<tr><td>Without going into details, the law of sines contains more precise information about the relation between angles and sides of a triangle than this and the last proposition did.  The law of sines  states that 
+
+<p><center><img src=propI19b.gif alt="sin A divided by BC equals sin B divided by AC equals sin C divided by AB" width=209 height=48></center><p>
+
+where <i>a</i> denotes the side opposite angle <i>A</I>, <i>b</i> denotes the side opposite angle <i>B</i>, and <i>c</i> denotes the side opposite angle <i>C</i>. In other words, the sine of an angle in a triangle is proportional to the opposite side.
+
+<p>By means of the law of sines the size of a angle can be related directly to the length of the opposite side.
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=250>
+<img src=propI19a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.19">
+<param name=e[1] value="A;point;free;50,100">
+<param name=e[2] value="B;point;free;200,50">
+<param name=e[3] value="C;point;free;180,150">
+<param name=e[4] value="a;line;connect;B,C;black">
+<param name=e[5] value="b;line;connect;A,C;black">
+<param name=e[6] value="c;line;connect;A,B;black">
+<param name=e[7] value="ABC;polygon;triangle;A,B,C;0;0;0;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI19a.gif" hspace=10 vspace=10 alt="I.19">';
+</script>
+</table>
+
+<h4>Use of Proposition 19</h4>
+
+This proposition is used in the proofs of propositions
+<a href=propI20.html>I.20</a>,
+<a href=propI24.html>I.24</a>, and some others in Book III.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

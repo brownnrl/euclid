@@ -1,0 +1,61 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book III, Definitions 2 and 3</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 2</h1>
+
+<div class="statement">A straight line is said to <i>touch</i> a circle which, meeting the circle and being produced, does not cut the circle.</div>
+</div>
+
+<br>  
+
+<div class="theorem">
+<h1>Definition 3</h1>
+
+<div class="statement">Circles are said to <i>touch</i> one another which meet one another but do not cut one another.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p><center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=390>
+<img src=defIII2.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.Def.2-3">
+<param name=e[1] value="A;point;free;135,125;black;green">
+<param name=pivot value=A>
+<param name=e[2] value="B;point;free;135,30">
+<param name=e[3] value="Acirc;circle;radius;A,B;0;0;black;random">
+<param name=e[4] value="C;point;extend;B,A,B,A">
+<param name=e[5] value="D;point;circleSlider;Acirc,40,40">
+<param name=e[6] value="E;point;perpendicular;C,A">
+<param name=e[7] value="F;point;extend;E,C,E,C">
+<param name=e[8] value="EF;line;connect;E,F">
+
+<param name=e[9] value="G;point;free;295,125">
+<param name=e[10] value="H;point;cutoff;A,G,A,B">
+<param name=e[11] value="Gcirc;circle;radius;G,H;0;0;black;random">
+<param name=e[12] value="K;point;circleSlider;Gcirc,230,30">
+<param name=e[13] value="L;point;extend;K,G,K,G">
+
+<param name=e[14] value="M;point;lineSlider;A,D,110,110">
+<param name=e[15] value="X;point;midpoint;D,M;0;0">
+<param name=e[16] value="Xcirc;circle;radius;X,D;0;0;black;random">
+<param name=e[17] value="N;point;circleSlider;Xcirc,150,30">
+</applet></center>
+
+<p>Consider circle <i>BCD</i> in the figure.  The line <i>EF</i> touches this circle at the point <i>C.</i>  Another expression for the same thing is that <i>EF</i> is tangent to the circle at <i>C.</i>
+
+<p>Two circles can touch each other either internally or externally.  Circle <i>HKL</i> touches circle <i>BCD</i> externally, while circle <i>DMN</i> touches circle <i>BCD</i> internally.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

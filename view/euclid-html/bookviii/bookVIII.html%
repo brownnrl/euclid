@@ -1,0 +1,136 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book VIII</TITLE>
+</HEAD>
+<BODY BGCOLOR=ffe9cd>
+ 
+<center><h1><a href="http://aleph0.clarku.edu/cgi-bin/imagemap/~djoyce/java/elements/logo.map" onMouseOver="self.status='Click on a number to go to a book';return true">
+<img src=../logo.gif USEMAP="#tocmap"  alt="Euclid's Elements" height=238 width=245 border=0></a>
+<p><img src=bkVIII.gif width=152 height=37 alt="Book VIII"></h1>
+</center>
+<MAP NAME="tocmap">
+<AREA SHAPE="RECT" COORDS="59,88,193,164"   HREF="../elements.html">
+<AREA SHAPE="RECT" COORDS="160,10,188,31"   HREF="../bookI/bookI.html">
+<AREA SHAPE="RECT" COORDS="194,34,210,70"   HREF="../bookII/bookII.html">
+<AREA SHAPE="RECT" COORDS="215,73,243,98"   HREF="../bookIII/bookIII.html">
+<AREA SHAPE="RECT" COORDS="217,118,242,139" HREF="../bookIV/bookIV.html">
+<AREA SHAPE="RECT" COORDS="208,163,231,185" HREF="../bookV/bookV.html">
+<AREA SHAPE="RECT" COORDS="176,199,203,219" HREF="../bookVI/bookVI.html">
+<AREA SHAPE="RECT" COORDS="134,215,172,236" HREF="../bookVII/bookVII.html">
+<AREA SHAPE="RECT" COORDS="74,215,115,236"  HREF="../bookVIII/bookVIII.html">
+<AREA SHAPE="RECT" COORDS="44,197,72,218"   HREF="../bookIX/bookIX.html">
+<AREA SHAPE="RECT" COORDS="16,163,44,183"   HREF="../bookX/bookX.html">
+<AREA SHAPE="RECT" COORDS="0,121,31,140"    HREF="../bookXI/bookXI.html">
+<AREA SHAPE="RECT" COORDS="0,78,36,98"      HREF="../bookXII/bookXII.html">
+<AREA SHAPE="RECT" COORDS="10,32,57,54"     HREF="../bookXIII/bookXIII.html">
+</MAP>
+
+<h3>Table of contents</h3>
+<ul>
+<li><a href="#props">Propositions</a> (27)
+</ul>
+
+<center><h3><a name=props>Propositions</a></h3></center>
+<dl>
+
+<p><dt><b><a href=propVIII1.html>Proposition 1</a>.</b>
+<dd>If there are as many numbers as we please in continued proportion, and the extremes of them are relatively prime, then the numbers are the least of those which have the same ratio with them.
+
+<font color=a00044>
+<p><dt><b><a href=propVIII2.html>Proposition 2</a>.</b>
+<dd>To find as many numbers as are prescribed in continued proportion, and the least that are in a given ratio.
+</font color>
+
+<p><b><a href="propVIII2.html#cor">Corollary</a>.</b> If three numbers in continued proportion are the least of those which have the same ratio with them, then the extremes are squares, and, if four numbers, cubes.
+
+<p><dt><b><a href=propVIII3.html>Proposition 3</a>.</b>
+<dd>If as many numbers as we please in continued proportion are the least of those which have the same ratio with them, then the extremes of them are relatively prime.
+
+<font color=a00044>
+<p><dt><b><a href=propVIII4.html>Proposition 4</a>.</b>
+<dd>Given as many ratios as we please in least numbers, to find numbers in continued proportion which are the least in the given ratios.
+</font color>
+
+<p><dt><b><a href=propVIII5.html>Proposition 5</a>.</b>
+<dd>Plane numbers have to one another the ratio compounded of the ratios of their sides.
+
+<p><dt><b><a href=propVIII6.html>Proposition 6</a>.</b>
+<dd>If there are as many numbers as we please in continued proportion, and the first does not measure the second, then neither does any other measure any other.
+
+<p><dt><b><a href=propVIII7.html>Proposition 7</a>.</b>
+<dd>If there are as many numbers as we please in continued proportion, and the first measures the last, then it also measures the second.
+
+<p><dt><b><a href=propVIII8.html>Proposition 8</a>.</b>
+<dd>If between two numbers there fall numbers in continued proportion with them, then, however many numbers fall between them in continued proportion, so many also fall in continued proportion between the numbers which have the same ratios with the original numbers.
+
+<p><dt><b><a href=propVIII9.html>Proposition 9</a>.</b>
+<dd>If two numbers are relatively prime, and numbers fall between them in continued proportion, then, however many numbers fall between them in continued proportion, so many also fall between each of them and a unit in continued proportion.
+
+<p><dt><b><a href=propVIII10.html>Proposition 10</a>.</b>
+<dd>If numbers fall between two numbers and a unit in continued proportion, then however many numbers fall between each of them and a unit in continued proportion, so many also fall between the numbers themselves in continued proportion.
+
+<p><dt><b><a href=propVIII11.html>Proposition 11</a>.</b>
+<dd>Between two square numbers there is one mean proportional number, and the square has to the square the duplicate ratio of that which the side has to the side.
+
+<p><dt><b><a href=propVIII12.html>Proposition 12</a>.</b>
+<dd>Between two cubic numbers there are two mean proportional numbers, and the cube has to the cube the triplicate ratio of that which the side has to the side.
+
+<p><dt><b><a href=propVIII13.html>Proposition 13</a>.</b>
+<dd>If there are as many numbers as we please in continued proportion, and each multiplied by itself makes some number, then the products are proportional; and, if the original numbers multiplied by the products make certain numbers, then the latter are also proportional.
+
+<p><dt><b><a href=propVIII14.html>Proposition 14</a>.</b>
+<dd>If a square measures a square, then the side also measures the side; and, if the side measures the side, then the square also measures the square.
+
+<p><dt><b><a href=propVIII15.html>Proposition 15</a>.</b>
+<dd>If a cubic number measures a cubic number, then the side also measures the side; and, if the side measures the side, then the cube also measures the cube.
+
+<p><dt><b><a href=propVIII16.html>Proposition 16</a>.</b>
+<dd>If a square does not measure a square, then neither does the side
+measure the side; and, if the side does not measure the side, then neither does the square measure the square.
+
+<p><dt><b><a href=propVIII17.html>Proposition 17</a>.</b>
+<dd>If a cubic number does not measure a cubic number, then neither does the side measure the side; and, if the side does not measure the side, then neither does the cube measure the cube.
+
+<p><dt><b><a href=propVIII18.html>Proposition 18</a>.</b>
+<dd>Between two similar plane numbers there is one mean proportional number, and the plane number has to the plane number the ratio duplicate of that which the corresponding side has to the corresponding side.
+
+<p><dt><b><a href=propVIII19.html>Proposition 19</a>.</b>
+<dd>Between two similar solid numbers there fall two mean proportional numbers, and the solid number has to the solid number the ratio triplicate of that which the corresponding side has to the corresponding side.
+
+<p><dt><b><a href=propVIII20.html>Proposition 20</a>.</b>
+<dd>If one mean proportional number falls between two numbers, then the numbers are similar plane numbers.
+
+<p><dt><b><a href=propVIII21.html>Proposition 21</a>.</b>
+<dd>If two mean proportional numbers fall between two numbers, then the numbers are similar solid numbers.
+
+<p><dt><b><a href=propVIII22.html>Proposition 22</a>.</b>
+<dd>If three numbers are in continued proportion, and the first
+is square, then the third is also square.
+
+<p><dt><b><a href=propVIII23.html>Proposition 23</a>.</b>
+<dd>If four numbers are in continued proportion, and the first is a cube, then the fourth is  also a cube.
+
+<p><dt><b><a href=propVIII24.html>Proposition 24</a>.</b>
+<dd>If two numbers have to one another the ratio which a square number has to a square number, and the first is square, then the second is also a square.
+
+<p><dt><b><a href=propVIII25.html>Proposition 25</a>.</b>
+<dd>If two numbers have to one another the ratio which a cubic number has to a cubic number, and the first is a cube, then the second is also a cube.
+
+<p><dt><b><a href=propVIII26.html>Proposition 26</a>.</b>
+<dd>Similar plane numbers have to one another the ratio which a square number has to a square number.
+
+<p><dt><b><a href=propVIII27.html>Proposition 27</a>.</b>
+<dd>Similar solid numbers have to one another the ratio which a cubic number has to a cubic number.
+</dl>
+
+
+<p><hr size=6><p>
+<a href="../elements.html"><i>Elements</i> Introduction</a> - 
+<a href="../bookVII/bookVII.html">Book VII</a> -
+<a href="../bookIX/bookIX.html">Book IX</a>.
+
+<p><hr size=6><p>
+<small><a href=../copyright.html>&copy; 1996</a>
+<br><a href="http://aleph0.clarku.edu/~djoyce/home.html">D.E.Joyce</a>
+<br><a href=http://www.clarku.edu/>Clark University</a></small>
+</BODY>
+</HTML>

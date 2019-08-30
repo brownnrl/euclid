@@ -1,0 +1,65 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 24</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 24</h1>
+
+<div class="statement">The rectangle contained by medial straight lines commensurable in length is medial.</div>
+
+<p>Let the rectangle <i>AC</i> be contained by the medial straight lines <i>AB</i> and <i>BC</i> which are commensurable in length.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=170 height=250>
+<img src="propX24.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.24">
+<param name=e[1] value="A0;point;free;-1000,120;0;0">
+<param name=e[2] value="A3;point;free;1000,120;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,110,0">
+<param name=e[5] value="C';point;perpendicular;B,A;0;0">
+<param name=e[6] value="C;point;lineSlider;B,C',0,40">
+<param name=e[7] value="AC;polygon;parallelogram;A,B,C;0;0;black;random">
+<param name=e[8] value="AD;polygon;square;B,A;0;0;black;random">
+<param name=e[9] value="D;point;vertex;AD,4">
+</applet></div>
+
+<p>I say that <i>AC</i> is medial.
+
+<p>Describe the square <i>AD</i> on <i>AB</i>. Then <i>AD</i> is medial.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>And, since <i>AB</i> is commensurable in length with <i>BC</i>, while <i>AB</i> equals <i>BD</i>, therefore <i>DB</i> is commensurable in length with <i>BC</i>, so that <i>DA</i> is commensurable with <i>AC</i>.
+
+<div class="just"><a href=propX23.html#cor>X.23,Cor.</a></div>
+<p>But <i>DA</i> is medial, therefore <i>AC</i> is also medial.
+
+<p>Therefore, <i>the rectangle contained by medial straight lines commensurable in length is medial.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>Medial lines were defined in Proposition <a href=propX21.html>X.21</a>, but medial rectangles have not been defined.  The meaning of the term medial rectangle must be interpreted by the way it is used in the proof of this proposition.
+
+<p>The square <i>AD</i>, which is the square on the medial line <i>AB</i>, is called a medial square, and since the rectangle <i>AC</i> is equal to the square <i>AD</i>, it is also proclaimed to be medial.  Thus, a medial rectangle is one equal to the square on a medial line.
+
+<p>In this proposition, we have two medial numbers, <i>a</i> and <i>b</i>, such that <i>a</i>/<i>b</i> is a rational number.  The conclusion is that <i>c</i>&nbsp;=&nbsp;&radic;(<i>ab</i>) is a medial number.  That is so since <i>c</i><sup>2</sup>&nbsp;=&nbsp;<i>ab</i>&nbsp;=&nbsp;<i>b</i><sup>2</sup>(<i>a</i>/<i>b</i>), which is an irrational number, while <i>c</i><sup>4</sup>&nbsp;=&nbsp;<i>a</i><sup>2</sup><i>b</i><sup>2</sup>&nbsp;=&nbsp;<i>b</i><sup>4</sup>(<i>a</i>/<i>b</i>)<sup>2</sup>, which is a rational number.
+
+<p>This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

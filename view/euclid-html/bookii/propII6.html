@@ -1,0 +1,172 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 6</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 6</h1>
+
+<div class="statement">If a straight line is bisected and a straight line is added to it in a straight line, then the rectangle contained by the whole with the added straight line and the added straight line together with the square on the half equals the square on the straight line made up of the half and the added straight line.</div>
+
+<p>Let a straight line <i>AB</i> be bisected at the point <i>C,</i> and let a straight line <i>BD</i> be added to it in a straight line.
+
+<p>I say that the rectangle <i>AD</i> by <i>DB</i> together with the square on <i>CB</i> equals the square on <i>CD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=370>
+<img src="propII6.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.6">
+<param name=e[1] value="A0;point;free;-1000,40;0,0">
+<param name=e[2] value="A3;point;free;1000,40;0,0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,260,0">
+<param name=e[5] value="C;point;midpoint;A,B">
+<param name=e[6] value="D;point;lineSlider;A0,A3,330,0">
+<param name=e[7] value="DCEF;polygon;square;D,C">
+<param name=e[8] value="E;point;vertex;DCEF,3">
+<param name=e[9] value="F;point;vertex;DCEF,4">
+<param name=e[10] value="DE;line;connect;D,E">
+<param name=e[11] value="G;point;parallelogram;B,D,F">
+<param name=e[12] value="H;point;intersection;B,G,D,E">
+<param name=e[13] value="M;point;parallelogram;H,B,D">
+<param name=e[14] value="K;point;parallelogram;H,B,A">
+<param name=e[15] value="L;point;intersection;K,M,C,E">
+<param name=e[16] value="ACLK;polygon;quadrilateral;A,C,L,K;0;0;0,0,0;random">
+<param name=e[17] value="LHGE;polygon;quadrilateral;L,H,G,E;0;0;0,0,0;random">
+<param name=e[18] value="BDMH;polygon;quadrilateral;B,D,M,H">
+<param name=e[19] value="O';point;midpoint;H,M;0;0">
+<param name=e[20] value="N;point;cutoff;H,K,H,O';black;lightGray">
+<param name=e[21] value="O;point;cutoff;H,D,H,O';black;lightGray">
+<param name=e[22] value="P;point;cutoff;H,G,H,O';black;lightGray">
+<param name=e[23] value="NOP;sector;arc;P,O,N;0;0;lightGray;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII6.gif" hspace=10 alt="II.6">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Describe the square <i>CEFD</i> on <i>CD,</i> and join <i>DE.</i>  Draw <i>BG</i> through the point <i>B</i> parallel to either <i>EC</i> or <i>DF,</i> draw <i>KM</i> through the point <i>H</i> parallel to either <i>AB</i> or <i>EF,</i> and further draw <i>AK</i> through <i>A</i> parallel to either <i>CL</i> or <i>DM.</i>
+
+<div class="just"><a href="../bookI/propI36.html">I.36</a>,
+<a href="../bookI/propI43.html">I.43</a></div>
+<p>Then, since <i>AC</i> equals <i>CB, AL</i> also equals <i>CH.</i>  But <i>CH</i> equals <i>HF.</i> Therefore <i>AL</i> also equals <i>HF.</i>
+
+<div class="just"><a href=defII.html>II.Def.2</a></div>
+<p>Add <i>CM</i> to each.  Therefore the whole <i>AM</i> equals the gnomon <i>NOP.</i>
+
+<p>But <i>AM</i> is the rectangle <i>AD</i> by <i>DB,</i> for <i>DM</i> equals <i>DB.</i>  Therefore the gnomon <i>NOP</i> also equals the rectangle <i>AD</i> by <i>DB.</i>
+
+<p>Add <i>LG,</i> which equals the square on <i>BC,</i> to each. Therefore the rectangle <i>AD</i> by <i>DB</i> together with the square on <i>CB</i> equals the gnomon <i>NOP</i> plus <i>LG.</i>
+
+<p>But the gnomon <i>NOP</i> and <i>LG</i> are the whole square <i>CEFD,</i> which is described on <i>CD.</i>
+
+<p>Therefore the rectangle <i>AD</i> by <i>DB</i> together with the square on <i>CB</i> equals the square on <i>CD.</i>
+
+<p>Therefore <i>if a straight line is bisected and a straight line is added to it in a straight line, then the rectangle contained by the whole with the added straight line and the added straight line together with the square on the half equals the square on the straight line made up of the half and the added straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<h4>Explanation of the proof</h4>
+
+This proposition is remarkably similar to the last one, <a href="propII5.html">II.5</a>, except the point <i>D</i> does not lie on the line <i>AB</i> but on that line extended.  
+
+<p>Let <i>b</i> denote the line <i>AB,</i> <i>x</i> denote <i>AD,</i> and <i>y</i> denote <i>BD</i> as in II.5.  Then <i>x</i>&nbsp;&ndash;&nbsp;<i>y</i>&nbsp;=&nbsp;<i>b</i> (as opposed to  <i>x</i>&nbsp;+&nbsp;<i>y</i>&nbsp;=&nbsp;<i>b</i> as in II.5).
+
+According to this proposition the rectangle  <i>AD</i> by <i>DB,</i> which is the product <i>xy,</i> is the difference of two squares, the large one being the square on the line <i>CD,</i> that is the square of <i>x</i>&nbsp;&ndash;&nbsp;<i>b</i>/2, and the small one being the square on the line <i>CB,</i> that is, the square of <i>b</i>/2.  Algebraically,
+
+<p><center>
+<i>x</i>(<i>x</i> &ndash; <i>b</i>) = (<i>x</i>&nbsp;&ndash;&nbsp;<i>b</i>/2)<sup>2</sup> &ndash; (<i>b</i>/2)<sup>2</sup>.
+</center><p>
+
+This equation is easily verified with modern algebra, but it&rsquo;s also easily verified in geometry, as done here in the proof.
+
+<p>The geometric proof is primarily an exercise in cutting and pasting.  The rectangle <i>AB</i> by <i>DB</i> is the rectangle <i>AM,</i> which is the sum of the rectangles <i>AL</i> and <i>CM.</i>  But the rectangles <i>AL, CH,</i> and <i>HF</i> are all equal.  Therefore, the rectangle <i>AB</i> by <i>DB</i> equals the gnomon formed by the rectangles <i>CM</i> and <i>HF.</i>  That gnomon is the square <i>CF</i> minus the square <i>LG,</i> but the latter equals the square on <i>BC.</i>  Thus, the rectangle <i>AB</i> by <i>DB</i> equals the square on <i>DB</i> minus the square on <i>CB.</i>
+
+<h4>Solution to a quadratic problem</h4>
+
+As was II.5, this proposition is set up to help in the solution of a quadratic problem:
+
+<p><center>
+Find two numbers <i>x</i> and <i>y</i> so that their difference <i>x</i>&nbsp;&ndash;&nbsp;<i>y</i> is 
+<br>
+a known value <i>b</i> and their product is a known value <i>c</i><sup>2</sup>.
+</center><p>
+
+In terms of <i>x</i> alone, this is equivalent to solving the quadratic equation <i>x</i>(<i>x</i>&nbsp;&ndash;&nbsp;<i>b</i>)&nbsp;=&nbsp;<i>c</i><sup>2</sup>.
+Since this proposition says that <i>x</i>(<i>x</i>&nbsp;&ndash;&nbsp;<i>b</i>)&nbsp;=&nbsp;(<i>x</i>&nbsp;&ndash;&nbsp;<i>b</i>/2)<sup>2</sup>&nbsp;&ndash;&nbsp;(<i>b</i>/2)<sup>2</sup>,
+the problem reduces to solving the equation
+
+<p><center>
+<i>c</i><sup>2</sup> = (<i>x</i> &ndash; <i>b</i>/2)<sup>2</sup> &ndash; (<i>b</i>/2)<sup>2</sup>,
+</center><p>
+
+that is, finding <i>CD</i> so that  <i>CD</i><sup>2</sup>&nbsp;=&nbsp;(<i>b</i>/2)<sup>2</sup>&nbsp;+&nbsp;<i>c</i><sup>2</sup>. By <a href="../bookI/propI47.html">I.47</a>, if a right triangle is constructed with one side equal to <i>b</i>/2 and another equal to <i>c,</i> then the hypotenuse will equal the required value for <i>CD.</i>  Algebraically, the solutions <i>AD</i> for <i>x</i> and <i>BD</i> for <i>y</i> have the values
+
+<p><center>
+<img src=propII6b.gif
+ alt="x = b/2 + sqrt((b squared)/4 + c squared), y = - b/2 + sqrt((b squared)/4 + c squared)">
+</center><p>
+
+<p>This analysis yields a construction to solve the quadratic problem stated above. 
+
+<br><br>
+<table>
+<tr><td><i>To apply a rectangle equal to a given square to a given straight line but exceeding it by a square.</i>
+
+<p>Let <i>AB</i> be the given straight line.  Bisect it at <i>C.</i>  Construct a perpendicular <i>BQ</i> to <i>AB</i> at <i>B</i> equal to the side of the given square. Draw <i>CQ.</i> Extend <i>AB</i> to <i>D</i> so that <i>BD</i> equals <i>CQ.</i>
+
+<p>Then, as described above, <i>AB</i> has been extended to <i>D</i> so that <i>AD</i> times <i>BD</i> equals the given square.
+</td>
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=170 width=290>
+<img src="propII6a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.5">
+<param name=e[1] value="A0;point;free;-1000,130;0,0">
+<param name=e[2] value="A3;point;free;1000,130;0,0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,210,0">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="C;point;midpoint;AB">
+<param name=e[7] value="BQ';line;perpendicular;B,C;0;0;0">
+<param name=e[8] value="Q;point;lineSlider;BQ',220,40">
+<param name=e[9] value="BQ;line;connect;B,Q">
+<param name=e[10] value="CQ;line;connect;C,Q">
+<param name=e[11] value="D;point;extend;A,C,C,Q">
+<param name=e[12] value="BD;line;connect;B,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propII6a.gif" hspace=10 alt="II.6">';
+</script>
+</td>
+</tr></table>
+
+<p>This construction is not found in the <i>Elements,</i> but a generalization of it to parallelograms is proposition <a href="../bookVI/propVI29.html">VI.29</a>.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in <a href=propII11.html>II.11</a>, <a href=../bookIII/propIII36.html>III.36</a>, and a lemma for <a href=../bookX/propX29.html>X.29</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

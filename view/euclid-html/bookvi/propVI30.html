@@ -1,0 +1,79 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 30</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 30</h1>
+
+<div class="statement">To cut a given finite straight line in extreme and mean ratio.</div>
+
+<p>Let <i>AB</i> be the given finite straight line.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=350 width=280>
+<img src=propVI30.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.30">
+<param name=e[1] value="A;point;free;50,220">
+<param name=e[2] value="B;point;free;220,220">
+<param name=e[3] value="ABHC;polygon;square;A,B;0;0;black;random">
+<param name=e[4] value="H;point;vertex;ABHC,3">
+<param name=e[5] value="C;point;vertex;ABHC,4">
+<param name=e[6] value="M;point;midpoint;A,C;0;0">
+<param name=e[7] value="N;point;cutoff;M,A,M,B;0">
+<param name=e[8] value="E;point;cutoff;A,B,A,N">
+<param name=e[9] value="NAED;polygon;parallelogram;N,A,E;0;0;black;random">
+<param name=e[10] value="D;point;vertex;NAED,4">
+<param name=e[11] value="F;point;intersection;C,H,D,E">
+<param name=e[12] value="EF;line;connect;E,F">
+</applet>
+</div>
+
+<p>It is required to cut <i>AB</i> in extreme and mean ratio.
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a>
+<br><a href="propVI29.html">VI.29</a></div>
+<p>Describe the square <i>BC</i> on <i>AB.</i>  Apply the parallelogram <i>CD</i> to <i>AC</i> equal to the sum of <i>BC</i> and the figure <i>AD</i> similar to <i>BC.</i>
+
+<p>Now <i>BC</i> is a square, therefore <i>AD</i> is also a square.
+
+<p>And, since <i>BC</i> equals <i>CD,</i> subtract <i>CE</i> from each, therefore the remainder <i>BF</i> equals the remainder <i>AD.</i>
+
+<div class="just"><a href="propVI14.html">VI.14</a></div>
+<tp>But it is also equiangular with it, therefore in <i>BF</i> and <i>AD</i> the sides about the equal angles are reciprocally proportional. Therefore <i>FE</i> is to <i>ED</i> as <i>AE</i> is to <i>EB.</i>
+
+<p>But <i>FE</i> equals <i>AB,</i> and <i>ED</i> equals <i>AE.</i>
+
+<div class="just"><a href="../bookV/propV7.html">V.7</a></div>
+<p>Therefore <i>AB</i> is to <i>AE</i> as <i>AE</i> is to <i>EB.</i>
+
+<p>And <i>AB</i> is greater than <i>AE,</i> therefore <i>AE</i> is also greater than <i>EB.</i>
+
+<div class="just"><a href=defVI3.html>VI.Def.3</a></div>
+<p>Therefore the straight line <i>AB</i> has been cut in extreme and mean ratio at <i>E,</i> and the greater segment of it is <i>AE.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The construction given here cuts a line into two parts <i>A</i> and <i>B</i> so that 
+(<i>A</i>&nbsp;+&nbsp;<i>B</i>):<i>B</i>&nbsp;=&nbsp;<i>B</i>&nbsp;:&nbsp;<i>A.</i>  
+By proposition <a href=propVI17.html>VI.17</a>, that condition is equivalent to making the rectangle <i>A</i>&nbsp;+&nbsp;<i>B</i> by <i>A</i> equal the square <i>B</i> by <i>B,</i> and that is the construction of proposition <a href=../bookII/propII11.html>II.11</a>.
+
+<h4>Use of this proposition</h4>
+
+This construction is used in <a href=../bookXIII/propXIII17.html>XIII.17</a> to construct a pentagonal face of a regular dodecahedron.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

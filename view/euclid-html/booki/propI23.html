@@ -1,0 +1,117 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 23</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 23</h1>
+
+<div class="statement">To construct a rectilinear angle equal to a given rectilinear angle on a given straight line and at a point on it.</div>
+
+<p>Let the angle <i>DCE</i> be the given rectilinear angle, <i>AB</i> the given straight line, and <i>A</i> the point on it.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=340>
+<img src="propI23.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.23">
+<param name=e[1] value="D;point;free;260,40">
+<param name=e[2] value="C;point;free;190,80">
+<param name=e[3] value="E;point;free;270,180">
+<param name=e[4] value="D1;line;extend;C,D,C,D;0;0">
+<param name=e[5] value="E1;line;extend;C,E,C,E;0;0">
+<param name=e[6] value="CDE;polygon;triangle;C,D,E;0;0;0,0,0;random">
+<param name=e[7] value="A;point;free;40,180">
+<param name=e[8] value="B;point;free;200,180">
+<param name=e[9] value="AB;line;connect;A,B">
+<param name=e[10] value="DE;line;connect;D,E">
+<param name=e[11] value="G;point;cutoff;A,B,C,E">
+<param name=e[12] value="AGF;polygon;similar;A,G,C,E,D;0;0;0,0,0;random">
+<param name=e[13] value="F;point;vertex;AGF,3">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI23.gif" hspace=10 vspace=10 alt="I.23">';
+</script>
+</div>
+
+<p>It is required to construct a rectilinear angle equal to the given rectilinear angle <i>DCE</i> on the given straight line <i>AB</i> and at the point <i>A</i> on it.
+
+<div class="just"><a href=post1.html>I.Post.1</a>
+<br><a href=propI22.html>I.22</a></div>
+<p>Take the points <i>D</i> and <i>E</i> at random on the straight lines <i>CD</i> and <i>CE</i> respectively, and join <i>DE.</i>  Out of three straight lines which equal the three straight lines <i>CD, DE,</i> and <i>CE</i> construct the triangle <i>AFG</i> in such a way that <i>CD</i> equals <i>AF, CE</i> equals <i>AG,</i> and <i>DE</i> equals <i>FG.</i>
+
+<div class="just"><a href=propI8.html>I.8</a></div>
+<p>Since the two sides <i>DC</i> and <i>CE</i> equal the two sides <i>FA</i> and <i>AG</i> respectively, and the base <i>DE</i> equals the base <i>FG,</i> therefore the angle <i>DCE</i> equals the angle <i>FAG.</i> 
+
+<p>Therefore on the given straight line <i>AB,</i> and at the point <i>A</i> on it, the rectilinear angle <i>FAG</i> has been constructed equal to the given rectilinear angle <i>DCE.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+As Proclus and Heath point out, a very minor variant of the construction in <a href=propI22.html>I.22</a> is needed to make the triangle <i>AFG.</i>  The problem is that in I.22 the triangle is placed not at the end of line, but somewhere beyond that, and in I.23, the triangle needs to be placed right at the end <i>A</i> of the line.
+
+<h4>Construction steps</h4>
+
+<table cellpadding=5>
+<tr><td>
+This construction that moves an angle requires a number of steps involving a straightedge and compass.  Unless there is some special reason for selecting particular points <i>D</i> and <i>E</i> on the sides of the angle <i>C,</i> they might as well be taken equidistant from <i>C</i> as Apollonius suggested.  Then only two distances need to be transferred instead of three.
+
+<p>In order to make <i>CE</i> equal to <i>CD,</i> one circle is required.  Next, in order to transfer the distance <i>CD</i> to <i>A,</i> four circles (not shown) are required as per Propositions <a href=propI2.html>I.2</a> and <a href=propI1.html>I.1</a>, and four more circles (also not shown) to transfer <i>ED</i> to <i>G.</i>  Finally, two more circles are required, one with center <i>A</i> and radius <i>CD</i> (which has been transferred), the other with center <i>G</i> and radius <i>ED.</i>  These last two circles meet at the point <i>F,</i> and the line <i>AF</i> is the other side of the required angle.
+</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=330>
+<img src="propI23a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.23">
+<param name=e[1] value="D;point;free;270,30">
+<param name=e[2] value="C;point;free;200,80">
+<param name=e[3] value="Ccirc;circle;radius;C,D;0;0;0;0">
+<param name=e[4] value="E;point;circleSlider;Ccirc,280,130">
+<param name=e[5] value="D1;point;extend;C,D,C,D;0;0">
+<param name=e[6] value="E1;point;extend;C,E,C,E;0;0">
+<param name=e[7] value="CD1;line;connect;C,D1">
+<param name=e[8] value="CE1;line;connect;C,E1">
+<param name=e[9] value="CDE;sector;sector;C,E,D;0;0;black">
+<param name=e[10] value="A;point;free;50,180">
+<param name=e[11] value="B;point;free;210,180">
+<param name=e[12] value="AB;line;connect;A,B">
+<param name=e[13] value="Acirc;circle;radius;A,C,D;0;0;black;0">
+<param name=e[14] value="G;point;cutoff;A,B,C,D">
+<param name=e[15] value="Gcirc;circle;radius;G,D,E;0;0;black;0">
+<param name=e[16] value="F'F;line;bichord;Acirc,Gcirc;0;0">
+<param name=e[17] value="F;point;last;F'F">
+<param name=e[18] value="AF;line;connect;A,F">
+<param name=e[19] value="AGF;sector;sector;A,G,F;0;0;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI23a.gif" hspace=10 vspace=10 alt="I.23">';
+</script>
+
+</td></tr></table>
+
+<p>In all there are ten circles and one line that must be drawn.  The lines in the intermediate stages may be suppressed as usual since they&rsquo;re only needed to verify the construction is correct.
+
+<h4>Use of Proposition 23</h4>
+
+The construction in this proposition is used in the next one and a couple others in Book I. It is also used frequently in the later books.  It is also used frequently in BookS III and VI and occasionally in Books IV and XI.
+
+<p>Although it may appear that the triangles are to be in the same plane, that is not necessary.  Indeed, the construction in this proposition is used to construct an angle in a different plane in proposition <a href=../bookXI/propXI31.html>XI.31</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,121 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 13</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 13</h1>
+
+<div class="statement">If there are as many numbers as we please in continued proportion, and each multiplied by itself makes some number, then the products are proportional; and, if the original numbers multiplied by the products make certain numbers, then the latter are also proportional.</div>
+
+<p>Let there be as many numbers as we please, <i>A, B,</i> and <i>C,</i> in continued proportion, so that <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C.</i> Let <i>A, B,</i> and <i>C</i> multiplied by themselves make <i>D, E,</i> and <i>F,</i> and multiplied by <i>D, E,</i> and <i>F</i> let them make <i>G, H,</i> and <i>K.</i>
+
+<p>I say that <i>D, E,</i> and <i>F</i> and <i>G, H,</i> and <i>K</i> are in continued proportion.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=480 height=260 >
+<img src="propVIII13.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.13">
+<param name=align value=above>
+<param name=e[1] value="G0;point;free;-1000,30;0;0">
+<param name=e[2] value="G3;point;free;1000,30;0;0">
+<param name=e[3] value="D0;point;free;-1000,65;0;0">
+<param name=e[4] value="D3;point;free;1000,65;0;0">
+<param name=e[5] value="A0;point;free;-1000,100;0;0">
+<param name=e[6] value="A3;point;free;1000,100;0;0">
+<param name=e[7] value="B0;point;free;-1000,135;0;0">
+<param name=e[8] value="B3;point;free;1000,135;0;0">
+<param name=e[9] value="C0;point;free;-1000,170;0;0">
+<param name=e[10] value="C3;point;free;1000,170;0;0">
+<param name=e[11] value="F0;point;free;-1000,205;0;0">
+<param name=e[12] value="F3;point;free;1000,205;0;0">
+<param name=e[13] value="K0;point;free;-1000,240;0;0">
+<param name=e[14] value="K3;point;free;1000,240;0;0">
+
+<param name=e[15] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[16] value="A2;point;lineSlider;A0,A3,70,0;0">
+<param name=e[17] value="A;line;connect;A1,A2;black">
+<param name=e[18] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[19] value="B2;point;lineSlider;B0,B3,75,0;0">
+<param name=e[20] value="B;line;connect;B1,B2;black">
+<param name=e[21] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[22] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[23] value="C;line;connect;C1,C2;black">
+
+<param name=e[24] value="U1;point;lineSlider;B0,B3,0,0;0;0">
+<param name=e[25] value="U2;point;lineSlider;B1,B2,25,0;0;0">
+<param name=e[26] value="D1;point;lineSlider;D0,D3,110,0;0">
+<param name=e[27] value="D2;point;proportion;U1,U2,A1,A2,A1,A2,D1,D3;0">
+<param name=e[28] value="D;line;connect;D1,D2;black">
+<param name=e[29] value="E1;point;lineSlider;B0,B3,110,0;0">
+<param name=e[30] value="E2;point;proportion;U1,U2,B1,B2,B1,B2,E1,B3;0">
+<param name=e[31] value="E;line;connect;E1,E2;black">
+<param name=e[32] value="F1;point;lineSlider;F0,F3,110,0;0">
+<param name=e[33] value="F2;point;proportion;U1,U2,C1,C2,C1,C2,F1,F3;0">
+<param name=e[34] value="F;line;connect;F1,F2;black">5
+<param name=e[35] value="G1;point;lineSlider;G0,G3,240,0;0">
+<param name=e[36] value="G2;point;proportion;U1,U2,A1,A2,D1,D2,G1,G3;0">
+<param name=e[37] value="G;line;connect;G1,G2;black">
+<param name=e[38] value="H1;point;lineSlider;B0,B3,240,0;0">
+<param name=e[39] value="H2;point;proportion;U1,U2,B1,B2,E1,E2,H1,B3;0">
+<param name=e[40] value="H;line;connect;H1,H2;black">
+<param name=e[41] value="K1;point;lineSlider;K0,K3,240,0;0">
+<param name=e[42] value="K2;point;proportion;U1,U2,C1,C2,F1,F2,K1,K3;0">
+<param name=e[43] value="K;line;connect;K1,K2;black">
+
+<param name=e[44] value="L1;point;lineSlider;A0,A3,110,0;0">
+<param name=e[45] value="L2;point;proportion;U1,U2,A1,A2,B1,B2,L1,A3;0">
+<param name=e[46] value="L;line;connect;L1,L2;black">
+<param name=e[47] value="M1;point;lineSlider;D0,D3,240,0;0">
+<param name=e[48] value="M2;point;proportion;U1,U2,A1,A2,L1,L2,M1,D3;0">
+<param name=e[49] value="M;line;connect;M1,M2;black">
+<param name=e[50] value="N1;point;lineSlider;A0,A3,240,0;0">
+<param name=e[51] value="N2;point;proportion;U1,U2,B1,B2,L1,L2,N1,A3;0">
+<param name=e[52] value="N;line;connect;N1,N2;black">
+<param name=e[53] value="O1;point;lineSlider;C0,C3,110,0;0">
+<param name=e[54] value="O2;point;proportion;U1,U2,B1,B2,C1,C2,O1,C3;0">
+<param name=e[55] value="O;line;connect;O1,O2;black">
+<param name=e[56] value="P1;point;lineSlider;C0,C3,240,0;0">
+<param name=e[57] value="P2;point;proportion;U1,U2,B1,B2,O1,O2,P1,C3;0">
+<param name=e[58] value="P;line;connect;P1,P2;black">
+<param name=e[59] value="Q1;point;lineSlider;F0,F3,240,0;0">
+<param name=e[60] value="Q2;point;proportion;U1,U2,C1,C2,O1,O2,Q1,F3;0">
+<param name=e[61] value="Q;line;connect;Q1,Q2;black">
+</applet></div>
+
+<p>Multiply <i>A</i> by <i>B</i> to make <i>L,</i> and multiply the numbers <i>A</i> and <i>B</i> by <i>L</i> to make <i>M</i> and <i>N</i> respectively. Also multiply <i>B</i> by <i>C</i> to make <i>O,</i> and multiply the numbers <i>B</i> and <i>C</i> by <i>O</i> to make <i>P</i> and <i>Q</i> respectively.
+
+<p>Then, in manner similar to the foregoing, we can prove that <i>D, L,</i> and <i>E</i> and <i>G, M, N,</i> and <i>H</i> are continuously proportional in the ratio of <i>A</i> to <i>B,</i> and further <i>E, O,</i> and <i>F</i> and <i>H, P, Q,</i> and <i>K</i> are continuously proportional in the ratio of <i>B</i> to <i>C.</i>
+
+<div class="just"><a href=../bookVII/propVII14.html>VII.14</a></div>
+<p>Now <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C,</i> therefore <i>D, L,</i> and <i>E</i> are also in the same ratio with <i>E, O,</i> and <i>F,</i> and further <i>G, M, N,</i> and <i>H</i> in the same ratio with <i>H, P, Q,</i> and <i>K.</i> And the multitude of <i>D, L,</i> and <i>E</i> equals the multitude of <i>E, O,</i> and <i>F</i> and that of <i>G, M, N,</i> and <i>H</i> to that of <i>H, P, Q,</i> and <i>K,</i> therefore, <i>ex aequali D</i> is to <i>E</i> as <i>E</i> is to <i>F,</i> and <i>G</i> is to <i>H</i> as <i>H</i> is to <i>K.</i>
+
+<p>Therefore, <i>if there are as many numbers as we please in continued proportion, and each multiplied by itself makes some number, then the products are proportional; and, if the original numbers multiplied by the products make certain numbers, then the latter are also proportional.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+The proposition says that if the terms of a continued proportion are squared or cubed, then the resulting sequences of numbers are also in continued proportion.
+
+<p>Suppose that the original continued proportion has three terms: <i>a, b, c.</i>  Then form two more sequences 
+<p><center>
+<i>a</i><sup>2</sup>, <i>ab, b</i><sup>2</sup>, <i>bc, c</i><sup>2</sup>
+</center>
+and
+<center>
+<i>a</i><sup>3</sup>, <i>a</i><sup>2</sup><i>b, a&nbsp;b</i><sup>2</sup>, <i>b</i><sup>3</sup>,  <i>b</i><sup>2</sup><i>c, b&nbsp;c</i><sup>2</sup>, <i>c</i><sup>3</sup>
+</center><p>
+Each of these are in continued proportion with the same ratio as the original sequence.  The alternate terms in the second sequence form the continued proportion of the squares of the original sequence where the ratio is duplicate of the original ratio.  Likewise, every third term of the third sequence make up a continued proportion of the cubes of the original sequence where the ratio is triplicate of the original ratio.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

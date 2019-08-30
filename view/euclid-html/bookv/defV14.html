@@ -1,0 +1,90 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book V, Definitions 14 through 16</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 14</h1>
+
+<div class="statement">A ratio <i>taken jointly</i> means taking the antecedent together with the consequent as one in relation to the consequent by itself.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 15</h1>
+
+<div class="statement">A ratio <i>taken separately</i> means taking the excess by which the antecedent exceeds the consequent in relation to the consequent by itself.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 16</h1>
+
+<div class="statement"><i>Conversion of a ratio</i> means taking the antecedent in relation to the excess by which the antecedent exceeds the consequent.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<center><table cellspacing=5>
+<tr><td colspan=2>Taking jointly the ratio <i>u</i>&nbsp;:&nbsp;<i>v</i> yields the ratio (<i>u</i>&nbsp;+&nbsp;<i>v</i>):<i>v.</i>  Taking separately the ratio (<i>u</i>&nbsp;+&nbsp;<i>v</i>):<i>v</i> returns the ratio <i>u</i>&nbsp;:&nbsp;<i>v.</i>  Taking the ratio (<i>u</i>&nbsp;+&nbsp;<i>v</i>):<i>v</i> in conversion yields the ratio (<i>u</i>&nbsp;+&nbsp;<i>v</i>):<i>u.</i>
+
+<p>These conversions are only important when the ratios are in proportions.</td></tr>
+
+<tr><td>The following three proportions are shown to be equivalent in propositions <a href=propV17.html>V.17</a> and <a href=propV18.html>V.18</a>.
+
+<ul>1. (<i>u</i>&nbsp;+&nbsp;<i>v</i>)&nbsp;:&nbsp;<i>v</i>&nbsp;=&nbsp;(<i>x</i>&nbsp;+&nbsp;<i>y</i>)&nbsp;:&nbsp;<i>y.</i>
+<br>2. (<i>u</i>&nbsp;+&nbsp;<i>v</i>)&nbsp;:&nbsp;<i>u</i>&nbsp;=&nbsp;(<i>x</i>&nbsp;+&nbsp;<i>y</i>)&nbsp;:&nbsp;<i>x.</i>
+<br>3. <i>u</i>&nbsp;:&nbsp;<i>v</i>&nbsp;=&nbsp;<i>x</i>&nbsp;:&nbsp;<i>y.</i>
+</ul>
+</td>
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=80>
+<img src=defV14.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.Def.19">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,70;0;0">
+<param name=e[4] value="V1;point;free;1000,70;0;0">
+<param name=e[5] value="A;point;lineSlider;U0,U1,70,30">
+<param name=e[6] value="B;point;lineSlider;U0,U1,220,30">
+<param name=e[7] value="AB;line;connect;A,B;0;0;blue">
+<param name=e[8] value="E;point;lineSlider;A,B,160,30">
+<param name=e[9] value="C;point;lineSlider;V0,V1,20,70">
+<param name=e[10] value="D;point;lineSlider;V0,V1,260,50">
+<param name=e[11] value="CD;line;connect;C,D;0;0;red">
+<param name=e[12] value="F;point;proportion;A,B,C,D,A,E,C,V1">
+<param name=e[13] value="u;line;connect;A,E;black;0;0">
+<param name=e[14] value="v;line;connect;E,B;black;0;0">
+<param name=e[15] value="x;line;connect;C,F;black;0;0">
+<param name=e[16] value="y;line;connect;F,D;black;0;0">
+</applet></td></tr>
+
+<tr><td colspan=2>
+
+Proposition <a href=propV17.html>V.17</a> and <a href=propV18.html>V.18</a> show proportions 1 and 3 are equivalent.  That means proportion 2 and the inverse of 3, <i>v</i>&nbsp;:&nbsp;<i>u</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>x,</i> are also equivalent.  And of course, 3 and its inverse are equivalent, so all three proportions are equivalent.
+
+<p>Furthermore, when all the magnitudes are of the same kind, then the alternate proportions are also equivalent by <a href=propV16.html>V.16</a> making six equivalent statements.
+<ul>4. (<i>u</i>&nbsp;+&nbsp;<i>v</i>)&nbsp;:&nbsp;(<i>x</i>&nbsp;+&nbsp;<i>y</i>)&nbsp;=&nbsp;<i>v</i>&nbsp;:&nbsp;<i>y.</i>
+<br>5. (<i>u</i>&nbsp;+&nbsp;<i>v</i>)&nbsp;:&nbsp;(<i>x</i>&nbsp;+&nbsp;<i>y</i>)&nbsp;=&nbsp;<i>u</i>&nbsp;:&nbsp;<i>x</i>
+<br>6. <i>u</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>v</i>&nbsp;:&nbsp;<i>y</i>
+</ul>
+
+<p>Proposition <a href=propV19.html>V.19</a> goes on to say that 4 implies 5, and its  <a href=propV19.html#cor>corollary</a> says 1 implies 2.
+
+<p>Heath translates &ldquo;taken jointly,&rdquo; &ldquo;taken separately,&rdquo; and &ldquo;in conversion&rdquo; by the Latin words <i>componendo, separando, and convertendo,</i> respectively.
+
+</td></tr>
+</table></center>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

@@ -1,0 +1,88 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 24</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 24</h1>
+
+<div class="statement">
+If a solid is contained by parallel planes, then the opposite planes in it are equal and parallelogrammic.</div>
+
+<p>Let the solid <i>CDHG</i> be contained by the parallel planes <i>AC, GF, AH, DF, BF,</i> and <i>AE.</i>
+
+<p>I say that the opposite planes in it are equal and parallelogrammic.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=230 >
+<img src="propXI24.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.24">
+<param name=e[1] value="A;point;free;40,90">
+<param name=e[2] value="B;point;free;70,40">
+<param name=e[3] value="C;point;free;100,150">
+<param name=e[4] value="D;point;parallelogram;A,B,C">
+<param name=e[5] value="E;point;free;200,200">
+<param name=e[6] value="F;point;parallelogram;E,D,C">
+<param name=e[7] value="G;point;parallelogram;E,D,A">
+<param name=e[8] value="H;point;parallelogram;E,D,B">
+<param name=e[9] value="ABHG;polygon;quadrilateral;A,B,H,G;0;0;black;random">
+<param name=e[10] value="ADEG;polygon;quadrilateral;A,D,E,G;0;0;black;random">
+<param name=e[11] value="EFHG;polygon;quadrilateral;E,F,H,G;0;0;black;random">
+<param name=e[12] value="BC;line;connect;B,C">
+<param name=e[13] value="CD;line;connect;C,D">
+<param name=e[14] value="CF;line;connect;C,F">
+<param name=e[15] value="AH;line;connect;A,H">
+<param name=e[16] value="DF;line;connect;D,F">
+</applet></div>
+
+<div class="just"><a href="propXI16.html">XI.16</a></div>
+<p>Since the two parallel planes <i>BG</i> and <i>CE</i> are cut by the plane <i>AC,</i> therefore their common sections are parallel. Therefore <i>AB</i> is parallel to <i>DC.</i>  Again, since the two parallel planes <i>BF</i> and <i>AE</i> are cut by the plane <i>AC,</i> therefore their intersections are parallel.  Therefore <i>BC</i> is parallel to <i>AD.</i>
+
+<p>But <i>AB</i> was proved parallel to <i>DC,</i> therefore <i>AC</i> is a parallelogram. Similarly we can prove that each of the planes <i>DF, FG, GB, BF,</i> and <i>AE</i> is a parallelogram.
+
+<p>Join <i>AH</i> and <i>DF.</i>
+
+<div class="just"><a href="propXI10.html">XI.10</a></div>
+<p>Then, since <i>AB</i> is parallel to <i>DC,</i> and <i>BH</i> is parallel to <i>CF,</i> therefore the two straight lines <i>AB</i> and <i>BH,</i> which meet one another, are parallel to the two straight lines <i>DC</i> and <i>CF,</i> which meet one another, not in the same plane. Therefore they contain equal angles.  Therefore the angle <i>ABH</i> equals the angle <i>DCF.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a>
+<br><a href="../bookI/propI4.html">I.4</a></div>
+<p>And, since the two sides <i>AB</i> and <i>BH</i> equal the two sides <i>DC</i> and <i>CF,</i>  and the angle <i>ABH</i> equals the angle <i>DCF,</i>  therefore the base <i>AH</i> equals the base <i>DF,</i> and the triangle <i>ABH</i> equals the triangle <i>DCF.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>And the parallelogram <i>BG</i> is double the triangle <i>ABH,</i> and the parallelogram <i>CE</i> is double the triangle <i>DCF,</i> therefore the parallelogram <i>BG</i> equals the parallelogram <i>CE.</i>
+
+<p>Similarly we can prove that <i>AC</i> equals <i>GF,</i> and <i>AE</i> equals <i>BF.</i>
+
+<p>Therefore, <i>if a solid is contained by parallel planes, then the opposite planes in it are equal and parallelogrammic.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+The statement of the theorem is not sufficiently detailed.  All three of the octahedron, icosahedron, and dodecahedron (see <a href="defXI25.html">XI.Def.26-28</a>) are contained by parallel planes, but their faces are triangles or pentagons, not parallelograms.  They do not have six faces, however, but eight, twenty, or twelve.
+
+<p>The correct hypothesis for this proposition is that the solid is contained by three pairs of parallel planes.  Then the intersection of each plane with the other four nonparallel planes can be shown to be sides of a parallelgram, and the parallelograms on opposite planes can be shown to be congruent, what Euclid would call similar and equal parallelograms.  That the opposite parallelograms are not just equal but also similar should be stated in the conclusion of the proposition.
+
+<h4>Parallelepipeds</h4>
+
+The term &ldquo;parallelepipedal solid,&rdquo; abbreviated as &ldquo;parallelepiped,&rdquo; is used for the solid treated by this proposition.  It can be defined as a solid bounded by three pairs of parallel faces.  Then this proposition shows that a parallelepiped has the further properties that each face is a parallelogram, and opposite parallelograms have parallel and equal corresponding sides, and equal corresponding angles.
+
+<p>Parallelepipeds are to solid geometry what parallelograms are to plane geometry.  This proposition is the analogue of proposition <a href="../bookI/propI34.html">I.34</a> which introduces parallelograms just as this proposition introduces parallelepipeds.  It is likely that both are the product of Euclid&rsquo;s own research.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next as well as others in this book and the next.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

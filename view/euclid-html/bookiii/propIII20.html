@@ -1,0 +1,73 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 20</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 20</h1>
+
+<div class="statement">In a circle the angle at the center is double the angle at the circumference when the angles have the same circumference as base.</div>
+
+<p>Let <i>ABC</i> be a circle, let the angle <i>BEC</i> be an angle at its center, and the angle <i>BAC</i> an angle at the circumference, and let them have the same circumference <i>BC</i> as base.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=270 width=280>
+<img src=propIII20.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.20">
+<param name=e[1] value="A;point;free;40,110">
+<param name=e[2] value="F;point;free;240,170">
+<param name=e[3] value="E;point;midpoint;A,F;black;green">
+<param name=pivot value="E">
+<param name=e[4] value="ABC;circle;radius;E,A;0;0;black;random">
+<param name=e[5] value="B;point;circleSlider;ABC,190,210">
+<param name=e[6] value="C;point;circleSlider;ABC,220,80">
+<param name=e[7] value="AC;line;connect;A,C">
+<param name=e[8] value="AB;line;connect;A,B">
+<param name=e[9] value="EC;line;connect;E,C">
+<param name=e[10] value="EB;line;connect;E,B">
+<param name=e[11] value="AF;line;connect;A,F">
+<param name=e[12] value="D;point;circleSlider;ABC,170,40">
+<param name=e[13] value="DC;line;connect;D,C">
+<param name=e[14] value="DB;line;connect;D,B">
+<param name=e[15] value="G;point;extend;D,E,D,E">
+<param name=e[16] value="DG;line;connect;D,G">
+</applet></div>
+
+<p>I say that the angle <i>BEC</i> is double the angle <i>BAC.</i>
+
+<p>Join <i>AE,</i> and draw it through to <i>F.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>Then, since <i>EA</i> equals <i>EB,</i> the angle <i>EAB</i> also equals the angle <i>EBA.</i> Therefore the sum of the angles the angles <i>EAB</i> and <i>EBA</i> is double the angle <i>EAB.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>But the angle <i>BEF</i> equals the sum of the angles <i>EAB</i> and <i>EBA,</i> therefore the angle <i>BEF,</i> is also double the angle <i>EAB.</i>
+
+<p>For the same reason the angle <i>FEC</i> is also double the angle <i>EAC.</i> 
+
+<p>Therefore the whole angle <i>BEC</i> is double the whole angle <i>BAC.</i> 
+
+<p>Again let another straight line be inflected, and let there be another angle <i>BDC.</i>  Join <i>DE</i> and produced it to <i>G.</i> 
+
+<p>Similarly then we can prove that the angle <i>GEC</i> is double the angle <i>EDC,</i> of which the angle <i>GEB</i> is double the angle <i>EDB.</i> Therefore the remaining angle <i>BEC</i> is double the angle <i>BDC.</i>
+
+<p>Therefore <i>in a circle the angle at the center is double the angle at the circumference when the angles have the same circumference as base.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in the next one and <a href=propIII27.html>III.27</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

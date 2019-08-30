@@ -1,0 +1,70 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 21</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 21</h1>
+
+<div class="statement">
+Any solid angle is contained by plane angles whose sum is less than four right angles.</div>
+
+<p>Let the angle at <i>A</i> be a solid angle contained by the plane angles <i>BAC, CAD,</i> and <i>DAB.</i>
+
+<p>I say that the sum of the angles <i>BAC, CAD,</i> and <i>DAB</i> is less than four right angles.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=230 height=220 >
+<img src="propXI21.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.21">
+<param name=e[1] value="A;point;free;140,110">
+<param name=e[2] value="B;point;free;40,180">
+<param name=e[3] value="C;point;free;100,40">
+<param name=e[4] value="D;point;free;190,130">
+<param name=e[5] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[6] value="ABD;polygon;triangle;A,B,D;0;0;black;random">
+<param name=e[7] value="ACD;polygon;triangle;A,C,D;0;0;black;random">
+</applet></div>
+
+<p>Take points <i>B, C,</i> and <i>D</i>  at random on the  straight lines <i>AB, AC,</i> and <i>AD</i> respectively, and join <i>BC, CD,</i> and <i>DB.</i>
+
+<div class="just"><a href="propXI20.html">XI.20</a></div>
+<p>Now, since the solid angle at <i>B</i> is contained by  the three plane angles <i>CBA, ABD,</i> and <i>CBD,</i> and the sum of any two is greater than the remaining one, therefore the sum of the angles <i>CBA</i> and <i>ABD</i> is greater than the angle <i>CBD.</i>
+
+<p>For the same reason the sum of the angles <i>BCA</i> and <i>ACD</i> is greater than the angle <i>BCD,</i> and the sum of the angles <i>CDA</i> and <i>ADB</i> is greater than the angle <i>CDB.</i>  Therefore the sum of the six angles <i>CBA, ABD, BCA, ACD, CDA,</i> and <i>ADB</i> is greater than the sum of the three angles <i>CBD, BCD,</i> and <i>CDB.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>But the sum of the three angles <i>CBD, BDC,</i> and <i>BCD</i> equals two right angles, therefore the sum of the six angles <i>CBA, ABD, BCA, ACD, CDA,</i> and <i>ADB</i> is greater than two right angles.
+
+<p>And, since the each sum of the three angles of the triangles <i>ABC, ACD,</i> and <i>ADB</i> equals two right angles, therefore the sum of the nine angles of the three triangles, the angles <i>CBA, ACB, BAC, ACD, CDA, CAD, ADB, DBA,</i> and <i>BAD</i> equals six right angles. Of them the sum of the six angles <i>ABC, BCA, ACD, CDA, ADB,</i> and <i>DBA</i> are greater than two right angles, therefore the sum of the remaining three angles <i>BAC, CAD,</i> and <i>DAB</i> containing the solid angle is less than four right angles.
+
+<p>Therefore, <i>any solid angle is contained by plane angles whose sum is less than four right angles.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+In proposition <a href=propXI23.html>XI.23</a> the condition stated here and the condition in <a href=propXI20.html>XI.20</a> (the sum of any two plane angles is less than the third) together are shown to be sufficient to construct a solid angle.  
+
+<h4>About the proof</h4>
+
+The proof only shows that the sum of the plane angles in all cases is less than four right angles when there are three plane angles, not when there are more than three.  When there are four ore more plane angles, the proof is analogous, but it is necessary to invoke Proclus' <a href="../bookI/propI32.html#cor1">first corollary</a> to I.32, which states  &ldquo;the sum of the interior angles of a convex rectilinear figure equals twice as many
+angles as the figure has sides, less four.&rdquo;
+
+<h4>Use of this proposition</h4>
+
+<p>This proposition is used in the proof of the <a href=../bookXIII/propXIII18.html#remark>remark</a> after proposition XIII.18 to show that the five regular polyhedra constructed in Book XIII are the only five possible.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

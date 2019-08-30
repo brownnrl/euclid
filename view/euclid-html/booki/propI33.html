@@ -1,0 +1,72 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 33</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 33</h1>
+
+<div class="statement">Straight lines which join the ends of equal and parallel straight lines in the same directions are themselves equal and parallel.</div>
+
+<p>Let <i>AB</i> and <i>CD</i> be equal and parallel, and let the straight lines <i>AC</i> and <i>BD</i> join them at their ends in the same directions.
+
+<p>I say that <i>AC</i> and <i>BD</i> are also equal and parallel.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=160 width=270>
+<img src="propI33.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.33">
+<param name=e[1] value="A;point;free;40,40">
+<param name=e[2] value="B;point;free;180,40">
+<param name=e[3] value="C;point;free;80,120">
+<param name=e[4] value="CABD;polygon;parallelogram;C,A,B;0;0;0,0,0;0">
+<param name=e[5] value="D;point;vertex;CABD,4">
+<param name=e[6] value="BC;line;connect;B,C">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI33.gif" hspace=10 vspace=10 alt="I.33">';
+</script>
+</div>
+
+<div class="just"><a href=post1.html>I.Post.1</a></div>
+<p>Join <i>BC.</i>
+
+<div class="just"><a href=propI29.html>I.29</a></div>
+<p>Since <i>AB</i> is parallel to <i>CD,</i> and <i>BC</i> falls upon them, therefore the alternate angles <i>ABC</i> and <i>BCD</i> equal one another.
+
+<div class="just"><a href=propI4.html>I.4</a></div>
+<p>Since <i>AB</i> equals <i>CD,</i> and <i>BC</i> is common, the two sides <i>AB</i> and <i>BC</i> equal the two sides <i>DC</i> and <i>CB,</i> and the angle <i>ABC</i> equals the angle <i>BCD,</i> therefore the base <i>AC</i> equals the base <i>BD,</i> the triangle <i>ABC</i> equals the triangle <i>DCB,</i> and the remaining angles equals the remaining angles respectively, namely those opposite the equal sides. Therefore the angle <i>ACB</i> equals the angle <i>CBD.</i>
+
+<div class="just"><a href=propI27.html>I.27</a></div>
+<p>Since the straight line <i>BC</i> falling on the two straight lines <i>AC</i> and <i>BD</i> makes the alternate angles equal to one another, therefore <i>AC</i> is parallel to <i>BD.</i>
+
+<p>And it was also proved equal to it.
+
+<p>Therefore <i>straight lines which join the ends of equal and parallel straight lines in the same directions are themselves equal and parallel.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+The qualifier &ldquo;in the same directions&rdquo; in the statement of this proposition is necessary since without it the lines <i>AD</i> and <i>BC</i> could join the endpoints of the parallel lines, and  <i>AD</i> and <i>BC</i> are not parallel but intersect.  But these words of Euclid words are informal, and it would take some work to determine geometrically which end of <i>AD</i> corresponds to which end of a parallel line <i>BC.</i>
+
+<p>In general, given four points <i>A, B, C,</i> and <i>D,</i> exactly one of the three pairs of lines, <i>AB</i> and <i>CD, AC</i> and <i>BD,</i> and <i>AD</i> and <i>BC,</i> intersects.  (If extended to infinite lines, all three pairs of lines might intersect, but as line segments only one pair does.) This statement belongs to the fundamental part of plane geometry that includes betweenness and sides of lines that wasn&rsquo;t developed until the late nineteenth century.
+
+<h4>Use of Proposition 33</h4>
+
+This proposition is used in <a href=propI36.html>I.36</a>, <a href=propI45.html>I.45</a>, and a few propositions in Books XI through XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

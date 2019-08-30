@@ -1,0 +1,97 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 1</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">To find the center of a given circle.</div>
+
+<p>Let <i>ABC</i> be the given circle.
+
+<p>It is required to find the center of the circle <i>ABC.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=260>
+<img src=propIII1.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.1">
+<param name=e[1] value="A;point;free;60,200">
+<param name=e[2] value="B;point;free;200,200">
+<param name=e[3] value="C';point;free;130,40;0">
+<param name=e[4] value="ABC;circle;circumcircle;A,B,C';0;0;black;random">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="D;point;midpoint;A,B">
+<param name=e[7] value="DE';line;perpendicular;D,A;0;0;0">
+<param name=e[8] value="EC;line;chord;DE',ABC">
+<param name=e[9] value="C;point;last;EC">
+<param name=e[10] value="E;point;first;EC">
+<param name=e[11] value="F;point;midpoint;C,E;black;green">
+<param name=pivot value="F">
+<param name=e[12] value="G;point;free;150,140">
+<param name=e[13] value="AG;line;connect;A,G">
+<param name=e[14] value="BG;line;connect;B,G">
+<param name=e[15] value="DG;line;connect;D,G">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI10.html">I.10</a>
+<br><a href="../bookI/propI11.html">I.11</a>, <a href="../bookI/propI10.html">I.10</a></div>
+<p>Draw a straight line <i>AB</i> through it at random, and bisect it at the point <I>D.</i>  Draw <i>DC</i> from <I>D</I>  at right angles to <i>AB,</i> and draw it through to <I>E.</i>  Bisect <i>CE</i> at <i>F.</i>
+ 
+<p>I say that <i>F</i> is the center of the circle <i>ABC.</i>
+
+<p>For suppose it is not, but, if possible, let <i>G</i> be the center. Join <i>GA, GD,</i> and <i>GB.</i>
+
+<div class="just"><a href=../bookI/defI15.html>I.Def.15</a>
+<br><a href="../bookI/propI8.html">I.8</a></div>
+<p>Then, since <i>AD</i> equals <i>DB,</i> and <i>DG</i> is common, the two sides <i>AD</i> and <i>DG</i> equal the two sides <i>BD</i> and <i>DG</i> respectively.  And the base <i>GA</i> equals the base <i>GB,</i> for they are radii, therefore the angle <i>ADG</i> equals the angle <i>GDB.</i>
+
+<div class="just"><a href=../bookI/defI10.html>I.Def.10</a></div>
+<p>But, when a straight line standing on a straight line makes the adjacent angles equal to one another, each of the equal angles is right,  therefore the angle <i>GDB</i> is right.
+
+<p>But the angle <i>FDB</i> is also right, therefore the angle <i>FDB</i> equals the angle <i>GDB,</i> the greater equals the less, which is impossible.  Therefore <i>G</i> is not the center of the circle <i>ABC.</i>
+
+<p>Similarly we can prove that neither is any other point except <i>F.</i>
+ 
+<p>Therefore the point <i>F</i> is the center of the circle <i>ABC.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+From this it is clear that if in a circle a straight line cuts a straight line into two equal parts and at right angles, then the center of the circle lies on the cutting straight line.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Since the definition of a circle, <a href=../bookI/defI15.html>I.Def.15</a>, includes the existence of a center, Euclid is justified in taking a point <i>G</i> as the center.  
+
+<p>In this proof <i>G</i> is shown to lie on the perpendicular bisector of the line <i>AB.</i>  He leaves to the reader to show that <i>G</i> actually is the point <i>F</i> on the perpendicular bisector, but that&rsquo;s clear since only the midpoint <i>F</i> is equidistant from the two points <i>C</i> and <i>E</i> on the circle.  From that observation it also follows that the center of a circle is unique, although the uniqueness can easily be proved in other ways.
+
+<p>As Todhunter remarked, Euclid implicitly assumes that the perpendicular bisector of <i>AB</i> actually intersects the circle in points <i>C</i> and <i>E.</i>
+
+<h4>Use of this proposition and its corollary</h4>
+
+About half the proofs in Book III and several of those in Book IV begin with taking the center of a given circle, but in plane geometry, it isn&rsquo;t necessary to invoke this proposition III.1 since the only way that circles can occur is if they were constructed around a center to begin with.  Even in solid geometry, the center of a circle is usually known so that III.1 isn&rsquo;t necessary.  Indeed, that is the case whenever the center is needed in Euclid&rsquo;s books on solid geometry (see <a href=../bookXI/propXI23.html>XI.23</a>, <a href=../bookXIII/propXIII9.html>XIII.9</a> through XIII.13, and <a href=../bookXIII/propXIII16.html>XIII.16</a>).  Sections of spheres cut by planes are also circles as are certain plane sections of cylinders and cones, and as the spheres, cylinders, and cones were generated by rotating semicircles, rectangles, and triangles about their sides, the center of the circle is known to be at the intersection of the side and the plane.  In that sense, this proposition is redundant.
+
+
+
+<p>The corollary is used in propositions <a href=propIII9.html>III.9</a> and <a href=propIII10.html>III.10</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

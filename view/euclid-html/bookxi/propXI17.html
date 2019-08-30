@@ -1,0 +1,89 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 17</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 17</h1>
+
+<div class="statement">
+If two straight lines are cut by parallel planes, then they are cut in the same ratios.</div>
+
+<p>Let the two straight lines <i>AB</i> and <i>CD</i> be cut by the parallel planes <i>GH, KL,</i> and <i>MN</i> at the points <i>A, E,</i> and <i>B,</i> and at the points <i>C, F,</i> and <i>D,</i> respectively.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=310 height=320 >
+<img src="propXI17.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.17">
+<param name=e[1] value="X;point;free;100000,200">
+<param name=e[2] value="Y;point;free;200,-100000">
+<param name=e[3] value="Z;point;free;30000,-100000">
+<param name=e[4] value="G;point;free;30,100">
+<param name=e[5] value="H;point;free;180,30">
+<param name=e[6] value="G';point;intersection;G,X,H,Z;0;0">
+<param name=e[7] value="H';point;intersection;H,X,G,Z;0;0">
+<param name=e[8] value="GH;polygon;quadrilateral;G,G',H,H';0;0;lightGray;brighter">
+<param name=e[9] value="K;point;free;75,190">
+<param name=e[10] value="L;point;free;225,120">
+<param name=e[11] value="K';point;intersection;K,X,L,Z;0;0">
+<param name=e[12] value="L';point;intersection;L,X,K,Z;0;0">
+<param name=e[13] value="KL;polygon;quadrilateral;K,K',L,L';0;0;lightGray;brighter">
+<param name=e[14] value="M;point;free;120,290">
+<param name=e[15] value="N;point;free;270,220">
+<param name=e[16] value="M';point;intersection;M,X,N,Z;0;0">
+<param name=e[17] value="N';point;intersection;N,X,M,Z;0;0">
+<param name=e[18] value="MN;polygon;quadrilateral;M,M',N,N';0;0;lightGray;brighter">
+
+<param name=e[19] value="A;point;free;130,40">
+<param name=e[20] value="B;point;free;240,260">
+<param name=e[21] value="C;point;free;60,70">
+<param name=e[22] value="D;point;free;160,245">
+<param name=e[23] value="AB;line;connect;A,B">
+<param name=e[24] value="CD;line;connect;C,D">
+<param name=e[25] value="E;point;lineSlider;AB,190,150">
+<param name=e[26] value="O';point;parallelogram;D,B,E;0;0">
+<param name=e[27] value="O;point;intersection;E,O',A,D">
+<param name=e[28] value="F';point;parallelogram;C,A,O;0;0">
+<param name=e[29] value="F;point;intersection;O,F',C,D">
+<param name=e[30] value="AC;line;connect;A,C">
+<param name=e[31] value="BD;line;connect;B,D">
+<param name=e[32] value="AD;line;connect;A,D">
+<param name=e[33] value="EO;line;connect;E,O">
+<param name=e[34] value="FO;line;connect;F,O">
+</applet></div>
+
+<p>I say that the straight line <i>AE</i> is to <i>EB</i> as <i>CF</i> is to <i>FD.</i>
+
+<p>Join <i>AC, BD,</i> and <i>AD.</i>  Let <i>AD</i> meet the plane <i>KL</i> at the point <i>O.</i>  Join <i>EO</i> and <i>FO.</i>
+
+<div class="just"><a href="propXI16.html">XI.16</a></div>
+<p> Now, since the two parallel planes <i>KL</i> and <i>MN</i> are cut by the plane <i>EBDO,</i> therefore their intersections <i>EO</i> and <i>BD</i> are parallel.  For the same reason, since the two parallel planes <i>GH</i> and <i>KL</i> are cut by the plane <i>AOFC,</i> their intersections <i>AC</i> and <i>OF</i> are parallel.
+
+<div class="just"><a href="../bookVI/propVI2.html">VI.2</a></div>
+<p>And, since the straight line <i>EO</i> is parallel to <i>BC,</i> one of the sides of the triangle <i>ABD,</i> therefore  proportionally <i>AE</i> is to <i>EB</i> as <i>AO</i> is to <i>OD.</i>  Again, since the straight line <i>FO</i> is parallel to <i>CA,</i> one of the sides of the triangle <i>ADC,</i> therefore proportionally <i>AO</i> is to <i>OD</i> as <i>CF</i> is to <i>FD.</i>
+
+<div class="just"><a href="../bookV/propV11.html">V.11</a></div>
+<p>But it was prove that <i>AO</i> is to <i>OD</i> as <i>AE</i> is to <i>EB,</i> therefore <i>AE</i> is to <i>EB</i> as <i>CF</i> is to <i>FD.</i>
+
+<p>Therefore, <i>if two straight lines are cut by parallel planes, then they are cut in the same ratios.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is used in the proof of proposition <a href=../bookXII/propXII4.html>XII.4</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

@@ -1,0 +1,79 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 14</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">
+To circumscribe a circle about a given equilateral and equiangular pentagon.</div>
+
+<p>Let <i>ABCDE</i> be the given pentagon, which is equilateral and equiangular.
+
+<p>It is required to circumscribe a circle about the pentagon <i>ABCDE.</i>
+
+<div class="just"><a href="../bookI/propI9.html">I.9</a></div>
+<p>Bisect the angles <i>BCD</i> and <i>CDE</i> by the straight lines <i>CF</i> and <i>DF</i> respectively.  Join the straight lines <i>FB, FA,</i> and <i>FE</i> from the point <i>F</i> at which the straight lines meet to the points <i>B, A,</i> and <i>E.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=250>
+<img src="propIV14.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.14">
+<param name=e[1] value="C;point;free;70,190">
+<param name=e[2] value="D;point;free;170,190">
+<param name=e[3] value="CDEAB;polygon;regularPolygon;C,D,5;0;0;black;random">
+<param name=e[4] value="E;point;vertex;CDEAB,3">
+<param name=e[5] value="A;point;vertex;CDEAB,4">
+<param name=e[6] value="B;point;vertex;CDEAB,5">
+<param name=e[7] value="circ;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[8] value="F;point;center;circ;;black;green">
+<param name=pivot value=F>
+<param name=e[9] value="AF;line;connect;A,F">
+<param name=e[10] value="BF;line;connect;B,F">
+<param name=e[11] value="CF;line;connect;C,F">
+<param name=e[12] value="DF;line;connect;D,F">
+<param name=e[13] value="EF;line;connect;E,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV14.gif" hspace=10 alt="IV14">';
+</script>
+</div>
+
+<div class="just">As in <a href="propIV13.html">IV.13</a></div>
+<p>Then in manner similar to the preceding it can be proved that the angles <i>CBA, BAE,</i> and <i>AED</i> are also bisected by the straight lines <i>FB, FA,</i> and <i>FE</i> respectively.
+
+<div class="just"><a href="../bookI/propI6.html">I.6</a></div>
+<p>Now, since the angle <i>BCD</i> equals the angle <i>CDE,</i> and the angle <i>FCD</i> is half of the angle <i>BCD,</i> and the angle <i>CDF</i> half of the angle <i>CDE,</i> therefore the angle <i>FCD</i> also equals the angle <i>CDF,</i> so that the side <i>FC</i> also equals the side <i>FD.</i>
+
+<p>Similarly it can be proved that each of the straight lines <i>FB, FA,</i> and <i>FE</i> also equals each of the straight lines <i>FC</i> and <i>FD.</i>  Therefore the five straight lines <i>FA, FB, FC,</i>  <i>FD,</i> and <i>FE</i> equal one another.
+
+<p>Therefore the circle described with center <i>F</i> and radius one of the straight lines <i>FA, FB, FC, FD,</i> or <i>FE</i> also passes through the remaining points, and is circumscribed.
+
+<p>Let it be circumscribed, and let it be <i>ABCDE.</i>
+
+<p>Therefore a circle has been circumscribed about the given equilateral and equiangular pentagon.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+The method given here to circumscribe a circle about any regular <i>n</i>-gon. Simply bisect two of the angles of the n-gon to find the center of the circle, then choose one of the lines from it to a vertex as the radius.
+
+<p>This construction is used in propositions <a href=../bookXIII/propXIII8.html>XIII.8</a> and <a href=../bookXIII/propXIII18.html>XIII.18</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

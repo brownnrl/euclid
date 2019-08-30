@@ -1,0 +1,86 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 10</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">If a number is parts of a number, and another is the same parts of another, then alternately, whatever part of parts the first is of the third, the same part, or the same parts, the second is of the fourth.</div>
+
+<p>Let the number <i>AB</i> be parts of the number <i>C,</i> and another number <i>DE</i> be the same parts of another number <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=150 height=270 >
+<img src=propVII10.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.10">
+<param name=align value=right>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,30">
+<param name=e[4] value="C0;point;free;60,-1000;0;0">
+<param name=e[5] value="C5;point;free;60,1000;0;0">
+<param name=e[6] value="C1;point;lineSlider;C0,C5,60,30;0">
+<param name=e[7] value="D0;point;free;90,-1000;0;0">
+<param name=e[8] value="D3;point;free;90,1000;0;0">
+<param name=e[9] value="D;point;lineSlider;D0,D3,90,30">
+<param name=e[10] value="F0;point;free;120,-1000;0;0">
+<param name=e[11] value="F5;point;free;120,1000;0;0">
+<param name=e[12] value="F1;point;lineSlider;F0,F5,120,30;0">
+<param name=e[13] value="B;point;lineSlider;A0,A3,30,150">
+<param name=e[14] value="AB;line;connect;A,B">
+<param name=e[15] value="G;point;midpoint;AB">
+<param name=e[16] value="C2;point;cutoff;C1,C5,A,G;0;0">
+<param name=e[17] value="C3;point;cutoff;C2,C5,A,G;0;0">
+<param name=e[18] value="C4;point;cutoff;C3,C5,A,G;0">
+<param name=e[19] value="C;line;connect;C1,C4;black">
+<param name=e[20] value="E;point;lineSlider;D0,D3,30,170">
+<param name=e[21] value="DE;line;connect;D,E">
+<param name=e[22] value="H;point;midpoint;DE">
+<param name=e[23] value="F2;point;cutoff;F1,F5,D,H;0;0">
+<param name=e[24] value="F3;point;cutoff;F2,F5,D,H;0;0">
+<param name=e[25] value="F4;point;cutoff;F3,F5,D,H;0">
+<param name=e[26] value="F;line;connect;F1,F4;black">
+</applet></div>
+
+<p>I say that, alternately, <i>C</i> is the same parts or part of <i>F</i> that <i>AB</i> is of <i>DE.</i>
+
+<p>Since <i>DE</i> is the same parts of <i>F</i> as <i>AB</i> is of <i>C,</i> therefore <i>F</i> is the same parts of <i>DE</i> as <i>C</i> is of <i>AB.</i>
+
+<p>Divide <i>AB</i> into the parts of <i>C,</i> namely <i>AG</i> and <i>GB,</i> and divide <i>DE</i> into the parts of <i>F,</i> namely <i>DH</i> and <i>HE.</i> Then the multitude of <i>AG</i> and <i>GB</i> equals the multitude of <i>DH</i> and <i>HE.</i>
+
+<div class="just"><a href=propVII9.html>VII.9</a></div>
+<p>Now since <i>DH</i> is the same part of <i>F</i> as <i>AG</i> is of <i>C,</i> therefore, alternately, <i>C</i> is the same part or the same parts of <i>F</i> as  <i>AG</i> is of <i>DH.</i>
+
+<div class="just"><a href=propVII9.html>VII.9</a>,
+<a href=propVII5.html>VII.5</a>
+<br><a href=propVII6.html>VII.6</a></div>
+<p>For the same reason, <i>C</i> is the same part or the same parts of <i>F</i> as <i>GB</i> is of <i>HE,</i> so that, in addition, <i>C</i> is the same part or the same parts of <i>F</i> as <i>AB</i> is of <i>DE.</i>
+
+<p>Therefore, <i>if a number is parts of a number, and another is the same parts of another, then alternately, whatever part of parts the first is of the third, the same part, or the same parts, the second is of the fourth.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+In this proposition, Euclid shows that if <i>a</i>&nbsp;=&nbsp;(<i>m/n</i>)<i>b,</i> and <i>d</i>&nbsp;=&nbsp;(<i>m/n</i>)<i>e,</i> and if <i>a</i>&nbsp;=&nbsp;(<i>p/q</i>)<i>d,</i>
+then <i>b</i>&nbsp;=&nbsp;(<i>p/q</i>)<i>e.</i>  
+
+<p>The sample value taken for <i>m/n</i> in the proof is 2/3.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in <a href=propVII13.html>VII.13</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

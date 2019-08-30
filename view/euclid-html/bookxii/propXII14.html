@@ -1,0 +1,101 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 14</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">
+Cones and cylinders on equal bases are to one another as their heights.
+</div>
+
+<p>Let <i>EB</i> and <i>FD</i> be cylinders on equal bases, the circles <i>AB</i> and <i>CD.</i>
+
+<p>I say that the cylinder <i>EB</i> is to the cylinder <i>FD</i> as the axis <i>GH</i> is to the axis <i>KL.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=310 height=300 >
+<img src="propXII14.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.14">
+<param name=e[1] value="G0;point;fixed;85,100,0;0;0">
+<param name=e[2] value="Gy;point;fixed;85,-1000,400;0;0">
+<param name=e[3] value="Gx;point;fixed;1000,100,0;0;0">
+<param name=e[4] value="G;point;lineSlider;G0,Gy,0,140,0">
+<param name=e[5] value="H;point;lineSlider;G0,Gy,0,280,0">
+<param name=e[6] value="E';point;parallelogram;G,G0,Gx;0;0">
+<param name=e[7] value="E;point;lineSlider;G,E',35,0,0">
+<param name=e[8] value="A;point;parallelogram;E,G,H">
+<param name=e[9] value="B;point;extend;A,H,A,H">
+<param name=e[10] value="Gplane;plane;perpendicular;G,Gy;0;0;0;0">
+<param name=e[11] value="Hplane;plane;perpendicular;H,Gy;0;0;0;0">
+<param name=e[12] value="Gcirc;circle;radius;G,E,Gplane;0;0;black;300,40,100">
+<param name=e[13] value="EAB;polygon;parallelogram;E,A,B;0;0;0;300,40,100">
+<param name=e[14] value="Hcirc;circle;radius;H,A,Hplane;0;0;black;300,80,100">
+<param name=e[15] value="ABG;polygon;triangle;A,B,G;0;0;0;300,80,100">
+<param name=e[16] value="AE;line;connect;A,E">
+<param name=e[17] value="AG;line;connect;A,G">
+<param name=e[18] value="GH;line;connect;G,H">
+<param name=e[19] value="GB;line;connect;G,B">
+<param name=e[20] value="BB';line;parallel;B,H,G">
+
+<param name=e[21] value="L;point;lineSlider;E',G,220,0,0">
+<param name=e[22] value="C;point;cutoff;L,G,G,E">
+<param name=e[23] value="D;point;extend;C,L,C,L">
+<param name=e[24] value="L';point;parallelogram;L,G,Gy;0;0">
+<param name=e[25] value="K;point;lineSlider;L,L',0,40,0">
+<param name=e[26] value="F;point;parallelogram;K,L,C">
+<param name=e[27] value="FC;line;connect;F,C">
+<param name=e[28] value="CK;line;connect;C,K">
+<param name=e[29] value="KL;line;connect;K,L">
+<param name=e[30] value="KD;line;connect;K,D">
+<param name=e[31] value="DD';line;parallel;D,L,K">
+<param name=e[32] value="Kplane;plane;perpendicular;K,L;0;0;0;0">
+<param name=e[33] value="Kcirc;circle;radius;K,F,Kplane;0;0;black;60,50,90">
+<param name=e[34] value="FCD;polygon;parallelogram;F,C,D;0;0;0;60,50,90">
+<param name=e[35] value="Lcirc;circle;radius;L,C,Gplane;0;0;black;70,90,90">
+<param name=e[36] value="CDK;polygon;triangle;C,D,K;0;0;0;70,90,90">
+
+<param name=e[37] value="N;point;extend;K,L,G,H">
+<param name=e[38] value="M;point;parallelogram;N,L,D">
+<param name=e[39] value="Ncirc;circle;radius;N,M,Hplane;0;0;black;0">
+<param name=e[40] value="LN;line;connect;L,N">
+<param name=e[41] value="DM;line;connect;D,M">
+<param name=e[42] value="CC';line;extend;F,C,L,N">
+</applet></div>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a></div>
+<p>Produce the axis <i>KL</i> to the point <i>N,</i> make <i>LN</i> equal to the axis <i>GH,</i> and construct the cylinder <i>CM</i> about <i>LN</i> as the axis. 
+
+<div class="just"><a href="propXII11.html">XII.11</a></div>
+<p>Then, since the cylinders <i>EB</i> and <i>CM</i> are of the same height, therefore they are to one another as their bases.
+
+<p>But the bases equal one another, therefore the cylinders <i>EB</i> and <i>CM</i> are also equal.
+
+<div class="just"><a href="propXII13.html">XII.13</a></div>
+<p>And, since the cylinder <i>FM</i> has been cut by the plane <i>CD</i> parallel to its opposite planes, therefore the cylinder <i>CM</i> is to the cylinder <i>FD</i> as the axis <i>LN</i> is to the axis <i>KL.</i>
+
+<p>But the cylinder <i>CM</i> equals the cylinder <i>EB,</i> and the axis <i>LN</i> equals the axis <i>GH,</i> therefore the cylinder <i>EB</i> is to the cylinder <i>FD</i> as the axis <i>GH</i> is to the axis <i>KL.</i>
+
+<div class="just"><a href="propXII10.html">XII.10</a></div>
+<p>But the cylinder <i>EB</i> is to the cylinder <i>FD</i> as the cone <i>ABG</i> is to the cone <i>CDK.</i>  Therefore the axis <i>GH</i> is to the axis <i>KL</i> as the cone <i>ABG</i> is to the cone <i>CDK</i> and as the cylinder <i>EB</i> is to the cylinder <i>FD.</i> 
+
+<p>Therefore, <i>cones and cylinders on equal bases are to one another as their heights.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Back in proposition <a href=propXII11.html>XII.11</a>, cones and cylinders were shown to be proportional to their bases, and this proposition shows that they are proportional to their heights.  The next proposition relates the volume to the base and height in a different way by fixing the volume so that the base and height are reciprocally proportional.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

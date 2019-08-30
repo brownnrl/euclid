@@ -1,0 +1,116 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 4</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 4</h1>
+
+<div class="statement">To find the greatest common measure of three given commensurable magnitudes.</div>
+
+<p>Let <i>A</i>, <i>B</i>, and <i>C</i> be the three given commensurable magnitudes.
+
+<p>It is required to find the greatest common measure of <i>A</i>, <i>B</i>, and <i>C</i>.
+
+<div class="just"><a href=propX3.html>X.3</a></div>
+<p>Take the greatest common measure <i>D</i> of the two magnitudes <i>A</i> and <i>B</i>.
+
+<p>Either <i>D</i> measures <i>C</i>, or it does not measure it.
+
+<p>First, let it measure it.
+
+<p>Since then <i>D</i> measures <i>C</i>, while it also measures <i>A</i> and <i>B</i>, therefore <i>D</i> is a common measure of <i>A</i>, <i>B</i>, and <i>C</i>. And it is manifest that it is also the greatest, for a greater magnitude than the magnitude <i>D</i> does not measure <i>A</i> and <i>B</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=165>
+<img src="propX4.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.4">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="C0;point;free;-1000,100;0;0">
+<param name=e[6] value="C3;point;free;1000,100;0;0">
+<param name=e[7] value="D0;point;free;-1000,135;0;0">
+<param name=e[8] value="D3;point;free;1000,135;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,255,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[13] value="B2;point;lineSlider;B0,B3,180,0;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[16] value="C2;point;lineSlider;C0,C3,120,0;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+<param name=e[18] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[19] value="D2;point;lineSlider;D0,D3,105,0;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+<param name=e[21] value="E1;point;lineSlider;D0,D3,135,0;0">
+<param name=e[22] value="E2;point;lineSlider;D0,D3,150,0;0">
+<param name=e[23] value="E;line;connect;E1,E2;black">
+<param name=e[24] value="F1;point;lineSlider;D0,D3,180,0;0">
+<param name=e[25] value="F2;point;lineSlider;D0,D3,195,0;0">
+<param name=e[26] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<p>Next, let <i>D</i> not measure <i>C</i>.
+
+<p>I say first that <i>C</i> and <i>D</i> are commensurable.
+
+<div class="just"><a href="propX3.html#cor">X.3.Cor.</a></div>
+<p>Since <i>A</i>, <i>B</i>, and <i>C</i> are commensurable, some magnitude  measures them, and this of course measures <i>A</i> and <i>B</i> also, so that it also measures the greatest common measure of <i>A</i> and <i>B</i>, namely <i>D</i>.
+
+<p>But it also measures <i>C</i>, so that the said magnitude measures <i>C</i> and <i>D</i>, therefore <i>C</i> and <i>D</i> are commensurable.
+
+<div class="just"><a href=propX3.html>X.3</a></div>
+<p>Now take their greatest common measure <i>E</i>.
+
+<p>Since <i>E</i> measures <i>D</i>, while <i>D</i> measures <i>A</i> and <i>B</i>, therefore <i>E</i> also measures <i>A</i> and <i>B</i>. But it measures <i>C</i> also, therefore <i>E</i> measures <i>A</i>, <i>B</i>, and <i>C</i>. Therefore <i>E</i> is a common measure of <i>A</i>, <i>B</i>, and <i>C</i>.
+
+<p>I say next that it is also the greatest.
+
+<p>For, if possible, let there be some magnitude <i>F</i> greater than <i>E</i>, and let it measure <i>A</i>, <i>B</i>, and <i>C</i>.
+
+<div class="just"><a href="propX3.html#cor">X.3,Cor.</a></div>
+<p>Now, since <i>F</i> measures <i>A</i>, <i>B</i>, and <i>C</i>, it also measures <i>A</i> and <i>B</i>, and therefore measures the greatest common measure of <i>A</i> and <i>B</i>.
+
+<p>But the greatest common measure of <i>A</i> and <i>B</i> is <i>D</i>, therefore <i>F</i> measures <i>D</i>.
+
+<div class="just"><a href="propX3.html#cor">X.3,Cor.</a></div>
+<p>But it measures <i>C</i> also, therefore <i>F</i> measures <i>C</i> and <i>D</i>. Therefore <i>F</i> also measures the greatest common measure of <i>C</i> and <i>D</i>. But that is <i>E</i>, therefore <i>F</i>  measures <i>E</i>, the greater the less, which is impossible.
+
+<p>Therefore no magnitude greater than the magnitude <i>E</i> measures <i>A</i>, <i>B</i>, and <i>C</i>. Therefore <i>E</i> is the greatest common measure of <i>A</i>, <i>B</i>, and <i>C</i> if <i>D</i> does not measure <i>C</i>, but if it measures it, then <i>D</i> is itself the greatest common measure.
+
+<p>Therefore the greatest common measure of the three given commensurable magnitudes has been found.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+
+<div class="theorem">
+<h1>Corollary.</h1>
+
+<p>From this it is clear that, <i>if a magnitude measures three magnitudes, then it also measures their greatest common measure. The greatest common measure can be found similarly for more magnitudes, and the corollary extended.</i>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This is the same proposition as <a href=../bookVII/propVII3.html>VII.3</a>.
+This proposition and the last explain how to find the common measure of  commensurable magnitudes.  Although not explicitly invoked, they bear on the succeeding propositions which use common measures of commensurable magnitudes.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

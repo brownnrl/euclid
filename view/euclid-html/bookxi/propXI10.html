@@ -1,0 +1,86 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 10</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 10</h1>
+
+<div class="statement">
+If two straight lines meeting one another are parallel to two straight lines meeting one another not in the same plane, then they contain equal angles.</div>
+
+<p>Let the two straight lines <i>AB</i> and <i>BC</i> meeting one another be parallel to the two straight lines <i>DE</i> and <i>EF</i> meeting one another not in the same plane.
+
+<p>I say that the angle <i>ABC</i> equals the angle <i>DEF.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=310 height=300 >
+<img src="propXI10.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.10">
+<param name=buffer value=yes>
+<param name=e[1] value="X;point;free;100000,200">
+<param name=e[2] value="Y;point;free;200,-100000">
+<param name=e[3] value="Z;point;free;50000,-100000">
+<param name=e[4] value="P0;point;free;20,130;0;0,75,100">
+<param name=e[5] value="P1;point;lineSlider;P0,X,200,150;0;30,75,100">
+<param name=e[6] value="P3;point;lineSlider;P0,Z,90,30;0;30,75,100">
+<param name=e[7] value="P2;point;parallelogram;P3,P0,P1;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;P0,P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[9] value="Q0;point;free;60,280;0;0,75,100">
+<param name=e[10] value="Q1;point;parallelogram;P1,P0,Q0;0;0">
+<param name=e[11] value="Q2;point;parallelogram;P2,P0,Q0;0;0">
+<param name=e[12] value="Q3;point;parallelogram;P3,P0,Q0;0;0">
+<param name=e[13] value="Q;polygon;quadrilateral;Q0,Q1,Q2,Q3;0;0;lightGray;brighter">
+<param name=e[14] value="A;point;free;60,100">
+<param name=e[15] value="B;point;free;110,50">
+<param name=e[16] value="C;point;free;180,60">
+<param name=e[17] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[18] value="E;point;free;150,200">
+<param name=e[19] value="D;point;parallelogram;E,B,A">
+<param name=e[20] value="F;point;parallelogram;E,B,C">
+<param name=e[21] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+<param name=e[22] value="AD;line;connect;A,D">
+<param name=e[23] value="BE;line;connect;B,E">
+<param name=e[24] value="CF;line;connect;C,F">
+</applet></div>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a></div>
+<p>Cut <i>BA, BC, ED,</i> and <i>EF</i> off equal to one another, and join <i>AD, CF, BE, AC,</i> and <i>DF.</i>
+
+<div class="just"><a href="../bookI/propI33.html">I.33</a></div>
+<p>Now, since <i>BA</i> equals and is parallel to <i>ED,</i> therefore <i>AD</i> also equals and is parallel to <i>BE.</i>  For the same reason <i>CF</i> also equals and is parallel to <i>BE.</i>
+
+<div class="just"><a href="propXI9.html">XI.9</a></div>
+<p>Therefore each of the straight lines <i>AD</i> and <i>CF</i> equals and is parallel to <i>BE.</i>  But straight lines which are parallel to the same straight line and are not in the same plane with it are parallel to one another, therefore <i>AD</i> is parallel and equal to <i>CF.</i>
+
+<div class="just"><a href="../bookI/propI33.html">I.33</a></div>
+<p>And <i>AC</i> and <i>DF</i> join them, therefore <i>AC</i> also equals and is parallel to <i>DF.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>Now, since the two sides <i>AB</i> and <i>BC</i> equal the two sides <i>DE</i> and <i>EF,</i> and the base <i>AC</i> equals the base <i>DF,</i> therefore the angle <i>ABC</i> equals the angle <i>DEF.</i>
+
+<p>Therefore, <i>if two straight lines meeting one another are parallel to two straight lines meeting one another not in the same plane, then they contain equal angles.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Of course it is necessary to be careful about in which directions the lines head.  If one is changed to head into the opposite direction, then the angles won&rsquo;t be equal but supplementary instead.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proofs of propositions <a href=propXI24.html>XI.24</a> and <a href=../bookXII/propXII3.html>XII.3</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

@@ -1,0 +1,80 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 18</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 18</h1>
+
+<div class="statement">If two numbers multiplied by any number make certain numbers, then the numbers so produced have the same ratio as the multipliers.</div>
+
+<p>Let two numbers <i>A</i> and <i>B</i> multiplied by any number <i>C</i> make <i>D</i> and <i>E.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=175>
+<img src=propVII18.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.18">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="D0;point;free;-1000,110;0;0">
+<param name=e[6] value="D3;point;free;1000,110;0;0">
+<param name=e[7] value="E0;point;free;-1000,145;0;0">
+<param name=e[8] value="E3;point;free;1000,145;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,100,30;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,160,30;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,100,30;0">
+<param name=e[13] value="B2;point;lineSlider;B0,B3,180,30;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[16] value="C2;point;lineSlider;A0,A3,70,30;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+<param name=e[18] value="U1;point;lineSlider;A0,A3,1000,30;0;0">
+<param name=e[19] value="U2;point;lineSlider;A0,A3,1015,30;0;0">
+<param name=e[20] value="D1;point;lineSlider;D0,D3,30,110;0">
+<param name=e[21] value="D2;point;proportion;U1,U2,C1,C2,A1,A2,D1,D3;0">
+<param name=e[22] value="D;line;connect;D1,D2;black">
+<param name=e[23] value="E1;point;lineSlider;E0,E3,30,110;0">
+<param name=e[24] value="E2;point;proportion;U1,U2,C1,C2,B1,B2,E1,E3;0">
+<param name=e[25] value="E;line;connect;E1,E2;black">
+</applet></div>
+
+<p>I say that <i>A</i> is to <i>B</i> as <i>D</i> is to <i>E.</i>
+
+<div class="just"><a href="propVII16.html">VII.16</a></div>
+<p>Since <i>A</i> multiplied by <i>C</i> makes <i>D,</i> therefore <i>C</i> multiplied by <i>A</i> makes <i>D.</i> For the same reason also <i>C</i> multiplied by <i>B</i> makes <i>E.</i>
+
+<div class="just"><a href="propVII17.html">VII.17</a></div>
+<p>Therefore the number <i>C</i> multiplied by the two numbers <i>A</i> and <i>B</i> makes <i>D</i> and <i>E.</i> Therefore <i>A</i> is to <i>B</i> as <i>D</i>is to <i>E.</i>
+
+<p>Therefore, <i>if two numbers multiplied by any number make certain numbers, then the numbers so produced have the same ratio as the multipliers.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Whereas the last proposition stated 
+<p><center><i>b</i> : <i>c</i>&nbsp;=&nbsp;<i>ab</i> : <i>ac,</i></center>
+this one says
+
+<center><i>b</i> : <i>c</i>&nbsp;=&nbsp;<i>ba</i> : <i>ca.</i></center><p>
+The only difference is the order of multiplication, but <a href=propVII16.html>VII.16</a> says multiplication is commutative, so that order is irrelevant.
+
+<p>This proposition is used in the next one and occasionally in Book VIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

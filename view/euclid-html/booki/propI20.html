@@ -1,0 +1,129 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 20</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 20</h1>
+
+<div class="statement">In any triangle the sum of any two sides is greater than the remaining one.</div>
+
+<p>Let <i>ABC</i> be a triangle.
+
+<p> I say that in the triangle <i>ABC</i> the sum of any two sides is greater than the remaining one, that is, the sum of <i>BA</i> and <i>AC</i> is greater than <i>BC,</i> the sum of <i>AB</i> and <i>BC</i> is greater than <i>AC,</i> and the sum of <i>BC</i> and <i>CA</i> is greater than <i>AB.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=220>
+<img src="propI20.gif" alt="java applet or image">
+<param name=title value="I.20">
+<param name=background value="35,19,100">
+<param name=e[1] value="A;point;free;70,130">
+<param name=e[2] value="B;point;free;40,180">
+<param name=e[3] value="C;point;free;180,180">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[5] value="AD;line;extend;B,A,A,C">
+<param name=e[6] value="D;point;last;AD">
+<param name=e[7] value="CD;line;connect;C,D">
+<param name=e[8] value="ACD;polygon;triangle;A,C,D;0;0;0;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI20.gif" hspace=10 vspace=10 alt="I.20">';
+</script>
+</div>
+
+<div class="just"><a href=post2.html>I.Post.2</a>,
+<a href="propI3.html">I.3</a></div>
+<p>Draw <i>BA</i> through to the point <i>D,</i> and make <i>DA</i> equal to <i>CA.</i> 
+
+<div class="just">
+<a href=post1.html>I.Post.1</a></div>
+<p>Join <i>DC.</i>
+
+<div class="just"><a href="propI5.html">I.5</a>,
+<a href=cn.html>C.N.5</a></div>
+<p>Since <i>DA</i> equals <i>AC,</i> therefore the angle <i>ADC</i> also equals the angle <i>ACD.</i> Therefore the angle <i>BCD</i> is greater than the angle <i>ADC.</i>
+
+<div class="just"><a href="propI19.html">I.19</a></div>
+<p>Since <i>DCB</i> is a triangle having the angle <i>BCD</i> greater than the angle <i>BDC,</i> and the side opposite the greater angle is greater, therefore <i>DB</i> is greater than <i>BC.</i> 
+
+<p>But <i>DA</i> equals <i>AC,</i> therefore the sum of <i>BA</i> and <i>AC</i> is greater than <i>BC.</i>
+
+<p>Similarly we can prove that the sum of <i>AB</i> and <i>BC</i> is also greater than <i>CA,</i> and the sum of <i>BC</i> and <i>CA</i> is greater than <i>AB.</i>
+
+<p>Therefore <i>in any triangle the sum of any two sides is greater than the remaining one.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is known as the triangle inequality.  It is part of the statement that the shortest path between two points is a straight line. With this proposition you can show that among all polygonal paths between two points, the shortest one is the one that consists of a single line joining the two points.  There are, of course, many other conceivable paths besides polygonal paths.
+
+<h4>A minimum distance</h4>
+
+This proposition on the triangle inequality, along with <a href="propI15.html">I.15</a> on vertical angles, allows us to solve a problem on minimum distance, described and solved by Heron of Alexandria (ca. 10&ndash;ca. 70).
+
+<table><tr><td>
+Suppose there are two points <i>A</i> and <i>B</i> on the same side of a line <i>CD.</i>  The problem is to find the shortest path which goes first from the point <i>A</i> to some point <i>P</i> on the line <i>CD,</i> then from <i>P</i> to the point <i>B.</i>  We will only consider paths that are made out of straight lines; call such a path a <i>bent line.</i> But that still leaves us the question of which point <i>P</i> to choose on the line <i>CD</i> to minimize the sum of the distances <i>AP</i> plus <i>PB.</i>
+
+<p>The solution is that the shortest path will be the path <i>AEB</i> where angle of incidence, namely, angle <i>AEC,</i> equals the angle of reflection, namely, angle <i>BED.</i>
+
+<p>
+First, we should show how to construct the bent line where the angle of incidence equals the angle of reflection. Draw a perpendicular <i>BF</i> from the point <i>B</i> to the line <i>CD</i> (<a href="propI12.html">I.12</a>), and extend it to <i>B'</i> so that <i>FB'</i>&nbsp;=&nbsp;<i>BF</i> (<a href=post2.html>I.Post.2</a>, <a href="propI3.html">I.3</a>).  Draw <i>AB'</i> and let <i>E</i> be the point where <i>AB'</i> intersects <i>CD.</i> (There will be a point of intersection since <i>A</i> and <i>B'</i> are on opposite sides of <i>CD.</i>)  Draw <i>BE.</i>
+</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=280>
+<img src="propI20a.gif" alt="Minimum distance">
+<param name=title value="Minimum distance">
+<param name=background value="35,19,100">
+<param name=e[1] value="A;point;free;70,30">
+<param name=e[2] value="B;point;free;190,70">
+<param name=e[3] value="C;point;free;50,180">
+<param name=e[4] value="D;point;free;240,150">
+<param name=e[5] value="C1;point;extend;C,D,C,D;0;0">
+<param name=e[6] value="D1;point;extend;D,C,D,C;0;0">
+<param name=e[7] value="CD;line;connect;C1,D1">
+<param name=e[8] value="P;point;lineSlider;CD,75,0">
+<param name=e[9] value="AP;line;connect;A,P">
+<param name=e[10] value="PB;line;connect;P,B">
+<param name=e[11] value="F;point;foot;B,CD">
+<param name=e[12] value="B';point;extend;B,F,B,F">
+<param name=e[13] value="AB';line;connect;A,B'">
+<param name=e[14] value="E;point;intersection;AB',CD">
+<param name=e[15] value="EB;line;connect;E,B">
+<param name=e[16] value="PB';line;connect;P,B'">
+<param name=e[17] value="BB';line;connect;B,B'">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI20a.gif" hspace=10 vspace=10 alt="Minimum distance">';
+</script>
+</td></tr>
+</table>
+
+<p>Now, triangles <i>BFE</i> and <i>B'FE</i> are congruent since they have two sides and the included angle equal (<a href="propI4.html">I.4</a>), the included angles being right angles.  Therefore, angles <i>BFE</i> and <i>BF'E</i> are equal.  The vertical angle <i>AEC</i> across from angle <i>B'ED</i> also equals these angles (<a href="propI15.html">I.15</a>).  Thus, the angle of incidence <i>AEC</i> equals the angle of reflection <i>BED.</i>
+
+<p>We still have to show that the distance <i>AE</i>&nbsp;+&nbsp;<i>EB</i> is less than any distance <i>AP</i>&nbsp;+&nbsp;<i>EP</i> for any point <i>P</i> other than <i>E</i> that lies on the line <i>CD.</i>  Let <i>P</i> be such a point and draw lines <i>AP, BP,</i> and <i>B'P.</i>  Then by proposition I.20, above, <i>AP</i>&nbsp;+&nbsp;<i>EP</i> is less than <i>AB'.</i>  But <i>AB'</i>&nbsp;=&nbsp;<i>AE</i>&nbsp;+&nbsp;<i>EB',</i> and <i>EB'</i>&nbsp;=&nbsp;<i>EB,</i>
+therefore <i>AP</i>&nbsp;+&nbsp;<i>EP</i> is less than <i>AE</i>&nbsp;+&nbsp;<i>EB.</i>
+
+<p>Thus, the shortest bent line between two points on the same side of a line that meets that line is the one where the angle of incidence equals the angle of reflection.
+<p align=right><font size=-1>Q.E.D.</font></p>
+
+<h4>Use of Proposition 20</h4>
+
+This proposition is used in the next two propositions, several in Book III, and <a href=../bookXI/propXI20.html>XI.20</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002, 2013");
+</script>
+</BODY></HTML>

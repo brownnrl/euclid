@@ -1,0 +1,98 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 48</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 48</h1>
+
+<div class="statement">To find the first binomial line.</div>
+
+<div class="just"><a href=propX28.html#lemma1>X.28,Lemma1</a></div>
+<p>Set out two numbers <i>AC</i> and <i>CB</i> such that the sum of them <i>AB</i> has to <i>BC</i> the ratio which a square number has to a square number, but does not have to <i>CA</i> the ratio which a square number has to a square number.
+
+<p>Set out any rational straight line <i>D</i>, and let <i>EF</i> be commensurable in length with <i>D</i>. Therefore <i>EF</i> is also rational.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=130>
+<img src="propX48.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.48">
+<param name=align value=above>
+<param name=e[1] value="D0;point;free;-1000,30;0;0">
+<param name=e[2] value="D3;point;free;1000,30;0;0">
+<param name=e[3] value="E0;point;free;-1000,65;0;0">
+<param name=e[4] value="E3;point;free;1000,65;0;0">
+<param name=e[5] value="A0;point;free;-1000,100;0;0">
+<param name=e[6] value="A3;point;free;1000,100;0;0">
+
+<param name=e[7] value="A;point;lineSlider;A0,A3,100,0">
+<param name=e[8] value="B;point;lineSlider;A0,A3,221,0">
+<param name=e[9] value="AB;line;connect;A,B;0;0;blue">
+<param name=e[10] value="C;point;lineSlider;A0,A3,185,0">
+<param name=e[11] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[12] value="D2;point;lineSlider;D0,D3,100,0;0">
+<param name=e[13] value="D;line;connect;D1,D2;black">
+<param name=e[14] value="E;point;lineSlider;E0,E3,30,0">
+<param name=e[15] value="F;point;lineSlider;E0,E3,110,0">
+<param name=e[16] value="G';point;proportion;B,A,A,C,E,F,F,E3;0;0">
+<param name=e[17] value="G;point;meanProportional;E,F,F,G',F,G'">
+<param name=e[18] value="EG;line;connect;E,G">
+
+<param name=e[19] value="M;point;midpoint;E,F;0;0">
+<param name=e[20] value="EFcirc;circle;radius;M,E;0;0;0;0">
+<param name=e[21] value="FGcirc;circle;radius;F,G;0;0;0;0">
+<param name=e[22] value="bich;line;bichord;EFcirc,FGcirc;0;0;0">
+<param name=e[23] value="H';point;first;bich;0;0">
+<param name=e[24] value="H1;point;lineSlider;D0,D3,150,0;0">
+<param name=e[25] value="H2;point;extend;D1,H1,E,H';0">
+<param name=e[26] value="H;line;connect;H1,H2;black">
+</applet></div>
+
+<div class="just"><a href=propX6.html#cor>X.6,Cor.</a></div>
+<p>Let it be contrived that the number <i>BA</i> is to <i>AC</i> as the square on <i>EF</i> is to the square on <i>FG</i>.
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>But <i>AB</i> has to <i>AC</i> the ratio which a number has to a number, therefore the square on <i>EF</i> also has to the square on <i>FG</i> the ratio which a number has to a number, so that the square on <i>EF</i> is commensurable with the square on <i>FG</i>.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>And <i>EF</i> is rational, therefore <i>FG</i> is also rational. And, since <i>BA</i> does not have to <i>AC</i> the ratio which a square number has to a square number, neither, therefore, has the square on <i>EF</i> to the square on <i>FG</i> the ratio which a square number has to a square number.  Therefore <i>EF</i> is incommensurable in length with <i>FG</i>.
+
+<div class="just"><a href=propX36.html>X.36</a></div>
+<p>Therefore <i>EF</i> and <i>FG</i> are rational straight lines commensurable in square only. Therefore <i>EG</i> is binomial.
+
+<p>I say that it is also a first binomial straight line.
+
+<p>Since the number <i>BA</i> is to <i>AC</i> as the square on <i>EF</i> is to the square on <i>FG</i>, while <i>BA</i> is greater than <i>AC</i>, therefore the square on <i>EF</i> is also greater than the square on <i>FG</i>.
+
+<p>Let then the sum of the squares on <i>FG</i> and <i>H</i> equal the square on <i>EF</i>.
+
+<div class="just"><a href=../bookV/propV19.html#cor>V.19,Cor.</a></div>
+<p>Now since <i>BA</i> is to <i>AC</i> as the square on <i>EF</i> is to the square on <i>FG</i>, therefore, in conversion, <i>AB</i> is to <i>BC</i> as the square on <i>EF</i> is to the square on <i>H</i>.
+
+<p>But <i>AB</i> has to <i>BC</i> the ratio which a square number has to a square number, therefore the square on <i>EF</i> also has to the square on <i>H</i> the ratio which a square number has to a square number.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>Therefore <i>EF</i> is commensurable in length with <i>H</i>.  Therefore the square on <i>EF</i> is greater than the square on <i>FG</i> by the square on a straight line commensurable with <i>EF</i>.
+
+<p>And <i>EF</i> and <i>FG</i> are rational, and <i>EF</i> is commensurable in length with <i>D</i>.
+
+<p>Therefore <i>EF</i> is a first binomial straight line.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

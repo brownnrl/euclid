@@ -1,0 +1,149 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 16</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 16</h1>
+
+<div class="statement">In any triangle, if one of the sides is produced, then the exterior angle is greater than either of the interior and opposite angles.</div>
+
+<p>Let <i>ABC</i> be a triangle, and let one side of it <i>BC</i> be produced to <i>D.</i>
+
+<p>I say that the exterior angle <i>ACD</i> is greater than either of the interior and opposite angles <i>CBA</i> and <i>BAC.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=260>
+<img src="propI16.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.16">
+<param name=e[1] value="A;point;free;80,30">
+<param name=e[2] value="B;point;free;30,180">
+<param name=e[3] value="C;point;free;140,180">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[5] value="D;point;lineSlider;B,C,220,180">
+<param name=e[6] value="CD;line;connect;C,D">
+<param name=e[7] value="E;point;midpoint;A,C">
+<param name=e[8] value="F;point;extend;B,E,B,E">
+<param name=e[9] value="BF;line;connect;B,F">
+<param name=e[10] value="FC;line;connect;F,C">
+<param name=e[11] value="G;point;lineSlider;A,C,170,220">
+<param name=e[12] value="CG;line;connect;C,G">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI16.gif" hspace=10 vspace=10 alt="I.16">';
+</script>
+</div>
+
+<div class="just"><a href="propI10.html">I.10</a>,
+<a href=post1.html>I.Post.1</a>
+<br><a href=post2.html>I.Post.2</a></div>
+<p>Bisect <i>AC</i> at <i>E.</i>  Join <i>BE,</i> and
+<br>produce it in a straight line to <i>F.</i>
+
+<div class="just"><a href="propI3.html">I.3</a>,
+<a href=post1.html>I.Post.1</a>
+<br><a href=post2.html>I.Post.2</a></div>
+<p>Make <i>EF</i> equal to <i>BE,</i> join <i>FC,</i>
+<br> and draw <i>AC</i> through to <i>G.</i>
+
+<div class="just"><a href=propI15.html>I.15</a>
+<br><a href=propI4.html>I.4</a></div>
+<p>Since <i>AE</i> equals <i>EC,</i> and <i>BE</i> equals <i>EF,</i> therefore the two sides <i>AE</i> and <i>EB</i> equal the two sides <i>CE</i> and <i>EF</i> respectively, and the angle <i>AEB</i> equals the angle <i>FEC,</i> for they are vertical angles.  Therefore the base <i>AB</i> equals the base <i>FC,</i> the triangle <i>ABE</i> equals the triangle <i>CFE,</i> and the remaining angles equal the remaining angles respectively, namely those opposite the equal sides.  Therefore the angle <i>BAE</i> equals the angle <i>ECF.</i> 
+
+<div class="just"><a href=cn.html>C.N.5</a></div>
+<p>But the angle <i>ECD</i> is greater than the angle <i>ECF,</i> therefore the angle <i>ACD</i> is greater than the angle <i>BAE.</i>
+
+<div class="just"><a href="propI15.html">I.15</a></div>
+<p>Similarly, if <i>BC</i> is bisected, then the angle <i>BCG,</i> that is, the angle <i>ACD,</i> can also be proved to be greater than the angle <i>ABC.</i>
+
+<p>Therefore <i>in any triangle, if one of the sides is produced, then the exterior angle is greater than either of the interior and opposite angles.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+In the later proposition <a href=propI32.html>I.32</a>, after he invokes the parallel postulate <a href=post5.html>I.Post.5</a>, Euclid shows the stronger result that the exterior angle of a triangle equals the sum of the interior, opposite angles.
+
+<a name=elliptic><h4>Elliptic geometry</h4></a>
+
+There are geometries besides Euclidean geometry. Two of the more important geometries  are elliptic geometry and hyperbolic geometry, which were developed in the nineteenth century.  The first 15 propositions in Book I hold in elliptic geometry, but not this one.  (For more on hyperbolic geometry, see the <a href=propI29.html#hyperbolic>note</a> after Proposition I.29.)
+
+<p>Plane elliptic geometry is closely related to spherical geometry, but it differs in that antipodal points on the sphere are identified.  Thus, a &ldquo;point&rdquo; in an elliptic plane is a pair of antipodal points on the sphere.  A &ldquo;straight line&rdquo; in an elliptic plane is an arc of great circle on the sphere.  When a &ldquo;straight line&rdquo; is extended, its ends eventually meet so that, topologically, it becomes a circle.  This is very different from Euclidean geometry since here the ends of a line never meet when extended.
+
+<table cellspacing=5>
+<tr><td>
+<p>The illustration on the right shows the stereographic projection of one hemisphere.  Since only one hemisphere is displayed, each &ldquo;point&rdquo; is represented by one point except those &ldquo;points&rdquo; such as <i>D, E,</i> and <i>F</i> on the blue bounding great circle which appear twice.
+
+<p>A &ldquo;triangle&rdquo;  in elliptic geometry, such as <i>ABC,</i> is a spherical triangle (or, more precisely, a pair of antipodal spherical triangles).  The internal angle sum of a spherical triangle is always greater than 180&deg;, but less than 540&deg;, whereas in Euclidean geometry, the internal angle sum of a triangle is 180&deg; as shown in Proposition <a href=propI32.html>I.32</a>.
+
+<p>Elliptic geometry satisfies some of the postulates of Euclidean geometry, but not all of them under all interpretations.  Usually, <a href=post1.html>I.Post.1</a>, to draw a straight line from any point to any point, is interpreted to include the uniqueness of that line.  But in elliptic geometry a completed &ldquo;straight line&rdquo; is topologically a circle so that any pair of points on it divide it into two arcs.  Therefore, in elliptic geometry exactly two &ldquo;straight lines&rdquo; join any two given &ldquo;points.&rdquo;
+</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=300>
+<img src="propI16a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Elliptic plane">
+<param name=e[1] value="O;point;free;150,150;0;0">
+<param name=e[2] value="P;point;free;260,150;0;0">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;blue;random">
+<param name=e[4] value="A;point;free;70,140">
+<param name=e[5] value="B;point;free;150,170">
+<param name=e[6] value="C;point;free;125,90">
+<param name=e[7] value="A#;point;proportion;O,A,O,P,O,P,O,A;0;0">
+<param name=e[8] value="A*;point;extend;A,O,O,A#;0;0">
+<param name=e[9] value="C#;point;proportion;O,C,O,P,O,P,O,C;0;0">
+<param name=e[10] value="C*;point;extend;C,O,O,C#;0;0">
+
+<param name=e[11] value="ABcirc;circle;circumcircle;A,B,A*;0;0;0;0">
+<param name=e[12] value="Dchord;line;bichord;disk,ABcirc;0;0;0">
+<param name=e[13] value="D;point;first;Dchord">
+<param name=e[14] value="D ;point;last;Dchord">
+<param name=e[15] value="DD;sector;arc;D ,B,D;0;0;black;0">
+
+<param name=e[16] value="CBcirc;circle;circumcircle;C,B,C*;0;0;0;0">
+<param name=e[17] value="Echord;line;bichord;disk,CBcirc;0;0;0">
+<param name=e[18] value="E;point;last;Echord">
+<param name=e[19] value="E ;point;first;Echord">
+<param name=e[20] value="EE;sector;arc;E,B,E ;0;0;black;0">
+
+<param name=e[21] value="ACcirc;circle;circumcircle;A,C,A*;0;0;0;0">
+<param name=e[22] value="Fchord;line;bichord;disk,ACcirc;0;0;0">
+<param name=e[23] value="F;point;last;Fchord">
+<param name=e[24] value="F ;point;first;Fchord">
+<param name=e[25] value="FF;sector;arc;F,C,F ;0;0;black;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI16a.gif" hspace=10 vspace=10 alt="I.16">';
+</script>
+</table>
+
+<p>Also, <a href=post2.html>I.Post.2</a>, to produce a finite straight line continuously in a straight line, is sometimes interpreted to include the condition that its ends don&rsquo;t meet when extended.  Under that interpretation, elliptic geometry fails Postulate 2.
+
+<p>Elliptic geometry fails <a href=post5.html>I.Post.5</a>, the parallel postulate, as well, since any two &ldquo;straight lines&rdquo; in an elliptic plane meet.  That is, any two great circles on the sphere meet at a pair of antipodal points.
+
+<p>Finally, a completed &ldquo;straight line&rdquo; in the elliptic plane does not divide the plane into two parts as infinite straight lines do in the Euclidean plane.  A completed &ldquo;straight line&rdquo; in the elliptic plane is a great circle on the sphere.  Any two &ldquo;points&rdquo; not on that &ldquo;straight line&rdquo; include two points in the same hemisphere, and they can be joined by an arc that doesn&rsquo;t meet the great circle.  Therefore two &ldquo;points&rdquo; lie on the same side of the completed &ldquo;straight line.&rdquo;
+
+<p>The proof of this particular proposition fails for elliptic geometry, and the statement of the proposition is false for elliptic geometry. In particular, the statement &ldquo;the angle <i>ECD</i> is greater than the angle <i>ECF</i>&rdquo; is not true of all triangles in elliptic geometry.  The line <i>CF</i> need not be contained in the angle <i>ACD.</i>  All the previous propositions do hold in elliptic geometry and some of the later propositions, too, but some need different proofs.
+
+<h4>Use of Proposition 16</h4>
+
+This proposition is used in the proofs of the next two propositions, a few others in this book, and a couple in Book III.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

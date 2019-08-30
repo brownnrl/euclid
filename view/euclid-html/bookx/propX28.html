@@ -1,0 +1,91 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 28</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 28</h1>
+
+<div class="statement">To find medial straight lines commensurable in square only which contain a medial rectangle.</div>
+
+<div class="just"><a href=../bookVI/propVI13.html>VI.13</a>
+<br><a href=../bookVI/propVI12.html>VI.12</a></div>
+<p>Set out the rational straight lines <i>A</i>, <i>B</i>, and <i>C</i> commensurable in square only.  Take a mean proportional <i>D</i> between <i>A</i> and <i>B</i>.  Let it be contrived that <i>B</i> is to <i>C</i> as <i>D</i> is to <i>E</i>.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=130>
+<img src="propX28.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.28">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="C0;point;free;-1000,100;0;0">
+<param name=e[6] value="C3;point;free;1000,100;0;0">
+
+<param name=e[7] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,120,0;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[11] value="B2;point;lineSlider;B0,B3,160,0;0">
+<param name=e[12] value="B;line;connect;B1,B2;black">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[14] value="C2;point;lineSlider;C0,C3,220,0;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+<param name=e[16] value="D1;point;lineSlider;A0,A3,180,0;0">
+<param name=e[17] value="D2;point;meanProportional;A1,A2,B1,B2,D1,A3;0">
+<param name=e[18] value="D;line;connect;D1,D2;black">
+<param name=e[19] value="E1;point;lineSlider;B0,B3,180,0;0">
+<param name=e[20] value="E2;point;proportion;B1,B2,C1,C2,D1,D2,E1,B3;0">
+<param name=e[21] value="E;line;connect;E1,E2;black">
+
+</applet></div>
+
+<div class="just"><a href=../bookVI/propVI17.html>VI.17</a>
+<br><a href=propX21.html>X.21</a></div>
+<p>Since <i>A</i> and <i>B</i> are rational straight lines commensurable in square only, therefore the rectangle <i>A</i> by <i>B</i>, that is, the square on <i>D</i>, is medial.  Therefore <i>D</i> is medial.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>And since <i>B</i> and <i>C</i> are commensurable in square only, and <i>B</i> is to <i>C</i> as <i>D</i> is to <i>E</i>, therefore <i>D</i> and <i>E</i> are also commensurable in square only.
+
+<div class="just"><a href=propX23.html#note>X.23,Note</a></div>
+<p>But <i>D</i> is medial, therefore <i>E</i> is also medial.
+
+<p>Therefore <i>D</i> and <i>E</i> are medial straight lines commensurable in square only.
+
+<p>I say next that they also contain a medial rectangle.
+
+<div class="just"><a href=../bookV/propV16.html>V.16</a></div>
+<p>Since <i>B</i> is to <i>C</i> as <i>D</i> is to <i>E</i>, therefore, alternately, <i>B</i> is to <i>D</i> as <i>C</i> is to <i>E</i>.
+
+<div class="just"><a href=../bookVI/propVI16.html>VI.16</a></div>
+<p>But <i>B</i> is to <i>D</i> as <i>D</i> is to <i>A</i>, therefore <i>D</i> is to <i>A</i> as <i>C</i> is to <i>E</i>.  Therefore the rectangle <i>A</i> by <i>C</i> equals the rectangle <i>D</i> by <i>E</i>.
+
+<div class="just"><a href=propX21.html>X.21</a></div>
+<p>But the rectangle <i>A</i> by <i>C</i> is medial, therefore the rectangle <i>D</i> by <i>E</i> is also medial.
+
+<p>Therefore medial straight lines commensurable in square only have been found which contain a medial rectangle.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>There has been no construction given in Book X for the required lines <i>A</i>, <i>B</i>, and <i>C</i>.  One example would be where their lengths are 1, &radic;2, and &radic; 3.
+
+<p>Set <i>A</i> to have length 1, <i>B</i> length &radic;<i>b</i>, an irrational number where <i>b</i> is rational, and <i>C</i> length &radic;<i>c</i>, an irrational number where <i>c</i> is rational, with <i>b</i>/<i>c</i> and irrational number. Then <i>D</i> has length <i>b</i><sup>1/4</sup> while <i>E</i> has length (&radic;<i>c</i>)/<i>b</i><sup>1/4</sup>.  Then <i>D</i> and <i>E</i> are medial and commensurable in square only, and the <i>b</i><sup>1/4</sup> by (&radic;<i>c</i>)/<i>b</i><sup>1/4</sup> rectangle they contain has area &radic;<i>c</i>, an irrational number.
+
+<p>This proposition is used in <a href=propX75.html>X.75</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,49 @@
+<HEAD><TITLE>Euclid's Elements, Book I, Postulate 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Postulate 1</h1>
+
+<div class="statement">To draw a straight line from any point to any point.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<table cellspacing=5>
+<tr><td>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=70 width=200>
+<img src="post1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Post.1">
+<param name=align value=above>
+<param name=e[1] value="A;point;free;40,40">
+<param name=e[2] value="B;point;free;160,40">
+<param name=e[3] value="AB;line;connect;A,B">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="post1.gif" hspace=10 vspace=10 alt="Post.1">';
+</script>
+</td>
+
+<td>This first postulate says that given any two points such as <i>A</i> and <i>B,</i> there is a line <i>AB</i> which has them as endpoints.  This is one of the constructions that may be done with a straightedge (the other being described in the next postulate).
+</td></tr></table>
+
+<p>Although it doesn&rsquo;t explicitly say so, there is a unique line between the two points.  Since Euclid uses this postulate as if it includes the uniqueness as part of it, he really ought to have stated the uniqueness explicitly.
+
+<p>The last three books of the <i>Elements</i> cover solid geometry, and for those, the two points mentioned in the postulate may be any two points in space.  Proposition <a href=../bookXI/propXI1.html>XI.1</a> claims that if part of a line is contained in a plane, then the whole line is.  In the books on plane geometry, it is implicitly assumed that the line <i>AB</i> joining <i>A</i> to <i>B</i> lies in the plane of discussion. 
+
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

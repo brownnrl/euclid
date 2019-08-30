@@ -1,0 +1,90 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 88</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 88</h1>
+
+<div class="statement">To find the fourth apotome.</div>
+
+<p>Set out a rational straight line <i>A</i>, and let <i>BG</i> be commensurable in length with it. Set out two numbers <i>DF</i> and <i>FE</i> such that the whole <i>DE</i> has to neither of the numbers <i>DE</i> nor <i>EF</i> the ratio which a square number has to a square number.
+
+<div class="just"><a href=propX6.html#cor>X.6,Cor.</a>
+<br><a href=propX6.html>X.6</a></div>
+<p>Let it be contrived that <i>DE</i> is to <i>EF</i> as the square on <i>BG</i> is to the square on <i>GC</i>. Then the square on <i>BG</i> is commensurable with the square on <i>GC</i>.
+
+<p>But the square on <i>BG</i> is rational, therefore the square on <i>GC</i> is also rational. Therefore <i>GC</i> is rational.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=95>
+<img src="propX88.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.88">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,35;0;0">
+<param name=e[2] value="A3;point;free;1000,35;0;0">
+<param name=e[3] value="H0;point;free;-1000,70;0;0">
+<param name=e[4] value="H3;point;free;1000,70;0;0">
+
+<param name=e[5] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[6] value="A2;point;lineSlider;A0,A3,110,0;0">
+<param name=e[7] value="A;line;connect;A1,A2;black">
+<param name=e[8] value="B;point;lineSlider;A0,A3,140,0">
+<param name=e[9] value="G;point;lineSlider;A0,A3,240,0">
+<param name=e[10] value="BG;line;connect;B,G">
+<param name=e[11] value="D;point;lineSlider;H0,H3,230,0">
+<param name=e[12] value="E;point;lineSlider;H0,H3,160,0">
+<param name=e[13] value="F;point;lineSlider;H0,H3,190,0">
+<param name=e[14] value="DE;line;connect;D,E;0;0;blue">
+<param name=e[15] value="C';point;proportion;E,D,E,F,B,G,G,B;0;0">
+<param name=e[16] value="C;point;meanProportional;B,G,G,C',G,B">
+
+<param name=e[17] value="H1;point;lineSlider;H0,H3,30,0;0">
+<param name=e[18] value="M;point;midpoint;B,G;0;0">
+<param name=e[19] value="BGcirc;circle;radius;M,G;0;0;0;0">
+<param name=e[20] value="CGcirc;circle;radius;G,C;0;0;0;0">
+<param name=e[21] value="bich;line;bichord;BGcirc,CGcirc;0;0;0">
+<param name=e[22] value="H2';point;first;bich;0;0">
+<param name=e[23] value="H2;point;cutoff;H1,H3,G,H2';0">
+<param name=e[24] value="H;line;connect;H1,H2;black">
+</applet></div>
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>Now, since <i>DE</i> does not have to <i>EF</i> the ratio which a square number has to a square number, therefore neither has the square on <i>BG</i> to the square on <i>GC</i> the ratio which a square number has to a square number. Therefore <i>BG</i> is incommensurable in length with <i>GC</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>And both are rational, therefore <i>BG</i> and <i>GC</i> are rational straight lines commensurable in square only. Therefore <i>BC</i> is an apotome.
+
+<p>Now let the square on <i>H</i> be that by which the square on <i>BG</i> is greater than the square on <i>GC</i>.
+
+<div class="just"><a href=../bookV/propV19.html#cor>V.19,Cor.</a></div>
+<p>Since <i>DE</i> is to <i>EF</i> as the square on <i>BG</i> is to the square on <i>GC</i>, therefore, in conversion, <i>ED</i> is to <i>DF</i> as the square on <i>GB</i> is to the square on <i>H</i>. 
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>But <i>ED</i> does not have to <i>DF</i> the ratio which a square number has to a square number, therefore neither has the square on <i>GB</i> to the square on <i>H</i> the ratio which a square number has to a square number. Therefore <i>BG</i> is incommensurable in length with <i>H</i>.
+
+<p>And the square on <i>BG</i> is greater than the square on <i>GC</i> by the square on <i>H</i>, therefore the square on <i>BG</i> is greater than the square on <i>GC</i> by the square on a straight line incommensurable with <i>BG</i>.
+
+<p>And the whole <i>BG</i> is commensurable in length with the rational straight line <i>A</i> set out.  Therefore <i>BC</i> is a fourth apotome.
+
+<div class="just"><a href=defX.III.html#4>X.Def.III.4</a></div>
+<p>Therefore the fourth apotome has been found.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

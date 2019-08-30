@@ -1,0 +1,109 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 22</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 22</h1>
+
+<div class="statement">To construct a triangle out of three straight lines which equal three given straight lines: thus it is necessary that the sum of any two of the straight lines should be greater than the remaining one.
+<div class="just"><a href=propI20.html>I.20</a></div>
+</div>
+
+<p>Let the three given straight lines be <i>A, B,</i> and <i>C,</i> and let the sum of any two of these be greater than the remaining one, namely, <i>A</i> plus <i>B</i> greater than <i>C, A</i> plus <i>C</i> greater than <i>B,</i> and  <i>B</i> plus <i>C</i> greater than <i>B.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=310 width=360>
+<img src="propI22.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.22">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,50;0,0">
+<param name=e[2] value="A3;point;free;1000,50;0,0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,230,50;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,320,50;0">
+<param name=e[5] value="A;line;connect;A1,A2;black">
+<param name=e[6] value="B0;point;free;-1000,90;0,0">
+<param name=e[7] value="B0B3;line;parallel;B0,A0,A3;0;0;0">
+<param name=e[8] value="B3;point;last;B0B3;0,0">
+<param name=e[9] value="B1;point;lineSlider;B0,B3,260,100;0">
+<param name=e[10] value="B2;point;lineSlider;B0,B3,320,100;0">
+<param name=e[11] value="B;line;connect;B1,B2;black">
+<param name=e[12] value="C0;point;free;-1000,130;0,0">
+<param name=e[13] value="C0C3;line;parallel;C0,A0,A3;0;0;0">
+<param name=e[14] value="C3;point;last;C0C3;0,0">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,265,100;0">
+<param name=e[16] value="C2;point;lineSlider;C0,C3,320,100;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+
+<param name=e[18] value="D;point;free;50,200">
+<param name=e[19] value="E;point;free;320,200">
+<param name=e[20] value="DE;line;connect;D,E">
+<param name=e[21] value="DF;line;cutoff;DE,A;0;0;0">
+<param name=e[22] value="F;point;last;DF">
+<param name=e[23] value="FG;line;cutoff;F,E,B1,B2;0;0;0">
+<param name=e[24] value="G;point;last;FG">
+<param name=e[25] value="GH;line;cutoff;G,E,C1,C2;0;0;0">
+<param name=e[26] value="H;point;last;GH">
+<param name=e[27] value="DKL;circle;radius;F,D;0;0;black;random">
+<param name=e[28] value="KLH;circle;radius;GH;0;0;black;random">
+<param name=e[29] value="KL;line;bichord;DKL,KLH;0;0;0">
+<param name=e[30] value="K;point;last;KL">
+<param name=e[31] value="L;point;first;KL">
+<param name=e[32] value="FGK;polygon;triangle;F,G,K;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI22.gif" hspace=10 vspace=10 alt="I.22">';
+</script>
+</div>
+
+<p>It is required to construct a triangle out of straight lines equal to <i>A, B,</i> and <i>C.</i>
+
+<div class="just"><a href=post2.html>I.Post.2</a>
+<br><a href=propI3.html>I.3</a></div>
+<p>Set out a straight line <i>DE,</i> terminated at <i>D</i> but of infinite length in the direction of <i>E.</i> Make <i>DF</i> equal to A, FG</i> equal to <i>B,</i> and <i>GH</i> equal to <i>C.</i>
+
+<div class="just"><a href=post3.html>I.Post.3</a>
+<br><a href=post1.html>I.Post.1</a></div>
+<p>Describe the circle <i>DKL</i> with center <i>F</i> and radius <i>FD.</i> Again, describe the circle <i>KLH</i> with center <i>G</i> and radius <i>GH.</i>  Join <i>KF</i> and <i>KG.</i>
+
+<p>I say that the triangle <i>KFG</i> has been constructed out of three straight lines equal to <i>A, B,</i> and <i>C.</i>
+
+<div class="just"><a href=defI15.html>I.Def.16</a>
+<br><a href=cn.html>C.N.1</a></div>
+<p>Since the point <i>F</i> is the center of the circle <i>DKL,</i> therefore <i>FD</i> equals <i>FK.</i>  But <i>FD</i> equals <i>A,</i> therefore <i>KF</i> also equals <i>A.</i>
+
+<div class="just"><a href=defI15.html>I.Def.16</a>
+<br><a href=cn.html>C.N.1</a></div>
+<p>Again, since the point <i>G</i> is the center of the circle <i>LKH,</i> therefore <i>GH</i> equals <i>GK.</i>  But <i>GH</i> equals <i>C,</i> therefore <i>KG</i> also equals <i>C.</i>
+
+<p>And <i>FG</i> also equals <i>B,</i> therefore the three straight lines <i>KF, FG,</i> and GK</i> equal the three straight lines <i>A, B,</i> and C.</i>
+
+<p>Therefore out of the three straight lines <i>KF, FG,</i> and <i>GK,</i> which equal the three given straight lines <i>A, B,</i> and C,</i> the triangle <i>KFG</i> has been constructed.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<font size=-1>(Be sure to change the lengths of <i>B</i>, <i>C</i>, and <i>D</i> in the diagram to see what effect that has. You can drag their ends to change their lengths.)</font size>
+
+<p>The qualifier in the statement of the proposition, &ldquo;thus it is necessary that the sum of any two of the straight lines should be greater than the remaining one,&rdquo; refers to the triangle inequality, Proposition <a href=propI20.html>I.20</a>.  This condition is, indeed, necessary. It is also sufficient, but Euclid failed to show that sufficiency. Perhaps Euclid (or some later commentator) meant this clause to be a postulate.  A full statement of such a postulate might read &ldquo;If the sum of the radii of two circles is greater than the line joining their centers, and if the sum of each radius and the line joining the centers is greater than the other radius, then the two circles intersect.&rdquo;
+
+<p>This construction is actually a generalization of the very first proposition <a href=propI1.html>I.1</a> in which the three lines are all equal.  There too, as was noted, Euclid failed to prove that the two circles intersected.
+
+<h4>Use of Proposition 22</h4>
+
+The construction in this proposition is used for the construction in proposition <a href=propI23.html>I.23</a>.  It is also used in <a href=../bookXI/propXI22.html>XI.22</a>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2010");
+</script>
+</BODY></HTML>

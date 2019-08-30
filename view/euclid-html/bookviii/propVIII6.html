@@ -1,0 +1,108 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 6</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 6</h1>
+
+<div class="statement">If there are as many numbers as we please in continued proportion, and the first does not measure the second, then neither does any other measure any [later] other.</div>
+
+<p>Let there be as many numbers as we please, <i>A, B, C, D,</i> and <i>E,</i> in continued proportion, and let <i>A</i> not measure <i>B.</i>
+
+<p>I say that neither does any other measure any [later] other.
+
+<p>Now it is manifest that <i>A, B, C, D,</i> and <i>E</i> do not measure one another in order, for <i>A</i> does not even measure <i>B.</i>
+
+<p>I say, then, that neither does any other measure any [later] other.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=210 >
+<img src="propVIII6.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.6">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="D0;point;free;-1000,145;0;0">
+<param name=e[8] value="D3;point;free;1000,145;0;0">
+<param name=e[9] value="E0;point;free;-1000,180;0;0">
+<param name=e[10] value="E3;point;free;1000,180;0;0">
+<param name=e[11] value="U0;point;free;1000,0;0;0">
+<param name=e[12] value="U1;point;free;1000,20;0;0">
+<param name=e[13] value="U2;point;free;1000,30;0;0">
+
+<param name=e[14] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[15] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[16] value="A;line;connect;A1,A2;black">
+<param name=e[17] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[18] value="B2;point;lineSlider;B0,B3,110,0;0">
+<param name=e[19] value="B;line;connect;B1,B2;black">
+<param name=e[20] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[21] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[22] value="C;line;connect;C1,C2;black">
+<param name=e[23] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[24] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[25] value="D;line;connect;D1,D2;black">
+<param name=e[26] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[27] value="E2;point;proportion;A1,A2,B1,B2,D1,D2,E1,E3;0">
+<param name=e[28] value="E;line;connect;E1,E2;black">
+
+<param name=e[29] value="F1;point;lineSlider;A0,A3,180,0;0">
+<param name=e[30] value="F2;point;proportion;U0,U2,U1,U2,A1,A2,F1,A3;0">
+<param name=e[31] value="F;line;connect;F1,F2;black">
+<param name=e[32] value="G1;point;lineSlider;B0,B3,180,0;0">
+<param name=e[33] value="G2;point;proportion;U0,U2,U1,U2,B1,B2,G1,B3;0">
+<param name=e[34] value="G;line;connect;G1,G2;black">
+<param name=e[35] value="H1;point;lineSlider;C0,C3,180,0;0">
+<param name=e[36] value="H2;point;proportion;U0,U2,U1,U2,C1,C2,H1,C3;0">
+<param name=e[37] value="H;line;connect;H1,H2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/propVII33.html>VII.33</a></div>
+<p>If possible, let <i>A</i> measure <i>C.</i> And, however many <i>A, B,</i> and <i>C</i> are, take as many numbers <i>F, G,</i> and <i>H,</i> the least of those which have the same ratio with <i>A, B,</i> and <i>C.</i>
+
+<div class="just"><a href=../bookVII/propVII14.html>VII.14</a></div>
+<p>Now, since <i>F, G,</i> and <i>H</i> are in the same ratio with <i>A, B,</i> and <i>C,</i> and the multitude of the numbers <i>A, B,</i> and <i>C</i> equals the multitude of the numbers <i>F, G,</i> and <i>H,</i> therefore, <i>ex aequali A</i> is to <i>C</i> as <i>F</i> is to <i>H.</i>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>And since <i>A</i> is to <i>B</i> as <i>F</i> is to <i>G,</i> while <i>A</i> does not measure <i>B,</i> therefore neither does <i>F</i> measure <i>G.</i> Therefore <i>F</i> is not a unit, for the unit measures any number.
+
+<div class="just"><a href=propVIII3.html>VIII.3</a></div>
+<p>Now <i>F</i> and <i>H</i> are relatively prime.  And <i>F</i> is to <i>H</i> as <i>A</i> is to <i>C,</i> therefore neither does <i>A</i> measure <i>C.</i>
+
+<p>Similarly we can prove that neither does any other measure any other.
+
+<p>Therefore, <i>if there are as many numbers as we please in continued proportion, and the first does not measure the second, then neither does any other measure any other.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+The proposition as stated isn&rsquo;t quite correct.  For example, the numbers 24, 12, 6 and 3 are in continued proportion, and 24 does not divide 12, but each of the others does divide others, for instance, 3 divides 6.  But none of the others divide others <i>later</i> in the sequence.  Thus, the statement of the theorem needs the bracketed word later.
+
+<h4>Outline of the proof</h4>
+
+Consider a sequence of numbers in continued proportion where the first number does not divide the second.  Since any number in that sequence has to the next number in the sequence the same ratio as the first has to the second, therefore no number divides the next.
+
+<p>Suppose that some number in the sequence divides a later number.  We may call that the former number <i>a</i> since it divides the next number in the sequence, and call the number it divides <i>c.</i>  Take the continued proportion <i>a, b,</i> ..., <i>c</i> and, using 
+<a href=../bookVII/propVII33.html>VII.33</a>,  reduce it a continued proportion <i>f, g,</i> ..., <i>h</i> in lowest terms. Since that&rsquo;s in lowest terms, <i>f</i> and <i>h</i> are relatively prime. Since <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>f</i>&nbsp;:&nbsp;<i>g</i>, and <i>a</i> does not divide <i>b,</i> therefore <i>f</i> does not divide <i>g.</i> Since <i>f</i> does not divide <i>g,</i> in particular <i>f</i> does not equal 1, but <i>f</i> and <i>h</i> are relatively prime by <a href="propVIII3.html">VIII.3</a>, therefore <i>f</i> does not divide <i>h.</i>  Finally, since <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>f</i>&nbsp;:&nbsp;<i>h,</i> therefore <i>a</i> does not divide <i>c</i> either.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used as a lemma for the following proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

@@ -1,0 +1,99 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 3</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">
+If an angle of a triangle is bisected by a straight line cutting the base, then the segments of the base have the same ratio as the remaining sides of the triangle; and, if segments of the base have the same ratio as the remaining sides of the triangle, then the straight line joining the vertex to the point of section bisects the angle of the triangle.</div>
+
+<p>Let <i>ABC</i> be a triangle, and let the angle <i>BAC</i> be bisected by the straight line <i>AD.</i>
+
+<p>I say that <i>DB</i> is to <i>DC</i> as <i>AB</i> is to <i>AC.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=290 width=300>
+<img src=propVI3.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.3">
+<param name=e[1] value="A;point;free;160,130">
+<param name=e[2] value="B;point;free;40,250">
+<param name=e[3] value="C;point;free;220,250">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[5] value="AD;line;angleBisector;B,A,C">
+<param name=e[6] value="D;point;last;AD">
+<param name=e[7] value="E';point;parallelogram;A,D,C;0;0">
+<param name=e[8] value="E;point;intersection;B,A,C,E'">
+<param name=e[9] value="AE;line;connect;A,E">
+<param name=e[10] value="CE;line;connect;C,E">
+</applet>
+</div>
+
+<div class="just"><a href="../bookI/propI31.html">I.31</a></div>
+<p>Draw <i>CE</i> through <i>C</i> parallel to <i>DA,</i> and carry <i>AB</i>  through to meet it at <i>E.</i>
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a></div>
+<p>Then, since the straight line <i>AC</i> falls upon the parallels <i>AD</i> and <i>EC,</i> the angle <i>ACE</i> equals the angle <i>CAD.</i>
+
+<p>But the angle <i>CAD</i> equals the angle <i>BAD</i> by hypothesis, therefore the angle <i>BAD</i> also equals the angle <i>ACE.</i>
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a></div>
+<p>Again, since the straight line <i>BAE</i> falls upon the parallels <i>AD</i> and <i>EC,</i> the exterior angle <i>BAD</i> equals the interior angle <i>AEC.</i>
+
+<div class="just"><a href="../bookI/propI6.html">I.6</a></div>
+<p>But the angle <i>ACE</i> was also proved equal to the angle <i>BAD,</i> therefore the angle <i>ACE</i> also equals the angle <i>AEC,</i> so that the side <i>AE</i> also equals the side <i>AC.</i>
+
+<div class="just"><a href="propVI2.html">VI.2</a></div>
+<p>And, since <i>AD</i> is parallel to <i>EC,</i> one of the sides of the triangle <i>BCE,</i> therefore, proportionally <i>DB</i> is to <i>DC</i> as <i>AB</i> is to <i>AE.</i>
+
+<div class="just"><a href="../bookV/propV7.html">V.7</a></div>
+<p>But <i>AE</i> equals <i>AC,</i> therefore <i>DB</i> is to <i>DC</i> as <i>AB</i> is to <i>AC.</i>
+
+<hr width=50%>
+
+<p>Next, let <i>DB</i> be to <i>DC</i> as <i>AB</i> is to <i>AC.</i>  Join <i>AD.</i>
+
+<p>I say that the straight line <i>AD</i> bisects the angle <i>BAC.</i>
+
+<div class="just"><a href="propVI2.html">VI.2</a>
+<br><a href="../bookV/propV11.html">V.11</a></div>
+<p>With the same construction, since <i>DB</i> is to <i>DC</i> as <i>AB</i> is to <i>AC,</i> and also <i>DB</i> is to <i>DC</i> as <i>AB</i> is to <i>AE,</i> for <i>AD</i> is parallel to <i>EC,</i> one of the sides of the triangle <i>BCE,</i> therefore also <i>AB</i> is to <i>AC</i> as <i>AB</i> is to <i>AE.</i>
+
+<div class="just"><a href="../bookV/propV9.html">V.9</a>,
+<a href="../bookI/propI5.html">I.5</a></div>
+<p>Therefore <i>AC</i> equals <i>AE,</i> so that the angle <i>AEC</i> also equals the angle <i>ACE.</i>
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a></div>
+<p>But the angle <i>AEC</i> equals the exterior angle <i>BAD,</i> and the angle <i>ACE</i> equals the alternate angle <i>CAD,</i> therefore the angle <i>BAD</i> also equals the angle <i>CAD.</i>
+
+<p>Therefore the straight line <i>AD</i> bisects the angle <i>BAC.</i>
+
+<p>Therefore, <i>if an angle of a triangle is bisected by a straight line cutting the base, then the segments of the base have the same ratio as the remaining sides of the triangle; and, if segments of the base have the same ratio as the remaining sides of the triangle, then the straight line joining the vertex to the point of section bisects the angle of the triangle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition characterizes an angle bisector of an angle in a triangle as the line
+that partitions the base into parts proportional to the adjacent sides.  The second part of
+the statement of the proposition is the converse of the first part of the statement.
+The proof relies on basic properties of triangles and parallel lines developed in Book I along
+with the result of the previous proposition <a href=propVI2.html>VI.2</a>.
+
+<h4>Use of this proposition</h4>
+
+This proposition is not used in the remainder of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

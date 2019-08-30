@@ -1,0 +1,80 @@
+<TITLE>Euclid's Elements, Book IV, Proposition 1</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">
+To fit a straight line into a given circle equal to a given straight line which is not greater than the diameter of the circle.</div>
+
+<p>Let <i>ABC</i> be the given circle, and <i>D</i> the given straight line not greater than the diameter of the circle
+
+<p>It is required to fit a straight line into the circle <i>ABC</i> equal to the straight line <i>D.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=300>
+<img src="propIV1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.1">
+<param name=e[1] value="B;point;free;30,120">
+<param name=e[2] value="C;point;free;170,120">
+<param name=e[3] value="BC;line;connect;B,C">
+<param name=e[4] value="O;point;midpoint;BC;0;0">
+<param name=e[5] value="ABC;circle;radius;O,B;0;0;black;random">
+<param name=e[6] value="D0;point;free;-1000,50;0,0">
+<param name=e[7] value="D3;point;free;1000,50;0,0">
+<param name=e[8] value="D1;point;lineSlider;D0,D3,210,30;0">
+<param name=e[9] value="D2;point;lineSlider;D0,D3,270,30;0">
+<param name=e[10] value="D;line;connect;D1,D2;black">
+<param name=e[11] value="E;point;cutoff;C,B,D1,D2">
+<param name=e[12] value="AEF;circle;radius;C,E;0;0;black;0">
+<param name=e[13] value="A'A;line;bichord;ABC,AEF">
+<param name=e[14] value="A;point;last;A'A">
+<param name=e[15] value="AC;line;connect;A,C">
+<param name=e[16] value="F;point;perpendicular;C,E;black;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV1.gif" hspace=10 alt="IV1">';
+</script>
+</div>
+
+<p>Draw a diameter <i>BC</i> of the circle <i>ABC.</i>
+
+<p>If <i>BC</i> equals <i>D,</i> then that which was proposed is done, for <i>BC</i> has been fitted into the circle <i>ABC</i> equal to the straight line <i>D.</i>
+
+<div class="just"><a href="../bookI/propI3.html">I.3</a></div>
+<p>But, if <i>BC</i> is greater than <i>D,</i> make <i>CE</i> equal to <i>D,</i> describe the circle <i>EAF</i> with center <i>C</i> and radius <i>CE,</i>  and join <i>CA.</i>
+
+<p>Then, since the point <i>C</i> is the center of the circle <i>EAF, CA</i> equals <i>CE.</i>
+
+<p>But <i>CE</i> equals <i>D,</i> therefore <i>D</i> also equals <i>CA.</i>
+
+<div class="just"><a href=../bookIV/defIV.html>IV.Def.7</a></div>
+<p>Therefore <i>CA</i> has been fitted into the given circle <i>ABC</i>  equal to the given straight line <i>D.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+The hypothesis that the line to be fitted into the circle is no longer than the diameter of the circle is certainly necessary, but Euclid did not show it was sufficient.  That is sufficient to conclude the two circles actually meet at a point <i>A</i> is never demonstrated.  This logical gap has appeared before in the <i>Elements,</i> for instance in Propositions <a href="../bookI/propI1.html">I.1</a> and <a href="../bookI/propI22.html">I.22</a>.
+
+
+<p>
+This proposition is used in the proofs of <a href=propIV10.html>IV.10</a>, <a href=propIV16.html>IV.16</a>, and occasionally in Books X, XI, and XII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

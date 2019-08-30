@@ -1,0 +1,123 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 25</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 25</h1>
+
+<div class="statement">Given a segment of a circle, to describe the complete circle of which it is a segment.</div>
+
+<p>Let <i>ABC</i> be the given segment of a circle.
+
+<p>It is required to describe the complete circle belonging to the segment <i>ABC,</i> that is, of which it is a segment.
+
+<div class="just"><a href="../bookI/propI10.html">I.10</a>
+<br><a href="../bookI/propI11.html">I.11</a></div>
+<p>Bisect <i>AC</i> at <i>D,</i> draw <i>DB</i> from the point <i>D</i> at right angles to <i>AC,</i> and join <i>AB.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=230>
+<img src=propIII25a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.25a">
+<param name=e[1] value="A;point;free;60,30">
+<param name=e[2] value="C;point;free;60,200">
+<param name=e[3] value="AC;line;connect;A,C">
+<param name=e[4] value="D;point;midpoint;AC">
+<param name=e[5] value="DB;line;perpendicular;D,A;0;0;0">
+<param name=e[6] value="B;point;lineSlider;DB,30,115">
+<param name=e[7] value="E;point;circumcenter;A,B,C;black;green">
+<param name=pivot value=E>
+<param name=e[8] value="BE;line;connect;B,E">
+<param name=e[9] value="AE;line;connect;A,E">
+<param name=e[10] value="CE;line;connect;C,E">
+<param name=e[11] value="ABC;sector;sector;E,A,C;0;0;black;random">
+<param name=e[12] value="AB;line;connect;A,B">
+<param name=e[13] value="ACE;polygon;triangle;A,C,E;0;0;0;background">
+</applet></div>
+
+<p>The angle <i>ABD</i> is then greater than, equal to, or less than the angle <i>BAD.</i>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a></div>
+<p>First let it be greater.  Construct the angle <i>BAE</i> on the straight line <i>BA,</i> and at the point <i>A</i> on it, equal to the angle <i>ABD.</i>  Draw <i>DB</i> through to <i>E,</i> and join <i>EC.</i>
+
+<div class="just"><a href="../bookI/propI6.html">I.6</a></div>
+<p>Then, since the angle <i>ABE</i> equals the angle <i>BAE,</i> the straight line <i>EB</i> also equals <i>EA.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>And, since <i>AD</i> equals <i>DC,</i> and <i>DE</i> is common, the two sides <i>AD</i> and <i>DE</i> equal the two sides <i>CD</i> and <i>DE</i> respectively, and the angle <i>ADE</i> equals the angle <i>CDE,</i> for each is right, therefore the base <i>AE</i> equals the base <i>CE.</i>
+
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=150>
+<img src=propIII25b.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.25b">
+<param name=e[1] value="A;point;free;120,30">
+<param name=e[2] value="C;point;free;120,170">
+<param name=e[3] value="AC;line;connect;A,C">
+<param name=e[4] value="D;point;midpoint;AC;black;green">
+<param name=pivot value=D>
+<param name=e[5] value="DB;line;perpendicular;D,A">
+<param name=e[6] value="B;point;last;DB">
+<param name=e[7] value="ABC;sector;arc;A,B,C;0;0;black;random">
+<param name=e[8] value="AB;line;connect;A,B">
+</applet></div>
+
+<p>But <i>AE</i> was proved equal to <i>BE,</i> therefore be also equals <i>CE.</i>  Therefore the three straight lines <i>AE, EB,</i> and <i>EC</i> equal one another.
+
+<div class="just"><a href="propIII9.html">III.9</a></div>
+<p>Therefore the circle drawn with center <i>E</i> and radius one of the straight lines <i>AE, EB,</i> or <i>EC</i> also passes through the remaining points and has been completed.
+
+<p>Therefore, given a segment of a circle, the complete circle has been described.
+<hr width=30%>
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=250>
+<img src=propIII25c.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.25c">
+<param name=e[1] value="A;point;free;200,30">
+<param name=e[2] value="C;point;free;200,200">
+<param name=e[3] value="AC;line;connect;A,C">
+<param name=e[4] value="D;point;midpoint;AC">
+<param name=e[5] value="DB;line;perpendicular;D,A;0;0;0">
+<param name=e[6] value="B;point;lineSlider;DB,30,115">
+<param name=e[7] value="E;point;circumcenter;A,B,C;black;green">
+<param name=pivot value=E>
+<param name=e[8] value="BD;line;connect;B,D">
+<param name=e[9] value="AE;line;connect;A,E">
+<param name=e[10] value="ABC;sector;sector;E,A,C">
+<param name=e[11] value="AB;line;connect;A,B">
+<param name=e[12] value="ACE;polygon;triangle;A,C,E;0;0;0">
+</applet></div> 
+
+<p>And it is manifest that the segment <i>ABC</i> is less than a semicircle, because the center <i>E</i> happens to be outside it.
+
+<p>Similarly, even if the angle <i>ABD</i> equals the angle <i>BAD</i> and <i>AD</i> being equal to each of the two <i>BD</i> and <i>DC,</i> the three straight lines <i>DA, DB,</i> and <i>DC</i> will equal one another, <i>D</i> will be the center of the completed circle, and <i>ABC</i> will clearly be a semicircle.
+
+<hr width=30%>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a></div>
+<p>But, if the angle <i>ABD</i> is less than the angle <i>BAD,</i> and if we construct, on the straight line <i>BA</i> and at the point <i>A</i> on it, an angle equal to the angle <i>ABD,</i> the center will fall on <i>DB</i> within the segment <i>ABC,</i> and the segment <i>ABC</i> will clearly be greater than a semicircle.
+
+<p>Therefore, given a segment of a circle, the complete circle has been described.
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The construction in this proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

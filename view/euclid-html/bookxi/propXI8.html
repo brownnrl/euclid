@@ -1,0 +1,96 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 8</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 8</h1>
+
+<div class="statement">
+If two straight lines are parallel, and one of them is at right angles to any plane, then the remaining one is also at right angles to the same plane.</div>
+
+<p>Let <i>AB</i> and <i>CD</i> be two parallel straight lines, and let one of them, <i>AB,</i> be at right angles to the plane of reference.
+
+<p>I say that the remaining one, <i>CD,</i> is also
+ at right angles to the same plane.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=270 >
+<img src="propXI8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.8">
+<param name=buffer value=yes>
+<param name=e[1] value="X;point;free;100000,100">
+<param name=e[2] value="Y;point;free;100,-100000">
+<param name=e[3] value="Z;point;free;50000,-100000">
+<param name=e[4] value="P0;point;free;20,240;0;0,75,100">
+<param name=e[5] value="P1;point;lineSlider;P0,X,190,240;0;30,75,100">
+<param name=e[6] value="P2;point;lineSlider;P0,Z,50,110;0;30,75,100">
+<param name=e[7] value="P3;point;intersection;P1,Z,P2,X;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;P0,P1,P3,P2;0;0;lightGray;brighter">
+<param name=e[9] value="A;point;free;80,40">
+<param name=e[10] value="B;point;lineSlider;A,Y,40,160">
+<param name=e[11] value="AB;line;connect;A,B">
+<param name=e[12] value="C;point;free;200,40">
+<param name=e[13] value="D;point;intersection;B,X,C,Y">
+<param name=e[14] value="CD;line;connect;C,D">
+<param name=e[15] value="AD;line;connect;A,D">
+<param name=e[16] value="M;point;midpoint;A,B;0;0">
+<param name=e[17] value="E;point;extend;Z,D,A,M">
+<param name=e[18] value="BDE;polygon;triangle;B,D,E;0;0;black;random">
+<param name=e[19] value="AE;line;connect;A,E">
+</applet></div>
+
+<div class="just"><a href="propXI7.html">XI.7</a></div>
+<p>Let <i>AB</i> and <i>CD</i> meet the plane of reference at the points <i>B</i> and <i>D.</i>  Join <i>BD.</i>  Then <i>AB, CD,</i> and <i>BD</i> lie in one plane.
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a>,
+<a href=../bookI/propI3.html>I.3</a></div>
+<p>Draw <i>DE</i> in the plane of reference at right angles to <i>BD,</i> make <i>DE</i> equal to <i>AB,</i> and join <i>BE, AE,</i> and <i>AD</i>
+
+<div class="just"><a href=defXI3.html>XI.Def.3</a></div>
+<p>Now, since <i>AB</i> is at right angles to the plane of reference, therefore <i>AB</i> is also at right angles to all the straight lines which meet it and lie in the plane of reference.  Therefore each of the angles <i>ABD</i> and <i>ABE</i> is right.
+
+<p>And, since the straight line <i>BD</i> falls on the parallels <i>AB</i> and <i>CD,</i> therefore the sum of the angles <i>ABD</i> and <i>CDB</i> equals two right angles.
+<div class="just"><a href="../bookI/propI29.html">I.29</a></div>
+
+<p>But the angle <i>ABD</i> is right, therefore the angle <i>CDB</i> is also right.  Therefore <i>CD</i> is at right angles to <i>BC.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>And since <i>AB</i> equals <i>DE,</i> and <i>BD</i> is common, the two sides <i>AB</i> and <i>BD</i> equal the two sides <i>ED</i> and <i>DB,</i> and the angle <i>ABD</i> equals the angle <i>EDB,</i> for each is right, therefore the base <i>AD</i> equals the base <i>BE.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>And since <i>AB</i> equals <i>DE,</i> and <i>BE</i> equals <i>AD,</i> the two sides <i>AB</i> and <i>BE</i> equal the two sides <i>ED</i> and <i>DA</i> respectively, and <i>AE</i> is their common base, therefore the angle <i>ABE</i> equals the angle <i>EDA.</i>
+
+<div class="just"><a href="propXI4.html">XI.4</a></div>
+<p>But the angle <i>ABE</i> is right, therefore the angle <i>EDA</i> is also right.  Therefore <i>ED</i> is at right angles to <i>AD.</i>  But it is also at right angles to <i>DB.</i>  Therefore <i>ED</i> is also at right angles to the plane through <i>BD</i> and <i>DA.</i>
+
+<p>Therefore <i>ED</i> also makes right angles with all the straight lines which meet it and lie in the plane through <i>BD</i> and <i>DA.</i>  But <i>DC</i> lies in the plane through <i>BD</i> and <i>DA</i> inasmuch as <i>AB</i> and <i>BD</i> lie in the  plane through <i>BD</i> and <i>DA,</i> and <i>DC</i> also lies in the plane in which <i>AB</i> and <i>BD</i> lie.
+
+<div class="just"><a href="propXI4.html">XI.4</a></div>
+<p>Therefore <i>ED</i> is at right angles to <i>DC,</i> so that <i>CD</i> is also at right angles to <i>DE.</i>  But <i>CD</i> is also at right angles to <i>BD.</i>  Therefore <i>CD</i> is set up at right angles to the two straight lines <i>DE</i> and <i>DB</i> so that <i>CD</i> is also at right angles to the plane through <i>DE</i> and <i>DB.</i>
+
+<p>But the plane through <i>DE</i> and <i>DB</i> is the plane of reference, therefore <i>CD</i> is at right angles to the plane of reference.
+
+<p>Therefore, <i>if two straight lines are parallel, and one of them is at right angles to any plane, then the remaining one is also at right angles to the same plane.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This is a converse of proposition <a href=propXI6.html>XI.6</a>.
+
+<p>This proposition is used in the proof of the next one as well as several others in this book.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

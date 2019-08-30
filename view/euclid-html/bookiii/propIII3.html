@@ -1,0 +1,81 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 3</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">If a straight line passing through the center of a circle bisects a straight line not passing through the center, then it also cuts it at right angles; and if it cuts it at right angles, then it also bisects it. </div>
+
+<p>Let a straight line <i>CD</i> passing through the center of a circle <i>ABC</i> bisect a straight line <i>AB</i> not passing through the center at the point <i>F.</i>
+
+<p>I say that it also cuts it at right angles.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=240>
+<img src=propIII3.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.3">
+<param name=e[1] value="A;point;free;60,200">
+<param name=e[2] value="B;point;free;180,200">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="F;point;midpoint;A,B">
+<param name=e[5] value="FC';line;perpendicular;F,B;0;0;0">
+<param name=e[6] value="C;point;lineSlider;FC',120,40">
+<param name=e[7] value="ABC;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[8] value="E;point;center;ABC;black;green">
+<param name=pivot value="E">
+<param name=e[9] value="D;point;extend;C,E,C,E">
+<param name=e[10] value="CD;line;connect;C,D">
+<param name=e[11] value="AE;line;connect;A,E">
+<param name=e[12] value="BE;line;connect;B,E">
+</applet></div>
+
+<div class="just"><a href="propIII1.html">III.1</a></div>
+<p>Take the center <i>E</i> of the circle <i>ABC,</i> and join <i>EA</i> and <i>EB.</i>
+
+<div class="just"><a href=../bookI/defI15.html>I.Def.15</a>
+<br><a href="../bookI/propI8.html">I.8</a></div>
+<p>Then, since <i>AF</i> equals <i>FB,</i> and <i>FE</i> is common, two sides equal two sides, and the base <i>EA</i> equals the base <i>EB,</i> therefore the angle <i>AFE</i> equals the angle <i>BFE.</i>
+
+<div class="just"><a href=../bookI/defI10.html>I.Def.10</a></div>
+<p>But, when a straight line standing on another straight line makes the adjacent angles equal to one another, each of the equal angles is right, therefore each of the angles <i>AFE</i> and <i>BFE</i> is right.
+
+<p>Therefore <i>CD,</i> which passes through the center and bisects <i>AB</i> which does not pass through the center, also cuts it at right angles.
+
+<hr width=50%>
+
+<p>Next, let <i>CD</i> cut <i>AB</i> at right angles.
+
+<p>I say that it also bisects it,  that is, that <i>AF</i> equals <i>FB.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>For, with the same construction, since <i>EA</i> equals <i>EB,</i> the angle <i>EAF</i> also equals the angle <i>EBF.</i>
+
+<div class="just"><a href="../bookI/propI26.html">I.26</a></div>
+<p>But the right angle <i>AFE</i> equals the right angle <i>BFE,</i> therefore <i>EAF</i> and <i>EBF</i> are two triangles having two angles equal to two angles and one side equal to one side, namely <i>EF,</i> which is common to them, and opposite one of the equal angles. Therefore they  also have the remaining sides equal to the remaining sides
+
+<p>Therefore <i>AF</i> equals <i>FB.</i>
+
+<p>Therefore <i>if a straight line passing through the center of a circle bisects a straight line not passing through the center, then it also cuts it at right angles; and if it cuts it at right angles, then it also bisects it.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Compare this statement to the <a href=propIII1.html#cor>corollary</a> of proposition III.1.
+
+<p>This proposition is used in the next one, a few others in Book III, and <a href=../bookXII/propXII16.html>XII.16</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,89 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 24</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 24</h1>
+
+<div class="statement">If a first magnitude has to a second the same ratio as a third has to a fourth, and also a fifth has to the second the same ratio as a sixth to the fourth, then the sum of the first and fifth has to the second the same ratio as the sum of the third and sixth has to the fourth.</div>
+
+<p>Let a first magnitude <i>AB</i> have to a second <i>C</i> the same ratio as a third <i>DE</i> has to a fourth <i>F,</i> and let also a fifth <i>BG</i> have to the second <i>C</i> the same ratio as a sixth <i>EH</i> has to the fourth <i>F.</i>
+<p>I say that the sum of the first and fifth, <i>AG,</i> has to the second <i>C</i> the same ratio as the sum of the third and sixth, <i>DH,</i> has to the fourth <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=150>
+<img src=propV24.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.24">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+<param name=e[7] value="X0;point;free;-1000,130;0;0">
+<param name=e[8] value="X1;point;free;1000,130;0;0">
+
+<param name=e[9] value="A;point;lineSlider;U0,U1,50,30">
+<param name=e[10] value="B;point;lineSlider;U0,U1,200,30">
+<param name=e[11] value="C;point;lineSlider;V0,V1,50,60">
+<param name=e[12] value="C1;point;lineSlider;V0,V1,110,60;0">
+<param name=e[13] value="CC1;line;connect;C,C1;0;0;red">
+<param name=e[14] value="D;point;lineSlider;W0,W1,50,100">
+<param name=e[15] value="E;point;lineSlider;W0,W1,150,100">
+<param name=e[16] value="F;point;lineSlider;X0,X1,50,130">
+<param name=e[17] value="F1;point;proportion;A,B,D,E,C,C1,F,X1;0">
+<param name=e[18] value="FF1;line;connect;F,F1;0;0;green">
+
+<param name=e[19] value="G;point;lineSlider;U0,U1,270,30">
+<param name=e[20] value="AG;line;connect;A,G;0;0;red">
+<param name=e[21] value="H;point;proportion;C,C1,F,F1,B,G,E,W1">
+<param name=e[22] value="DH;line;connect;D,H;0;0;green">
+</applet>
+</div>
+
+<div class="just"><a href=propV7.html#cor>V.7.Cor</a></div>
+<p>Since <i>BG</i> is to <i>C</i> as <i>EH</i> is to <i>F,</i> inversely, <i>C</i> is to <i>BG</i> as <i>F</i> is to <i>EH.</i>
+
+<div class="just"><a href=propV22.html>V.22</a></div>
+<p>Then, since <i>AB</i> is to <i>C</i> as <i>DE</i> is to <i>F,</i> and <i>C</i> is to <i>BG</i> as <i>F</i> is to <i>EH,</i> therefore, <i>ex aequali, AB</i> is to <i>BG</i> as <i>DE</i> is to <i>EH.</i>
+
+<div class="just"><a href=propV18.html>V.18</a></div>
+<p>And, since the magnitudes are proportional taken separately, they are also proportional taken jointly, therefore <i>AG</i> is to <i>GB</i> as <i>DH</i> is to <i>HE.</i>
+
+<div class="just"><a href=propV22.html>V.22</a></div>
+<p>But also <i>BG</i> is to <i>C</i> as <i>EH</i> is to <i>F,</i> therefore, <i>ex aequali, AG</i> is to <i>C</i> as <i>DH</i> is to <i>F.</i>
+
+<p>Therefore, <i>if a first magnitude has to a second the same ratio as a third has to a fourth, and also a fifth has to the second the same ratio as a sixth to the fourth, then the sum of the first and fifth has to the second the same ratio as the sum of the third and sixth has to the fourth.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This proposition says that if <i>u</i>&nbsp;:&nbsp;<i>v</i>&nbsp;=&nbsp;<i>w</i>&nbsp;:&nbsp;<i>x</i> and <i>y</i>&nbsp;:&nbsp;<i>v</i>&nbsp;=&nbsp;<i>z</i>&nbsp;:&nbsp;<i>x,</i> then (<i>u</i>&nbsp;+&nbsp;<i>y</i>)&nbsp;:&nbsp;<i>v</i>&nbsp;=&nbsp;(<i>w</i>&nbsp;+&nbsp;<i>z</i>)&nbsp;:&nbsp;<i>x.</i>
+
+<p>The argument goes as follows.  Start by inverting the second proportion <i>y</i>&nbsp;:&nbsp;<i>v</i>&nbsp;=&nbsp;<i>z</i>&nbsp;:&nbsp;<i>x</i> to get
+<i>v</i>&nbsp;:&nbsp;<i>y</i>&nbsp;=&nbsp;<i>x</i>&nbsp;:&nbsp;<i>z</i>. Compound the first proportion with that to get <i>u</i>&nbsp;:&nbsp;<i>y</i>&nbsp;=&nbsp;<i>w</i>&nbsp;:&nbsp;<i>z</i>.  Take that last proportion jointly to get (<i>u</i>&nbsp;+&nbsp;<i>y</i>)&nbsp;:&nbsp;<i>y</i>&nbsp;=&nbsp;(<i>w</i>&nbsp;+&nbsp;<i>z</i>)&nbsp;:&nbsp;<i>z</i>.  Compound that with the second proportion to get (<i>u</i>&nbsp;+&nbsp;<i>y</i>)&nbsp;:&nbsp;<i>v</i>&nbsp;=&nbsp;(<i>w</i>&nbsp;+&nbsp;<i>z</i>)&nbsp;:&nbsp;<i>x</i>, which was the goal.
+
+<p>Although the proposition is stated using the antecedent terms of the proportions, by inversion it applies to the consequent terms as well.
+
+<h4>Addition of ratios</h4>
+
+This is as close as Euclid gets to defining the sum of two ratios. Although it only applies when the consequents of the two ratios are the same, by use of fourth proportionals it could be extended to define the sum of any two ratios.  That is, given <i>a</i>&nbsp;:&nbsp;<i>b</i> of one kind and <i>c</i>&nbsp;:&nbsp;<i>d</i> of another, let <i>e</i> be such that  
+<i>c</i>&nbsp;:&nbsp;<i>d</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>b</i>, then define the sum of the two original ratios to be (<i>a</i>&nbsp;+&nbsp;<i>e</i>)&nbsp;:&nbsp;<i>b</i>.  Although such a definition is possible, Euclid apparently didn&rsquo;t have any need for adding ratios.
+
+<h4>Use of this proposition</h4>
+
+<p>This proposition is used in proposition <a href=../bookVI/propVI31.html>VI.31</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997, 2013");
+</script>
+</BODY></HTML>

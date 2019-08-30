@@ -1,0 +1,76 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 23</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 23</h1>
+
+<div class="statement">If two numbers are relatively prime, then any number which measures one of them is relatively prime to the remaining number.</div>
+
+<p>Let <i>A</i> and <i>B</i> be two numbers relatively prime, and let any number <i>C</i> measure <i>A.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=150 height=250 >
+<img src=propVII23.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.23">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="B0;point;free;60,-1000;0;0">
+<param name=e[5] value="B3;point;free;60,1000;0;0">
+<param name=e[6] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[7] value="C0;point;free;90,-1000;0;0">
+<param name=e[8] value="C3;point;free;90,1000;0;0">
+<param name=e[9] value="C1;point;lineSlider;C0,C3,90,30;0">
+<param name=e[10] value="D0;point;free;120,-1000;0;0">
+<param name=e[11] value="D3;point;free;120,1000;0;0">
+<param name=e[12] value="D1;point;lineSlider;D0,D3,120,30;0">
+<param name=e[13] value="A2;point;lineSlider;A0,A3,30,210;0">
+<param name=e[14] value="A;line;connect;A1,A2;black">
+<param name=e[15] value="B2;point;lineSlider;B0,B3,60,170;0">
+<param name=e[16] value="B;line;connect;B1,B2;black">
+<param name=e[17] value="P0;point;free;1000,0;0;0">
+<param name=e[18] value="P1;point;free;1000,10;0;0">
+<param name=e[19] value="P2;point;free;1000,20;0;0">
+<param name=e[20] value="P3;point;free;1000,30;0;0">
+<param name=e[21] value="C2;point;proportion;P0,P3,A1,A2,P0,P1,C1,C3;0">
+<param name=e[22] value="C;line;connect;C1,C2;black">
+<param name=e[23] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[24] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<p>I say that <i>C</i> and <i>B</i> are also relatively prime.
+
+<p>If <i>C</i> and <i>B</i> are not relatively prime, then some number <i>D</i> measures <i>C</i> and <i>B.</i>
+
+<div class="just"><a href=defVII11.html>VII.Def.12</a></div>
+<p>Since <i>D</i> measures <i>C,</i> and <i>C</i> measures <i>A,</i> therefore <i>D</i> also measures <i>A.</i> But it also measures <i>B,</i> therefore <i>D</i> measures <i>A</i> and <i>B</i> which are relatively prime, which is impossible.
+
+<p>Therefore no number measures the numbers <i>C</i> and <i>B.</i> Therefore <i>C</i> and <i>B</i> are relatively prime.
+
+<p>Therefore, <i>if two numbers are relatively prime, then any number which measures one of them is relatively prime to the remaining number.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The proof of this proposition is straightforward.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proof of the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

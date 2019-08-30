@@ -1,0 +1,89 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 64</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 64</h1>
+
+<div class="statement">The square on the side of a rational plus a medial area applied to a rational straight line produces as breadth the fifth binomial.</div>
+
+<p>Let <i>AB</i> be the side of a rational plus a medial area, divided into its straight lines at <i>C</i>, so that <i>AC</i> is the greater, let a rational straight line <i>DE</i> be set out, and let there be applied to <i>DE</i> the parallelogram <i>DF</i> equal to the square on <i>AB</i>, producing <i>DG</i> as its breadth.
+
+<p>I say that <i>DG</i> is a fifth binomial straight line.
+
+<p>Make the same construction as before.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=200>
+<img src="propX60.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.64">
+<param name=e[1] value="A0;point;free;-1000,160;0;0">
+<param name=e[2] value="A3;point;free;1000,160;0;0">
+<param name=e[3] value="D0;point;free;40,-1000;0;0">
+<param name=e[4] value="D3;point;free;40,1000;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,60,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,180,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,130,0">
+<param name=e[8] value="AB;line;connect;A,B">
+<param name=e[9] value="D;point;lineSlider;D0,D3,0,40">
+<param name=e[10] value="E;point;lineSlider;D0,D3,0,120">
+<param name=e[11] value="G';point;parallelogram;D,A0,A3;0;0">
+<param name=e[12] value="G;point;proportion;D,E,A,B,A,B,D,G'">
+<param name=e[13] value="F;point;parallelogram;E,D,G">
+<param name=e[14] value="EDGF;polygon;quadrilateral;E,D,G,F;0;0;black;random">
+<param name=e[15] value="K;point;proportion;D,E,A,C,A,C,D,G'">
+<param name=e[16] value="EDKH;polygon;parallelogram;E,D,K;0;0;black;random">
+<param name=e[17] value="H;point;vertex;EDKH,4">
+<param name=e[18] value="M;point;proportion;D,E,B,C,B,C,K,G'">
+<param name=e[19] value="HKML;polygon;parallelogram;H,K,M;0;0;black;random">
+<param name=e[20] value="L;point;vertex;HKML,4">
+<param name=e[21] value="N;point;midpoint;M,G">
+<param name=e[22] value="O;point;parallelogram;E,D,N">
+<param name=e[23] value="NO;line;connect;N,O">
+</applet></div>
+
+
+<div class="just"><a href=propX40.html>X.40</a></div>
+<p>Since <i>AB</i> is the side of a rational plus a medial area, divided at <i>C</i>, therefore <i>AC</i> and <i>CB</i> are straight lines incommensurable in square which make the sum of the squares on them medial but the rectangle contained by them rational.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>Since, then, the sum of the squares on <i>AC</i> and <i>CB</i> is medial, therefore <i>DL</i> is medial, so that <i>DM</i> is rational and incommensurable in length with <i>DE</i>.
+
+<div class="just"><a href=propX20.html>X.20</a></div>
+<p>Again, since twice the rectangle <i>AC</i> by <i>CB</i>, that is <i>MF</i>, is rational, therefore <i>MG</i> is rational and commensurable with <i>DE</i>.
+
+<div class="just"><a href=propX13.html>X.13</a>
+<br><a href=propX36.html>X.36</a></div>
+<p>Therefore <i>DM</i> is incommensurable with <i>MG</i>.  Therefore <i>DM</i> and <i>MG</i> are rational straight lines commensurable in square only. Therefore <i>DG</i> is binomial.
+
+<p>I say next that it is also a fifth binomial straight line.
+
+<div class="just"><a href=propX18.html>X.18</a></div>
+<p>For it can be proved similarly that the rectangle <i>DK</i> by <i>KM</i> equals the square on <i>MN</i>, and that <i>DK</i> is incommensurable in length with <i>KM</i>. Therefore the square on <i>DM</i> is greater than the square on <i>MG</i> by the square on a straight line incommensurable with <i>DM</i>.
+
+<p>And <i>DM</i> and <i>MG</i> are commensurable in square only, and the less, <i>MG</i>, is commensurable in length with <i>DE</i>.
+
+<p>Therefore <i>DG</i> is a fifth binomial.
+
+<p>Therefore, <i>the square on the side of a rational plus a medial area applied to a rational straight line produces as breadth the fifth binomial.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in <a href=propX72.html>X.72</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

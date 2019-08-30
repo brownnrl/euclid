@@ -1,0 +1,141 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 3</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">To find the greatest common measure of three given numbers
+not relatively prime.</div>
+
+<p>Let <i>A, B,</i> and <i>C</i> be the three given numbers not relatively prime.
+
+<p>It is required to find the greatest common measure of <i>A, B,</i> and <i>C.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=210 height=250>
+<img src=propVII3.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.3">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="B0;point;free;60,-1000;0;0">
+<param name=e[5] value="B3;point;free;60,1000;0;0">
+<param name=e[6] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[7] value="C0;point;free;90,-1000;0;0">
+<param name=e[8] value="C3;point;free;90,1000;0;0">
+<param name=e[9] value="C1;point;lineSlider;C0,C3,90,30;0">
+<param name=e[10] value="D0;point;free;120,-1000;0;0">
+<param name=e[11] value="D3;point;free;120,1000;0;0">
+<param name=e[12] value="D1;point;lineSlider;D0,D3,120,30;0">
+<param name=e[13] value="E0;point;free;150,-1000;0;0">
+<param name=e[14] value="E3;point;free;150,1000;0;0">
+<param name=e[15] value="E1;point;lineSlider;E0,E3,150,30;0">
+<param name=e[16] value="F0;point;free;180,-1000;0;0">
+<param name=e[17] value="F3;point;free;180,1000;0;0">
+<param name=e[18] value="F1;point;lineSlider;F0,F3,180,30;0">
+<param name=e[19] value="E2;point;lineSlider;E0,E3,150,60;0">
+<param name=e[20] value="E;line;connect;E1,E2;black">
+<param name=e[21] value="D';point;cutoff;D1,D3,E1,E2;0;0">
+<param name=e[22] value="D2;point;cutoff;D',D3,E1,E2;0">
+<param name=e[23] value="D;line;connect;D1,D2;black">
+<param name=e[24] value="B';point;cutoff;B1,B3,D1,D2;0;0">
+<param name=e[25] value="B2;point;cutoff;B',B3,D1,D2;0">
+<param name=e[26] value="B;line;connect;B1,B2;black">
+<param name=e[27] value="C';point;cutoff;C1,C3,D1,D2;0;0">
+<param name=e[28] value="C2;point;cutoff;C',C3,E1,E2;0">
+<param name=e[29] value="C;line;connect;C1,C2;black">
+<param name=e[30] value="A';point;cutoff;A1,A3,B1,B2;0;0">
+<param name=e[31] value="A2;point;cutoff;A',A3,D1,D2;0">
+<param name=e[32] value="A;line;connect;A1,A2;black">
+<param name=e[33] value="F2;point;cutoff;F1,F3,E1,E2;0">
+<param name=e[34] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<div class="just"><a href="propVII2.html">VII.2</a></div>
+<p>Take the greatest common measure, <i>D,</i> of the two numbers <i>A</i> and <i>B.</i>  Then either <i>D</i> measures, or does not measure, <i>C.</i>
+
+<p>First, let <i>D</i> measure <i>C.</i>
+
+<p>But it measures <i>A</i> and <i>B</i> also, therefore <i>D</i> measures <i>A, B,</i> and <i>C.</i> Therefore <i>D</i> is a common measure of <i>A, B,</i> and <i>C.</i>
+
+<p>I say that it is also the greatest.
+
+<p>If <i>D</i> is not the greatest common measure of <i>A, B,</i> and <i>C,</i> then some number <i>E,</i> greater than <i>D,</i> measures the numbers <i>A, B,</i> and <i>C.</i>
+
+<div class="just"><a href="propVII2.html#cor">VII.2,Cor.</a></div>
+<p>Since then <i>E</i> measures <i>A, B,</i> and <i>C,</i> therefore it measures <i>A</i> and <i>B.</i> Therefore it also measures the greatest common measure of <i>A</i> and <i>B.</i> But the greatest common measure of <i>A</i> and <i>B</i> is <i>D,</i> therefore <i>E</i> measures <i>D,</i> the greater the less, which is impossible.
+
+<p>Therefore no number which is greater than <i>D</i> measures the numbers <i>A, B,</i> and <i>C.</i> Therefore <i>D</i> is the greatest common measure of <i>A, B,</i> and <i>C.</i>
+
+<p>Next, let <i>D</i> not measure <i>C.</i>
+
+<p>I say first that <i>C</i> and <i>D</i> are not relatively prime.
+
+<p>Since <i>A, B,</i> and <i>C</i> are not relatively prime, therefore some number measures them.
+
+<div class="just"><a href="propVII2.html#cor">VII.2,Cor.</a></div>
+<p>Now that which measures <i>A, B,</i> and <i>C</i> also measures <i>A</i> and <i>B,</i> and therefore measures <i>D,</i> the greatest common measure of <i>A</i> and <i>B.</i> But it measures <i>C</i> also, therefore some number measures the numbers <i>D</i> and <i>C.</i> Therefore <i>D</i> and <i>C</i> are not relatively prime.
+
+<div class="just"><a href="propVII2.html">VII.2</a></div>
+<p>Take their greatest common measure <i>E.</i>
+
+<p>Then, since <i>E</i> measures <i>D,</i> and <i>D</i> measures <i>A</i> and <i>B,</i> therefore <i>E</i> also measures <i>A</i> and <i>B.</i> But it measures <i>C</i> also, therefore <i>E</i> measures <i>A, B,</i> and <i>C.</i> Therefore <i>E</i> is a common measure of <i>A, B,</i> and <i>C.</i>
+
+<p>I say next that it is also the greatest.
+
+<p>If <i>E</i> is not the greatest common measure of <i>A, B,</i> and <i>C,</i> then some number <i>F,</i> greater than <i>E,</i> measures the numbers <i>A, B,</i> and <i>C.</i>
+
+<div class="just"><a href="propVII2.html#cor">VII.2,Cor.</a></div>
+<p>Now, since <i>F</i> measures <i>A, B,</i> and <i>C,</i> it also measures <i>A</i> and <i>B,</i> therefore it measures the greatest common measure of <i>A</i> and <i>B.</i> But the greatest common measure of <i>A</i> and <i>B</i> is <i>D,</i> therefore <i>F</i> measures <i>D.</i>
+
+<div class="just"><a href="propVII2.html#cor">VII.2,Cor.</a></div>
+<p>And it measures <i>C</i> also, therefore <i>F</i> measures <i>D</i> and <i>C.</i> Therefore it also measures the greatest common measure of <i>D</i> and <i>C.</i> But the greatest common measure of <i>D</i> and <i>C</i> is <i>E,</i> therefore <i>F</i> measures <i>E,</i> the greater the less, which is impossible.
+
+<p>Therefore no number which is greater than <i>E</i> measures the numbers <i>A, B,</i> and <i>C.</i> Therefore <i>E</i> is the greatest common measure of <i>A, B,</i> and <i>C.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+A common modern notation for the greatest common divisor of two numbers <i>a</i> and <i>b</i> is 
+<small>GCD</small>(<i>a,&nbsp;b</i>).  Also, the notation <i>a</i>&nbsp;|&nbsp;<i>b</i> is typically used to indicate that <i>a</i> divides <i>b.</i>
+
+<p>This proposition constructs the <small>GCD</small>(<i>a,&nbsp;b,&nbsp;c</i>) as 
+<small>GCD</small>(<small>GCD</small>(<i>a,&nbsp;b</i>),&nbsp;<i>c</i>).
+
+<p>The proof that this construction works is simplified if 1 is considered to be a number.  Then, two 
+numbers are relatively prime when their <small>GCD</small> is 1, and Euclid&rsquo;s first case in the 
+proof is subsumed in the second.
+
+<p>Let <i>d</i>&nbsp;=&nbsp;<small>GCD</small>(<i>a,&nbsp;b</i>), and let 
+<i>e</i>&nbsp;=&nbsp;<small>GCD</small>(<i>d,&nbsp;c</i>).  Since 
+<i>e</i>&nbsp;|&nbsp;<i>d, d</i>&nbsp;|&nbsp;<i>a,</i> and
+<i>d</i>&nbsp;|&nbsp;<i>b,</i> it follows that <i>e</i>&nbsp;|&nbsp;<i>a</i> 
+and <i>e</i>&nbsp;|&nbsp;<i>b,</i> so <i>e,</i> in fact, is a common divisor 
+of <i>a, b,</i> and <i>c.</i>  
+
+<p>In order to show that <i>e</i> is the greatest common divisor, let <i>f</i> be any common divisor 
+of <i>a, b,</i> and <i>c.</i> Then as <i>f</i>&nbsp;|&nbsp;<i>a</i> and 
+<i>f</i>&nbsp;|&nbsp;<i>b,</i> therefore <i>f</i>&nbsp;|&nbsp;<small>GCD</small>(<i>a,&nbsp;b</i>), 
+that is, <i>f</i>&nbsp;|&nbsp;<i>d.</i> Also, as <i>f</i>&nbsp;|&nbsp;<i>d</i> and 
+<i>f</i>&nbsp;|&nbsp;<i>c,</i> therefore <i>f</i>&nbsp;|&nbsp;<small>GCD</small>(<i>d, c</i>), 
+that is <i>f</i>&nbsp;|&nbsp;<i>e.</i>  Therefore <i>e</i> is the greatest common divisor 
+of <i>a, b,</i> and <i>c.</i>  <small>Q.E.D.</small>
+
+<p>This is the same proposition as <a href=../bookX/propX4.html>X.4</a>.
+
+<p>This proposition is used in <a href=propVII33.html>VII.33</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

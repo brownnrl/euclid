@@ -1,0 +1,76 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book XI, Definitions 12 and 13</TITLE></TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 12</h1>
+
+<div class="statement">A pyramid is a solid figure contained by planes which is constructed from one plane to one point.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 13</h1>
+
+<div class="statement">A prism is a solid figure contained by planes two of which, namely those which are opposite, are equal, similar, and parallel, while the rest are parallelograms.</div>
+</div>
+
+<h3><img src=../guide.gif alt=Guide width=83 height=37></h3>
+
+In the diagram below, <i>ABCD</i> is a pyramid with vertex <i>D</i> and triangular base <i>ABC.</i>  Since it&rsquo;s a tetrahedron, it&rsquo;s still a triangular pyramid when any of the other three sides is considered the base. Also, <i>EFGHKL</i> is a prism with opposite triangular sides <i>EFG</i> and <i>HKL.</i>
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  width=420 height=290 >
+<img src="defXI12.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.Def.12-13">
+<param name=e[1] value="X;point;free;100000,200">
+<param name=e[2] value="Y;point;free;200,-100000">
+<param name=e[3] value="Z;point;free;50000,-100000">
+<param name=e[4] value="P0;point;free;20,130;0;0,75,100">
+<param name=e[5] value="P1;point;lineSlider;P0,X,300,150;0;30,75,100">
+<param name=e[6] value="P3;point;lineSlider;P0,Z,90,30;0;30,75,100">
+<param name=e[7] value="P2;point;parallelogram;P3,P0,P1;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;P0,P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[9] value="Q0;point;free;60,250;0;0,75,100">
+<param name=e[10] value="Q1;point;parallelogram;P1,P0,Q0;0;0">
+<param name=e[11] value="Q2;point;parallelogram;P2,P0,Q0;0;0">
+<param name=e[12] value="Q3;point;parallelogram;P3,P0,Q0;0;0">
+<param name=e[13] value="Q;polygon;quadrilateral;Q0,Q1,Q2,Q3;0;0;lightGray;brighter">
+
+<param name=e[14] value="A;point;free;60,100">
+<param name=e[15] value="B;point;free;110,50">
+<param name=e[16] value="C;point;free;160,60">
+<param name=e[17] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[18] value="D;point;free;150,200">
+<param name=e[19] value="AD;line;connect;A,D">
+<param name=e[20] value="BD;line;connect;B,D">
+<param name=e[21] value="CD;line;connect;C,D">
+
+<param name=e[22] value="E;point;free;180,100">
+<param name=e[23] value="F;point;free;230,50">
+<param name=e[24] value="G;point;free;290,60">
+<param name=e[25] value="EFG;polygon;triangle;E,F,G;0;0;black;random">
+<param name=e[26] value="K;point;free;260,180">
+<param name=e[27] value="H;point;parallelogram;K,F,E">
+<param name=e[28] value="L;point;parallelogram;K,F,G">
+<param name=e[29] value="HKL;polygon;triangle;H,K,L;0;0;black;random">
+<param name=e[30] value="EH;line;connect;E,H">
+<param name=e[31] value="FK;line;connect;F,K">
+<param name=e[32] value="GL;line;connect;G,L">
+</applet></center>
+
+Definition 12 for pyramids is rather abbreviated, but the intention is clear.  Note that in definition 13 the term &ldquo;equal and similar&rdquo; is used for congruence of plane figures.
+
+<p>Prisms, by that name, are first discussed in proposition <a href="propXI39.html">XI.39</a>. Pyramids are treated in propositions <a href="../bookXII/propXII3.html">XII.3</a> through XII.9 in <a href="../bookXII/bookXII.html">Book XII</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1998");
+</script>
+</BODY></HTML>

@@ -1,0 +1,133 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 9</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 9</h1>
+
+<div class="statement">If two numbers are relatively prime, and numbers fall between them in continued proportion, then, however many numbers fall between them in continued proportion, so many also fall between each of them and a unit in continued proportion.</div>
+
+<p>Let <i>A</i> and <i>B</i> be two numbers relatively prime, and let <i>C</i> and <i>D</i> fall between them in continued proportion, and let the unit <i>E</i> be set out.
+
+<p>I say that, as many numbers fall between <i>A</i> and <i>B</i> in continued proportion as fall between either of the numbers <i>A</i> or <i>B</i> and the unit in continued proportion.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=500 height=170 >
+<img src="propVIII9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.9">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="C0;point;free;-1000,70;0;0">
+<param name=e[4] value="C3;point;free;1000,70;0;0">
+<param name=e[5] value="D0;point;free;-1000,110;0;0">
+<param name=e[6] value="D3;point;free;1000,110;0;0">
+<param name=e[7] value="B0;point;free;-1000,150;0;0">
+<param name=e[8] value="B3;point;free;1000,150;0;0">
+<param name=e[9] value="H0;point;free;-1000,50;0;0">
+<param name=e[10] value="H3;point;free;1000,50;0;0">
+<param name=e[11] value="E0;point;free;-1000,90;0;0">
+<param name=e[12] value="E3;point;free;1000,90;0;0">
+<param name=e[13] value="L0;point;free;-1000,130;0;0">
+<param name=e[14] value="L3;point;free;1000,130;0;0">
+
+<param name=e[15] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[16] value="A2;point;lineSlider;A0,A3,110,0;0">
+<param name=e[17] value="A;line;connect;A1,A2;black">
+<param name=e[18] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[19] value="C2;point;lineSlider;C0,C3,130,0;0">
+<param name=e[20] value="C;line;connect;C1,C2;black">
+<param name=e[21] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[22] value="D2;point;proportion;A1,A2,C1,C2,C1,C2,D1,D3;0">
+<param name=e[23] value="D;line;connect;D1,D2;black">
+<param name=e[24] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[25] value="B2;point;proportion;A1,A2,C1,C2,D1,D2,B1,B3;0">
+<param name=e[26] value="B;line;connect;B1,B2;black">
+
+<param name=e[27] value="E1;point;lineSlider;E0,E3,180,0;0">
+<param name=e[28] value="E2;point;lineSlider;E0,E3,202,0;0">
+<param name=e[29] value="E;line;connect;E1,E2;black">
+<param name=e[30] value="F1;point;lineSlider;C0,C3,230,0;0">
+<param name=e[31] value="F2;point;lineSlider;C0,C3,260,0;0">
+<param name=e[32] value="F;line;connect;F1,F2;black">
+<param name=e[33] value="G1;point;lineSlider;D0,D3,230,0;0">
+<param name=e[34] value="G2;point;proportion;A1,A2,C1,C2,F1,F2,G1,D3;0">
+<param name=e[35] value="G;line;connect;G1,G2;black">
+<param name=e[36] value="H1;point;lineSlider;H0,H3,290,0;0">
+<param name=e[37] value="H2;point;proportion;E1,E2,F1,F2,F1,F2,H1,H3;0">
+<param name=e[38] value="H;line;connect;H1,H2;black">
+<param name=e[39] value="K1;point;lineSlider;E0,E3,290,0;0">
+<param name=e[40] value="K2;point;proportion;E1,E2,F1,F2,G1,G2,K1,E3;0">
+<param name=e[41] value="K;line;connect;K1,K2;black">
+<param name=e[42] value="L1;point;lineSlider;L0,L3,290,0;0">
+<param name=e[43] value="L2;point;proportion;E1,E2,G1,G2,G1,G2,L1,L3;0">
+<param name=e[44] value="L;line;connect;L1,L2;black">
+<param name=e[45] value="M1;point;lineSlider;A0,A3,380,0;0">
+<param name=e[46] value="M2;point;proportion;E1,E2,F1,F2,H1,H2,M1,A3;0">
+<param name=e[47] value="M;line;connect;M1,M2;black">
+<param name=e[48] value="N1;point;lineSlider;C0,C3,380,0;0">
+<param name=e[49] value="N2;point;proportion;F1,F2,H1,H2,K1,K2,N1,C3;0">
+<param name=e[50] value="N;line;connect;N1,N2;black">
+<param name=e[51] value="O1;point;lineSlider;D0,D3,380,0;0">
+<param name=e[52] value="O2;point;proportion;G1,G2,K1,K2,L1,L2,O1,D3;0">
+<param name=e[53] value="O;line;connect;O1,O2;black">
+<param name=e[54] value="P1;point;lineSlider;B0,B3,380,0;0">
+<param name=e[55] value="P2;point;proportion;E1,E2,G1,G2,L1,L2,P1,B3;0">
+<param name=e[56] value="P;line;connect;P1,P2;black">
+</applet></div>
+
+<div class="just"><a href=propVIII2.html>VIII.2</a></div>
+<p>Take two numbers <i>F</i> and <i>G,</i> the least that are in the ratio of <i>A, C, D,</i> and <i>B,</i> three numbers <i>H, K,</i> and <i>L</i> with the same property, and others more by one continually, until their multitude equals the multitude of <i>A, C, D,</i> and <i>B.</i>  Let them be <i>M, N, O,</i> and <i>P.</i>
+
+<div class="just"><a href="propVIII2.html#cor">VIII.2,Cor</a></div>
+<p>It is now manifest that <i>F</i> multiplied by itself makes <i>H</i> and multiplied by <i>H</i> makes <i>M,</i> while <i>G</i> multiplied by itself makes <i>L</i> and multiplied by <i>L</i> makes <i>P.</i>
+
+<div class="just"><a href=propVIII1.html>VIII.1</a></div>
+<p>And, since <i>M, N, O,</i> and <i>P</i> are the least of those which have the same ratio with <i>F</i> and <i>G,</i> and <i>A, C, D,</i> and <i>B</i> are also the least of those which have the same ratio with <i>F</i> and <i>G,</i> while the multitude of the numbers <i>M, N, O,</i> and <i>P</i> equals the multitude of the numbers <i>A, C, D,</i> and <i>B,</i> therefore <i>M, N, O,</i> and <i>P</i> equal <i>A, C, D,</i> and <i>B</i> respectively. Therefore <i>M</i> equals <i>A,</i> and <i>P</i> equals <i>B.</i>
+
+<p>Now, since <i>F</i> multiplied by itself makes <i>H,</i> therefore <i>F</i> measures <i>H</i> according to the units in <i>F.</i> But the unit <i>E</i> also measures <i>F</i> according to the units in it, therefore the unit <i>E</i> measures the number <i>F</i> the same number of times as <i>F</i> measures <i>H.</i>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Therefore the unit <i>E</i> is to the number <i>F</i> as <i>F</i> is to <i>H.</i>
+
+<p>Again, since <i>F</i> multiplied by <i>H</i> makes <i>M,</i> therefore <i>H</i> measures <i>M</i> according to the units in <i>F.</i> But the unit <i>E</i> also measures the number <i>F</i> according to the units in it, therefore the unit <i>E</i> measures the number <i>F</i> the same number of times as <i>H</i> measures <i>M.</i>
+
+<p>Therefore the unit <i>E</i> is to the number <i>F</i> as <i>H</i> is to <i>M.</i>
+
+<p>But it was also proved that the unit <i>E</i> is to the number <i>F</i> as <i>F</i> is to <i>H,</i> therefore the unit <i>E</i> is to the number <i>F</i> as <i>F</i> is to <i>H,</i> and as <i>H</i> is to <i>M.</i> But <i>M</i> equals <i>A,</i> therefore the unit <i>E</i> is to the number <i>F</i> as <i>F</i> is to <i>H,</i> and as <i>H</i> is to <i>A.</i> For the same reason also the unit <i>E</i> is to the number <i>G</i> as <i>G</i> is to <i>L</i> and as <i>L</i> is to <i>B.</i>
+
+<p>Therefore as many numbers fall between <i>A</i> and <i>B</i> in continued proportion as fall between each of the numbers <i>A</i> and <i>B</i> and the unit <i>E</i> in continued proportion.
+
+<p>Therefore, <i>If two numbers are relatively prime, and numbers fall between them in continued proportion, then, however many numbers fall between them in continued proportion, so many also fall between each of them and a unit in continued proportion.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+The proposition says that if <i>a</i> and <i>b</i> are relatively prime, and they are the ends of a continued proportion with <i>n</i> terms, then <i>a</i> and <i>b</i> are each (<i>n</i>&ndash;1)<sup>st</sup> powers.
+
+<p>For example, <i>a</i> = 8 and <i>b</i> = 27 are relative prime and are the ends of the continued proportion, 8&nbsp;:&nbsp;12&nbsp;:&nbsp;18&nbsp;:&nbsp;27, therefore 8 and 27 are both cubes.
+
+<h4>Outline of the proof</h4>
+
+Suppose that relatively prime numbers <i>a</i> and <i>b</i> are the ends of a continued proportion with <i>n</i> terms, and that <i>f</i>&nbsp;:&nbsp;<i>g</i> is the ratio for the continued proportion in lowest terms.  Then Euclid shows that
+<i>a</i> is the <i>n</i>&nbsp;1<sup>st</sup> power of <i>f,</i> and
+<i>b</i> is the <i>n</i>&nbsp;1<sup>st</sup> power of <i>g.</i>  The argument is that the sequence
+<p><center>
+<i>f</i><sup>&nbsp;<i>n</i>-1</sup>, <i>f</i><sup>&nbsp;<i>n</i>-2</sup><i>g,</i> <i>f</i><sup>&nbsp;<i>n</i>-3</sup><i>g</i><sup>2</sup>, ...,
+<i>f</i><i>g</i><sup><i>n</i>-2</sup>, <i>g</i><sup><i>n</i>-1</sup>
+</center><p>
+is in continued proportion with the correct ratio with relatively prime ends, so by <a href=propVIII1.html>VIII.1</a> they&rsquo;re the same sequence.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002, 2013");
+</script>
+</BODY></HTML>

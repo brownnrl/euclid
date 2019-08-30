@@ -1,0 +1,141 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 22</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<h1>Proposition 22</h1>
+
+<div class="theorem">
+
+<a name=lemma></a>
+<h1>Lemma</h1>
+
+<div class=statement>If there are two straight lines, then the first is to the second as the square on the first is to the rectangle contained by the two straight lines.</div>
+
+<p>Let <i>FE</i> and <i>EG</i> be two straight lines.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=160>
+<img src="propX22l.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Lemma">
+<param name=e[1] value="F0;point;free;-1000,40;0;0">
+<param name=e[2] value="F3;point;free;1000,40;0;0">
+<param name=e[3] value="F;point;lineSlider;F0,F3,40,0">
+<param name=e[4] value="G;point;lineSlider;F0,F3,200,0">
+<param name=e[5] value="E;point;lineSlider;F0,F3,110,0">
+<param name=e[6] value="FD;polygon;square;E,F;0;0;black;random">
+<param name=e[7] value="D;point;vertex;FD,4">
+<param name=e[8] value="DG;polygon;parallelogram;D,E,G">
+</applet></div>
+
+<p>I say that <i>FE</i> is to <i>EG</i> as the square on <i>FE</i> is to the rectangle <i>FE</i> by <i>EG</i>.
+
+<p>Describe the square <i>DF</i> on <i>FE</i>, and complete <i>GD</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a></div>
+<p>Since then <i>FE</i> is to <i>EG</i> as <i>FD</i> is to <i>DG</i>, and <i>FD</i> is the square on <i>FE</i>, and <i>DG</i> the rectangle <i>DE</i> by <i>EG</i>, that is, the rectangle <i>FE</i> by <i>EG</i>, therefore <i>FE</i> is to <i>EG</i> as the square on <i>FE</i> is to the rectangle <i>FE</i> by <i>EG</i>. Similarly the rectangle <i>GE</i> by <i>EF</i> is to the square on <i>EF</i>, that is <i>GD</i> is to <i>FD</i>, as <i>GE</i> is to <i>EF</i>.
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<br>
+
+<div class="theorem">
+
+<h1>Proposition 22</h1>
+
+<div class=statement>The square on a medial straight line, if applied to a rational straight line, produces as breadth a straight line rational and incommensurable in length with that to which it is applied.</div>
+
+<p>Let <i>A</i> be medial and <i>CB</i> rational, and let a rectangular area <i>BD</i> equal to the square on <i>A</i> be applied to <i>BC</i>, producing <i>CD</i> as breadth.
+
+<p>I say that <i>CD</i> is rational and incommensurable in length with <i>CB</i>.
+
+<div class="just"><a href=propX21.html>X.21</a></div>
+<p>Since <i>A</i> is medial, the square on it equals a rectangular area contained by rational straight lines commensurable in square only.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=250>
+<img src="propX22.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.22">
+<param name=e[1] value="A0;point;free;40,-1000;0;0">
+<param name=e[2] value="A3;point;free;40,1000;0;0">
+<param name=e[3] value="B0;point;free;75,-1000;0;0">
+<param name=e[4] value="B3;point;free;75,1000;0;0">
+<param name=e[5] value="E0;point;free;160,-1000;0;0">
+<param name=e[6] value="E3;point;free;160,1000;0;0">
+
+<param name=e[7] value="A1;point;lineSlider;A0,A3,0,40;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,0,130;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B;point;lineSlider;B0,B3,0,40">
+<param name=e[11] value="C;point;lineSlider;B0,B3,0,200">
+<param name=e[12] value="BC;line;connect;B,C">
+<param name=e[13] value="D';point;perpendicular;C,B;0;0">
+<param name=e[14] value="D'';point;extend;D',C,D',C;0;0">
+<param name=e[15] value="D;point;proportion;B,C,A1,A2,A1,A2,C,D''">
+<param name=e[16] value="BD;polygon;parallelogram;B,C,D;0;0;black;random">
+<param name=e[17] value="G;point;lineSlider;E0,E3,0,50">
+<param name=e[18] value="E;point;lineSlider;E0,E3,0,160">
+<param name=e[19] value="EG;line;connect;E,G">
+<param name=e[20] value="F';point;perpendicular;E,G;0;0">
+<param name=e[21] value="F'';point;extend;F',E,F',E;0;0">
+<param name=e[22] value="F;point;proportion;E,G,A1,A2,A1,A2,E,F''">
+<param name=e[23] value="FG;polygon;parallelogram;F,E,G;0;0;black;random">
+</applet></div>
+
+<p>Let the square on it equal <i>GF</i>. But the square on it also equals <i>BD</i>, therefore <i>BD</i> equals <i>GF</i>.
+
+<div class="just"><a href=../bookVI/propVI14.html>VI.14</a></div>
+<p>But it is also equiangular with it, and in equal and equiangular parallelograms the sides about the equal angles are reciprocally proportional, therefore, <i>BC</i> is to <i>EG</i> as <i>EF</i> is to <i>CD</i>.
+
+<div class="just"><a href=../bookVI/propVI22.html>VI.22</a></div>
+<p>Therefore the square on <i>BC</i> is to the square on <i>EG</i> as the square on <i>EF</i> is to the square on <i>CD</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>But the square on <i>CB</i> is commensurable with the square on <i>EG</i>, for each of these straight lines is rational, therefore the square on <i>EF</i> is also commensurable with the square on <i>CD</i>.
+
+<div class="just"><a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>But the square on <i>EF</i> is rational, therefore the square on <i>CD</i> is also rational. Therefore <i>CD</i> is rational.
+
+<div class="just"><a href=#lemma>Lemma</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>And since <i>EF</i> is incommensurable in length with <i>EG</i>, for they are commensurable in square only, while <i>EF</i> is to <i>EG</i> as the square on <i>EF</i> is to the rectangle <i>FE</i> by <i>EG</i>, therefore the square on <i>EF</i> is incommensurable with the rectangle <i>FE</i> by <i>EG</i>.
+
+<div class="just"><a href=propX13.html>X.13</a></div>
+<p>But the square on <i>CD</i> is commensurable with the square on <i>EF</i>, for the straight lines are rational in square, and the rectangle <i>DC</i> by <i>CB</i> is commensurable with the rectangle <i>FE</i> by <i>EG</i>, for they equal the square on <i>A</i>, therefore the square on <i>CD</i> is incommensurable with the rectangle <i>DC</i> by <i>CB</i>.
+
+<div class="just"><a href=#lemma>Lemma</a>,
+<a href=propX11.html>X.11</a></div>
+<p>But the square on <i>CD</i> is to the rectangle <i>DC</i> by <i>CB</i> as <i>DC</i> is to <i>CB</i>,  therefore <i>DC</i> is incommensurable in length with <i>CB</i>.
+
+<p>Therefore <i>CD</i> is rational and incommensurable in length with <i>CB</i>.
+
+<p>Therefore, <i>the square on a medial straight line, if applied to a rational straight line, produces as breadth a straight line rational and incommensurable in length with that to which it is applied.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>Given medial line <i>A</i> and rational line <i>BC</i>, then <i>CD</i>&nbsp;=&nbsp;<i>A</i><sup>2</sup>/(<i>BC</i>) is a rational line incommensurable to <i>BC</i>.
+
+<p>To understand this, let <i>a</i> be the length of <i>A</i> (relative to the standard unit length), <i>b</i> the length of <i>BC</i>, and <i>c</i> the length of <i>CD</i>, so that <i>c</i>&nbsp;=&nbsp;<i>a</i><sup>2</sup>/<i>b</i>.  
+
+<p>We&rsquo;re given a medial number <i>a</i> (<i>a</i><sup>4</sup> is a rational number but <i>a</i><sup>2</sup> is an irrational number), and <i>b</i><sup>2</sup> is a rational number. Then it follows that <i>c</i><sup>2</sup> is a rational number (being <i>a</i><sup>4</sup>/<i>b</i><sup>2</sup>), but <i>c</i>/<i>b</i> is an irrational number (being <i>a</i><sup>2</sup>/<i>b</i><sup>2</sup>).  That follows since the product or quotient of two rational numbers is a rational number, but the product or quotient of an irrational number and a rational number is an irrational number.
+
+<p>This proposition is used frequently in Book X starting with the next proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,90 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 10</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">Of magnitudes which have a ratio to the same, that which has a greater ratio is greater; and that to which the same has a greater ratio is less.</div>
+
+<p>Let <i>A</i> have to <i>C</i> a greater ratio than <i>B</i> has to <i>C.</i>
+<p>I say that <i>A</i> is greater than <i>B.</i>
+
+<p>If not, then <i>A</i> either equals <i>B</i> or is less than it.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=90>
+<img src=propV10.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.10">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,40;0;0">
+<param name=e[2] value="U1;point;free;1000,40;0;0">
+<param name=e[3] value="V0;point;free;-1000,75;0;0">
+<param name=e[4] value="V1;point;free;1000,75;0;0">
+
+<param name=e[5] value="A0;point;lineSlider;U0,U1,30,40;0">
+<param name=e[6] value="A1;point;lineSlider;U0,U1,120,40;0">
+<param name=e[7] value="A;line;connect;A0,A1;black;0;green">
+<param name=e[8] value="B0;point;lineSlider;U0,U1,150,40;0">
+<param name=e[9] value="B1;point;lineSlider;U0,U1,200,40;0">
+<param name=e[10] value="B;line;connect;B0,B1;black;0;green">
+<param name=e[11] value="C0;point;lineSlider;V0,V1,70,40;0">
+<param name=e[12] value="C1;point;lineSlider;V0,V1,170,40;0">
+<param name=e[13] value="C;line;connect;C0,C1;black;0;green">
+</applet>
+</div>
+
+<div class="just"><a href="propV7.html">V.7</a></div>
+<p>Now <i>A</i> does not equal <i>B,</i> for in that case each of the magnitudes <i>A</i> and <i>B</i> would have the same ratio to <i>C,</i> but they do not, therefore <i>A</i> does not equal <i>B.</i>
+
+<div class="just"><a href="propV8.html">V.8</a></div>
+<p>Nor is <i>A</i> less than <i>B,</i> for in that case <i>A</i> would have to <i>C</i> a less ratio than <i>B</i> has to <i>C,</i> but it does not, therefore <i>A</i> is not less than <i>B.</i>
+
+<p>But it was proved not to be equal either, therefore <i>A</i> is greater than <i>B.</i>
+
+<hr width=50%>
+
+Next, let <i>C</i> have to <i>B</i> a greater ratio than <i>C</i> has to <i>A.</i>
+<p>I say that <i>B</i> is less than <i>A.</i>
+
+<p>If not, it is either equal or greater.
+
+<div class="just"><a href=propV7.html>V.7</a></div>
+<p>Now <i>B</i> does not equal <i>A,</i> for in that case <i>C</i> would have the same ratio to each of the magnitudes <i>A</i> and <i>B,</i> but it does not, therefore <i>A</i> does not equal <i>B.</i>
+
+<div class="just"><a href="propV8.html">V.8</a></div>
+<p>Nor is <i>B</i> greater than <i>A,</i> for in that case <i>C</i> would have to <i>B</i> a less ratio than it has to <i>A,</i> but it does not, therefore <i>B</i> is not greater than <i>A.</i>
+
+<p>But it was proved that it is not equal either, therefore <i>B</i> is less than <i>A.</i></td></tr>
+
+<p>Therefore, <i>of magnitudes which have a ratio to the same, that which has a greater ratio is greater; and that to which the same has a greater ratio is less.
+</i></td></tr>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This converse to proposition <a href=propV8.html>V.8</a> has two statements.
+<p><center>If <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;>&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c,</i> then <i>a</i>&nbsp;>&nbsp;<i>b.</i>
+<br>If <i>c</i>&nbsp;:&nbsp;<i>b</i>&nbsp;>&nbsp;<i>c</i>&nbsp;:&nbsp;<i>a,</i> then <i>b</i>&nbsp;<&nbsp;<i>a.</i></center><p>
+
+<p>Part of the law of trichotomy for ratios is used in this proof, the part which says at most one of the three cases <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;<&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c, a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c,</i> or <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;>&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c,</i> can occur.
+
+<p>Euclid&rsquo;s proof relies on using <a href=defV4.html>V.Def.4</a> as an axiom of comparability since it uses proposition V.8 and the law of trichotomy for ratios.  But the proposition can also be proved without the axiom.  
+<ul>Suppose <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;>&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c.</i>  Then there are numbers <i>m</i> and <i>n</i> such that <i>na</i>&nbsp;>&nbsp;<i>mc</i> but <i>nb</i> is not greater than <i>mc.</i>  Therefore <i>na</i>&nbsp;>&nbsp;<i>nb.</i>  Therefore <i>a</i>&nbsp;>&nbsp;<i>b.</i> 
+Thus <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;>&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c</i> implies <i>a</i>&nbsp;>&nbsp;<i>b.</i></ul>
+The other implication of the proposition can be proved similarly.
+
+<p>This proposition is used a few times in book V starting with <a href=propV14.html>V.14</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

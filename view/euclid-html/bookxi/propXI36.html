@@ -1,0 +1,106 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 36</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 36</h1>
+
+<div class="statement">
+If three straight lines are proportional, then the parallelepipedal solid formed out of the three equals the parallelepipedal solid on the mean which is equilateral, but equiangular with the aforesaid solid.</div>
+
+<p>Let <i>A, B,</i> and <i>C</i> be three straight lines in proportion, so that <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C.</i>
+
+<p>I say that the solid formed out of <i>A, B,</i> and <i>C</i> equals the solid on <i>B</i> which is equilateral, but equiangular with the aforesaid solid.</table>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=460 height=310 >
+<img src="propXI36.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.36">
+<param name=e[1] value="M0;point;free;-1000,180;0;0">
+<param name=e[2] value="M3;point;free;1000,180;0;0">
+<param name=e[3] value="A0;point;free;-1000,220;0;0">
+<param name=e[4] value="A3;point;free;1000,220;0;0">
+<param name=e[5] value="B0;point;free;-1000,250;0;0">
+<param name=e[6] value="B3;point;free;1000,250;0;0">
+<param name=e[7] value="C0;point;free;-1000,280;0;0">
+<param name=e[8] value="C3;point;free;1000,280;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,80,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,200,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,80,0;0">
+<param name=e[13] value="B2;point;lineSlider;B0,B3,170,0;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,80,0;0">
+<param name=e[16] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+
+<param name=e[18] value="M;point;lineSlider;M0,M3,80,0">
+<param name=e[19] value="L;point;cutoff;M,M3,A1,A2">
+<param name=e[20] value="c;point;lineSlider;M0,M3,250,0;0">
+<param name=e[21] value="G;point;cutoff;c,M3,B1,B2">
+<param name=e[22] value="O;point;free;140,130">
+<param name=e[23] value="a;point;parallelogram;M,L,O;0">
+<param name=e[24] value="E';point;parallelogram;L,O,G;0;0">
+<param name=e[25] value="E;point;proportion;A1,A2,B1,B2,L,O,G,E'">
+<param name=e[26] value="F;point;parallelogram;E,G,c">
+<param name=e[27] value="N;point;free;230,110">
+<param name=e[28] value="f;point;parallelogram;M,L,N;0">
+<param name=e[29] value="b;point;parallelogram;O,L,N;0">
+<param name=e[30] value="H;point;parallelogram;a,L,N">
+<param name=e[31] value="D';point;parallelogram;N,L,E;0;0">
+<param name=e[32] value="D;point;proportion;C1,C2,B1,B2,L,N,E,D'">
+<param name=e[33] value="d;point;parallelogram;F,E,D;0">
+<param name=e[34] value="e;point;parallelogram;G,E,D;0">
+<param name=e[35] value="K;point;parallelogram;c,E,D">
+
+<param name=e[36] value="OaML;polygon;quadrilateral;O,a,M,L;0;0;black;90,75,75">
+<param name=e[37] value="OaHb;polygon;quadrilateral;O,a,H,b;0;0;black;90,30,100">
+<param name=e[38] value="OLNb;polygon;quadrilateral;O,L,N,b;0;0;black;90,70,100">
+<param name=e[39] value="Hf;line;connect;H,f">
+<param name=e[40] value="Mf;line;connect;M,f">
+<param name=e[41] value="Nf;line;connect;N,f">
+<param name=e[42] value="GcFE;polygon;quadrilateral;G,c,F,E;0;0;black;10,75,75">
+<param name=e[43] value="GcKe;polygon;quadrilateral;G,c,K,e;0;0;black;10,30,100">
+<param name=e[44] value="GEDe;polygon;quadrilateral;G,E,D,e;0;0;black;10,70,100">
+<param name=e[45] value="Dd;line;connect;D,d">
+<param name=e[46] value="Fd;line;connect;F,d">
+<param name=e[47] value="Kd;line;connect;K,d">
+</applet></div>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a></div>
+<p>Set out the solid angle at <i>E</i> contained by the angles <i>DEG, GEF,</i> and <i>FED,</i> and make each of the straight lines <i>DE, GE,</i> and <i>EF</i> equal to <i>B.</i> Complete the parallelepipedal solid <i>EK.</i> Make <i>LM</i> equal to <i>A.</i> Construct a solid angle at the point <i>L</i> on the straight line <i>LM</i> equal to the solid angle at <i>E,</i> namely that contained by <i>NLO, OLM,</i> and <i>MLN.</i> Make <i>LO</i> equal to <i>B,</i> and <i>LN</i> equal to <i>C.</i>
+
+<div class="just"><a href="../bookVI/propVI4.html">VI.4</a></div>
+<p>Now, since <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C,</i> while <i>A</i> equals <i>LM,</i> and <i>B</i> equals each of the straight lines <i>LO, ED,</i> and <i>C</i> to <i>LN,</i> therefore <i>LM</i> is to <i>EF</i> as <i>DE</i> is to <i>LN.</i> Thus the sides about the equal angles <i>NLM, DEF</i> are reciprocally proportional, therefore the parallelogram <i>MN</i> equals the parallelogram <i>DF.</i>
+
+<div class="just"><a href="propXI35.html#cor">XI.35,Cor</a></div>
+<p>And, since the angles <i>DEF</i> and <i>NLM</i> are two plane rectilinear angles, and on them the elevated straight lines <i>LO</i> and <i>EG</i> are set up which equal one an other and contain equal angles with the original straight lines respectively, therefore the perpendiculars drawn from the points <i>G</i> and <i>O</i> to the planes through <i>NL</i> and <i>LM</i> and through <i>DE</i> and <i>EF</i> equal one another, therefore the solids <i>LH</i> and <i>EK</i> are of the same height.
+
+<div class="just"><a href="propXI31.html">XI.31</a></div>
+<p>But parallelepipedal solids on equal bases and of the same height equal one another,  therefore the solid <i>HL</i> equals the solid <i>EK.</i>
+
+<p>And <i>LH</i> is the solid formed out of <i>A, B,</i> and <i>C,</i> and <i>EK</i> is the solid on <i>B,</i> therefore the parallelepipedal solid formed out of <i>A, B,</i> and <i>C</i> equals the solid on <i>B</i> which is equilateral, but equiangular with the aforesaid solid.
+
+<p>Therefore, <i>if three straight lines are proportional, then the parallelepipedal solid formed out of the three equals the parallelepipedal solid on the mean which is equilateral, but equiangular with the aforesaid solid.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This straightforward proof depends on viewing the two parallelepipeds as having the same height, which they do if the base of the first is taken to be the parallelogram <i>MN</i> and the base of the second the parallelogram <i>DF.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

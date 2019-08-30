@@ -1,0 +1,103 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 25</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 25</h1>
+
+<div class="statement">The rectangle contained by medial straight lines commensurable in square only is either rational or medial.</div>
+
+<p>Let the rectangle <i>AC</i> be contained by the medial straight lines <i>AB</i> and <i>BC</i> which are commensurable in square only.
+
+<p>I say that <i>AC</i> is either rational or medial.
+
+<p>Describe the squares <i>AD</i> and <i>BE</i>  on <i>AB</i> and <i>BC</i>. Then each of the squares <i>AD</i> and <i>BE</i> is medial.</td<</tr>
+
+<p>Set out a rational straight line <i>FG</i>. Apply the rectangular parallelogram <i>GH</i> to <i>FG</i> equal to <i>AD</i>, producing <i>FH</i> as breadth, apply the rectangular parallelogram <i>MK</i> to <i>HM</i> equal to <i>AC</i>, producing <i>HK</i> as breadth, and further apply similarly  <i>NL</i> to <i>KN</i> equal to <i>BE</i>, producing <i>KL</i> as breadth.  Then <i>FH</i>, <i>HK</i>, and <i>KL</i> are in a straight line.
+
+<p>Since each of the squares <i>AD</i> and <i>BE</i> is medial, and <i>AD</i> equals <i>GH</i> while <i>BE</i> equals <i>NL</i>, therefore each of the rectangles <i>GH</i> and <i>NL</i> is also medial.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=340 height=270>
+<img src="propX25.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.25">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,120,0">
+<param name=e[4] value="B';point;perpendicular;A,A3;0;0">
+<param name=e[5] value="B;point;lineSlider;A,B',0,120">
+<param name=e[6] value="C';point;parallelogram;A3,A,B;0;0">
+<param name=e[7] value="C;point;lineSlider;B,C',180,0">
+<param name=e[8] value="AC;polygon;parallelogram;A,B,C;0;0;black;yellow">
+<param name=e[9] value="AD;polygon;square;B,A;0;0;black;orange">
+<param name=e[10] value="D;point;vertex;AD,4">
+<param name=e[11] value="BE;polygon;square;C,B;0;0;black;pink">
+<param name=e[12] value="O;point;vertex;BE,3">
+<param name=e[13] value="E;point;vertex;BE,4">
+<param name=e[14] value="F;point;lineSlider;A0,A3,220,0">
+<param name=e[15] value="G;point;lineSlider;A0,A3,300,0">
+<param name=e[16] value="M';point;perpendicular;G,A0;0;0">
+<param name=e[17] value="M;point;proportion;F,G,A,B,A,B,G,M'">
+<param name=e[18] value="GH;polygon;parallelogram;F,G,M;0;0;black;orange">
+<param name=e[19] value="H;point;vertex;GH,4">
+<param name=e[20] value="N;point;proportion;F,G,A,B,C,B,M,M'">
+<param name=e[21] value="HN;polygon;parallelogram;H,M,N;0;0;black;yellow">
+<param name=e[22] value="K;point;vertex;HN,4">
+<param name=e[23] value="P;point;proportion;F,G,B,C,B,C,N,M';0;0">
+<param name=e[24] value="LN;polygon;parallelogram;K,N,P;0;0;black;pink">
+<param name=e[25] value="L;point;vertex;LN,4">
+</applet></div>
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And they are applied to the rational straight line <i>FG</i>, therefore each of the straight lines <i>FH</i> and <i>KL</i> is rational and incommensurable in length with <i>FG</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>And, since <i>AD</i> is commensurable with <i>BE</i>, therefore <i>GH</i> is commensurable with <i>NL</i>. And <i>GH</i> is to <i>NL</i> as <i>FH</i> is to <i>KL</i>, therefore <i>FH</i> is commensurable in length with <i>KL</i>.
+
+<div class="just"><a href=propX19.html>X.19</a></div>
+<p>Therefore <i>FH</i> and <i>KL</i> are rational straight lines commensurable in length, therefore the rectangle <i>FH</i> by <i>KL</i> is rational.
+
+<p>And, since <i>DB</i> equals <i>BA</i> while <i>OB</i> equals <i>BC</i>, therefore <i>DB</i> is to <i>BC</i> as <i>AB</i> is to <i>BO</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a></div>
+<p>But <i>DB</i> is to <i>BC</i> as <i>DA</i> is to <i>AC</i>, and <i>AB</i> is to <i>BO</i> as <i>AC</i> is to <i>CO</i>, therefore <i>DA</i> is to <i>AC</i> as <i>AC</i> is to <i>CO</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>,
+<a href=../bookV/propV11.html>V.11</a>
+<br><a href=../bookVI/propVI17.html>VI.17</a></div>
+<p>But <i>AD</i> equals <i>GH</i>, <i>AC</i> equals <i>MK</i>, and <i>CO</i> equals <i>NL</i>, therefore <i>GH</i> is to <i>MK</i> as <i>MK</i> is to <i>NL</i>.  Therefore <i>FH</i> is to <i>HK</i> as <i>HK</i> is to <i>KL</i>.  Therefore the rectangle <i>FH</i> by <i>KL</i> equals the square on <i>HK</i>.
+
+<p>But the rectangle <i>FH</i> by <i>KL</i> is rational, therefore the square on <i>HK</i> is also rational.
+
+<div class="just"><a href=propX19.html>X.19</a>
+<br><a href=propX21.html>X.21</a></div>
+<p>Therefore <i>HK</i> is rational. And, if it is commensurable in length with <i>FG</i>, then <i>HN</i> is rational, but, if it is incommensurable in length with <i>FG</i>, then <i>KH</i> and <i>HM</i> are rational straight lines commensurable in square only, and therefore <i>HN</i> is medial.
+
+<p>Therefore <i>HN</i> is either rational or medial. But <i>HN</i> equals <i>AC</i>, therefore <i>AC</i> is either rational or medial.
+
+<p>Therefore, <i>the rectangle contained by medial straight lines commensurable in square only is either rational or medial.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>To say a rectangle with sides <i>a</i> and <i>b</i> is rational says that <i>ab</i> is a rational number.  To say that it&rsquo;s medial says that (<i>ab</i>)<sup>2</sup> is a rational number but <i>ab</i> is an irrational number.  Therefore, to say it is either rational or medial says only that (<i>ab</i>)<sup>2</sup> is a rational number.
+
+<p>In this proposition we are given that <i>a</i> and <i>b</i> are medial, so both <i>a</i><sup>4</sup> and <i>b</i><sup>4</sup> are rational numbers, and we are given that <i>a</i><sup>2</sup>/<i>b</i><sup>2</sup> is a rational number.  Therefore, (<i>ab</i>)<sup>2</sup>, which equals <i>b</i><sup>4</sup>(<i>a</i><sup>2</sup>/<i>b</i><sup>2</sup>) is also a rational number.
+
+<p>This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

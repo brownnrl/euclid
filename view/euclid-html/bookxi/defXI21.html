@@ -1,0 +1,67 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book XI, Definitions 21 through 23</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 21</h1>
+
+<div class="statement">When a rectangular parallelogram with one side of those about the right angle remains fixed is carried round and restored again to the same position from which it began to be moved, the figure so comprehended is a cylinder.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 22</h1>
+
+<div class="statement">The axis of the cylinder is the straight line which remains fixed and about which the parallelogram is turned.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 23</h1>
+
+<div class="statement">And the bases are the circles described by the two sides opposite to one another which are carried round.</div>
+</div>
+
+<h2>Guide</h2>
+
+<table cellspacing=5>
+<tr><td>Rectangle <i>ABEC</i> is rotated around the side <i>AC</i> to produce a cylinder.  Its axis is <i>AC</i> and it has two circles for bases.
+
+<p>The concept of cylinder has been generalized since Euclid&rsquo;s time as have so many ancient mathematical concepts.  Euclid&rsquo;s cylinders are right, circular cylinders since their axes are at right angles to their bases and their bases are circles.</td>
+
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=170 height=220 >
+<img src="defXI21.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Def.XI.21-23">
+<param name=e[1] value="origin;point;free;70,220;0;0">
+<param name=e[2] value="z;point;fixed;70,80,100;0;0">
+<param name=e[3] value="xyplane;plane;perpendicular;origin,z;0;0;0;0">
+
+<param name=e[4] value="A;point;planeSlider;xyplane,80,120,0">
+<param name=e[5] value="B;point;planeSlider;xyplane,120,120,0">
+<param name=e[6] value="D;point;extend;B,A,B,A;0">
+<param name=e[7] value="C';point;perpendicular;A,xyplane,A,B;0;0">
+<param name=e[8] value="C;point;lineSlider;A,C',70,140,200">
+<param name=e[9] value="E;point;parallelogram;C,A,B">
+<param name=e[10] value="F;point;parallelogram;C,A,D">
+<param name=e[11] value="Acircle;circle;radius;A,B,xyplane;0;0;black;150,50,100">
+<param name=e[12] value="Cplane;plane;parallel;xyplane,C;0;0;0;0">
+<param name=e[13] value="Ccircle;circle;radius;C,E,Cplane;0;0;black;150,50,100">
+<param name=e[14] value="CBD;polygon;quadrilateral;B,D,F,E;0;0;black;150,50,100">
+<param name=e[15] value="AC;line;connect;A,C">
+</applet>
+</td></tr></table>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1998");
+</script>
+</BODY></HTML>

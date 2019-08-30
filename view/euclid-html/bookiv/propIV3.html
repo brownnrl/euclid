@@ -1,0 +1,92 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 3</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">
+To circumscribe a triangle equiangular with a given triangle about a given circle.</div>
+
+<p>Let <i>ABC</i> be the given circle, and <i>DEF</i> the given triangle.
+<p>It is required to circumscribe a triangle equiangular with the triangle <i>DEF</i> about the circle <i>ABC.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=290 width=360>
+<img src="propIV3.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.3">
+<param name=e[1] value="B;point;free;160,120">
+<param name=e[2] value="K;point;free;120,150">
+<param name=e[3] value="BK;line;connect;B,K">
+<param name=e[4] value="ABC;circle;radius;K,B;0;0;black;0">
+<param name=e[5] value="D;point;free;320,55">
+<param name=e[6] value="E;point;free;230,150">
+<param name=e[7] value="F;point;free;220,55">
+<param name=e[8] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+<param name=e[9] value="H;point;lineSlider;E,F,220,30">
+<param name=e[10] value="G;point;lineSlider;E,F,260,220">
+<param name=e[11] value="HF;line;connect;H,F">
+<param name=e[12] value="EG;line;connect;E,G">
+<param name=e[13] value="A';point;similar;B,K,G,E,D;0;0">
+<param name=e[14] value="A;point;cutoff;K,A',K,B">
+<param name=e[15] value="AK;line;connect;A,K">
+<param name=e[16] value="C';point;similar;B,K,H,F,D;0;0">
+<param name=e[17] value="C;point;cutoff;K,C',K,B">
+<param name=e[18] value="CK;line;connect;C,K">
+<param name=e[19] value="Atan;line;perpendicular;A,K;0;0;0">
+<param name=e[20] value="Btan;line;perpendicular;B,K;0;0;0">
+<param name=e[21] value="Ctan;line;perpendicular;C,K;0;0;0">
+<param name=e[22] value="M;point;intersection;Atan,Btan">
+<param name=e[23] value="N;point;intersection;Btan,Ctan">
+<param name=e[24] value="L;point;intersection;Ctan,Atan">
+<param name=e[25] value="LMN;polygon;triangle;L,M,N;0;0;black;random">
+<param name=e[26] value="ABCdup;circle;radius;K,B;0;0;0;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV3.gif" hspace=10 alt="IV.3">';
+</script>
+</div>
+
+<div class="just"><a href="../bookIII/propIII1.html">III.1</a>
+<br><a href="../bookI/propI23.html">I.23</a>
+<br><a href="../bookIII/propIII16.html#cor">III.16,Cor</a></div>
+<p>Produce <i>EF</i> in both directions to the points <i>G</i> and <i>H.</i>  Take the center <i>K</i> of the circle <i>ABC,</i> and draw a radius <i>KB</i> at random.  On the straight line <i>KB</i> and at the point <i>K</i> on it, construct the angle <i>BKA</i> equal to the angle <i>DEG,</i> and the angle <i>BKC</i> equal to the angle <i>DFH.</i>  Through the points <i>A,</i> <i>B,</i> and <i>C</i> draw <i>LAM, MBN,</i> and <i>NCL</i> touching the circle <i>ABC.</i>
+
+<div class="just"><a href="../bookIII/propIII18.html">III.18</a></div>
+<p>Now, since <i>LM, MN,</i> and <i>NL</i> touch the circle <i>ABC</i> at the points <i>A, B,</i> and <i>C,</i> and <i>KA, KB,</i> and <i>KC</i> have been joined from the center <i>K</i> to the points <i>A, B,</i> and <i>C,</i> therefore the angles at the points <i>A, B,</i> and <i>C</i> are right.
+
+<p>And, since the four angles of the quadrilateral <i>AMBK</i> equal four right angles, inasmuch as <i>AMBK</i> is in fact divisible into two triangles, and the angles <i>KAM</i> and <i>KBM</i> are right, therefore the sum of the remaining angles <i>AKB</i> and <i>AMB</i> equals two right angles.
+
+<div class="just"><a href="../bookI/propI13.html">I.13</a></div>
+<p>But the sum of the angles <i>DEG</i> and <i>DEF</i> also equals two right angles, therefore the sum of the angles <i>AKB</i> and <i>AMB</i> equals the sum of the angles <i>DEG</i> and <i>DEF,</i> of which the angle <i>AKB</i> equals the angle <i>DEG,</i> therefore the remaining angle <i>AMB</i> equals the remaining angle <i>DEF.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>Similarly it can be proved that the angle <i>LNB</i> also equals the angle <i>DFE,</i> therefore the remaining angle <i>MLN</i> equals the angle <i>EDF.</i>
+
+<div class="just"><a href=../bookIV/defIV.html>IV.Def.4</a></div>
+<p>Therefore the triangle <i>LMN</i> is equiangular with the triangle <i>DEF,</i> and it has been circumscribed about the circle <i>ABC.</i>
+
+<p>Therefore a triangle equiangular with the given triangle has been circumscribed about a given circle.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is not used elsewhere in the <i>Elements,</i> but is included as a mate to the previous proposition in which a triangle is inscribed inside rather than circumscribed outside a given circle.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,80 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 9</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 9</h1>
+
+<div class="statement">
+To circumscribe a circle about a given square.
+</div>
+
+<p>Let <i>ABCD</i> be the given square.
+
+<p>It is required to circumscribe a circle about the square <i>ABCD.</i>
+
+<p>Join <i>AC</i> and <i>BD,</i> and let them cut one another at <i>E.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=270 width=280>
+<img src="propIV9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.9">
+<param name=e[1] value="A;point;free;140,30">
+<param name=e[2] value="C;point;free;140,235">
+<param name=e[3] value="E;point;midpoint;A,C;black;green">
+<param name=pivot value=E>
+<param name=e[4] value="ABCD;circle;radius;E,A;0;0;black;random">
+<param name=e[5] value="B;point;perpendicular;E,A">
+<param name=e[6] value="D;point;perpendicular;E,C">
+<param name=e[7] value="square;polygon;quadrilateral;A,B,C,D;0;0;black;random">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="BD;line;connect;B,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV9.gif" hspace=10 alt="IV9">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>Then, since <i>DA</i> equals <i>AB,</i> and <i>AC</i> is common, therefore the two sides <i>DA</i> and <i>AC</i> equal the two sides <i>BA</i> and <i>AC,</i> and the base <i>DC</i> equals the base <i>BC,</i> therefore the angle <i>DAC</i> equals the angle <i>BAC.</i>
+
+<p>Therefore the angle <i>DAB</i> is bisected by <i>AC.</i>
+
+<p>Similarly we can prove that each of the angles <i>ABC, BCD,</i> and <i>CDA</i> is bisected by the straight lines <i>AC</i> and <i>DB.</i>
+
+<div class="just"><a href="../bookI/propI6.html">I.6</a></div>
+<p>Now, since the angle <i>DAB</i> equals the angle <i>ABC,</i> and the angle <i>EAB</i> is half of the angle <i>DAB,</i> and the angle <i>EBA</i> half of the angle <i>ABC,</i> therefore the angle <i>EAB</i> also equals the angle <i>EBA,</i> so that the side <i>EA</i> also equals <i>EB.</i>
+
+<p>Similarly we can prove that each of the straight lines <i>EA</i> and <i>EB</i> equals each of the straight lines <i>EC</i> and <i>ED.</i>
+
+<p>Therefore the four straight lines <i>EA, EB, EC,</i> and <i>ED</i> equal one another.
+
+<p>Therefore the circle described with center <i>E</i> and radius one of the straight lines <i>EA,</i> <i>EB, EC,</i> or <i>ED</i> also passes through the remaining points, and it is circumscribed about the square <i>ABCD.</i>
+
+<p>Let it be circumscribed, as <i>ABCD.</i>
+
+<p>Therefore a circle has been circumscribed about the given square.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+This is a straightforward proposition, one of four in the sequence IV.6 through IV.9 about
+circles and squares.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

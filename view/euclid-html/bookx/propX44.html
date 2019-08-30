@@ -1,0 +1,114 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 44</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 44</h1>
+
+<div class="statement">A second bimedial straight line is divided at one point only.</div>
+
+<div class="just"><a href=propX38.html>X.38</a></div>
+<p>Let <i>AB</i> be a second bimedial straight line divided at <i>C</i>, so that <i>AC</i> and <i>CB</i> are medial straight lines commensurable in square only and containing a medial rectangle.  It is then manifest that <i>C</i> is not at the point of bisection, because the segments are not commensurable in length.
+
+<p>I say that <i>AB</i> is not so divided at another point.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=350 height=200>
+<img src="propX44.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.44">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="E0;point;free;40,-1000;0;0">
+<param name=e[4] value="E3;point;free;40,1000;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,90,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,245,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,210,0">
+<param name=e[8] value="AB;line;connect;A,B">
+<param name=e[9] value="D;point;lineSlider;A0,A3,170,0">
+<param name=e[10] value="E;point;lineSlider;E0,E3,0,80">
+<param name=e[11] value="F;point;lineSlider;E0,E3,0,170">
+
+<param name=e[12] value="N';point;parallelogram;B,A,E;0;0">
+<param name=e[13] value="N;point;proportion;E,F,A,B,A,B,E,N'">
+<param name=e[14] value="K;point;parallelogram;F,E,N">
+<param name=e[15] value="F,E,N,K;polygon;quadrilateral;F,E,N,K;0;0;black;random">
+<param name=e[16] value="H';point;proportion;E,F,A,C,A,C,E,N;0;0">
+<param name=e[17] value="H;point;proportion;E,F,C,B,C,B,H',N">
+<param name=e[18] value="G;point;parallelogram;F,E,H">
+<param name=e[19] value="M';point;proportion;E,F,A,D,A,D,E,N;0;0">
+<param name=e[20] value="M;point;proportion;E,F,D,B,D,B,M',N">
+<param name=e[21] value="L;point;parallelogram;F,E,M">
+<param name=e[22] value="GHML;polygon;quadrilateral;G,H,M,L;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=propX41.html#lemma>X.41.Lemma</a></div>
+<p>If possible, let it also be divided at <i>D</i>, so that <i>AC</i> is not the same with <i>DB</i>, but <i>AC</i> is supposed greater.  It is then clear that the sum of the squares on <i>AD</i> and <i>DB</i> is also, as we proved above, less than the sum of the squares on <i>AC</i> and <i>CB</i>.  Suppose that <i>AD</i> and <i>DB</i> are medial straight lines commensurable in square only and containing a medial rectangle.
+
+<div class="just"><a href=../bookII/propII4.html>II.4</a></div>
+<p>Set out a rational straight line <i>EF</i>, apply to <i>EF</i> the rectangular parallelogram <i>EK</i> equal to the square on <i>AB</i>, and subtract <i>EG</i>, equal to the sum of the squares on <i>AC</i> and <i>CB</i>.  Then the remainder <i>HK</i> equals twice the rectangle <i>AC</i> by <i>CB</i>.
+
+<div class="just"><a href=propX41.html#lemma>X.41.Lemma</a></div>
+<p>Again, subtract  <i>EL</i>, equal to the sum of the squares on <i>AD</i> and <i>DB</i>, which were proved less than the sum of the squares on <i>AC</i> and <i>CB</i>.  Then the remainder <i>MK</i> also equals twice the rectangle <i>AD</i> by <i>DB</i>.
+
+<p>Now, since the squares on <i>AC</i> and <i>CB</i> are medial, therefore <i>EG</i> is medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And it is applied to the rational straight line <i>EF</i>, therefore <i>EH</i> is rational and incommensurable in length with <i>EF</i>.
+
+<p>For the same reason <i>HN</i> is also rational and incommensurable in length with <i>EF</i>.
+
+<p>And, since <i>AC</i> and <i>CB</i> are medial straight lines commensurable in square only, therefore <i>AC</i> is incommensurable in length with <i>CB</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>But <i>AC</i> is to <i>CB</i> as the square on <i>AC</i> is to the rectangle <i>AC</i> by <i>CB</i>, therefore the square on <i>AC</i> is incommensurable with the rectangle <i>AC</i> by <i>CB</i>.
+
+<div class="just"><a href=propX15.html>X.15</a></div>
+<p>But the sum of the squares on <i>AC</i> and <i>CB</i> is commensurable with the square on <i>AC</i>, for <i>AC</i> and <i>CB</i> are commensurable in square.
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>And twice the rectangle <i>AC</i> by <i>CB</i> is commensurable with the rectangle <i>AC</i> by <i>CB</i>.
+
+<div class="just"><a href=propX13.html>X.13</a></div>
+<p>Therefore the sum of the squares on <i>AC</i> and <i>CB</i> is also incommensurable with twice the rectangle <i>AC</i> by <i>CB</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>But <i>EG</i> equals the sum of the squares on <i>AC</i> and <i>CB</i>, and <i>HK</i> equals twice the rectangle <i>AC</i> by <i>CB</i>, therefore <i>EG</i> is incommensurable with <i>HK</i>, so that <i>EH</i> is also incommensurable in length with <i>HN</i>.
+
+<p>And they are rational, therefore <i>EH</i> and <i>HN</i> are rational straight lines commensurable in square only.
+
+<div class="just"><a href=propX36.html>X.36</a></div>
+<p>But, if two rational straight lines commensurable in square only are added together, then the whole is the irrational which is called binomial.
+
+<p>Therefore <i>EN</i> is a binomial straight line divided at <i>H</i>.
+
+<p>In the same way <i>EM</i> and <i>MN</i> is also proved to be rational straight lines commensurable in square only, and <i>EN</i> is a binomial straight line divided at different points, <i>H</i> and <i>M</i>.
+
+<p>And <i>EH</i> is not the same with <i>MN</i>, for the sum of the squares on <i>AC</i> and <i>CB</i> is greater than the sum of the squares on <i>AD</i> and <i>DB</i>.
+
+<p>But the sum of the squares on <i>AD</i> and <i>DB</i> is greater than twice the rectangle <i>AD</i> by <i>DB</i>, therefore the sum of the squares on <i>AC</i> and <i>CB</i>, that is, <i>EG</i>, is much greater than twice the rectangle <i>AD</i> by <i>DB</i>, that is, <i>MK</i>, so that <i>EH</i> is also greater than <i>MN</i>.
+
+<p>Therefore <i>EH</i> is not the same with <i>MN</i>.
+
+<p>Therefore, <i>a second bimedial straight line is divided at one point only.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

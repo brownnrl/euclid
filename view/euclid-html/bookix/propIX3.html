@@ -1,0 +1,85 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 3</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">If a cubic number multiplied by itself makes some number, then the product is a cube.</div>
+
+<p>Let the cubic number <i>A</i> multiplied by itself make <i>B.</i>
+
+<p>I say that <i>B</i> is cubic.
+
+<p>Take <i>C,</i> the side of <i>A.</i>  Multiply <i>C</i> by itself make <i>D.</i> It is then manifest that <i>C</i> multiplied by <i>D</i> makes <i>A.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=140 >
+<img src="propIX3.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.3">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="U1;point;free;1000,0;0;0">
+<param name=e[8] value="U2;point;free;1000,30;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,105,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[13] value="B2;point;proportion;U1,U2,A1,A2,A1,A2,B1,B3;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[16] value="C2;point;lineSlider;C0,C3,75,0;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+<param name=e[18] value="D1;point;lineSlider;C0,C3,110,0;0">
+<param name=e[19] value="D2;point;proportion;U1,U2,C1,C2,C1,C2,D1,C3;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Now, since <i>C</i> multiplied by itself makes <i>D,</i> therefore <i>C</i> measures <i>D</i> according to the units in itself. But further the unit also measures <i>C</i> according to the units in it, therefore the unit is to <i>C</i> as <i>C</i> is to <i>D.</i>
+
+<p>Again, since <i>C</i> multiplied by <i>D</i> makes <i>A,</i> therefore <i>D</i> measures <i>A</i> according to the units in <i>C.</i> But the unit also measures <i>C</i> according to the units in it, therefore the unit is to <i>C</i> as <i>D</i> is to <i>A.</i> But the unit is to <i>C</i> as <i>C</i> is to <i>D,</i> therefore the unit is to <i>C</i> as <i>C</i> is to <i>D,</i> and as <i>D</i> is to <i>A.</i>
+
+<p>Therefore between the unit and the number <i>A</i> two mean proportional numbers <i>C</i> and <i>D</i> have fallen in continued proportion.
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Again, since <i>A</i> multiplied by itself makes <i>B,</i> therefore <i>A</i> measures <i>B</i> according to the units in itself. But the unit also measures <i>A</i> according to the units in it, therefore the unit is to <i>A</i> as <i>A</i> is to <i>B.</i>
+
+<div class="just"><a href="../bookVIII/propVIII8.html">VIII.8</a></div>
+<p>But between the unit and <i>A</i> two mean proportional numbers have fallen, therefore two mean proportional numbers also fall between <i>A</i> and <i>B.</i>
+
+<div class="just"><a href="../bookVIII/propVIII23.html">VIII.23</a></div>
+<p>But, if two mean proportional numbers fall between two numbers, and the first is a cube, then the second is also a cube. And <i>A</i> is a cube, therefore <i>B</i> is also a cube.
+
+<p>Therefore, <i>if a cubic number multiplied by itself makes some number, then the product is a cube.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Modern algebra certainly makes short work of this proposition: 
+(<i>c</i><sup>3</sup>)<sup>2</sup>&nbsp;=&nbsp;(<i>c</i><sup>2</sup>)<sup>3</sup>.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next two propositions and <a href=propIX9.html>IX.9</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

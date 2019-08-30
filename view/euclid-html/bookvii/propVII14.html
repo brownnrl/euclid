@@ -1,0 +1,103 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 14</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">If there are any number of numbers, and others equal to them in multitude, which taken two and two together are in the same ratio, then they are also in the same ratio <i>ex aequali.</i></div>
+
+<p>Let there be as many numbers as we please <i>A, B,</i> and <i>C,</i> and others equal to them in multitude <i>D, E,</i> and <i>F,</i> which taken two and two are in the same ratio, so that <i>A</i> is to <i>B</i> as <i>D</i> is to <i>E,</i> and <i>B</i> is to <i>C</i> as <i>E</i> is to <i>F.</i>
+<p>I say that, <i>ex aequali A</i> is to <i>C</i> as <i>D</i> is to <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=140 >
+<img src=propVII14.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.14">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="A1;point;lineSlider;A0,A3,30,40;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,150,40;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B1;point;lineSlider;B0,B3,30,40;0">
+<param name=e[11] value="B2;point;lineSlider;B0,B3,130,40;0">
+<param name=e[12] value="B;line;connect;B1,B2;black">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,30,40;0">
+<param name=e[14] value="C2;point;lineSlider;C0,C3,120,40;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+<param name=e[16] value="D1;point;lineSlider;A0,A3,180,40;0">
+<param name=e[17] value="D2;point;lineSlider;A0,A3,250,40;0">
+<param name=e[18] value="D;line;connect;D1,D2;black">
+<param name=e[19] value="E1;point;lineSlider;B0,B3,180,75;0">
+<param name=e[20] value="E2;point;proportion;A1,A2,B1,B2,D1,D2,E1,B3;0">
+<param name=e[21] value="E;line;connect;E1,E2;black">
+<param name=e[22] value="F1;point;lineSlider;C0,C3,180,40;0">
+<param name=e[23] value="F2;point;proportion;A1,A2,C1,C2,D1,D2,F1,C3;0">
+<param name=e[24] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<div class="just"><a href="propVII13.html">VII.13</a></div>
+<p>Since <i>A</i> is to <i>B</i> as <i>D</i> is to <i>E,</i> therefore, alternately <i>A</i> is to <i>D</i> as <i>B</i> is to <i>E.</i>
+
+<div class="just"><a href=propVII13.html>VII.13</a>
+<br>(<a href=../bookV/propV11.html>V.11</a>)</div>
+<p>Again, since <i>B</i> is to <i>C</i> as <i>E</i> is to <i>F,</i> therefore, alternately <i>B</i> is to <i>E</i> as <i>C</i> is to <i>F.</i> But <i>B</i> is to <i>E</i> as <i>A</i> is to <i>D,</i> therefore <i>A</i> is to <i>D</i> as <i>C</i> is to <i>F.</i> Therefore, alternately <i>A</i> is to <i>C</i> as <i>D</i> is to <i>F.</i>
+
+<p>Therefore, <i>if there are any number of numbers, and others equal to them in multitude, which taken two and two together are in the same ratio, then they are also in the same ratio <i>ex aequali.</i></i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This is the numerical analogue of <a href=../bookV/propV22.html>V.22</a> for magnitudes.  It says that 
+
+<p><center>
+<table>
+<tr><td align=right>if <i>a</i><sub>1</sub> : <i>a</i><sub>2</sub></td>
+<td>=</td>
+<td><i>b</i><sub>1</sub> : <i>b</i><sub>2</sub></td></tr>
+<tr><td align=right><i>a</i><sub>2</sub> : <i>a</i><sub>3</sub></td>
+<td>=</td>
+<td><i>b</i><sub>2</sub> : <i>b</i><sub>3</sub></td></tr>
+<tr><td></td><td>...</td><td></td></tr>
+<tr><td align=right>and <i>a</i><sub><i>n</i>-1</sub> : <i>a</i><sub><i>n</i></sub></td>
+<td>=</td>
+<td><i>b</i><sub><i>n</i>-1</sub> : <i>b</i><sub><i>n</i></sub></td></tr>
+<tr><td align=right>then <i>a</i><sub>1</sub> : <i>a</i><sub><i>n</i></sub></td>
+<td>=</td>
+<td><i>b</i><sub>1</sub> : <i>b</i><sub><i>n</i></sub></td></tr>
+</td></tr>
+</table>
+</center><p>
+
+Euclid takes <i>n</i> to be 3 in his proof.
+
+<p>The proof is straightforward, and a simpler proof than the one given in V.22 for magnitudes.  
+
+<p>Note that at one point, the missing analogue of proposition <a href=../bookV/propV11.html>V.11</a> is used: from the two proportions <i>B</i> : <i>E</i>&nbsp;=&nbsp;<i>C</i> : <i>F</i> and <i>B</i> : <i>E</i>&nbsp;=&nbsp;<i>A</i> : <i>D,</i> the conclusion <i>A</i> : <i>D</i>&nbsp;=&nbsp;<i>C</i> : <i>F</i> is drawn.  Similar missing analogues of propositions from Book V are used in other proofs in book VII.  See, for instance, <a href=propVII19.html>VII.19</a> where V.7 and V.9 are used. That could mean that when Eudoxus developed the material for Book V he was more careful than his predecessors who created Book VII. 
+
+<p>This proposition allows the use of extended proportions such as
+<p><center>
+  <i>a</i> : <i>b</i> : <i>c</i> = <i>d</i> : <i>e</i> : <i>f</i>
+</center><p>
+as an abbreviation for three ordinary proportions.
+
+<p>This proposition is used occasionally in Books VIII and IX starting with <a href=../bookVIII/propVIII1.html>VIII.1</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2010, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,355 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 17</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 17</h1>
+
+<div class="statement">
+To construct a dodecahedron and comprehend it in a sphere, like the aforesaid figures; and to prove that the square on the side of the dodecahedron is the irrational straight line called apotome.</div>
+
+<div class="just"><a href=propXIII15.html>XIII.15</a>
+<br><a href=../bookI/propI10.html>I.10</a>
+<br><a href=../bookII/propII11.html>II.11</a>/<a href=../bookVI/propVI30.html>VI.30</a>
+<br><a href=../bookXI/propXI11.html>XI.11</a>
+<br><a href=../bookI/propI3.html>I.3</a></div>
+<p>Let <i>ABCD</i> and <i>CBEF,</i> two planes of the aforesaid cube at right angles to one another, be set out.  Bisect the sides <i>AB, BC, CD, DA, EF, EB,</i> and <i>FC</i> at <i>G, H, K, L, M, N,</i> and <i>O</i> respectively, and join <i>GK, HL, MH,</i> and <i>NO.</i>  Cut the straight lines <i>NP, PO,</i> and <i>HQ</i> in extreme and mean ratio at the points <i>R, S,</i> and <i>T</i> respectively, and let <i>RP, PS,</i> and <i>TQ</i> be their greater segments.  Set up <i>RU, SV,</i> and <i>TW</i> from the points <i>R, S,</i> and <i>T</i> at right angles to the planes of the cube towards the outside of the cube, and make them equal to <i>RP, PS,</i> and <i>TQ.</i>  Join <i>UB, BW, WC, CV,</i> and <i>VU.</i>
+
+<p>I say that the pentagon <i>UBWCV</i> is equilateral, in one plane, and equiangular.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=370 height=400 >
+<img src="propXIII17.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.17">
+<param name=e[1] value="B;point;free;40,150">
+<param name=e[2] value="C';point;fixed;250,190,100;0;0">
+<param name=e[3] value="side;plane;perpendicular;B,C';0;0;0;0">
+<param name=e[4] value="A;point;planeSlider;side,430,400,50">
+<param name=e[5] value="front;plane;3points;B,A,C';0;0;0;0">
+<param name=e[6] value="ABCD;polygon;square;A,B,front;0;0;black;random">
+<param name=e[7] value="C;point;vertex;ABCD,3">
+<param name=e[8] value="D;point;vertex;ABCD,4">
+<param name=e[9] value="E;point;perpendicular;B,front,A,B">
+<param name=e[10] value="top;plane;3points;B,C,E;0;0;0;0">
+<param name=e[11] value="F;point;parallelogram;E,B,C">
+<param name=e[12] value="BEFC;polygon;quadrilateral;B,E,F,C;0;0;black;random">
+
+<param name=e[13] value="G;point;midpoint;A,B">
+<param name=e[14] value="H;point;midpoint;B,C">
+<param name=e[15] value="K;point;midpoint;C,D">
+<param name=e[16] value="L;point;midpoint;A,D">
+<param name=e[17] value="M;point;midpoint;E,F">
+<param name=e[18] value="N;point;midpoint;B,E">
+<param name=e[19] value="O;point;midpoint;C,F">
+<param name=e[20] value="GK;line;connect;G,K">
+<param name=e[21] value="HL;line;connect;H,L">
+<param name=e[22] value="HM;line;connect;H,M">
+<param name=e[23] value="NO;line;connect;N,O">
+<param name=e[24] value="P;point;intersection;HM,NO,top">
+<param name=e[25] value="Q;point;intersection;GK,HL,screen">
+
+<param name=e[26] value="OPmid;point;midpoint;O,P;0;0">
+<param name=e[27] value="R;point;cutoff;OPmid,P,OPmid,M">
+<param name=e[28] value="S;point;cutoff;P,O,P,R">
+<param name=e[29] value="T;point;cutoff;Q,H,P,R">
+<param name=e[30] value="U';point;perpendicular;R,top,P,R;0;0">
+<param name=e[31] value="U;point;extend;U',R,U',R">
+<param name=e[32] value="RU;line;connect;R,U">
+<param name=e[33] value="V;point;parallelogram;U,R,S">
+<param name=e[34] value="SV;line;connect;S,V">
+<param name=e[35] value="W';point;perpendicular;T,front,P,R;0;0">
+<param name=e[36] value="W;point;extend;W',T,W',T">
+<param name=e[37] value="TW;line;connect;T,W">
+<param name=e[38] value="VUBWC;polygon;pentagon;V,U,B,W,C;0;0;black;random">
+
+<param name=e[39] value="RB;line;connect;R,B">
+<param name=e[40] value="SB;line;connect;S,B">
+<param name=e[41] value="VB;line;connect;V,B">
+
+<param name=e[42] value="X;point;midpoint;U,V">
+<param name=e[43] value="XW;line;connect;X,W">
+<param name=e[44] value="Z;point;midpoint;A,F">
+<param name=e[45] value="XZ;line;connect;X,Z">
+<param name=e[46] value="UZ;line;connect;U,Z">
+</applet></div>
+
+<p>Join <i>RB, SB,</i> and <i>VB.</i>
+
+<div class="just"><a href="propXIII4.html">XIII.4</a></div>
+<p>Then, since the straight line <i>NP</i> is cut in extreme and mean ratio at <i>R,</i>  and <i>RP</i> is the greater segment, therefore the sum of the squares on <i>PN</i> and <i>NR</i> is triple the square on <i>RP.</i>
+
+<p>But <i>PN</i> equals <i>NB,</i> and <i>PR</i> equals <i>RU,</i> therefore the sum of the squares on <i>BN</i> and <i>NR</i> is triple the square on <i>RU.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the square on <i>BR</i> equals the sum of the squares on <i>BN</i> and <i>NR,</i> therefore the square on <i>BR</i> is triple the square on <i>RU.</i>  Hence the sum of the squares on <i>BR</i> and <i>RU</i> is quadruple the square on <i>RU.</i>
+
+<p>But the square on <i>BU</i> equals the sum of the squares on <i>BR</i> and <i>RU,</i> therefore the square on <i>BU</i> is quadruple the square on <i>RU.</i> Therefore <i>BU</i> is double <i>RU.</i>
+
+<p>But <i>VU</i> is also double <i>UR,</i> for <i>SR</i> is also double <i>PR,</i> that is, of <i>RU,</i> therefore <i>BU</i> equals <i>UV.</i>
+
+<p>Similarly it can be proved that each of the straight lines <i>BW, WC,</i> and <i>CV</i> also equals each of the straight lines <i>BU</i> and <i>UV.</i> Therefore the pentagon <i>BUVCW</i> is equilateral.
+
+<p>I say next that it is also in one plane.
+
+<div class="just"><a href="../bookI/propI31.html">I.31</a></div>
+<p>Draw <i>PX</i>  from <i>P</i> parallel to each of the straight lines <i>RU</i> and <i>SV</i> and toward the outside of the cube, and join <i>XH</i> and <i>HW.</i>
+
+<p>I say that <i>XHW</i> is a straight line.
+
+<p>Since <i>HQ</i> is cut in extreme and mean ratio at <i>T,</i> and <i>QT</i> is its greater segment, therefore <i>HQ</i> is to <i>QT</i> as <i>QT</i> is to <i>TH.</i> But <i>HQ</i> equals <i>HP,</i> and <i>QT</i> equals each of the straight lines <i>TW</i> and <i>PX,</i> therefore <i>HP</i> is to <i>PX</i> as <i>WT</i> is to <i>TH.</i>
+
+<div class="just"><a href="../bookXI/propXI6.html">XI.6</a></div>
+<p>And <i>HP</i> is parallel to <i>TW,</i> for each of them is at right angles to the plane <i>BD,</i> and <i>TH</i> is parallel to <i>PX,</i> for each of them is at right angles to the plane <i>BF.</i>
+
+<div class="just"><a href="../bookVI/propVI32.html">VI.32</a></div>
+<p>But if two triangles <i>XPH</i> and <i>HTW,</i> which have two sides proportional to two sides are placed together at one angle so that their corresponding sides are also parallel, then the remaining straight lines are in a straight line, therefore <i>XH</i> is in a straight line with <i>HW.</i>
+
+<div class="just"><a href="../bookXI/propXI1.html">XI.1</a></div>
+<p>But every straight line is in one plane, therefore the pentagon <i>UBWCV</i> is in one plane.
+
+<p>I say next that it is also equiangular.
+
+<div class="just"><a href="propXIII5.html">XIII.5</a>
+<br><a href="propXIII4.html">XIII.4</a></div>
+<p>Since the straight line <i>NP</i> is cut in extreme and mean ratio at <i>R,</i> and <i>PR</i> is the greater segment, while <i>PR</i> equals <i>PS,</i> therefore <i>NS</i> is also cut in extreme and mean ratio at <i>P,</i> and <i>NP</i> is the greater segment. Therefore the sum of the squares on <i>NS</i> and <i>SP</i> is triple the square on <i>NP.</i>
+
+<p>But <i>NP</i> equals <i>NB,</i> and <i>PS</i> equals <i>SV,</i> therefore the squares on <i>NS</i> and <i>SV</i> is  triple the square on <i>NB.</i>  Hence the sum of the squares on <i>VS, SN,</i> and <i>NB</i> is quadruple the square on <i>NB.</i>
+
+<p>But the square on <i>SB</i> equals the sum of the squares on <i>SN</i> and <i>NB,</i> therefore the sum of the squares on <i>BS</i> and <i>SV,</i> that is, the square on <i>BV,</i> for the angle <i>VSB</i> is right, is quadruple the square on <i>NB.</i> Therefore <i>VB</i> is double <i>BN.</i>
+
+<p>But <i>BC</i> is also double <i>BN,</i>  therefore <i>BV</i> equals <i>BC.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>And, since the two sides <i>BU</i> and <i>UV</i> equal the two sides <i>BW</i> and <i>WC,</i> and the base <i>BV</i> equals the base <i>BC,</i> therefore the angle <i>BUV</i> equals the angle <i>BWC.</i>
+
+<p>Similarly we can prove that the angle <i>UVC</i> also equals the angle <i>BWC.</i> Therefore the three angles <i>BWC, BUV,</i> and <i>UVC</i> equal one another.
+
+<div class="just"><a href="propXIII7.html">XIII.7</a></div>
+<p>But if in an equilateral pentagon three angles equal one another, then the pentagon is equiangular, therefore the pentagon <i>BUVCW</i> is equiangular.
+
+<p>And it was also proved equilateral, therefore the pentagon <i>BUVCW</i> is equilateral and equiangular, and it is on one side <i>BC</i> of the cube.
+
+<div class="just"><a href=../bookXI/defXI25.html>XI.Def.28</a></div>
+<p>Therefore, if we make the same construction in the case of each of the twelve sides of the cube, a solid figure will be constructed which is contained by twelve equilateral and equiangular pentagons, and which is called a dodecahedron.
+
+<hr width=50%>
+
+<p>It is now required to comprehend it in the given sphere, and to prove that the side of the dodecahedron is the irrational straight line called apotome.
+
+<p>Produce <i>XP,</i> and let the produced straight line be <i>XZ.</i>
+
+<div class="just"><a href="../bookXI/propXI38.html">XI.38</a></div>
+<p>Therefore <i>PZ</i> meets the diameter of the cube, and they bisect one another, for this has been proved in the next to the last theorem of the eleventh book.
+
+<p>Let them cut at <i>Z.</i>  Therefore <i>Z</i> is the center of the sphere which comprehends the cube, and <i>ZP</i> is half of the side of the cube.
+
+<p>Join <i>UZ.</i>
+
+<div class="just"><a href="propXIII4.html">XIII.4</a></div>
+<p>Now, since the straight line <i>NS</i> is cut in extreme and mean ratio at <i>P,</i> and <i>NP</i> is its greater segment, therefore the sum of the squares on <i>NS</i> and <i>SP</i> is triple the square on <i>NP.</i>
+
+<p>But <i>NS</i> equals <i>XZ,</i> for <i>NP</i> also equals <i>PZ,</i> and <i>XP</i> equals <i>PS.</i>
+
+<p>But  <i>PS</i> also equals <i>XU,</i> since it also equals <i>RP.</i> Therefore the sum of the squares on <i>ZX</i> and <i>XU</i> is triple the square on <i>NP.</i>
+
+<p>But the square on <i>UZ</i> equals the sum of the squares on <i>ZX</i> and <i>XU,</i> therefore the square on <i>UZ</i> is triple the square on <i>NP.</i>
+
+<div class="just"><a href="propXIII15.html">XIII.15</a></div>
+<p>But the square on the radius of the sphere which comprehends the cube is also triple the square on the half of the side of the cube, for it has previously been shown how to construct a cube and comprehend it in a sphere, and to prove that the square on the diameter of the sphere is triple the square on the side of the cube.
+
+<p>But, if the whole is so related to the whole as the half to the half also, and <i>NP</i> is half of the side of the cube, therefore <i>UZ</i> equals the radius of the sphere which comprehends the cube.
+
+<p>And <i>Z</i> is the center of the sphere which comprehends the cube, therefore the point <i>U</i> is on the surface of the sphere.
+
+<p>Similarly we can prove that each of the remaining angles of the dodecahedron is also on the surface of the sphere, therefore the dodecahedron has been comprehended in the given sphere.
+
+<hr width=50%>
+
+<p>I say next that the side of the dodecahedron is the irrational straight line called apotome.
+
+<p>Since, when <i>NP</i> is cut in extreme and mean ratio, <i>RP</i> is the greater segment, and, when <i>PO</i> is cut in extreme and mean ratio, <i>PS</i> is the greater segment, therefore, when the whole <i>NO</i> is cut in extreme and mean ratio, <i>RS</i> is the great er segment.
+
+<div class="just"><a href="../bookV/propV15.html">V.15</a></div>
+<p>Thus, since <i>NP</i> is to <i>PR</i> as <i>PR</i> is to <i>RN,</i>  the same is true of the doubles also,  for parts have the same ratio as their equimultiples, therefore <i>NO</i> is to <i>RS</i> as <i>RS</i> is to the sum of <i>NR</i> and <i>SO.</i>  But <i>NO</i> is greater than <i>RS,</i>  therefore <i>RS</i> is also greater than the sum of <i>NR</i> and <i>SO,</i> therefore <i>NO</i> is cut in extreme and mean ratio, and <i>RS</i> is its greater segment.
+
+<p>But <i>RS</i> equals <i>UV,</i> therefore, when <i>NO</i> is cut in extreme and mean ratio, <i>UV</i> is the greater segment. And, since the diameter of the sphere is rational, and the square on it is triple the square on the side of the cube, therefore <i>NO,</i> being a side of the cube, is rational.
+
+<p>But if a rational line is cut in extreme and mean ratio, each of the segments is an irrational apotome.
+
+<div class="just"><a href="propXIII6.html">XIII.6</a></div>
+<p>Therefore <i>UV,</i> being a side of the dodecahedron, is an irrational apotome.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<br>
+
+<a name=#cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+From this it is clear that when the side of the cube is cut in extreme and mean ratio, the greater segment is the side of the dodecahedron.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<table cellspacing=5>
+<tr><td>
+<h4>Cubes and regular dodecahedra</h4>
+
+<p>Euclid&rsquo;s construction of a dodecahedron is particularly easy because he circumscribed his dodecahedron about a cube.  Just as a regular tetrahedron can be circumscribed by a cube, a cube can be circumscribed by a regular dodecahedron, indeed, two regular dodecahedra.  
+
+<p>Also, each cube circumscribes two regular tetrahedra, and a regular dodecahedron circumscribes five cubes, and also ten tetrahedra.
+
+<h4>Coordinates for the vertices of the dodecahedron</h4>
+
+We can specify a coordinate system so that the center of the sphere is located at the origin and the eight vertices of the cube are located at
+
+<p><center>
+(1,1,1) &nbsp; (1,1,&ndash;1) &nbsp; (1,&ndash;1,1) &nbsp; (1,&ndash;1,&ndash;1) &nbsp; (&ndash;1,1,1) &nbsp; (&ndash;1,1,&ndash;1) &nbsp; (&ndash;1,&ndash;1,1) &nbsp; (&ndash;1,&ndash;1,&ndash;1)
+</center>
+</td>
+
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=380 >
+<img src="propXIII17a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Dodecahedron and cube">
+<param name=e[1] value="L0;point;free;-1000,20;0;0">
+<param name=e[2] value="L3;point;free;1000,20;0;0">
+<param name=e[3] value="L1;point;lineSlider;L0,L3,30,0;0">
+<param name=e[4] value="L2;point;lineSlider;L0,L3,330,0;0">
+<param name=e[5] value="L;line;connect;L1,L2;0;0;black">
+<param name=e[6] value="M;point;midpoint;L1,L2;0;0">
+<param name=e[7] value="Lcirc;circle;radius;M,L1;0;0;0;0">
+<param name=e[8] value="L11;point;perpendicular;L1,L2;0;0">
+<param name=e[9] value="L12;point;extend;L1,L11,L1,L2;0;0">
+<param name=e[10] value="L21;point;perpendicular;L2,L1;0;0">
+<param name=e[11] value="N;point;intersection;L1,L2,L12,L21;0;0">
+<param name=e[12] value="O';point;perpendicular;N,L1;0;0;0;0">
+<param name=e[13] value="Och;line;chord;N,O',Lcirc;0;0;0">
+<param name=e[14] value="O;point;first;Och;0;0">
+
+<param name=e[15] value="Z;point;free;180,200;0">
+<param name=e[16] value="sphere;sphere;radius;Z,L2,M;0;0;0;0">
+<param name=e[17] value="A;point;sphereSlider;sphere,80,185,100">
+<param name=e[18] value="a;point;extend;A,Z,A,Z;0">
+<param name=e[19] value="Asphere;sphere;radius;A,L2,O;0;0;0;0">
+<param name=e[20] value="Bcirc;circle;intersection;sphere,Asphere;0;0;0;0">
+<param name=e[21] value="B;point;circleSlider;Bcirc,290,240,50;0">
+<param name=e[22] value="b;point;extend;B,Z,B,Z;0">
+<param name=e[23] value="top;plane;perpendicular;B,A;0;0;0;0">
+<param name=e[24] value="aBmid;point;midpoint;a,B;0;0">
+<param name=e[25] value="C;point;perpendicular;aBmid,B,top;0">
+<param name=e[26] value="c;point;extend;C,Z,C,Z;0">
+<param name=e[27] value="front;plane;3points;B,A,C;0;0;0;0">
+<param name=e[28] value="side;plane;3points;A,B,c;0;0;0;0">
+<param name=e[29] value="D;point;parallelogram;A,B,C;0">
+<param name=e[30] value="d;point;extend;D,Z,D,Z;0">
+<param name=e[31] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;red;0">
+<param name=e[32] value="adBC;polygon;quadrilateral;a,d,B,C;0;0;red;0">
+<param name=e[33] value="cbDA;polygon;quadrilateral;c,b,D,A;0;0;red;0">
+<param name=e[34] value="cd;line;connect;c,d;0;0;red">
+<param name=e[35] value="ab;line;connect;a,b;0;0;red">
+
+<param name=e[36] value="2AB;point;midpoint;A,B;0;0">
+<param name=e[37] value="2BC;point;midpoint;B,C;0;0">
+<param name=e[38] value="2CD;point;midpoint;C,D;0;0">
+<param name=e[39] value="2AD;point;midpoint;A,D;0;0">
+<param name=e[40] value="2ad;point;midpoint;a,d;0;0">
+<param name=e[41] value="2dB;point;midpoint;B,d;0;0">
+<param name=e[42] value="2aC;point;midpoint;C,a;0;0">
+<param name=e[43] value="2ab;point;midpoint;b,a;0;0">
+<param name=e[44] value="2bc;point;midpoint;b,c;0;0">
+<param name=e[45] value="2cd;point;midpoint;c,d;0;0">
+<param name=e[46] value="2bD;point;midpoint;b,D;0;0">
+<param name=e[47] value="2cA;point;midpoint;A,c;0;0">
+
+<param name=e[48] value="P;point;midpoint;2BC,2ad;0;0">
+<param name=e[49] value="P';point;midpoint;2aC,P;0;0">
+<param name=e[50] value="FdB;point;cutoff;P',P,P',2ad;0;0">
+<param name=e[51] value="FaC;point;cutoff;2aC,2dB,2dB,FdB;0;0">
+<param name=e[52] value="FBC;point;cutoff;2BC,2AD,2dB,FdB;0;0">
+<param name=e[53] value="FAD;point;cutoff;2AD,2BC,2dB,FdB;0;0">
+<param name=e[54] value="FAB;point;cutoff;2AB,2cd,2dB,FdB;0;0">
+<param name=e[55] value="Fcd;point;cutoff;2cd,2AB,2dB,FdB;0;0">
+
+<param name=e[56] value="VdB';point;perpendicular;FdB,top,P,FdB;0;0">
+<param name=e[57] value="VdB;point;extend;VdB',FdB,VdB',FdB;0;0">
+<param name=e[58] value="VaC;point;parallelogram;VdB,FdB,FaC;0;0">
+<param name=e[59] value="VBC;point;perpendicular;FBC,front,P,FdB;0;0">
+<param name=e[60] value="pent1;polygon;pentagon;B,VBC,C,VaC,VdB;0;0;black;270,30,100">
+<param name=e[61] value="VAD;point;parallelogram;FAD,FBC,VBC;0;0">
+<param name=e[62] value="VAB;point;perpendicular;FAB,side,P,FdB;0;0">
+<param name=e[63] value="pent2;polygon;pentagon;B,VAB,A,VAD,VBC;0;0;black;270,30,100">
+<param name=e[64] value="Vcd;point;parallelogram;VAB,FAB,Fcd;0;0">
+<param name=e[65] value="VcA;point;extend;VaC,Z,VdB,Z;0;0">
+<param name=e[66] value="Vbc;point;extend;VBC,Z,VdB,Z;0;0">
+<param name=e[67] value="Vad;point;extend;VAD,Z,VdB,Z;0;0">
+<param name=e[68] value="Vab;point;extend;VAB,Z,VdB,Z;0;0">
+<param name=e[69] value="VCD;point;extend;Vcd,Z,VdB,Z;0;0">
+<param name=e[70] value="VbD;point;extend;VdB,Z,VdB,Z;0;0">
+<param name=e[71] value="pent3;polygon;pentagon;B,VdB,d,Vcd,VAB;0;0;black;270,30,100">
+<param name=e[72] value="pent4;polygon;pentagon;C,VCD,D,VAD,VBC;0;0;black;270,30,100">
+<param name=e[73] value="pent5;polygon;pentagon;A,VAD,D,VbD,VcA;0;0;black;270,30,100">
+<param name=e[74] value="pent6;polygon;pentagon;A,VcA,c,Vcd,VAB;0;0;black;270,30,100">
+<param name=e[75] value="pent7;polygon;pentagon;a,VaC,C,VCD,Vab;0;0;black;270,30,100">
+<param name=e[76] value="pent8;polygon;pentagon;b,VbD,D,VCD,Vab;0;0;black;270,30,100">
+<param name=e[77] value="pent9;polygon;pentagon;b,Vab,a,Vad,Vbc;0;0;black;270,30,100">
+<param name=e[78] value="pent10;polygon;pentagon;b,Vbc,c,VcA,VbD;0;0;black;270,30,100">
+<param name=e[79] value="pent11;polygon;pentagon;c,Vcd,d,Vad,Vbc;0;0;black;270,30,100">
+<param name=e[80] value="pent12;polygon;pentagon;a,Vad,d,VdB,VaC;0;0;black;270,30,100">
+</applet>
+<td></tr></table>
+
+<p>The points <i>A</i> a through <i>F</i> in Euclid&rsquo;s construction may be assigned six of these coordinates.
+<p><center>
+<i>A</i> = (&ndash;1,&ndash;1,&ndash;1),
+<i>B</i> = (&ndash;1,1,&ndash;1),
+<i>C</i> = (1,1,&ndash;1),
+<i>D</i> = (1,&ndash;1,&ndash;1),
+<i>E</i> = (&ndash;1,1,1),
+<i>F</i> = (1,1,1).
+</center><p>
+After bisecting the sides, the points <i>G</i> through <i>Q</i> receive the following coordinates.
+<p><center>
+<i>G</i> = (&ndash;1,0,&ndash;1),
+<i>H</i> = (0,1,&ndash;1),
+<i>K</i> = (1,0,&ndash;1),
+<i>L</i> = (0,&ndash;1,&ndash;1),
+<i>M</i> = (0,1,1),
+<br>
+<i>N</i> = (&ndash;1,1,0),
+<i>O</i> = (1,1,0),
+<i>P</i> = (0,1,0),
+<i>Q</i> = (0,0,&ndash;1).
+</center><p>
+
+The points <i>R, S,</i> and <i>T</i> cut the lines they&rsquo;re on into extreme and mean ratios, so they have these coordinates:
+<p><center>
+<i>R</i> = (&ndash;<i>x,</i>1,0),
+<i>S</i> = (<i>x,</i>1,0),
+<i>T</i> = (0,<i>x,</i>&ndash;1),
+</center><p>
+where <i>x</i> equals (&radic;5 &ndash; 1)/2.  Finally, points <i>U, V,</i> and <i>W</i> are outside the original cube with the coordinates
+<p><center>
+<i>U</i> = (&ndash;<i>x,</i>1+<i>x,</i>0),
+<i>V</i> = (<i>x,</i>1+<i>x,</i>0),
+<i>W</i> = (0,<i>x,</i>&ndash;1&ndash;<i>x</i>),
+</center><p>
+
+<h4>Use of this construction</h4>
+Constructing a dodecahedron is an end in itself. This construction and the corollary are also used in <a href=propXIII18.html>XIII.18</a> where the five regular polyhedra are compared.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

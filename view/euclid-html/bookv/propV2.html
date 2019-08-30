@@ -1,0 +1,88 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 2</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">If a first magnitude is the same multiple of a second that a third is of a fourth, and a fifth also is the same multiple of the second that a sixth is of the fourth, then the sum of the first and fifth also is the same multiple of the second that the sum of the third and sixth is of the fourth.</div>
+
+<div class="just"><a href=defV1.html>V.Def.2</a></div>
+<p>Let a first magnitude <i>AB</i> be the same multiple of a second <i>C</i> that a third <i>DE</i> is of a fourth <i>F,</i> and let a fifth <i>BG</i>  be the same multiple of the second <i>C</i> that a sixth <i>EH</i> is of the fourth <i>F.</i>
+
+<p>I say that the sum <i>AG</i> of the first and fifth is the same multiple of the second, <i>C,</i> that the sum <i>DH</i> of the third and sixth is of the fourth, <i>F.</i>
+
+<p>Since <i>AB</i> is the same multiple of <i>C</i> that <i>DE</i> is of <i>F,</i> therefore there are as many magnitudes in <i>AB</i> equal to <i>C</i> as there are in <i>DE</i> equal to <i>F.</i>
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=310 height=130>
+<img src=propV2.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=align value=above>
+<param name=title value="V.2">
+<param name=e[1] value="U1;point;free;0,0;0;0">
+<param name=e[2] value="U2;point;free;25,0;0;0">
+<param name=e[3] value="U;line;connect;U1,U2;0;0;0">
+
+<param name=e[4] value="C1;point;free;30,90;0">
+<param name=e[5] value="C3;point;parallelogram;C1,U;0;0">
+<param name=e[6] value="C2;point;lineSlider;C1,C3,65,0;0">
+<param name=e[7] value="C;line;connect;C1,C2;black;0;magenta">
+
+<param name=e[8] value="F1;point;free;30,120;0">
+<param name=e[9] value="F3;point;parallelogram;F1,U;0;0">
+<param name=e[10] value="F2;point;lineSlider;F1,F3,78,0;0">
+<param name=e[11] value="F;line;connect;F1,F2;black;0;green">
+
+<param name=e[12] value="A;point;free;30,30">
+<param name=e[13] value="A3;point;parallelogram;A,U;0;0">
+<param name=e[14] value="A1;point;cutoff;A,A3,C;0;lightGray">
+<param name=e[15] value="A2;point;extend;A,A1,C;0;lightGray">
+<param name=e[16] value="B;point;extend;A,A2,C">
+<param name=e[17] value="B1;point;extend;A,B,C;0;lightGray">
+<param name=e[18] value="G;point;extend;A,B1,C">
+<param name=e[19] value="AG;line;connect;A,G;0;0;magenta">
+
+<param name=e[20] value="D;point;free;30,60">
+<param name=e[21] value="D3;point;parallelogram;D,U;0;0">
+<param name=e[22] value="D1;point;cutoff;D,D3,F;0;lightGray">
+<param name=e[23] value="D2;point;extend;D,D1,F;0;lightGray">
+<param name=e[24] value="E;point;extend;D,D2,F">
+<param name=e[25] value="E1;point;extend;D,E,F;0;lightGray">
+<param name=e[26] value="H;point;extend;D,E1,F">
+<param name=e[27] value="DH;line;connect;D,H;0;0;green">
+</applet></div>
+
+<p>
+For the same reason there are as many magnitudes in <i>BG</i> equal to <i>C</i> as there are in <i>EH</i> equal to <i>F.</i> Therefore, there are as many magnitudes in the whole <i>AG</i> equal to <i>C</i> as there are in the whole <i>DH</i> equal to <i>F.</i>
+
+<p>Therefore,  <i>AG</i> is the same multiple of <i>C</i> that <i>DH</i> is of <i>F.</i>
+
+<p>Therefore the sum <i>AG</i> of the first and fifth is the same multiple of the second, <i>C,</i> that the sum <i>DH</i> of the third and sixth is of the fourth, <i>F.</i>
+
+<p>Therefore, <i>if a first magnitude is the same multiple of a second that a third is of a fourth, and a fifth also is the same multiple of the second that a sixth is of the fourth, then the sum of the first and fifth also is the same multiple of the second that the sum of the third and sixth is of the fourth.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition simply states that sums of equimultiples are equimultiples, that is, if <i>mc</i> and <i>mf</i> are equimultiples of <i>c</i> and <i>f,</i> and <i>nc</i> and <i>nf</i> are also equimultiples of <i>c</i> and <i>f,</i>
+then the sums <i>mc</i>&nbsp;+&nbsp;<i>nc</i> and <i>mf</i>&nbsp;+&nbsp;<i>nf</i> are also equimultiples of <i>c</i> and <i>f.</i>  The proof depends on a form of distributivity, namely, that multiplication by magnitudes distributes over addition of numbers.
+<p><center>(<i>m</i>&nbsp;+&nbsp;<i>n</i>)<i>c</i>&nbsp;=&nbsp;<i>mc</i>&nbsp;+&nbsp;<i>nc.</i></center>
+<p>
+Note that the magnitudes don&rsquo;t all have to be of the same kind.  Different colors are used in the figures here to indicate different kinds of magnitudes.
+
+<h4>Use of this proposition</h4>
+
+Proposition V.2 is used in the proofs of three other propositions, namely, <a href=propV3.html>V.3</a>, <a href=propV6.html>V.6</a>, and <a href=propV17.html>V.17</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

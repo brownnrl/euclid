@@ -1,0 +1,105 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 27</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 27</h1>
+
+<div class="statement">If two numbers are relatively prime, and each multiplied by itself makes a certain number, then the products are relatively prime; and, if the original numbers multiplied by the products make certain numbers, then the latter are also relatively prime.</div>
+
+<p>Let <i>A</i> and <i>B</i> be two relatively prime numbers, let <i>A</i> multiplied by itself make <i>C,</i> and multiplied by <i>C</i> make <i>D,</i> and let <i>B</i> multiplied by itself make <i>E,</i> and multiplied by <i>E</i> make <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=210 height=290 >
+<img src=propVII27.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.27">
+<param name=align value=left>
+<param name=e[1] value="U1;point;free;1000,0;0;0">
+<param name=e[2] value="U2;point;free;1000,20;0;0">
+<param name=e[3] value="A0;point;free;30,-1000;0;0">
+<param name=e[4] value="A3;point;free;30,1000;0;0">
+<param name=e[5] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[6] value="A2;point;lineSlider;A0,A3,30,62;0">
+<param name=e[7] value="A;line;connect;A1,A2;black">
+<param name=e[8] value="B0;point;free;60,-1000;0;0">
+<param name=e[9] value="B3;point;free;60,1000;0;0">
+<param name=e[10] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[11] value="B2;point;lineSlider;B0,B3,60,75;0">
+<param name=e[12] value="B;line;connect;B1,B2;black">
+
+<param name=e[13] value="C0;point;free;90,-1000;0;0">
+<param name=e[14] value="C3;point;free;90,1000;0;0">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,90,30;0">
+<param name=e[16] value="C2;point;proportion;U1,U2,A1,A2,A1,A2,C1,C3;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+
+<param name=e[18] value="D0;point;free;120,-1000;0;0">
+<param name=e[19] value="D3;point;free;120,1000;0;0">
+<param name=e[20] value="D1;point;lineSlider;D0,D3,120,30;0">
+<param name=e[21] value="D2;point;proportion;U1,U2,A1,A2,C1,C2,D1,D3;0">
+<param name=e[22] value="D;line;connect;D1,D2;black">
+
+<param name=e[23] value="E0;point;free;150,-1000;0;0">
+<param name=e[24] value="E3;point;free;150,1000;0;0">
+<param name=e[25] value="E1;point;lineSlider;E0,E3,90,30;0">
+<param name=e[26] value="E2;point;proportion;U1,U2,B1,B2,B1,B2,E1,E3;0">
+<param name=e[27] value="E;line;connect;E1,E2;black">
+
+<param name=e[28] value="F0;point;free;180,-1000;0;0">
+<param name=e[29] value="F3;point;free;180,1000;0;0">
+<param name=e[30] value="F1;point;lineSlider;F0,F3,180,30;0">
+<param name=e[31] value="F2;point;proportion;U1,U2,B1,B2,E1,E2,F1,F3;0">
+<param name=e[32] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<p>I say that <i>C</i> and <i>E</i> are relatively prime, and that <i>D</i> and <i>F</i> are relatively prime.
+
+<div class="just"><a href="propVII25.html">VII.25</a></div>
+<p>Since <i>A</i> and <i>B</i> are relatively prime, and <i>A</i> multiplied by itself makes <i>C,</i> therefore <i>C</i> and <i>B</i> are relatively prime.
+
+<p>Since, then, <i>C</i> and <i>B</i> are relatively prime, and <i>B</i> multiplied by itself makes <i>E,</i> therefore <i>C</i> and <i>E</i> are relatively prime.
+
+<p>Again, since <i>A</i> and <i>B</i> are relatively prime, and <i>B</i> multiplied by itself makes <i>E,</i> therefore <i>A</i> and <i>E</i> are relatively prime.
+
+<div class="just"><a href="propVII26.html">VII.26</a></div>
+<p>Since, then, the two numbers <i>A</i> and <i>C</i> are relatively prime to the two numbers <i>B</i> and <i>E,</i> both to each, therefore the product of <i>A</i> and <i>C</i> is relatively prime to the product of <i>B</i> and <i>E.</i>  And the product of <i>A</i> and <i>C</i> is <i>D,</i> and the product of <i>B</i> and <i>E</i> is <i>F.</i>
+
+<p>Therefore <i>D</i> and <i>F</i> are relatively prime.
+
+<p>Therefore, <i>if two numbers are relatively prime, and each multiplied by itself makes a certain number, then the products are relatively prime; and, if the original numbers multiplied by the products make certain numbers, then the latter are also relatively prime.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>The proposition states that 
+
+<p><center>
+if <i>a</i> and <i>b</i> are relatively prime, then <i>a<sup>n</sup></i> and <i>b<sup>n</sup></i> are relatively prime.
+</center><p>
+
+Euclid&rsquo;s proof only covers the cases where <i>n</i> is 2 or 3, but the way it is used in <a href=../bookVIII/propVIII2.html>VIII.2</a>, any powers need to be relatively prime.
+
+<p>The proof of this proposition uses the last two propositions.  Assume that <i>a</i> and <i>b</i> are relatively prime.  Then applying <a href="propVII25.html">VII.25</a> twice, we first get <i>a</i><sup>2</sup> and <i>b</i> relatively prime, then we get <i>a</i><sup>2</sup> and <i>b</i><sup>2</sup> relatively prime.
+
+<p>Again, by <a href="propVII25.html">VII.25</a>, <i>a</i> and <i>b</i><sup>2</sup> are relatively prime.  Now, <i>a</i> is relatively prime to <i>b</i><sup>2</sup>, and <i>b</i> is relatively prime to <i>a</i><sup>2</sup>, so by <a href="propVII26.html">VII.26</a>, <i>a</i><sup>3</sup> is relatively prime to <i>b</i><sup>3</sup>.
+
+<p>Likewise, higher powers of <i>a</i> and <i>b</i> can be shown to be relatively prime.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in <a href=../bookVIII/propVIII2.html>VIII.2</a> and <a href=../bookVIII/propVIII3.html>VIII.3</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002, 2013");
+</script>
+</BODY></HTML>

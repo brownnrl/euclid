@@ -1,0 +1,125 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 7</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 7</h1>
+
+<div class="statement">If on the diameter of a circle a point is taken which is not the center of the circle, and from the point straight lines fall upon the circle, then that is greatest on which passes through the center, the remainder of the same diameter is least, and of the rest the nearer to the straight line through the center is always greater than the more remote; and only two equal straight lines fall from the point on the circle, one on each side of the least straight line. 
+</div>
+
+<p>Let <i>ABCD</i> be a circle, and let <i>AD</i> be a diameter of it. Let <i>F</i> be a point <i>F</i> on <i>AD</i> which is not the center of the circle. Let <i>E</i> be the center of the circle.  Let straight lines <i>FB, FC,</i> and <i>FG</i> fall upon the circle <i>ABCD</i> from <i>F.</i>
+
+<p>I say that <i>FA</i> is greatest, <i>FD</i> is least, and of the rest <i>FB</i> is greater than <i>FC,</i> and <i>FC</i> greater than <i>FG.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=270>
+<img src=propIII7a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.7a">
+<param name=e[1] value="A;point;free;30,125">
+<param name=e[2] value="D;point;free;230,125">
+<param name=e[3] value="AD;line;connect;A,D">
+<param name=e[4] value="E;point;midpoint;A,D;black;green">
+<param name=pivot value="E">
+<param name=e[5] value="ABC;circle;radius;E,A;0;0;black;random">
+<param name=e[6] value="B;point;circleSlider;ABC,50,50">
+<param name=e[7] value="C;point;circleSlider;ABC,100,30">
+<param name=e[8] value="G;point;circleSlider;ABC,200,30">
+<param name=e[9] value="BE;line;connect;B,E">
+<param name=e[10] value="CE;line;connect;C,E">
+<param name=e[11] value="GE;line;connect;G,E">
+<param name=e[12] value="F;point;lineSlider;E,D,200,125">
+<param name=e[13] value="BF;line;connect;B,F">
+<param name=e[14] value="CF;line;connect;C,F">
+<param name=e[15] value="GF;line;connect;G,F">
+</applet></div>
+
+<p>Join <i>BE, CE,</i> and <i>GE.</i>
+
+<div class="just"><a href="../bookI/propI20.html">I.20</a></div>
+<p>Then, since in any triangle the sum of any two sides is greater than the remaining one, the sum of <i>EB</i> and <i>EF</i> is greater than <i>BF.</i>
+
+<p>But <i>AE</i> equals <i>BE,</i> therefore <i>AF</i> is greater than <i>BF.</i>
+
+<div class="just"><a href="../bookI/propI24.html">I.24</a></div>
+<p>Again, since <i>BE</i> equals <i>CE,</i> and <i>FE</i> is common, the two sides <i>BE</i> and <i>EF</i> equal the two sides <i>CE</i> and <i>EF.</i>   But the angle <i>BEF</i> is also greater than the angle CEF, therefore the base <i>BF</i> is greater than the base <i>CF.</i>
+
+<p>For the same reason <i>CF</i> is also greater than <i>GF.</i>
+
+<div class="just"><a href="../bookI/propI20.html">I.20</a></div>
+<p>Again, since the sum of <i>GF</i> and <i>FE</i> is greater than <i>EG,</i> and <i>EG</i> equals <i>ED,</i> the sum of <i>GF</i> and <i>FE</i> is greater than <i>ED.</i>
+
+<p>Subtract <i>EF</i>  from each.  Therefore the remainder <i>GF</i> is greater than the remainder <i>FD.</i>
+
+<p>Therefore <i>FA</i> is greatest, <i>FD</i> is least, <i>FB</i> is greater than <i>FC,</i> and <i>FC</i> greater than <i>FG.</i>
+
+<hr width=50%>
+
+<p>I say also that from the point <i>F</i> only two equal straight lines fall on the circle <i>ABCD,</i> one on each side of the least <i>FD.</i>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a></div>
+<p>Construct the angle <i>FEH</i> equal to the angle <i>GEF</i> on the straight line <i>EF</i> and at the point <i>E</i> on it.  Join <i>FH.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=270>
+<img src=propIII7b.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.7b">
+<param name=e[1] value="A;point;free;30,125">
+<param name=e[2] value="D;point;free;230,125">
+<param name=e[3] value="AD;line;connect;A,D">
+<param name=e[4] value="E;point;midpoint;A,D;black;green">
+<param name=pivot value="E">
+<param name=e[5] value="ABC;circle;radius;E,A;0;0;black;random">
+<param name=e[6] value="G;point;circleSlider;ABC,200,30">
+<param name=e[7] value="GE;line;connect;G,E">
+<param name=e[8] value="F;point;lineSlider;E,D,200,125">
+<param name=e[9] value="GF;line;connect;G,F">
+<param name=e[10] value="G';point;foot;G,A,D;0;0">
+<param name=e[11] value="H;point;extend;G,G',G,G'">
+<param name=e[12] value="HE;line;connect;H,E">
+<param name=e[13] value="HF;line;connect;H,F">
+<param name=e[14] value="K;point;circleSlider;ABC,160,220">
+<param name=e[15] value="KE;line;connect;K,E">
+<param name=e[16] value="KF;line;connect;K,F">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since <i>GE</i> equals <i>EH,</i> and <i>EF</i> is common, the two sides <i>GE</i> and <i>EF</i> equal the two sides <i>HE</i> and <i>EF,</i> and the angle <i>GEF</i> equals the angle <i>HEF,</i> therefore the base <i>FG</i> equals the base <i>FH.</i>
+
+<p>I say again that another straight line equal to <i>FG</i> does not fall on the circle from the point <i>F.</i> 
+
+<p>For, if possible, let <i>FK</i> so fall.
+
+<div class="just">Above</div>
+<p>Then, since <i>FK</i> equals <i>FG,</i> and <i>FH</i> equals <i>FG, FK</i> also equals <i>FH,</i> the nearer to the straight line through the center being thus equal to the more remote, which is impossible.
+
+<p>Therefore another straight line equal to <i>GF</i> does not fall from the point <i>F</i> upon the circle.  Therefore only one straight line  so falls.
+
+<p>Therefore <i>if on the diameter of a circle a point is taken which is not the center of the circle, and from the point straight lines fall upon the circle, then that is greatest on which passes through the center, the remainder of the same diameter is least, and of the rest the nearer to the straight line through the center is always greater than the more remote; and only two equal straight lines fall from the point on the circle, one on each side of the least straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The statement of this proposition is daunting.  It concerns the distances from a point <i>F</i> inside a circle to the points on the circumference.  The point <i>F</i> is assumed not to be the center.  If a diameter <i>AD</i> is passed through <i>F,</i> then one of the points <i>A</i> is the point on the circumference furthest from <i>F</i> and the other <i>D</i> is the closest.  As a point travels the circumference from <i>A</i> to <i>D</i> it gets closer to <i>F.</i>  The final part of the statement is that if <i>G</i> is one point on the circumference, then there is exactly one other point <i>H</i> on the circumference the same distance from <i>F</i> (assuming, of course, that <i>G</i> is neither <i>A</i> nor <i>D</i>).
+
+<h4>Note</h4>
+
+There is some confusion in the statement of this proposition.  It is not clear what the phrase &ldquo;the nearer to the straight line through the center&rdquo; means.  Perhaps it  refers to the angle, so that <i>FB</i> is considered nearer to <i>FA</i> than <i>FC</i> since the angle <i>BFA</i> is less than the angle <i>CFA.</i>  If so, there there is a missing detail in the proof, as DeMorgan pointed out.  It is declared that the angle <i>BEF</i> is greater than the angle <i>CEF,</i> but that hasn&rsquo;t been proved.  DeMorgan and others have described various ways to fill this logical gap.
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

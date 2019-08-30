@@ -1,0 +1,65 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 1</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 1</h1>
+
+<div class="statement">
+A part of a straight line cannot be in the plane of reference and a part in plane more elevated. 
+</div>
+
+<p>For, if possible, let a part <i>AB</i> of the straight line <i>ABC</i> be in the plane of reference, and a part <i>BC</i> be in a plane more elevated.
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=300 >
+<img src="propXI1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.1">
+<param name=e[1] value="P1;point;free;80,200;0;0,75,100">
+<param name=e[2] value="P2;point;free;260,200;0;0,75,100">
+<param name=e[3] value="P3;point;free;40,90;0;0,75,100">
+<param name=e[4] value="plane;polygon;parallelogram;P3,P1,P2;0;0;lightGray;brighter">
+<param name=e[5] value="A1;point;midpoint;P1,P3;0;0">
+<param name=e[6] value="A2;point;parallelogram;P2,P1,A1;0;0">
+<param name=e[7] value="A;point;lineSlider;A1,A2,90,155">
+<param name=e[8] value="B;point;lineSlider;A1,A2,140,155">
+<param name=e[9] value="D;point;lineSlider;A1,A2,200,155">
+<param name=e[10] value="AD;line;connect;A,D">
+<param name=e[11] value="Z;point;free;150,100000;0;0">
+<param name=e[12] value="C;point;lineSlider;D,Z,230,80">
+<param name=e[13] value="BD;line;connect;B,C">
+</applet></div>
+
+<p>Then there is in the plane of reference some straight line continuous with <i>AB</i> in a straight line.  Let it be <i>BD.</i>  Therefore <i>AB</i> is a common segment of the two straight lines <i>ABC</i> and <i>ABD,</i> which is impossible, since, if we describe a circle with center <i>B</i> and radius <i>AB,</i> then the diameters cut off unequal circumferences of the circle.
+
+<p>Therefore, <i>a part of a straight line cannot be in the plane of reference and a part in plane more elevated. </i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+Not only is the proof of this proposition unclear, so is the statement of it.  The meaning of the &ldquo;plane of reference&rdquo; and the role it is to play in solid geometry are unclear.  Is the intent of the statement that if part of a line lies in a plane, then all of it does?  At least that would be a meaningful statement.
+
+<p>The proof of this proposition is unclear for more than one reason. Before a circle with center <i>B</i> and radius <i>AB</i> can be described, a plane has to be specified in which to describe the circle.  In space there are infinitely many circles that have the same center <i>B,</i> the same radius <i>AB,</i> and even contain the point <i>A.</i>  Indeed, this possibility of many circles with with same diameter was used to define a sphere in definition <a href="defXI14.html">XI.Def.14</a>.  The last statement about unequal circumferences is incomprehensible.
+
+<p>The problem is that there are no postulates for solid geometry.  The <a href="../bookI/bookI.html#posts">postulates</a> in Book I apparently refer to an ambient plane.  Certainly <a href="../bookI/post3.html">Post.3</a>, &ldquo;to describe a circle with any center and radius,&rdquo; and <a href="../bookI/post5.html">Post.5</a> (which refers to interior angles when one line crosses two others) do.  Without any postulates for nonplanar geometry it is impossible for solid geometry to get off the ground. 
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proof of the next one as well as others in the last three books of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

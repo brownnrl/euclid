@@ -1,0 +1,86 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 78</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 78</h1>
+
+<div class="statement">If from a straight line there is subtracted a straight line which is incommensurable in square with the whole and which with the whole makes the sum of the squares on them medial, twice the rectangle contained by them medial, and further the sum of the squares on them incommensurable with twice the rectangle contained by them, then the remainder is irrational; let it be called <i>that which produces with a medial area a medial whole.</i></div>
+
+<div class="just"><a href=propX35.html>X.35</a></div>
+<p>From the straight line <i>AB</i> let there be subtracted the straight line <i>BC</i> incommensurable in square with <i>AB</i> and fulfilling the given conditions.
+
+<p>I say that the remainder <i>AC</i> is the irrational straight line called that which produces with a medial area a medial whole.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=320 height=180>
+<img src="propX75.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.78">
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="D0;point;free;40,-1000;0;0">
+<param name=e[4] value="D3;point;free;40,1000;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,90,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,210,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,160,0">
+<param name=e[8] value="AB;line;connect;A,B">
+<param name=e[9] value="D;point;lineSlider;D0,D3,0,70">
+<param name=e[10] value="I;point;lineSlider;D0,D3,0,145">
+<param name=e[11] value="G'';point;perpendicular;D,D3;0;0">
+<param name=e[12] value="G';point;proportion;D,I,A,B,A,B,D,G'';0;0">
+<param name=e[13] value="G;point;proportion;D,I,B,C,B,C,G',G''">
+<param name=e[14] value="E;point;parallelogram;I,D,G">
+<param name=e[15] value="F';point;proportion;D,I,A,B,B,C,D,G'';0;0">
+<param name=e[16] value="F;point;extend;D,F',D,F'">
+<param name=e[17] value="H;point;parallelogram;I,D,F">
+<param name=e[18] value="IDFH;polygon;quadrilateral;I,D,F,H;0;0;black;random">
+<param name=e[19] value="HFGE;polygon;quadrilateral;H,F,G,E;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=../bookII/propII7.html>II.7</a></div>
+<p>Set out a rational straight line <i>DI</i>.  Apply <i>DE</i>, equal to the sum of the squares on <i>AB</i> and <i>BC</i>, to <i>DI</i> producing <i>DG</i> as breadth.  Subtract <i>DH</i> equal twice the rectangle <i>AB</i> by <i>BC</i>.  Then the remainder <i>FE</i> equals the square on <i>AC</i>, so that <i>AC</i> is the side of <i>FE</i>.
+
+<p>Now, since the sum of the squares on <i>AB</i> and <i>BC</i> is medial and equals <i>DE</i>, therefore <i>DE</i> is medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And it is applied to the rational straight line <i>DI</i> producing <i>DG</i> as breadth, therefore <i>DG</i> is rational and incommensurable in length with <i>DI</i>.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>Again, since twice the rectangle <i>AB</i> by <i>BC</i> is medial and equals <i>DH</i>, therefore <i>DH</i> is medial. And it is applied to the rational straight line <i>DI</i> producing <i>DF</i> as breadth, therefore <i>DF</i> is also rational and incommensurable in length with <i>DI</i>.
+
+<p>Since the sum of the squares on <i>AB</i> and <i>BC</i> is incommensurable with twice the rectangle <i>AB</i> by <i>BC</i>, therefore <i>DE</i> is also incommensurable with <i>DH</i>.
+
+<div class="just"><a href=propX11.html>X.11</a>,
+<a href=../bookVI/propVI1.html>VI.1</a></div>
+<p>But <i>DE</i> is to <i>DH</i> as <i>DG</i> is to <i>DF</i>, therefore <i>DG</i> is incommensurable with <i>DF</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>And both are rational, therefore <i>GD</i> and <i>DF</i> are rational straight lines commensurable in square only. Therefore <i>FG</i> is an apotome.
+
+<div class="just"><a href=propX20.html>X.20</a></div>
+<p>And <i>FH</i> is rational, but the rectangle contained by a rational straight line and an apotome is irrational, and its side is irrational.
+
+<p>And <i>AC</i> is the side of <i>FE</i>, therefore <i>AC</i> is irrational.
+
+<p>Let it be called <i>that which produces with a medial area a medial whole</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used for a few later propositions in Book X starting with <a href=propX84.html>X.84</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

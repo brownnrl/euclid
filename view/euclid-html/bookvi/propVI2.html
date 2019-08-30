@@ -1,0 +1,107 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 2</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">
+If a straight line is drawn parallel to one of the sides of a triangle, then it  cuts the sides of the triangle proportionally; and, if the sides of the triangle are cut proportionally, then the line joining the points of section is parallel to the remaining side of the triangle.
+</div>
+
+<p>Let <i>DE</i> be drawn parallel to <i>BC,</i> one of the sides of the triangle ABC.
+
+<p>I say that <i>BD</i> is to <i>AD</i> as <i>CE</i> is to <i>AE.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=290>
+<img src=propVI2.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=e[1] value="A;point;free;100,40">
+<param name=e[2] value="B;point;free;30,270">
+<param name=e[3] value="C;point;free;250,270">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[5] value="D;point;lineSlider;A,B,60,190">
+<param name=e[6] value="DC;line;connect;D,C">
+<param name=e[7] value="E';point;parallelogram;C,B,D;0;0">
+<param name=e[8] value="E;point;intersection;D,E',A,C">
+<param name=e[9] value="DE;line;connect;D,E">
+<param name=e[10] value="BE;line;connect;B,E">
+</applet>
+</div>
+
+<p>Join <i>BE</i> and <i>CD.</i>
+
+<div class="just"><a href="../bookI/propI37.html">I.37</a></div>
+<p>Therefore the triangle <i>BDE</i> equals the triangle <i>CDE,</i> for they are on the same base <i>DE</i> and in the same parallels <i>DE</i> and <i>BC.</i>
+
+<p>And <i>ADE</i> is another triangle.
+
+<div class="just"><a href="../bookV/propV7.html">V.7</a></div>
+<p>But equals have the same ratio to the same, therefore the triangle <i>BDE</i> is to the triangle <i>ADE</i> as the triangle <i>CDE</i> is to the triangle <i>ADE.</i>
+
+<div class="just"><a href=propVI1.html>VI.1</a></div>
+<p>But the triangle <i>BDE</i> is to <i>ADE</i> as <i>BD</i> is to <i>AD,</i> for, being under the same height, the perpendicular drawn from <i>E</i> to <i>AB,</i> they are to one another as their bases.
+
+<p>For the same reason, the triangle <i>CDE</i> is to <i>ADE</i> as <i>CE</i> is to <i>AE.</i>
+
+<div class="just"><a href="../bookV/propV11.html">V.11</a></div>
+<p>Therefore <i>BD</i> is to <i>AD</i> also as <i>CE</i> is to <i>AE.</i>
+
+<hr width=50%>
+
+<p>Next, let the sides <i>AB</i> and <i>AC</i> of the triangle <i>ABC</i> be cut proportionally, so that <i>BD</i> is to <i>AD</i> as <i>CE</i> is to <i>AE.</i>  Join <i>DE.</i>
+
+<p>I say that  <i>DE</i> is parallel to <i>BC.</i>
+
+<div class="just"><a href=propVI1.html>VI.1</a>
+<br><a href="../bookV/propV11.html">V.11</a></div>
+<p>With the same construction, since <i>BD</i> is to <i>AD</i> as <i>CE</i> is to <i>AE,</i> but <i>BD</i> is to <i>AD</i> as the triangle <i>BDE</i> is to the triangle <i>ADE,</i> and <i>CE</i> is to <i>AE</i> as the triangle <i>CDE</i> is to the triangle <i>ADE,</i> therefore the triangle <i>BDE</i> is to the triangle <i>ADE</i> as the triangle <i>CDE</i> is to the triangle <i>ADE.</i>
+
+<p>Therefore each of the triangles <i>BDE</i> and <i>CDE</i> has the same ratio to <i>ADE.</i>
+
+<div class="just"><a href="../bookV/propV9.html">V.9</a></div>
+<p>Therefore the triangle <i>BDE</i> equals the triangle <i>CDE,</i> and they are on the same base <i>DE.</i>
+
+<div class="just"><a href="../bookI/propI39.html">I.39</a></div>
+<p>But equal triangles which are on the same base are also in the same parallels.
+
+<p>Therefore <i>DE</i> is parallel to <i>BC.</i>
+
+<p>Therefore, <i>if a straight line is drawn parallel to one of the sides of a triangle, then it  cuts the sides of the triangle proportionally; and, if the sides of the triangle are cut proportionally, then the line joining the points of section is parallel to the remaining side of the triangle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Euclid prefers to prove a pair of converses in two stages, but in some propositions, as this one, the proofs in the two stages are almost inverses of each other, so both could be proved at once.
+
+<p>In this proposition we have a given triangle <i>ABC</i> and a line <i>DE</i> joining a point <i>D</i> on the side <i>BC</i> to a point <i>E</i> on the side <i>AC.</i>  The claim is that
+<p><center><i>BD</i>&nbsp;:&nbsp;<i>AD</i>&nbsp;=&nbsp;<i>CE</i>&nbsp;:&nbsp;<i>AE</i> if and only if <i>DE</i> || <i>BC.</i></center><p>
+By the previous proposition <a href=propVI1.html>VI.1</a> we know in any case that
+<p><center><i>BD</i>&nbsp;:&nbsp;<i>AD</i>&nbsp;=&nbsp;triangle <i>BDE</i> : triangle <i>ADE,</i> and
+<br><i>CE</i>&nbsp;:&nbsp;<i>AE</i>&nbsp;=&nbsp;triangle <i>CDE</i> : triangle <i>ADE.</i></center><p>
+Hence,
+<p><center><i>BD</i>&nbsp;:&nbsp;<i>AD</i>&nbsp;=&nbsp;<i>CE</i>&nbsp;:&nbsp;<i>AE</i> if and only if <i>BDE</i>&nbsp;:&nbsp;<i>ADE</i>&nbsp;=&nbsp;<i>CDE</i>&nbsp;:&nbsp;<i>ADE.</i></center><p>
+By propositions <a href=../bookV/propV7.html>V.7</a> and <a href=../bookV/propV9.html>V.9</a> the latter condition is equivalent to <i>BDE</i>&nbsp;=&nbsp;<i>CDE,</i> and that, in turn, by propositions <a href=../bookI/propI37.html>I.37</a> and <a href=../bookI/propI39.html>I.39</a> is equivalent to <i>DE</i> || <i>BC.</i>
+
+<h4>Note</h4>
+
+It should be noted that a proportion such as <i>BD</i>&nbsp;:&nbsp;<i>AD</i>&nbsp;=&nbsp;<i>AE</i>&nbsp;:&nbsp;<i>CE</i> is not intended.  In that case the sides are cut proportionally, but the correspondence is not the intended one.
+
+<h4>Use of this theorem</h4>
+
+This proposition is frequently used in the rest of Book VI starting with the next proposition.  It is also used in Books XI and XII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

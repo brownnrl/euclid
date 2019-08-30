@@ -1,0 +1,102 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 26</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 26</h1>
+
+<div class="statement">A medial area does not exceed a medial area by a rational area.</div>
+
+<p>If possible, let the medial area <i>AB</i> exceed the medial area <i>AC</i> by the rational area <i>DB</i>.
+
+<p>Set out a rational straight line <i>EF</i>. Apply to <i>EF</i> the rectangular parallelogram <i>FH</i> equal to <i>AB</i> producing <i>EH</i> as breadth.  Subtract the rectangle <i>FG</i> equal to <i>AC</i>.  Then the remainder <i>BD</i> equals the remainder <i>KH</i>.
+
+<p>But <i>DB</i> is rational, therefore <i>KH</i> is also rational.
+
+<p>Since each of the rectangles <i>AB</i> and <i>AC</i> is medial, and <i>AB</i> equals <i>FH</i> while <i>AC</i> equals <i>FG</i>, therefore each of the rectangles <i>FH</i> and <i>FG</i> is also medial.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=220>
+<img src="propX26.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.26">
+<param name=e[1] value="O;point;free;0,0;0;0">
+<param name=e[2] value="X;point;free;1000,0;0;0">
+<param name=e[3] value="Y;point;free;0,1000;0;0">
+<param name=e[4] value="A;point;free;40,40">
+<param name=e[5] value="B;point;free;110,170">
+<param name=e[6] value="AX;point;parallelogram;X,O,A;0;0">
+<param name=e[7] value="BY;point;parallelogram;Y,O,B;0;0">
+<param name=e[8] value="A';point;intersection;A,AX,B,BY;0;0">
+<param name=e[9] value="C;point;lineSlider;A',B,0,90">
+<param name=e[10] value="AC;polygon;parallelogram;A,A',C;0;0;black;cyan">
+<param name=e[11] value="D;point;vertex;AC,4">
+<param name=e[12] value="BD;polygon;parallelogram;B,C,D;0;0;black;pink">
+<param name=e[13] value="E;point;free;210,40">
+<param name=e[14] value="E';point;parallelogram;X,O,E;0;0">
+<param name=e[15] value="F;point;lineSlider;E,E',150,40">
+<param name=e[16] value="G';point;parallelogram;Y,O,E;0;0">
+<param name=e[17] value="G;point;proportion;E,F,C,D,A,D,E,G'">
+<param name=e[18] value="FG;polygon;parallelogram;F,E,G;0;0;black;cyan">
+<param name=e[19] value="K;point;vertex;FG,4">
+<param name=e[20] value="H;point;proportion;E,F,C,D,A',B,E,G'">
+<param name=e[21] value="HK;polygon;parallelogram;H,G,K;0;0;black;pink">
+</applet></div>
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>They are applied to the rational straight line <i>EF</i>, therefore each of the straight lines <i>HE</i> and <i>EG</i> is rational and incommensurable in length with <i>EF</i>.
+
+<div class="just"><a href=propX20.html>X.20</a></div>
+<p>Since <i>DB</i> is rational and equals <i>KH</i>, therefore <i>KH</i> is rational. And it is applied to the rational straight line <i>EF</i>, therefore <i>GH</i> is rational and commensurable in length with <i>EF</i>.
+
+<div class="just"><a href=propX13.html>X.13</a></div>
+<p>But <i>EG</i> is also rational, and is incommensurable in length with <i>EF</i>, therefore <i>EG</i> is incommensurable in length with <i>GH</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>And <i>EG</i> is to <i>GH</i> as the square on <i>EG</i> is to the rectangle <i>EG</i> by <i>GH</i>, therefore the square on <i>EG</i> is incommensurable with the rectangle <i>EG</i> by <i>GH</i>.
+
+<div class="just"><a href=propX6.html>X.6</a>
+<br><a href=propX13.html>X.13</a></div>
+<p>But the squares on <i>EG</i> and <i>GH</i> are commensurable with the square on <i>EG</i>, for both are rational, and twice the rectangle <i>EG</i> by <i>GH</i> is commensurable with the rectangle <i>EG</i> by <i>GH</i>, for it is double it, therefore the sum of the squares on <i>EG</i> and <i>GH</i> is incommensurable with twice the rectangle <i>EG</i> by <i>GH</i>.
+
+<div class="just"><a href=../bookII/propII4.html>II.4</a>
+<br><a href=propX16.html>X.16</a></div>
+<p>Therefore the sum of the squares on <i>EG</i> and <i>GH</i> plus twice the rectangle <i>EG</i> by <i>GH</i>, that is, the square on <i>EH</i> is incommensurable with the sum of the squares on <i>EG</i> and <i>GH</i>.
+
+<div class="just"><a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>But the squares on <i>EG</i> and <i>GH</i> are rational, therefore the square on <i>EH</i> is irrational.
+
+<p>Therefore <i>EH</i> is irrational. But it is also rational, which is impossible.
+
+<p>Therefore, <i>a medial area does not exceed a medial area by a rational area.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<h4>A modern version of the proof</h4>
+
+<p>It&rsquo;s hard to follow this proof. An equivalent proof in modern terms is easier to comprehend.  Let &radic;<i>a</i> and &radic;<i>b</i> be the areas of the larger and smaller rectangles, where both are irrational numbers but <i>a</i> and <i>b</i> are both rational numbers.  
+
+<p>Suppose that &radic;<i>a</i>&nbsp;&ndash;&nbsp;&radic;<i>b</i> is a rational number.  Then its square <i>a</i>&nbsp;&ndash;&nbsp;2&radic;(<i>ab</i>)&nbsp;+&nbsp;<i>b</i> is also rational.  Then &radic;(<i>ab</i>) is rational, as is &radic;(<i>a</i>/<i>b</i>).  Then &radic;<i>a</i>&nbsp;&ndash;&nbsp;&radic;<i>b</i>&nbsp;=&nbsp;&radic;<i>b</i>(&radic;(<i>a</i>/<i>b</i>)&nbsp;&ndash;&nbsp;1) is the product of an irrational number and a rational number making it irrational, a contradiction.  (For the modern proof, we assume <i>a</i> is not equal to <i>b</i>, so that &radic;(<i>a</i>/<i>b</i>)&nbsp;&ndash;&nbsp;1 does not equal 0, and then we can conclude that the product is irrational.)
+
+<p>This is an interesting proof in that in order to show the difference is irrational, we assumed it was rational and used that to prove it was irrational.
+
+<p>The same modern proof works for sums, of course.
+
+<h4>Use of this proposition</h4>
+
+<p>This proposition is used in several others in Book X starting with <a href=propX42.html>X.42</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,259 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 18</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 18</h1>
+
+<div class="statement">
+To set out the sides of the five figures and compare them
+with one another.</div>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a></div>
+<p>Set out <i>AB</i> the diameter of the given sphere, and cut it  at <i>C</i> so that <i>AC</i> equals <i>CB,</i> and at <i>D</i> so that <i>AD</i> is double <i>DB.</i>  Describe the semicircle <i>AEB</i>  on <i>AB,</i> draw <i>CE</i> and <i>DF</i> from <i>C</i> and <i>D</i> at right angles to <i>AB,</i> and join <i>AF, FB,</i> and <i>EB.</i>
+
+<p>Then, since <i>AD</i> is double <i>DB,</i> therefore <i>AB</i> is triple <i>BD.</i> In conversion, therefore, <i>BA</i> is one and a half times <i>AD.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=320 height=330 >
+<img src="propXIII18.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.18">
+<param name=e[1] value="A0;point;free;-1000,300;0;0">
+<param name=e[2] value="A3;point;free;1000,300;0;0">
+<param name=e[3] value="A;point;lineSlider;30,0,A0,A3">
+<param name=e[4] value="B;point;lineSlider;290,0,A0,A3">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="C;point;midpoint;AB">
+<param name=e[7] value="sphere;circle;radius;C,A;0;0;0;0">
+<param name=e[8] value="BCA;sector;sector;C,B,A">
+<param name=e[9] value="G;point;perpendicular;A,B">
+<param name=e[10] value="B1;point;perpendicular;B,A;0;0">
+<param name=e[11] value="A2;point;extend;A,G,A,B;0;0">
+<param name=e[12] value="D;point;intersection;A,B,B1,A2">
+<param name=e[13] value="E;point;perpendicular;C,B">
+<param name=e[14] value="CE;line;connect;C,E">
+<param name=e[15] value="F1;point;parallelogram;E,C,D;0;0">
+<param name=e[16] value="FF';line;chord;D,F1,sphere;0;0;0">
+<param name=e[17] value="F;point;first;FF'">
+<param name=e[18] value="DF;line;connect;D,F">
+<param name=e[19] value="AF;line;connect;A,F;0;0;red">
+<param name=e[20] value="FB;line;connect;F,B;0;0;green">
+<param name=e[21] value="EB;line;connect;E,B">
+<param name=e[22] value="AE;line;connect;A,E;0;0;cyan">
+
+<param name=e[23] value="AG;line;connect;A,G">
+<param name=e[24] value="CG;line;connect;C,G">
+<param name=e[25] value="H;point;cutoff;C,G,C,A">
+<param name=e[26] value="K;point;foot;H,AB">
+<param name=e[27] value="HK;line;connect;H,K">
+<param name=e[28] value="L;point;cutoff;C,B,C,K">
+<param name=e[29] value="M;point;parallelogram;H,K,L">
+<param name=e[30] value="LM;line;connect;L,M">
+<param name=e[31] value="MB;line;connect;M,B;0;0;blue">
+
+<param name=e[32] value="N;point;intersection;EB,LM">
+<param name=e[33] value="NB;line;connect;N,B;0;0;magenta">
+</applet></div>
+
+<div class="just"><a href=../bookV/defV8.html>V.Def.9</a>
+<br><a href="../bookVI/propVI8.html">VI.8</a></div>
+<p>But <i>BA</i> is to <i>AD</i> as the square on <i>BA</i> is to the square on <i>AF,</i> for the triangle <i>AFB</i> is equiangular with the triangle <i>AFD.</i> Therefore the square on <i>BA</i> is one and a half times the square on <i>AF.</i>
+
+<div class="just"><a href="propXIII13.html">XIII.13</a></div>
+<p>But the square on the diameter of the sphere is also one and a half times the square on the side of the pyramid. And <i>AB</i> is the diameter of the sphere, therefore <i>AF</i> equals the side of the pyramid.
+
+<div class="just"><a href=../bookV/defV8.html>V.Def.9</a>
+<br><a href="../bookVI/propVI8.html">VI.8</a></div>
+<p>Again, since <i>AD</i> is double <i>DB,</i> therefore <i>AB</i> is triple <i>BD.</i>  But <i>AB</i> is to <i>BD</i> as the square on <i>AB</i> to the square on <i>BF,</i> therefore the square on <i>AB</i> is triple the square on <i>BF.</i>
+
+<div class="just"><a href="propXIII15.html">XIII.15</a></div>
+<p>But the square on the diameter of the sphere is also triple the square on the side of the cube.  And <i>AB</i> is the diameter of the sphere, therefore <i>BF</i> is the side of the cube.
+
+<p>And, since <i>AC</i> equals <i>CB,</i> therefore <i>AB</i> is double <i>BC.</i>  But <i>AB</i> is to <i>BC</i> as the square on <i>AB</i> to the square on <i>BE,</i> therefore the square on <i>AB</i> is double the square on <i>BE.</i>
+
+<div class="just"><a href="propXIII14.html">XIII.14</a></div>
+<p>But the square on the diameter of the sphere is also double the square on the side of the octahedron. And <i>AB</i> is the diameter of the given sphere, therefore <i>BE</i> is the side of the octahedron.
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a>,
+<a href=../bookI/propI3.html>I.3</a>
+<br><a href="../bookI/propI12.html">I.12</a></div>
+<p>Next, draw <i>AG</i>  from the point <i>A</i> at right angles to the straight line <i>AB,</i> make <i>AG</i>  equal to <i>AB,</i> join <i>GC,</i> and draw <i>HK</i> from <i>H</i> perpendicular to <i>AB.</i>
+
+<p>Then, since <i>GA</i> is double <i>AC,</i> for <i>GA</i> equals <i>AB</i> and <i>GA</i> is to <i>AC</i> as <i>HK</i> is to <i>KC,</i>  therefore <i>HK</i> is also double <i>KC.</i> 
+
+<p>Therefore the square on <i>HK</i> is quadruple the square on <i>KC,</i> therefore the sum of the  squares on <i>HK</i> and <i>KC,</i> that is, the square on <i>HC,</i> is five times the square on <i>KC.</i>
+
+<p>But <i>HC</i> equals <i>CB,</i> therefore the square on <i>BC</i> is five times the square on <i>CK.</i> And, since <i>AB</i> is double <i>CB,</i> and, in them, <i>AD</i> is double <i>DB,</i> therefore the remainder <i>BD</i> is double the remainder <i>DC.</i>
+
+<p>Therefore <i>BC</i> is triple <i>CD,</i> therefore the square on <i>BC</i> is nine times the square on <i>CD.</i> But the square on <i>BC</i> is five times the square on <i>CK,</i> therefore the square on <i>CK</i> is greater than the square on <i>CD.</i> Therefore <i>CK</i> is greater than <i>CD.</i><td></tr>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a>,
+<a href="../bookI/propI11.html">I.11</a></div>
+<p>Make <i>CL</i>  equal to <i>CK,</i> draw <i>LM</i> from <i>L</i> at right angles to <i>AB,</i> and join <i>MB.</i>
+
+<div class="just"><a href="propXIII16.html#cor">XIII.16,Cor.</a>
+<br><a href="../bookIV/propIV15.html#cor">IV.15,Cor.</a></div>
+<p>Now, since the square on <i>BC</i> is five times the square on <i>CK,</i> and <i>AB</i> is double <i>BC,</i> and <i>KL</i> is double <i>CK,</i> therefore the square on <i>AB</i> is five times the square on <i>KL.</i> But the square on the diameter of the sphere is also five times the square on the radius of the circle from which the icosahedron has been described. And <i>AB</i> is the diameter of the sphere, therefore <i>KL</i> is the radius of the circle from which the icosahedron has been described. Therefore <i>KL</i> is a side of the hexagon in the said circle.
+
+<div class="just"><a href="propXIII16.html#cor">XIII.16,Cor.</a></div>
+<p>And, since the diameter of the sphere is made up of the side of the hexagon and two of the sides of the decagon inscribed in the same circle, and <i>AB</i> is the diameter of the sphere, while <i>KL</i> is a side of the hexagon, and <i>AK</i> equals <i>LB,</i> therefore each of the straight lines <i>AK</i> and <i>LB</i> is a side of the decagon inscribed in the circle from which the icosahedron has been described.
+
+<div class="just"><a href="propXIII10.html">XIII.10</a></div>
+<p>And, since <i>LB</i> belongs to a decagon, and <i>ML</i> to a hexagon, for <i>ML</i> equals <i>KL,</i> since it also equals <i>HK</i> being the same distance from the center and each of the straight lines <i>HK</i> and <i>KL</i> is double <i>KC,</i> therefore <i>MB</i> belongs to a pentagon.
+
+<div class="just"><a href="propXIII16.html">XIII.16</a></div>
+<p>But the side of the pentagon is the side of the icosahedron,  therefore <i>MB</i> belongs to the icosahedron.
+
+<div class="just"><a href="propXIII17.html#cor">XIII.17,Cor.</a></div>
+<p>Now, since <i>FB</i> is a side of the cube, cut it in extreme and mean ratio at <i>N,</i> and let <i>NB</i> be the greater segment. Therefore <i>NB</i> is a side of the dodecahedron.
+
+<p>And, since the square on the diameter of the sphere was proved to be one and a half times the square on the side <i>AF</i> of the pyramid, double the square on the side <i>BE</i> of the octahedron and triple the side <i>FB</i> of the cube, therefore, of parts of which the square on the diameter of the sphere contains six, the square on the side of the pyramid contains four, the square on the side of the octahedron three, and the square on the side of the cube two.
+
+<p>Therefore the square on the side of the pyramid is four-thirds of the square on the side of the octahedron, and double the square on the side of the cube, and the square on the side of the octahedron is one and a half times the square on the side of the cube.
+
+<p>The said sides, therefore, of the three figures, I mean the pyramid, the octahedron and the cube, are to one another in rational ratios.
+
+<div class="just"><a href="propXIII16.html">XIII.16</a>
+<br><a href="propXIII17.html">XIII.17</a></div>
+<p>But the remaining two, I mean the side of the icosahedron and the side of the dodecahedron, are not in rational ratios either to one another or to the aforesaid sides, for they are irrational, the one being minor and the other an apotome.
+
+<p>That the side <i>MB</i> of the icosahedron is greater than the side <i>NB</i> of the dodecahedron we can prove thus.
+
+<div class="just"><a href="../bookVI/propVI8.html">VI.8</a>,
+<a href="../bookVI/propVI4.html">VI.4</a></div>
+<p>Since the triangle <i>FDB</i> is equiangular with the triangle <i>FAB,</i>  proportionally <i>DB</i> is to <i>BF</i> as <i>BF</i> is to <i>BA.</i>
+
+<div class="just"><a href=../bookV/defV8.html>V.Def.9</a>
+<br><a href="../bookVI/propVI10.html#cor">VI.20,Cor.</a></div>
+<p>And, since the three straight lines are proportional, the first is to the third as the square on the first is to the square on the second, therefore <i>DB</i> is to <i>BA</i> as the square on <i>DB</i> is to the square on <i>BF.</i> Therefore, inversely <i>AB</i> is to <i>BD</i> as the square on <i>FB</i> is to the square on <i>BD.</i>
+
+<p>But <i>AB</i> is triple <i>BD,</i> therefore the square on <i>FB</i> is triple the square on <i>BD.</i>
+
+<p>But the square on <i>AD</i> is also quadruple the square on <i>DB,</i> for <i>AD</i> is double <i>DB,</i> therefore the square on <i>AD</i> is greater than the square on <i>FB.</i>  Therefore <i>AD</i> is greater than <i>FB.</i> Therefore <i>AL</i> is by far greater than <i>FB.</i>
+
+<div class="just"><a href="propXIII9.html">XIII.9</a></div>
+<p>And, when <i>AL</i> is cut in extreme and mean ratio,  <i>KL</i> is the greater segment, for <i>LK</i> belongs to a hexagon, and <i>KA</i> to a decagon, and, when <i>FB</i> is cut in extreme and mean ratio, <i>NB</i> is the greater segment, therefore <i>KL</i> is greater than <i>NB.</i>
+
+<p>But <i>KL</i> equals <i>LM,</i> therefore <i>LM</i> is greater than <i>NB.</i>
+
+<p>Therefore <i>MB,</i> which is a side of the icosahedron, is by far greater than <i>NB</i> which is a side of the dodecahedron. 
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<br>
+
+<a name=remark></a>
+<div class="theorem">
+<h1>Remark</h1>
+
+<div class="statement">
+I say next that no other figure, besides the said five figures, can be constructed which is contained by equilateral and equiangular figures equal to one another.</div>
+
+<p>For a solid angle cannot be constructed with two triangles, or indeed planes.
+
+<div class="just"><a href="../bookXI/propXI21.html">XI.21</a></div>
+<p>With three triangles the angle of the pyramid is constructed, with four the angle of the octahedron, and with five the angle of the icosahedron, but a solid angle cannot be formed by six equilateral and equiangular triangles placed together at one point, for, the angle of the equilateral triangle being two-thirds of a right angle, the six would be equal to four right angles, which is impossible, for any solid angle is contained by angles less than four right angles.
+
+<p>For the same reason, neither can a solid angle be constructed by more than six plane angles.
+
+<p>By three squares the angle of the cube is contained, but by four it is impossible for a solid angle to be contained, for they would again be four right angles.
+
+<p>By three equilateral and equiangular pentagons the angle of the dodecahedron is contained, but by four such it is impossible for any solid angle to be contained, for, the angle of the equilateral pentagon being a right angle and a fifth, the four angles would be greater than four right angles, which is impossible.
+
+<p>Neither again will a solid angle be contained by other polygonal figures by reason of the same absurdity.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=#lemma></a>
+<div class="theorem">
+<h1>Lemma</h1>
+
+<p>But that the angle of the equilateral and equiangular pentagon is a right angle and a fifth we must prove thus.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=200 height=190 >
+<img src="propXIII18l.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.18,lemma">
+<param name=e[1] value="A;point;free;55,30">
+<param name=e[2] value="B;point;free;135,30">
+<param name=e[3] value="pentagon;polygon;regularPolygon;B,A,5;0;0;black;random">
+<param name=e[4] value="E;point;vertex;pentagon,3">
+<param name=e[5] value="D;point;vertex;pentagon,4">
+<param name=e[6] value="C;point;vertex;pentagon,5">
+<param name=e[7] value="F;point;circumcenter;A,B,D">
+<param name=e[8] value="circ;circle;radius;F,A;0;0;black;0">
+<param name=e[9] value="AF;line;connect;A,F">
+<param name=e[10] value="BF;line;connect;B,F">
+<param name=e[11] value="CF;line;connect;C,F">
+<param name=e[12] value="DF;line;connect;D,F">
+<param name=e[13] value="EF;line;connect;E,F">
+</applet></div>
+
+<div class="just"><a href="../bookIV/propIV14.html">IV.14</a></div>
+<p>Let <i>ABCDE</i> be an equilateral and equiangular pentagon.  Circumscribe the circle <i>ABCDE</i>  about it, take its center <i>F,</i> and join <i>FA, FB, FC, FD,</i> and <i>FE.</i>
+
+<p>Therefore they bisect the angles of the pentagon at <i>A, B, C, D,</i> and <i>E.</i>  And, since the angles at <i>F</i> equal four right angles and are equal, therefore one of them, as the angle <i>AFB,</i> is one right angle less a fifth. Therefore the remaining angles <i>FAB</i> and <i>ABF</i> consist of one right angle and a fifth. 
+
+<p>But the angle <i>FAB</i> equals the angle <i>FBC,</i> therefore the whole angle <i>ABC</i> of the pentagon consists of one right angle and a fifth. 
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<h4>Summary of the regular polyhedra</h4>
+
+In the following table, <i>d</i> is the diameter of the sphere in which each regular polygon is inscribed while <i>s</i> is the side of the polygon.  Then <i>d</i><sup>2</sup>/<i>s</i><sup>2</sup>
+is the ratio of the square of the diameter to the square of the side.
+
+<p><center><table cellpadding=5 bgcolor=ffffcc border=1>
+<tr align=center>
+<th>Polyhedron</th>
+<th>construction</th>
+<th><i>d</i><sup>2</sup>/<i>s</i><sup>2</sup></th>
+</tr>
+<tr align=center>
+<td>tetrahedron</td>
+<td><a href=propXIII13.html>XIII.13</a></td>
+<td>3/2</td>
+</tr>
+<tr align=center>
+<td>octahedron</td>
+<td><a href=propXIII14.html>XIII.14</a></td>
+<td>2</td>
+</tr>
+<tr align=center>
+<td>cube</td>
+<td><a href=propXIII15.html>XIII.15</a></td>
+<td>3</td>
+</tr>
+<tr align=center>
+<td>icosahedron</td>
+<td><a href=propXIII16.html>XIII.16</a></td>
+<td>(2&radic;5)/(&radic;5&ndash;1)</td>
+</tr>
+<tr align=center>
+<td>dodecahedron</td>
+<td><a href=propXIII17.html>XIII.17</a></td>
+<td>(3&ndash;&radic;5)/6</td>
+</tr>
+</table></center>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

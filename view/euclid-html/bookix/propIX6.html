@@ -1,0 +1,85 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 6</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 6</h1>
+
+<div class="statement">If a number multiplied by itself makes a cubic number, then it itself is also cubic.</div>
+
+<p>Let the number <i>A</i> multiplied by itself make the cubic number <i>B.</i>
+
+<p>I say that <i>A</i> is also cubic.
+
+<p>Multiply <i>A</i> by <i>B</i> to make <i>C.</i> Since, then, <i>A</i> multiplied by itself makes <i>B,</i> and multiplied by <i>B</i> makes <i>C,</i> therefore <i>C</i> is a cube. And, since <i>A</i> multiplied by itself makes <i>B,</i> therefore <i>A</i> measures <i>B</i> according to the units in itself.</td>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=140 >
+<img src="propIX6.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.6">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="U1;point;free;1000,0;0;0">
+<param name=e[8] value="U2;point;free;1000,35;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[13] value="B2;point;proportion;U1,U2,A1,A2,A1,A2,B1,B3;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[16] value="C2;point;proportion;U1,U2,A1,A2,B1,B2,C1,C3;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>But the unit also measures <i>A</i> according to the units in it. Therefore the unit is to <i>A</i> as <i>A</i> is to <i>B.</i>  And, since <i>A</i> multiplied by <i>B</i> makes <i>C,</i> therefore <i>B</i> measures <i>C</i> according to the units in <i>A.</i>
+
+<p>But the unit also measures <i>A</i> according to the units in it.
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Therefore the unit is to <i>A</i> as <i>B</i> is to <i>C.</i>  But the unit is to <i>A</i> as <i>A</i> is to <i>B,</i> therefore <i>A</i> is to <i>B</i> as <i>B</i> is to <i>C.</i>
+
+<p>And, since <i>B</i> and <i>C</i> are cubes, therefore they are similar solid numbers.
+
+<div class="just"><a href="../bookVIII/propVIII19.html">VIII.19</a>
+<br><a href="../bookVIII/propVIII8.html">VIII.8</a></div>
+<p>Therefore there are two mean proportional numbers between <i>B</i> and <i>C.</i> And <i>B</i> is to <i>C</i> as <i>A</i> is to <i>B.</i> Therefore there are two mean proportional numbers between <i>A</i> and <i>B</i> also.
+
+<div class="just"><a href="../bookVIII/propVIII23.html">VIII.23</a></div>
+<p>And <i>B</i> is a cube, therefore <i>A</i> is also a cube.
+
+<p>Therefore, <i>if a number multiplied by itself makes a cubic number, then it itself is also cubic.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<h4>Outline of the proof</h4>
+
+Assume that <i>a</i><sup>2</sup> is a cube.  Since <i>a</i><sup>3</sup> is also a cube, therefore there are two mean proportionals between them (<a href="../bookVIII/propVIII19.html">VIII.19</a>).  But we have the proportion 
+<i>a</i>&nbsp;:&nbsp;<i>a</i><sup>2</sup>&nbsp;=&nbsp;<i>a</i><sup>2</sup>:<i>a</i><sup>3</sup>, so there are also two mean proportionals between <i>a</i> and <i>a</i><sup>2</sup> (<a href="../bookVIII/propVIII8.html">VIII.8</a>).  And since <i>a</i><sup>2</sup> is a cube, therefore  <i>a</i> is also a cube (<a href="../bookVIII/propVIII23.html">VIII.23</a>).
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in <a href=propIX10.html>IX.10</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

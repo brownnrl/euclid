@@ -1,0 +1,167 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 10</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">
+To construct an isosceles triangle having each of the angles at the base double the remaining one.
+</div>
+
+<div class="just"><a href="../bookII/propII11.html">II.11</a>
+<br><a href="propIV1.html">IV.1</a></div>
+<p>Set out any straight line <i>AB,</i> and cut it at the point <i>C</i> so that the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>CA.</i>  Describe the circle <i>BDE</i> with center A and radius <i>AB.</i>  Fit in the circle <i>BDE</i> the straight line <i>BD</i> equal to the straight line <i>AC</i> which is not greater than the diameter of the circle <i>BDE.</i>
+
+<div class="just"><a href="propIV5.html">IV.5</a></div>
+<p>Join <i>AD</i> and <i>DC,</i> and circumscribe the circle <i>ACD</i> about the triangle <i>ACD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=300>
+<img src="propIV10.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.10">
+<param name=e[1] value="A;point;free;140,150">
+<param name=e[2] value="B;point;free;210,50">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="BDE;circle;radius;A,B;0;0;black;random">
+<param name=e[5] value="G;point;perpendicular;A,B;0;0">
+<param name=e[6] value="K;point;midpoint;A,G;0;0">
+<param name=e[7] value="F;point;extend;G,K,K,B;0;0">
+<param name=e[8] value="C;point;cutoff;A,B,A,F">
+<param name=e[9] value="Bcirc;circle;radius;B,A,C;0;0;0;0">
+<param name=e[10] value="DD';line;bichord;BDE,Bcirc;0;0;0">
+<param name=e[11] value="D;point;first;DD'">
+<param name=e[12] value="BD;line;connect;B,D">
+<param name=e[13] value="CD;line;connect;C,D">
+<param name=e[14] value="AD;line;connect;A,D">
+<param name=e[15] value="ACDE;circle;circumcircle;A,C,D;0;0;black;0">
+<param name=e[16] value="ABD;polygon;triangle;A,B,D;0;0;0;random">
+<param name=e[17] value="DE;line;bichord;ACDE,BDE;0;0;0">
+<param name=e[18] value="E;point;last;DE">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV10.gif" hspace=10 alt="IV10">';
+</script>
+</div>
+
+<p>Then, since the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>AC,</i> and <i>AC</i> equals <i>BD,</i> therefore the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>BD.</i>
+
+<div class="just"><a href="../bookIII/propIII37.html">III.37</a></div>
+<p>And, since a point <i>B</i> was taken outside the circle <i>ACD,</i> and from <i>B</i> the two straight lines <i>BA</i> and <i>BD</i> fall on the circle <i>ACD,</i> and one of them cuts it while the other falls on it, and the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>BD,</i> therefore <i>BD</i> touches the circle <i>ACD.</i>
+
+<div class="just"><a href="../bookIII/propIII32.html">III.32</a></div>
+<p>Since, then, <i>BD</i> touches it, and <i>DC</i> is drawn across from the point of contact at <i>D,</i> therefore the angle <i>BDC</i> equals the angle <i>DAC</i> in the alternate segment of the circle.
+
+<p>Since, then, the angle <i>BDC</i> equals the angle <i>DAC,</i> add the angle <i>CDA</i> to each, therefore the whole angle <i>BDA</i> equals the sum of the two angles <i>CDA</i> and <i>DAC.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>But the exterior angle <i>BCD</i> equals the sum of the angles <i>CDA</i> and <i>DAC,</i> therefore the angle <i>BDA</i> also equals the angle <i>BCD.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>But the angle <i>BDA</i> equals the angle <i>CBD,</i> since the side <i>AD</i> also equals <i>AB,</i> so that the angle <i>DBA</i> also equals the angle <i>BCD.</i>
+
+<p>Therefore the three angles <i>BDA,</i> <i>DBA,</i> and <i>BCD</i> equal one another.
+
+<div class="just"><a href="../bookI/propI6.html">I.6</a></div>
+<p>And, since the angle <i>DBC</i> equals the angle <i>BCD,</i> the side <i>BD</i> also equals the side <i>DC.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>But <i>BD</i> equals <i>CA</i> by hypothesis, therefore <i>CA</i> also equals <i>CD,</i> so that the angle <i>CDA</i> also equals the angle <i>DAC.</i>  Therefore the sum of the angles <i>CDA</i> and <i>DAC</i> is double the angle <i>DAC.</i>
+
+<p>And the angle <i>BCD</i> equals the sum of the angles <i>CDA</i> and <i>DAC,</i> therefore the angle <i>BCD</i> is also double the angle <i>CAD.</i>
+
+<p>But the angle <i>BCD</i> equals each of the angles <i>BDA</i> and <i>DBA,</i> therefore each of the angles <i>BDA</i> and <i>DBA</i> is also double the angle <i>DAB.</i>
+
+<p>Therefore the isosceles triangle <i>ABD</i> has been constructed having each of the angles at the base <i>DB</i> double the remaining one.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+The goal of the proposition is to construct a 36&deg;-72&deg;-72&deg; isosceles triangle <i>ABD.</i>  It&rsquo;s actually constructed on a given side <i>AB.</i> The base will equal the larger part of <i>AB</i> when <i>AB</i> is cut at a point <i>C</i> so that <i>AB&nbsp;BC&nbsp;=&nbsp;AC</i><sup>2</sup>. The constuction for that cut was given in proposition <a href="../bookII/propII11.html">II.11</a>. The difficulty of the proof is showing that this construction results in the desired triangle.  Cutting <i>AB</i> at that point is also called cutting the line &ldquo;in extreme and mean ratio,&rdquo; see 
+<a href="../bookVI/defVI3.html">VI.Def.3</a> for the definition of &ldquo;extreme and mean ratio,&rdquo; and see proposition 
+<a href="../bookVI/propVI30.html">VI.30</a> for details.
+
+<p>
+<table><tr><td>
+Euclid uses a surprising amount of the theory of circles from <a href="../bookIII/bookIII.html">Book III</a>.  After drawing circle <i>ACD,</i> he uses <a href="../bookIII/propIII37.html">III.37</a> to conclude from <i>AB&nbsp;BC&nbsp;=&nbsp;DB</i><sup>2</sup> that the line <i>DB</i> is tangent to the circle.  Next, he uses <a href="../bookIII/propIII32.html">III.32</a> to conclude that the angle <i>BDC</i> between the tangent <i>DB</i> and the chord <i>DC</i> equals the angle <i>CAD</i> which cuts off that chord.
+
+<p>At this point Euclid has shown that one of the two angles at <i>D,</i> namely angle <i>BDC,</i> equals the angle <i>A.</i> When he shows that the other, namely angle <i>CDA</i> also equals angle <i>A,</i> then since the triangle <i>ABD</i> is isosceles, he will have shown each of the base angles of triangle <i>ABD</i> is twice the vertex angle <i>A,</i> and the proof will be complete.
+</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=280 width=280>
+<img src="propIV10a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.10">
+<param name=e[1] value="A;point;free;50,160">
+<param name=e[2] value="B;point;free;180,30">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="BDE;circle;radius;A,B;0;0;0;0">
+<param name=e[5] value="G;point;perpendicular;A,B;0;0">
+<param name=e[6] value="K;point;midpoint;A,G;0;0">
+<param name=e[7] value="F;point;extend;G,K,K,B;0;0">
+<param name=e[8] value="C;point;cutoff;A,B,A,F">
+<param name=e[9] value="Bcirc;circle;radius;B,A,C;0;0;0;0">
+<param name=e[10] value="DD';line;bichord;BDE,Bcirc;0;0;0">
+<param name=e[11] value="D;point;first;DD'">
+<param name=e[12] value="BD;line;connect;B,D">
+<param name=e[13] value="CD;line;connect;C,D">
+<param name=e[14] value="AD;line;connect;A,D">
+<param name=e[15] value="ACD;circle;circumcircle;A,C,D;0;0;black;0">
+<param name=e[16] value="ABD;polygon;triangle;A,B,D;0;0;0;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propIV10a.gif" hspace=10 alt="IV10">';
+</script>
+</td></tr></table>
+
+<p>The rest is relatively easy.  First, the small triangle <i>BCD</i> is isosceles, a fact that can be seen from the following equation about angles:
+<p><center>
+ <i>B</i> =  <i>BDA</i> =  <i>BDC</i> + <i>CDA</i> = <i>CAD</i> + <i>CDA</i> = <i>BCD.</i>
+</center></p>
+Therefore, the sides <i>CD</i> and <i>BD</i> are equal, but from the original construction, <i>BD</i>&nbsp;=&nbsp;<i>CA.</i> Hence, the triangle <i>ADC</i> is also isosceles, so the two angles <i>CDA</i> and <i>A</i> are equal, as needed.
+
+<h4>Comments</h4>
+
+Euclid could have split the statement and the proof of this proposition into two.  The first part would state that if an isosceles triangle has its base equal to a segment of its side 
+so that square on the base equals the rectangle contained by the side and the remaining segment of the side, then each base angle of the triangle is twice the vertex angle.  Most of the proof of this proposition IV.10 is actually a proof of this first part.  The other part would be the constuction.
+
+<p>There is a converse of this proposition, one the Euclid did not state.  Namely, if an isosceles triangle has each base angle equal to twice the vertex angle, then the base is equal to a segment of its side so that square on the base equals the rectangle contained by the side and the remaining segment of the side.  In other words, 36&deg;-72&deg;-72&deg; isosceles triangles are characterized by this property.
+
+<p>The triangle <i>ABD</i> constructed in this proposition is one of ten sectors of a regular decagon (10-gon).  Thus, it is one short step from this proposition to the construction of a regular decagon inscribed in a circle.  If alternate vertices of a regular decagon are connected, then a regular pentagon is formed which is inscribed in the circle.  It is unclear why Euclid did not use such a construction rather than the one he chose in the next proposition
+
+<h4>An alternate proof involving similar triangles</h4>
+
+It was probably Euclid who made a concerted effort to include as many propositions that he could in the first four books that did not rely on proportions.  The theory of similar triangles is not broached until Book VI which depends on the theory of proportion in Book V.  The clever proof that Euclid gave to this proposition does not depend on similar triangles, and so it could be placed here in Book IV. There is, however, a simpler proof that does depend on similar triangles.
+
+<p>As Euclid does, begin by cutting a straight line <i>AB</i>  at the point <i>C</i> so that the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>CA</i> (<a href="../bookII/propII11.html">II.11</a>). Otherwise said, the straight line <i>AB</i> has been cut in extreme and mean ratio at <i>C</i> so that the proportion 
+<i>AB</i>&nbsp;:&nbsp;<i>AC</i>&nbsp;=&nbsp;<i>AC</i>&nbsp;:&nbsp;<i>BC</i>
+holds. (See <a href="../bookVI/defVI3.html">VI.Def.3</a>, <a href="../bookVI/propVI17.html">VI.17</a>, and <a href="../bookVI/propVI30.html">VI.30</a>.)
+ Next, construct an isosceles triangle with one side <i>AB,</i> a second side <i>AD</i> equal to side <i>AB,</i> and the base equal <i>BD</i> equal to <i>AC</i> (<a href="../bookI/propI22.html">I.22</a>).  Then we have the proportion <i>AD</i>&nbsp;:&nbsp;<i>BD</i>&nbsp;=&nbsp;<i>BD</i>&nbsp;:&nbsp;<i>BC.</i>
+Therefore, two triangles <i>ADB</i> and <i>DBC</i> have one angle equal to one angle (angle <i>D</i> of the first triangle equals angle <i>B</i> of the second) and the sides about the equal angles proportional. Therefore, by <a href="../bookVI/propVI6.html">VI.6</a>, the triangles are equiangular. 
+It easily follows that both triangles have their base angles each equal to twice their vertex angles.
+                 
+<h4>Use of this proposition</h4>
+
+This construction was designed to be used in the next proposition which inscribes a regular pentagon in a circle.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

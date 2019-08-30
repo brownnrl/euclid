@@ -1,0 +1,55 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 26</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 26</h1>
+
+<div class="statement">If an odd number is subtracted from an odd number, then the remainder is even.</div>
+
+<p>Let the odd number <i>BC</i> be subtracted from the odd number <i>AB.</i>
+
+<p>I say that the remainder <i>CA</i> is even.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=220 height=60 >
+<img src="propIX26.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.26">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="U1;point;free;1000,0;0;0">
+<param name=e[4] value="U2;point;free;1000,20;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,200,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,130,0">
+<param name=e[8] value="D;point;cutoff;B,A,U1,U2">
+<param name=e[9] value="AB;line;connect;A,B">
+</applet></div>
+
+<div class="just"><a href="../bookVII/defVII6.html">VII.Def.7</a>
+<br><a href=propIX24.html>IX.24</a></div>
+<p>Since <i>AB</i> is odd, subtract the unit <i>BD,</i> therefore the remainder <i>AD</i> is even.  For the same reason <i>CD</i> is also even, so that the remainder <i>CA</i> is also even.
+
+<p>Therefore, <i>if an odd number is subtracted from an odd number, then the remainder is even.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is used in <a href=propIX29.html>IX.29</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

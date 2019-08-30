@@ -1,0 +1,81 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 15</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 15</h1>
+
+<div class="statement">Parts have the same ratio as their equimultiples.</div>
+
+<p>Let <i>AB</i> be the same multiple of <i>C</i> that <i>DE</i> is of <i>F.</i>
+
+<p>I say that <i>C</i> is to <i>F</i> as <i>AB</i> is to <i>DE.</i>
+
+<p>Since <i>AB</i> is the same multiple of <i>C</i> that <i>DE</i> is of <i>F,</i> as many magnitudes as there are in <i>AB</i> equal to <i>C,</i> there are also in <i>DE</i> equal to <i>F.</i>
+
+<p>Divide <i>AB</i> into the magnitudes <i>AG, GH,</i> and <i>HB</i> equal to <i>C,</i> and divide <i>DE</i> into the magnitudes <i>DK, KL,</i> and <i>LE</i> equal to <i>F.</i>  Then the number of the magnitudes <i>AG, GH,</i> and <i>HB</i> equals the number of the magnitudes <i>DK, KL,</i> and <i>LE.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=380 height=150>
+<img src=propV15.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.15">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="W0;point;free;-1000,90;0;0">
+<param name=e[6] value="W1;point;free;1000,90;0;0">
+<param name=e[7] value="X0;point;free;-1000,120;0;0">
+<param name=e[8] value="X1;point;free;1000,120;0;0">
+<param name=e[9] value="C0;point;lineSlider;W0,W1,20,90;0">
+<param name=e[10] value="C1;point;lineSlider;W0,W1,70,90;0">
+<param name=e[11] value="C;line;connect;C0,C1;black;0;green">
+<param name=e[12] value="F0;point;lineSlider;X0,X1,280,120;0">
+<param name=e[13] value="F1;point;lineSlider;X0,X1,350,120;0">
+<param name=e[14] value="F;line;connect;F0,F1;black;0;green">
+
+<param name=e[15] value="A;point;lineSlider;U0,U1,20,30">
+<param name=e[16] value="G;point;cutoff;A,U1,C0,C1">
+<param name=e[17] value="H;point;cutoff;G,U1,C0,C1">
+<param name=e[18] value="B;point;cutoff;H,U1,C0,C1">
+<param name=e[19] value="AB;line;connect;A,B;0;0;green">
+
+<param name=e[20] value="E;point;lineSlider;V0,V1,350,60">
+<param name=e[21] value="L;point;cutoff;E,V0,F0,F1">
+<param name=e[22] value="K;point;cutoff;L,V0,F0,F1">
+<param name=e[23] value="D;point;cutoff;K,V0,F0,F1">
+<param name=e[24] value="DE;line;connect;D,E;0;0;green">
+</applet>
+</td></div>
+
+<div class="just"><a href="propV7.html">V.7</a></div>
+<p>And, since <i>AG, GH,</i> and <i>HB</i> equal one another, and <i>DK, KL,</i> and <i>LE</i> also equal one another, therefore <i>AG</i> is to <i>DK</i> as <i>GH</i> is to <i>KL,</i> and as <i>HB</i> is to <i>LE.</i>
+
+<p>Therefore one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents.  Therefore <i>AG</i> is to <i>DK</i> as <i>AB</i> is to <i>DE.</i>
+
+<div class="just"><a href=propV12.html>V.12</a></div>
+<p>But <i>AG</i> equals <i>C</i> and <i>DK</i> equals <i>F,</i> therefore <i>C</i> is to <i>F</i> as <i>AB</i> is to <i>DE.</i>
+
+<p>Therefore, <i>parts have the same ratio as their equimultiples.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition states that if <i>n</i> is any number and <i>c</i> and <i>f</i> any magnitudes of the same kind, then <i>c</i>&nbsp;:&nbsp;<i>f</i>&nbsp;=&nbsp;<i>nc</i>&nbsp;:&nbsp;<i>nf.</i>
+
+<p>This proposition is used in the next one and a few others in Books V, VI, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

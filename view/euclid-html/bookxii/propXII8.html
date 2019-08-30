@@ -1,0 +1,114 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 8</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">
+Similar pyramids with triangular bases are in triplicate ratio of their corresponding sides.</div>
+
+<p>Let there be similar and similarly situated pyramids with triangular bases <i>AB</i> and <i>DEF</i> vertices <i>G</i> and <i>H.</i>
+
+<p>I say that the pyramid <i>ABCG</i> has to the pyramid <i>DEFH</i> the ratio triplicate of that which <i>BC</i> has to <i>EF.</i>
+
+<p>Complete the parallelepipedal solids <i>BGML</i> and <i>EHQP.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=440 height=280 >
+<img src="propXII8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.8">
+<param name=e[1] value="C;point;fixed;100,250,0;black;green">
+<param name=basepoint value=C>
+<param name=e[2] value="1X;point;fixed;412,250,-91;0;0">
+<param name=e[3] value="1Y;point;fixed;65,550,-120;0;0">
+<param name=e[4] value="1Z;point;fixed;184,375,288;0;0">
+<param name=e[5] value="floor;plane;3points;C,1X,1Y;0;0;0;0">
+<param name=e[6] value="B;point;lineSlider;C,1X,40,280,0">
+<param name=e[7] value="N;point;planeSlider;floor,180,180,0">
+<param name=e[8] value="M;point;lineSlider;C,1Y,150,190,160">
+<param name=e[9] value="L;point;parallelogram;N,C,M">
+<param name=e[10] value="A;point;parallelogram;B,C,M">
+<param name=e[11] value="G;point;parallelogram;B,C,N">
+<param name=e[12] value="K;point;parallelogram;G,C,M">
+
+<param name=e[13] value="E;point;lineSlider;C,1X,230,250,0">
+<param name=e[14] value="F;point;lineSlider;C,1X,305,250,0">
+<param name=e[15] value="R;point;similar;E,F,floor,B,C,N,floor">
+<param name=e[16] value="Q';point;parallelogram;M,C,F;0;0">
+<param name=e[17] value="Q;point;proportion;B,C,E,F,C,M,F,Q'">
+<param name=e[18] value="D;point;parallelogram;E,F,Q">
+<param name=e[19] value="H;point;parallelogram;E,F,R">
+<param name=e[20] value="P;point;parallelogram;R,F,Q">
+<param name=e[21] value="O;point;parallelogram;H,F,Q">
+
+<param name=e[22] value="ABCG;polyhedron;tetrahedron;A,B,C,G;0;0;black;random">
+<param name=e[23] value="DEFH;polyhedron;tetrahedron;D,E,F,H;0;0;black;random">
+<param name=e[24] value="GNLK;polygon;quadrilateral;G,N,L,K;0;0;black;0">
+<param name=e[25] value="HRPO;polygon;quadrilateral;H,R,P,O;0;0;black;0">
+<param name=e[26] value="KAML;polygon;quadrilateral;K,A,M,L;0;0;black;0">
+<param name=e[27] value="ODQP;polygon;quadrilateral;O,D,Q,P;0;0;black;0">
+<param name=e[28] value="MC;line;connect;M,C">
+<param name=e[29] value="CN;line;connect;C,N">
+<param name=e[30] value="QF;line;connect;Q,F">
+<param name=e[31] value="FR;line;connect;F,R">
+</applet></div>
+
+<p>Now, since the pyramid <i>ABCG</i> is similar to the pyramid <i>DEFH,</i> therefore the angle <i>ABC</i> equals the angle <i>DEF,</i> the angle <i>GBC</i> equals the angle <i>HEF,</i> the angle <i>ABG</i> equals the angle <i>DEH,</i> and <i>AB</i> is to <i>DE</i> as <i>BC</i> is to <i>EF,</i> and as <i>BG</i> is to <i>EH.</i>
+
+<p>And since <i>AB</i> is to <i>DE</i> as <i>BC</i> is to <i>EF,</i> and the sides are proportional about equal angles, therefore the parallelogram <i>BM</i> is similar to the parallelogram <i>EQ.</i> For the same reason <i>BN</i> is also similar to <i>ER,</i> and <i>BR</i> similar to <i>EO.</i>
+
+<div class="just"><a href="../bookXI/propXI24.html">XI.24</a></div>
+<p>Therefore the three parallelograms <i>MB, BK,</i> and <i>BN</i> are similar to the three <i>EQ, EO,</i> and <i>ER.</i> But the three parallelograms <i>MB, BK,</i> and <i>BN</i> are equal and similar to their three opposites, and the three <i>EQ, EO,</i> and <i>ER</i> are equal and similar to their three opposites.
+
+<p>Therefore the solids <i>BGML</i> and <i>EHQP</i> are contained by similar planes equal in multitude. Therefore the solid <i>BGML</i> is similar to the solid <i>EHQP.</i>
+
+<div class="just"><a href="../bookXI/propXI33.html">XI.33</a></div>
+<p>But similar parallelepipedal solids are in the triplicate ratio of their corresponding sides. Therefore the solid <i>BGML</i> has to the solid <i>EHQP</i> the ratio triplicate of that which the corresponding side <i>BC</i> has to the corresponding side <i>EF.</i>
+
+<div class="just"><a href="../bookXI/propXI28.html">XI.28</a>
+<br><a href="propXII7.html">XII.7</a></div>
+<p>But the solid <i>BGML</i> is to the solid <i>EHQP</i> as the pyramid <i>ABCG</i> is to the pyramid <i>DEFH,</i> for the pyramid is a sixth part of the solid, because the prism which is half of the parallelepipedal solid is also triple the pyramid.  Therefore the pyramid <i>ABCG</i> has to the pyramid <i>DEFH</i> the ratio triplicate of that which <i>BC</i> has to <i>EF.</i> 
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+From this it is clear that similar pyramids with polygonal bases are also to one another in the triplicate ratio of their corresponding sides.</div>
+
+<div class="just"><a href="../bookVI/propVI20.html">VI.20</a>
+<br><a href="../bookV/propV12.html">V.12</a></div>
+<p>For, if they are divided into the pyramids contained in them which have triangular bases, by virtue of the fact that the similar polygons forming their bases are also divided into similar triangles equal in multitude and corresponding to the wholes, then the one pyramid with a triangular base in the one complete pyramid is to the one pyramid with a triangular base in the other complete pyramid as all the pyramids with triangular bases contained in the one pyramid is to all the pyramids with triangular bases contained in the other pyramid, that is, the pyramid itself with a polygonal base, to the pyramid with a polygonal base. 
+
+<p>But the pyramid with a triangular base is to the pyramid with a triangular base in the triplicate ratio of the corresponding sides, therefore also the pyramid with a polygonal base has to the pyramid with a similar base the ratio triplicate of that which the side has to the side.
+
+<p>Therefore, <i>similar pyramids with triangular bases are in triplicate ratio of their corresponding sides.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Heath gives a good argument that the corollary was added later.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used to show similar cones are in triplicate ratio of the diameters of their bases in proposition <a href=propXII12.html>XII.12</a>.  Also, the corollary justifies a statement in the <a href=propXII17.html#cor>corollary</a> of XII.17 concerning similar solids.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

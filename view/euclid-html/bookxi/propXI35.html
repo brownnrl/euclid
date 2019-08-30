@@ -1,0 +1,145 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 35</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 35</h1>
+
+<div class="statement">
+If there are two equal plane angles, and on their vertices there are set up elevated straight lines containing equal angles with the original straight lines respectively, if on the elevated straight lines points are taken at random and perpendiculars are drawn from them to the planes in which the original angles are, and if from the points so arising in the planes straight lines are joined to the vertices of the original angles, then they contain with the elevated straight lines equal angles.</div>
+
+<p>Let the angles <i>BAC</i> and <i>EDF</i> be two equal rectilinear angles, and from the points <i>A</i> and <i>D</i> let the elevated straight lines <i>AG</i> and <i>DM</i> be set up containing, with the original straight lines, equal angles respectively, namely, the angle <i>MDE</i> equal to the angle <i>GAB</i> and the angle <i>MDF</i> equal to the angle <i>GAC.</i>
+
+<div class="just"><a href=propXI11.html>XI.11</a></div>
+<p>Take the points <i>G</i> and <i>M</i> at random on <i>AG</i> and <i>DM.</i> Draw <i>GL</i> and <i>MN</i> from the points <i>G</i> and <i>M</i> perpendicular to the plane through <i>BA</i> and <i>AC</i> and the plane through <i>ED</i> and <i>DF,</i> and let them meet the planes at <i>L</i> and <i>N.</i>  Join <i>LA</i> and <i>ND.</i>
+
+<p>I say that the angle <i>GAL</i> equals the angle <i>MDN.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=440 height=280 >
+<img src="propXI35.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.35">
+<param name=e[1] value="origin;point;fixed;90,80,0;0;green">
+<param name=basepoint value=origin>
+<param name=e[2] value="1X;point;fixed;290,107,36;0;0">
+<param name=e[3] value="1Y;point;fixed;45,200,160;0;0">
+<param name=e[4] value="1Z;point;fixed;90,-64,123;0;0">
+<param name=e[5] value="x;point;lineSlider;origin,1X,410,127,36;0">
+<param name=e[6] value="y;point;lineSlider;origin,1Y,45,230,160;0">
+<param name=e[7] value="z;point;lineSlider;origin,1Z,90,-34,123;0;0">
+<param name=e[8] value="floorplane;plane;3points;origin,x,y;0;0;lightGray">
+<param name=e[9] value="floorcenter;point;midpoint;x,y;0;0">
+<param name=e[10] value="wallcenter;point;midpoint;y,z;0;0">
+<param name=e[11] value="ceilingcenter;point;parallelogram;z,origin,floorcenter;0;0">
+<param name=e[12] value="midplane;plane;3points;wallcenter,floorcenter,ceilingcenter;0;0;0;0">
+
+<param name=e[13] value="A;point;planeSlider;floorplane,100,70,80">
+<param name=e[14] value="b;point;planeSlider;floorplane,230,190,20;0">
+<param name=e[15] value="c;point;planeSlider;floorplane,140,160,180;0">
+<param name=e[16] value="D;point;planeSlider;floorplane,250,30,180">
+<param name=e[17] value="e;point;planeSlider;floorplane,360,150,110;0">
+<param name=e[18] value="f';point;similar;e,D,floorplane,b,A,c,floorplane;0;0">
+<param name=e[19] value="f;point;lineSlider;D,f',340,210,180;0">
+<param name=e[20] value="Ab;line;connect;A,b">
+<param name=e[21] value="Ac;line;connect;A,c">
+<param name=e[22] value="De;line;connect;D,e">
+<param name=e[23] value="Df;line;connect;D,f">
+
+<param name=e[24] value="Acmid;point;midpoint;A,c;0;0">
+<param name=e[25] value="b';point;extend;A,b,A,Acmid;0;0">
+<param name=e[26] value="Asphere;sphere;radius;A,b';0;0;0;0">
+<param name=e[27] value="G;point;sphereSlider;Asphere,180,60,200">
+<param name=e[28] value="L;point;foot;G,floorplane">
+<param name=e[29] value="AGL;polygon;triangle;A,G,L;0;0;black;0">
+<param name=e[30] value="N;point;similar;e,D,floorplane,b,A,L,floorplane">
+<param name=e[31] value="M';point;parallelogram;G,L,N;0;0">
+<param name=e[32] value="M;point;proportion;A,L,D,N,L,G,N,M'">
+<param name=e[33] value="MDN;polygon;triangle;M,D,N;0;0;black;0">
+<param name=e[34] value="H;point;cutoff;A,G,D,M">
+<param name=e[35] value="K;point;foot;H,floorplane">
+<param name=e[36] value="HK;line;connect;H,K">
+
+<param name=e[37] value="B;point;foot;K,A,b">
+<param name=e[38] value="C;point;foot;K,A,c">
+<param name=e[39] value="E;point;foot;N,D,e">
+<param name=e[40] value="F;point;foot;N,D,f">
+<param name=e[41] value="BC;line;connect;B,C">
+<param name=e[42] value="EF;line;connect;E,F">
+<param name=e[43] value="ABKC;polygon;quadrilateral;A,B,K,C;0;0;black;120,50,80">
+<param name=e[44] value="BAH;polygon;triangle;B,A,H;0;0;black;120,75,90">
+<param name=e[45] value="HAC;polygon;triangle;H,A,C;0;0;black;120,50,100">
+<param name=e[46] value="DENF;polygon;quadrilateral;D,E,N,F;0;0;black;300,50,90">
+<param name=e[47] value="MED;polygon;triangle;M,E,D;0;0;black;300,75,100">
+<param name=e[48] value="MDF;polygon;triangle;M,D,F;0;0;black;300,50,100">
+</applet></div>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a>,
+<a href="../bookI/propI31.html">I.31</a></div>
+<p>Make <i>AH</i>  equal to <i>DM,</i> and draw <i>HK</i> through the point <i>H</i> parallel to <i>GL.</i>
+
+<div class="just"><a href="propXI8.html">XI.8</a></div>
+<p>Since <i>GL</i> is perpendicular to the plane through <i>BA</i> and <i>AC,</i> therefore <i>HK</i> is also perpendicular to the plane through <i>BA</i> and <i>AC.</i>
+
+<div class="just"><a href="../bookI/propI12.html">I.12</a></div>
+<p>Draw <i>KC, NF, KB</i> and <i>NE</i> from the points <i>K</i> and <i>N</i> perpendicular to the straight lines <i>AC, DF, AB,</i> and <i>DE.</i>  Join <i>HC, CB, MF,</i> and <i>FE.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>Since the square on <i>HA</i> equals the sum of the squares on <i>HK</i> and <i>KA,</i> and the sum of the squares on <i>KC</i> and <i>CA</i> equals the square on <i>KA,</i> therefore the square on <i>HA</i> equals the sum of the squares on <i>HK, KC,</i> and <i>CA.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a>
+<br><a href="../bookI/propI48.html">I.48</a></div>
+<p>But the square on <i>HC</i> equals the sum of the squares on <i>HK</i> and <i>KC,</i> therefore the square on <i>HA</i> equals the sum of the squares on <i>HC</i> and <i>CA.</i> Therefore the angle <i>HCA</i> is right.  For the same reason the angle <i>DFM</i> is also right.
+
+<div class="just"><a href="../bookI/propI26.html">I.26</a></div>
+<p>Therefore the angle <i>ACH</i> equals the angle <i>DFM.</i> But the angle <i>HAC</i> equals the angle <i>MDF.</i> Therefore <i>MDF</i> and <i>HAC</i> are two triangles which have two angles equal to two angles respectively, and one side equal to one side, namely, that opposite one of the equal angles, that is, <i>HA</i> equals <i>MD,</i> therefore they also have the remaining sides equal to the remaining sides
+respectively.  Therefore <i>AC</i> equals <i>DF.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Similarly we can prove that <i>AB</i> also equals <i>DE.</i> Since then <i>AC</i> equals <i>DF,</i> and <i>AB</i> equals <i>DE,</i> the two sides <i>CA</i> and <i>AB</i> equal the two sides <i>FD</i> and <i>DE.</i> But the angle <i>CAB</i> also equals the angle <i>FDE,</i> therefore the base <i>BC</i> equals the base <i>EF,</i> the triangle equals the triangle, and the remaining angles to the remaining angles.  Therefore the angle <i>ACB</i> equals the angle <i>DPE.</i>
+
+<p>But the right angle <i>ACK</i> equals the right angle <i>DFN,</i> therefore the remaining angle <i>BCK</i> equals the remaining angle <i>EFN.</i> For the same reason the angle <i>CBK</i> also equals the angle <i>FEN.</i>
+
+<div class="just"><a href="../bookI/propI26.html">I.26</a></div>
+<p>Therefore <i>BCK</i> and <i>EFN</i> are two triangles which have two angles equal to two angles respectively, and one side equal to one side, namely, that adjacent to the equal angles, that is, <i>BC</i> equals <i>EF,</i> therefore the remaining sides equal the remaining sides.  Therefore <i>CK</i> equals <i>FN.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>But <i>AC</i> also equals <i>DF,</i> therefore the two sides <i>AC</i> and <i>CK</i> equal the two sides <i>DF</i> and <i>FN,</i> and they contain right angles. Therefore the base <i>AK</i> equals the base <i>DN.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>And, since <i>AH</i> equals <i>DM,</i> therefore the square on <i>AH</i> equals the square on <i>DM.</i> But the sum of the squares on <i>AK</i> and <i>KH</i> equals the square on <i>AH,</i> for the angle <i>AKH</i> is right,  and the sum of the squares on <i>DN</i> and <i>NM</i> equals the square on <i>DM,</i> for the angle <i>DNM</i> is right,  therefore the sum of the squares on <i>AK</i> and <i>KH</i> equals the sum of the squares on <i>DN</i> and <i>NM.</i>  And of these the square on <i>AK</i> equals the square on <i>DN,</i> therefore the remaining square on <i>KH</i> equals the square on <i>NM.</i> Therefore <i>HK</i> equals <i>MN.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>And, since the two sides <i>HA</i> and <i>AK</i> equal the two sides <i>MD</i> and <i>DN</i> respectively, and the base <i>HK</i> equals the base <i>MN,</i> therefore the angle <i>HAK</i> equals the angle <i>MDN.</i>
+
+<p>Therefore, <i>if there are two equal plane angles, and on their vertices there are set up elevated straight lines containing equal angles with the original straight lines respectively, if on the elevated straight lines points are taken at random and perpendiculars are drawn from them to the planes in which the original angles are, and if from the points so arising in the planes straight lines are joined to the vertices of the original angles, then they contain with the elevated straight lines equal angles.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<p><a name=#cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+<div class="statement">
+From this it is clear that, <i>if there are two equal plane angles, and if elevated straight lines set up on them which are equal and contain equal angles with the original straight lines respectively, then the perpendiculars drawn from their ends to the planes in which are the original angles equal one another.</i></div>
+</div>
+
+<h2>Guide</h2>
+
+The situation described here occurs in the next proposition, and the corollary is used there to show two parallelepipeds have the same height.
+
+<p>Euclid&rsquo;s proof is quite long. Various authors have substituted shorter ones.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

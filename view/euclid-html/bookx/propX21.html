@@ -1,0 +1,83 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 21</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 21</h1>
+
+<div class="statement">The rectangle contained by rational straight lines commensurable in square only is irrational, and the side of the square equal to it is irrational. Let the latter be called <i>medial.</i></div>
+
+<p>Let the rectangle <i>AC</i> be contained by the rational straight lines <i>AB</i> and <i>BC</i> commensurable in square only.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=180 height=220>
+<img src="propX20.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.21">
+<param name=e[1] value="A0;point;free;-1000,130;0;0">
+<param name=e[2] value="A3;point;free;1000,130;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,140,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,40,0">
+<param name=e[5] value="AD;polygon;square;B,A;0;0;black;random">
+<param name=e[6] value="D;point;vertex;AD,4">
+<param name=e[7] value="C;point;lineSlider;B,D,0,200">
+<param name=e[8] value="AC;polygon;parallelogram;A,B,C">
+</applet></div>
+
+<p>I say that <i>AC</i> is irrational, and the side of the square equal to it is irrational, and let the latter be called medial.
+
+<div class="just"><a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>Describe the square <i>AD</i> on <i>AB</i>.  Then <i>AD</i> is rational.
+
+<p>And, since <i>AB</i> is incommensurable in length with <i>BC</i>, for by hypothesis they are commensurable in square only, while <i>AB</i> equals <i>BD</i>, therefore <i>DB</i> is also incommensurable in length with <i>BC</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>,
+<a href=propX11.html>X.11</a></div>
+<p>And <i>DB</i> is to <i>BC</i> as <i>AD</i> is to <i>AC</i>, therefore <i>DA</i> is incommensurable with <i>AC</i>.
+
+<div class="just"><a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>But <i>DA</i> is rational, therefore <i>AC</i> is irrational, so that the side of the square <i>AC</i> is also irrational.
+
+<p>Let the latter be called <i>medial</i>.
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>The two lines <i>AB</i> and <i>BC</i> are rational lines. That means, according to Definition 3, that each is commensurable in square to some unmentioned, standard straight line.  It&rsquo;s convenient to assign that standard line a length of 1 and the standard square on it a square of area 1.  Euclid did not, but doing so allows us to assign lengths to those lines.  So if <i>a</i> is the length of <i>AB</i>, that means <i>a</i><sup>2</sup> is a rational number, that is, a ratio of two whole numbers.  Likewise, if <i>b</i> is the length of <i>BC</i>, then <i>b</i><sup>2</sup> is a rational number.
+
+<p>Now <i>AB</i> and <i>BC</i> are also commensurable in square only.  First of all, they&rsquo;re commensurable in square, so the squares on them are in a numeric ratio, and that means <i>a</i><sup>2</sup>/<i>b</i><sup>2</sup> is a rational number, which we already know since both <i>a</i><sup>2</sup> and <i>b</i><sup>2</sup> are rational numbers themselves.  But they&rsquo;re also commensurable in square <i>only</i>.  That means that <i>a</i>/<i>b</i> is an irrational number.  In summary, <i>a</i><sup>2</sup> and <i>b</i><sup>2</sup> are rational, but <i>a</i>/<i>b</i> is irrational.
+
+<p>In the proof, it&rsquo;s noted that the rectangle <i>AC</i> (which is a <i>a</i> by <i>b</i> rectangle), is irrational, that is, <i>ab</i> is an irrational number.  The side of a square equal equal to that rectangle is also irrational, and it&rsquo;s called <i>medial</i>.  The length of that side is &radic;(<i>ab</i>).
+
+<p>Another way of saying that is that the length  &radic;(<i>ab</i>) of a medial line is the geometric mean of two numbers <i>a</i> and <i>b</i> whose squares are rational and whose ratio is irrational.  
+
+<h4>Example and interpretation</h4>
+
+<p>Let <i>AB</i> be the standard line and <i>BC</i> be the diagonal of the standard square, then &radic;(<i>ab</i>)&nbsp;=&nbsp;&radic;(&radic;2), the 4<sup>th</sup> root of 2.  
+
+<p>In fact, all medial lines have lengths 4<sup>th</sup> roots of rational numbers whose square roots are irrational.  If <i>a</i><sup>2</sup> and <i>b</i><sup>2</sup> are rational numbers but <i>a</i>/<i>b</i> is an irrational number, then &radic;(<i>ab</i>) is a number whose fourth power, <i>a</i><sup>2</sup><i>b</i><sup>2</sup>, is a rational number but whose square, <i>ab</i>, is an irrational number.
+
+<p>Thus, we could call a number whose square is an irrational number but whose fourth power is a rational number a <i>medial number</i>.
+
+<h4>Medial squares and rectangles</h4>
+
+<p>Only medial lines were defined in this proposition, but the adjective medial is applied to squares and rectangles starting with Proposition <a href=propX24.html>X.24</a>.  From the way it is used, we can tell that a <i>medial</i> square is one whose side is a medial line, and a medial rectangle is one equal to a square whose side is a medial line.
+
+<h4>Use of this proposition.</h4>
+
+<p>This proposition is used frequently in Book X starting with the next proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

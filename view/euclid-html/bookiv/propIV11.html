@@ -1,0 +1,236 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 11</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 11</h1>
+
+<div class="statement">
+To inscribe an equilateral and equiangular pentagon in a given circle.</div>
+
+<p>Let <i>ABCDE</i> be the given circle.
+
+<p>It is required to inscribe an equilateral and equiangular pentagon in the circle <i>ABCDE.</i>
+
+<div class="just"><a href="propIV10.html">IV.10</a></div>
+<p>Set out the isosceles triangle <i>FGH</i> having each of the angles at <i>G</i> and <i>H</i> double the angle at <i>F.</i>   
+
+<div class="just"><a href="propIV2.html">IV.2</a></div>
+<p>Inscribe in the circle <i>ABCDE</i> the triangle <i>ACD</i> equiangular with the triangle <i>FGH,</i> so that the angles <i>CAD,</i> <i>ACD,</i> and <i>CDA</i> equal the angles at <i>F,</i> <i>G,</i> and <i>H</i> respectively.   Therefore each of the angles <i>ACD</i> and <i>CDA</i> is also double the angle <i>CAD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=350>
+<img src="propIV11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.11">
+<param name=e[1] value="A;point;free;98,30">
+<param name=e[2] value="B;point;free;30,80">
+<param name=e[3] value="ABCDE;polygon;regularPolygon;A,B,5;0;0;black;0">
+<param name=e[4] value="C;point;vertex;ABCDE,3">
+<param name=e[5] value="D;point;vertex;ABCDE,4">
+<param name=e[6] value="E;point;vertex;ABCDE,5">
+<param name=e[7] value="circ;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[8] value="dupABCDE;polygon;regularPolygon;A,B,5;0;0;0;random">
+<param name=e[9] value="AC;line;connect;A,C">
+<param name=e[10] value="AD;line;connect;A,D">
+<param name=e[11] value="BD;line;connect;B,D">
+<param name=e[12] value="CE;line;connect;C,E">
+<param name=e[13] value="G;point;free;210,220">
+<param name=e[14] value="H;point;free;310,220">
+<param name=e[15] value="F;point;similar;G,H,C,D,A">
+<param name=e[16] value="FGH;polygon;triangle;F,G,H;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV11.gif" hspace=10 alt="IV11">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI9.html">I.9</a></div>
+<p>Now bisect the angles <i>ACD</i> and <i>CDA</i> respectively by the straight lines <i>CE</i> and <i>DB,</i> and join <i>AB,</i> <i>BC,</i>  <i>DE,</i> and <i>EA.</i>
+
+<p>Then, since each of the angles <i>ACD</i> and <i>CDA</i> is double the angle <i>CAD,</i> and they are bisected by the straight lines <i>CE</i> and <i>DB,</i> therefore the five angles <i>DAC,</i> <i>ACE,</i> <i>ECD,</i> <i>CDB,</i> and <i>BDA</i> equal one another.
+
+<div class="just"><a href="../bookIII/propIII26.html">III.26</a></div>
+<p>But equal angles stand on equal circumferences, therefore the five circumferences <i>AB,</i> <i>BC,</i> <i>CD,</i> <i>DE,</i> and <i>EA</i> equal one another.
+
+<div class="just"><a href="../bookIII/propIII29.html">III.29</a></div>
+<p>But straight lines that cut off equal circumferences are equal, therefore the five straight lines <i>AB,</i> <i>BC,</i> <i>CD,</i> <i>DE,</i> and <i>EA</i> equal one another.  Therefore the pentagon <i>ABCDE</i> is equilateral.
+
+<p>I say next that it is also equiangular.
+
+<p>For, since the circumference <i>AB</i> equals the circumference <i>DE,</i> add <i>BCD</i> to each, therefore the whole circumference <i>ABCD</i> equals the whole circumference <i>EDCB.</i>
+
+<div class="just"><a href="../bookIII/propIII27.html">III.27</a></div>
+<p>And the angle <i>AED</i> stands on the circumference <i>ABCD,</i> and the angle <i>BAE</i> on the circumference <i>EDCB,</i> therefore the angle <i>BAE</i> also equals the angle <i>AED.</i>
+
+<p>For the same reason each of the angles <i>ABC,</i> <i>BCD,</i> and <i>CDE</i> also equals each of the angles <i>BAE</i> and <i>AED,</i> therefore the pentagon <i>ABCDE</i> is equiangular.
+
+<p>But it was also proved equilateral, therefore an equilateral and equiangular pentagon has been inscribed in the given circle.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+<h4>Richmond&rsquo;s construction</h4>
+
+<table cellpadding=5>
+<tr><td>
+
+The construction of this proposition is rather tedious to carry out. First, a line has to be cut according to the construction in <a href="../bookII/propII11.html">II.11</a>. Next, that is used in <a href="propIV10.html">IV.10</a> for the construction of a 36&deg;-72&deg;-72&deg; isosceles triangle.  Next, that triangle is fit into the given circle using the construction <a href="propIV2.html">IV.2</a>.  Finally, a couple more lines are drawn to finish the pentagon.
+
+
+<p>Various alternatives have have been given by others, such as Ptolemy.  One of the nicest was given in 1893 by H. W. Richmond. To inscribe a regular pentagon in a circle, first draw perpendicular radii <i>OA</i> and <i>OB</i> from the center <i>O</i> of a circle.  Let <i>C</i> be the midpoint of <i>OB</i> and draw <i>AC.</i>  Bisect angle <i>ACO</i> to meet <i>OA</i> at <i>D.</i>  Draw a perpendicular <i>DE</i> to <i>OA</i> to the circle.  Then <i>AE</i> is one side of the pentagon.  The remaining sides can then be constructed.
+
+<p>The easiest way to verify that Richmond&rsquo;s construction works is by means of trigonometry.
+</td>
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=330 width=310>
+<img src="propIV11a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Richmond's construction">
+<param name=e[1] value="O;point;free;150,165">
+<param name=e[2] value="A;point;free;280,165">
+<param name=e[3] value="AEB;circle;radius;O,A;0;0;black;white">
+<param name=e[4] value="OA;line;connect;O,A">
+<param name=e[5] value="B;point;perpendicular;O,A">
+<param name=e[6] value="OB;line;connect;O,B">
+<param name=e[7] value="C;point;midpoint;O,B">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="D;point;angleBisector;O,C,A">
+<param name=e[10] value="CD;line;connect;C,D">
+<param name=e[11] value="E';point;perpendicular;D,A;0;0">
+<param name=e[12] value="EE';line;chord;D,E',AEB;0;0;0">
+<param name=e[13] value="E;point;first;EE'">
+<param name=e[14] value="DE;line;connect;D,E">
+<param name=e[15] value="AE;line;connect;A,E">
+<param name=e[16] value="F;point;similar;E,O,A,O,E;0;0">
+<param name=e[17] value="EF;line;connect;E,F;0;0;gray">
+<param name=e[18] value="G;point;similar;F,O,A,O,E;0;0">
+<param name=e[19] value="FG;line;connect;F,G;0;0;gray">
+<param name=e[20] value="H;point;similar;G,O,A,O,E;0;0">
+<param name=e[21] value="GH;line;connect;G,H;0;0;gray">
+<param name=e[22] value="HA;line;connect;H,A;0;0;gray">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propIV11a.gif" hspace=10 alt="Richmonds construction">';
+</script>
+</td></tr></table>
+
+
+
+<br clear=all>
+
+<h4>The angles and sections in extreme and mean ratio in a pentagram</h4>
+
+Consider the regular pentagon <i>ABCDE</i> constructed in this proposition.
+
+<table><tr>
+<td>
+<div id="ap3">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=350 width=380>
+<img src="propIV11b.gif" alt="a pentrgram">
+<param name=background value="35,19,100">
+<param name=title value="A pentagram">
+<param name=e[1] value="A;point;free;190,28">
+<param name=e[2] value="B;point;free;41,136">
+<param name=e[3] value="ABCDE;polygon;regularPolygon;A,B,5;0;0;black;random">
+<param name=e[4] value="C;point;vertex;ABCDE,3">
+<param name=e[5] value="D;point;vertex;ABCDE,4">
+<param name=e[6] value="E;point;vertex;ABCDE,5">
+<param name=e[7] value="ACEBD;polygon;pentagon;A,C,E,B,D;0;0;black;random">
+
+<param name=e[8] value="F;point;intersection;B,D,C,E">
+<param name=e[9] value="G;point;intersection;A,D,C,E">
+<param name=e[10] value="H;point;intersection;A,D,B,E">
+<param name=e[11] value="K;point;intersection;A,C,B,E">
+<param name=e[12] value="L;point;intersection;B,D,C,A">
+<param name=e[13] value="FGHKL;polygon;pentagon;F,G,H,K,L;0;0;0;random">
+<param name=e[14] value="FHLGK;polygon;pentagon;F,H,L,G,K;0;0;black;random">
+
+<param name=e[15] value="M;point;intersection;L,H,G,K;0;0">
+<param name=e[16] value="N;point;intersection;L,H,K,F;0;0">
+<param name=e[17] value="P;point;intersection;L,G,K,F;0;0">
+<param name=e[18] value="Q;point;intersection;L,G,H,F;0;0">
+<param name=e[19] value="R;point;intersection;K,G,H,F;0;0">
+<param name=e[20] value="MNPQR;polygon;pentagon;M,N,P,Q,R;0;0;0;random">
+<param name=e[21] value="MPRNQ;polygon;pentagon;M,P,R,N,Q;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap3').innerHTML =
+  '<img src="propIV11b.gif" hspace=10 alt="a pentagram">';
+</script>
+</td>
+<td>Draw the diagonals of the pentagram to create a regular star pentagram <i>ACEBD</i> inside the pentagon. These diagonals meet forming a smaller regular pentagon in the center of the original pentagon.  The diagonals of that pentagon can be drawn to make an inscribed pentagram which, in turn, bound a yet smaller regular pentagon. And so forth.
+
+<p>For purposes of analysis, let <i>d</i><sub>1</sub> and <i>s</i><sub>1</sub> denote the diagonal and side of the first regular pentagon <i>ABCDE.</i> Also let <i>d</i><sub>2</sub> and <i>s</i><sub>2</sub> denote the diagonal and side of the second regular pentagon <i>FGHKL.</i>  And so forth.
+
+<p>It is evident that there are many lines parallel to the base <i>CD</i> of the triangle, namely <i>BE</i> and <i>LG,</i> as well as innumerable ones in the smaller pentagrams.  That means that there will be many 36&deg;-72&deg;-72&deg; triangles besides the large one <i>ACD.</i> The next smaller one is <i>ALG,</i> then <i>FKH,</i> then many smaller ones.  Also, each of these various sized 36&deg;-72&deg;-72&deg; triangles is congruent many others in the diagram.  For instance, triangles <i>ALG</i> and <i>EAK</i> are congruent.</td>
+</tr>
+</table>
+
+<p>There is also a series of obtuse 36&deg-36&deg;-108&deg; isosceles triangles of varying sizes.
+
+<p>All these parallel lines and similar triangles yield numerous relationships among the various diagonals and sides of the pentagons.  Some of these relationships are additive equations:
+<ul>
+<i>d</i><sub>1</sub> = <i>s</i><sub>1</sub> + <i>d</i><sub>2</sub>
+<br>
+<i>s</i><sub>1</sub> = <i>d</i><sub>2</sub> + <i>s</i><sub>2</sub>
+<br>
+<i>d</i><sub>2</sub> = <i>s</i><sub>2</sub> + <i>d</i><sub>3</sub>
+<br>
+<i>s</i><sub>2</sub> = <i>d</i><sub>3</sub> + <i>s</i><sub>3</sub>
+<br>
+and so forth.
+</ul>
+
+<p>Other relationships are based on the property of 36&deg;-72&deg;-72&deg; triangles used in their
+construction in  <a href="propIV10.html">IV.10</a>, namely that the square of the base of such a triangle equals the product of a side and the difference between the side and the base.  In terms of the diagonals and sides of the pentagons, this gives the equations:
+<ul>
+<i>d</i><sub>1</sub> <i>d</i><sub>2</sub> = <i>s</i><sub>1</sub><sup>2</sup>
+<br>
+<i>s</i><sub>1</sub> <i>s</i><sub>2</sub> = <i>d</i><sub>2</sub><sup>2</sup>
+<br>
+<i>d</i><sub>2</sub> <i>d</i><sub>3</sub> = <i>s</i><sub>2</sub><sup>2</sup>
+<br>
+<i>s</i><sub>2</sub> <i>s</i><sub>3</sub> = <i>d</i><sub>3</sub><sup>2</sup>
+<br>
+and so forth.
+</ul>
+
+After ratios are proportions are developed in 
+<a href="../bookV/bookV.html">Book V</a> and <a href="../bookVI/bookVI.html">Book VI</a>, we can add the following
+continued proportion to the list of relationships:
+<ul>
+<i>d</i><sub>1</sub>:<i>s</i><sub>1</sub> =
+<i>s</i><sub>1</sub>:<i>d</i><sub>2</sub> =
+<i>d</i><sub>2</sub>:<i>s</i><sub>2</sub> =
+<i>s</i><sub>2</sub>:<i>d</i><sub>3</sub> =
+...
+</ul>
+
+See the <a href="../bookX/propX2.html#guide">Guide</a> to proposition X.2 which shows that diagonal and side of a regular pentagon are incommensurable. In more modern terms we would say that their ratio, which is called the &ldquo;golden ratio,&rdquo; is an irrational number.
+
+
+<h4>Use of this proposition</h4>
+
+This construction is used in the next proposition to circumscribe a regular pentagon around a circle and later in <a href=propIV16.html>IV.16</a> to construct a regular 15-gon. It is also used in <a href=../bookXIII/propXIII16.html>XIII.16</a> for the construction of a regular icosahedron (a 20-sided polyhedron each of whose faces is an equilateral triangle).  Surprisingly, it is not used in <a href=../bookXIII/propXIII17.html>XIII.17</a> for construct a regular dodecahedron (a 12-sided polyhedron each of whose faces is a regular pentagon); the regular pentagons needed for it are constructed in space directly without the help of this proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1998, 2002");
+</script>
+</BODY></HTML>

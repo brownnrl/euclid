@@ -1,0 +1,143 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 4</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 4</h1>
+
+<div class="statement">If a first magnitude has to a second the same ratio as a third to a fourth, then any equimultiples whatever of the first and third also have the same ratio to any equimultiples whatever of the second and fourth respectively, taken in corresponding order.</div>
+
+<p>Let a first magnitude <i>A</i> have to a second <i>B</i> the same ratio as a third <i>C</i> to a fourth <i>D,</i> and let equimultiples <i>E</i> and <i>F</i> be taken of <i>A</i> and <i>C,</i> and <i>G</i> and <i>H</i> other, arbitrary, equimultiples of <i>B</i> and <i>D.</i>
+
+<p>I say that <i>E</i> is to <i>G</i> as <i>F</i> is to <i>H.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=350 height=265>
+<img src=propV4.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=align value=above>
+<param name=title value="V.4">
+<param name=e[1] value="U1;point;free;0,0;0;0">
+<param name=e[2] value="U2;point;free;25,0;0;0">
+<param name=e[3] value="U;line;connect;U1,U2;0;0;0">
+
+<param name=e[4] value="A1;point;free;20,30;0">
+<param name=e[5] value="A3;point;parallelogram;A1,U;0;0">
+<param name=e[6] value="A2;point;lineSlider;A1,A3,70,0;0">
+<param name=e[7] value="A;line;connect;A1,A2;black;0;magenta">
+
+<param name=e[8] value="B1;point;free;320,30;0">
+<param name=e[9] value="B3;point;parallelogram;B1,U2,U1;0;0">
+<param name=e[10] value="B2;point;lineSlider;B1,B3,293,0;0">
+<param name=e[11] value="B;line;connect;B1,B2;black;0;magenta">
+
+<param name=e[12] value="C1;point;free;20,160;0">
+<param name=e[13] value="C3;point;parallelogram;C1,U;0;0">
+<param name=e[14] value="C2;point;lineSlider;C1,C3,80,0;0">
+<param name=e[15] value="C;line;connect;C1,C2;black;0;green">
+
+<param name=e[16] value="D1;point;free;320,160;0">
+<param name=e[17] value="D3;point;parallelogram;D1,U2,U1;0;0">
+<param name=e[18] value="D2;point;proportion;A,B,C,D1,D3;0">
+<param name=e[19] value="D;line;connect;D1,D2;black;0;green">
+
+<param name=e[20] value="E0;point;free;20,60;0">
+<param name=e[21] value="E';point;parallelogram;E0,U;0;0">
+<param name=e[22] value="E1;point;cutoff;E0,E',A;0;lightGray">
+<param name=e[23] value="E2;point;extend;E0,E1,A;0">
+<param name=e[24] value="E;line;connect;E0,E2;black;0;magenta">
+
+<param name=e[25] value="F0;point;free;20,190;0">
+<param name=e[26] value="F';point;parallelogram;F0,U;0;0">
+<param name=e[27] value="F1;point;cutoff;F0,F',C;0;lightGray">
+<param name=e[28] value="F2;point;extend;F0,F1,C;0">
+<param name=e[29] value="F;line;connect;F0,F2;black;0;green">
+
+<param name=e[30] value="G0;point;free;320,60;0">
+<param name=e[31] value="G';point;parallelogram;G0,U2,U1;0;0">
+<param name=e[32] value="G1;point;cutoff;G0,G',B;0;lightGray">
+<param name=e[33] value="G2;point;extend;G0,G1,B;0;lightGray">
+<param name=e[34] value="G3;point;extend;G0,G2,B;0">
+<param name=e[35] value="G;line;connect;G0,G3;black;0;magenta">
+
+<param name=e[36] value="H0;point;free;320,190;0">
+<param name=e[37] value="H';point;parallelogram;H0,U2,U1;0;0">
+<param name=e[38] value="H1;point;cutoff;H0,H',D;0;lightGray">
+<param name=e[39] value="H2;point;extend;H0,H1,D;0;lightGray">
+<param name=e[40] value="H3;point;extend;H0,H2,D;0">
+<param name=e[41] value="H;line;connect;H0,H3;black;0;green">
+
+<param name=e[42] value="K0;point;free;20,90;0">
+<param name=e[43] value="K';point;parallelogram;K0,U;0;0">
+<param name=e[44] value="K1;point;cutoff;K0,K',E;0;lightGray">
+<param name=e[45] value="K2;point;extend;K0,K1,E;0">
+<param name=e[46] value="K;line;connect;K0,K2;black;0;magenta">
+
+<param name=e[47] value="L0;point;free;20,220;0">
+<param name=e[48] value="L';point;parallelogram;L0,U;0;0">
+<param name=e[49] value="L1;point;cutoff;L0,L',F;0;lightGray">
+<param name=e[50] value="L2;point;extend;L0,L1,F;0">
+<param name=e[51] value="L;line;connect;L0,L2;black;0;green">
+
+<param name=e[52] value="M0;point;free;320,120;0">
+<param name=e[53] value="M';point;parallelogram;M0,U2,U1;0;0">
+<param name=e[54] value="M1;point;cutoff;M0,M',G;0;lightGray">
+<param name=e[55] value="M2;point;extend;M0,M1,G;0;lightGray">
+<param name=e[56] value="M3;point;extend;M0,M2,G;0">
+<param name=e[57] value="M;line;connect;M0,M3;black;0;magenta">
+
+<param name=e[58] value="N0;point;free;320,250;0">
+<param name=e[59] value="N';point;parallelogram;N0,U2,U1;0;0">
+<param name=e[60] value="N1;point;cutoff;N0,N',H;0;lightGray">
+<param name=e[61] value="N2;point;extend;N0,N1,H;0;lightGray">
+<param name=e[62] value="N3;point;extend;N0,N2,H;0">
+<param name=e[63] value="N;line;connect;N0,N3;black;0;green">
+</applet></div>
+
+<p>Take equimultiples <i>K</i> and <i>L</i> of <i>E</i> and <i>F,</i> and other, arbitrary, equimultiples <i>M</i> and <i>N</i> of <i>G</i> and <i>H.</i>
+
+<div class="just"><a href="propV3.html">V.3</a></div>
+<p>Since <i>E</i> is the same multiple of <i>A</i> that <i>F</i> is of <i>C,</i> and equimultiples <i>K</i> and <i>L</i> of <i>E</i> and <i>F</i> have been taken, therefore <i>K</i> is the same multiple of <i>A</i> that <i>L</i> is of <i>C.</i>  For the same reason <i>M</i> is the same multiple of <i>B</i> that <i>N</i> is of <i>D.</i>
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>And, since <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D,</i> and equimultiples <i>K</i> and <i>L</i> have been taken of <i>A</i> and <i>C,</i> and other, arbitrary, equimultiples <i>M</i> and <i>N</i> of <i>B</i> and <i>D,</i> therefore, if <i>K</i> is in excess of <i>M,</i> then <i>L</i> is in excess of <i>N</i>; if it is equal, equal; and if less, less.
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>And <i>K</i> and <i>L</i> are equimultiples of <i>E</i> and <i>F,</i> and <i>M</i> and <i>N</i> are other, arbitrary, equimultiples of <i>G</i> and <i>H,</i> therefore <i>E</i> is to <i>G</i> as <i>F</i> is to <i>H.</i>
+
+<p>Therefore, <i>if a first magnitude has to a second the same ratio as a third to a fourth, then any equimultiples whatever of the first and third also have the same ratio to any equimultiples whatever of the second and fourth respectively, taken in corresponding order.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>The statement of the proposition says that 
+
+<p><center>if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d</i>, then 
+<i>pa</i>&nbsp;:&nbsp;<i>qb</i>&nbsp;=&nbsp;<i>pc</i>&nbsp;:&nbsp;<i>qd</i> for any numbers <i>p</i> and <i>q</i>.</center>
+
+<p>Note how Euclid uses the definition  to prove that the two ratios <i>pa</i>&nbsp;:&nbsp;<i>qb</i> and <i>pc</i>&nbsp;:&nbsp;<i>qd</i> are the same.  (Here, <i>a</i> and <i>b</i> are magnitudes of one kind, and <i>c</i> and <i>d</i> are magnitudes of another kind, but <i>p</i> and <i>q</i> are numbers.)
+We are given <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d.</i>  That means for any numbers  <i>m</i> and <i>n</i> that
+
+<p><center>if <i>ma</i>&nbsp;>=<&nbsp;<i>nb,</i> then <i>mc</i>&nbsp;>=<&nbsp;<i>nd.</i></center><p>
+
+We have to prove that <i>pa</i>&nbsp;:&nbsp;<i>qb</i>&nbsp;=&nbsp;<i>pc</i>&nbsp;:&nbsp;<i>qd</i> for any numbers <i>p</i> and <i>q.</i>  That means, we have to prove that for any <i>m</i> and <i>n,</i>
+<p><center>if <i>mpa</i>&nbsp;>=<&nbsp;<i>nqb,</i> then <i>mpc</i>&nbsp;>=<&nbsp;<i>nqd.</i></center><p>
+But that&rsquo;s just a special case of the given relation
+<p><center>if <i>ma</i>&nbsp;>=<&nbsp;<i>nb,</i> then <i>mc</i>&nbsp;>=<&nbsp;<i>nd.</i></center>
+
+<h4>Use of this proposition</h4>
+
+Proposition V.4 is used in the proof of one other proposition, namely, <a href=propV22.html>V.22</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

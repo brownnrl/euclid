@@ -1,0 +1,123 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 6</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 6</h1>
+
+<div class="statement">If two magnitudes have to one another the ratio which a number has to a number, then the magnitudes are commensurable.</div>
+
+<p>Let the two magnitudes <i>A</i> and <i>B</i> have to one another the ratio which the number <i>D</i> has to the number <i>E</i>.
+
+<p>I say that the magnitudes <i>A</i> and <i>B</i> are commensurable.
+
+<p>Divide <i>A</i> into as many equal parts as there are units in <i>D</i>, and let <i>C</i> equal one of them, and let <i>F</i> be made up of as many magnitudes equal to <i>C</i> as there are units in <i>E</i>.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=120>
+<img src="propX6.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.6">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="D0;point;free;-1000,70;0;0">
+<param name=e[4] value="D3;point;free;1000,70;0;0">
+<param name=e[5] value="E0;point;free;-1000,100;0;0">
+<param name=e[6] value="E3;point;free;1000,100;0;0">
+<param name=e[7] value="U1;point;free;1000,0;0;0">
+<param name=e[8] value="U2;point;free;1000,20;0;0">
+
+<param name=e[9] value="C1;point;lineSlider;A0,A3,230,0;0">
+<param name=e[10] value="C2;point;lineSlider;A0,A3,260,0;0">
+<param name=e[11] value="C;line;connect;C1,C2;black">
+<param name=e[12] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[13] value="A1;point;cutoff;A,A3,C1,C2;0">
+<param name=e[14] value="A4;point;cutoff;A1,A3,C1,C2;0">
+<param name=e[15] value="A5;point;cutoff;A4,A3,C1,C2;0">
+<param name=e[16] value="AA5;line;connect;A,A5">
+<param name=e[17] value="B1;point;lineSlider;A0,A3,140,0;0">
+<param name=e[18] value="B2;point;cutoff;B1,A3,A,A4;0">
+<param name=e[19] value="B;line;connect;B1,B2;black">
+<param name=e[20] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[21] value="D2;point;proportion;C1,C2,A,A5,U1,U2,D1,D3;0">
+<param name=e[22] value="D;line;connect;D1,D2;black;0;blue">
+<param name=e[23] value="E1;point;lineSlider;D0,D3,120,0;0">
+<param name=e[24] value="E2;point;proportion;C1,C2,B1,B2,U1,U2,E1,D3;0">
+<param name=e[25] value="E;line;connect;E1,E2;black;0;blue">
+<param name=e[26] value="F1;point;lineSlider;D0,D3,190,0;0">
+<param name=e[27] value="F2;point;cutoff;F1,D3,B1,B2;0">
+<param name=e[28] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Since then there are in <i>A</i> as many magnitudes equal to <i>C</i> as there are units in <i>D</i>, whatever part the unit is of <i>D</i>, the same part is <i>C</i> of <i>A</i> also. Therefore <i>C</i> is to <i>A</i> as the unit is to <i>D</i>.
+
+<div class="just"><a href=../bookV/propV7.html#cor>V.7,Cor.</a></div>
+<p>But the unit measures the number <i>D</i>, therefore <i>C</i> also measures <i>A</i>.  And since <i>C</i> is to <i>A</i> as the unit is to <i>D</i>, therefore, inversely, <i>A</i> is to <i>C</i> as the number <i>D</i> is to the unit.
+
+<div class="just"><a href=../bookVII/defVII20.html>VII.Def.20</a></div>
+<p>Again, since there are in <i>F</i> as many magnitudes equal to <i>C</i> as there are units in <i>E</i>, therefore <i>C</i> is to <i>F</i> as the unit is to <i>E</i>.
+
+<div class="just"><a href=../bookV/propV22.html>V.22</a></div>
+<p>But it was also proved that <i>A</i> is to <i>C</i> as <i>D</i> is to the unit, therefore, <i>ex aequali</i>, <i>A</i> is to <i>F</i> as <i>D</i> is to <i>E</i>.
+
+<div class="just"><a href=../bookV/propV11.html>V.11</a></div>
+<p>But <i>D</i> is to <i>E</i> as <i>A</i> is to <i>B</i>, therefore <i>A</i> is to <i>B</i> as it is to <i>F</i> also.
+
+<div class="just"><a href=../bookV/propV9.html>V.9</a></div>
+<p>Therefore <i>A</i> has the same ratio to each of the magnitudes <i>B</i> and <i>F</i>. Therefore <i>B</i> equals <i>F</i>.
+
+<p>But <i>C</i> measures <i>F</i>, therefore it measures <i>B</i> also. Further it measures <i>A</i> also, therefore <i>C</i> measures <i>A</i> and <i>B</i>.
+
+<div class="just"><a href=defX.I.html>X.Def.1</a></div>
+<p>Therefore <i>A</i> is commensurable with <i>B</i>.
+
+<p>Therefore, <i>if two magnitudes have to one another the ratio which a number has to a number, then the magnitudes are commensurable.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=cor></a>
+
+<div class="theorem">
+
+<h1>Corollary</h1>
+
+<div class="just"><a href=../bookVI/propVI9.html>VI.9</a></div>
+<p>From this it is clear that, <i>if there are two numbers as <i>D</i> and <i>E</i>, and a straight line as <i>A</i>, then it is possible to make a straight line <i>F</i> such that the given straight line is to it as the number <i>D</i> is to the number <i>E</i>.</i>
+
+<div class="just"><a href=../bookVI/propVI19.html#cor>VI.19,Cor.</a></div>
+<p>And <i>if a mean proportional is also taken between <i>A</i> and <i>F</i>, as <i>B</i>, then <i>A</i> is to <i>F</i> as the square on <i>A</i> is to the square on <i>B</i>, that is, the first is to the third as the figure on the first is to that which is similar and similarly described on the second.</i>
+
+<p>But <i>A</i> is to <i>F</i> as the number <i>D</i> is to the number <i>E</i>, therefore the number <i>D</i> is to the number <i>E</i> as the figure on the straight line <i>A</i> is to the figure on the straight line <i>B</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>If <i>A</i>&nbsp;:&nbsp;<i>B</i> = <i>m</i>&nbsp;:&nbsp;<i>n</i>, then, with <i>C</i> equal to <i>A/m</i>, it follows that <i>A</i> = <i>mC</i> and <i>B</i> = <i>nC</i>.
+
+<p>The proof assumes that magnitudes are divisible.  Not all magnitudes, however, are constructively divisible.  For instance, a 60&deg; angle cannot be trisected by a Euclidean construction.  An alternate proof which does not depend on divisibility of magnitudes can be based on antenaresis.
+
+<p>Although the proposition refers to magnitudes of any kind, the corollary only applies to lines in the first statement and plane figures in the second.
+
+<h4>Use of this proposition</h4>
+
+The proposition is used in very frequently in Book X starting with the next proposition, its contrapositive.  It is also used in proposition <a href=../bookXIII/propXIII6.html>XIII.6</a>.
+The corollary is also used frequently in Book X starting with <a href=propX10.html>X.10</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

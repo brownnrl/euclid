@@ -1,0 +1,114 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 2</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">
+If the square on a straight line is five times the square on a segment on it, then, when the double of the said segment is cut in extreme and mean ratio, the greater segment is the remaining part of the original straight line.</div>
+
+<p>Let the square on the straight line <i>AB</i> be five times the square on the segment <i>AC</i> of it, and let <i>CD</i> be double <i>AC.</i>
+<p>I say that, when <i>CD</i> is cut in extreme and mean ratio, then the greater segment is <i>CB.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=320 >
+<img src="propXIII2.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.2">
+<param name=e[1] value="B;point;free;150,160">
+<param name=e[2] value="A;point;free;30,160">
+<param name=e[3] value="ABFL;polygon;square;A,B;0;0;black;random">
+<param name=e[4] value="F;point;vertex;ABFL,3">
+<param name=e[5] value="L;point;vertex;ABFL,4">
+<param name=e[6] value="A1;point;perpendicular;A,B;0;0">
+<param name=e[7] value="B1;point;perpendicular;B,A;0;0">
+<param name=e[8] value="B2;point;extend;B,B1,B,B1;0;0">
+<param name=e[9] value="B4;point;extend;B,B2,B,B2;0;0">
+<param name=e[10] value="AB/5;point;intersection;A,B,A1,B4;0;0">
+<param name=e[11] value="C;point;meanProportional;A,B,A,AB/5,A,B">
+
+<param name=e[12] value="D';point;extend;A,C,A,C;0;0">
+<param name=e[13] value="D;point;extend;A,D',A,C">
+<param name=e[14] value="DCKG;polygon;square;D,C;0;0;black;random">
+<param name=e[15] value="K;point;vertex;DCKG,3">
+<param name=e[16] value="G;point;vertex;DCKG,4">
+<param name=e[17] value="AF;line;connect;A,F">
+<param name=e[18] value="E;point;intersection;F,B,K,G">
+<param name=e[19] value="BE;line;connect;B,E">
+<param name=e[20] value="Q;point;intersection;F,L,C,K;0;0">
+<param name=e[21] value="CQ;line;connect;C,Q">
+<param name=e[22] value="H;point;intersection;CQ,AF">
+<param name=e[23] value="P;point;parallelogram;A,C,H;0;0">
+<param name=e[24] value="R;point;intersection;P,H,B,F;0;0">
+<param name=e[25] value="PR;line;connect;P,R">
+<param name=e[26] value="O;point;midpoint;H,C">
+<param name=e[27] value="M;point;cutoff;H,P,H,O">
+<param name=e[28] value="N;point;cutoff;H,F,H,O">
+<param name=e[29] value="ONM;sector;arc;O,N,M;0;0;gray">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a></div>
+<p>Describe the squares <i>AF</i> and <i>CG</i> on <i>AB</i> and <i>CD</i> respectively, draw the figure in <i>AF,</i> and draw <i>BE</i>  through.
+
+<p>Now, since the square on <i>BA</i> is five times the square on <i>AC,</i> therefore  <i>AF</i> is five times <i>AH.</i>  Therefore the gnomon <i>MNO</i> is quadruple <i>AH.</i>
+
+<p>And, since <i>DC</i> is double <i>CA,</i> therefore the square on <i>DC</i> is quadruple the square on <i>CA,</i> that is, <i>CG</i> is quadruple <i>AH.</i> But the gnomon <i>MNO</i> is also quadruple <i>AH,</i> therefore the gnomon <i>MNO</i> equals <i>CG.</i>
+
+<div class="just"><a href="../bookVI/propVI1.html">VI.1</a></div>
+<p>And, since <i>DC</i> is double <i>CA,</i> while <i>DC</i> equals <i>CK,</i> and <i>AC</i> equals <i>CH,</i> therefore <i>KB</i> is also double <i>BH.</i>
+
+<p>But the sum of <i>LH</i> and <i>HB</i> is also double <i>HB,</i> therefore <i>KB</i> equals the sum of <i>LH</i> and <i>HB.</i>
+
+<p>But the whole gnomon <i>MNO</i> was also proved equal to the whole <i>CG,</i> therefore the remainder <i>HF</i> equals <i>BG.</i>
+
+<p>And <i>BG</i> is the rectangle <i>CD</i> by <i>DB,</i> for <i>CD</i> equals <i>DG,</i> and <i>HF</i> is the square on <i>CB,</i> therefore the rectangle <i>CD</i> by <i>DB</i> equals the square on <i>CB.</i>
+
+<p>Therefore <i>DC</i> is to <i>CB</i> as <i>CB</i> is to <i>BD.</i>  But <i>DC</i> is greater than <i>CB,</i> therefore <i>CB</i> is also greater than <i>BD.</i>
+
+<p>Therefore, when the straight line <i>CD</i> is cut in extreme and mean ratio, <i>CB</i> is the greater segment.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=#lemma></a>
+<div class="theorem">
+<h1>Lemma</h1>
+
+<p>That the double <i>AC</i> is greater than <i>BC</i> is to be proved thus.
+
+<p>If not, let <i>BC</i> be, if possible, double <i>CA.</i>
+
+<p>Therefore the square on <i>BC</i> is quadruple the square on <i>CA.</i> Therefore the sum of the squares on <i>BC</i> and <i>CA</i> is five times the square on <i>CA.</i>  But, by hypothesis, the square on <i>BA</i> is also five times the square on <i>CA</i>
+
+<div class="just"><a href="../bookII/propII4.html">II.4</a></div>
+<p>Therefore the square on <i>BA</i> equals the sum of the squares on <i>BC</i> and <i>CA,</i> which is impossible.
+
+<p>Therefore <i>CB</i> is not double <i>AC.</i>
+
+<p>Similarly we can prove that neither is a straight line less than <i>CB</i> double <i>CA,</i> for the absurdity is much greater.
+
+<p>Therefore the double <i>AC</i> is greater than <i>CB.</i> 
+
+<p>Therefore, <i>if the square on a straight line is five times the square on a segment on it, then, when the double of the said segment is cut in extreme and mean ratio, the greater segment is the remaining part of the original straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+This proposition is not used in the rest of the <i>Elements.</i>  It is only included because it is the converse of the previous proposition <a href=propXIII1.html>XIII.1</a> and, thus, gives an algebraic characterization of cutting in extreme and mean ratio.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2013");
+</script>
+</BODY></HTML>

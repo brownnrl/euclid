@@ -1,0 +1,83 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 3</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 3</h1>
+
+<div class="statement">
+If two planes cut one another, then their intersection is a straight line.</div>
+
+<p>Let two planes <i>AB</i> and <i>BC</i> cut one another, and let the line <i>DB</i> be their intersection.
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=290 >
+<img src="propXI3.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.3">
+<param name=e[1] value="X;point;free;100000,0">
+<param name=e[2] value="Y;point;free;0,-100000">
+<param name=e[3] value="Z;point;free;100000,-50000">
+<param name=e[4] value="A;point;free;210,220">
+<param name=e[5] value="D;point;lineSlider;A,X,150,220">
+<param name=e[6] value="C;point;lineSlider;D,Z,80,280">
+<param name=e[7] value="B;point;lineSlider;D,Y,150,50">
+<param name=e[8] value="A1;point;parallelogram;A,D,B;0;0">
+<param name=e[9] value="A2;point;extend;A,D,A,D;0;0">
+<param name=e[10] value="A3;point;extend;A1,B,A1,B;0;0">
+<param name=e[11] value="C1;point;extend;C,D,C,D;0;0">
+<param name=e[12] value="C3;point;parallelogram;C,D,B;0;0">
+<param name=e[13] value="C2;point;extend;C3,B,C3,B;0;0">
+<param name=e[14] value="backC;polygon;quadrilateral;B,D,C1,C2;0;0;lightGray;cyan">
+<param name=e[15] value="Aplane;polygon;quadrilateral;A,A1,A3,A2;0;0;lightGray;random">
+<param name=e[16] value="frontC;polygon;quadrilateral;B,D,C,C3;0;0;lightGray;cyan">
+<param name=e[17] value="M;point;midpoint;B,D;0;0">
+<param name=e[18] value="M1;point;midpoint;B,M;0;0">
+<param name=e[19] value="N;point;midpoint;B,M1;0;0">
+<param name=e[20] value="E;point;cutoff;M,X,B,N;black">
+<param name=e[21] value="BED;sector;arc;D,E,B;0;0;black;0">
+<param name=e[22] value="F;point;extend;Z,M,B,N;black">
+<param name=e[23] value="BFD;sector;arc;B,F,D;0;0;black;0">
+<param name=e[24] value="BD;line;connect;B,D">
+</applet></div>
+
+<p>I say that the line <i>DB</i> is a straight line.
+
+<p>For, if not, join the straight line <i>DEB</i> from <i>D</i> to <i>B</i> in the plane <i>AB,</i> and the straight line <i>DFB</i> in the plane <i>BC.</i>
+
+<p>Then the two straight lines <i>DEB</i> and <i>DFB</i> have the same ends and clearly enclose an area, which is absurd.
+
+<p>Therefore <i>DEB</i> and <i>DFB</i> are not straight lines.
+
+<p>Similarly we can prove that neither is there any other straight line joined from <i>D</i> to <i>B</i> except <i>DB,</i> the intersection of the planes <i>AB</i> and <i>BC.</i>
+
+<p>Therefore, <i>if two planes cut one another, then their intersection is a straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+The proof of this proposition has some flaws.  <a href=../bookI/post1.html>Postulate I</a> (from Book I) states that a straight line can be drawn from any point to any point.  It seems to be interpreted as saying that for any plane from any point in that plane to any point in that plane a straight line in that plane can be drawn.  Next it is stated that the lines in those two planes &dlquo;clearly enclose an area, which is absurd.&rsquo;   But the two lines do not lie in the same plane, so it is unclear that they enclose an area.  Furthermore, the statement that two straight lines cannot enclose an area did not appear in the original elements, although it was later appended to Post.1.
+
+<p>A more serious criticism of the proof is that it fails to prove the statement of the proposition.  At most it shows that if two planes intersect at more than one point, then the line that joins them also lies in their intersection.  But the possibility that their intersection consists of only one point is ignored.  This is important as this proposition is used in <a href=propXI5.html>XI.5</a> from two planes known to intersect at one point, a line of intersection is generated.
+
+<p>The real problem is that there is no postulate limiting space to three dimensions.  In four or or more dimensions two planes may intersect in only one point.  Neither Euclid nor anyone else before the nineteenth century recognized the possibility of higher dimensional geometry, but the flaws in this proof are apparent nonetheless.  There are alternative postulates to limit the geometry to three dimensions.  For instance, one is based on the idea that a plane divides space into two sides.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used frequently, first in the proof of <a href=propXI5.html>XI.5</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 1998");
+</script>
+</BODY></HTML>

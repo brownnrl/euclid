@@ -1,0 +1,120 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 14</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">To construct a square equal to a given rectilinear figure.</div>
+
+<p>Let <i>A</i> be the given rectilinear figure.
+
+<p>It is required to construct a square equal to the rectilinear figure <i>A.</i>
+
+<div class="just"><a href="../bookI/propI45.html">I.45</a></div>
+<p>Construct the rectangular parallelogram <i>BD</i> equal to the rectilinear figure <i>A.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=470>
+<img src="propII14.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.14">
+<param name=e[1] value="A1;point;free;80,40;0">
+<param name=e[2] value="A2;point;free;160,80;0">
+<param name=e[3] value="A3;point;free;120,180;0">
+<param name=e[4] value="A4;point;free;40,100;0">
+<param name=e[5] value="A;polygon;quadrilateral;A1,A2,A3,A4;0,0,0;0;0,0,0;random">
+<param name=e[6] value="B;point;free;200,140">
+<param name=e[7] value="C;point;free;200,190">
+<param name=e[8] value="BE1;line;perpendicular;B,C">
+<param name=e[9] value="E1;point;last;BE1;0;0">
+<param name=e[10] value="BCDE;polygon;application;A,B,C,E1;0;0;0,0,0;random">
+<param name=e[11] value="D;point;vertex;BCDE,3">
+<param name=e[12] value="E;point;vertex;BCDE,4">
+<param name=e[13] value="EF;line;extend;B,E,E,D">
+<param name=e[14] value="F;point;last;EF">
+<param name=e[15] value="G;point;midpoint;B,F">
+<param name=e[16] value="BHF;sector;sector;G,F,B">
+<param name=e[17] value="Gcirc;circle;radius;G,B;0;0;0;0">
+<param name=e[18] value="H';line;perpendicular;E,G;0;0;0">
+<param name=e[19] value="HH2;line;chord;H',Gcirc;0;0;0">
+<param name=e[20] value="H;point;first;HH2">
+<param name=e[21] value="EH;line;connect;E,H">
+<param name=e[22] value="GH;line;connect;G,H">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII14.gif" hspace=10 alt="II.14" vspace=5>';
+</script>
+</div>
+
+<p>Then, if <i>BE</i> equals <i>ED,</i> then that which was proposed is done, for a square <i>BD</i> has been constructed equal to the rectilinear figure <i>A.</i>
+
+<p>But, if not, one of the straight lines <i>BE</i> or <i>ED</i> is greater.
+
+<div class="just"><a href="../bookI/propI3.html">I.3</a>,
+<a href="../bookI/propI10.html">I.10</a></div>
+<p>Let <i>BE</i> be greater, and  produce it to <i>F.</i> Make <i>EF</i> equal to <i>ED,</i> and bisect <i>BF</i> at <i>G.</i>
+
+<div class="just"><a href=../bookI/defI15.html>I.Def.18</a></div>
+<p>Describe the semicircle <i>BHF</i> with center <i>G</i> and radius one of the straight lines <i>GB</i> or <i>GF.</i> Produce <i>DE</i> to <i>H,</i> and join <i>GH.</i>
+
+<div class="just"><a href="propII5.html">II.5</a></div>
+<p>Then, since the straight line <i>BF</i> has been cut into equal segments at <i>G</i> and into unequal segments at <i>E,</i> the rectangle <i>BE</i> by <i>EF</i> together with the square on <i>EG</i> equals the square on <i>GF.</i>
+
+<p>But <i>GF</i> equals <i>GH,</i> therefore the rectangle <i>BE</i> by <i>EF</i> together with the square on <i>GE</i> equals the square on <i>GH.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the sum of the squares on <i>HE</i> and <i>EG</i> equals the square on <i>GH,</i> therefore the rectangle <i>BE</i> by <i>EF</i> together with the square on <i>GE</i> equals the sum of the squares on <i>HE</i> and <i>EG.</i>
+
+<p>Subtract the square on <i>GE</i> from each. Therefore the remaining rectangle <i>BE</i> by <i>EF</i> equals the square on <i>EH.</i>
+
+<p>But the rectangle <i>BE</i> by <i>EF</i> is <i>BD,</i> for <i>EF</i> equals <i>ED,</i> therefore the parallelogram <i>BD</i> equals the square on <i>HE.</i>
+
+<p>And <i>BD</i> equals the rectilinear figure <i>A.</i>
+
+<p>Therefore the rectilinear figure <i>A</i> also equals the square which can be described on <i>EH.</i>
+
+<p>Therefore a square, namely that which can be described on <i>EH,</i> has been constructed equal to the given rectilinear figure <i>A.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The construction of a square equal to a given rectilinear figure is short as described in the proof. The verification that this construction works is also short with the help of Proposition <a href="propII5.html">II.5</a> and Proposition <a href="../bookI/propI47.html">I.47</a>, the Pythagorean theorem.  First, Prop. II.5 allows us to convert the rectangle, <i>BE</i> by <i>ED,</i> into the difference of two squares, <i>GF</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>GE</i><sup>2</sup>.  Note that <i>GF</i> equals <i>GH,</i> the hypotenuse of a right triangle <i>GHE.</i> Using I.47 we can replace the difference of two squares, <i>GH</i><sup>2</sup>&nbsp;&ndash;&nbsp;<i>GE</i><sup>2</sup>, by the single square, <i>EH</i><sup>2</sup>.  Thus, the original rectangle equals the square <i>EH</i><sup>2</sup>.
+
+<h4>Quadrature of rectilinear figures</h4>
+
+This proposition finishes the quadrature of rectilinear figures.  The narrow meaning of the word &ldquo;quadrature&rdquo; is to find a square with the same area of a given figure, also called &ldquo;squaring&rdquo; the figure.  In a broader sense, quadrature means finding the area of a given figure.
+
+<p>Proposition <a href="../bookI/propI45.html">I.45</a> on application of areas of rectilinear figures allows us to replace the figure under question with a rectangle of the same area.  Now, the semicircle construction in this proposition finds what is called the mean proportional between the sides of the rectangle.  If the sides of the rectangle are denoted <i>a</i> and <i>b,</i> then the mean proportional <i>x</i> between them satisfies the proportion <i>a</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>x</i>&nbsp;:&nbsp;<i>b,</i> and that&rsquo;s equivalent to an equality of areas <i>ab</i>&nbsp;=&nbsp;<i>x</i><sup>2</sup>, that is to say, the square on this mean proportional has the same area as the rectangle.  Thus, any rectilinear figure can be squared.
+
+<p>This result is an end in itself. It is not used in the rest of the <i>Elements.</i>
+
+<p>There is another proof of this proposition that is based on similar triangles.  Referring to the figure in the proposition, draw lines <i>BH</i> and <i>BF,</i> and you&rsquo;ll see three similar right triangles: <i>BFH, BHE,</i> and <i>HGE.</i>  From their similarity it follows that <i>BE</i>&nbsp;:&nbsp;<i>EH</i>&nbsp;=&nbsp;<i>EH</i>&nbsp;:&nbsp;<i>EF.</i>  That says <i>EH</i> is the required mean proportional.  
+
+<p>Proportions aren&rsquo;t developed until <a href=../bookV/bookV.html>Book V</a>, and similar triangles aren&rsquo;t mentioned until <a href=../bookVI/bookVI.html>Book VI</a>. So in order to complete the theory of quadrature of rectilinear figures early in the <i>Elements,</i> Euclid chose a different proof that doesn&rsquo;t depend on similar triangles.  Note that this same result appears in the garb of proportions in Proposition <a href=../bookVI/propVI13.html>VI.13</a>.  Also in Book VI, Proposition <a href=../bookVI/propVI17.html>VI.17</a> shows that the square on the mean proportional equals the rectangle on the two straight lines.
+
+<a name=squaring><h4>Squaring the circle</h4></a>
+
+What about circles and other shapes?  The general theory of circles is treated in Book III, but there are no propositions about the areas of circles until book XII.  Proposition <a href=../bookXII/propXII2.html>XII.2</a> says the areas of circles are proportional to the squares on their diameters.  That allows the area of two circles to be compared, but it doesn&rsquo;t answer the question &ldquo;what&rsquo;s the area of this circle?&rdquo; in the same way that this proposition does for rectilinear figures.  That would require finding a square equal to a given circle.
+
+<p>This problem of quadrature of the circle was one of three famous problems that goes back at least to the time of Anaxagoras, about 150 years before Euclid.  It is equivalent to constructing a line segment of length <i>&pi;</i> (relative to a unit length).  This problem was solved by ancient Greek geometers but not by means of the Euclidean tools of straightedge and compass; higher curves were required.  In fact, by the time of Pappus it was believed that the circle could not be squared using only straightedge, compass, and, furthermore, couldn&rsquo;t be squared even with the help of the conic sections (parabola, hyperbola, and ellipse).  But the ancient Greeks had no mathematical proof that it could not be squared.
+
+<p>That the circle could not be squared with Euclidean tools was not shown until 1882 when Lindemann proved that <i>&pi;</i> is a transcendental number.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2003");
+</script>
+</BODY></HTML>
+

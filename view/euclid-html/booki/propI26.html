@@ -1,0 +1,137 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 26</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 26</h1>
+
+<div class="statement">If two triangles have two angles equal to two angles respectively, and one side equal to one side, namely, either the side adjoining the equal angles, or that opposite one of the equal angles, then the remaining sides equal the remaining sides and the remaining angle equals the remaining angle.</div>
+
+<p>Let <i>ABC</i> and <i>DEF</i> be two triangles having the two angles <i>ABC</i> and <i>BCA</i> equal to the two angles <i>DEF</i> and <i>EFD</i> respectively, namely the angle <i>ABC</i> to the angle <i>DEF,</i> and the angle <i>BCA</i> to the angle <i>EFD,</i> and let them also have one side equal to one side, first that adjoining the equal angles, namely <i>BC</i> equal to <i>EF.</i>
+
+<p>I say that the remaining sides equal the remaining sides respectively, namely <i>AB</i> equals <i>DE</i> and <i>AC</i> equals <i>DF,</i> and the remaining angle equals the remaining angle, namely the angle <i>BAC</i> equals the angle <i>EDF.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=220>
+<img src="propI26a.gif" alt="java applet or image">
+<param name=title value="I.26a">
+<param name=background value="35,19,100">
+<param name=e[1] value="D;point;free;210,40">
+<param name=e[2] value="E;point;free;170,180">
+<param name=e[3] value="F;point;free;260,180">
+<param name=e[4] value="DEF;polygon;triangle;D,E,F;0;0;0,0,0;random">
+<param name=e[5] value="A;point;free;70,40">
+<param name=e[6] value="ABcirc;circle;radius;A,D,E;0;0;0;0">
+<param name=e[7] value="B;point;circleSlider;ABcirc,30,180">
+<param name=e[8] value="ABC;polygon;similar;A,B,D,E,F">
+<param name=e[9] value="C;point;vertex;ABC,3">
+<param name=e[10] value="G;point;lineSlider;A,B,55,70">
+<param name=e[11] value="CG;line;connect;C,G">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI26a.gif" hspace=10 vspace=10 alt="I.26a">';
+</script>
+</div>
+
+<p>If <i>AB</i> does not equal <i>DE,</i> then one of them is greater.
+
+<div class="just"><a href="propI3.html">I.3</a>,
+<a href=post1.html>I.Post.1</a></div>
+<p>Let <i>AB</i> be greater.  Make <i>BG</i> equal to <i>DE,</i> and join <i>GC.</i>
+
+<div class="just"><a href=propI4.html>I.4</a>
+<br><a href=cn.html>C.N.1</a></div>
+<p>Since <i>BG</i> equals <i>DE,</i> and <i>BC</i> equals <i>EF,</i> the two sides <i>GB</i> and <i>BC</i> equal the two sides <i>DE</i> and <i>EF</i> respectively, and the angle <i>GBC</i> equals the angle <i>DEF,</i> therefore the base <i>GC</i> equals the base <i>DF,</i> the triangle <i>GBC</i> equals the triangle <i>DEF,</i> and the remaining angles equal the remaining angles, namely those opposite the equal sides. Therefore the angle <i>GCB</i> equals the angle <i>DFE.</i> But the angle <i>DFE</i> equals the angle <i>ACB</i> by hypothesis. Therefore the angle <i>BCG</i> equals the angle <i>BCA,</i> the less equals the greater, which is impossible.
+
+<p>Therefore <i>AB</i> is not unequal to <i>DE,</i> and therefore equals it.
+
+<div class="just"><a href=propI4.html>I.4</a></div>
+<p>But <i>BC</i> also equals <i>EF.</i> Therefore the two sides <i>AB</i> and <i>BC</i> equal the two sides <i>DE</i> and <i>EF</i> respectively, and the angle <i>ABC</i> equals the angle <i>DEF.</i> Therefore the base <i>AC</i> equals the base <i>DF,</i> and the remaining angle <i>BAC</i> equals the remaining angle <i>EDF.</i>
+
+<hr align=center width=50%>
+
+<p>Next, let sides opposite equal angles be equal, as <i>AB</i> equals <i>DE.</i>
+
+<p>I say again that the remaining sides equal the remaining sides, namely <i>AC</i> equals <i>DF</i> and <i>BC</i> equals <i>EF,</i> and further the remaining angle <i>BAC</i> equals the remaining angle <i>EDF.</i>
+
+<p>If <i>BC</i> is unequal to <i>EF,</i> then one of them is greater.
+
+<div class="ldiagram">
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=220>
+<img src="propI26b.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.26b">
+<param name=e[1] value="D;point;free;210,40">
+<param name=e[2] value="E;point;free;170,180">
+<param name=e[3] value="F;point;free;260,180">
+<param name=e[4] value="DEF;polygon;triangle;D,E,F;0;0;0,0,0;random">
+<param name=e[5] value="A;point;free;70,40">
+<param name=e[6] value="ABcirc;circle;radius;A,D,E;0;0;0;0">
+<param name=e[7] value="B;point;circleSlider;ABcirc,30,180">
+<param name=e[8] value="ABC;polygon;similar;A,B,D,E,F">
+<param name=e[9] value="C;point;vertex;ABC,3">
+<param name=e[10] value="H;point;lineSlider;B,C,90,180">
+<param name=e[11] value="AH;line;connect;A,H">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI26b.gif" hspace=10 vspace=10 alt="I.26b">';
+</script>
+</div>
+
+<div class="just"><a href="propI3.html">I.3</a>,
+<a href=post1.html>I.Post.1</a></div>
+<p>Let <i>BC</i> be greater, if possible.  Make <i>BH</i> equal to <i>EF,</i> and join <i>AH.</i>
+
+<div class="just"><a href=propI4.html>I.4</a></div>
+<p>Since <i>BH</i> equals <i>EF,</i> and <i>AB</i> equals <i>DE,</i> the two sides <i>AB</i> and <i>BH</i> equal the two sides <i>DE</i> and <i>EF</i> respectively, and they contain equal angles, therefore the base <i>AH</i> equals the base <i>DF,</i> the triangle <i>ABH</i> equals the triangle <i>DEF,</i> and the remaining angles equal the remaining angles, namely those opposite the equal sides. Therefore the angle <i>BHA</i> equals the angle <i>EFD.</i>
+
+<div class="just"><a href=cn.html>C.N.1</a>
+<br><a href=propI16.html>I.16</a></div>
+<p>But the angle <i>EFD</i> equals the angle <i>BCA,</i> therefore, in the triangle <i>AHC,</i> the exterior angle <i>BHA</i> equals the interior and opposite angle <i>BCA,</i> which is impossible.
+
+<p>Therefore <i>BC</i> is not unequal to <i>EF,</i> and therefore equals it.
+
+<div class="just"><a href=propI4.html>I.4</a></div>
+<p>But <i>AB</i> also equals <i>DE.</i> Therefore the two sides <i>AB</i> and <i>BC</i> equal the two sides <i>DE</i> and <i>EF</i> respectively, and they contain equal angles. Therefore the base <i>AC</i> equals the base <i>DF,</i> the triangle <i>ABC</i> equals the triangle <i>DEF,</i> and the remaining angle <i>BAC</i> equals the remaining angle <i>EDF.</i>
+
+<p>Therefore <i>if two triangles have two angles equal to two angles respectively, and one side equal to one side, namely, either the side adjoining the equal angles, or that opposite one of the equal angles, then the remaining sides equal the remaining sides and the remaining angle equals the remaining angle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+There are two statements in this theorem which are different only in their hypotheses.  In one, the known side lies between the two angles, in the other, the known side lies opposite one of the angles.  If this proposition had come after proposition <a href=propI32.html>I.32</a> which states the sum of the angles in a triangle equals two right angles, then these two hypotheses could have been merged into one, since then if two angles are known, then is the third.  But proposition I.32 depends on the parallel postulate <a href=post5.html>I.Post.5</a>, which, it is apparent, Euclid did not want to use unless necessary.  Thus, this proposition, I.26, appears where it is with two distinct hypotheses.
+
+<a name=cong><h4>On congruence theorems</h4></a>
+
+This is the last of Euclid&rsquo;s congruence theorems for triangles.  Euclid&rsquo;s congruence theorems are 
+<a href=propI4.html>I.4</a> (side-angle-side), <a href=propI8.html>I.8</a> (side-side-side), and this one, I.26 (side and two angles).  Calling them congruence theorems is anachronistic, since Euclid did not explicitly use the concept of congruence.  We would say that two triangles <i>ABC</i> and <i>DEF</i> are <i>congruent</i> if the angles <i>A, B,</i> and <i>C</i> equal the angles <i>D, E,</i> and <i>F</i> respectively, and the sides <i>AB, BC,</i> and <i>AC</i> equal the sides <i>DE, EF,</i> and <i>DF</i> respectively, and the triangle <i>ABC</i> equals the triangle <i>DEF</i> (by which is meant that they have the same area).
+
+<p>The remaining congruence theorem, side-side-angle, includes some ambiguous cases.  Suppose triangles <i>ABC</i> and <i>DEF</i> are such that sides <i>AB</i> and <i>BC</i> are equal to sides <i>DE</i> and <i>EF</i> respectively, and angle <i>A</i> equals angle <i>D.</i>  If it is also known that <i>AB</i> is less than or equal to <i>BC,</i> then it follows that the two triangles are congruent.  If, however, <i>AB</i> is greater than <i>BC,</i> then the two triangles need not be congruent.  Euclid does not include any form of a side-side-angle congruence theorem, but he does prove one special case, side-side-right angle, in the course of the proof of proposition <a href=../bookIII/propIII14.html>III.14</a>.
+
+<p>Although Euclid does not include a side-side-angle congruence theorem, he does have a side-side-angle similarity theorem, namely proposition <a href=../bookVI/propVI7.html>VI.7</a>.  The analogous congruence theorem could be stated as follows: If two triangles have one angle equal to one angle, two sides adjoining the equal angles equal, namely, one side adjoining the equal angles, and one  opposite the equal angles, and the remaining angles either both less or both not less than a right angle, then the remaining side equals the remaining side and the remaining angles equal the remaining angles.
+
+<h4>Use of Proposition 26</h4>
+
+This proposition is used in the proofs of proposition
+<a href=propI34.html>I.34</a> and several propositions in Books III, IV, XI, XII, and XIII.
+
+<p>As in propositions <a href=propI4.html>I.4</a> and <a href=propI8.html>I.8</a>, it appears that the triangles are in the same plane, but, again, that is not necessary.  Indeed, this proposition is invoked in proposition <a href=../bookXI/propXI35.html>XI.35</a> when two triangles do not lie in the same plane.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

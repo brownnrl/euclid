@@ -1,0 +1,135 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 8</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">If a point is taken outside a circle and from the point straight lines are drawn through to the circle, one of which is through the center and the others are drawn at random, then, of the straight lines which fall on the concave circumference, that through the center is greatest, while of the rest the nearer to that through the center is always greater than the more remote, but, of the straight lines falling on the convex circumference, that between the point and the diameter is least, while of the rest the nearer to the least is always less than the more remote; and only two equal straight lines fall on the circle from the point, one on each side of the least. 
+</div>
+
+<p>Let <i>ABC</i> be a circle, and let a point <i>D</i> be taken outside <i>ABC.</i> Let straight lines <i>DA, DE, DF,</i> and <i>DC</i> be drawn through from <i>D,</i> and let <i>DA</i> be drawn through the center. 
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=270>
+<img src=propIII8a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.8a">
+<param name=e[1] value="A;point;free;100,270">
+<param name=e[2] value="D;point;free;210,30">
+<param name=e[3] value="AD;line;connect;A,D">
+<param name=e[4] value="M;point;lineSlider;A,D,140,200">
+<param name=e[5] value="ABC;circle;radius;M,A;0;0;black;random">
+<param name=e[6] value="G;point;extend;A,M,A,M">
+<param name=e[7] value="E;point;circleSlider;ABC,70,230">
+<param name=e[8] value="F;point;circleSlider;ABC,50,200">
+<param name=e[9] value="C;point;circleSlider;ABC,30,150">
+<param name=e[10] value="DE;line;connect;D,E">
+<param name=e[11] value="DF;line;connect;D,F">
+<param name=e[12] value="DC;line;connect;D,C">
+<param name=e[13] value="ME;line;connect;M,E">
+<param name=e[14] value="MF;line;connect;M,F">
+<param name=e[15] value="MC;line;connect;M,C">
+<param name=e[16] value="CH;line;chord;DC,ABC;0;0;0">
+<param name=e[17] value="FL;line;chord;DF,ABC;0;0;0">
+<param name=e[18] value="EK;line;chord;DE,ABC;0;0;0">
+<param name=e[19] value="H;point;first;CH">
+<param name=e[20] value="L;point;first;FL">
+<param name=e[21] value="K;point;first;EK">
+<param name=e[22] value="MH;line;connect;M,H">
+<param name=e[23] value="MK;line;connect;M,K">
+<param name=e[24] value="ML;line;connect;M,L">
+<param name=e[25] value="B;point;circleSlider;ABC,200,130">
+</applet></div> 
+
+<p>I say that, of the straight lines falling on the concave circumference <i>AEFC,</i> the straight line <i>DA</i> through the center is greatest, while <i>DE</i> is greater than <i>DF,</i> and <i>DF</i> greater than <i>DC.</i>   But, of the straight lines falling on the convex circumference <i>HLKG,</i> the straight line <i>DG</i> between the point and the diameter <i>AG</i> is least, and the nearer to the least <i>DG</i> is always less than the more remote, namely <i>DK</i> is less than <i>DL,</i> and <i>DL</i> is less than <i>DH.</i> 
+
+<div class="just"><a href="propIII1.html">III.1</a></div>
+<p>Take the center <i>M</i> of the circle <i>ABC.</i>   Join <i>ME, MF, MC, MK, ML,</i>  and <i>MH.</i>
+
+<p>Then, since <i>AM</i> equals <i>EM,</i> add <i>MD</i> to each, therefore <i>AD</i> equals the sum of <i>EM</i> and <i>MD.</i>
+
+<div class="just"><a href="../bookI/propI20.html">I.20</a></div>
+<p>But the sum of <i>EM</i> and <i>MD</i> is greater than <i>ED,</i> therefore <i>AD</i> is also greater than <i>ED.</i>
+
+<div class="just"><a href="../bookI/propI24.html">I.24</a></div>
+<p>Again, since <i>ME</i> equals <i>MF,</i> and <i>MD</i> is common, therefore <i>EM</i> and <i>MD</i> equal <i>FM</i> and <i>MD,</i> and the angle <i>EMD</i> is greater than the angle <i>FMD,</i> therefore the base <i>ED</i> is greater than the base <i>FD.</i>
+
+<p>Similarly we can prove that <i>FD</i> is greater than <i>CD.</i>  Therefore <i>DA</i> is greatest, while <i>DE</i> is greater than <i>DF,</i> and <i>DF</i> is greater than <i>DC.</i>
+
+<div class="just"><a href="../bookI/propI20.html">I.20</a></div>
+<p>Next, since the sum of <i>MK</i> and <i>KD</i> is greater than <i>MD,</i> and <i>MG</i> equals <i>MK,</i> therefore the remainder <i>KD</i> is greater than the remainder <i>GD,</i> so that <i>GD</i> is less than <i>KD.</i>
+
+<div class="just"><a href="../bookI/propI21.html">I.21</a></div>
+<p>And, since on <i>MD,</i> one of the sides of the triangle <i>MLD,</i> two straight lines <i>MK</i> and <i>KD</i> are constructed meeting within the triangle, therefore the sum of <i>MK</i> and <i>KD</i> is less than the sum of <i>ML</i> and <i>LD.</i>  And <i>MK</i> equals <i>ML,</i> therefore the remainder <i>DK</i> is less than the remainder <i>DL.</i>
+
+<p>Similarly we can prove that <i>DL</i> is also less than <i>DH.</i>  Therefore <i>DG</i> is least, while <i>DK</i> is less than <i>DL,</i> and <i>DL</i> is less than <i>DH.</i>
+
+<hr width=50%>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=270>
+<img src=propIII8b.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.8b">
+<param name=e[1] value="A;point;free;100,270">
+<param name=e[2] value="D;point;free;210,30">
+<param name=e[3] value="AD;line;connect;A,D">
+<param name=e[4] value="M;point;lineSlider;A,D,140,200">
+<param name=e[5] value="ABC;circle;radius;M,A;0;0;black;random">
+<param name=e[6] value="G;point;extend;A,M,A,M">
+<param name=e[7] value="E;point;circleSlider;ABC,60,210">
+<param name=e[8] value="DE;line;connect;D,E">
+<param name=e[9] value="ME;line;connect;M,E">
+<param name=e[10] value="EK;line;chord;DE,ABC;0;0;0">
+<param name=e[11] value="K;point;first;EK">
+<param name=e[12] value="MK;line;connect;M,K">
+<param name=e[13] value="K';point;foot;K,A,D;0;0">
+<param name=e[14] value="B;point;extend;K,K',K,K'">
+<param name=e[15] value="DB;line;connect;D,B">
+<param name=e[16] value="MB;line;connect;M,B">
+<param name=e[17] value="N;point;circleSlider;ABC,230,150">
+<param name=e[18] value="DN;line;connect;D,N">
+</applet></div>
+
+<p>I say also that only two equal straight lines will fall from the point <i>D</i> on the circle, one on each side of the least <i>DG.</i>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a></div>
+<p>Construct the angle <i>DMB</i> equal to the angle <i>KMD</i> on the straight line <i>MD</i> and at the point <i>M</i> on it.  Join <i>DB.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since <i>MK</i> equals <i>MB,</i> and <i>MD</i> is common, the two sides <i>KM</i> and <i>MD</i> equal the two sides <i>BM</i> and <i>MD</i> respectively, and the angle <i>KMD</i> equals the angle <i>BMD,</i> therefore the base <i>DK</i> equals the base <i>DB.</i>
+
+<p>I say that no other straight line equal to the straight line <i>DK</i> falls on the circle from the point <i>D.</i>
+
+<div class="just">Above</div>
+<p>For, if possible, let a straight line so fall, and let it be <i>DN.</i>  Then, since <i>DK</i> equals <i>DN,</i> and <i>DK</i> equals <i>DB, DB</i> also equals <i>DN,</i> that is, the nearer to the least <i>DG</i> equal to the more remote, which was proved impossible.
+
+<p>Therefore no more than two equal straight lines fall on the circle <i>ABC</i> from the point <i>D,</i> one on each side of <i>DG</i> the least.
+
+<p>Therefore <i>if a point is taken outside a circle and from the point straight lines are drawn through to the circle, one of which is through the center and the others are drawn at random, then, of the straight lines which fall on the concave circumference, that through the center is greatest, while of the rest the nearer to that through the center is always greater than the more remote, but, of the straight lines falling on the convex circumference, that between the point and the diameter is least, while of the rest the nearer to the least is always less than the more remote; and only two equal straight lines fall on the circle from the point, one on each side of the least.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition has a statement even more complicated than the previous proposition.  This one deals with the distances from a point <i>D</i> outside a circle to the points on the circumference.  If the diameter <i>AG</i> extended passes through <i>D,</i> then one of its endpoints <i>G</i> is the point on the circumference closest to <i>D</i> and the other <i>A</i> is furthest.  As a point moves along the circumference from <i>A</i> to <i>D</i> it gets closer to <i>D.</i>  Euclid considers two parts of the circumference, the convex part is the near part exposed to the point <i>D,</i> while the concave part is the part on the far side of the circle.  The final part of the statement is that if <i>K</i> is one point on the circumference, then there is exactly one other point <i>B</i> on the circumference the same distance from <i>D</i> (assuming, of course, that <i>K</i> is neither <i>G</i> nor <i>A</i>).
+
+<h4>Note</h4>
+
+There is a logical gap in the proof of this proposition similar to that in the previous proposition.  Again, various ways have been proposed to fill it.
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,69 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book V, Definition 7</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 7</h1>
+
+<div class="statement">When, of the equimultiples, the multiple of the first magnitude exceeds the multiple of the second, but the multiple of the third does not exceed the multiple of the fourth, then the first is said to have a <i>greater ratio</i> to the second than the third has to the fourth.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Definition 5 explained when two ratios were equal, namely, <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i> when 
+<p><center>for all numbers <i>n</i> and <i>m,</i> if  <i>nw</i>&nbsp;>=<&nbsp;<i>mx,</i> then <i>ny</i>&nbsp;>=<&nbsp;<i>mz.</i></center><p>
+
+<p>Definition 7 now says <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;>&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i> when
+<p><center>there are numbers <i>n</i> and <i>m</i> such that <i>nw</i> > <i>mx</i> but <i>ny</i> is not greater than <i>mz.</i></center><p>
+
+<p>Of course, <i>y</i>&nbsp;:&nbsp;<i>z</i> is called the lesser ratio.
+
+<p>When defining greater and lesser, there are a number of properties that should be verified.  These are various transitivities and the law of trichotomy, some of the same properties of greater and lesser that magnitudes have. (See the <a href=../bookI/cn.html#guide>Guide</a> for the Common Notions.)
+
+<p><center>If <i>u</i>&nbsp;:&nbsp;<i>v</i>&nbsp;<&nbsp;<i>w</i>&nbsp;:&nbsp;<i>x,</i> and <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> then <i>u</i>&nbsp;:&nbsp;<i>v</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>
+
+<p>If <i>u</i>&nbsp;:&nbsp;<i>v</i>&nbsp;=&nbsp;<i>w</i>&nbsp;:&nbsp;<i>x,</i> and <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> then <i>u</i>&nbsp;:&nbsp;<i>v</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>
+
+<p>If <i>u</i>&nbsp;:&nbsp;<i>v</i>&nbsp;<&nbsp;<i>w</i>&nbsp;:&nbsp;<i>x,</i> and <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> then <i>u</i>&nbsp;:&nbsp;<i>v</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>
+</center><p>
+
+Euclid only has the first property, which is is proposition <a href=propV13.html>V.13</a>.  Its proof depends only on the definitions. The second is so much like it that it isn&rsquo;t mentioned.  The third one is quite easy to prove.
+
+<h4>The law of trichotomy for ratios</h4>
+
+Stated for ratios, the law of trichotomy says that for any two ratios <i>w</i>&nbsp;:&nbsp;<i>x</i> and <i>y</i>&nbsp;:&nbsp;<i>z,</i> exactly one of the following three cases holds:  <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> or <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> or<i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;>&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>
+
+<p>Euclid missed the law of trichotomy for magnitudes in his list of Common Notions, and he missed it for ratios, too.  The side of the law which says at most one of the three cases can occur is first used in proposition <a href=propV9.html>V.9</a>, while the side which says at least one occurs is first used in <a href=propV10.html>V.10</a>.
+
+<p>The side of the law which says at most one of the three cases can occur is fairly easy to prove.
+
+<p>From the definitions themselves it is clear that <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;>&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i> contradicts <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>  The first says there are <i>n</i> and <i>m</i> such that  <i>nw</i>&nbsp;>&nbsp;<i>mx</i> but <i>ny</i> is not greater than <i>mz,</i> while the second concludes from  <i>nw</i>&nbsp;>&nbsp;<i>mx</i> that <i>ny</i>&nbsp;>&nbsp;<i>mz</i> yielding a contradiction based on the law of trichotomy for magnitudes. Similarly <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i> contradicts <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>
+
+<p>Once transitivity has been shown, it can be shown that <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;>&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i> contradicts <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> for then <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;>&nbsp;<i>w</i>&nbsp;:&nbsp;<i>x,</i> and that contradicts <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>w</i>&nbsp;:&nbsp;<i>x.</i>  (There are also proofs that don&rsquo;t depend on transitivity.)
+
+<p>The other side of the law of trichotomy, the one that says at least one of the three cases holds, is a bit harder to prove, and it depends on treating <a href=defV4.html>V.Def.4</a> as an axiom of comparability.  In fact, it is false without it.  First, a proof using V.Def.4 as an axiom, then a counterexample to show that&rsquo;s necessary.
+
+<p><b>A proof of trichotomy.</b> Let <i>w</i>&nbsp;:&nbsp;<i>x</i> and <i>y</i>&nbsp;:&nbsp;<i>z</i> be any two ratios.  We need to show that one of the three cases holds.  We&rsquo;ll assume the ratios aren&rsquo;t the same and show one of them is greater than the other.  When they&rsquo;re not the same, then there are numbers <i>m</i> and <i>n</i> such that  
+<p><center> <i>nw</i>&nbsp;>=<&nbsp;<i>mx</i> but not <i>ny</i>&nbsp;>=<&nbsp;<i>mz.</i></center><p>
+We have three cases to consider, and two of them are easy.  In one case, <i>nw</i>&nbsp;>&nbsp;<i>mx</i> but not <i>ny</i>&nbsp;>&nbsp;<i>mz,</i> so for that case <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;>&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>  In another case, <i>nw</i>&nbsp;<&nbsp;<i>mx</i> but not <i>ny</i>&nbsp;<&nbsp;<i>mz,</i> so for that case <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>  
+
+<p>Consider now the last case: <i>nw</i>&nbsp;=&nbsp;<i>mx</i> but <i>ny</i> does not equal <i>mz.</i>  Then one of <i>ny</i> and <i>mz</i> is greater, say <i>ny</i>&nbsp;>&nbsp;<i>mz.</i>  Now using V.Def.4 as an axiom, there is some some number <i>k</i> such that <i>k</i>(<i>ny</i>&nbsp;&ndash;&nbsp;<i>mz</i>)&nbsp;>&nbsp;<i>z.</i>  Since <i>k</i>(<i>ny</i>&nbsp;&ndash;&nbsp;<i>mz</i>)&nbsp;=&nbsp;<i>kny</i>&nbsp;&ndash;&nbsp;<i>kmz,</i> therefore <i>kny</i>&nbsp;>&nbsp;<i>kmz</i>&nbsp;+&nbsp;<i>z,</i> that is, <i>kny</i>&nbsp;>&nbsp;(<i>km</i>&nbsp;+&nbsp;1)<i>z.</i>  But <i>knw</i>&nbsp;=&nbsp;<i>kmx,</i> and <i>kmx</i>&nbsp;<&nbsp;(<i>km</i>&nbsp;+&nbsp;1)<i>x.</i>  Therefore, (<i>kn</i>)<i>w</i>&nbsp;<&nbsp;(<i>km</i>&nbsp;+&nbsp;1)<i>x.</i>  But (<i>kn</i>)<i>y</i>&nbsp;>&nbsp;(<i>km</i>&nbsp;+&nbsp;1)<i>z.</i> Therefore <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;<&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i> Q.E.D.
+
+<p><b>A counterexample to trichotomy.</b>  This counterexample has infinitesimals, so it doesn&rsquo;t satisfy the axiom of comparability, that is,
+V.Def.4 treated as an axiom.  Let <i>y</i> be an infinitesimal with respect to <i>x,</i> that is, for any number <i>n, ny</i> < <i>x.</i>  We&rsquo;ll show that the two ratios <i>x</i>&nbsp;:&nbsp;<i>x</i> and <i>x</i>:(<i>x</i>&nbsp;+&nbsp<i>y</i>) do not satisfy the law of trichotomy.  First, though, note that the second ratio does satisfy V.Def.4 as a definition since twice each of <i>x</i> and <i>x</i>&nbsp;+&nbsp<i>y</i> is greater than the other.  
+
+<p>Now, the ratios <i>x</i>&nbsp;:&nbsp;<i>x</i> and <i>x</i>&nbsp;:&nbsp;(<i>x</i>&nbsp;+&nbsp<i>y</i>) are not equal since 2<i>x</i>&nbsp;=&nbsp2<i>x</i> but 2<i>x</i>&nbsp;<&nbsp;2(<i>x</i>&nbsp;+&nbsp<i>y</i>).  Next, <i>x</i>&nbsp;:&nbsp;(<i>x</i>&nbsp;+&nbsp<i>y</i>) is not greater than <i>x</i>&nbsp;:&nbsp;<i>x,</i> since <i>nx</i>&nbsp;>&nbsp;<i>m</i>(<i>x</i>&nbsp;+&nbsp<i>y</i>) implies <i>nx</i>&nbsp;>&nbsp;<i>mx.</i>  Finally, <i>x</i>&nbsp;:&nbsp;<i>x</i> is not greater than <i>x</i>&nbsp;:&nbsp;(<i>x</i>&nbsp;+&nbsp<i>y</i>), for if  <i>nx</i>&nbsp;>&nbsp<i>mx,</i> then <i>n</i>&nbsp;>&nbsp<i>m,</i> so <i>nx</i> is not less than <i>mx</i>&nbsp;>&nbsp<i>x,</i> and since <i>y</i> is an infinitesimal with respect to <i>x, x</i>&nbsp;>&nbsp<i>my,</i> therefore <i>nx</i>&nbsp;&ndash;&nbsp<i>mx</i>&nbsp;>&nbsp<i>my,</i> that is,
+<i>nx</i>&nbsp;>&nbsp<i>m</i>(<i>x</i>&nbsp;+&nbsp<i>y</i>).  
+
+<p>In summary, since we have a proof of trichotomy that uses V.Def.4 as an axiom of comparability, and a counterexample of trichotomy that violates the axiom of comparability, we can conclude that any proof of trichotomy requires the axiom of comparability.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

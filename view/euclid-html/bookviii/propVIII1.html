@@ -1,0 +1,113 @@
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">If there are as many numbers as we please in continued proportion, and the extremes of them are relatively prime, then the numbers are the least of those which have the same ratio with them.</div>
+
+<p>Let there be as many numbers as we please, <i>A, B, C,</i> and <i>D,</i> in continued proportion, and let the extremes of them, <i>A</i> and <i>D,</i> be relatively prime.
+<p>I say that <i>A, B, C,</i> and <i>D</i> are the least of those which have the same ratio with them.
+
+<p>If not, let <i>E, F, G,</i> and <i>H</i> be less than <i>A, B, C,</i> and <i>D,</i> and in the same ratio with them.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=175 >
+<img src="propVIII1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.1">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="D0;point;free;-1000,145;0;0">
+<param name=e[8] value="D3;point;free;1000,145;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,75,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[13] value="B2;point;lineSlider;B0,B3,90,0;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[16] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+<param name=e[18] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[19] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+
+<param name=e[21] value="M;point;midpoint;A1,A2;0;0">
+<param name=e[22] value="E1;point;lineSlider;A0,A3,150,0;0">
+<param name=e[23] value="E2;point;cutoff;E1,A3,A1,M;0">
+<param name=e[24] value="E;line;connect;E1,E2;black">
+<param name=e[25] value="F1;point;lineSlider;B0,B3,150,0;0">
+<param name=e[26] value="F2;point;proportion;A1,A2,B1,B2,E1,E2,F1,B3;0">
+<param name=e[27] value="F;line;connect;F1,F2;black">
+<param name=e[28] value="G1;point;lineSlider;C0,C3,150,0;0">
+<param name=e[29] value="G2;point;proportion;A1,A2,B1,B2,F1,F2,G1,C3;0">
+<param name=e[30] value="G;line;connect;G1,G2;black">
+<param name=e[31] value="H1;point;lineSlider;D0,D3,150,0;0">
+<param name=e[32] value="H2;point;proportion;A1,A2,B1,B2,G1,G2,H1,D3;0">
+<param name=e[33] value="H;line;connect;H1,H2;black">
+</applet></div>
+
+<div class="just"><a href=../bookVII/propVII14.html>VII.14</a></div>
+<p>Now, since <i>A, B, C,</i> and <i>D</i> are in the same ratio with <i>E, F, G,</i> and <i>H,</i> and the multitude of the numbers <i>A, B, C,</i> and <i>D</i> equals the multitude of the numbers <i>E, F, G,</i> and <i>H,</i> therefore, <i>ex aequali A</i> is to <i>D</i> as <i>E</i> is to <i>H.</i>
+
+<div class="just"><a href=../bookVII/propVII21.html>VII.21</a>
+<br><a href=../bookVII/propVII20.html>VII.20</a></div>
+<p>But <i>A</i> and <i>D</i> are relatively prime, numbers which are relatively prime are also least, and the least numbers measure those which have the same ratio the same number of times, the greater the greater and the less the less, that is, the antecedent the antecedent and the consequent the consequent.  Therefore <i>A</i> measures <i>E,</i> the greater the less, which is impossible.
+
+<p>Therefore <i>E, F, G,</i> and <i>H,</i> which are less than <i>A, B, C,</i> and <i>D,</i> are not in the same ratio with them. Therefore <i>A, B, C,</i> and <i>D</i> are the least of those which have the same ratio with them.
+
+<p>Therefore, <i>if there are as many numbers as we please in continued proportion, and the extremes of them are relatively prime, then the numbers are the least of those which have the same ratio with them.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<h4>Continued proportions and geometric progressions</h4>
+
+In this proposition we consider only continued proportions with a constant ratio.  They are proportions of the form
+<p><center>
+<i>a</i><sub>1</sub>&nbsp;:&nbsp;<i>a</i><sub>2</sub> = <i>a</i><sub>2</sub>&nbsp;:&nbsp;<i>a</i><sub>3</sub> = <i>a</i><sub>3</sub>&nbsp;:&nbsp;<i>a</i><sub>4</sub> = ... = <i>a</i><sub><i>n</i>-1</sub>&nbsp;:&nbsp;<i>a</i><sub><i>n</i></sub>. 
+</center><p>
+
+In proposition <a href="propVIII4.html">VIII.4</a> continued proportions that don&rsquo;t have a constant ratio will be considered.
+
+<p>An example of continued proportion with constant ratio is
+<p><center>
+1250&nbsp;:&nbsp;750 = 750&nbsp;:&nbsp;450 = 450&nbsp;:&nbsp;270 = 270&nbsp;:&nbsp;162 
+</center><p>
+since each of the ratios is the same as the ratio 5&nbsp;:&nbsp;3.
+
+<p>A modern expression for this situation is to say that the numbers 
+<i>a</i><sub>1</sub>, <i>a</i><sub>2</sub>, <i>a</i><sub>3</sub>, ..., <i>a</i><sub><i>n</i>-1</sub>,&nbsp;<i>a</i><sub><i>n</i></sub> are in a <i>geometric progression</i> or a <i>geometric sequence.</i>  The ratio of any consecutive pair in a geometric progression is constant.  
+
+<p>Many of the propositions in Books VIII and IX treat geometric progressions.  The sum of a geometric progression is found in proposition <a href="../bookIX/propIX35.html">IX.35</a>.
+
+
+<h4>About this proposition</h4>
+
+This proposition says that if the end numbers are relatively prime in a continued proportion with constant ratio, then there is no continued proportion of the same length and same ratio having smaller numbers.  We could say that the continued proportion is in <i>lowest terms.</I> The proposition generalizes <a href="../bookVII/propVII21.html">VII.21</a> when there are only two numbers in continued proportion, that is, a ratio.  VII.21 says if the two numbers are relatively prime, then the ratio is in lowest terms.
+
+<p>Notice that the example of a continued proportion given above, 1250&nbsp;:&nbsp;750&nbsp;= 750&nbsp;:&nbsp;450&nbsp;= 450&nbsp;:&nbsp;270&nbsp;= 270&nbsp;:&nbsp;162, is not in lowest terms, since all the numbers may be halved to get continued proportion of the same length and same ratio but with smaller numbers.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next one and in <a href=propVIII9.html>VIII.9</a>.  The converse of this proposition is <a href=propVIII3.html>VIII.3</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

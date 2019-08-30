@@ -1,0 +1,85 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 32</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 32</h1>
+
+<div class="statement">In any triangle, if one of the sides is produced, then the exterior angle equals the sum of the two interior and opposite angles, and the sum of the three interior angles of the triangle equals two right angles.</div>
+
+<p>Let <i>ABC</i> be a triangle, and let one side of it <i>BC</i> be produced to <i>D.</i>
+
+<p>I say that the exterior angle <i>ACD</i> equals the sum of the two interior and opposite angles <i>CAB</i> and <i>ABC,</i> and the sum of the three interior angles of the triangle <i>ABC, BCA,</i> and <i>CAB</i> equals two right angles.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=240>
+<img src="propI32.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.32">
+<param name=e[1] value="A;point;free;70,40">
+<param name=e[2] value="B;point;free;40,160">
+<param name=e[3] value="C;point;free;130,160">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[5] value="D;point;lineSlider;B,C,200,160">
+<param name=e[6] value="CD;line;connect;C,D">
+<param name=e[7] value="E';point;parallelogram;A,B,C;0;0">
+<param name=e[8] value="E;point;lineSlider;C,E',170,40">
+<param name=e[9] value="CE;line;connect;C,E">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI32.gif" hspace=10 vspace=10 alt="I.32">';
+</script>
+</div>
+
+<div class="just"><a href=propI31.html>I.31</a></div>
+<p>Draw <i>CE</i> through the point <i>C</i> parallel to the straight line <i>AB.</i>
+
+<div class="just"><a href=propI29.html>I.29</a></div>
+<p>Since <i>AB</i> is parallel to <i>CE,</i> and <i>AC</i> falls upon them, therefore the alternate angles <i>BAC</i> and <i>ACE</i> equal one another.
+
+<div class="just"><a href=propI29.html>I.29</a></div>
+<p>Again, since <i>AB</i> is parallel to <i>CE,</i> and the straight line <i>BD</i> falls upon them, therefore the exterior angle <i>ECD</i> equals the interior and opposite angle <i>ABC.</i>
+
+<p>But the angle <i>ACE</i> was also proved equal to the angle <i>BAC.</i> Therefore the whole angle <i>ACD</i> equals the sum of the two interior and opposite angles <i>BAC</i> and <i>ABC.</i>
+
+<div class="just"><a href=cn.html>C.N.2</a></div>
+<p>Add the angle <i>ACB</i> to each. Then the sum of the angles <i>ACD</i> and <i>ACB</i> equals the sum of the three angles <i>ABC, BCA,</i>  and <i>CAB.</i>
+
+<div class="just"><a href=propI13.html>I.13</a>
+<br><a href=cn.html>C.N.1</a></div>
+<p>But the sum of the angles <i>ACD</i> and <i>ACB</i> equals two right angles. Therefore the sum of the angles <i>ABC, BCA,</i> and <i>CAB</i> also equals two right angles.
+
+<p>Therefore <i>in any triangle, if one of the sides is produced, then the exterior angle equals the sum of the two interior and opposite angles, and the sum of the three interior angles of the triangle equals two right angles.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<h4>Corollaries of Proclus</h4>
+There are two corollaries of this proposition given by Proclus.
+
+<p><b>Corollary 1.</b>
+The sum of the interior angles of a convex rectilinear figure equals twice as many angles as the figure has sides, less four.
+
+<p><b>Corollary 2.</b>
+The sum of the exterior angles of any convex rectilinear figure together equal four right angles.
+
+<h4>Use of Proposition 32</h4>
+
+Although this proposition isn&rsquo;t used in the rest of Book I, it is frequently used in the rest of the books on geometry, namely Books II, III, IV, VI, XI, XII, and XIII.
+The corollaries, however, are not used in the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

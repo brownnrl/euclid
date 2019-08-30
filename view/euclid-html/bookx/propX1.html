@@ -1,0 +1,83 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 1</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">Two unequal magnitudes being set out, if from the greater there is subtracted a magnitude greater than its half, and from that which is left a magnitude greater than its half, and if this process is repeated continually, then there will be left some magnitude  less than the lesser magnitude set out.</div>
+
+<p>Let <i>AB</i> and <i>C</i> be two unequal magnitudes of which <i>AB</i> is the greater.
+
+<p>I say that, if from <i>AB</i> there is subtracted a magnitude greater than its half, and from that which is left a magnitude greater than its half, and if this process is repeated continually, then there will be left some magnitude which is less than the magnitude <i>C</i>.
+
+<div class="just">cf. <a href=../bookV/defV4.html>V.Def.4</a></div>
+<p>Some multiple <i>DE</i> of <i>C</i> is greater than <i>AB</i>.
+
+<p>Divide <i>DE</i> into the parts <i>DF</i>, <i>FG</i>, and <i>GE</i> equal to <i>C</i>.  From <i>AB</i> subtract <i>BH</i> greater than its half, and from <i>AH</i> subtract <i>HK</i> greater than its half, and repeat this process continually until the divisions in <i>AB</i> are equal in multitude with the divisions in <i>DE</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=100>
+<img src="propX1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.1">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="D0;point;free;-1000,70;0;0">
+<param name=e[4] value="D3;point;free;1000,70;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,160,0">
+<param name=e[7] value="AB;line;connect;A,B">
+<param name=e[8] value="C1;point;lineSlider;A0,A3,200,0;0">
+<param name=e[9] value="C2;point;lineSlider;A0,A3,250,0;0">
+<param name=e[10] value="C;line;connect;C1,C2;black">
+<param name=e[11] value="D;point;lineSlider;D0,D3,30,0">
+<param name=e[12] value="F;point;cutoff;D,D3,C1,C2">
+<param name=e[13] value="G;point;cutoff;F,D3,C1,C2">
+<param name=e[14] value="E;point;cutoff;G,D3,C1,C2">
+<param name=e[15] value="DE;line;connect;D,E">
+<param name=e[16] value="ABmid;point;midpoint;A,B;0;0">
+<param name=e[17] value="H;point;lineSegmentSlider;A,ABmid,85,0">
+<param name=e[18] value="AHmid;point;midpoint;A,H;0;0">
+<param name=e[19] value="K;point;lineSegmentSlider;A,AHmid,55,0">
+</applet></div>
+
+<p>Let, then, <i>AK</i>, <i>KH</i>, and <i>HB</i> be divisions equal in multitude with <i>DF</i>, <i>FG</i>, and <i>GE</i>.
+
+<p>Now, since <i>DE</i> is greater than <i>AB</i>, and from <i>DE</i> there has been subtracted <i>EG</i> less than its half, and, from <i>AB</i>, <i>BH</i> greater than its half, therefore the remainder <i>GD</i> is greater than the remainder <i>HA</i>.
+
+<p>And, since <i>GD</i> is greater than <i>HA</i>, and there has been subtracted from <i>GD</i> the half <i>GF</i>, and from <i>HA</i>, <i>HK</i> greater than its half, therefore the remainder <i>DF</i> is greater than the remainder <i>AK</i>.
+
+<p>But <i>DF</i> equals <i>C</i>, therefore <i>C</i> is also greater than <i>AK</i>.  Therefore <i>AK</i> is less than <i>C</i>.
+
+<p>Therefore there is left of the magnitude <i>AB</i> the magnitude <i>AK</i> which is less than the lesser magnitude set out, namely <i>C</i>.
+
+<p>Therefore, <i>two unequal magnitudes being set out, if from the greater there is subtracted a magnitude greater than its half, and from that which is left a magnitude greater than its half, and if this process is repeated continually, then there will be left some magnitude  less than the lesser magnitude set out.</i>
+
+<div class="qed">Q.E.D.</div>
+
+<p>And the theorem can similarly be proven even if the parts subtracted are halves.
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The proof begins with two magnitudes <i>C</i> and <i>AB</i> and claims that some multiple of <i>C</i> is greater then <i>AB</i>.  Definition <a href=../bookV/defV4.html>V.Def.4</a> is not a justification for this statement.  Euclid himself proved that a horn angle is less than any rectilinear angle in proposition <a href=../bookIII/propIII16.html>III.16</a> and must have recognized that if the magnitude <i>C</i> is a horn angle, and the magnitude <i>AB</i> is a rectilinear angle, then no multiple of <i>C</i> is greater than <i>AB</i>.  Nonetheless, he did not qualify this proposition to say that it only holds for certain kinds of magnitudes.
+
+
+<h4>Use of this proposition</h4>
+
+This proposition is the foundation of the method of exhaustion of Book XII.  It is not used in the rest of Book X and would, perhaps, be better placed at the beginning of Book XII. This method is used in the propositions concerning areas of circles and volumes of solids.  It is specifically used in propositions <a href=../bookXII/propXII2.html>XII.2</a>,   <a href=../bookXII/propXII5.html>XII.5</a>,  <a href=../bookXII/propXII10.html>XII.10</a>, <a href=../bookXII/propXII11.html>XII.11</a>, <a href=../bookXII/propXII12.html>XII.12</a>, and <a href=../bookXII/propXII16.html>XII.16</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

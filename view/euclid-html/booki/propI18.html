@@ -1,0 +1,90 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 18</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 18</h1>
+
+<div class="statement">In any triangle the angle opposite the greater side is greater.</div>
+
+<p>Let <i>ABC</i> be a triangle having the side <i>AC</i> greater than <i>AB.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=260>
+<img src="propI18.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.18">
+<param name=e[1] value="A;point;free;40,30">
+<param name=e[2] value="B;point;free;80,170">
+<param name=e[3] value="C;point;free;220,170">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[5] value="D;point;cutoff;A,C,A,B">
+<param name=e[6] value="BD;line;connect;B,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI18.gif" hspace=10 vspace=10 alt="I.18">';
+</script>
+</div>
+
+<p>I say that the angle <i>ABC</i> is also greater than the angle <i>BCA.</i>
+
+<div class="just"><a href=propI3.html>I.3</a>,
+<a href=post1.html>I.Post.1</a></div>
+<p>Since <i>AC</i> is greater than <i>AB,</i> make <i>AD</i> equal to <i>AB,</i> and join <i>BD.</i>
+
+<div class="just"><a href=propI16.html>I.16</a></div>
+<p>Since the angle <i>ADB</i> is an exterior angle of the triangle <i>BCD,</i> therefore it is greater than the interior and opposite angle <i>DCB.</i>
+
+<div class="just"><a href=propI5.html>I.5</a></div>
+<p>But the angle <i>ADB</i> equals the angle <i>ABD,</i> since the side <i>AB</i> equals <i>AD,</i> therefore the angle <i>ABD</i> is also greater than the angle <i>ACB.</i>  Therefore the angle <i>ABC</i> is much greater than the angle <i>ACB.</i>
+
+<p>Therefore <i>in any triangle the angle opposite the greater side is greater.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<h4>On word order</h4>
+
+In this translation of Euclid&rsquo;s <i>Elements</i> the order of the words differs from the original Greek.  In each of Euclid&rsquo;s Greek sentences, the data, that is the geometric objects given or already constructed, appear first, and the remaining geometric objects appear later.  This is possible in Greek since it is an inflected language and the word order is very flexible. On the other hand, the word order in English is intrinsic to the syntax and semantics of the sentence and is not very flexible.
+
+<p>Take, for instance, the statements of this and the next proposition. 
+Very literal translations of these are (I.18) &ldquo;In any triangle, the greater side [as subject] the greater angle [as object] subtends,&rdquo; and (I.19) &ldquo;In any triangle, the greater angle [as object] the greater side [as subject] subtends.&rdquo;
+
+<p>Heath keeps the word order in his translation but makes the second statement passive: (I.18) &ldquo;In any triangle the greater side subtends the greater angle,&rdquo; and (I.19) &ldquo;In any triangle the greater angle is subtended by the greater side.&rdquo;  Without the understanding that the data come first, these two sentences are logically equivalent.
+
+<p>In this translation the original word order is abandoned in order to make for more readable sentences and to clarify the meaning.  Thus, (I.18)
+&ldquo;In any triangle the angle opposite the greater side is greater,&rdquo; and (I.19)
+&ldquo;In any triangle the side opposite the greater angle is greater.&rdquo;
+
+<p>It may sound like these two propositions really do say the same thing, but they don&rsquo;t.  they&rsquo;re actually disguised converses of each other.  I.18 says
+
+<p><center>
+if side <i>AC</i> > side <i>AB,</i> then angle <i>ABC</i> > angle <i>BCA</i>,
+</center><p> 
+while I.19 says 
+
+<p><center>
+if angle <i>ABC</i> > angle <i>BCA,</i> then side <i>AC</i> > side <i>AB.</i>
+</center>
+
+<h4>Use of Proposition 18</h4>
+
+This proposition is used in the proof of proposition
+<a href=propI45.html>I.19</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

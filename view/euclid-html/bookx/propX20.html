@@ -1,0 +1,65 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 20</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 20</h1>
+
+<div class="statement">If a rational area is applied to a rational straight line, then it produces as breadth a straight line rational and commensurable in length with the straight line to which it is applied.</div>
+
+<p>Let the rational area <i>AC</i> be applied to <i>AB</i>, a straight line once more rational in any of the aforesaid ways, producing <i>BC</i> as breadth.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=160 height=220>
+<img src="propX20.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.20">
+<param name=e[1] value="A0;point;free;-1000,130;0;0">
+<param name=e[2] value="A3;point;free;1000,130;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,130,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,30,0">
+<param name=e[5] value="AD;polygon;square;B,A;0;0;black;random">
+<param name=e[6] value="D;point;vertex;AD,4">
+<param name=e[7] value="C;point;lineSlider;B,D,0,190">
+<param name=e[8] value="AC;polygon;parallelogram;A,B,C">
+</applet></div>
+
+<p>I say that <i>BC</i> is rational and commensurable in length with <i>BA</i>.
+
+<div class="just"><a href=../bookI/propI46.html>I.46</a>,
+<a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>Describe the square <i>AD</i> on <i>AB</i>.  Then <i>AD</i> is rational.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>But <i>AC</i> is also rational, therefore <i>DA</i> is commensurable with <i>AC</i>. And <i>DA</i> is to <i>AC</i> as <i>DB</i> is to <i>BC</i>. Therefore <i>DB</i> is also commensurable with <i>BC</i>, and <i>DB</i> equals <i>BA</i>.  Therefore <i>AB</i> is also commensurable with <i>BC</i>.
+
+<p>But <i>AB</i> is rational, <i>C</i> therefore <i>BC</i> is also rational and commensurable in length with <i>AB</i>.
+
+<p>Therefore, <i>if a rational area is applied to a rational straight line, then it produces as breadth a straight line rational and commensurable in length with the straight line to which it is applied.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h3><img src=../guide.gif alt=Guide width=83 height=37></h3></a>
+
+<p>This proposition is a converse of the last, except that it&rsquo;s preceded by applying an area to a straight line to get the rectangle.  That would be more evident if it read &ldquo;If one side of a rational rectangle is rational, then the other side is rational and commensurable with the first.&rdquo;
+
+<p>It&rsquo;s often easier to understand the statement and proof they&rsquo;re translated into modern language.  Let <i>a</i> be the length of <i>AB</i>, and <i>b</i> be the length of <i>BC</i>. Since the rectangle <i>AC</i> is rational, that means its area <i>ab</i> is a rational number.  Since <i>AB</i> is a rational line, that means <i>a</i><sup>2</sup> is a rational number.  Therefore, <i>a</i>/<i>b</i> is a rational number, that is, lines <i>AB</i> and <i>BC</i> are commensurable.  Also, <i>b</i><sup>2</sup> is a rational number, that is, line <i>BC</i> is a rational line.
+
+<h4>Use of this proposition</h4>
+
+<p>This proposition is used frequently in Book X starting with <a href=propX26.html>X.26</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

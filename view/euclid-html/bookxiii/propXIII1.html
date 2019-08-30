@@ -1,0 +1,88 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">
+If a straight line is cut in extreme and mean ratio, then the square on the greater segment added to the half of the whole is five times the square on the half.</div>
+
+<p>Let the straight line <i>AB</i> be cut in extreme and mean ratio at the point <i>C,</i> and let <i>AC</i> be the greater segment.  Produce the straight line <i>AD</i> in a straight line with <i>CA,</i> and make <i>AD</i> half of <i>AB.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=350 >
+<img src="propXIII1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.1">
+<param name=e[1] value="A;point;free;100,170">
+<param name=e[2] value="B;point;free;220,170">
+<param name=e[3] value="BAKE;polygon;square;B,A;0;0;black;random">
+<param name=e[4] value="E;point;vertex;BAKE,4">
+<param name=e[5] value="K;point;vertex;BAKE,3">
+<param name=e[6] value="K';point;midpoint;A,K;0;0">
+<param name=e[7] value="C';point;extend;K,K',K',B;0;0">
+<param name=e[8] value="C;point;cutoff;A,B,A,C'">
+<param name=e[9] value="D;point;extend;B,A,A,K'">
+<param name=e[10] value="DCFL;polygon;square;D,C;0;0;black;random">
+<param name=e[11] value="F;point;vertex;DCFL,3">
+<param name=e[12] value="L;point;vertex;DCFL,4">
+<param name=e[13] value="DF;line;connect;D,F">
+<param name=e[14] value="G;point;intersection;C,F,E,K">
+<param name=e[15] value="CG;line;connect;C,G">
+<param name=e[16] value="Q;point;intersection;F,L,A,K;0;0">
+<param name=e[17] value="AQ;line;connect;A,Q">
+<param name=e[18] value="H;point;intersection;AQ,DF">
+<param name=e[19] value="P;point;parallelogram;D,A,H">
+<param name=e[20] value="R;point;intersection;P,H,C,F;0;0">
+<param name=e[21] value="PR;line;connect;P,R">
+<param name=e[22] value="O;point;midpoint;A,H">
+<param name=e[23] value="M;point;cutoff;H,P,H,O">
+<param name=e[24] value="N;point;cutoff;H,F,H,O">
+<param name=e[25] value="ONM;sector;arc;O,N,M;0;0;gray">
+</applet></div>
+
+<p>I say that the square on <i>CD</i> is five times the square on <i>AD.</i>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a></div>
+<p>Describe the squares <i>AE</i> and <i>DF</i> on <i>AB</i> and <i>DC,</i> draw the figure in <i>DF,</i> and carry <i>FC</i>  through to <i>G.</i>
+
+<div class="just"><a href="../bookVI/defVI3.html">VI.Def.3</a>
+<br><a href="../bookVI/propVI17.html">VI.17</a></div>
+<p>Now, since <i>AB</i> is cut in extreme and mean ratio at <i>C,</i> therefore the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>AC.</i>  And <i>CE</i> is the rectangle <i>AB</i> by <i>BC,</i> and <i>FH</i> is the square on <i>AC,</i> therefore <i>CE</i> equals <i>FH.</i></td>
+
+<p>And, since <i>BA</i> is double <i>AD,</i> while <i>BA</i> equals <i>KA,</i> and <i>AD</i> equals <i>AH,</i> therefore <i>KA</i> is also double <i>AH.</i>
+
+<div class="just"><a href="../bookVI/propVI1.html">VI.1</a></div>
+<p>But <i>KA</i> is to <i>AH</i> as <i>CK</i> is to <i>CH,</i> therefore <i>CK</i> is double <i>CH.</i>  But the sum of <i>LH</i> and <i>HC</i> is also double <i>CH.</i>  Therefore <i>KC</i> equals the sum of <i>LH</i> and <i>HC.</i>
+
+<p>But <i>CE</i> was also proved equal to <i>HF,</i> therefore the whole square <i>AE</i> equals the gnomon <i>MNO.</i>
+
+<p>And, since <i>BA</i> is double <i>AD,</i> therefore the square on <i>BA</i> is quadruple the square on <i>AD,</i> that is, <i>AE</i> is quadruple <i>DH.</i>
+
+<p>But <i>AE</i> equals the gnomon <i>MNO,</i> therefore the gnomon <i>MNO</i> is also quadruple <i>AP.</i> Therefore the whole <i>DF</i> is five times <i>AP.</i>
+
+<p>And <i>DF</i> is the square on <i>DC,</i> and <i>AP</i> the square on <i>DP,</i> therefore the square on <i>CD</i> is five times the square on <i>DA.</i>
+
+<p>Therefore, <i>if a straight line is cut in extreme and mean ratio, then the square on the greater segment added to the half of the whole is five times the square on the half.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<h4>Use of this theorem</h4>
+
+This proposition is used in the proofs of <a href=propXIII6.html>XIII.6</a> and <a href=propXIII11.html>XIII.11</a>.  Those propositions are in turn used to make conclusions about the sides of the icosahedron and dodecahedron constructed in propositions <a href=propXIII16.html>XIII.16</a> and <a href=propXIII17.html>XIII.17</a>. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

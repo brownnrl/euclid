@@ -1,0 +1,116 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 9</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 9</h1>
+
+<div class="statement">
+To cut off a prescribed part from a given straight line.
+</div>
+
+<p>Let <i>AB</i> be the given straight line.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=290>
+<img src=propVI9.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.9">
+<param name=e[1] value="A;point;free;30,220">
+<param name=e[2] value="B;point;free;250,220">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="D;point;free;80,170">
+<param name=e[5] value="E;point;extend;A,D,A,D">
+<param name=e[6] value="C;point;extend;D,E,A,D">
+<param name=e[7] value="G;point;extend;E,C,A,D;0;0">
+<param name=e[8] value="AG;line;connect;A,G">
+<param name=e[9] value="F';point;parallelogram;B,C,D;0;0">
+<param name=e[10] value="F;point;intersection;A,B,D,F'">
+<param name=e[11] value="DF;line;connect;D,F">
+<param name=e[12] value="CB;line;connect;C,B">
+</applet></div>
+
+<p>It is required to cut off from <i>AB</i> a prescribed part.
+
+<p>Let the third part be that prescribed.
+
+<div class="just"><a href="../bookI/propI3.html">I.3</a></div>
+<p>Draw a straight line <i>AC</i> through from A containing with <i>AB</i> any angle.  Take a point <i>D</i> random on <i>AC,</i> and make <i>DE</i> and <i>EC</i> equal to <i>AD.</i>
+
+<div class="just"><a href="../bookI/propI31.html">I.31</a></div>
+<p>Join <i>CB,</i> and draw <i>DF</i> through <i>D</i> parallel to it.
+
+<div class="just"><a href="propVI2.html">VI.2</a></div>
+<p>Then, since <i>DF</i> is parallel to a side <i>CB</i> of the triangle <i>ABC,</i> therefore, proportionally, <i>AD</i> is to <i>DC</i> as <i>AF</i> is to <I>FB.</i>
+
+<p>But <i>DC</i> is double <i>AD,</i> therefore <i>FB</i> is also double <i>AF,</i> therefore <i>AB</i> is triple of <i>AF.</i>
+
+<p>Therefore from the given straight line <i>AB</i> the prescribed third part <i>AF</i> has been cut off.
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The word &ldquo;part&rdquo; in this proposition means submultiple.  The problem here is to divide a line <i>AB</i> into some given number <i>n</i> of equal parts, or actually, to to find just one of these parts.  Euclid takes the case <i>n</i>&nbsp;=&nbsp;3 in his proof.
+
+<p>Simson complained that proving the general case by using a specific case, the one-third part, &ldquo;is not at all like Euclid&rsquo;s manner.&rdquo;  But it is very much Euclid&rsquo;s manner throughout books V and VI to prove a general numerical statement with a specific numerical value.
+
+<h4>Al-Nayrizi&rsquo;s construction</h4>
+
+<table cellpadding=5>
+<tr><td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=320>
+<img src=propVI9a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="An-Nairizi's construction">
+<param name=e[1] value="A;point;free;40,150">
+<param name=e[2] value="B;point;free;280,150">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="A';point;perpendicular;A,B;0;0">
+<param name=e[5] value="B';point;perpendicular;B,A;0;0">
+<param name=e[6] value="D;point;lineSlider;A,A',30,120">
+<param name=e[7] value="E;point;cutoff;B,B',A,D">
+<param name=e[8] value="F;point;extend;A,D,A,D">
+<param name=e[9] value="G;point;extend;B,E,B,E">
+<param name=e[10] value="H;point;extend;D,F,A,D">
+<param name=e[11] value="K;point;extend;E,G,B,E">
+<param name=e[12] value="L;point;extend;F,H,A,D">
+<param name=e[13] value="M;point;extend;G,K,B,E">
+<param name=e[14] value="AL;line;connect;A,L">
+<param name=e[15] value="BM;line;connect;B,M">
+
+<param name=e[16] value="DM;line;connect;D,M">
+<param name=e[17] value="FK;line;connect;F,K">
+<param name=e[18] value="HG;line;connect;H,G">
+<param name=e[19] value="LE;line;connect;L,E">
+<param name=e[20] value="N;point;intersection;AB,DM">
+<param name=e[21] value="O;point;intersection;AB,FK">
+<param name=e[22] value="P;point;intersection;AB,HG">
+<param name=e[23] value="Q;point;intersection;AB,LE">
+</applet></td>
+
+<td>Abu&rsquo;l-Abbas al-Fadl ibn al-Nayrizi (fl. c. 897, d. c. 922) wrote a commentary on the first ten books of the <i>Elements.</i>  He gives another construction to divide a line <i>AB</i> into <i>n</i> equal parts. First, construct equal perpendiculars at <i>A</i> and <i>B</i> in opposite directions, mark off <i>n</i> &ndash; 1 equal parts on each of them, and connect the points as illustrated.  The diagram shows <i>AB</i> divided into five equal parts. 
+
+<p>Al-Nayrizi&rsquo;s construction takes considerably less work than Euclid&rsquo;s.  The proof that this
+construction is valid is about the same length as that for Euclid&rsquo;s construction.
+</td></tr></table>
+
+<h4>Use of this construction</h4>
+
+This construction is used in a few propositions in Book XIII to find a third or a fifth of a line.
+
+
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

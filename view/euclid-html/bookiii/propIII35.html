@@ -1,0 +1,102 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 35</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 35</h1>
+
+<div class="statement">If in a circle two straight lines cut one another, then the rectangle contained by the segments of the one equals the rectangle contained by the segments of the other.</div>
+
+<p>For in the circle <i>ABCD</i> let the two straight lines <i>AC</i> and <i>BD</i> cut one another at the point <i>E.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=260>
+<img src=propIII35a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.35a">
+<param name=e[1] value="A;point;free;60,50">
+<param name=e[2] value="C;point;free;200,170">
+<param name=e[3] value="E;point;midpoint;A,C;black;green">
+<param name=pivot value=E>
+<param name=e[4] value="ABCD;circle;radius;E,A;0;0;black;random">
+<param name=e[5] value="B;point;circleSlider;ABCD,50,110">
+<param name=e[6] value="D;point;extend;B,E,B,E">
+<param name=e[7] value="AC;line;connect;A,C">
+<param name=e[8] value="BD;line;connect;B,D">
+</applet></div>
+
+<p>I say that the rectangle  <i>AE</i> by <i>EC</i> equals the rectangle  <i>DE</i> by <i>EB.</i>
+
+<p>If now <i>AC</i> and <i>BD</i> are through the center, so that <i>E</i> is the center of the circle <i>ABCD,</i> it is manifest that, <i>AE, EC, DE,</i> and <i>EB</i> being equal, the rectangle <i>AE</i> by <i>EC</i> also equals the rectangle  <i>DE</i> by <i>EB.</i>
+
+<hr width=30%>
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=270 width=260>
+<img src=propIII35b.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.35b">
+<param name=e[1] value="A;point;free;40,80">
+<param name=e[2] value="C;point;free;160,230">
+<param name=e[3] value="AC;line;connect;A,C">
+<param name=e[4] value="G;point;midpoint;A,C">
+<param name=e[5] value="GF';line;perpendicular;G,A;0;0;0">
+<param name=e[6] value="F;point;lineSlider;GF',130,140">
+<param name=e[7] value="FG;line;connect;F,G">
+<param name=e[8] value="ABCD;circle;radius;F,A;0;0;black;random">
+<param name=e[9] value="B;point;circleSlider;ABCD,100,230">
+<param name=e[10] value="D;point;circleSlider;ABCD,210,80">
+<param name=e[11] value="BD;line;connect;B,D">
+<param name=e[12] value="E;point;intersection;A,C,B,D">
+<param name=e[13] value="EF;line;connect;E,F">
+<param name=e[14] value="BF;line;connect;B,F">
+<param name=e[15] value="CF;line;connect;C,F">
+<param name=e[16] value="H;point;midpoint;B,D">
+<param name=e[17] value="HF;line;connect;H,F">
+</applet></div>
+
+<div class="just"><a href="propIII1.html">III.1</a>
+<br><a href="../bookI/propI12.html">I.12</a></div>
+<p>Next let <i>AC</i> and <i>DB</i> not be through the center.  Take the center <i>F</i> let the center of <i>ABCD.</i>  Draw <i>FG</i> and <i>FH</i> from <i>F</i> perpendicular  to the straight lines <i>AC</i> and <i>DB.</i>  Join <i>FB, FC,</i> and <i>FE.</i>
+
+<div class="just"><a href="propIII3.html">III.3</a></div>
+<p>Then, since a straight line <i>GF</i> through the center cuts a straight line <i>AC</i> not through the center at right angles, it also bisects it, therefore <i>AG</i> equals <i>GC.</i>
+
+<div class="just"><a href="../bookII/propII5.html">II.5</a></div>
+<p>Since, then, the straight line <i>AC</i> has been cut into equal parts at <i>G</i> and into unequal parts at <i>E,</i> the rectangle <i>AE</i> by <i>EC</i> together with the square on <i>EG</i> equals the square on <i>GC.</i>
+
+<p>Add the square on <i>GF.</i>  Therefore the rectangle <i>AE</i> by <i>EC</i> plus the sum of the squares on <i>GE</i> and <i>GF</i> equals the sum of the squares on <i>CG</i> and <i>GF.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the square on <i>FE</i> equals the sum of the squares on <i>EG</i> and <i>GF,</i> and the square on <i>FC</i> equals the sum of the squares on <i>CG</i> and <i>GF.</i> Therefore the rectangle <i>AE</i> by <i>EC</i> plus the square on <i>FE</i> equals the square on <i>FC.</i>
+
+<p>And <i>FC</i> equals <i>FB,</i> therefore the rectangle <i>AE</i> by <i>EC</i> plus the square on <i>EF</i> equals the square on <i>FB.</i> 
+
+<p>For the same reason, also, the rectangle <i>DE</i> by <i>EB</i> plus the square on <i>FE</i> equals the square on <i>FB.</i> 
+
+<p>But the rectangle <i>AE</i> by <i>EC</i> plus the square on <i>FE</i> was also proved equal to the square on <i>FB,</i> therefore the rectangle <i>AE</i> by <i>EC</i> plus the square on <i>FE</i> equals the rectangle <i>DE</i> by <i>EB</i> plus the square on <i>FE.</i> 
+
+<p>Subtract the square on <i>FE</i> from each.  Therefore the remaining rectangle <i>AE</i> by <i>EC</i> equals the rectangle <i>DE</i> by <i>EB.</i>
+
+<p>Therefore <i>if in a circle two straight lines cut one another, then the rectangle contained by the segments of the one equals the rectangle contained by the segments of the other.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+By means of proposition <a href=../bookVI/propVI16.html>VI.16</a>, the statement, &ldquo;the rectangle <i>AE</i> by <i>EC</i> equals the rectangle <i>DE</i> by <i>EB,</i>&rdquo; may be converted into one about ratios, namely, &ldquo;<i>AE</i> : <i>EB</i>&nbsp;=&nbsp;<i>DE</i> : <i>EC.</i>&rdquo;
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

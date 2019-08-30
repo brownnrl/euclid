@@ -1,0 +1,79 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 2</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 2</h1>
+
+<div class="statement">
+If two straight lines cut one another, then they lie in one plane; and every triangle lies in one plane.
+</div>
+
+<p>For let the two straight lines <i>AB</i> and <i>CD</i> cut one another at the point <i>E.</i>
+
+<p>I say that <i>AB</i> and <i>CD</i> lie in one plane, and that every triangle lies in one plane.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=300 >
+<img src="propXI2.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.2">
+<param name=buffer value=yes>
+<param name=e[1] value="A;point;free;60,40">
+<param name=e[2] value="B;point;free;210,250">
+<param name=e[3] value="C;point;free;50,260">
+<param name=e[4] value="D;point;free;190,50">
+<param name=e[5] value="E;point;intersection;A,B,C,D">
+<param name=e[6] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;black;random">
+<param name=e[7] value="F;point;lineSlider;C,E,80,190">
+<param name=e[8] value="G;point;lineSlider;B,E,150,180">
+<param name=e[9] value="H;point;lineSlider;C,B,100,200">
+<param name=e[10] value="K;point;lineSlider;C,B,140,200">
+<param name=e[11] value="FG;line;connect;F,G">
+<param name=e[12] value="FH;line;connect;F,H">
+<param name=e[13] value="GK;line;connect;G,K">
+</applet></div>
+
+<p>Take the points <i>F</i> and <i>G</i> at random on <i>EC</i> and <i>EB,</i> join <i>CB</i> and <i>FG,</i> and draw <i>FH</i> and <i>GK</i> across.
+
+<p>I say first that the triangle <i>ECB</i> lies in one plane.
+
+<p>For, if part of the triangle <i>ECB,</i> either <i>FHC</i> or <i>GBK,</i> is in the plane of reference, and the rest in another, then a part also of one of the straight lines <i>EC</i> or <i>EB</i> is in the plane of reference, and a part in another.
+
+<div class="just"><a href="propXI1.html">XI.1</a></div>
+<p> But, if the part <i>FCBG</i> of the triangle <i>ECB</i> is in the plane of reference, and the rest in another, then a part also of both the straight lines <i>EC</i> and <i>EB</i> is in the plane of reference and a part in another, which was proved absurd.
+
+<p> Therefore the triangle <i>ECB</i> lies in one plane.
+
+<div class="just"><a href="propXI1.html">XI.1</a></div>
+<p> But, in whatever plane the triangle <i>ECB</i> lies, each of the straight lines <i>EC</i> and <i>EB</i> also lies, and in whatever plane each of the straight lines <i>EC</i> and <i>EB</i> lies,  <i>AB</i> and <i>CD</i> also lie.
+
+<p> Therefore the straight lines <i>AB</I> and <i>CD</i> lie in one plane; and every triangle lies in one plane.
+
+<p>Therefore, <i>if two straight lines cut one another, then they lie in one plane; and every triangle lies in one plane. </i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+The goal of the proof in this proposition is to produce a plane for the two lines <i>AB</i> and <i>CD</i> to lie in. Yet the proof fails to produce any plane at all.  Near the beginning is the phrase &ldquo;the plane of reference&rdquo; occurs, but there is no reference as no planes have been mentioned.  As the two lines <i>AB</i> and <i>CD</i> could be placed anywhere in space, any previously conceived plane would be irrelevant to them.
+
+<p>Postulates of some sort are needed to justify the existence of planes. One could state that three noncollinear points determine a plane. Another might be that there are four noncoplanar points.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proofs of propositions <a href=propXI4.html>XI.4</a>, <a href=propXI6.html>XI.6</a>, and <a href=../bookXII/propXII17.html>XII.17</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

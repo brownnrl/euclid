@@ -1,0 +1,193 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 35</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 36</h1>
+
+<div class="statement">If as many numbers as we please are in continued proportion, and there is subtracted from the second and the last numbers equal to the first, then the excess of the second is to the first as the excess of the last is to the sum of all those before it.</div>
+
+<p>Let there be as many numbers as we please in continued proportion, <i>A, BC, D,</i> and <i>EF,</i> beginning from <i>A</i> as least, and let there be subtracted from <i>BC</i> and <i>EF</i> the numbers <i>BG</i> and <i>FH,</i> each equal to <i>A.</i>
+
+<p>I say that <i>GC</i> is to <i>A</i> as <i>EH</i> is to the sum of <i>A, BC,</i> and <i>D.</i>
+
+<p>Make <i>FK</i> equal to <i>BC,</i> and <i>FL</i> equal to <i>D.</i>
+
+<p>Then, since <i>FK</i> equals <i>BC,</i> and of these the part <i>FH</i> equals the part <i>BG,</i> therefore the remainder <i>HK</i> equals the remainder <i>GC.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=165>
+<img src="propIX35.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.35">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="D0;point;free;-1000,110;0;0">
+<param name=e[6] value="D3;point;free;1000,110;0;0">
+<param name=e[7] value="E0;point;free;-1000,145;0;0">
+<param name=e[8] value="E3;point;free;1000,145;0;0">
+<param name=e[9] value="U1;point;free;1000,0;0;0">
+<param name=e[10] value="U2;point;free;1000,35;0;0">
+
+<param name=e[11] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[12] value="A2;point;lineSlider;A0,A3,70,0;0">
+<param name=e[13] value="A;line;connect;A1,A2;black">
+<param name=e[14] value="B;point;lineSlider;B0,B3,30,0">
+<param name=e[15] value="C;point;lineSlider;B0,B3,100,0">
+<param name=e[16] value="BC;line;connect;B,C">
+<param name=e[17] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[18] value="D2;point;proportion;A1,A2,B,C,B,C,D1,D3;0">
+<param name=e[19] value="D;line;connect;D1,D2;black">
+<param name=e[20] value="E;point;lineSlider;E0,E3,30,0">
+<param name=e[21] value="F;point;proportion;A1,A2,B,C,D1,D2,E,E3">
+<param name=e[22] value="EF;line;connect;E,F">
+<param name=e[23] value="G;point;cutoff;B,C,A1,A2">
+<param name=e[24] value="H;point;cutoff;F,E,A1,A2">
+<param name=e[25] value="K;point;cutoff;F,E,B,C">
+<param name=e[26] value="L;point;cutoff;F,E,D1,D2">
+</applet></div>
+
+<div class="just"><a href=../bookVII/propVII11.html>VII.11</a>
+<br><a href=../bookVII/propVII13.html>VII.13</a></div>
+<p>And since <i>EF</i> is to <i>D</i> as <i>D</i> is to <i>BC,</i> and as <i>BC</i> is to <i>A,</i> while <i>D</i> equals <i>FL, BC</i> equals <i>FK,</i> and <i>A</i> equals <i>FH,</i> therefore <i>EF</i> is to <i>FL</i> as <i>LF</i> is to <i>FK,</i> and as <i>FK</i> is to <i>FH.</i> Taken separately <i>EL</i> is to <i>LF</i> as <i>LK</i> is to <i>FK,</i> and as <i>KH</i> is to <i>FH.</i>
+
+<div class="just"><a href="../bookVII/propVII12.html">VII.12</a></div>
+<p>Since one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents, therefore <i>KH</i> is to <i>FH</i> as the sum of <i>EL, LK,</i> and <i>KH</i> is to the sum of <i>LF, FK,</i> and <i>HF.</i>
+
+<p>But <i>KH</i> equals <i>CG, FH</i> equals <i>A,</i> and the sum of <i>LF, FK,</i> and <i>HF</i> equals the sum of <i>D, BC,</i> and <i>A,</i> therefore <i>CG</i> is to <i>A</i> as <i>EH</i> is to the sum of <i>D, BC,</i> and <i>A.</i>
+
+<p>Therefore the excess of the second is to the first as the excess of the last is to the sum of those before it.
+
+<p>Therefore, <i>if as many numbers as we please are in continued proportion, and there is subtracted from the second and the last numbers equal to the first, then the excess of the second is to the first as the excess of the last is to the sum of all those before it.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h3><img src=../guide.gif alt=Guide width=83 height=37></h3>
+
+This proposition says if a sequence of numbers 
+<i>a</i><sub>1</sub>, <i>a</i><sub>2</sub>, <i>a</i><sub>3</sub>, ...,
+<i>a</i><sub><i>n</i></sub>, <i>a</i><sub><i>n</i>+1</sub>
+is in continued proportion
+<p><center>
+<i>a</i><sub>1</sub>&nbsp;:&nbsp;<i>a</i><sub>2</sub> = 
+<i>a</i><sub>2</sub>&nbsp;:&nbsp;<i>a</i><sub>3</sub> = ... =
+<i>a</i><sub><i>n</i></sub>&nbsp;:&nbsp;<i>a</i><sub><i>n</i>+1</sub>
+</center><p>
+then
+<p><center>
+(<i>a</i><sub>2</sub> &#150; <i>a</i><sub>1</sub>) : <i>a</i><sub>1</sub> =
+(<i>a</i><sub><i>n</i>+1</sub> &#150; <i>a</i><sub>1</sub>) : 
+(<i>a</i><sub>1</sub> + <i>a</i><sub>2</sub> + ... + <i>a</i><sub><i>n</i></sub>).
+</center><p>
+
+This conclusion gives a way of computing the sum of the terms in the continued proportion as
+<p><center><table>
+<tr align=center><td>
+<i>a</i><sub>1</sub> + <i>a</i><sub>2</sub> + ... + <i>a</i><sub><i>n</i></sub> =
+ <i>a</i><sub>1</sub></td>
+<td>
+<i>a</i><sub><i>n</i>+1</sub> &#150; <i>a</i><sub>1</sub>
+<hr>
+<i>a</i><sub>2</sub> &#150; <i>a</i><sub>1</sub>
+</td><td>.</td>
+</table></center><p>
+
+If we denote the first term by <i>a</i> and the ratio of the terms by <i>r,</i> then this gives the
+ familiar formula
+<p><center><table>
+<tr align=center><td>
+<i>a</i> + <i>ar</i> + <i>ar</i><sup>2</sup> + ... + <i>ar</i><sup><i>n</i>-1</sup> = <i>a</i></td>
+<td>
+<i>r</i><sup><i>n</i></sup> &#150; 1
+<hr>
+<i>r</i> &#150; 1
+</td><td>.</td>
+</table></center><p>
+ 
+<h4>Summary of the proof</h4>
+
+The proof is much more comprehisible when it&rsquo;s translated into algebraic notation.  The correspondence is as follows
+
+<center><table cellspacing=10>
+<tr valign=top><td>
+<i>A</i> = <i>a</i><sub>1</sub>
+<br><i>BC</i> = <i>a</i><sub>2</sub>
+<br>&nbsp; &nbsp; &nbsp; ...
+<br><i>D</i> = <i>a</i><sub><i>n</i></sub>
+<br><i>EF</i> = <i>a</i><sub><i>n</i>+1</sub>
+</td>
+<td><i>BG</i> = <i>FH</i> = <i>a</i><sub>1</sub>
+<br><i>GC</i> = <i>a</i><sub>2</sub> &#150; <i>a</i><sub>1</sub>
+<br><i>EH</i> = <i>a</i><sub><i>n</i>+1</sub> &#150; <i>a</i><sub>1</sub>
+<i>a</i><sub>2</sub>&nbsp;:&nbsp;<i>a</i><sub>1</sub>.
+</table></center><p>
+
+For each proportion, say the first,
+<p><center>
+<i>a</i><sub><i>n</i>+1</sub>&nbsp;:&nbsp;<i>a</i><sub><i>n</i></sub> =
+<i>a</i><sub><i>n</i></sub>&nbsp;:&nbsp;<i>a</i><sub><i>n</i>&#150;1</sub>, 
+</center><p>
+take it separately according to <a href=../bookVII/propVII11.html>VII.11</a> to get
+<p><center>
+(<i>a</i><sub><i>n</i>+1</sub> &#150; <i>a</i><sub><i>n</i></sub>)&nbsp;:&nbsp;(<i>a</i><sub><i>n</i></sub> &#150;
+ <i>a</i><sub><i>n</i>&#150;1</sub>) = <i>a</i><sub><i>n</i></sub>&nbsp;:&nbsp;<i>a</i><sub><i>n</i>&#150;1</sub>,
+
+</center><p>
+then alternately
+<p><center>
+(<i>a</i><sub><i>n</i>+1</sub> &#150; <i>a</i><sub><i>n</i></sub>):<i>a</i><sub><i>n</i></sub> =
+ (<i>a</i><sub><i>n</i></sub> &#150;
+ <i>a</i><sub><i>n</i>&#150;1</sub>):<i>a</i><sub><i>n</i>&#150;1</sub>.
+</center><p>
+
+Stringing the conclusions together, we have
+<p><center>
+(<i>a</i><sub><i>n</i>+1</sub> &#150; <i>a</i><sub><i>n</i></sub>):<i>a</i><sub><i>n</i></sub> =
+(<i>a</i><sub><i>n</i></sub> &#150;
+ <i>a</i><sub><i>n</i>&#150;1</sub>):<i>a</i><sub><i>n</i>&#150;1</sub> =&nbsp;...
+ =&nbsp;(<i>a</i><sub>2</sub>&nbsp;&#150;&nbsp;<i>a</i><sub>1</sub>):<i>a</i><sub>1</sub>.
+</center><p>
+
+Next, using proposition <a href="../bookVII/propVII12.html">VII.12</a>, the sum of the antecedents is
+ to the sum of the consequences equals this same ratio.  Therefore
+<p><center>
+(<i>a</i><sub><i>n</i>+1</sub>&#150;<i>a</i><sub><i>n</i></sub> +
+ <i>a</i><sub><i>n</i></sub>&#150;<i>a</i><sub><i>n</i>&#150;1</sub> + ... +
+ <i>a</i><sub>2</sub>&#150;<i>a</i><sub>1</sub>)
+ :&nbsp;(<i>a</i><sub><i>n</i></sub>&nbsp;+&nbsp;<i>a</i><sub><i>n</i>&#150;1</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>a</i><sub>2</sub>&nbsp;+&nbsp;<i>a</i><sub>1</sub>)
+=&nbsp;(<i>a</i><sub>2</sub>&nbsp;&#150;&nbsp;<i>a</i><sub>1</sub>)&nbsp;:&nbsp;<i>a</i><sub>1</sub>.
+</center><p>
+
+But <i>a</i><sub><i>n</i>+1</sub> &#150; <i>a</i><sub><i>n</i></sub> +
+ <i>a</i><sub><i>n</i></sub> &#150; <i>a</i><sub><i>n</i>&#150;1</sub> + ... +
+ <i>a</i><sub>2</sub> &#150; <i>a</i><sub>1</sub> equals
+ <i>a</i><sub><i>n</i>+1</sub>&nbsp;&#150;&nbsp;<i>a</i><sub>1</sub>. That gives us the conclusion of
+ the proposition
+<p><center>
+(<i>a</i><sub><i>n</i>+1</sub> &#150; <i>a</i><sub>1</sub>) :
+(<i>a</i><sub><i>n</i></sub> + <i>a</i><sub><i>n</i>&#150;1</sub> + ... +
+ <i>a</i><sub>2</sub> + <i>a</i><sub>1</sub>)
+ =
+(<i>a</i><sub>2</sub> &#150; <i>a</i><sub>1</sub>) : <i>a</i><sub>1</sub>.
+</center><p>
+
+ 
+<h4>Use of this propostion</h4>
+
+This proposition is used in the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

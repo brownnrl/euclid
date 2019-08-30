@@ -1,0 +1,61 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 13</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 13</h1>
+
+<div class="statement">If two magnitudes are commensurable, and one of them is incommensurable with any magnitude, then the remaining one is also incommensurable with the same.</div>
+
+<p>Let <i>A</i> and <i>B</i> be two commensurable magnitudes, and let one of them, <i>A</i>, be incommensurable with some other magnitude <i>C</i>.
+
+<p>I say that the remaining one, <i>B</i>, is also incommensurable with <i>C</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=230 height=120>
+<img src="propX13.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.13">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="C0;point;free;-1000,100;0;0">
+<param name=e[6] value="C3;point;free;1000,100;0;0">
+
+<param name=e[7] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,170,0;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[11] value="B2;point;lineSlider;B0,B3,200,0;0">
+<param name=e[12] value="B;line;connect;B1,B2;black">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[14] value="C2;point;lineSlider;C0,C3,150,0;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+</applet></div>
+
+<div class="just"><a href=propX12.html>X.12</a></div>
+<p>If <i>B</i> is commensurable with <i>C</i>, while <i>A</i> is also commensurable with <i>B</i>, then <i>A</i> is also commensurable with <i>C</i>.
+
+<p>But it is also incommensurable with it, which is impossible. Therefore <i>B</i> is not commensurable with <i>C</i>. Therefore it is incommensurable with it.
+
+<p>Therefore, <i>if two magnitudes are commensurable, and one of them is incommensurable with any magnitude, then the remaining one is also incommensurable with the same.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+The proposition is a logical variant of the previous.  It is used in very frequently in Book X starting with <a href=propX18.html>X.18</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

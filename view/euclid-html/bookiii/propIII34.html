@@ -1,0 +1,70 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 34</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 34</h1>
+
+<div class="statement">From a given circle to cut off a segment admitting an angle equal to a given rectilinear angle.</div>
+
+<p>Let <i>ABC</i> be the given circle, and the angle at <i>D</i> the given rectilinear angle.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=320>
+<img src=propIII34.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.34">
+<param name=e[1] value="D1;point;free;290,120;0">
+<param name=e[2] value="D2;point;free;240,180;0">
+<param name=e[3] value="D3;point;free;300,180;0">
+<param name=e[4] value="D12;line;connect;D1,D2">
+<param name=e[5] value="D23;line;connect;D2,D3">
+<param name=e[6] value="D;polygon;triangle;D1,D2,D3;black;0;0;0">
+<param name=e[7] value="A;point;free;185,195">
+<param name=e[8] value="E;point;free;30,210">
+<param name=e[9] value="F;point;free;30,30">
+<param name=e[10] value="EF;line;connect;E,F">
+<param name=e[11] value="B;point;lineSlider;EF,30,120">
+<param name=e[12] value="BO';line;perpendicular;B,E;0;0;0">
+<param name=e[13] value="M;point;midpoint;B,A;0;0">
+<param name=e[14] value="MM';line;perpendicular;M,A;0;0;0">
+<param name=e[15] value="O;point;intersection;BO',MM';0;0">
+<param name=e[16] value="ABC;circle;radius;O,B;0;0;black;random">
+<param name=e[17] value="C';point;similar;F,B,D1,D2,D3;0;0">
+<param name=e[18] value="BC;line;chord;B,C',ABC;0;0;0">
+<param name=e[19] value="C;point;last;BC">
+<param name=e[20] value="triABC;polygon;triangle;A,B,C;0;0;black;random">
+</applet></div>
+
+<p>It is required to cut off from the circle <i>ABC</i> a segment admitting an angle equal to the given rectilinear angle, the angle at <i>D.</i>
+
+<div class="just"><a href="propIII17.html">III.17</a>
+<br><a href="../bookI/propI23.html">I.23</a></div>
+<p>Draw <i>EF</i> touching <i>ABC</i> at the point <i>B.</i>  Construct the angle <i>FBC</i> equal to the angle at <i>D</i> on the straight line <i>FB</i> and at the point <i>B</i> on it.
+
+<div class="just"><a href="propIII32.html">III.32</a></div>
+<p>Then, since a straight line <i>EF</i> touches the circle <i>ABC,</i> and <i>BC</i> has been drawn across from the point of contact at <i>B,</i> the angle <i>FBC</i> equals the angle constructed in the alternate segment <i>BAC.</i>
+
+<p>But the angle <i>FBC</i> equals the angle at <i>D,</i> therefore the angle in the segment <i>BAC</i> equals the angle at <i>D.</i> 
+
+<p>Therefore from the given circle <i>ABC</i> the segment <i>BAC</i> has been cut off admitting an angle equal to the given rectilinear angle, the angle at <i>D.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

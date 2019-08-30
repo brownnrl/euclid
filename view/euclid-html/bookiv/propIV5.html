@@ -1,0 +1,210 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 5</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 5</h1>
+
+<div class="statement">
+To circumscribe a circle about a given triangle.</div>
+
+<p>Let <i>ABC</i> be the given triangle.
+<p>It is required to circumscribe a circle about the given triangle <i>ABC.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=250>
+<img src="propIV5a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.5a">
+<param name=e[1] value="A;point;free;140,40">
+<param name=e[2] value="B;point;free;50,180">
+<param name=e[3] value="C;point;free;200,180">
+<param name=e[4] value="circABC;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[5] value="triABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[6] value="D;point;midpoint;A,B">
+<param name=e[7] value="E;point;midpoint;A,C">
+<param name=e[8] value="F;point;center;circABC;black;green">
+<param name=pivot value=F>
+<param name=e[9] value="AF;line;connect;A,F">
+<param name=e[10] value="BF;line;connect;B,F">
+<param name=e[11] value="CF;line;connect;C,F">
+<param name=e[12] value="DF;line;connect;D,F">
+<param name=e[13] value="EF;line;connect;E,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV5a.gif" hspace=10 alt="IV5">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI10.html">I.10</a>
+<br><a href="../bookI/propI11.html">I.11</a></div>
+<p>Bisect the straight lines <i>AB</i> and <i>AC</i> at the points <i>D</i> and <i>E.</i>  Draw <i>DF</i> and <i>EF</i>  from the points <i>D</i> and <i>E</i> at right angles to <i>AB</i> and <i>AC.</i>  They will then meet within the triangle <i>ABC,</i> or on the straight line <i>BC,</i> or outside <i>BC.</i>
+
+<p>First let them meet within at <i>F.</i>  Join <i>FB, FC,</i> and <i>FA.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since <i>AD</i> equals <i>DB,</i> and <i>DF</i> is common and at right angles, therefore the base <i>AF</i> equals the base <i>FB.</i>
+
+<p>Similarly we can prove that <i>CF</i> also equals <i>AF,</i> so that <i>FB</i> also equals <i>FC,</i> therefore the three straight lines <i>FA</i> and <i>FB</i> and <i>FC</i> equal one another.
+
+<div class="just"><a href=../bookIV/defIV.html>IV.Def.6</a></div>
+<p>Therefore the circle described with center <i>F</i> and radius one of the straight lines <i>FA, FB,</i> or <i>FC</i> also passes through the remaining points, and the circle is circumscribed about the triangle <i>ABC.</i>
+
+<div class="rdiagram">
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=240>
+<img src="propIV5b.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.5b">
+<param name=e[1] value="B;point;free;40,115">
+<param name=e[2] value="C;point;free;200,115">
+<param name=e[3] value="BC;line;connect;B,C">
+<param name=e[4] value="F;point;midpoint;B,C;black;green">
+<param name=pivot value=F>
+<param name=e[5] value="circABC;circle;radius;F,B;0;0;black;random">
+<param name=e[6] value="A;point;circleSlider;circABC,140,30">
+<param name=e[7] value="triABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[8] value="D;point;midpoint;A,B">
+<param name=e[9] value="E;point;midpoint;A,C">
+<param name=e[10] value="AF;line;connect;A,F">
+<param name=e[11] value="DF;line;connect;D,F">
+<param name=e[12] value="EF;line;connect;E,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propIV5b.gif" hspace=10 alt="IV5">';
+</script>
+</div>
+
+<p>
+Let it be circumscribed as <i>ABC.</i>
+
+<hr width=30%>
+
+<p>Next, let <i>DF</i> and <i>EF</i> meet on the straight line <i>BC</i> at <i>F,</i> as is the case in the second figure.  Join <i>AF.</i>
+
+<p>Then, similarly, we can prove that the point <i>F</i> is the center of the circle circumscribed about the triangle <i>ABC.</i>
+
+<div class="ldiagram">
+<div id="ap3">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=250>
+<img src="propIV5c.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.5c">
+<param name=e[1] value="A;point;free;140,40">
+<param name=e[2] value="B;point;free;50,80">
+<param name=e[3] value="C;point;free;200,80">
+<param name=e[4] value="circABC;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[5] value="triABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[6] value="D;point;midpoint;A,B">
+<param name=e[7] value="E;point;midpoint;A,C">
+<param name=e[8] value="F;point;center;circABC;black;green">
+<param name=pivot value=F>
+<param name=e[9] value="AF;line;connect;A,F">
+<param name=e[10] value="BF;line;connect;B,F">
+<param name=e[11] value="CF;line;connect;C,F">
+<param name=e[12] value="DF;line;connect;D,F">
+<param name=e[13] value="EF;line;connect;E,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap3').innerHTML =
+  '<img src="propIV5c.gif" hspace=10 alt="IV5">';
+</script>
+</div>
+
+<hr width=30%>
+
+<p>Next, let <i>DF</i> and <i>EF</i> meet outside the triangle <i>ABC</i> at <i>F,</i> as is the case in the third figure.  Join <i>AF, BF,</i> and <i>CF.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then again, since <i>AD</i> equals <i>DB,</i> and <i>DF</i> is common and at right angles, therefore the base <i>AF</i> equals the base <i>BF.</i>
+
+<div class="just"><a href=../bookIV/defIV.html>IV.Def.6</a></div>
+<p>Similarly we can prove that <i>CF</i> also equals <i>AF,</i> so that <i>BF</i> also equals <i>FC.</i>  Therefore the circle described with center <i>F</i> and radius one of the straight lines <i>FA, FB,</i> or <i>FC</i> also passes through the remaining points, and is circumscribed about the triangle <i>ABC.</i>
+
+<p>Therefore a circle has been circumscribed about the given triangle.
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<br>
+
+<a name=cor>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+And it is clear that when the center of the circle falls within the triangle, the angle <i>BAC,</i> being in a segment greater than the semicircle, is less than a right angle, when the center falls on the straight line <i>BC,</i> the angle <i>BAC,</i> being in a semicircle, is right, and when the center of the circle falls outside the triangle, the angle <i>BAC,</i> being in a segment less than the semicircle, is greater than a right angle.
+<div class="just"><a href="../bookIII/propIII31.html">III.31</a></div>
+</div>
+</div>
+
+<h2>Guide</h2>
+
+As noted by Simson and others, Euclid does not justify the intersection of the perpendicular bisectors <i>DF</i> and <i>EF.</i>  Such a justification is necessary but easy to supply.
+  
+<p>The note following the proposition is not actually called a corollary in the Greek text.  It is just a remark following the proposition.
+
+<h4>Circumcircles</h4>
+
+This circle drawn about a triangle is called, naturally enough, the <i>circumcircle</i> of the triangle, its center the <i>circumcenter</i> of the triangle, and its radius the <i>circumradius.</i>  Much has been discovered about the theory of incircles and circumcircles since Euclid.
+
+<p><table cellspacing=5>
+<tr><td>The ratio that appears in the law of sines in trigonometry is the diameter of the circumcircle:
+<p><center>2<i>R</i>&nbsp;=&nbsp;<i>BC</i>&nbsp;/&nbsp;sin&nbsp;<i>A</i>&nbsp;=&nbsp;<i>CA</i>&nbsp;/&nbsp;sin&nbsp;<i>B</i>&nbsp;=&nbsp;<i>AB</i>&nbsp;/&nbsp;sin&nbsp;<i>C</i></center><p>
+where <i>R</i> is the circumradius.
+
+<p>This relation is easy to derive from the figure.  Angle <i>AFC</i> is twice the angle at <i>B</i> [<a href=../bookIII/propIII20.html>III.20</a>], but it is also twice angle <i>AFE</i> since the triangles <i>AFE</i> and <i>CFE</i> are congruent.  Therefore angle <i>AFE</i> equals the angle at <i>B.</i>  Then the sine of <i>B</i> can be found in the right triangle <i>AFE</i> as the ratio of the side <i>AE</i> opposite angle <i>AFE</i> to the hypotenuse <i>AF.</i>  Since <i>AE</i> is half of <i>AC,</i> it follows that sin&nbsp;<i>B</i>&nbsp;=&nbsp;<i>AC</i>/(2<i>R</i>) which yields one of the three equations for the law of sines.</td>
+
+<td>
+<div id="ap4">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=230>
+<img src="propIV5d.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Law of sines">
+<param name=e[1] value="A;point;free;140,40">
+<param name=e[2] value="B;point;free;50,180">
+<param name=e[3] value="C;point;free;200,180">
+<param name=e[4] value="circABC;circle;circumcircle;A,B,C">
+<param name=e[5] value="triABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[6] value="D;point;midpoint;A,B">
+<param name=e[7] value="E;point;midpoint;A,C">
+<param name=e[8] value="F;point;center;circABC;black;green">
+<param name=pivot value=F>
+<param name=e[9] value="R;line;connect;A,F;black">
+<param name=e[10] value="BF;line;connect;B,F">
+<param name=e[11] value="CF;line;connect;C,F">
+<param name=e[12] value="DF;line;connect;D,F">
+<param name=e[13] value="EF;line;connect;E,F">
+<param name=e[14] value="AFE;polygon;triangle;A,F,E;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap4').innerHTML =
+  '<img src="propIV5d.gif" hspace=10 alt="IV5">';
+</script>
+</td></tr></table>
+
+<p>There is also an equation relating the circumradius <i>R,</i> the inradius <i>r,</i> and the three exradii <i>r<sub>A</sub>, r<sub>B</sub>,</i> and <i>r<sub>C</sub></i>:
+<p><center>4<i>R</i>&nbsp;=&nbsp;<i>r<sub>A</sub></i>&nbsp;+&nbsp;<i>r<sub>B</sub></i>&nbsp;+&nbsp;<i>r<sub>C</sub></i>&nbsp;&#150;&nbsp;<i>r,</i></center><p>
+and a number of other interesting results about circumcircles, incircles, and other constructions based on an arbitrary triangle.
+
+<p>This construction is used in propositions <a href=propIV10.html>IV.10</a> and <a href=../bookXI/propXI23.html>XI.23</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

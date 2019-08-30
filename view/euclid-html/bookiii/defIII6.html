@@ -1,0 +1,78 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book III, Definitions 6 through 9</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 6</h1>
+
+<div class="statement">A <i>segment</i> of a circle is the figure contained by a straight line and a circumference of a circle.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 7</h1>
+
+<div class="statement">An <i>angle of a segment</i> is that contained by a straight line and a circumference of a circle. </div>
+</div>
+
+<br> 
+
+<div class="theorem">
+<h1>Definition 8</h1>
+
+<div class="statement">An <i>angle in a segment</i> is the angle which, when a point is taken on the circumference of the segment and straight lines are joined from it to the ends of the straight line which is the base of the segment, is contained by the straight lines so joined.  </div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 9</h1>
+
+<div class="statement">And, when the straight lines containing the angle cut off a circumference, the angle is said to <i>stand upon</i> that circumference.</div>
+</div>
+
+<br>
+
+<a name=guide><h2>Guide</h2></a>
+
+<table cellspacing=5>
+<tr><td>
+A line in a circle, such as the line <i>BC,</i> divides the circle into two segments, the small blue segment <i>BDC,</i> and the large yellow segment <i>BEC.</i>
+
+<p>An angle <i>of</i> the segment <i>BDC</i> is not a rectilinear angle, since only one of its sides, <i>BC,</i> is a straight line.  The other side is curved, namely, an arc of a circle.  These angles of segments only appear in proposition <a href=propIII16.html>III.16</a>, and are not important in Euclid&rsquo;s development of geometry.
+
+<p>An example of an angle <i>in</i> a segment is the angle <i>BFC</i> in the yellow segment <i>BEC.</i>  This angle <i>BFC</i> stands upon the circumference (arc) <i>BDC.</i>  Angles <i>in</i> segments are rectilinear, and they are important.  In proposition <a href=propIII21.html>III.21</a>, Euclid proves that all the angles in a given segment are equal.
+</td>
+
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=300>
+<img src=defIII6.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.Def.6-9">
+<param name=e[1] value="A;point;free;150,120;black;green">
+<param name=pivot value=A>
+<param name=e[2] value="B;point;free;150,30">
+<param name=e[3] value="Acirc;circle;radius;A,B;0;0;black;yellow">
+<param name=e[4] value="C;point;circleSlider;Acirc,40,130">
+<param name=e[5] value="sect;sector;sector;A,B,C;0;0;0;cyan">
+<param name=e[6] value="tri;polygon;triangle;A,B,C;0;0;yellow;yellow">
+<param name=e[7] value="BC;line;connect;B,C">
+<param name=e[8] value="M;point;midpoint;BC;0;0">
+<param name=e[9] value="D;point;cutoff;A,M,A,B">
+<param name=e[10] value="E;point;extend;D,A,D,A">
+<param name=e[11] value="F;point;circleSlider;Acirc,200,100">
+<param name=e[12] value="BF;line;connect;B,F">
+<param name=e[13] value="CF;line;connect;C,F">
+</applet>
+</td></tr></table>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

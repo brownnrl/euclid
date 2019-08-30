@@ -1,0 +1,95 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 3</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">If a first magnitude is the same multiple of a second that a third is of a fourth, and if equimultiples are taken of the first and third, then the magnitudes taken also are equimultiples respectively, the one of the second and the other of the fourth.</div>
+
+<div class="just"><a href=defV1.html>V.Def.2</a></div>
+<p>Let a first magnitude <i>A</i> be the same multiple of a second <i>B</i> that a third <i>C</i> is of a fourth <i>D,</i> and let equimultiples <i>EF</i> and <i>GH</i> be taken of <i>A</i> and <i>C.</i>
+
+<p>I say that  <i>EF</i> is the same multiple of <i>B</i> that <i>GH</i> is of <i>D.</i>
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=150>
+<img src=propV3.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=align value=above>
+<param name=title value="V.3">
+<param name=e[1] value="U1;point;free;0,0;0;0">
+<param name=e[2] value="U2;point;free;25,0;0;0">
+<param name=e[3] value="U;line;connect;U1,U2;0;0;0">
+
+<param name=e[4] value="B1;point;free;270,30;0">
+<param name=e[5] value="B3;point;parallelogram;B1,U2,U1;0;0">
+<param name=e[6] value="B2;point;lineSlider;B1,B3,240,0;0">
+<param name=e[7] value="B;line;connect;B1,B2;black;0;blue">
+
+<param name=e[8] value="D1;point;free;270,100;0">
+<param name=e[9] value="D3;point;parallelogram;D1,U2,U1;0;0">
+<param name=e[10] value="D2;point;lineSlider;D1,D3,230,0;0">
+<param name=e[11] value="D;line;connect;D1,D2;black;0;red">
+
+<param name=e[12] value="A0;point;free;30,30;0">
+<param name=e[13] value="A';point;parallelogram;A0,U;0;0">
+<param name=e[14] value="A1;point;cutoff;A0,A',B;0;lightGray">
+<param name=e[15] value="A2;point;extend;A0,A1,B;0;lightGray">
+<param name=e[16] value="A3;point;extend;A0,A2,B;0">
+<param name=e[17] value="A;line;connect;A0,A3;black;0;blue">
+
+<param name=e[18] value="C0;point;free;30,100;0">
+<param name=e[19] value="C';point;parallelogram;C0,U;0;0">
+<param name=e[20] value="C1;point;cutoff;C0,C',D;0;lightGray">
+<param name=e[21] value="C2;point;extend;C0,C1,D;0;lightGray">
+<param name=e[22] value="C3;point;extend;C0,C2,D;0">
+<param name=e[23] value="C;line;connect;C0,C3;black;0;red">
+
+<param name=e[24] value="E;point;free;30,60">
+<param name=e[25] value="E';point;parallelogram;E,U;0;0">
+<param name=e[26] value="K;point;cutoff;E,E',A">
+<param name=e[27] value="F;point;extend;E,K,A">
+<param name=e[28] value="EF;line;connect;E,F;0;0;blue">
+
+<param name=e[29] value="G;point;free;30,130">
+<param name=e[30] value="G';point;parallelogram;G,U;0;0">
+<param name=e[31] value="L;point;cutoff;G,G',C">
+<param name=e[32] value="H;point;extend;G,L,C">
+<param name=e[33] value="GH;line;connect;G,H;0;0;red">
+</applet></div>
+
+<p>Since <i>EF</i> is the same multiple of <i>A</i> that <i>GH</i> is of <i>C,</i> therefore there are as many magnitudes as in <i>EF</i> equal to <i>A</i> as there are in <i>GH</i> equal to <i>C.</i>
+
+<p>Divide <i>EF</i> into the magnitudes <i>EK</i> and <i>KF</i> equal to <i>A,</i> and divide <i>GH</i> into the magnitudes <i>GL</i> and <i>LH</i> equal to <i>C.</i>  Then the number of the magnitudes <i>EK</i> and <i>KF</i> equals the number of the magnitudes <i>GL</i> and <i>LH.</i>
+
+<p>And, since <i>A</i> is the same multiple of <i>B</i> that <i>C</i> is of <i>D,</i> while <i>EK</i> equals <i>A,</i> and <i>GL</i> equals <i>C,</i> therefore <i>EK</i> is the same multiple of <i>B</i> that <i>GL</i> is of <i>D.</i>
+
+<p>For the same reason <i>KF</i> is the same multiple of <i>B</i> that <i>LH</i> is of <i>D.</i>
+
+<div class="just"><a href=propV2.html>V.2</a></div>
+<p>Since a first magnitude <i>EK</i> is the same multiple of a second <i>B</i> that a third <i>GL</i> is of a fourth <i>D,</i> and a fifth <i>KF</i> is the same multiple of the second <i>B</i> that a sixth <i>LH</i> is of the fourth <i>D,</i> therefore the sum <i>EF</i> of the first and fifth is the same multiple of the second <i>B</i> that the sum <i>GH</i> of the third and sixth is of the fourth <i>D.</i>
+
+<p>Therefore, <i>if a first magnitude is the same multiple of a second that a third is of a fourth, and if equimultiples are taken of the first and third, then the magnitudes taken also are equimultiples respectively, the one of the second and the other of the fourth.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says that equimultiples of equimultiples are equimultiples, that is, if <i>w</i> and <i>x</i> are equimultiples of <i>y</i> and <i>z,</i>
+and <i>u</i> and <i>v</i> are equimultiples of <i>w</i> and <i>x,</i> then <i>u</i> and <i>v</i> are equimultiples of <i>y</i> and <i>z.</i>    The proof depends on an associativity of multiplication: <i>m</i> (<i>ny</i>)&nbsp;=&nbsp;(<i>mn</i>) <i>y.</i>  In Euclid&rsquo;s proof, <i>n</i> is 3 and <i>m</i> is 2.
+
+<p>As in the last proposition, the magnitudes need not all be of the same kind.
+
+<p>Although this proposition is not actually a statement about ratios, it can be interpreted as one.  The hypotheses that <i>A</i> and <i>C</i> are equimultiples of <i>B</i> and <i>D</i> can be interpreted as a proportion <i>A</i>&nbsp;:&nbsp;<i>B</i>&nbsp;=&nbsp;<i>C</i>&nbsp;:&nbsp;<i>D,</i> and the conclusion that <i>mA</i> and <i>mC</i> are equimultiples of <i>B</i> and <i>D</i> can be interpreted as a proportion <i>mA</i>&nbsp;:&nbsp;<i>B</i>&nbsp;=&nbsp;<i>mC</i>&nbsp;:&nbsp;<i>D.</i>  Under these interpretations this proposition becomes a special case of the next, and it is the special case that is used to prove the general case in the next proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

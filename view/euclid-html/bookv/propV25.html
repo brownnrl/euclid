@@ -1,0 +1,93 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 25</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 25</h1>
+
+<div class="statement">
+If four magnitudes are proportional, then the sum of the greatest and the least is greater than the sum of the remaining two.</div>
+
+<p>Let the four magnitudes <i>AB, CD, E,</i> and <i>F</i> be proportional so that <i>AB</i> is to <i>CD</i> as <i>E</i> is to <i>F,</i> and let <i>AB</i> be the greatest of them and <i>F</i> the least.
+
+<p>I say that the sum of <i>AB</i> and <i>F</i> is greater than the sum of <i>CD</i> and <i>E.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=150>
+<img src=propV25.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.25">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+<param name=e[7] value="X0;point;free;-1000,130;0;0">
+<param name=e[8] value="X1;point;free;1000,130;0;0">
+
+<param name=e[9] value="A;point;lineSlider;U0,U1,30,30">
+<param name=e[10] value="B;point;lineSlider;U0,U1,270,30">
+<param name=e[11] value="AB;line;connect;A,B;0;0;green">
+<param name=e[12] value="C;point;lineSlider;W0,W1,30,100">
+<param name=e[13] value="D;point;lineSlider;W0,W1,220,100">
+<param name=e[14] value="CD;line;connect;C,D;0;0;green">
+<param name=e[15] value="E1;point;lineSlider;V0,V1,30,60;0">
+<param name=e[16] value="E2;point;lineSlider;V0,V1,170,60;0">
+<param name=e[17] value="E;line;connect;E1,E2;black;0;green">
+<param name=e[18] value="F1;point;lineSlider;X0,X1,30,130;0">
+<param name=e[19] value="F2;point;proportion;A,B,C,D,E1,E2,F1,X1;0">
+<param name=e[20] value="F;line;connect;F1,F2;black;0;green">
+<param name=e[21] value="G;point;cutoff;A,B,E1,E2">
+<param name=e[22] value="H;point;cutoff;C,D,F1,F2">
+</applet>
+</div>
+
+<p>Make <i>AG</i> equal to <i>E,</i> and <i>CH</i> equal to <i>F.</i>
+
+<div class="just"><a href="propV7.html">V.7</a>
+<br><a href=propV11.html>V.11</a></div>
+<p>Since <i>AB</i> is to <i>CD</i> as <i>E</i> is to <i>F,</i> and <i>E</i> equals <i>AG,</i> and <i>F</i> equals <i>CH,</i> therefore <i>AB</i> is to <i>CD</i> as <i>AG</i> is to <i>CH.</i>
+
+<div class="just"><a href="propV19.html">V.19</a></div>
+<p>And since the whole <i>AB</i> is to the whole <i>CD</i> as the part <i>AG</i> subtracted is to the part <i>CH</i> subtracted, therefore the remainder <i>GB</i> is also to the remainder <i>HD</i> as the whole <i>AB</i> is to the whole <i>CD.</i>
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>But <i>AB</i> is greater than <i>CD,</i> therefore <i>GB</i> is also greater than <i>HD.</i></td>
+
+<p>And, since <i>AG</i> equals <i>E,</i> and <i>CH</i> equals <i>F,</i> therefore the sum of <i>AG</i> and <i>F</i> equals the sum of <i>CH</i> and <i>E.</i>
+ 
+<p>And if, <i>GB</i> and <i>HD</i> being unequal, and <i>GB</i> greater, the sum of <i>AG</i> and <i>F</i> is added to <i>GB,</i> and the sum of <i>CH</i> and <i>E</i> is added to <i>HD,</i> it follows that the sum of <i>AB</i> and <i>F</i> is greater than the sum of <i>CD</i> and <i>E.</i>
+
+<p>Therefore, <i>if four magnitudes are proportional, then the sum of the greatest and the least is greater than the sum of the remaining two.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This proposition says that if <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i> and <i>w</i> is the greatest of the four magnitudes while <i>z</i> is the least, then <i>w</i>&nbsp;+&nbsp;<i>z</i>&nbsp;>&nbsp;<i>x</i>&nbsp;+&nbsp;<i>y.</i> All four magnitudes must be of the same kind.
+
+<p>The argument goes as follows.  Since <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z</i>, therefore  (<i>w</i>&nbsp;&ndash;&nbsp;<i>y</i>)&nbsp;:&nbsp;(<i>x</i>&nbsp;&ndash;&nbsp;<i>z</i>)&nbsp;=&nbsp;<i>w</i>&nbsp;:&nbsp;<i>x</i>,  by <a href="propV19.html">V.19</a>.  But since <i>w</i>&nbsp;>&nbsp;<i>x</i>, therefore <i>w</i>&nbsp;&ndash;&nbsp;<i>y</i>&nbsp;>&nbsp;<i>x</i>&nbsp;&ndash;&nbsp;<i>z</i>. Thus <i>w</i>&nbsp;+&nbsp;<i>z</i>&nbsp;>&nbsp;<i>x</i>&nbsp+&nbsp;<i>y</i>.
+
+<p>This proposition is not used in the rest of the <i>Elements</i> but is an end in itself.  
+
+<h4>Arithmetic and geometric means</h4>
+
+A special case of this proposition occurs when the middle terms are the same: 
+<i>x</i>&nbsp;:&nbsp;<i>y</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z.</i>  In that case <i>y</i> is the mean proportional, equivalent to the geometric mean for real numbers and described as the square root of the product <i>xz.</i>
+The conclusion of the proposition, after dividing by 2, says (<i>x</i>&nbsp;+&nbsp;<i>z</i>)/2&nbsp;>&nbsp;<i>y.</i>  The arithmetic mean, or average, of two magnitudes is half their sum.  Thus, this proposition gives as a corollary
+<ul>The arithmetic mean of two magnitudes is less than their geometric mean.</ul>
+
+<p>This proposition relies on treating <a href=defV4.html>V.Def.4</a> as an axiom of comparability.  Infinitesimal counterexample: when <i>y</i> is infinitesimal with respect to <i>x,</i> consider the proportion (<i>x</i>&nbsp;+&nbsp;5<i>y</i>)&nbsp;:&nbsp;(<i>x</i>&nbsp;+&nbsp;2<i>y</i>)&nbsp;=&nbsp;(<i>x</i>&nbsp;+&nbsp;4<i>y</i>)&nbsp;:&nbsp;<i>x.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997, 2013");
+</script>
+</BODY></HTML>

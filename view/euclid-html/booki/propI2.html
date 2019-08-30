@@ -1,0 +1,140 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 2</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">To place a straight line equal to a given straight line with one end at a given point.</div>
+
+<p>Let <i>A</i> be the given point, and <i>BC</i> the given straight line.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=320 width=340 name=main>
+<img src="propI2.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.2">
+<param name=e[1] value="A;point;free;160,190">
+<param name=e[2] value="B;point;free;190,160">
+<param name=e[3] value="C;point;free;180,90">
+<param name=e[4] value="BC;line;connect;B,C">
+<param name=e[5] value="DAB;polygon;equilateralTriangle;A,B;0;0;0;0">
+<param name=e[6] value="D;point;vertex;DAB,3;black;green">
+<param name=pivot value="D">
+<param name=e[7] value="AL;line;extend;D,A,B,C">
+<param name=e[8] value="L;point;last;AL">
+<param name=e[9] value="LE;line;extend;A,L,A,B">
+<param name=e[10] value="E;point;last;LE;black;0">
+<param name=e[11] value="BG;line;extend;D,B,B,C">
+<param name=e[12] value="G;point;last;BG">
+<param name=e[13] value="GF;line;extend;B,G,A,B">
+<param name=e[14] value="F;point;last;GF;black;0">
+<param name=e[15] value="CGH;circle;radius;BC;0;0;0;0">
+<param name=e[16] value="BH;line;extend;G,B,G,B;0;0;0">
+<param name=e[17] value="H;point;last;BH;black;0">
+<param name=e[18] value="GKL;circle;radius;D,G;0;0;black;darker">
+<param name=e[19] value="CGH*;circle;radius;BC;0;0;black;brighter">
+<param name=e[20] value="DK;line;extend;G,D,G,D;0;0;0">
+<param name=e[21] value="K;point;last;DK;black;0">
+<param name=e[22] value="DAB*;polygon;equilateralTriangle;A,B;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI2.gif" hspace=10 vspace=10 alt="I.2">';
+</script>
+</div>
+
+<p>It is required to place a straight line equal to the given straight line <i>BC</i> with one end at the point <i>A.</i>
+
+<div class="just"><a href="post1.html">Post. 1</a>,
+<a href="propI1.html">I.1.</a></div>
+<p>Join the straight line <i>AB</i> from the point <i>A</i> to the point <i>B,</i> and construct the equilateral triangle <i>DAB</i> on it.
+
+<div class="just"><a href=post2.html>Post.2</a>
+<br><a href=post3.html>Post.3</a></div>
+<p>Produce the straight lines <i>AE</i> and <i>BF</i> in a straight line with <i>DA</i> and <i>DB.</i>  Describe the circle <i>CGH</i> with center <i>B</i> and radius <i>BC,</i> and again, describe the circle <i>GKL</i> with center <i>D</i> and radius <i>DG.</i>
+
+<div class="just"><a href=defI15.html>I.Def.15</a></div>
+<p>Since the point <i>B</i> is the center of the circle <i>CGH,</i> therefore <i>BC</i> equals <i>BG.</i>  Again, since the point <i>D</i> is the center of the circle <i>GKL,</i> therefore <i>DL</i> equals <i>DG.</i>
+
+<div class="just"><a href=cn.html>C.N.3</a></div>
+<p>And in these <i>DA</i> equals <i>DB,</i> therefore the remainder <i>AL</i> equals the remainder <i>BG.</i>
+
+<div class="just"><a href=cn.html>C.N.1</a></div>
+<p>But <i>BC</i> was also proved equal to <i>BG,</i>
+therefore each of the straight lines <i>AL</i> and <i>BC</i> equals <i>BG.</i> And things which equal the same thing also equal one another, therefore <i>AL</i> also equals <i>BC.</i>
+
+<p>Therefore the straight line <i>AL</i> equal to the given straight line <i>BC</i> has been placed with one end at the given point <i>A.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This is a very clever construction to solve what seems to be a simple problem.  One would like simply to slide the line <i>BC</i> along so that one end coincides with the point <i>A.</i>  But there is no motion in the geometry of Euclid.  There is something like motion used in proposition <a href=propI4.html>I.4</a>, but nothing is actually moved there.  The only basic constructions that Euclid allows are those described in Postulates 1, 2, and 3.  Euclid then builds new constructions (such as the one in this proposition) out of previously described constructions.  So at this point, the only constructions available are those of the three postulates and the construction in proposition
+<a href=propI1.html>I.1</a>, and Euclid uses all four here.
+
+<p>Another, different, expectation is that one might use a compass to transfer the distance <i>BC</i> over to the point <i>A.</i>  It is clear from Euclid&rsquo;s use of postulate 3 that the point to be used for the center and a point that will be on the circumference must be constructed before applying the postulate; postulate 3 is not used to transfer distance.  Sometimes postulate 3 is likened to a collapsing compass, that is, when the compass is lifted off the drawing surface, it collapses.
+
+<p>It could well be that in some earlier Greek geometric theory abstracted compasses that could transfer distances.  If that speculation is correct, then this proposition would be a late addition to the theory.  The construction of the proposition allows a weaker postulate (namely postulate 3) to be assumed.
+
+<table cellpadding=5>
+<tr><td>
+<h4>Construction steps</h4>
+
+<p>When using a compass and a straightedge to perform this construction there are more circles drawn than shown in the diagram that accompanies the proposition.  These are the two circles needed to construct the equilateral triangle <i>ABD.</i>  One side, <i>AB,</i> of that triangle isn&rsquo;t necessary for the construction.
+
+<p>Altogether, four circles and two lines are required for this construction.</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=320 width=300>
+<img src="propI2a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.2">
+<param name=e[1] value="A;point;free;150,190">
+<param name=e[2] value="B;point;free;180,160">
+<param name=e[3] value="C;point;free;170,90">
+<param name=e[4] value="BC;line;connect;B,C;0;0;blue">
+<param name=e[5] value="ABcirc;circle;radius;A,B">
+<param name=e[6] value="BAcirc;circle;radius;B,A">
+<param name=e[7] value="D'D;line;bichord;ABcirc,BAcirc;0;0;0">
+<param name=e[8] value="D;point;last;D'D;black;green">
+<param name=pivot value="D">
+<param name=e[9] value="DA;line;connect;D,A">
+<param name=e[10] value="DB;line;connect;D,B">
+<param name=e[11] value="BCcirc;circle;radius;B,C">
+<param name=e[12] value="G;point;extend;D,B,B,C">
+<param name=e[13] value="BG;line;connect;B,G;0;0;blue">
+<param name=e[14] value="DGcirc;circle;radius;D,G">
+<param name=e[15] value="L;point;extend;D,A,B,C">
+<param name=e[16] value="AL;line;connect;A,L;0;0;blue">
+<param name=e[17] value="LE;line;extend;A,L,A,B">
+<param name=e[18] value="GF;line;extend;B,G,A,B">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI2a.gif" hspace=10 vspace=10 alt="I.2">';
+</script>
+</td></tr>
+</table>
+
+<h4>Use of Proposition 2</h4>
+The construction in this proposition is only used in Proposition
+<a href=propI3.html>I.3</a>.  
+
+<p>Note that this construction assumes that all the point <i>A</i> and the line <i>BC</i> lie in a plane.  It may also be used in space, however, since Proposition <a href=../bookXI/propXI2.html>XI.2</a> implies that <i>A</i> and <i>BC</i> do lie in a plane.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

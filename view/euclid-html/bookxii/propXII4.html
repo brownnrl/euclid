@@ -1,0 +1,142 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 4</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 4</h1>
+
+<div class="statement">
+If there are two pyramids of the same height with triangular bases, and each of them is divided into two pyramids equal and similar to one another and similar to the whole, and into two equal prisms, then the base of the one pyramid is to the base of the other pyramid as all the prisms in the one pyramid are to all the prisms, being equal in multitude, in the other pyramid.</div>
+
+<div class="just"><a href="propXII3.html">XII.3</a></div>
+<p>Let there be two pyramids of the same height with triangular bases <i>ABC</i> and <i>DEF</i> the points <i>G</i> and <i>H</i> the vertices, and let each of them be divided into two pyramids equal to one another and similar to the whole and into two equal prisms.
+
+<p>I say that the base <i>ABC</i> is to the base <i>DEF</i> as all the prisms in the pyramid <i>ABCG</i> to all the prisms, being equal in multitude, in the pyramid <i>DEFH.</i>
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=550 height=280 >
+<img src="propXII4.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.4">
+<param name=e[1] value="origin;point;fixed;90,250,0;0;0">
+<param name=e[2] value="1X;point;fixed;342,250,-91;0;0">
+<param name=e[3] value="1Y;point;fixed;-5,550,-120;0;0">
+<param name=e[4] value="1Z;point;fixed;114,375,288;0;0">
+<param name=e[5] value="floor;plane;3points;origin,1X,1Y;0;0;0;0">
+<param name=e[6] value="G;point;lineSlider;origin,1Y,90,0,0">
+<param name=e[7] value="A;point;planeSlider;floor,29,179,0">
+<param name=e[8] value="B;point;planeSlider;floor,110,250,0">
+<param name=e[9] value="C;point;planeSlider;floor,210,209,0">
+<param name=e[10] value="K;point;midpoint;A,B;black;green">
+<param name=basepoint value=K>
+<param name=e[11] value="O;point;midpoint;B,C">
+<param name=e[12] value="L;point;midpoint;A,C">
+<param name=e[13] value="P;point;midpoint;A,G">
+<param name=e[14] value="M;point;midpoint;B,G">
+<param name=e[15] value="N;point;midpoint;C,G">
+
+<param name=e[16] value="PMOL;polygon;quadrilateral;P,M,O,L;0;0;black;lightGray">
+<param name=e[17] value="AKLP;polyhedron;tetrahedron;A,K,L,P;0;0;black;random">
+<param name=e[18] value="PMNG;polyhedron;tetrahedron;P,M,N,G;0;0;black;random">
+<param name=e[19] value="CB;line;connect;C,B">
+<param name=e[20] value="CL;line;connect;C,L">
+<param name=e[21] value="KB;line;connect;K,B">
+<param name=e[22] value="MB;line;connect;M,B">
+<param name=e[23] value="CN;line;connect;C,N">
+
+<param name=e[24] value="GX;point;parallelogram;G,origin,1X;0;0">
+<param name=e[25] value="GY;point;parallelogram;G,origin,1Y;0;0">
+<param name=e[26] value="ceiling;plane;3points;G,GX,GY;0;0;0;0">
+<param name=e[27] value="H;point;planeSlider;ceiling,420,40,0">
+<param name=e[28] value="D;point;planeSlider;floor,290,190,0">
+<param name=e[29] value="E;point;planeSlider;floor,370,270,0">
+<param name=e[30] value="F;point;planeSlider;floor,520,228,0">
+<param name=e[31] value="Q;point;midpoint;D,E">
+<param name=e[32] value="V;point;midpoint;E,F">
+<param name=e[33] value="R;point;midpoint;D,F">
+<param name=e[34] value="S;point;midpoint;D,H">
+<param name=e[35] value="T;point;midpoint;E,H">
+<param name=e[36] value="U;point;midpoint;F,H">
+
+<param name=e[37] value="STVR;polygon;quadrilateral;S,T,V,R;0;0;black;lightGray">
+<param name=e[38] value="DQRS;polyhedron;tetrahedron;D,Q,R,S;0;0;black;random">
+<param name=e[39] value="STUH;polyhedron;tetrahedron;S,T,U,H;0;0;black;random">
+<param name=e[40] value="EF;line;connect;E,F">
+<param name=e[41] value="FR;line;connect;F,R">
+<param name=e[42] value="QE;line;connect;Q,E">
+<param name=e[43] value="TE;line;connect;T,E">
+<param name=e[44] value="FU;line;connect;F,U">
+</applet></center>
+
+<p>Since <i>BO</i> equals <i>OC,</i> and <i>AL</i> equals <i>LC,</i> therefore <i>LO</i> is parallel to <i>AB,</i> and the triangle <i>ABC</i> is similar to the triangle <i>LOC.</i>  For the same reason the triangle <i>DEF</i> is also similar to the triangle <i>RVF.</i>
+
+<p>And, since <i>BC</i> is double <i>CO,</i> and <i>EF</i> double <i>FV,</i> therefore <i>BC</i> is to <i>CO</i> as <i>EF</i> is to <i>FV.</i>
+
+<div class="just"><a href="../bookVI/propVI22.html">VI.22</a></div>
+<p>And on <i>BC</i> and <i>CO</i> are described the similar and similarly situated rectilinear figures <i>ABC</i> and <i>LOC,</i> and on <i>EF</i> and <i>FV</i> the similar and similarly situated figures <i>DEF</i> and <i>RVF,</i> therefore the triangle <i>ABC</i> is to the triangle <i>LOC</i> as the triangle <i>DEF</i> is to the triangle <i>RVF.</i>
+
+<div class="just"><a href="../bookV/propV16.html">V.16</a>
+<br><a href=#lemma>Lemma</a> below</div>
+<p>Therefore, alternately the triangle <i>ABC</i> is to the triangle <i>DEF</i> as the triangle <i>LOC</i> is to the triangle <i>RVF.</i> But the triangle <i>LOC</i> is to the triangle <i>RVF</i> as the prism with the triangle <i>LOC</i> the base and <i>PMN</i> opposite is to the prism with the triangle <i>RVF</i> the base and <i>STU</i> opposite.
+
+<p>Therefore the triangle <i>ABC</i> is to the triangle <i>DEF</i> as the prism with the triangle <i>LOC</i> the base and <i>PMN</i> opposite is to the prism with the triangle <i>RVF</i> the base and <i>STU</i> opposite.
+
+<div class="just"><a href="../bookXI/propXI39.html">XI.39</a></div>
+<p>But the said prisms are to one another as the prism with the parallelogram <i>KBOL</i> the base and the straight line <i>PM</i> opposite is to the prism with the parallelogram <i>QEVR</i> the base and the straight line <i>ST</i> opposite.
+
+<div class="just"><a href="../bookV/propV12.html">V.12</a></div>
+<p>Therefore the two prisms, that with the parallelogram <i>KBOL</i> the base and <i>PM</i> opposite, and that with the triangle <i>LOC</i> the base and <i>PMN</i> opposite, are to the prisms with <i>QEVR</i> the base and the straight line <i>ST</i> opposite and with the triangle <i>RVF</i> the base and <i>STU</i> opposite in the same ratio.
+
+<p>Therefore the base <i>ABC</i> is to the base <i>DEF</i> as the said two prisms are to the said two prisms.
+
+<p>And similarly, if the pyramids <i>PMNG</i> and <i>STUH</i> are divided into two prisms and two pyramids, then the base <i>PMN</i> is to the base <i>STU</i> as the two prisms in the pyramid <i>PMNG</i> are to the two prisms in the pyramid <i>STUH.</i>
+
+<p>But the base <i>PMN</i> is to the base <i>STU</i> as the base <i>ABC</i> is to the base <i>DEF,</i> for the triangles <i>PMN</i> and <i>STU</i> equal the triangles <i>LOC</i> and <i>RVF</i> respectively.
+
+<p>Therefore the base <i>ABC</i> is to the base <i>DEF</i> as the four prisms are to the four prisms. And similarly, if we divide the remaining pyramids into two pyramids and into two prisms, then the base <i>ABC</i> is to base the <i>DEF</i> as all the prisms in the pyramid <i>ABCG</i> are to all the prisms, being equal in multitude, in the pyramid <i>DEFH.</i>
+</div>
+
+<br>
+
+<a name=lemma></a>
+<div class="theorem">
+<h1>Lemma</h1>
+
+<p>But that the triangle <i>LOC</i> is to the triangle <i>RVF</i> as the prism with the triangle <i>LOC</i> the base and <i>PMN</i> opposite is to the prism with the triangle <i>RVF</i> the base and <i>STU</i> opposite, we must prove as follows.
+
+<div class="just"><a href="../bookXI/propXI11.html">XI.11</a></div>
+<p>In the same figure draw perpendiculars from <i>G</i> and <i>H</i> to the planes <i>ABC</i> and <i>DEF.</i> These are, of course, equal since the pyramids are of equal height by hypothesis.
+
+<div class="just"><a href="../bookXI/propXI17.html">XI.17</a></div>
+<p>Now, since the two straight lines <i>GC</i> and the perpendicular from <i>G</i> are cut by the parallel planes <i>ABC</i> and <i>PMN,</i> therefore they are cut in the same ratios.
+
+<p>And <i>GC</i> is bisected by the plane <i>PMN</i> at <i>N,</i> therefore the perpendicular from <i>G</i> to the plane <i>ABC</i> is also bisected by the plane <i>PMN.</i> For the same reason the perpendicular from <i>H</i> to the plane <i>DEF</i> is also bisected by the plane <i>STU.</i>
+
+<p>And the perpendiculars from <i>G</i> and <i>H</i> to the planes <i>ABC</i> and <i>DEF</i> are equal, therefore the perpendiculars from the triangles <i>PMN</i> and <i>STU</i> to the planes <i>ABC</i> and <i>DEF</i> are also equal.
+
+<p>Therefore the prisms with the triangles <i>LOC</i> and <i>RVF</i> the bases, and <i>PMN</i> and <i>STU</i> opposite, are of equal height.
+
+<div class="just"><a href="../bookXI/propXI32.html">XI.32</a>
+<br><a href="../bookXI/propXI28.html">XI.28</a></div>
+<p>Hence also the parallelepipedal solids described from the said prisms are of equal height and are to one another as their bases. Therefore their halves, namely the said prisms, are to one another as the base <i>LOC</i> is to the base <i>RVF.</i>
+
+<p>Therefore, <i>if there are two pyramids of the same height with triangular bases, and each of them is divided into two pyramids equal and similar to one another and similar to the whole, and into two equal prisms, then the base of the one pyramid is to the base of the other pyramid as all the prisms in the one pyramid are to all the prisms, being equal in multitude, in the other pyramid.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is subordinate to the next, <a href=propXII5.html>XII.5</a>, in which two pyramids with triangular bases and the same height are shown to be proportional to their bases.  Its proof proceeds by partitioning each of the two original pyramids into the two-pyramid-two-prism division of the previous proposition, then doing the same partition to the two smaller pyramids, then to the four even smaller pyramids, until a sufficiently small part of each original pyramid remains in whatever tiny pyramids there are while a sufficiently large part of each is composed of various sized prisms.
+
+<p>This proposition, at least in the last paragraph, considers that situation and concludes that the base of the first pyramid is to the second as the union of the various sized prisms in the first pyramid is to the union of the various sized prisms in the second pyramid.  This is the crucial step in the proof of XII.5.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

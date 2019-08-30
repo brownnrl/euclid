@@ -1,0 +1,110 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 24</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 24</h1>
+
+<div class="statement">If two numbers are relatively prime to any number, then their product is also relatively prime to the same.</div>
+
+<p>Let the two numbers <i>A</i> and <i>B</i> [each] be relatively prime to a number <i>C,</i> and let <i>A</i> multiplied by <i>B</i> make <i>D.</i>
+
+<p>I say that <i>C</i> and <i>D</i> are relatively prime.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=200 height=270 >
+<img src=propVII24.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.24">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,30,140;0">
+<param name=e[5] value="A;line;connect;A1,A2;black">
+<param name=e[6] value="B0;point;free;60,-1000;0;0">
+<param name=e[7] value="B3;point;free;60,1000;0;0">
+<param name=e[8] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[9] value="B2;point;lineSlider;B0,B3,60,125;0">
+<param name=e[10] value="B;line;connect;B1,B2;black">
+<param name=e[11] value="C0;point;free;90,-1000;0;0">
+<param name=e[12] value="C3;point;free;90,1000;0;0">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,90,30;0">
+<param name=e[14] value="C2;point;lineSlider;C0,C3,90,170;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+<param name=e[16] value="U1;point;free;1000,0;0;0">
+<param name=e[17] value="U2;point;free;1000,50;0;0">
+<param name=e[18] value="D0;point;free;120,-1000;0;0">
+<param name=e[19] value="D3;point;free;120,1000;0;0">
+<param name=e[20] value="D1;point;lineSlider;D0,D3,120,30;0">
+<param name=e[21] value="D2;point;proportion;U1,U2,A1,A2,B1,B2,D1,D3;0">
+<param name=e[22] value="D;line;connect;D1,D2;black">
+<param name=e[23] value="E0;point;free;150,-1000;0;0">
+<param name=e[24] value="E3;point;free;150,1000;0;0">
+<param name=e[25] value="E1;point;lineSlider;E0,E3,90,30;0">
+<param name=e[26] value="E2;point;lineSlider;E0,E3,90,90;0;black">
+<param name=e[27] value="E;line;connect;E1,E2;black">
+<param name=e[28] value="F0;point;free;180,-1000;0;0">
+<param name=e[29] value="F3;point;free;180,1000;0;0">
+<param name=e[30] value="F1;point;lineSlider;F0,F3,180,30;0">
+<param name=e[31] value="F2;point;lineSlider;F0,F3,180,55;0;black">
+<param name=e[32] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<p>If <i>C</i> and <i>D</i> are not relatively prime, then some number <i>E</i> measures <i>C</i> and <i>D.</i>
+
+<div class="just"><a href="propVII23.html">VII.23</a></div>
+<p>Now, since <i>C</i> and <i>A</i> are relatively prime, and a certain number <i>E</i> measures <i>C,</i> therefore <i>A</i> and <i>E</i> are relatively prime.
+
+<div class="just"><a href="propVII16.html">VII.16</a></div>
+<p>Let there be as many units in <i>F</i> as the times that <i>E</i> measures <i>D.</i>  Then <i>F</i> also measures <i>D</i> according to the units in <i>E.</i>
+
+<div class="just"><a href=defVII15.html>VII.Def.15</a></div>
+<p>Therefore <i>E</i> multiplied by <i>F</i> makes <i>D.</i>  Also, <i>A</i> multiplied by <i>B</i> makes <i>D,</i> therefore the product of <i>E</i> and <i>F</i> equals the product of <i>A</i> and <i>B.</i>
+
+<div class="just"><a href="propVII19.html">VII.19</a></div>
+<p>But, if the product of the extremes equal that of the means, then the four numbers are proportional.  Therefore <i>E</i> is to <i>A</i> as <i>B</i> is to <i>F.</i>
+
+<div class="just"><a href="propVII21.html">VII.21</a>
+<br><a href="propVII20.html">VII.20</a></div>
+<p>But <i>A</i> and <i>E</i> are relatively prime, numbers which are relatively prime are also the least of those which have the same ratio, and the least numbers of those which have the same ratio with them measure those which have the same ratio the same number of times, the greater the greater, and the less the less, that is, the antecedent the antecedent and the consequent the consequent,  therefore <i>E</i> measures <i>B.</i>
+
+<p>But it also measures <i>C,</i> therefore <i>E</i> measures <i>B</i> and <i>C</i> which are relatively prime, which is impossible.
+<div class="just"><a href=defVII11.html>VII.Def.12</a></div>
+
+<p>Therefore no number measures the numbers <i>C</i> and <i>D.</i> Therefore <i>C</i> and <i>D</i> are relatively prime.
+
+<p>Therefore, <i>if two numbers are relatively prime to any number, then their product is also relatively prime to the same.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says that if both <i>a</i> and <i>b</i> are relatively prime to <i>c</i>, then <i>ab</i> is also relatively prime to <i>c</i>.
+
+<h4>Outline of the proof</h4>
+
+Assume that two numbers <i>a</i> and <i>b</i> are each relatively prime to a third number <i>c.</i>
+
+<p>Suppose their product <i>ab</i> is not relatively prime to <i>c.</i> Then there is some number <i>e</i> (greater than 1) that divides both <i>ab</i> and <i>c.</i>  Now, since <i>e</i> divides <i>c,</i> and <i>c</i> is relatively prime to <i>a,</i> therefore, by <a href="propVII23.html">VII.23</a>, <i>e</i> is also relatively prime to <i>a.</i>
+
+<p>Let <i>f</i> be the number <i>ab/e.</i>  Then <i>e</i>&nbsp;:&nbsp;<i>a</i>&nbsp;=&nbsp;<i>b</i>&nbsp;:&nbsp;<i>f.</i>  Since <i>e</i> and <i>a</i> are relatively prime, then, by <a href="propVII21.html">VII.21</a>, <i>e</i>&nbsp;:&nbsp;<i>a</i> is in lowest terms.  Therefore, by 
+<a href="propVII20.html">VII.20</a>, <i>e</i> divides <i>b.</i>  But then <i>e</i> divides both <i>b</i> and <i>c</i> contradicting the assumption that <i>b</i> and <i>c</i> are relatively prime.
+
+<p>Therefore, the product <i>ab</i> is also relatively prime to <i>c.</i>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next two and in <a href=../bookIX/propIX15.html>IX.15</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

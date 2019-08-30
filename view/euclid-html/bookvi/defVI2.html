@@ -1,0 +1,73 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book VI, Definition 2</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 2</h1>
+
+<div class="statement">Two figures are reciprocally related when the sides about corresponding angles are reciprocally proportional.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<center><table cellspacing=5>
+<tr><td>This isn&rsquo;t the actual definition that appears, but an approximation of its intent.  A literal translation is incomplete, and this definition may have been added after Euclid.
+
+<p>The intention can be seen in proposition <a href=../bookVI/propVI15.html>VI.15</a> as illustrated here.</td>
+
+<td rowspan=2>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  height=250 width=290>
+<img src=defVI2.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.Def.2">
+<param name=e[1] value="A;point;free;140,80">
+<param name=e[2] value="B;point;free;80,30">
+<param name=e[3] value="C;point;free;30,170">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[5] value="D;point;lineSlider;A,C,200,50">
+<param name=e[6] value="E';point;extend;B,A,B,A;0;0">
+<param name=e[7] value="E;point;proportion;A,D,A,C,A,B,A,E'">
+<param name=e[8] value="ADE;polygon;triangle;A,D,E;0;0;black;random">
+</applet></td></tr>
+
+<tr><td>The proposition states that if two triangles have one angle equal to one angle, then the triangles are equal if and only if the sides about the equal angles are reciprocally proportional.  In the figure  <i>BAC</i> and <i>DAE</i> are equal angles.  So the two triangles are equal if and only if <i>CA</i>&nbsp;:&nbsp;<i>AD</i>&nbsp;=&nbsp;<i>EA</i>&nbsp;:&nbsp;<i>AB.</i>  Euclid doesn&rsquo;t define the term &ldquo;reciprocally proportional,&rdquo; but the meaning of the term is clear from its use.
+</td></tr>
+
+
+<tr><td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  height=210 width=270>
+<img src=defVI2a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Reciprocal triangles">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,130,0">
+<param name=e[5] value="C;point;free;60,180">
+<param name=e[6] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[7] value="D;point;lineSlider;A0,A3,160,0">
+<param name=e[8] value="E;point;lineSlider;A0,A3,250,0">
+<param name=e[9] value="DF;point;proportion;A,C,A,B,D,E,D,E;0;0">
+<param name=e[10] value="Dcirc;circle;radius;D,DF;0;0;0;0">
+<param name=e[11] value="EF;point;proportion;B,C,B,A,E,D,E,D;0;0">
+<param name=e[12] value="Ecirc;circle;radius;E,EF;0;0;0;0">
+<param name=e[13] value="FF';line;bichord;Dcirc,Ecirc;0;0;0">
+<param name=e[14] value="F;point;first;FF'">
+<param name=e[15] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+</applet></td>
+
+<td>Although Euclid doesn&rsquo;t address the question, it would be interesting to characterize which triangles are reciprocally related, as shown to the left.  The conditions are that <i>AB</i>&nbsp;:&nbsp;<i>DE</i>&nbsp;=&nbsp;<i>DF</i>&nbsp;:&nbsp;<i>AC, BC</i>:EF</i>&nbsp;=&nbsp;<i>DE</i>&nbsp;:&nbsp;<i>AB,</i> and <i>AC</i>&nbsp;:&nbsp;<i>DF</i>&nbsp;=&nbsp;<i>DF</i>&nbsp;:&nbsp;<i>BC.</i>  Multiplicatively, <i>AB DE</i>&nbsp;=&nbsp;<i>BC EF</i>&nbsp;=&nbsp;<i>AC DF.</i>
+</td></tr>
+</table></center>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

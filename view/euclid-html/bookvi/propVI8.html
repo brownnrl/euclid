@@ -1,0 +1,91 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 8</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">
+If in a right-angled triangle a perpendicular is drawn from the right angle to the base, then the triangles adjoining the perpendicular are similar both to the whole and to one another.
+</div>
+
+<p>Let <i>ABC</i> be a right-angled triangle having the angle <i>BAC</i> right, and let <i>AD</i> be drawn from <i>A</i> perpendicular to <i>BC.</i>
+
+<p>I say that each of the triangles <i>DBA</i> and <i>DAC</i> is similar to the whole <i>ABC,</i> and, further, they are similar to one another.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=330>
+<img src=propVI8.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.8">
+<param name=e[1] value="B;point;free;40,170">
+<param name=e[2] value="C;point;free;290,170">
+<param name=e[3] value="M;point;midpoint;B,C;0;0">
+<param name=e[4] value="ABC;circle;radius;M,B;0;0;0;0">
+<param name=e[5] value="A;point;circleSlider;ABC,200,40">
+<param name=e[6] value="D;point;foot;A,B,C">
+<param name=e[7] value="ABD;polygon;triangle;A,B,D;0;0;black;random">
+<param name=e[8] value="ACD;polygon;triangle;A,C,D;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>Since the angle <i>BAC</i> equals the angle <i>BDA,</i> for each is right, and the angle at <i>B</i> is common to the two triangles <i>ABC</i> and <i>DBA,</i> therefore the remaining angle <i>ACB</i> equals the remaining angle <i>DAB.</i>  Therefore the triangle <i>ABC</i> is equiangular with the triangle <i>DBA.</i>
+
+<div class="just"><a href=propVI4.html>VI.4</a></div>
+<p>Therefore <i>BC,</i> which is opposite the right angle in the triangle <i>ABC,</i> is to <i>BA,</i> which is opposite the right angle in the triangle <i>DBA,</i> as <i>AB,</i> which is opposite the angle at <i>C</i> in the triangle <i>ABC,</i> is to <i>DB,</i> which is opposite the equal angle <i>BAD</i> in the triangle <i>DBA,</i> and also as <i>AC</i>  is to <i>DA,</i> which is opposite the angle at <i>B</i> common to the two triangles.
+
+<p>Therefore the triangle <i>ABC</i> is both equiangular to the triangle <i>DBA</i> and has the sides about the equal angles proportional.
+
+<div class="just"><a href=defVI1.html>VI.Def.1</a></div>
+<p>Therefore the triangle <i>ABC</i> is similar to the triangle <i>DBA.</i>
+
+<p>In the same manner we can prove that the triangle <i>DAC</i> is also similar to
+the triangle <i>ABC.</i>  Therefore each of the triangles <i>DBA</i> and <i>DAC</i> is similar to the whole <i>ABC.</i>
+
+<p>I say next that the triangles <i>DBA</i> and <i>DAC</i> are also similar to one another.
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>Since the right angle <i>BDA</i> equals the right angle <i>ADC,</i> and moreover the angle <i>DAB</i> was also proved equal to the angle at <i>C,</i> therefore the remaining angle at <i>B</i> also equals the remaining angle <i>DAC.</i>  Therefore the triangle <i>DBA</i> is equiangular with the triangle <i>ADC.</i>
+
+<div class="just"><a href=propVI4.html>VI.4</a>
+<br><a href=defVI1.html>VI.Def.1</a></div>
+<p>Therefore <i>BD,</i> which is opposite the angle <i>DAB</i> in the triangle <i>DBA,</i> is to <i>AD,</i> which is opposite the angle at <i>C</i> in the triangle <i>DAC</i> equal to the angle <i>DAB,</i> as <i>AD,</i> itself which is opposite the angle at <i>B</i> in the triangle <i>DBA,</i> is to <i>CD,</i> which is opposite the angle <i>DAC</i> in the triangle <i>DAC</i> equal to the angle at <i>B,</i> and also as <i>BA</i> is to <i>AC,</i> these sides opposite the right angles.  Therefore the triangle <i>DBA</i> is similar to the triangle <i>DAC.</i> 
+
+<p>Therefore, <i>if in a right-angled triangle a perpendicular is drawn from the right angle to the base, then the triangles adjoining the perpendicular are similar both to the whole and to one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+<a name=cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+<div class="statement">From this it is clear that, if in a right-angled triangle a perpendicular is drawn from the right angle to the base, then the straight line so drawn is a mean proportional between the segments of the base.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Essentially, triangles <i>ABC</i> and <i>DBA</i> are equiangular since they are right triangles with a common angle.  Therefore, they are similar.  Likewise, triangles <i>ABC</i> and <i>DAC</i> are
+ similar.
+
+<p>Note that Euclid verbosely draws from proposition <a href=propVI4.html>VI.4</a> the conclusions that equiangular triangles are similar and that triangles similar to the same triangle are similar to
+ each other.  The general proposition that figures similar to the same figure are also similar to one another is proposition <a href=propVI21.html>VI.21</a>.  There is no reason why that proposition
+ could not have been placed before this one.
+
+<p>This proposition may be used to give an alternate proof of proposition <a href=../bookI/propI47.html>I.47</a>.  Indeed,
+Euclid presents such a proof in the <a href=../bookX/propX33.html#lemma>lemma</a> for X.33.  That proof is probably older than Euclid&rsquo;s as given in I.47, but  Euclid&rsquo;s proof has the advantage of not
+ being dependent on Eudoxus&rsquo; theory of proportion in Book V.
+
+<p>This proposition and its corollary are used in propositions <a href=propVI13.html>VI.13</a>, <a href=propVI31.html>VI.31</a>, <a href=../bookX/propX33.html>X.33</a>, and often in Book XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

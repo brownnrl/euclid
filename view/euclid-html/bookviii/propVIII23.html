@@ -1,0 +1,65 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 23</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 23</h1>
+
+<div class="statement">If four numbers are in continued proportion, and the first is a cube, then the fourth is  also a cube.</div>
+
+<p>Let <i>A, B, C,</i> and <i>D</i> be four numbers in continued proportion, and let <i>A</i> be a cube.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=170 >
+<img src="propVIII23.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.23">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="D0;point;free;-1000,145;0;0">
+<param name=e[8] value="D3;point;free;1000,145;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[13] value="B2;point;lineSlider;B0,B3,115,0;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[16] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+<param name=e[18] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[19] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<p>I say that <i>D</i> is also a cube.
+
+<div class="just"><a href=propVIII21.html>VIII.21</a></div>
+<p>Since between <i>A</i> and <i>D</i> there are two mean proportional numbers <i>B</i> and <i>C,</i> therefore <i>A</i> and <i>D</i> are similar solid numbers.  But <i>A</i> is a cube, therefore <i>D</i> is also a cube.
+
+<p>Therefore, <i>if four numbers are in continued proportion, and the first is a cube, then the fourth is  also a cube.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is used in several propositions in this and the next book starting with <a href=propVIII25.html>VIII.25</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

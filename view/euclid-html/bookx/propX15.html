@@ -1,0 +1,68 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 15</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 15</h1>
+
+<div class="statement">If two commensurable magnitudes are added together, then the whole is also commensurable with each of them; and, if the whole is commensurable with one of them, then the original magnitudes are also commensurable.</div>
+
+<p>Let the two commensurable magnitudes <i>AB</i> and <i>BC</i> be added together.
+
+<p>I say that the whole <i>AC</i> is also commensurable with each of the magnitudes <i>AB</i> and <i>BC</i>.
+
+<p>Since <i>AB</i> and <i>BC</i> are commensurable, some magnitude <i>D</i> measures them.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=230 height=100>
+<img src="propX15.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.15">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="D0;point;free;-1000,65;0;0">
+<param name=e[4] value="D3;point;free;1000,65;0;0">
+<param name=e[5] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[6] value="C;point;lineSlider;A0,A3,200,0">
+<param name=e[7] value="AC;line;connect;A,C">
+<param name=e[8] value="B;point;lineSlider;A0,A3,140,0">
+<param name=e[9] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[10] value="D2;point;lineSlider;D0,D3,60,0;0">
+<param name=e[11] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<div class="just"><a href=defX.I.html#1>X.Def.I.1</a></div>
+<p>Since then <i>D</i> measures <i>AB</i> and <i>BC</i>, therefore it also measures the whole <i>AC</i>. But it measures <i>AB</i> and <i>BC</i> also, therefore <i>D</i> measures <i>AB</i>, <i>BC</i>, and <i>AC</i>. Therefore <i>AC</i> is commensurable with each of the magnitudes <i>AB</i> and <i>BC</i>.
+
+<p>Next, let <i>AC</i> be commensurable with <i>AB</i>.
+
+<p>I say that <i>AB</i> and <i>BC</i> are also commensurable.
+
+<p>Since <i>AC</i> and <i>AB</i> are commensurable, some magnitude  <i>D</i> measures them.
+
+<p>Since then <i>D</i> measures <i>CA</i> and <i>AB</i>, therefore it also measures the remainder <i>BC</i>.
+
+<div class="just"><a href=defX.I.html#1>X.Def.I.1</a></div>
+<p>But it measures <i>AB</i> also, therefore <i>D</i> measures <i>AB</i> and <i>BC</i>. Therefore <i>AB</i> and <i>BC</i> are commensurable.
+
+<p>Therefore, <i>if two commensurable magnitudes are added together, then the whole is also commensurable with each of them; and, if the whole is commensurable with one of them, then the original magnitudes are also commensurable.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This fundamental proposition on commensurability of sums and differences is used in very frequently in Book X starting with <a href=propX17.html>X.17</a>.   It is also used in <a href=../bookXIII/propXIII11.html>XIII.11</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,75 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 2</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">If two points are taken at random on the circumference of a circle, then the straight line joining the points falls within the circle. </div>
+
+<p>Let <i>ABC</i> be a circle, and let two points <i>A</i> and <i>B</i> be taken at random on its circumference.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=260>
+<img src=propIII2.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.2">
+<param name=e[1] value="A;point;free;50,130">
+<param name=e[2] value="B;point;free;120,200">
+<param name=e[3] value="C;point;free;200,50;black;0">
+<param name=e[4] value="ABC;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[5] value="D;point;center;ABC;black;green">
+<param name=pivot value="D">
+<param name=e[6] value="E;point;free;70,210">
+<param name=e[7] value="AEB;sector;arc;A,E,B;0;0;black;0">
+<param name=e[8] value="DE;line;connect;D,E">
+<param name=e[9] value="F;point;cutoff;D,E,D,A">
+</applet></div>
+
+<p>I say that the straight line joined from <i>A</i> to <i>B</i> falls within the circle.
+
+<div class="just"><a href="propIII1.html">III.1</a></div>
+<p>For suppose it does not, but, if possible, let it fall outside, as <i>AEB.</i> Take the center <I>D</I> of the circle <i>ABC.</i> Join <i>DA</i> and <i>DB,</i> and draw <i>DFE</i> through.
+
+<div class="just"><a href=../bookI/defI15.html>I.Def.15</a>
+<br><a href="../bookI/propI5.html">I.5</a></div>
+<p>Then, since <i>DA</i> equals <i>DB,</i> the angle <i>DAE</i> also equals the angle <i>DBE.</i>
+
+<div class="just"><a href="../bookI/propI16.html">I.16</a></div>
+<p>And, since one side <i>AEB</i> of the triangle <i>DAE</i> is produced, the angle <i>DEB</i> is greater than the angle <i>DAE.</i>
+
+<div class="just"><a href="../bookI/propI19.html">I.19</a>
+<br><a href=../bookI/defI15.html>I.Def.15</a></div>
+<p>And the angle <i>DAE</i> equals the angle <i>DBE,</i> therefore the angle <i>DEB</i> is greater than the angle <i>DBE.</i>  And the side opposite the greater angle is greater, therefore <i>DB</i> is greater than <i>DE.</i>  But <i>DB</i> equals <i>DF,</i> therefore <i>DF</i> is greater than <i>DE,</i> the less greater than the greater, which is impossible.
+
+<p>Therefore the straight line joined from <i>A</i> to <i>B</i> does not fall outside the circle. 
+
+<p>Similarly we can prove that neither does it fall on the circumference itself, therefore it falls within.
+
+<p>Therefore <i>if two points are taken at random on the circumference of a circle, then the straight line joining the points falls within the circle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+The figure for this proposition is rather strange, but that is necessary since it refers to a hypothetical situation which is shown to be impossible.  In this figure <i>AEB</i> is supposed to be a straight line that lies on outside the circle.  There are other impossible figures in later propositions in this Book.
+
+<p>That Euclid even has this proposition is remarkable.  Of course, it should be included, but there are equally obvious statements (but difficult to prove) left out in earlier books.  For instance, that the two circles constructed in a plane on a line <i>AB</i> intersect is not proved although it is used in <a href=../bookI/propI1.html>I.1</a>.  This indicates that more care has been given to the foundations for this book than for the previous books.
+
+<p>Euclid leaves to the reader to prove that <i>AB</i> cannot lie <i>on</i> the circumference, and that is not particularly difficult to prove.
+
+<p>This proposition is used in <a href=propIII13.html>III.13</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,88 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 16</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 16</h1>
+
+<div class="statement">
+Given two circles about the same center, to inscribe in the greater circle an equilateral polygon with an even number of sides which does not touch the lesser circle.</div>
+
+<p>Let <i>ABCD</i> and <i>EFGH</i> be the two given circles about the same center <i>K.</i>
+
+<p>It is required to inscribe in the greater circle <i>ABCD</i> an equilateral polygon with an even number of sides which does not touch the  circle <i>EFGH.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=280 >
+<img src="propXII16.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.16">
+<param name=e[1] value="B;point;free;40,145">
+<param name=e[2] value="D;point;free;240,145">
+<param name=e[3] value="K;point;midpoint;B,D;black;green">
+<param name=pivot value=K>
+<param name=e[4] value="E;point;lineSlider;B,D,100,125">
+<param name=e[5] value="G;point;cutoff;K,D,E,K">
+<param name=e[6] value="ABCD;circle;radius;K,B;0;0;black;random">
+<param name=e[7] value="EFGH;circle;radius;K,E;0;0;black;random">
+<param name=e[8] value="H;point;perpendicular;K,G;black;0">
+<param name=e[9] value="F;point;perpendicular;K,E;black;0">
+<param name=e[10] value="BD;line;connect;B,D">
+<param name=e[11] value="A';point;perpendicular;G,K;0;0">
+<param name=e[12] value="AC;line;chord;G,A',ABCD">
+<param name=e[13] value="A;point;first;AC">
+<param name=e[14] value="C;point;last;AC">
+<param name=e[15] value="AL';line;angleDivider;A,K,D,3;0;0;0">
+<param name=e[16] value="L';point;last;AL';0;0">
+<param name=e[17] value="L;point;cutoff;K,L',K,B">
+<param name=e[18] value="M;point;foot;L,B,D">
+<param name=e[19] value="N;point;extend;L,M,L,M">
+<param name=e[20] value="LN;line;connect;L,N">
+<param name=e[21] value="LD;line;connect;L,D">
+<param name=e[22] value="DN;line;connect;D,N">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a></div>
+<p>Draw the straight line <i>BKD</i> through the center <i>K,</i>
+and draw <i>GA</i> from the point <i>G</i>  at right angles to the straight line <i>BD,</i> and carry it through to <i>C.</i>
+
+<div class="just"><a href="../bookIII/propIII16.html#cor">III.16,Cor</a></div>
+<p>Therefore <i>AC</i> touches the circle <i>EFGH.</i>
+
+<div class="just"><a href="../bookX/propX1.html">X.1</a></div>
+<p>Then, bisecting the circumference <i>BAD,</i> bisecting the half of it, and doing this repeatedly, we shall leave a circumference less than <i>AD.</i>
+
+<p>Let such be left, and let it be <i>LD.</i>
+
+<div class="just"><a href="../bookI/propI12.html">I.12</a></div>
+<p>Draw <i>LM</i> from <i>L</i> perpendicular to <i>BD,</i> and carry it through to <i>N.</i>  Join <i>LD</i> and <i>DN.</i>
+
+<div class="just"><a href="../bookIII/propIII3.html">III.3</a>,
+<a href="../bookI/propI4.html">I.4</a></div>
+<p>Therefore <i>LD</i> equals <i>DN.</i>
+
+<p>Now, since <i>LN</i> is parallel to <i>AC,</i> and <i>AC</i> touches the circle <i>EFGH,</i> therefore <i>LN</i> does not touch the circle <i>EFGH.</i>  Therefore <i>LD</i> and <i>DN</i> are far from touching the circle <i>EFGH.</i>
+
+<p>If, then, we fit into the circle <i>ABCD</i> straight lines equal to the straight line <i>LD</i> and placed repeatedly, then there is inscribed in the circle <i>ABCD</i> an equilateral polygon with an even number of sides which does not touch the lesser circle <i>EFGH.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+The purpose of this construction is to separate the two concentric circles by a polygon so that a three-dimensional construction can be made in the next proposition to separate two concentric spheres.
+
+<p>This construction will actually generate a polygon whose number of sides is a power of 2 such as 8, 16, 32, etc.  The next proposition requires a polygon where the number of sides is not just even, but a multiple of 4, which conveniently this construction generates.
+
+<p>Furthermore, the next proposition requires not just that the polygon not touch the inner circle, but the chords joining alternate vertices also not touch the inner circle, which again this construction satisfies.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

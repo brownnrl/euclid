@@ -1,0 +1,119 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XII, Proposition 3</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">
+Any pyramid with a triangular base is divided into two pyramids equal and similar to one another, similar to the whole, and having triangular bases, and into two equal prisms, and the two prisms are greater than half of the whole pyramid.</div>
+
+<p>Let there be a pyramid of with the triangular base <i>ABC</i> and vertex <i>D.</i>
+
+<p>I say that the pyramid <i>ABCD</i> is divided into two pyramids equal to one another, having triangular bases and similar to the whole pyramid, and into two equal prisms, and the two prisms are greater than the half of the whole pyramid.
+
+<div class="just"><a href="../bookI/propI10.html">I.10</a></div>
+<p>Bisect <i>AB, BC, CA, AD, DB,</i> and <i>DC</i> at the points <i>E, F, G, H, K,</i> and <i>L.</i> Join <i>HE, EG, GH, HK, KL, LH, KF,</i> and <i>FG</i>. 
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=300 >
+<img src="propXII3.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XII.3">
+<param name=e[1] value="origin;point;fixed;90,250,0;0;0">
+<param name=e[2] value="1X;point;fixed;342,250,-91;0;0">
+<param name=e[3] value="1Y;point;fixed;-5,550,-120;0;0">
+<param name=e[4] value="1Z;point;fixed;114,375,288;0;0">
+<param name=e[5] value="floor;plane;3points;origin,1X,1Y;0;0;0;0">
+<param name=e[6] value="D;point;lineSlider;origin,1Y,90,-20,0">
+<param name=e[7] value="A;point;planeSlider;floor,40,179,0">
+<param name=e[8] value="B;point;planeSlider;floor,175,280,0">
+<param name=e[9] value="C;point;planeSlider;floor,241,212,0">
+<param name=e[10] value="E;point;midpoint;A,B">
+<param name=e[11] value="F;point;midpoint;B,C">
+<param name=e[12] value="G;point;midpoint;A,C;black;green">
+<param name=pivot value="G,floor">
+<param name=e[13] value="H;point;midpoint;A,D">
+<param name=e[14] value="K;point;midpoint;B,D">
+<param name=e[15] value="L;point;midpoint;C,D">
+
+<param name=e[16] value="HKFG;polygon;quadrilateral;H,K,F,G;0;0;black;120,30,100">
+<param name=e[17] value="AEGH;polyhedron;tetrahedron;A,E,G,H;0;0;black;random">
+<param name=e[18] value="HKLD;polyhedron;tetrahedron;H,K,L,D;0;0;black;random">
+<param name=e[19] value="CB;line;connect;C,B">
+<param name=e[20] value="CG;line;connect;C,G">
+<param name=e[21] value="EF;line;connect;E,F">
+<param name=e[22] value="EB;line;connect;E,B">
+<param name=e[23] value="KB;line;connect;K,B">
+<param name=e[24] value="CL;line;connect;C,L">
+</applet></div>
+
+<p>Since <i>AE</i> equals <i>EB,</i> and <i>AH</i> equals <i>DH,</i> therefore <i>EH</i> is parallel to <i>DB.</i>  For the same reason <i>HK</i> is also parallel to <i>AB.</i> Therefore <i>HEBK</i> is a parallelogram. Therefore <i>HK</i> equals <i>EB.</i>
+<div class="just"><a href="../bookVI/propVI2.html">VI.2</a>
+<br><a href="../bookI/propI34.html">I.34</a></div>
+
+<p>But <i>EB</i> equals <i>EA,</i> therefore <i>AE</i> also equals <i>HK.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>But <i>AH</i> also equals <i>HD,</i> therefore the two sides <i>EA</i> and <i>AH</i> equal the two sides <i>KH, HD</i> respectively, and the angle <i>EAH</i> equals the angle <i>KHD,</i> therefore the base <i>EH</i> equals the base <i>KD.</i>
+
+<p>Therefore the triangle <i>AEH</i> equals and is similar to the triangle <i>HKD.</i> For the same reason the triangle <i>AHG</i> also equals and is similar to the triangle <i>HLD.</i>
+
+<div class="just"><a href="../bookXI/propXI10.html">XI.10</a></div>
+<p>Now, since two straight lines <i>EH</i> and <i>HG</i> meeting one another are parallel to two straight lines <i>KD</i> and <i>DL</i> meeting one another and are not in the same plane, therefore they contain equal angles. Therefore the angle <i>EHG</i> equals the angle <i>KDL.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>And, since the two straight lines <i>EH</i> and <i>HG</i> equal the two <i>KD</i> and <i>DL</i> respectively, and the angle <i>EHG</i> equals the angle <i>KDL,</i> therefore the base <i>EG</i> equals the base <i>KL.</i> Therefore the triangle <i>EHG</i> equals and is similar to the triangle <i>KDL.</i> For the same reason the triangle <i>AEG</i> also equals and is similar to the triangle <i>HKL.</i>
+
+<div class="just"><a href=../bookXI/defXI9.html>XI.Def.10</a></div>
+<p>Therefore the pyramid with triangular base <i>AEG</i> and vertex <i>H</i> equals and is similar to the pyramid with triangular base <i>HKL</i> and the vertex <i>D.</i>
+
+<div class="just"><a href="../bookI/propI29.html">I.29</a>
+<br><a href="../bookVI/defVI1.html">VI.Def.1</a></div>
+<p>And, since <i>HK</i> is parallel to <i>AB,</i> one of the sides of the triangle <i>ADB,</i> the triangle <i>ADB</i> is equiangular to the triangle <i>DHK,</i> and they have their sides proportional, therefore the triangle <i>ADB</i> is similar to the triangle <i>DHK.</i> For the same reason the triangle <i>DBC</i> is also similar to the triangle <i>DKL,</i> and the triangle <i>ADC</i> is similar to the triangle <i>DLH.</i>
+
+<div class="just"><a href="../bookXI/propXI10.html">XI.10</a></div>
+<p>Now, since the two straight lines <i>BA</i> and <i>AC</i> meeting one another are parallel to the two straight lines <i>KH</i> and <i>HL</i> meeting one another not in the same plane, therefore they contain equal angles. Therefore the angle <i>BAC</i> equals the angle <i>KHL.</i>
+
+<p>And <i>BA</i> is to <i>AC</i> as <i>KH</i> is to <i>HL,</i> therefore the triangle <i>ABC</i> is similar to the triangle <i>HKL.</i>
+
+<p>Therefore the pyramid with the triangular base <i>ABC</i> and vertex <i>D</i> is similar to the pyramid with the triangular base <i>HKL</i> and vertex <i>D.</i>
+
+<p>But the pyramid with the triangular base <i>HKL</i> and vertex <i>D</i> was proved similar to the pyramid with the triangular base <i>AEG</i> and the vertex <i>H.</i> Therefore each of the pyramids <i>AEGH</i> and <i>HKLD</i> is similar to the whole pyramid <i>ABCD.</i> 
+
+<div class="just"><a href="../bookXI/propXI39.html">XI.39</a></div>
+<p>Next, since <i>BF</i> equals <i>FC,</i> therefore the parallelogram <i>EBFG</i> is double the triangle <i>GFC.</i> And since, if there are two prisms of equal height, and one has a parallelogram as base and the other a triangle, and if the parallelogram is double the triangle, then the prisms are equal.  Therefore the prism contained by the two triangles <i>BKF</i> and <i>EHG,</i> and the three parallelograms <i>EBFG, EBKH,</i> and <i>HKFG</i> equals the prism contained by the two triangles <i>GFC</i> and <i>HKL</i> and the three parallelograms <i>KFCL, LCGH,</i> and <i>HKFG.</i>
+
+<p>And it is clear that each of the prisms, namely that with the parallelogram <i>EBFG</i> the base and the straight line <i>HK</i> its opposite, and that with the triangle <i>GFC</i> the base and the triangle <i>HKL</i> its opposite, is greater than each of the pyramids with the triangular bases <i>AEG</i> and <i>HKL</i> and vertices <i>H</i> and <i>D,</i> for, if we join the straight lines <i>EF</i> and <i>EK,</i> the prism with the parallelogram <i>EBFG</i> the base and the straight line <i>HK</i> opposite is greater than the pyramid with the triangular base <i>EBF</i> and vertex <i>K.</i>
+
+<p>But the pyramid with the triangular base <i>EBF</i> and vertex <i>A</i>  equals the pyramid with the triangular base <i>AE</i> and the vertex <i>H,</i> for they are contained by equal and similar planes.
+
+<p>Hence the prism with the parallelogram <i>EBF</i> the base and the straight line <i>HK</i> opposite is greater than the pyramid with the triangular base <i>AE</i> and vertex <i>H.</i> But the prism with the parallelogram <i>EBF</i> the base and the straight line <i>HK</i> opposite equals the prism with the triangle <i>GFC</i> the base and the triangle <i>HKL</i> opposite, and the pyramid with the triangular base <i>AEG</i> and vertex <i>H</i> equals the pyramid with the triangular base <i>HKL</i> and vertex <i>D.</i>
+
+<p>Therefore the said two prisms are greater than the said two pyramids with the triangular bases <i>AEG</i> and <i>HKL</i>  and vertices <i>H</i> and <i>D.</i> Therefore the whole pyramid with the triangular base <i>ABC</i> and vertex <i>D</i> has been divided into two pyramids equal to one another and into two equal prisms, and the two prisms are greater than the half of the whole pyramid.
+
+<p>Therefore, <i>any pyramid with a triangular base is divided into two pyramids equal and similar to one another, similar to the whole, and having triangular bases, and into two equal prisms, and the two prisms are greater than half of the whole pyramid.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This and the next six propositions deal with volumes of pyramids.  The first two of these lay the foundations for <a href=propXII5.html>XII.5</a> (pyramids are proportional to their bases).  In the last book it was shown in <a href=../bookXI/propXI32.html>XI.32</a> that parallelepipeds of the same height are proportional to their bases, and <a href=../bookXI/propXI28.html>XI.28</a> (a triangular prism is half a parallelepiped) implies that this proportionality can be carried over to prisms with triangular bases.  It is not so easy to carry the proportionality over to pyramids with triangular bases.  But that is what is done in XII.3 through XII.5.
+
+<p>The basic observation in this proposition is that most of a triangular-based pyramid can be filled up by two congruent prisms leaving less than half to two smaller similar pyramids. The original pyramid <i>ABCD</I> is composed of (1) the prism with bases <i>CFG</i> and <i>LKH</i>, (2) the prism with bases <i>BFK</i> and <i>EGH</i>, (3) the pyramid <i>AEGH</i>, and (4) the pyramid <i>HKLD</i>.
+
+<p>Next, if each of these two smaller pyramids are filled up by two smaller prisms leaving two even smaller pyramids in each, then the four even smaller pyramids that remain are less then 1/4 of the original pyramid.  Partitioning those four again yields eight with a total volume less then 1/8 of the original pyramid.  And so on.  Since the desired proportionality holds for prisms, and pyramids can be partitioned nearly all into prisms, therefore the desired proportionality will hold for pyramids.
+
+<p>This process is used and clarified in XII.5.  The intermediate proposition XII.4 supplies a important technical result needed in XII.5.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2013");
+</script>
+</BODY></HTML>

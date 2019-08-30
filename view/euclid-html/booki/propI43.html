@@ -1,0 +1,77 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 43</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 43</h1>
+
+<div class="statement">In any parallelogram the complements of the parallelograms about the diameter equal one another.</div>
+
+<p>Let <i>ABCD</i> be a parallelogram, and <i>AC</i> its diameter, and about <i>AC</i> let <i>EH</i> and <i>FG</i> be parallelograms, and <i>BK</i> and <i>KD</i> the so-called complements.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=240>
+<img src="propI43.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.43">
+<param name=e[1] value="A;point;free;80,40">
+<param name=e[2] value="B;point;free;40,210">
+<param name=e[3] value="C;point;free;210,210">
+<param name=e[4] value="ABCD;polygon;parallelogram;A,B,C">
+<param name=e[5] value="D;point;vertex;ABCD,4">
+<param name=e[6] value="AC;line;connect;A,C">
+<param name=e[7] value="K;point;lineSlider;AC,110,90">
+<param name=e[8] value="E';point;parallelogram;K,A,D;0;0">
+<param name=e[9] value="E;point;intersection;A,B,K,E';0,0,0;0">
+<param name=e[10] value="F;point;intersection;C,D,K,E;0,0,0;0'">
+<param name=e[11] value="G';point;parallelogram;K,A,B;0;0">
+<param name=e[12] value="G;point;intersection;B,C,K,G';0,0,0;0">
+<param name=e[13] value="H;point;intersection;A,D,K,G';0,0,0;0">
+<param name=e[14] value="HDFK;polygon;quadrilateral;H,D,F,K;0;0;0,0,0;random">
+<param name=e[15] value="EBGK;polygon;quadrilateral;E,B,G,K;0;0;0,0,0;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI43.gif" hspace=10 vspace=10 alt="I.43">';
+</script>
+</div>
+
+<p>I say that the complement <i>BK</i> equals the complement <i>KD.</i>
+
+<div class="just"><a href="propI34.html">I.34</a></div>
+<p>Since <i>ABCD</i> is a parallelogram, and <i>AC</i> its diameter, therefore the triangle <i>ABC</i> equals the triangle <i>ACD.</i>
+
+<div class="just"><a href="propI34.html">I.34</a></div>
+<p>Again, since <i>EH</i> is a parallelogram, and <i>AK</i> is its diameter, therefore the triangle <i>AEK</i> equals the triangle <i>AHK.</i> For the same reason the triangle <i>KFC</i> also equals <i>KGC.</i>
+
+<div class="just"><a href=cn.html>C.N.2</a></div>
+<p>Now, since the triangle <i>AEK</i> equals the triangle <i>AHK,</i> and <i>KFC</i> equals <i>KGC,</i> therefore the triangle <i>AEK</i> together with <i>KGC</i> equals the triangle <i>AHK</i> together with <i>KFC.</i>
+
+<div class="just"><a href=cn.html>C.N.3</a></div>
+<p>And the whole triangle <i>ABC</i> also equals the whole <i>ADC,</i> therefore the remaining complement <i>BK</i> equals the remaining complement <i>KD.</i>
+
+<p>Therefore <i>in any parallelogram the complements of the parallelograms about the diameter equal one another.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+The meaning of the statement has to be found in its use.  The term &ldquo;the parallelograms about the diameter&rdquo; refers to the two parallelograms having the same angles as the original parallelogram and with diameters <i>AK</i> and <i>KC</i> which are two parts of a diameter <i>AC</i> of the original parallelogram.  The complements are the two parallelograms left over after removing those two parallelograms from the original parallelogram.
+
+<h4>Use of Proposition 43</h4>
+The immediate purpose of this proposition is to change the shape of a parallelogram (one of the complements) into an equal parallelogram with the same angles (the other complement).  That&rsquo;s how it is used in the next proposition.  It is also used in several propositions in Book II, and a couple in Book VI.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

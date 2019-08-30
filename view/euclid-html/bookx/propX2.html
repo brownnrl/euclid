@@ -1,0 +1,116 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 2</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">If, when the less of two unequal magnitudes is continually subtracted in turn from the greater that which is left never measures the one before it, then the two magnitudes are incommensurable.</div>
+
+<p>There being two unequal magnitudes <i>AB</i> and <i>CD,</i> with <i>AB</i> being the less, when the less is continually subtracted in turn from the greater, let that which is left over never measure the one before it.
+
+<p>I say that the magnitudes <i>AB</i> and <i>CD</i> are incommensurable.
+
+<p>If they are commensurable, then some magnitude <i>E</i> measures them.
+
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=100>
+<img src="propX2.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.2">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="C0;point;free;-1000,70;0;0">
+<param name=e[4] value="C3;point;free;1000,70;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,160,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,260,0">
+<param name=e[7] value="AB;line;connect;A,B">
+<param name=e[8] value="C;point;lineSlider;C0,C3,30,0">
+<param name=e[9] value="D;point;lineSlider;C0,C3,260,0">
+<param name=e[10] value="CD;line;connect;C,D">
+<param name=e[11] value="E1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[12] value="E2;point;lineSlider;A0,A3,80,0;0">
+<param name=e[13] value="E;line;connect;E1,E2;black">
+<param name=e[14] value="F1;point;cutoff;D,C,A,B;0;0">
+<param name=e[15] value="F;point;cutoff;F1,C,A,B">
+<param name=e[16] value="G1;point;cutoff;B,A,C,F;0;0">
+<param name=e[17] value="G;point;cutoff;G1,A,C,F">
+</applet></div>
+
+<p>Let <i>AB,</i> measuring <i>FD,</i> leave <i>CF</i> less than itself, let <i>CF</i> measuring <i>BG,</i> leave <i>AG</i> less than itself, and let this process be repeated continually, until there is left some magnitude which is less than <i>E.</i>
+
+<p>Suppose this done, and let there be left <i>AG</i> less than <i>E.</i>
+
+<p>Then, since <i>E</i> measures <i>AB,</i> while <i>AB</i> measures <i>DF,</i> therefore <i>E</i> also measures <i>FD.</i> But it measures the whole <i>CD</i> also, therefore it also measures the remainder <i>CF.</i> But <i>CF</i> measures <i>BG,</i> therefore <i>E</i> also measures <i>BG.</i> But it measures the whole <i>AB</i> also, therefore it also measures the remainder <i>AG,</i> the greater the less, which is impossible.
+
+<div class="just"><a href=defX.I.html#1>X.Def.I.1</a></div>
+<p>Therefore no magnitude measures the magnitudes <i>AB</i> and <i>CD.</i> Therefore the magnitudes <i>AB</i> and <i>CD</i> are incommensurable.
+
+<p>Therefore, <i>if, when the less of two unequal magnitudes is continually subtracted in turn from the greater that which is left never measures the one before it, then the two magnitudes are incommensurable.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Antenaresis (also called the Euclidean algorithm), first used in proposition <a href=../bookVII/propVII1.html>VII.1</a>, is again used in this proposition.  Beginning with two magnitudes, the smaller, whichever it is, is repeated subtracted from the larger.  Proposition VII.1 concerns relatively prime numbers. It is similar to this proposition, but its conclusion is different.
+
+<p>Heath claims that Euclid uses <a href=propX1.html>X.1</a> to prove this proposition, in particular, to show that antenaresis eventually leaves some magnitude which is less than <i>E.</i>  It is hard to tell what Euclid thought his justification was.  Since both magnitudes are multiples of <i>E,</i> whatever justification Euclid intended back in proposition <a href=../bookVII/propVII2.html>VII.2</a> works just as well here.  Euclid did, however, put X.1 just before this proposition, perhaps for an intended logical connection.  If so, there is a missing statement to the effect that <i>GB</i> is greater than half of <i>AB,</i>  and so forth, so that X.1 might be invoked.
+
+<h4>An example of incommensurable magnitudes</h4>
+
+<table cellpadding=5>
+<tr><td>
+Consider the 36&deg;-72&deg;-72&deg; triangle constructed <i>ABC</i> in proposition <a href="../bookIV/propIV10.html">IV.10</a>.  This triangle was used in the following proposition <a href="../bookIV/propIV11.html">IV.11</a> to construct regular pentagons.  When its base <i>BC</i> is 
+subtracted from a side <i>AC</i> then the remainder <i>CD</i> is the base of a similar triangle <i>BCD.</i>  Likewise, when the base <i>CD</i> of this new triangle is subtracted from its side <i>BD</i> then the remainder <i>DE</i> is the base of yet another smaller similar triangle <i>CDE.</i> And so forth.
+
+<p>Thus, when we begin with the two lines <i>AB</i> and <i>BC</i> and apply the algorithm of antenaresis to them, we get a series of lines which never ends <i>AB, BC, CD, DE, EF,</i> and so forth, and these lines form a never-ending continued proportion.
+<p><center>
+<i>AB</i>&nbsp;:&nbsp;<i>BC</i> = <i>BC</i>&nbsp;:&nbsp;<i>CD</i> = <i>CD</i>&nbsp;:&nbsp;<i>DE</i> = <i>DE</i>&nbsp;:&nbsp;<i>EF</i> = ...
+</center><p>
+Thus, according to this proposition, the two quantities <i>AB</i> and <i>BC</i> are incommensurable.
+
+<p>Cutting the line <i>AB</i> at <i>C</i> to make this ratio <i>AB</i>&nbsp;:&nbsp;<i>BC</i> is called in <a href=../bookVI/defVI3.html>VI.Def.3</a> cutting <i>AB</i> into extreme and mean ratio.  A more recent name for this ratio is the &ldquo;golden ratio.&rdquo;
+</td>
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=320 width=230>
+<img src="propX2a.gif" alt="a series of triangles">
+<param name=background value="35,19,100">
+<param name=title value="A pentagram">
+<param name=e[1] value="C;point;free;40,280">
+<param name=e[2] value="B;point;free;190,280">
+<param name=e[3] value="ABCDE;polygon;regularPolygon;C,B,5;0;0;0;0">
+<param name=e[4] value="A;point;vertex;ABCDE,4">
+<param name=e[5] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[6] value="D;point;similar;B,C,A,B,C">
+<param name=e[7] value="BCD;polygon;triangle;B,C,D;0;0;black;random">
+<param name=e[8] value="E;point;similar;C,D,B,C,D">
+<param name=e[9] value="CDE;polygon;triangle;C,D,E;0;0;black;random">
+<param name=e[10] value="F;point;similar;D,E,C,D,E">
+<param name=e[11] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+<param name=e[12] value="G;point;similar;E,F,D,E,F">
+<param name=e[13] value="EFG;polygon;triangle;E,F,G;0;0;black;random">
+<param name=e[14] value="H;point;similar;F,G,E,F,G;0">
+<param name=e[15] value="FGH;polygon;triangle;F,G,H;0;0;black;random">
+</applet></td></tr>
+</table>
+
+
+<h4>Use of this proposition</h4>
+
+<p>This proposition is used in the next one. 
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

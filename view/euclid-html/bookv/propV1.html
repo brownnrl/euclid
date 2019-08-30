@@ -1,0 +1,84 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 2</h1>
+
+<div class="statement">If  any number of magnitudes are each the same multiple of the same number of other magnitudes, then the sum is that multiple of the sum.</div>
+
+<div class="just"><a href=defV1.html>V.Def.2</a></div>
+<p>Let any number of magnitudes <i>AB</i> and <i>CD</i> each be the same multiple of magnitudes <i>E</i> and <i>F</i> respectively.
+
+<p>I say that the sum of <i>AB</i> and <i>CD</i> is the same multiple of the sum of <i>E</i> and <i>F</i> that <i>AB</i> is of <i>E.</i>
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=130>
+<img src=propV1.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=align value=above>
+<param name=title value="V.1">
+<param name=e[1] value="U1;point;free;0,0;0;0">
+<param name=e[2] value="U2;point;free;25,0;0;0">
+<param name=e[3] value="U;line;connect;U1,U2;0;0;0">
+
+<param name=e[4] value="E1;point;free;30,90;0">
+<param name=e[5] value="E3;point;parallelogram;E1,U;0;0">
+<param name=e[6] value="E2;point;lineSlider;E1,E3,90,0;0">
+<param name=e[7] value="E;line;connect;E1,E2;black;0;red">
+
+<param name=e[8] value="F1;point;free;30,120;0">
+<param name=e[9] value="F3;point;parallelogram;F1,U;0;0">
+<param name=e[10] value="F2;point;lineSlider;F1,F3,140,0;0">
+<param name=e[11] value="F;line;connect;F1,F2;black;0;red">
+
+<param name=e[12] value="A;point;free;30,30">
+<param name=e[13] value="A3;point;parallelogram;A,U;0;0">
+<param name=e[14] value="G;point;cutoff;A,A3,E">
+<param name=e[15] value="B;point;extend;A,G,E">
+<param name=e[16] value="AB;line;connect;A,B;0;0;red">
+
+<param name=e[17] value="C;point;free;30,60">
+<param name=e[18] value="C3;point;parallelogram;C,U;0;0">
+<param name=e[19] value="H;point;cutoff;C,C3,F">
+<param name=e[20] value="D;point;extend;C,H,F">
+<param name=e[21] value="CD;line;connect;C,D;0;0;red">
+</applet>
+</div>
+
+<p>Since <i>AB</i> is the same multiple of <i>E</i> that <i>CD</i> is of <i>F,</i> therefore there are as many magnitudes in <i>AB</i> equal to <i>E</i> as there are in <i>CD</i> equal to <i>F.</i>
+
+<p>Divide <i>AB</i> into magnitudes <i>AG</i> and <i>GB</i> equal to <i>E,</i> and divide <i>CD</i> into <i>CH</i> and <i>HD</i> equal to <i>F.</i>  Then the number of the magnitudes <i>AG</i> and <i>GB</i> equals the number of the magnitudes <i>CH</i> and <i>HD.</i>
+
+<p>Now, since <i>AG</i> equals <i>E,</i> and <i>CH</i> equals <i>F,</i> therefore the sum of <i>AG</i> and <i>CH</i> equals the sum of <i>E</i> and <i>F.</i>
+
+<p>For the same reason <i>GB</i> equals <i>E,</i> and the sum of <i>GB</i> and <i>HD</i> equals the sum of <i>E</i> and <i>F.</i> Therefore, there are as many magnitudes in <i>AB</i> equal to <i>E</i> as there are in the sum of <i>AB</i> and <i>CD</i> equal to the sum of <i>E</i> and <i>F.</i>  Therefore, the sum of <i>AB</i> and <i>CD</i> is the same multiple of the sum of <i>E</i> and <i>F</i> that <i>AB</i> is of <i>E.</i></td></tr>
+
+<p>Therefore, <i>if  any number of magnitudes are each the same multiple of the same number of other magnitudes, then the sum is that multiple of the sum.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+In modern terminology, this proposition states that multiplication by numbers distributes over addition of magnitudes, that is,
+<p><center><i>m</i> (<i>x</i><sub>1</sub>&nbsp;+&nbsp;<i>x</i><sub>2</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>x<sub>n</sub></i>)&nbsp;=&nbsp;<i>m x</i><sub>1</sub>&nbsp;+&nbsp;<i>m x</i><sub>2</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>m x<sub>n</sub>.</i></center><p>
+Here, the <i>m</i> is a number, and all the <i>x<sub>i</sub></i>&rsquo;s are magnitudes of the same kind.
+
+<p>Euclid always displays his magnitudes as lines, but they could be magnitudes of other kinds, like plane regions, for instance.  In this proposition, all the magnitudes are of the same kind.
+
+<p>Euclid&rsquo;s proof is only for the simplest nontrivial case.  He takes the number <i>n</i> of magnitudes to be 2, and the multiple <i>m</i> also to be 2, so he proves that if <i>x</i><sub>1</sub>&nbsp;=&nbsp;<i>m y</i><sub>1</sub> and <i>x</i><sub>2</sub>&nbsp;=&nbsp;<i>m y</i><sub>2</sub>, then <i>x</i><sub>1</sub>&nbsp;+&nbsp;<i>x</i><sub>2</sub> &nbsp;=&nbsp;<i>m</i> (<i>y</i><sub>1</sub>&nbsp;+&nbsp;<i>y</i><sub>2</sub>).  Throughout Book V, Euclid proves the general numerical case by a particular case.  The numbers he chooses are usually 2 and 3.
+
+<h4>Use of this proposition</h4>
+
+Proposition V.1 is used in the proofs of four other propositions, namely, <a href=propV5.html>V.5</a>, <a href=propV8.html>V.8</a>, <a href=propV12.html>V.12</a>, and <a href=propV17.html>V.17</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

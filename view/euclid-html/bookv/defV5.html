@@ -1,0 +1,122 @@
+
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book V, Definitions 5 and 6</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 5</h1>
+
+<div class="statement">Magnitudes are said to be <i>in the same ratio,</i> the first to the second and the third to the fourth, when, if any equimultiples whatever are taken of the first and third, and any equimultiples whatever of the second and fourth, the former equimultiples alike exceed, are alike equal to, or alike fall short of, the latter equimultiples respectively taken in corresponding order.</div>
+</div>
+
+<br>
+ 
+<div class="theorem">
+<h1>Definition 6</h1>
+
+<div class="statement">Let magnitudes which have the same ratio be called <i>proportional.</i></div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Definition 5 defines two ratios <i>w</i>&nbsp;:&nbsp;<i>x</i> and <i>y</i>&nbsp;:&nbsp;<i>z</i> to be the same, written <i>w</i>&nbsp;:&nbsp;<i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;:&nbsp;<i>z,</i> when for all numbers <i>n</i> and <i>m</i> it is the case that if <i>nw</i> is greater, equal, or less than <i>mx,</i> then <i>ny</i> is greater, equal, or less than <i>mz,</i> respectively, that is,
+<p><center>if <i>nw</i>&nbsp;>&nbsp;<i>mx,</i> then <i>ny</i>&nbsp;>&nbsp;<i>mz,</i>
+<br>if <i>nw</i>&nbsp;=&nbsp;<i>mx,</i> then <i>ny</i>&nbsp;=&nbsp;<i>mz,</i> and
+<br>if <i>nw</i>&nbsp;<&nbsp;<i>mx,</i> then <i>ny</i>&nbsp;<&nbsp;<i>mz.</i></center><p>
+It is very convenient to use the shorter notation
+<p><center>if <i>nw</i>&nbsp;>=<&nbsp;<i>mx,</i> then <i>ny</i>&nbsp;>=<&nbsp;<i>mz.</i></center><p>
+Note that whenever the symbol >=< is used there are three parallel statements being made.  
+
+
+<p>The four magnitudes do not all have to be of the same kind, but the first pair <i>w</i> and <i>x</i> need to be of the one kind, and the second pair <i>y</i> and <i>z</i> of one kind, either the same kind as that of <i>w</i> and <i>x</i> or a different kind.  Perhaps the best illustration of these definitions comes from proposition <a href=../bookVI/propVI1.html>VI.1</a> in which Euclid first uses them to construct a proportion.
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  height=180 width=400>
+<img src=defV5.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.5">
+<param name=e[1] value="B0;point;free;-1000,150;0;0">
+<param name=e[2] value="B3;point;free;1000,150;0;0">
+<param name=e[3] value="A;point;free;190,30">
+<param name=e[4] value="B;point;lineSlider;B0,B3,140,0">
+<param name=e[5] value="C;point;lineSlider;B0,B3,180,0">
+<param name=e[6] value="D;point;lineSlider;B0,B3,210,0">
+<param name=e[7] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[8] value="ACD;polygon;triangle;A,C,D;0;0;black;random">
+<param name=e[9] value="G;point;extend;C,B,C,B">
+<param name=e[10] value="H;point;extend;B,G,C,B">
+<param name=e[11] value="K;point;extend;C,D,C,D">
+<param name=e[12] value="L;point;extend;D,K,C,D">
+<param name=e[13] value="HL;line;connect;H,L">
+<param name=e[14] value="AH;line;connect;A,H">
+<param name=e[15] value="AG;line;connect;A,G">
+<param name=e[16] value="AK;line;connect;A,K">
+<param name=e[17] value="AL;line;connect;A,L">
+</applet></center>
+
+The goal in this proposition is to show that the lines are proportional to the triangles.  More precisely, the line <i>BC</i> is to the line <i>CD</i> as the triangle <i>ABC</i> is to the triangle <i>ACD,</i> that is, the ratio <i>BC</i>&nbsp;:&nbsp;<i>CD</i> of lines is the same as the ratio <i>ABC</i>&nbsp;:&nbsp;<i>ACD</i> of triangles.   Even though the ratios derive from different kinds of magnitudes, they are to be compared and shown equal.  
+
+<p>According to Definition 5, in order to show the ratios are the same, Euclid takes any one multiple of <i>BC</i> and <i>ABC</i> (which he illustrates by taking three times each), and any one multiple of <i>CD</i> and <i>ACD</i> (which he also illustrates by taking three times each).  Then he proceeds to show that the former equimultiples, namely <i>HC</i> and <i>CL,</i> alike exceed, are alike equal to, or alike fall short of, the latter equimultiples, namely, <i>AHC</i> and <i>ACL.</i>
+
+<p>Symbolically, in order to prove <i>BC</i>&nbsp;:&nbsp;<i>CD</i>&nbsp;=&nbsp;<i>ABC</i>&nbsp;:&nbsp;<i>ACD,</i> Euclid proves for any numbers <i>n</i> and <i>m</i> that the line <i>n BC</i> is greater, equal, or less than the line <i>m CD</i> when the triangle <i>n ABC</i> is greater, equal, or less than the triangle <i>m ACD.</i>  We will abbreviate this condition symbolically as 
+<p><center>if <i>n BC</i>&nbsp;>=<&nbsp;<i>m CD,</i> then <i>n ABC</i>&nbsp;>=<&nbsp;<i>m ACD.</i></center><p>
+Note that in order to check this condition, it is only necessary to compare lines to lines and planar figures to planar figures.  To see how Euclid does this, refer to <a href=../bookVI/propVI1.html>VI.1</a>.
+
+<h4>Numerical ratios and commensurability</h4>
+
+As it sometimes happens, a ratio of two magnitudes <i>A</i>&nbsp;:&nbsp;<i>B</i> is the same as a ratio of numbers <i>m</i>&nbsp;:&nbsp;<i>n.</i>  Take for instance the case when <i>A</i> is a line that is twice a line <i>U</i> while <i>B</i> is a line that is three times the line <i>U.</i>  Then, we could show that the ratio of magnitudes <i>A</i>&nbsp;:&nbsp;<i>B</i> is the same as the numerical ratio 2&nbsp;:&nbsp;3. Such ratios are studied in detail in <a href="../bookX/bookX.html">Book X</a>.  That book begins by defining in <a href="../bookX/defX.I.html">X.Def.1.</a> what it means for two quantities to be &ldquo;commensurable.&rdquo; For instance, the two lines <i>A</i> and <i>B</i> are commensurable since there is a unit <i>U</i> that measures both. Later in Book X (propositions <a href=../bookX/propX5.html>X.5</a> and <a href=../bookX/propX6.html>X.6</a>) it is explicitly shown that two magnitudes are commensurable if and only if their ratio is a numeric ratio.
+
+<p>Using modern concepts and notations, we can more easily see what the general definition of equality of two magnitudes means.  If we treat ratios as real numbers, the a proportion such as the one described above, <i>BC</i>&nbsp;:&nbsp;<i>CD</i>&nbsp;=&nbsp;<i>ABC</i>&nbsp;:&nbsp;<i>ACD,</i> means that  the ratio <i>BC</i>&nbsp;:&nbsp;<i>CD</i> compares to all numerical ratios (that is, rational numbers) <i>m</i>/<i>n</i> the same way that <i>ABC</i>&nbsp;:&nbsp;<i>ACD</i> does.  Another way of saying this is that equality of two real numbers is determined by their relation to all rational numbers.  This is often expressed by saying that the set of rational numbers is dense in the set of real numbers.
+
+<p>Of course, Euclid did not have what modern mathematicians call real numbers.  Indeed, there is an ontological difference between real numbers and Euclid&rsquo;s ratios.  Some real numbers are not ratios of the magnitudes of any kind mentioned in the <i>Elements.</i>
+
+<h4>Proportions as equivalence relations</h4>
+
+Equivalence relations were defined in the <a href=defV3.html#guide>Guide</a> for V.Def.3.  Three things need to be checked to see if proportion is an equivalence relation: reflexivity, symmetry, and transitivity.
+
+<p>First, reflexivity.  Is it the case for any pair of magnitudes of the same type <i>A</i> and <i>B</i> that <i>A</i> and <i>B</i> are in the same ratio as <i>A</i> and <i>B</i>?  That means for any numbers <i>m</i> and <i>n,</i>
+<p><center>if <i>nA</i>&nbsp;>=<&nbsp;<i>mB,</i> then <i>nA</i>&nbsp;>=<&nbsp;<i>mB.</i></center><p>
+That is trivial.
+
+<p>Second, symmetry.  Is it the case that if <i>A</i> and <i>B</i> are in the same ratio as <i>C</i> and <i>D,</i> then <i>C</i> and <i>D</i> are in the same ratio as <i>A</i> and <i>B</i>?  The first says
+<p><center>if <i>nA</i>&nbsp;>=<&nbsp;<i>mB,</i> then <i>nC</i>&nbsp;>=<&nbsp;<i>mD,</i></center><p>
+while the second says
+<p><center>if <i>nC</i>&nbsp;>=<&nbsp;<i>mD,</i> then <i>nA</i>&nbsp;>=<&nbsp;<i>mB.</i></center><p>
+This can be shown using the law of trichotomy for magnitudes. (Suppose <i>nC</i>&nbsp;>&nbsp;<i>mD.</i> If <i>nA</i> is not greater than <i>mB,</i> then it is less or equal, but then <i>nC</i> is less or equal to <i>mD,</i> contradicting <i>nC</i>&nbsp;>&nbsp;<i>mD.</i> etc.) Euclid missed symmetry, but he uses it very frequently.
+
+<p>Third, transitivity.  Euclid states this explicitly in proposition <a href=propV11.html>V.11</a>.  The proof relies only on the definition.
+
+<p>Thus, proportion is an equivalence relation.
+
+<h4>Are proportions equalities of ratios?</h4>
+
+When <i>A</i> and <i>B</i> are in the same ratio as <i>C</i> and <i>D,</i>  then the four magnitudes are said to be proportional, or in proportion, according to definition 6.  Is that the same as saying the ratios <i>A</i>&nbsp;:&nbsp;<i>B</i> and <i>C</i>&nbsp;:&nbsp;<i>D</i> are equal?
+
+<p>A more fundamental question is &ldquo;do ratios exist?&rdquo;  Are they some kind of mathematical object like numbers and magnitudes?  The <i>Elements</i> do not require it.  Instead, proportion is a relation held between one pair of magnitudes and another pair of magnitudes.  Yet it is very easy to read Book V as though ratios are mathematical objects of some abstract variety.  And it&rsquo;s easy to read &ldquo;<i>A</i> and <i>B</i> have the same ratio as <i>C</i> and <i>D</i>&rdquo; as saying that the ratio <i>A</i>&nbsp;:&nbsp;<i>B</i> is the same ratio as <i>C</i>&nbsp;:&nbsp;<i>D.</i>
+
+<p>Not every relation allows that reading, but equivalence relations do, and proportion is an equivalence relation. 
+
+<p>The philosophical questions &ldquo;do ratios exist?&rdquo; and &ldquo;is a proportion equality of ratios?&rdquo; can be converted to the question &ldquo;why do equivalence relations create entities?&rdquo; or a little more conservatively, &ldquo;why do equivalence relations allow us to think and act as if the entities exist?&rdquo;
+
+<p>It is hard to imagine that Euclid did not think of ratios as things and proportions as equalities, especially since the next definition defines when one ratio is larger than another.  Perhaps he did, but continued to write noncommittally.
+
+<p>Proportions are written as equalities in the Guide.
+
+<h4>Is 1 a number?</h4>
+
+For the most part, 1 is not taken to be a number in the <i>Elements</i>, and in that case, 2 is the smallest number.  Sometimes, however, 1 is considered a number.  For example, there are frequent uses in the <i>Elements</i> of the principle
+
+<p><center>if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d</i> and <i>a</i>&nbsp;>=<&nbsp;<i>b,</i> then <i>c</i>&nbsp;>=<&nbsp;<i>d</i>
+</center><p>
+
+which is just the definition of proportion when <i>m</i> and <i>n</i> are both equal to 1.  See the <a href="propV14.html#guide">Guide</a> for Proposition V.14 for further comments.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

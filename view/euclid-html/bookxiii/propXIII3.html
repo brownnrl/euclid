@@ -1,0 +1,94 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 3</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">
+If a straight line is cut in extreme and mean ratio, then the square on the sum of the lesser segment and the half of the greater segment is five times the square on the half of the greater segment.</div>
+
+<p>Cut any straight line <i>AB</i>  in extreme and mean ratio at the point <i>C,</i> and let <i>AC</i> be the greater segment. Bisect <i>AC</i> at <i>D.</i>
+<p>I say that the square on <i>BD</i> is five times the square on <i>DC.</i>
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=270 >
+<img src="propXIII3.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.3">
+<param name=e[1] value="A;point;free;30,30">
+<param name=e[2] value="B;point;free;240,30">
+<param name=e[3] value="BATE;polygon;square;B,A;0;0;black;random">
+<param name=e[4] value="T;point;vertex;BATE,3;0;0">
+<param name=e[5] value="E;point;vertex;BATE,4">
+<param name=e[6] value="X;point;midpoint;A,B;0;0">
+<param name=e[7] value="Y;point;extend;A,X,X,E;0;0">
+<param name=e[8] value="C;point;cutoff;A,B,B,Y">
+
+<param name=e[9] value="D;point;midpoint;A,C">
+<param name=e[10] value="BT;line;connect;B,T">
+<param name=e[11] value="L;point;parallelogram;D,B,E">
+<param name=e[12] value="S;point;parallelogram;C,B,E">
+<param name=e[13] value="DL;line;connect;D,L">
+<param name=e[14] value="CS;line;connect;C,S">
+<param name=e[15] value="K;point;intersection;B,T,D,L">
+<param name=e[16] value="U;point;intersection;B,T,C,S">
+<param name=e[17] value="H;point;parallelogram;T,L,K">
+<param name=e[18] value="N;point;parallelogram;H,T,E">
+<param name=e[19] value="HN;line;connect;H,N">
+<param name=e[20] value="R;point;parallelogram;T,S,U">
+<param name=e[21] value="M;point;parallelogram;R,T,E">
+<param name=e[22] value="RM;line;connect;R,M">
+<param name=e[23] value="F;point;intersection;C,S,H,N">
+<param name=e[24] value="G;point;intersection;D,L,R,M">
+<param name=e[25] value="O;point;midpoint;G,U">
+<param name=e[26] value="P;point;cutoff;U,B,U,O">
+<param name=e[27] value="Q;point;cutoff;U,S,U,O">
+<param name=e[28] value="QPO;sector;arc;Q,P,O;0;0;gray">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a></div>
+<p>Describe the square <i>AE</i>  on <i>AB,</i> and draw the figure.
+
+<p>Since <i>AC</i> is double <i>DC,</i> therefore the square on <i>AC</i> is quadruple the square on <i>DC,</i> that is, <i>RS</i> is quadruple <i>FG.</i>
+
+<p>And, since the rectangle <i>AB</i> by <i>BC</i> equals the square on <i>AC,</i> and <i>CE</i> is the rectangle <i>AB</i> by <i>BC,</i> therefore <i>CE</i> equals <i>RS.</i>
+
+<p>But <i>RS</i> is quadruple <i>FG,</i> therefore <i>CE</i> is also quadruple <i>FG.</i>
+
+<p>Again, since <i>AD</i> equals <i>DC,</i> therefore <i>HK</i> also equals <i>KF.</i>
+
+<p>Hence the square <i>GF</i> equals the square <i>HL.</i>
+
+<p>Therefore <i>GK</i> equals <i>KL,</i> that is <i>MN</i> equals <i>NE,</i> hence <i>MF</i> equals <i>FE.</i>
+
+<p>But <i>MF</i> equals <i>CG,</i> therefore <i>CG</i> equals <i>FE.</i>
+
+<p>Add <i>CN</i>  to each, therefore the gnomon <i>OPQ</i> equals <i>CE.</i>
+
+<p>But <i>CE</i> was proved quadruple <i>GF,</i> therefore the gnomon <i>OPQ</i> is also quadruple the square <i>FG.</i> Therefore the sum of the gnomon <i>OPQ</i> and the square <i>FG</i> is five times <i>FG.</i>
+
+<p>But the sum of the gnomon <i>OPQ</i> and the square <i>FG</i> is the square <i>DN.</i> And <i>DN</i> is the square on <i>DB,</i> and <i>GF</i> is the square on <i>DC.</i> Therefore the square on <i>DB</i> is five times the square on <i>DC.</i> 
+
+<p>Therefore, <i>if a straight line is cut in extreme and mean ratio, then the square on the sum of the lesser segment and the half of the greater segment is five times the square on the half of the greater segment.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<h4>Use of this proposition</h4>
+
+This result is needed in proposition <a href=propXIII16.html>XIII.16</a> to show the icosahedron is inscribed in the given sphere.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

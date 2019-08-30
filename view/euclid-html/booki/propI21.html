@@ -1,0 +1,83 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 21</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 21</h1>
+
+<div class="statement">If from the ends of one of the sides of a triangle two straight lines are constructed meeting within the triangle, then the sum of the straight lines so constructed is less than the sum of the remaining two sides of the triangle, but the constructed straight lines contain a greater angle than the angle contained by the remaining two sides.</div>
+
+<p>From the ends <i>B</i> and <i>C</i> of one of the sides <i>BC</i> of the triangle <i>ABC,</i> let the two straight lines <i>BD</i> and <i>DC</i> be constructed meeting within the triangle.
+
+<p>I say that the sum of <i>BD</i> and <i>DC</i> is less than the sum of the remaining two sides of the triangle <i>BA</i> and <i>AC,</i> but <i>BD</i> and <i>DC</i> contain an angle <i>BDC</i> greater than the angle <i>BAC.</i> 
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=220>
+<img src="propI21.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.21">
+<param name=e[1] value="A;point;free;70,40">
+<param name=e[2] value="B;point;free;40,180">
+<param name=e[3] value="C;point;free;180,180">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[5] value="D;point;free;90,100">
+<param name=e[6] value="BD;line;connect;B,D">
+<param name=e[7] value="CD;line;connect;C,D">
+<param name=e[8] value="E;point;intersection;B,D,A,C">
+<param name=e[9] value="DE;line;connect;D,E">
+<param name=e[10] value="BCD;polygon;triangle;B,C,D;0;0;0;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI21.gif" hspace=10 vspace=10 alt="I.21">';
+</script>
+</div>
+
+<div class="just"><a href=post2.html>I.Post.2</a></div>
+<p>Draw <i>BD</i> through to <i>E.</i>
+
+<div class="just"><a href=propI20.html>I.20</a></div>
+<p>Since in any triangle the sum of two sides is greater than the remaining one,  therefore, in the triangle <i>ABE,</i> the sum of the two sides <i>AB</i> and <i>AE</i> is greater than <i>BE.</i>
+
+<div class="just"><a href=cn.html>C.N.</a></div>
+<p>Add <i>EC</i> to each.  Then the sum of <i>BA</i> and <i>AC</i> is greater than the sum of <i>BE</i> and <i>EC.</i>
+
+<div class="just"><a href=propI20.html>I.20</a>
+<br><a href=cn.html>C.N.</a></div>
+<p>Again, since, in the triangle <i>CED,</i> the sum of the two sides <i>CE</i> and <i>ED</i> is greater than <i>CD,</i> add <i>DB</i> to each, therefore the sum of <i>CE</i> and <i>EB</i> is greater than the sum of <i>CD</i> and <i>DB.</i>
+
+<div class="just"><a href=cn.html>C.N.</a></div>
+<p>But the sum of <i>BA</i> and <i>AC</i> was proved greater than the sum of <i>BE</i> and <i>EC,</i> therefore the sum of <i>BA</i> and <i>AC</i> is much greater than the sum of <i>BD</i> and <i>DC.</i>
+
+<div class="just"><a href=propI16.html>I.16</a></div>
+<p>Again, since in any triangle the exterior angle is greater than the interior and opposite angle, therefore, in the triangle <i>CDE,</i> the exterior angle <i>BDC</i> is greater than the angle <i>CED.</i> 
+
+<div class="just"><a href=propI16.html>I.16</a>
+<br><a href=cn.html>C.N.</a></div>
+<p>For the same reason, moreover, in the triangle <i>ABE</i> the exterior angle <i>CEB</i> is greater than the angle <i>BAC.</i> But the angle <i>BDC</i> was proved greater than the angle <i>CEB,</i> therefore the angle <i>BDC</i> is much greater than the angle <i>BAC.</i> 
+
+<p>Therefore <i>if from the ends of one of the sides of a triangle two straight lines are constructed meeting within the triangle, then the sum of the straight lines so constructed is less than the sum of the remaining two sides of the triangle, but the constructed straight lines contain a greater angle than the angle contained by the remaining two sides.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+Pappus and others before him noticed that if the lines are not drawn from the ends of the side, then the sum of the the constructed straight lines can be greater than the sum of the remaining two sides of the triangle. In fact that sum can be made almost as large as twice the longest side of the triangle.
+
+<h4>Use of Proposition 21</h4>
+
+This proposition is used in proposition <a href=../bookIII/propIII8.html>III.8</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

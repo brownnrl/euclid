@@ -1,0 +1,82 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 20</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 20</h1>
+
+<div class="statement">If there are three magnitudes, and others equal to them in multitude, which taken two and two are in the same ratio, and if <i>ex aequali</i> the first is greater than the third, then the fourth is also greater than the sixth; if equal, equal, and; if less, less.</div>
+
+<p>Let there be three magnitudes <i>A, B,</i> and <i>C,</i> and others <i>D, E,</i> and <i>F</i> equal to them in multitude, which taken two and two are in the same ratio, so that <i>A</i> is to <i>B</i> as <i>D</i> is to <i>E,</i> and <i>B</i> is to <i>C</i> as <i>E</i> is to <i>F.</i>
+
+<p>Let <i>A</i> be greater than <i>C ex aequali.</i>
+
+<p>I say that <i>D</i> is also greater than <i>F</i>; if <i>A</i> equals <i>C,</i> equal; and, if less, less.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=300 height=130>
+<img src=propV20.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.20">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,65;0;0">
+<param name=e[4] value="V1;point;free;1000,65;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+
+<param name=e[7] value="A0;point;lineSlider;U0,U1,30,30;0">
+<param name=e[8] value="A1;point;lineSlider;U0,U1,140,30;0">
+<param name=e[9] value="A;line;connect;A0,A1;black;0;30,100,80">
+<param name=e[10] value="B0;point;lineSlider;V0,V1,30,65;0">
+<param name=e[11] value="B1;point;lineSlider;V0,V1,80,65;0">
+<param name=e[12] value="B;line;connect;B0,B1;black;0;30,100,80">
+<param name=e[13] value="C0;point;lineSlider;W0,W1,30,100;0">
+<param name=e[14] value="C1;point;lineSlider;W0,W1,120,100;0">
+<param name=e[15] value="C;line;connect;C0,C1;black;0;30,100,80">
+
+<param name=e[16] value="D0;point;lineSlider;U0,U1,190,30;0">
+<param name=e[17] value="D1;point;lineSlider;U0,U1,270,30;0">
+<param name=e[18] value="D;line;connect;D0,D1;black;0;blue">
+<param name=e[19] value="E0;point;lineSlider;V0,V1,190,65;0">
+<param name=e[20] value="E1;point;proportion;A0,A1,B0,B1,D0,D1,E0,V1;0">
+<param name=e[21] value="E;line;connect;E0,E1;black;0;blue">
+<param name=e[22] value="F0;point;lineSlider;W0,W1,190,100;0">
+<param name=e[23] value="F1;point;proportion;B0,B1,C0,C1,E0,E1,F0,W1;0">
+<param name=e[24] value="F;line;connect;F0,F1;black;0;blue">
+</applet>
+</div>
+
+<div class="just"><a href=propV8.html>V.8</a></div>
+<p>Since <i>A</i> is greater than <i>C,</i> and <i>B</i> is some other magnitude, and the greater has to the same a greater ratio than the less has, therefore <i>A</i> has to <i>B</i> a greater ratio than <i>C</i> has to <i>B.</i>
+
+<div class="just"><a href=propV7.html#cor>V.7.Cor</a>
+<br><a href=propV13.html>V.13</a></div>
+<p>But <i>A</i> is to <i>B</i> as <i>D</i> is to <i>E,</i> and, <i>C</i> is to <i>B,</i> inversely, as <i>F</i> is to <i>E,</i> therefore <i>D</i> has to <i>E</i> a greater ratio than <i>F</i> has to <i>E.</i>
+
+<div class="just"><a href="propV10.html">V.10</a></div>
+<p>But, of magnitudes which have a ratio to the same, that which has a greater ratio is greater, therefore <i>D</i> is greater than <i>F.</i>
+
+<p>Similarly we can prove that, if <i>A</i> equals <i>C,</i> then <i>D</i> also equals <i>F,</i> and if less, less.
+
+<p>Therefore, <i>if there are three magnitudes, and others equal to them in multitude, which taken two and two are in the same ratio, and if <i>ex aequali</i> the first is greater than the third, then the fourth is also greater than the sixth; if equal, equal, and; if less, less.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>The statement says that given  proportions, <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=<i>d</i>&nbsp;:&nbsp;<i>e</i> and <i>b</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=<i>e</i>&nbsp;:&nbsp;<i>f</i>, then <i>a</i>&nbsp;>=<&nbsp;<i>c</i> implies <i>d</i>&nbsp;>=<&nbsp;<i>f</i>. The proof is straightforward.
+
+<p>This proposition is in preparation for <a href=propV22.html>V.22</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,71 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 38</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 38</h1>
+
+<div class="statement">If a number has any part whatever, then it is measured by a number called by the same name as the part.</div>
+
+<p>Let the number <i>A</i> have any part whatever, <i>B,</i> and let <i>C</i> be a number called by the same name as the part <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=170 >
+<img src=propVII38.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.38">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,35;0;0">
+<param name=e[2] value="A3;point;free;1000,35;0;0">
+<param name=e[3] value="B0;point;free;-1000,70;0;0">
+<param name=e[4] value="B3;point;free;1000,70;0;0">
+<param name=e[5] value="C0;point;free;-1000,105;0;0">
+<param name=e[6] value="C3;point;free;1000,105;0;0">
+<param name=e[7] value="D0;point;free;-1000,140;0;0">
+<param name=e[8] value="D3;point;free;1000,140;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,220,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[13] value="B2;point;lineSlider;B0,B3,90,0;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[16] value="D2;point;lineSlider;D0,D3,60,0;0">
+<param name=e[17] value="D;line;connect;D1,D2;black">
+<param name=e[18] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[19] value="C2;point;proportion;B1,B2,A1,A2,D1,D2,C1,C3;0">
+<param name=e[20] value="C;line;connect;C1,C2;black">
+</applet></div>
+
+<p>I say that <i>C</i> measures <i>A.</i>
+
+<p>Since <i>B</i> is a part of <i>A</i> called by the same name as <i>C,</i> and the unit <i>D</i> is also a part of <i>C</i> called by the same name as it, therefore the part <i>B</i> of <i>A</i> is the same part of the unit <i>D</i> of the number <i>C.</i> Therefore the unit <i>D</i> measures the number <i>C</i> the same number of times that <i>B</i> measures <i>A.</i>
+
+<div class="just"><a href="propVII15.html">VII.15</a></div>
+<p>Therefore, alternately, the unit <i>D</i> measures the number <i>B</i> the same number of times that <i>C</i> measures <i>A.</i> Therefore <i>C</i> measures <i>A.</i>
+
+<p>Therefore, <i>if a number has any part whatever, then it is measured by a number called by the same name as the part.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says that if <i>a</i> has a one-<i>c</i><sup>th</sup> part of <i>a,</i> then <i>c</i> divides <i>a.</i> For example, 12 has a one-third part, 3 divides 12.  This is a converse of the last proposition.
+
+<h4>Use of this proposition.</h4>
+
+This proposition is used in the proof of the next proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

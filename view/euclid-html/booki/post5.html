@@ -1,0 +1,63 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book I, Postulate 5</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Postulate 5</h1>
+
+<div class="statement">That, if a straight line falling on two straight lines makes the interior angles on the same side less than two right angles, the two straight lines, if produced indefinitely, meet on that side on which are the angles less than the two right angles.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+Of course, this is a postulate for plane geometry.  It should include the condition that the two straight lines lie in a plane, otherwise, skew lines in space would satisfy the hypotheses.  Also, without an ambient plane, the term &ldquo;that side [of the straight line]&rdquo; has no meaning.
+
+<table cellspacing=5>
+<tr><td>
+In the diagram, if angle <i>ABE</i> plus angle <i>BED</i> is less than two right angles (180&deg;), then lines <i>AC</i> and <i>DF</i> will meet when extended in the direction of <i>A</i> and <i>D.</i>
+
+<p>This postulate is usually called the &ldquo;parallel postulate&rdquo; since it can be used to prove properties of parallel lines.   Euclid develops the theory of parallel lines in propositions <a href=propI27.html></a> through I.31.
+</td>
+
+<td>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=160 width=280>
+<img src="post5.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Post.5">
+<param name=align value=above>
+<param name=e[1] value="A;point;free;40,40">
+<param name=e[2] value="C;point;free;220,40">
+<param name=e[3] value="AC;line;connect;A,C">
+<param name=e[4] value="B;point;lineSlider;AC,130,40">
+<param name=e[5] value="D;point;free;60,110">
+<param name=e[6] value="F;point;free;240,120">
+<param name=e[7] value="DF;line;connect;D,F">
+<param name=e[8] value="E;point;lineSlider;DF,180,120">
+<param name=e[9] value="BE;line;connect;B,E">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="post5.gif" hspace=10 vspace=10 alt="Post.5">';
+</script>
+</tr></td></table>
+
+<p>The parallel postulate is historically the most interesting postulate.  Geometers throughout the ages have tried to show that it could be proved from the remaining postulates so that it wasn&rsquo;t necessary to assume it.  The process tried was to assume its falsehood, then derive a contradiction.  Many strange conclusions follow from denying the parallel postulate, and several geometers found such great absurdities that they concluded that the parallel postulate did follow from the rest.
+
+<p>Nevertheless, these apparent absurdities are not contradictions.  In the early nineteenth century, Bolyai, Lobachevsky, and Gauss found ways of dealing with this non-Euclidean geometry by means of analysis and accepted it as a valid kind of geometry, although very different from Euclidean geometry.  This hyperbolic geometry, as it is called, is just as consistent as Euclidean geometry and has many uses.
+
+<p>Thus, we know now that we must include the parallel postulate to derive Euclidean geometry.  For more on non-Euclidean geometries, see the notes on <a href=propI29.html#hyperbolic>hyperbolic geometry</a> after I.29 and <a href=propI16.html#elliptic>elliptic geometry</a> after I.16.
+
+<p>Euclid does not use this parallel postulate until Proposition I.29, but nearly all of the rest of Book I depends on it.  For more commentary about the postulate see the Guides to <a href=propI29.html#guide>I.29</a> and <a href=propI29.html#guide>I.30</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2003");
+</script>
+</BODY></HTML>

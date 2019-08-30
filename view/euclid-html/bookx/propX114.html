@@ -1,0 +1,104 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 114</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 114</h1>
+
+<div class="statement">If an area is contained by an apotome and the binomial straight line the terms of which are commensurable with the terms of the apotome and in the same ratio, then the side of the area is rational.</div>
+
+<p>Let an area, the rectangle <i>AB</i> by <i>CD</i>, be contained by the apotome <i>AB</i> and the binomial straight line <i>CD</i>, and let <i>CE</i> be the greater term of the latter, let the terms <i>CE</i> and <i>ED</i> of the binomial straight line be commensurable with the terms <i>AF</i> and <i>FB</i> of the apotome and in the same ratio, and let the side of the rectangle <i>AB</i> by <i>CD</i> be <i>G</i>.
+
+<p>I say that <i>G</i> is rational.
+
+<p>Set out a rational straight line <i>H</i>, and to <i>CD</i> apply a rectangle equal to the square on <i>H</i> and producing <i>KL</i> as breadth. Then <i>KL</i> is an apotome.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=200>
+<img src="propX114.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.114">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="C0;point;free;-1000,65;0;0">
+<param name=e[4] value="C3;point;free;1000,65;0;0">
+<param name=e[5] value="G0;point;free;-1000,100;0;0">
+<param name=e[6] value="G3;point;free;1000,100;0;0">
+<param name=e[7] value="H0;point;free;-1000,135;0;0">
+<param name=e[8] value="H3;point;free;1000,135;0;0">
+<param name=e[9] value="K0;point;free;-1000,170;0;0">
+<param name=e[10] value="K3;point;free;1000,170;0;0">
+
+<param name=e[11] value="A;point;lineSlider;A0,A3,60,0">
+<param name=e[12] value="B;point;lineSlider;A0,A3,130,0">
+<param name=e[13] value="C;point;lineSlider;C0,C3,30,0">
+<param name=e[14] value="D;point;lineSlider;C0,C3,210,0">
+<param name=e[15] value="CD;line;connect;C,D">
+<param name=e[16] value="E;point;lineSlider;C0,C3,160,0">
+<param name=e[17] value="F;point;proportion;C,E,E,D,A,B,B,A3">
+<param name=e[18] value="AF;line;connect;A,F">
+<param name=e[19] value="G1;point;lineSlider;G0,G3,60,0;0">
+<param name=e[20] value="G2;point;meanProportional;A,B,C,D,G1,G3;0">
+<param name=e[21] value="G;line;connect;G1,G2;black">
+<param name=e[22] value="H1;point;lineSlider;H0,H3,50,0;0">
+<param name=e[23] value="H2;point;lineSlider;H0,H3,200,0;0">
+<param name=e[24] value="H;line;connect;H1,H2;black">
+<param name=e[25] value="K;point;lineSlider;K0,K3,40,0">
+<param name=e[26] value="L;point;proportion;C,D,H1,H2,H1,H2,K,K3">
+<param name=e[27] value="M;point;proportion;C,E,E,D,K,L,L,K3">
+<param name=e[28] value="KM;line;connect;K,M">
+</applet></div>
+
+<div class="just"><a href=propX112.html>X.112</a></div>
+<p>Let its terms be <i>KM</i> and <i>ML</i> commensurable with the terms <i>CE</i> and <i>ED</i> of the binomial straight line and in the same ratio.
+
+<p>But <i>CE</i> and <i>ED</i> are also commensurable with <i>AF</i> and <i>FB</i> and in the same ratio, therefore <i>AF</i> is to <i>FB</i> as <i>KM</i> is to <i>ML</i>.
+
+<div class="just"><a href=../bookV/propV19.html>V.19</a></div>
+<p>Therefore, alternately, <i>AF</i> is to <i>KM</i> as <i>BF</i> is to <i>LM</i>. Therefore the remainder <i>AB</i> is to the remainder <i>KL</i> as <i>AF</i> is to <i>KM</i>.
+
+<div class="just"><a href=propX12.html>X.12</a>,
+<a href=propX11.html>X.11</a></div>
+<p>But <i>AF</i> is commensurable with <i>KM</i>, therefore <i>AB</i> is also commensurable with <i>KL</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>And <i>AB</i> is to <i>KL</i> as the rectangle <i>CD</i> by <i>AB</i> is to the rectangle <i>CD</i> by <i>KL</i>, therefore the rectangle <i>CD</i> by <i>AB</i> is also commensurable with the rectangle <i>CD</i> by <i>KL</i>.
+
+<p>But the rectangle <i>CD</i> by <i>KL</i> equals the square on <i>H</i>, therefore the rectangle <i>CD</i> by <i>AB</i> is commensurable with the square on <i>H</i>.
+
+<p>But the square on <i>G</i> equals the rectangle <i>CD</i> by <i>AB</i>, therefore the square on <i>G</i> is commensurable with the square on <i>H</i>.
+
+<p>But the square on <i>H</i> is rational, therefore the square on <i>G</i> is also rational.
+
+<p>Therefore <i>G</i> is rational. And it is the side of the rectangle <i>CD</i> by <i>AB</i>.
+
+<p>Therefore, <i>if an area is contained by an apotome and the binomial straight line the terms of which are commensurable with the terms of the apotome and in the same ratio, then the side of the area is rational.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<p><a name=cor></a>
+<div class="theorem">
+<h1>Corollary</h1>
+<div class="statement">And it is clear by this that it is possible for a rational area to be contained by irrational straight lines</div>.
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

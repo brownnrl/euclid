@@ -1,0 +1,71 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 9</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 9</h1>
+
+<div class="statement">Magnitudes which have the same ratio to the same equal one another; and magnitudes to which the same has the same ratio are equal.</div>
+
+<p>Let each of the magnitudes <i>A</i> and <i>B</i> have the same ratio to <i>C.</i>
+
+<p>I say that <i>A</i> equals <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=95>
+<img src=propV9.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.9">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,75;0;0">
+<param name=e[4] value="V1;point;free;1000,75;0;0">
+<param name=e[5] value="A0;point;lineSlider;U0,U1,30,40;0">
+<param name=e[6] value="A1;point;lineSlider;U0,U1,100,40;0">
+<param name=e[7] value="A;line;connect;A0,A1;black;0;green">
+<param name=e[8] value="B0;point;lineSlider;U0,U1,150,40;0">
+<param name=e[9] value="B1;point;cutoff;B0,U1,A0,A1;0">
+<param name=e[10] value="B;line;connect;B0,B1;black;0;green">
+<param name=e[11] value="C0;point;lineSlider;V0,V1,70,40;0">
+<param name=e[12] value="C1;point;lineSlider;V0,V1,170,40;0">
+<param name=e[13] value="C;line;connect;C0,C1;black;0;green">
+</applet></div>
+
+<div class="just"><a href=propV8.html>V.8</a></div>
+
+<p>Otherwise, each of the magnitudes <i>A</i> and <i>B</i> would not have the same ratio to <i>C,</i> but they do, therefore <i>A</i> equals <i>B.</i>
+
+<hr width=50%>
+
+<p>Next, let <i>C</i> have the same ratio to each of the magnitudes <i>A</i> and <i>B.</i>
+
+<p>I say that <i>A</i> equals <i>B.</i>
+
+<div class="just"><a href="propV8.html">V.8</a></div>
+<p>Otherwise, <i>C</i> would not have the same ratio to each of the magnitudes <i>A</i> and <i>B,</i> but it does, therefore <i>A</i> equals <i>B.</i>
+
+<p>Therefore, <i>magnitudes which have the same ratio to the same equal one another; and magnitudes to which the same has the same ratio are equal.</i></td></tr>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This converse to proposition <a href=propV7.html>V.7</a> has two statements: <p><center>If <i>a</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c,</i> then <i>a</i>&nbsp;=&nbsp;<i>b.</i>
+<p>If <i>c</i>&nbsp;:&nbsp;<i>a</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>b,</i> then <i>a</i>&nbsp;=&nbsp;<i>b.</i></center><p>
+Besides the previous proposition, the proof relies on the law of trichotomy for ratios, the part which says that <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;<&nbsp;<i>a</i>&nbsp;:&nbsp;<i>c</i> and <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>a</i>&nbsp;:&nbsp;<i>c</i> cannot both occur.  Although Euclid didn&rsquo;t prove that, it follows easily from the definitions in <a href=defV5.html>V.Def.5</a> and <a href=defV7.html>V.Def.7</a>.
+
+<p>This proposition relies on using <a href=defV4.html>V.Def.4</a> as an axiom of comparability through its use of the previous proposition.  The axiom is required since the statement of the proposition is false when <i>a</i> is <i>c</i>&nbsp;+&nbsp;<i>y,</i> and <i>b</i> is <i>c</i>&nbsp;+&nbsp;2<i>y</i> where <i>y</i> is an infinitesimal with respect to <i>c.</i>
+
+<p>This proposition is used occasionally in Books VI, VII, X, XI, and XII to conclude equality of geometric magnitudes.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

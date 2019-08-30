@@ -1,0 +1,93 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 16</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 16</h1>
+
+<div class="statement">
+If four straight lines are proportional, then the rectangle contained by the extremes equals the rectangle contained by the means; and, if the rectangle contained by the extremes equals the rectangle contained by the means, then the four straight lines are proportional.
+</div>
+
+<p>Let the four straight lines <i>AB, CD, E,</i> and <i>F</i> be proportional, so that <i>AB</i> is to <i>CD</i> as <i>E</i> is to <i>F.</i>
+
+<p>I say that the rectangle <i>AB</i> by <i>F</i> equals the rectangle <i>CD</i> by <i>E.</i>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a>
+<br><a href="../bookI/propI3.html">I.3</a></div>
+<p>Draw <i>AG</i> and <i>CH</i> from the points <i>A</i> and <i>C</i> at right angles to the straight lines <i>AB</i> and <i>CD,</i> and make <i>AG</i> equal to <i>F,</i> and <i>CH</i> equal to <i>E.</i>
+
+<div class="just"><a href="../bookI/propI31.html">I.31</a></div>
+<p>Complete the parallelograms <i>BG</i> and <i>DH.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=220 width=380>
+<img src=propVI16.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.16">
+<param name=e[1] value="A;point;free;40,120">
+<param name=e[2] value="B;point;free;170,120">
+<param name=e[3] value="C;point;free;220,150">
+<param name=e[4] value="D;point;free;350,150">
+<param name=e[5] value="L0;point;free;-1000,190;0;0">
+<param name=e[6] value="L1;point;free;1000,190;0;0">
+<param name=e[7] value="E0;point;lineSlider;L0,L1,40,0;0">
+<param name=e[8] value="E1;point;lineSlider;L0,L1,140,0;0">
+<param name=e[9] value="E;line;connect;E0,E1;black">
+<param name=e[10] value="F0;point;lineSlider;L0,L1,220,0;0">
+<param name=e[11] value="F1;point;lineSlider;L0,L1,290,0;0">
+<param name=e[12] value="F;line;connect;F0,F1;black">
+<param name=e[13] value="G';point;perpendicular;A,B;0;0">
+<param name=e[14] value="G;point;cutoff;A,G',F0,F1">
+<param name=e[15] value="BG;polygon;parallelogram;B,A,G;0;0;black;random">
+<param name=e[16] value="H';point;perpendicular;C,D;0;0">
+<param name=e[17] value="H;point;cutoff;C,H',E0,E1">
+<param name=e[18] value="DH;polygon;parallelogram;D,C,H;0;0;black;random">
+</applet>
+</div>
+
+<div class="just"><a href="../bookV/propV7.html">V.7</a></div>
+<p>Then since <i>AB</i> is to <i>CD</i> as <i>E</i> is to <i>F,</i> while <i>E</i> equals <i>CH,</i> and <i>F</i> equals <i>AG,</i> therefore <i>AB</i> is to <i>CD</i> as <i>CH</i> is to <i>AG.</i>
+
+<p>Therefore in the parallelograms <i>BG</i> and <i>DH</i> the sides about the equal angles are reciprocally proportional.
+
+<div class="just"><a href="propVI14.html">VI.14</a></div>
+<p>But those equiangular parallelograms in which the sides about the equal angles are reciprocally proportional are equal,  therefore the parallelogram <i>BG</i> equals the parallelogram <i>DH.</i>
+
+<p>And <i>BG</i> is the rectangle <i>AB</i> by <i>F,</i> for <i>AG</i> equals <i>F,</i> and <i>DH</i> is the rectangle <i>CD</i> by <i>E,</i> for <i>E</i> equals <i>CH,</i> therefore the rectangle <i>AB</i> by <i>F</i> equals the rectangle <i>CD</i> by <i>E.</i>
+
+<hr width=50%>
+<p>Next, let the rectangle <i>AB</i> by <i>F</i> be equal to the rectangle <i>CD</i> by <i>E.</i>
+
+<p>I say that the four straight lines are proportional, so that <i>AB</i> is to <i>CD</i> as <i>E</i> is to <i>F.</i>
+
+<p>With the same construction, since the rectangle <i>AB</i> by <i>F</i> equals the rectangle <i>CD</i> by <i>E,</i> and the rectangle <i>AB</i> by <i>F</i> is <i>BG,</i> for <i>AG</i> equals <i>F,</i> and the rectangle <i>CD</i> by <i>E</i> is <i>DH,</i> for <i>CH</i> equals <i>E,</i> therefore <i>BG</i> equals <i>DH.</i></td></tr>
+
+<div class="just"><a href="propVI14.html">VI.14</a></div>
+<p>And they are equiangular. But in equal and equiangular parallelograms the sides about the equal angles are reciprocally proportional.
+
+<div class="just"><a href="../bookV/propV7.html">V.7</a></div>
+<p>Therefore <i>AB</i> is to <i>CD</i> as <i>CH</i> is to <i>AG.</i>
+
+<p>But <i>CH</i> equals <i>E,</i> and <i>AG</i> to <i>F,</i> therefore <i>AB</i> is to <i>CD</i> as <i>E</i> is to <i>F.</i>
+
+<tr><p>Therefore, <i>if four straight lines are proportional, then the rectangle contained by the extremes equals the rectangle contained by the means; and, if the rectangle contained by the extremes equals the rectangle contained by the means, then the four straight lines are proportional.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is a special case of <a href=propVI14.html>VI.14</a>.  It hardly needs such a protracted proof.  It is used occasionally in Book X, but the special case when the means are equal and the second figure is a square, as enunciated in the next proposition, is used throughout Book X and frequently in Book XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

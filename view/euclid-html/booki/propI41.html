@@ -1,0 +1,69 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 41</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 41</h1>
+
+<div class="statement">If a parallelogram has the same base with a triangle and is in the same parallels, then the parallelogram is double the triangle.</div>
+
+<p>Let the parallelogram <i>ABCD</i> have the same base <i>BC</i> with the triangle <i>EBC,</i> and let it be in the same parallels <i>BC</i> and <i>AE.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=250>
+<img src="propI41.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.41">
+<param name=e[1] value="B;point;free;60,170">
+<param name=e[2] value="C;point;free;130,170">
+<param name=e[3] value="A;point;free;40,40">
+<param name=e[4] value="ABCD;polygon;parallelogram;A,B,C">
+<param name=e[5] value="D;point;vertex;ABCD,4">
+<param name=e[6] value="E;point;lineSlider;A,D,210,40">
+<param name=e[7] value="BCE;polygon;triangle;B,C,E;0;0;0,0,0;random">
+<param name=e[8] value="DE;line;connect;D,E">
+<param name=e[9] value="AC;line;connect;A,C">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI41.gif" hspace=10 vspace=10 alt="I.41">';
+</script>
+</div>
+
+<p>I say that the parallelogram <i>ABCD</i> is double the triangle <i>BEC.</i>
+
+<div class="just"><a href=post1.html>I.Post.1</a></div>
+<p>Join <i>AC.</i>
+
+<div class="just"><a href="propI37.html">I.37</a></div>
+
+<p>Then the triangle <i>ABC</i> equals the triangle <i>EBC,</i> for it is on the same base <i>BC</i> with it and in the same parallels <i>BC</i> and <i>AE.</i>
+
+<div class="just"><a href="propI34.html">I.34</a></div>
+<p>But the parallelogram <i>ABCD</i> is double the triangle <i>ABC,</i> for the diameter <i>AC</i> bisects it, so that the parallelogram <i>ABCD</i> is also double the triangle <i>EBC.</i>
+
+<p>Therefore <i>if a parallelogram has the same base with a triangle and is in the same parallels, then the parallelogram is double the triangle.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This partially generalizes  <a href=propI34.html>I.34</a>, that a parallelogram is twice the triangle by its diameter and two of its sides.  A slightly more general statement would be that If a parallelogram has an equal base with a triangle and is in the same parallels, then the parallelogram is double the triangle.
+
+<h4>Use of Proposition 41</h4>
+
+This proposition is used in the next one, <a href=propI47.html>I.47</a>, <a href=../bookVI/propVI1.html>VI.1</a>,  and <a href=../bookX/propX38.html>X.38</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

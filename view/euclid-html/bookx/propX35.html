@@ -1,0 +1,73 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 35</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 35</h1>
+
+<div class="statement">To find two straight lines incommensurable in square which make the sum of the squares on them medial and the rectangle contained by them medial and moreover incommensurable with the sum of the squares on them.</div>
+
+<div class="just"><a href=propX31.html>X.31</a> ad fin.</div>
+<p>Set out two medial straight lines <i>AB</i> and <i>BC</i> commensurable in square only, containing a medial rectangle, such that the square on <i>AB</i> is greater than the square on <i>BC</i> by the square on a straight line incommensurable with <i>AB</i>.  Describe the semicircle <i>ADB</i> on <i>AB</i>, and make the rest of the construction as above.
+
+<div class="just"><a href=propX18.html>X.18</a>,
+<a href=propX11.html>X.11</a></div>
+<p>Since <i>AF</i> is incommensurable in length with <i>FB</i>, therefore <i>AD</i> is also incommensurable in square with <i>DB</i>.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=200>
+<img src="propX34.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.35">
+<param name=e[1] value="A;point;free;40,160">
+<param name=e[2] value="B;point;free;220,160">
+<param name=e[3] value="C;point;lineSlider;A,B,320,160">
+<param name=e[4] value="BC;line;connect;B,C">
+<param name=e[5] value="M;point;midpoint;A,B;0;0">
+<param name=e[6] value="ADB;circle;radius;M,B;0;0;0;0">
+<param name=e[7] value="E;point;midpoint;B,C">
+<param name=e[8] value="F;point;lineSlider;A,B,190,160">
+<param name=e[9] value="FD';line;perpendicular;F,A;0;0;0">
+<param name=e[10] value="DD';line;chord;FD',ADB;0;0;0">
+<param name=e[11] value="D;point;last;DD'">
+<param name=e[12] value="semi;sector;arc;B,D,A;0;0;black;random">
+<param name=e[13] value="tri;polygon;triangle;A,D,B;0;0;black;random">
+<param name=e[14] value="FD;line;connect;F,D">
+</applet></div>
+
+<div class="just"><a href=../bookIII/propIII31.html>III.31</a>,
+<a href=../bookI/propI47.html>I.47</a></div>
+<p>Since the square on <i>AB</i> is medial, therefore the sum of the squares on <i>AD</i> and <i>DB</i> is also medial.
+
+<div class="just"><a href=propX32.html#cor>X.32,Cor.</a></div>
+<p>Since the rectangle <i>AF</i> by <i>FB</i> equals the square on each of the straight lines <i>BE</i> and <i>DF</i>, therefore <i>BE</i> equals <i>DF</i>. Therefore <i>BC</i> is double <i>FD</i>, so that the rectangle <i>AB</i> by <i>BC</i> is also double the rectangle <i>AB</i> by <i>FD</i>. But the rectangle <i>AB</i> by <i>BC</i> is medial, therefore the rectangle <i>AB</i> by <i>FD</i> is also medial.
+
+<div class="just"><a href=propX33.html#lemma>X.33,Lemma</a></div>
+<p>And it equals the rectangle <i>AD</i> by <i>DB</i>,  therefore the rectangle <i>AD</i> by <i>DB</i> is also medial.
+
+<div class="just"><a href=propX13.html>X.13</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>Since <i>AB</i> is incommensurable in length with <i>BC</i>, while <i>CB</i> is commensurable with <i>BE</i>, therefore <i>AB</i> is also incommensurable in length with <i>BE</i>, so that the square on <i>AB</i> is also incommensurable with the rectangle <i>AB</i> by <i>BE</i>.
+
+<div class="just"><a href=../bookI/propI47.html>I.47</a></div>
+<p>But the sum of the squares on <i>AD</i> and <i>DB</i> equals the square on <i>AB</i>, and the rectangle <i>AB</i> by <i>FD</i>, that is, the rectangle <i>AD</i> by <i>DB</i>, equals the rectangle <i>AB</i> by <i>BE</i>, therefore the sum of the squares on <i>AD</i> and <i>DB</i> is incommensurable with the rectangle <i>AD</i> by <i>DB</i>.
+
+<p>Therefore two straight lines <i>AD</i> and <i>DB</i> incommensurable in square have been found which make the sum of the squares on them medial and the rectangle contained by them medial and moreover incommensurable with the sum of the squares on them.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+This proposition is used in propositions <a href=propX41.html>X.41</a> and <a href=propX78.html>X.78</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

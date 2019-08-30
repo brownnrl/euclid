@@ -1,0 +1,78 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 30</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 30</h1>
+
+<div class="statement">To find two rational straight lines commensurable in square only such that the square on the greater is greater than the square on the less by the square on a straight line incommensurable in length with the greater.</div>
+
+<div class="just"><a href=propX29.html#lemma2>X.29.Lem.2</a>
+<br><a href=propX6.html#cor>X.6,Cor.</a></div>
+<p>Set out a rational straight line <i>AB</i>, and two square numbers <i>CE</i> and <i>ED</i> such that their sum <i>CD</i> is not square.   Describe the semicircle <i>AFB</i> on <i>AB</i>. Let it be contrived that <i>DC</i> is to <i>CE</i> as the square on <i>BA</i> is to the square on <i>AF</i>, and join <i>FB</i>.
+
+<p>Then, in a similar manner to the preceding, we can prove that <i>BA</i> and <i>AF</i> are rational straight lines commensurable in square only.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=200>
+<img src="propX29.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.30">
+<param name=e[1] value="A0;point;free;-1000,130;0;0">
+<param name=e[2] value="A3;point;free;1000,130;0;0">
+<param name=e[3] value="C0;point;free;-1000,170;0;0">
+<param name=e[4] value="C3;point;free;1000,170;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,240,0">
+<param name=e[7] value="AB;line;connect;A,B">
+
+<param name=e[8] value="C;point;lineSlider;C0,C3,50,0">
+<param name=e[9] value="D;point;lineSlider;C0,C3,200,0">
+<param name=e[10] value="CD;line;connect;C,D;0;0;green">
+<param name=e[11] value="E;point;lineSlider;C0,C3,150,0">
+<param name=e[12] value="M;point;midpoint;A,B;0;0">
+<param name=e[13] value="ABF;circle;radius;M,A;0;0;0;0">
+
+<param name=e[14] value="G;point;meanProportional;D,C,C,E,C,D;0;0">
+<param name=e[15] value="F';point;proportion;D,C,C,G,A,B,A,B;0;0">
+<param name=e[16] value="AFcirc;circle;radius;A,F';0;0;0;0">
+<param name=e[17] value="FF'';line;bichord;ABF,AFcirc;0;0;0">
+<param name=e[18] value="F;point;first;FF''">
+<param name=e[19] value="semi;sector;arc;B,F,A;0;0;black;random">
+<param name=e[20] value="tri;polygon;triangle;A,B,F;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=../bookV/propV19.html#cor>V.19,Cor.</a>
+<br><a href=../bookIII/propIII31.html>III.31</a>,
+<a href=../bookI/propI47.html>I.47</a></div>
+<p>Since <i>DC</i> is to <i>CE</i> as the square on <i>BA</i> is to the square on <i>AF</i>, therefore, in conversion, <i>CD</i> is to <i>DE</i> as the square on <i>AB</i> is to the square on <i>BF</i>.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>But <i>CD</i> does not have to <i>DE</i> the ratio which a square number has to a square number, therefore neither has the square on <i>AB</i> to the square on <i>BF</i> the ratio which a square number has to a square number. Therefore <i>AB</i> is incommensurable in length with <i>BF</i>.
+
+<div class="just"><a href=propI47.html>I.47</a></div>
+<p>And the square on <i>AB</i> is greater than the square on <i>AF</i> by the square on <i>FB</i> incommensurable with <i>AB</i>.
+
+<p>Therefore <i>AB</i> and <i>AF</i> are rational straight lines commensurable in square only, and the square on <i>AB</i> is greater than the square on <i>AF</i> by the square on <i>FB</i> incommensurable in length with <i>AB</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+With the same construction as in the previous proposition, just note at the end that two the lines <i>AB</i> and <i>AF</i> are incommensurable.
+
+<p>This proposition is used in the next three propositions.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,109 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VII, Proposition 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">When two unequal numbers are set out, and the less is continually subtracted in turn from the greater, if the number which is left never measures the one before it until a unit is left, then the original numbers are relatively prime.</div>
+
+<p>The less of two unequal numbers <i>AB</i> and <i>CD</i> being continually subtracted from the greater, let the number which is left never measure the one before it until a unit is left.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=140 height=270 >
+<img src=propVII1.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.1">
+<param name=align value="right">
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="C0;point;free;65,-1000;0;0">
+<param name=e[4] value="C3;point;free;65,1000;0;0">
+<param name=e[5] value="E0;point;free;100,-1000;0;0">
+<param name=e[6] value="E3;point;free;100,1000;0;0">
+<param name=e[7] value="A;point;lineSlider;A0,A3,30,30">
+<param name=e[8] value="C;point;lineSlider;C0,C3,60,30">
+<param name=e[9] value="E1;point;lineSlider;E0,E3,30,30;0">
+<param name=e[10] value="H;point;lineSlider;A0,A3,30,50">
+<param name=e[11] value="C1;point;cutoff;C,C3,A,H;0;0">
+<param name=e[12] value="G;point;cutoff;C1,C3,A,H">
+<param name=e[13] value="F;point;cutoff;H,A3,C,G">
+<param name=e[14] value="G1;point;cutoff;G,C3,A,F;0;0">
+<param name=e[15] value="D;point;cutoff;G1,C3,A,F">
+<param name=e[16] value="B;point;cutoff;F,A3,C,D">
+<param name=e[17] value="AB;line;connect;A,B">
+<param name=e[18] value="CD;line;connect;C,D">
+<param name=e[19] value="E2;point;cutoff;E1,E3,A,H;0">
+<param name=e[20] value="E;line;connect;E1,E2;black">
+</applet>
+</div>
+
+<div class="just"><a href=defVII11.html>VII.Def.12</a></div>
+<p>I say that <i>AB</i> and <i>CD</i> are relatively prime, that is, that a unit alone measures <i>AB</i> and <i>CD.</i>
+
+<p>If <i>AB</i> and <i>CD</i> are not relatively prime, then some number <i>E</i> measures them. Let <i>CD,</i> measuring <i>BF,</i> leave <i>FA</i> less than itself, let <i>AF,</i> measuring <i>DG,</i> leave <i>GC</i> less than itself, and let <i>GC,</i> measuring <i>FH,</i> leave a unit <i>HA.</i>
+
+<p>Since, then, <i>E</i> measures <i>CD,</i> and <i>CD</i> measures <i>BF,</i> therefore <i>E</i> also measures <i>BF.</i>
+
+<p>But it also measures the whole <i>BA,</i> therefore it measures the remainder <i>AF.</i> But <i>AF</i> measures <i>DG,</i> therefore <i>E</i> also measures <i>DG.</i> But it also measures the whole <i>DC,</i> therefore it also measures the remainder <i>CG.</i>
+
+<p>But <i>CG</i> measures <i>FH,</i> therefore <i>E</i> also measures <i>FH.</i> But it also measures the whole <i>FA,</i> therefore it measures the remainder, the unit <i>AH,</i> though it is a number, which is impossible.
+
+<div class="just"><a href=defVII11.html>VII.Def.12</a></div>
+<p>Therefore no number measures the numbers <i>AB</i> and <i>CD.</i> Therefore <i>AB</i> and <i>CD</i> are relatively prime.
+
+<p>Therefore, <i>when two unequal numbers are set out, and the less is continually subtracted in turn from the greater, if the number which is left never measures the one before it until a unit is left, then the original numbers are relatively prime.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<h4>Example</h4>
+
+<p>Following the algorithm described in this proposition, the numbers 54 and 85 are relatively prime as the following computations show.
+
+<center><table>
+<tr><td align=right>85 &ndash; 2 &middot; 31</td><td>=</td><td>23</td></tr>
+<tr><td align=right>31 &ndash; 23</td><td>=</td><td>8</td></tr>
+<tr><td align=right>23 &ndash; 2 &middot; 8</td><td>=</td><td>7</td></tr>
+<tr><td align=right>8 &ndash; 7</td><td>=</td><td>1</td></tr>
+</table></center>
+
+<h4>Antenaresis, the Euclidean algorithm</h4>
+
+<p>Modern terminology uses the word &ldquo;divides&rdquo; rather than &ldquo;measures,&rdquo; and the notation <i>a</i>&nbsp;|&nbsp;<i>b</i> is used to abbreviate the phrase "<i>a</i> divides <i>b.</i>" 
+
+<p>This proposition assumes that 1 is the result of an antenaresis process.  <i>Antenaresis,</i> also called the <i>Euclidean algorithm,</i> is a kind of reciprocal subtraction.  Beginning with two numbers, the smaller, whichever it is, is repeatedly subtracted from the larger.
+
+<p>If the initial two numbers are <i>a</i><sub>1</sub> (<i>AB</i> in the proof) and <i>a</i><sub>2</sub> (<i>CD</i>), with <i>a</i><sub>1</sub> greater than <i>a</i><sub>2</sub>, then the first stage is to repeatedly subtract <i>a</i><sub>2</sub> from <i>a</i><sub>1</sub> until a remainder <i>a</i><sub>3</sub> (<i>AF</i>) less than <i>a</i><sub>2</sub> is found.  That can be stated algebraically as
+
+<center><i>a</i><sub>1</sub>&nbsp;&ndash;&nbsp;<i>m</i><sub>1</sub> <i>a</i><sub>2</sub>&nbsp;=&nbsp;<i>a</i><sub>3</sub></center>
+
+<p>where <i>m</i><sub>1</sub> is the number of times that <i>a</i><sub>2</sub> was subtracted from <i>a</i><sub>1</sub>.
+
+<p>The next stage repeatedly subtracts <i>a</i><sub>3</sub> from <i>a</i><sub>2</sub> leaving a remainder <i>a</i><sub>4</sub> (<i>CG</i>):
+
+<center><i>a</i><sub>2</sub>&nbsp;&ndash;&nbsp;<i>m</i><sub>2</sub> <i>a</i><sub>3</sub>&nbsp;=&nbsp;<i>a</i><sub>4</sub>.</center>
+
+<p>For the hypotheses of this proposition, the algorithm stops when a remainder of 1 occurs:
+<center><i>a</i><sub><i>n</i>-1</sub>&nbsp;&ndash;&nbsp;<i>m</i><sub><i>n</i>-1</sub> <i>a</i><sub><i>n</i></sub>&nbsp;=&nbsp;1.</center>
+
+<p>(In Euclid&rsquo;s proof, <i>a</i><sub><i>n</i></sub> is <i>a</i><sub>5</sub> which is <i>AH.</i>)
+The conclusion is that <i>a</i><sub>1</sub> and <i>a</i><sub>2</sub> are relatively prime.
+<p>The proof is not difficult.  It depends on the observation that if <i>b</i> divides (that is, measures) both <i>c</i> and <i>d,</i> then <i>b</i> divides their difference <i>c</i>&nbsp;&ndash;&nbsp;<i>d.</i>  So, if some number <i>b</i> divides both <i>a</i><sub>1</sub> and <i>a</i><sub>2</sub>, then it divides the remainder <i>a</i><sub>3</sub>, too.  And since it divides both <i>a</i><sub>2</sub> and <i>a</i><sub>3</sub>, it divides the remainder <i>a</i><sub>4</sub>.  And so forth, with the final conclusion that <i>b</i> divides the last remainder 1.
+<p>Since there is no number <i>b</i> (and by &ldquo;number&rdquo; is meant a number greater than 1) which divides 1, there is no number that divides both <i>a</i><sub>1</sub> and <i>a</i><sub>2</sub>.  Therefore <i>a</i><sub>1</sub> and <i>a</i><sub>2</sub> are relatively prime.
+
+<p>Compare this proposition to <a href=../bookX/propX2.html>X.2</a>, a somewhat analogous statement about magnitudes.
+
+<p>This proposition is used in the proof of the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

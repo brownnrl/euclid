@@ -1,0 +1,77 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 27</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 27</h1>
+
+<div class="statement">In equal circles angles standing on equal circumferences equal one another whether they stand at the centers or at the circumferences.</div>
+
+<p>For in equal circles <i>ABC</i> and <i>DEF,</i> on equal circumferences <i>BC</i> and <i>EF,</i> let the angles <i>BGC</i> and <i>EHF</i> stand at the centers <i>G</i> and <i>H,</i> and the angles <i>BAC</i> and <i>EDF</i> at the circumferences.
+<p>I say that the angle <i>BGC</i> equals the angle <i>EHF,</i> and the angle <i>BAC</i> equals the angle <i>EDF.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=470>
+<img src=propIII27.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.27">
+<param name=e[1] value="G;point;free;120,115">
+<param name=e[2] value="A;point;free;75,30">
+<param name=e[3] value="ABC;circle;radius;G,A">
+<param name=e[4] value="B;point;circleSlider;ABC,60,190">
+<param name=e[5] value="C;point;circleSlider;ABC,180,190">
+<param name=e[6] value="H;point;free;340,115">
+<param name=e[7] value="DEF;circle;radius;H,G,A">
+<param name=e[8] value="D;point;circleSlider;DEF,380,100">
+<param name=e[9] value="E;point;circleSlider;DEF,280,190">
+<param name=e[10] value="F;point;similar;H,E,G,B,C">
+<param name=e[11] value="triABC;polygon;triangle;A,B,C;0;0;0;random">
+<param name=e[12] value="triDEF;polygon;triangle;D,E,F;0;0;0;random">
+<param name=e[13] value="GBC;sector;sector;G,B,C;0;0;0;random">
+<param name=e[14] value="HEF;sector;sector;H,E,F;0;0;0;random">
+<param name=e[15] value="AB;line;connect;A,B">
+<param name=e[16] value="AC;line;connect;A,C">
+<param name=e[17] value="DE;line;connect;D,E">
+<param name=e[18] value="DF;line;connect;D,F">
+<param name=e[19] value="GB;line;connect;G,B">
+<param name=e[20] value="GC;line;connect;G,C">
+<param name=e[21] value="HF;line;connect;H,F">
+<param name=e[22] value="HE;line;connect;H,E">
+<param name=e[23] value="K;point;circleSlider;ABC,140,200;black;0">
+<param name=e[24] value="GK;line;connect;G,K">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a></div>
+<p>For, if the angle <i>BGC</i> does not equal the angle <i>EHF,</i> one of them is greater.  Let the angle <i>BGC</i> be greater. Construct the angle <i>BGK</i> equal to the angle <i>EHF</i> on the straight line <i>BG</i> and at the point <i>G</i> on it.
+
+<div class="just"><a href="../bookI/propI26.html">I.26</a></div>
+<p>Now equal angles stand on equal circumferences when they are at the centers, therefore the circumference <i>BK</i> equals the circumference <i>EF.</i>
+
+<p>But <i>EF</i> equals <i>BC,</i> therefore <i>BK</i> also equals <i>BC,</i> the less equals the greater, which is impossible. 
+
+<p>Therefore the angle <i>BGC</i> is not unequal to the angle <i>EHF,</i> therefore it equals it.
+
+<div class="just"><a href="propIII20.html">III.20</a></div>
+<p>And the angle at <i>A</i> is half of the angle <i>BGC,</i> and the angle at <i>D</i> half of the angle <i>EHF,</i> therefore the angle at <i>A</i> also equals the angle at <i>D.</i>
+
+<p>Therefore <i>in equal circles angles standing on equal circumferences equal one another whether they stand at the centers or at the circumferences.
+</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in a few propositions in Books III, IV, VI, and XII starting with <a href=propIII29.html>III.29</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

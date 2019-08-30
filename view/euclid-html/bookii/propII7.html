@@ -1,0 +1,92 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book II, Proposition 7</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 7</h1>
+
+<div class="statement">If a straight line is cut at random, then the sum of the square on the whole and that on one of the segments equals twice the rectangle contained by the whole and the said segment plus the square on the remaining segment.</div>
+
+<p>Let a straight line <i>AB</i> be cut at random at the point <i>C.</i>
+
+<p>I say that the sum of the squares on <i>AB</i> and <i>BC</i> equals twice the rectangle <i>AB</i> by <i>BC</i> plus the square on <i>CA.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=250>
+<img src="propII7.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="II.7">
+<param name=e[1] value="A0;point;free;-1000,40;0,0">
+<param name=e[2] value="A3;point;free;1000,40;0,0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,210,0">
+<param name=e[5] value="C;point;lineSlider;A0,A3,150,0">
+<param name=e[6] value="BADE;polygon;square;B,A">
+<param name=e[7] value="E;point;vertex;BADE,4">
+<param name=e[8] value="D;point;vertex;BADE,3">
+<param name=e[9] value="BD;line;connect;B,D">
+<param name=e[10] value="N;point;parallelogram;D,A,C">
+<param name=e[11] value="../bookI/cn;line;connect;C,N">
+<param name=e[12] value="G;point;intersection;C,N,B,D">
+<param name=e[13] value="DNGH;polygon;parallelogram;D,N,G;0;0;0;random">
+<param name=e[14] value="H;point;vertex;DNGH,4">
+<param name=e[15] value="F;point;intersection;G,H,B,E">
+<param name=e[16] value="HF;line;connect;H,F">
+
+<param name=e[17] value="L';point;midpoint;G,F;0;0">
+<param name=e[18] value="K;point;cutoff;G,H,G,L';black;lightGray">
+<param name=e[19] value="L;point;cutoff;G,B,G,L';black;lightGray">
+<param name=e[20] value="M;point;cutoff;G,N,G,L';black;lightGray">
+<param name=e[21] value="MLK;sector;arc;M,L,K;0;0;lightGray;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propII7.gif" hspace=10 alt="II.7">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a>,
+<a href="../bookI/propI31.html">I.31</a></div>
+<p>Describe the square <i>ADEB</i> on <i>AB,</i> and let the figure be drawn.
+
+<div class="just"><a href="../bookI/propI43.html">I.43</a></div>
+<p>Then, since <i>AG</i> equals <i>GE,</i> add <i>CF</i> to each, therefore the whole <i>AF</i> equals the whole <i>CE.</i>
+
+<p>Therefore the sum of <i>AF</i> and <i>CE</i> is double <i>AF.</i>
+
+<p>But the sum of <i>AF</i> and <i>CE</i> equals the gnomon <i>KLM</i> plus the square <i>CF,</i> therefore the gnomon <i>KLM</i> plus the square <i>CF</i> is double <i>AF.</i>
+
+<p>But twice the rectangle <i>AB</i> by <i>BC</i> is also double  <i>AF,</i> for <i>BF</i> equals <i>BC,</i> therefore the gnomon <i>KLM</i> plus the square <i>CF</i> equal twice the rectangle <i>AB</i> by <i>BC.</i>
+
+<p>Add <i>DG,</i> which is the square on <i>AC,</i> to each. Therefore the gnomon <i>KLM</i> plus the sum of the squares <i>BG</i> and <i>GD</i> equals twice the rectangle <i>AB</i> by <i>BC</i> plus the square on <i>AC.</i>
+
+<p>But the gnomon <i>KLM</i> plus the sum of the squares <i>BG</i> and <i>GD</i> equals the whole <i>ADEB</i> plus <i>CF,</i> which are squares described on <i>AB</i> and <i>BC.</i>
+
+<p>Therefore the sum of the squares on <i>AB</i> and <i>BC</i> equals twice the rectangle <i>AB</i> by <i>BC</i> plus the square on <i>CA.</i>
+
+<p>Therefore <i>if a straight line is cut at random, then the sum of the square on the whole and that on one of the segments equals twice the rectangle contained by the whole and the said segment plus the square on the remaining segment.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+We can interpret this algebraically with <i>x</i> for <i>AB, y</i> for <i>AC,</i> and <i>z</i> for <i>CB.</i>  Then the proposition says that if <i>x</i>&nbsp;=&nbsp;<i>y</i>&nbsp;+&nbsp;<i>z,</i> then <i>x</i><sup>2</sup>&nbsp;+&nbsp;<i>z</i><sup>2</sup>&nbsp;=&nbsp;2<i>xz</i>&nbsp;+&nbsp;<i>y</i><sup>2</sup>.  This can be rewritten as various identities depending on which variable is eliminated, the simplest being 
+<p><center><i>x</i><sup>2</sup>&nbsp;+&nbsp;<i>z</i><sup>2</sup>&nbsp;=&nbsp;2<i>xz</i>&nbsp;+&nbsp;(<i>x</i>&nbsp;&ndash;&nbsp;<i>z</i>)<sup>2</sup>.</center><p>
+
+<p>This proposition is used later in Book II to prove proposition <a href=propII13.html>II.13</a>, and it is used repeatedly in Book X.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

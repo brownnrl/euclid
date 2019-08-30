@@ -1,0 +1,126 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 12</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 12</h1>
+
+<div class="statement">
+To circumscribe an equilateral and equiangular pentagon about a given circle.</div>
+
+<p>Let <i>ABCDE</i> be the given circle.
+
+<p>It is required to circumscribe an equilateral and equiangular pentagon about the circle <i>ABCDE.</i>
+
+<div class="just"><a href="propIV11.html">IV.11</a></div>
+<p>Let <i>A, B, C, D,</i> and <i>E</i> be conceived to be the angular points of the inscribed pentagon, so that the circumferences <i>AB, BC, CD,</i> <i>DE,</i> and <i>EA</i> are equal.  
+
+<div class="just"><a href="../bookIII/propIII16.html#cor">III.16,Cor</a>
+<br><a href="../bookIII/propIII1.html">III.1</a></div>
+<p>Draw <i>GH, HK, KL, LM,</i> and <i>MG</i> through <i>A, B, C, D,</i> and <i>E</i> touching the circle.   Take the center <i>F</i> of the circle <i>ABCDE,</i> and join <i>FB, FK, FC, FL,</i> and <i>FD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=300>
+<img src="propIV12.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.12">
+<param name=e[1] value="A;point;free;89,68">
+<param name=e[2] value="B;point;free;56,169">
+<param name=e[3] value="ABCDE;polygon;regularPolygon;A,B,5;0;0;0;0">
+<param name=e[4] value="C;point;vertex;ABCDE,3">
+<param name=e[5] value="D;point;vertex;ABCDE,4">
+<param name=e[6] value="E;point;vertex;ABCDE,5">
+<param name=e[7] value="circ;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[8] value="F;point;center;circ;black;green">
+<param name=pivot value=F>
+<param name=e[9] value="BF;line;connect;B,F">
+<param name=e[10] value="CF;line;connect;C,F">
+<param name=e[11] value="DF;line;connect;D,F">
+<param name=e[12] value="Atan;line;perpendicular;A,F;0;0;0">
+<param name=e[13] value="Btan;line;perpendicular;B,F;0;0;0">
+<param name=e[14] value="Ctan;line;perpendicular;C,F;0;0;0">
+<param name=e[15] value="Dtan;line;perpendicular;D,F;0;0;0">
+<param name=e[16] value="Etan;line;perpendicular;E,F;0;0;0">
+<param name=e[17] value="G;point;intersection;Etan,Atan">
+<param name=e[18] value="H;point;intersection;Atan,Btan">
+<param name=e[19] value="K;point;intersection;Btan,Ctan">
+<param name=e[20] value="L;point;intersection;Ctan,Dtan">
+<param name=e[21] value="M;point;intersection;Dtan,Etan">
+<param name=e[22] value="GH;line;connect;G,H">
+<param name=e[23] value="HK;line;connect;H,K">
+<param name=e[24] value="KL;line;connect;K,L">
+<param name=e[25] value="LM;line;connect;L,M">
+<param name=e[26] value="MG;line;connect;M,G">
+<param name=e[27] value="KF;line;connect;K,F">
+<param name=e[28] value="LF;line;connect;L,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV12.gif" hspace=10 alt="IV12">';
+</script>
+</div>
+
+<div class="just"><a href="../bookIII/propIII18.html">III.18</a></div>
+<p>Then, since the straight line <i>KL</i> touches the circle <i>ABCDE</i> at <i>C,</i> and <i>FC</i> has been joined from the center <i>F</i> to the point of contact at <i>C,</i> therefore <i>FC</i> is perpendicular to <i>KL.</i>  Therefore each of the angles at <i>C</i> is right.
+
+<p>For the same reason the angles at the points <i>B</i> and <i>D</i> are also right.
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>And, since the angle <i>FCK</i> is right, therefore the square on <i>FK</i> equals the sum of the squares on <i>FC</i> and <i>CK.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>For the same reason the square on <i>FK</i> also equals the sum of the squares on <i>FB</i> and <i>BK,</i> so that the sum of the squares on <i>FC</i> and <i>CK</i> equals the sum of the squares on <i>FB</i> and <i>BK,</i> of which the square on <i>FC</i> equals the square on <i>FB,</i> therefore the remaining square on <i>CK</i> equals the square on <i>BK.</i>
+
+<p>Therefore <i>BK</i> equals <i>CK.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>And, since <i>FB</i> equals <i>FC,</i> and <i>FK</i> is common, the two sides <i>BF</i> and <i>FK</i> equal the two sides <i>CF</i> and <i>FK,</i> and the base <i>BK</i> equals the base <i>CK,</i> therefore the angle <i>BFK</i> equals the angle <i>KFC,</i> and the angle <i>BKF</i> equals the angle <i>FKC.</i> Therefore the angle <i>BFC</i> is double the angle <i>KFC,</i> and the angle <i>BKC</i> double the angle <i>FKC.</i>
+
+<p>For the same reason the angle <i>CFD</i> is also double the angle <i>CFL,</i> and the angle <i>DLC</i> double the angle <i>FLC.</i>
+
+<div class="just"><a href="../bookIII/propIII27.html">III.27</a></div>
+<p>Now, since the circumference <i>BC</i> equals <i>CD,</i> the angle <i>BFC</i> also equals the angle <i>CFD.</i>
+
+<p>And the angle <i>BFC</i> is double the angle <i>KFC,</i> and the angle <i>DFC</i> double the angle <i>LFC,</i> therefore the angle <i>KFC</i> also equals the angle <i>LFC.</i>
+
+<div class="just"><a href="../bookI/propI26.html">I.26</a></div>
+<p>But the angle <i>FCK</i> also equals the angle <i>FCL,</i> therefore <i>FKC</i> and <i>FLC</i> are two triangles having two angles equal to two angles and one side equal to one side, namely <i>FC</i> which is common to them, therefore they will also have the remaining sides equal to the remaining sides, and the remaining angle to the remaining angle, therefore the straight line <i>KC</i> equals <i>CL,</i> and the angle <i>FKC</i> equals the angle <i>FLC.</i>
+
+<p>And, since <i>KC</i> equals <i>CL,</i> therefore <i>KL</i> is double <i>KC.</i>
+
+<p>For the same reason it can be proved that <i>HK</i> is also double <i>BK.</i>
+
+<p>And <i>BK</i> equals <i>KC,</i> therefore <i>HK</i> also equals <i>KL.</i>
+
+<p>Similarly each of the straight lines <i>HG, GM,</i> and <i>ML</i> can also be proved equal to each of the straight lines <i>HK</i> and <i>KL,</i> therefore the pentagon <i>GHKLM</i> is equilateral.
+
+<p>I say next that it is also equiangular.
+
+<p>For, since the angle <i>FKC</i> equals the angle <i>FLC,</i> and the angle <i>HKL</i> was proved double the angle <i>FKC,</i> and the angle <i>KLM</i> double the angle <i>FLC,</i> therefore the angle <i>HKL</i> also equals the angle <i>KLM.</i>
+
+<p>Similarly each of the angles <i>KHG, HGM,</i> and <i>GML</i> can also be proved equal to each of the angles <i>HKL</i> and <i>KLM.</i>  Therefore the five angles <i>GHK, HKL,</i> <i>KLM, LMG,</i> and <i>MGH</i> equal one another.
+<p>Therefore the pentagon <i>GHKLM</i> is equiangular.
+<p>And it was also proved equilateral, and it has been circumscribed about the circle <i>ABCDE.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+This construction depends on the last.  First, inscribe a regular pentagon in the circle, then take tangents to the circle at the five vertices of the inscribed pentagon. Euclid didn&rsquo;t actually give the construction for drawing tangents, but the <a href="../bookIII/propIII16.html#cor">Corollary</a> to Proposition III.16 indicates how it should be constructed. The result will be a circumscribed pentagon.  This method generally works to create a regular circumscribed <i>n</i>-gon  given a regular inscribed <i>n</i>-gon.
+
+<p>Conversely, if you have a regular circumscribed <i>n</i>-gon, then you can connect the points of tangency in sequence to get a regular inscribed <i>n</i>-gon.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

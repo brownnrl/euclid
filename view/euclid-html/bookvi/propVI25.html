@@ -1,0 +1,88 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 25</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 25</h1>
+
+<div class="statement">
+To construct a figure similar to one given rectilinear figure and equal to another.
+</div>
+
+<p>Let <i>ABC</i> be the given rectilinear figure to which the figure to be constructed must be similar, and <i>D</i> that to which it must be equal.
+
+<p>It is required to construct one figure similar to <i>ABC</i> and equal to <i>D.</i>
+
+<div class="just"><a href="../bookI/propI44.html">I.44</a>
+<br><a href="../bookI/propI45.html">I.45</a></div>
+<p>Let there be applied to <i>BC</i> the parallelogram <i>BE</i> equal to the triangle <i>ABC,</i> and to <i>CE</i> the parallelogram <i>CM</i> equal to <i>D</i> in the angle <i>FCE</i> which equals the angle <i>CBL.</i>
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=520>
+<img src=propVI25.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.25">
+<param name=e[1] value="A;point;free;100,60">
+<param name=e[2] value="B;point;free;90,160">
+<param name=e[3] value="C;point;free;180,160">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[5] value="D0;point;free;200,90;0">
+<param name=e[6] value="D1;point;free;260,120;0">
+<param name=e[7] value="D2;point;free;340,100;0">
+<param name=e[8] value="D3;point;free;280,40;0">
+<param name=e[9] value="D;polygon;quadrilateral;D0,D1,D2,D3;black;0;black;random">
+<param name=e[10] value="E';point;free;130,260;0;0">
+<param name=e[11] value="CBLE;polygon;application;ABC,C,B,E';0;0;black;random">
+<param name=e[12] value="L;point;vertex;CBLE,3">
+<param name=e[13] value="E;point;vertex;CBLE,4">
+<param name=e[14] value="F';point;extend;B,C,B,C;0;0">
+<param name=e[15] value="CEMF;polygon;application;D,C,E,F';0;0;black;random">
+<param name=e[16] value="M;point;vertex;CEMF,3">
+<param name=e[17] value="F;point;vertex;CEMF,4">
+<param name=e[18] value="G0;point;free;-1000,220;0;0">
+<param name=e[19] value="G3;point;free;1000,220;0;0">
+<param name=e[20] value="G;point;lineSlider;G0,G3,390,0">
+<param name=e[21] value="H;point;meanProportional;B,C,C,F,G,G3">
+<param name=e[22] value="K;point;similar;G,H,B,C,A">
+<param name=e[23] value="GHK;polygon;triangle;G,H,K;0;0;black;random">
+</applet></center>
+
+<p>Then <i>BC</i> is in a straight line with <i>CF,</i> and <i>LE</i> with <i>EM.</i>
+
+<div class="just"><a href="propVI13.html">VI.13</a>,
+<a href="propVI18.html">VI.18</a></div>
+<p>Take a mean proportional <i>GH</i> to <i>BC</i> and <i>CF,</i> and describe <i>KGH</i> similar and similarly situated to <i>ABC</i> on <i>GH.</i>
+
+<div class="just"><a href="../bookV/propV19.html#cor">V.19,Cor</a></div>
+<p>Then, since <i>BC</i> is to <i>GH</i> as <i>GH</i> is to <i>CF,</i> and, if three straight lines are proportional, then the first is to the third as the figure on the first is to the similar and similarly situated figure described on the second, therefore <i>BC</i> is to <i>CF</i> as the triangle <i>ABC</i> is to the triangle <i>KGH.</i>
+
+<div class="just"><a href=propVI1.html>VI.1</a></div>
+<p>But <i>BC</i> is to <i>CF</i> as the parallelogram <i>BE</i> is to the parallelogram <i>EF.</i>
+
+<div class="just"><a href="../bookV/propV11.html">V.11</a>
+<br><a href="../bookV/propV16.html">V.16</a></div>
+<p>Therefore also the triangle <i>ABC</i> is to the triangle <i>KGH</i> as the parallelogram <i>BE</i> is to the parallelogram <i>EF.</i>  Therefore, alternately, the triangle <i>ABC</i> is to the parallelogram <i>BE</i> as the triangle <i>KGH</i> is to the parallelogram <i>EF.</i>
+
+<div class="just"><a href=../bookV/defV5.html>V.Def.5</a></div>
+<p>But the triangle <i>ABC</i> equals the parallelogram <i>BE,</i> therefore the triangle <i>KGH</i> also equals the parallelogram <i>EF.</i>  And the parallelogram <i>EF</i> equals <i>D,</i> therefore <i>KGH</i> also equals <i>D.</i>
+
+<p>And <i>KGH</i> is also similar to <i>ABC.</i> Therefore this figure <i>KGH</i> has been constructed similar to the given rectilinear figure <i>ABC</i> and equal to the other given figure <i>D.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This proposition solves a similar problem, to find a figure with the size of one figure but the shape of another, a problem reputedly solved by Pythagoras.  It is used in the proofs of propositions <a href=propVI28.html>VI.28</a> and <a href=propVI29.html>VI.29</a>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

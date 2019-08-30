@@ -1,0 +1,91 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 20</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 20</h1>
+
+<div class="statement">Prime numbers are more than any assigned multitude of prime numbers.</div>
+
+<p>Let <i>A, B,</i> and <i>C</i> be the assigned prime numbers.
+
+<p>I say that there are more prime numbers than <i>A, B,</i> and <i>C.</i></td></tr>
+
+<p>Take the least number <i>DE</i> measured by <i>A, B,</i> and <i>C.</i> Add the unit <i>DF</i> to <i>DE.</i>
+
+<p>Then <i>EF</i> is either prime or not.
+
+<p>First, let it be prime. Then the prime numbers <i>A, B, C,</i> and <i>EF</i> have been found which are more than <i>A, B,</i> and <i>C.</i></td>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=170>
+<img src="propIX20.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.20">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="E0;point;free;-1000,145;0;0">
+<param name=e[8] value="E3;point;free;1000,145;0;0">
+<param name=e[9] value="U1;point;free;1000,0;0;0">
+<param name=e[10] value="U2;point;free;1000,30;0;0">
+
+<param name=e[11] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[12] value="A2;point;lineSlider;A0,A3,71,0;0">
+<param name=e[13] value="A;line;connect;A1,A2;black">
+<param name=e[14] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[15] value="B2;point;lineSlider;B0,B3,83,0;0">
+<param name=e[16] value="B;line;connect;B1,B2;black">
+<param name=e[17] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[18] value="C2;point;lineSlider;C0,C3,91,0;0">
+<param name=e[19] value="C;line;connect;C1,C2;black">
+<param name=e[20] value="E;point;lineSlider;E0,E3,30,0">
+<param name=e[21] value="B4;point;proportion;U1,U2,A1,A2,B1,B2,B1,B3;0;0">
+<param name=e[22] value="D;point;proportion;U1,U2,B1,B4,C1,C2,E,E3">
+<param name=e[23] value="F;point;extend;E,D,U1,U2">
+<param name=e[24] value="EF;line;connect;E,F">
+</applet></div>
+
+<div class="just"><a href="../bookVII/propVII31.html">VII.31</a></div>
+<p>Next, let <i>EF</i> not be prime. Therefore it is measured by some prime number.  Let it be measured by the prime number <i>G.</i>
+
+<p>I say that <i>G</i> is not the same with any of the numbers <i>A, B,</i> and <i>C.</i>
+
+<p>If possible, let it be so. Now <i>A, B,</i> and <i>C</i> measure <i>DE,</i> therefore <i>G</i> also measures <i>DE.</i> But it also measures <i>EF.</i> Therefore <i>G,</i> being a number, measures the remainder, the unit <i>DF,</i> which is absurd.
+
+<p>Therefore <i>G</i> is not the same with any one of the numbers <i>A, B,</i> and <i>C.</i> And by hypothesis it is prime. Therefore the prime numbers <i>A, B, C,</i> and <i>G</i> have been found which are more than the assigned multitude of <i>A, B,</i> and <i>C.</i>
+
+<p>Therefore, <i>prime numbers are more than any assigned multitude of prime numbers.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h3><img src=../guide.gif alt=Guide width=83 height=37></h3>
+
+<p>This proposition states that there are more than any finite number of prime numbers, that is to say, there are infinitely many primes.
+
+<h4>Outline of the proof</h4>
+
+Suppose that there are <i>n</i> primes, <i>a</i><sub>1</sub>, <i>a</i><sub>2</sub>, ..., <i>a<sub>n</i>. Euclid, as usual, takes an specific small number, <i>n</i>&nbsp;=&nbsp;3, of primes to illustrate the general case. Let <i>m</i> be the least common multiple of all of them.  (This least common multiple was also considered in proposition <a href="propIX14.html">IX.14</a>.  It wasn&rsquo;t noted in the proof of that proposition that the least common multiple of primes is their product, and it isn't noted in this proof, either.)
+
+<p>Consider the number <i>m</i>&nbsp;+&nbsp;1.  If it&rsquo;s prime, then there are at least <i>n</i>&nbsp;+&nbsp;1 primes.
+
+<p>So suppose <i>m</i>&nbsp;+&nbsp;1 is not prime.  Then according to <a href="../bookVII/propVII31.html">VII.31</a>, some prime <i>g</i> divides it.   But <i>g</i> cannot be any of the primes <i>a</i><sub>1</sub>, <i>a</i><sub>2</sub>, ..., <i>a<sub>n</i>, since they all divide <i>m</i> and do not divide <i>m</i>&nbsp;+&nbsp;1.  Therefore, there are at least <i>n</i>&nbsp;+&nbsp;1 primes. 
+<small>Q.E.D.</small>
+
+<p>This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002, 2008, 2013");
+</script>
+</BODY></HTML>

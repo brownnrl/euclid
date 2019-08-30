@@ -1,0 +1,131 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 72</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 72</h1>
+
+<div class="statement">If two medial areas incommensurable with one another are added together, then the remaining two irrational straight lines arise, namely either a second bimedial or a side of the sum of two medial areas.</div>
+
+<p>Let two medial areas <i>AB</i> and <i>CD</i> incommensurable with one another be added together.
+
+<p>I say that the side of the area <i>AD</i> is either a second bimedial or a side of the sum of two medial areas.
+
+<p>For <i>AB</i> is either greater or less than <i>CD</i>.
+
+<p>First, let <i>AB</i> be greater than <i>CD</i>.
+
+<p>Set out the rational straight line <i>EF</i>, and apply to <i>EF</i> the rectangle <i>EG</i> equal to <i>AB</i> and producing <i>EH</i> as breadth, and the rectangle <i>HI</i> equal to <i>CD</i> and producing <i>HK</i> as breadth.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=390 height=210>
+<img src="propX71.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.72">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="C;point;lineSlider;A0,A3,100,0">
+<param name=e[5] value="CB';line;perpendicular;C,A;0;0;0">
+<param name=e[6] value="B;point;lineSlider;CB',0,190">
+<param name=e[7] value="AB;polygon;parallelogram;A,C,B;0;0;black;0,20,70">
+<param name=e[8] value="D';point;parallelogram;B,A0,A3;0;0">
+<param name=e[9] value="D;point;lineSlider;B,D',150,0">
+<param name=e[10] value="CD;polygon;parallelogram;C,B,D;0;0;black;60,50,100">
+
+<param name=e[11] value="E;point;free;190,60">
+<param name=e[12] value="F';point;parallelogram;E,C,B;0;0">
+<param name=e[13] value="F;point;lineSlider;E,F',0,170">
+<param name=e[14] value="H';point;parallelogram;E,A0,A3;0;0">
+<param name=e[15] value="H;point;proportion;E,F,B,C,A,C,E,H'">
+<param name=e[16] value="G;point;parallelogram;H,E,F">
+<param name=e[17] value="EFGH;polygon;quadrilateral;E,F,G,H;0;0;black;0,20,70">
+<param name=e[18] value="K;point;proportion;E,F,B,C,B,D,H,H'">
+<param name=e[19] value="I;point;parallelogram;K,E,F">
+<param name=e[20] value="GHKI;polygon;quadrilateral;G,H,K,I;0;0;black;60,50,100">
+</applet></div>
+
+<p>Now, since each of the areas <i>AB</i> and <i>CD</i> is medial, therefore each of the areas <i>EG</i> and <i>HI</i> is also medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And they are applied to the rational straight line <i>FE</i> producing <i>EH</i> and <i>HK</i> as breadth, therefore each of the straight lines <i>EH</i> and <i>HK</i> is rational and incommensurable in length with <i>EF</i>.
+
+<p>Since <i>AB</i> is incommensurable with <i>CD</i>, and <i>AB</i> equals <i>EG</i>, and <i>CD</i> equals <i>HI</i>, therefore <i>EG</i> is also incommensurable with <i>HI</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>,
+<a href=propX11.html>X.11</a></div>
+<p>But <i>EG</i> is to <i>HI</i> as <i>EH</i> is to <i>HK</i>,  therefore <i>EH</i> is incommensurable in length with <i>HK</i>.
+
+<div class="just"><a href=propX36.html>X.36</a></div>
+<p>Therefore <i>EH</i> and <i>HK</i> are rational straight lines commensurable in square only, therefore <i>EK</i> is binomial.
+
+<p>But the square on <i>EH</i> is greater than the square on <i>HK</i> either by the square on a straight line commensurable with <i>EH</i> or by the square on a straight line incommensurable with it.
+
+<p>First, let the square on it be greater by the square on a straight line commensurable in length with itself.
+
+<div class="just"><a href=defX.II.html#3>X.Def.II.3</a></div>
+<p>Now neither of the straight lines <i>EH</i> nor <i>HK</i> is commensurable in length with the rational straight line <i>EF</i> set out, therefore <i>EK</i> is a third binomial.
+
+<div class="just"><a href=propX56.html>X.56</a></div>
+<p>But <i>EF</i> is rational, and, if an area is contained by a rational straight line and the third binomial, then the side of the area is a second bimedial, therefore the side of <i>EI</i>, that is, of <i>AD</i>, is a second bimedial.
+
+<p>Next, let the square on <i>EH</i> be greater than the square on <i>HK</i> by the square on a straight line incommensurable in length with <i>EH</i>.
+
+<div class="just"><a href=defX.II.html#6>X.Def.II.6</a></div>
+<p>Now each of the straight lines <i>EH</i> and <i>HK</i> is incommensurable in length with <i>EF</i>, therefore <i>EK</i> is a sixth binomial.
+
+<div class="just"><a href=propX59.html>X.59</a></div>
+<p>But, if an area is contained by a rational straight line and the sixth binomial, then the side of the area is the side of the sum of two medial areas, so that the side of the area <i>AD</i> is also the side of the sum of two medial areas.
+
+<p>Therefore, <i>if two medial areas incommensurable with one another are added together, then the remaining two irrational straight lines arise, namely either a second bimedial or a side of the sum of two medial areas.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<table cellpadding=5>
+<p><a name=expl></a>
+<div class="theorem">
+<h1>Proposition</h1>
+
+<div class="statement">The binomial straight line and the irrational straight lines after it are neither the same with the medial nor with one another.</div>
+
+<div class="just"><a href=propX22.html>X.22</a>
+<br><a href=propX60.html>X.60</a></div>
+<p>For the square on a medial, if applied to a rational straight line, produces as breadth a straight line rational and incommensurable in length with that to which it is applied.  But the square on the binomial, if applied to a rational straight line, produces as breadth the first binomial.
+
+<div class="just"><a href=propX61.html>X.61</a></div>
+<p>The square on the first bimedial, if applied to a rational straight line, produces as breadth the second binomial.
+
+<div class="just"><a href=propX62.html>X.62</a></div>
+<p>The square on the second bimedial, if applied to a rational straight line, produces as breadth the third binomial.
+
+<div class="just"><a href=propX63.html>X.63</a></div>
+<p>The square on the major, if applied to a rational straight line, produces as breadth the fourth binomial.
+
+<div class="just"><a href=propX64.html>X.64</a></div>
+<p>The square on the side of a rational plus a medial area, if applied to a rational straight line, produces as breadth the fifth binomial.
+
+<div class="just"><a href=propX65.html>X.65</a></div>
+<p>The square on the side of the sum of two medial areas, if applied to a rational straight line, produces as breadth the sixth binomial.
+
+<p>And the said breadths differ both from the first and from one another, from the first because it is rational, and from one another because they are not the same in order, so that the irrational straight lines themselves also differ from one another.
+
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

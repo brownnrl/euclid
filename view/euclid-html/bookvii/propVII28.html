@@ -1,0 +1,71 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 28</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 28</h1>
+
+<div class="statement">If two numbers are relatively prime, then their sum is also prime to each of them; and, if the sum of two numbers is relatively prime to either of them, then the original numbers are also relatively prime.</div>
+
+<p>Let two relatively prime numbers <i>AB</i> and <i>BC</i> be added.
+<p>I say that their sum <i>AC</i> is also relatively prime to each of the numbers <i>AB</i> and <i>BC.</i>
+
+<p>If <i>CA</i> and <i>AB</i> are not relatively prime, then some number <i>D</i> measures <i>CA</i> and <i>AB.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=115 >
+<img src=propVII28.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.28">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="D0;point;free;-1000,75;0;0">
+<param name=e[4] value="D3;point;free;1000,75;0;0">
+<param name=e[5] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,150,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,220,0">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="M;point;midpoint;B,C;0;0">
+<param name=e[10] value="D1;point;lineSlider;D0,D3,100,0;0">
+<param name=e[11] value="D2;point;cutoff;D1,D3,B,M;0">
+<param name=e[12] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<div class="just"><a href=defVII11.html>VII.Def.12</a></div>
+<p>Since then <i>D</i> measures <i>CA</i> and <i>AB,</i> therefore it also measures the remainder <i>BC.</i> But it also measures <i>BA,</i> therefore <i>D</i> measures <i>AB</i> and <i>BC</i> which are relatively prime, which is impossible.
+
+<p>Therefore no number measures the numbers <i>CA</i> and <i>AB.</i> Therefore <i>CA</i> and <i>AB</i> are relatively prime. For the same reason <i>AC</i> and <i>CB</i> are also relatively prime. Therefore <i>CA</i> is relatively prime to each of the numbers <i>AB</i> and <i>BC.</i>
+
+<hr width=50%>
+
+<p>Next, let <i>CA</i> and <i>AB</i> be relatively prime.
+
+<p>I say that <i>AB</i> and <i>BC</i> are also relatively prime.
+
+<p>If <i>AB</i> and <i>BC</i> are not relatively prime, then some number <i>D</i> measures <i>AB</i> and <i>BC.</i>
+
+<div class="just"><a href=defVII11.html>VII.Def.12</a></div>
+<p>Now, since <i>D</i> measures each of the numbers <i>AB</i> and <i>BC,</i> therefore it also measures the whole <i>CA.</i> But it measures <i>AB,</i> therefore <i>D</i> measures <i>CA</i> and <i>AB</i> which are relatively prime, which is impossible.
+
+<p>Therefore no number measures the numbers <i>AB</i> and <i>BC.</i> Therefore <i>AB</i> and <i>BC</i> are relatively prime.
+
+<p>Therefore, <i>if two numbers are relatively prime, then their sum is also prime to each of them; and, if the sum of two numbers is relatively prime to either of them, then the original numbers are also relatively prime.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This proposition is used in <a href=../bookIX/propIX15.html>IX.15</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

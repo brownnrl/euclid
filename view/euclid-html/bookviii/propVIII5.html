@@ -1,0 +1,138 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 5</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 5</h1>
+
+<div class="statement">Plane numbers have to one another the ratio compounded of the ratios of their sides.</div>
+
+<p>Let <i>A</i> and <i>B</i> be plane numbers, and let the numbers <i>C</i> and <i>D</i> be the sides of <i>A,</i> and <i>E</i> and <i>F</i> the sides of <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=315 >
+<img src="propVIII5.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.5">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="E0;point;free;-1000,145;0;0">
+<param name=e[8] value="E3;point;free;1000,145;0;0">
+<param name=e[9] value="G0;point;free;-1000,180;0;0">
+<param name=e[10] value="G3;point;free;1000,180;0;0">
+<param name=e[11] value="H0;point;free;-1000,215;0;0">
+<param name=e[12] value="H3;point;free;1000,215;0;0">
+<param name=e[13] value="K0;point;free;-1000,250;0;0">
+<param name=e[14] value="K3;point;free;1000,250;0;0">
+<param name=e[15] value="L0;point;free;-1000,285;0;0">
+<param name=e[16] value="L3;point;free;1000,285;0;0">
+<param name=e[17] value="U0;point;free;1000,0;0;0">
+<param name=e[18] value="U1;point;free;1000,20;0;0">
+
+<param name=e[19] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[20] value="C2;point;lineSlider;C0,C3,100,0;0">
+<param name=e[21] value="C;line;connect;C1,C2;black">
+<param name=e[22] value="D1;point;lineSlider;C0,C3,180,0;0">
+<param name=e[23] value="D2;point;lineSlider;C0,C3,220,0;0">
+<param name=e[24] value="D;line;connect;D1,D2;black">
+<param name=e[25] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[26] value="A2;point;proportion;U0,U1,C1,C2,D1,D2,A1,A3;0">
+<param name=e[27] value="A;line;connect;A1,A2;black">
+<param name=e[28] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[29] value="E2;point;lineSlider;E0,E3,80,0;0">
+<param name=e[30] value="E;line;connect;E1,E2;black">
+<param name=e[31] value="F1;point;lineSlider;E0,E3,180,0;0">
+<param name=e[32] value="F2;point;lineSlider;E0,E3,230,0;0">
+<param name=e[33] value="F;line;connect;F1,F2;black">
+<param name=e[34] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[35] value="B2;point;proportion;U0,U1,E1,E2,F1,F2,B1,B3;0">
+<param name=e[36] value="B;line;connect;B1,B2;black">
+
+<param name=e[37] value="G1;point;lineSlider;G0,G3,30,0;0">
+<param name=e[38] value="G2;point;proportion;U0,U1,C1,C2,D1,D2,G1,G3;0">
+<param name=e[39] value="G;line;connect;G1,G2;black">
+<param name=e[40] value="H1;point;lineSlider;H0,H3,30,0;0">
+<param name=e[41] value="H2;point;proportion;U0,U1,D1,D2,E1,E2,H1,H3;0">
+<param name=e[42] value="H;line;connect;H1,H2;black">
+<param name=e[43] value="K1;point;lineSlider;K0,K3,30,0;0">
+<param name=e[44] value="K2;point;proportion;U0,U1,F1,F2,E1,E2,K1,K3;0">
+<param name=e[45] value="K;line;connect;K1,K2;black">
+<param name=e[46] value="L1;point;lineSlider;L0,L3,30,0;0">
+<param name=e[47] value="L2;point;proportion;U0,U1,D1,D2,E1,E2,L1,L3;0">
+<param name=e[48] value="L;line;connect;L1,L2;black">
+</applet></div>
+
+<p>I say that <i>A</i> has to <i>B</i> the ratio compounded of the ratios of the sides.
+
+<div class="just"><a href=propVIII4.html>VIII.4</a></div>
+<p>The ratios being given which <i>C</i> has to <i>E</i> and <i>D</i> to <i>F,</i> take the least numbers <i>G, H,</i> and <i>K</i> that are continuously in the ratios <i>C, E, D,</i> and <i>F,</i> so that <i>C</i> is to <i>E</i> as <i>G</i> is to <i>H,</i> and <i>D</i> is to <i>F</i> as <i>H</i> is to <i>K.</i>
+
+<p>Multiply <i>D</i> by <i>E</i> to make <i>L.</i>
+
+<div class="just"><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>Now, since <i>D</i> multiplied by <i>C</i> makes <i>A,</i> and multiplied by <i>E</i> makes <i>L,</i> therefore <i>C</i> is to <i>E</i> as <i>A</i> is to <i>L.</i> But <i>C</i> is to <i>E</i> as <i>G</i> is to <i>H,</i> therefore <i>G</i> is to <i>H</i> as <i>A</i> is to <i>L.</i>
+
+<div class="just"><a href=../bookVII/propVII17.html>VII.17</a></div>
+<p>Again, since <i>E</i> multiplied by <i>D</i> makes <i>L,</i> and further multiplied by <i>F</i> makes <i>B,</i> therefore <i>D</i> is to <i>F</i> as <i>L</i> is to <i>B.</i> But <i>D</i> is to <i>F</i> as <i>H</i> is to <i>K,</i> therefore <i>H</i> is to <i>K</i> as <i>L</i> is to <i>B.</i>
+
+<div class="just"><a href=../bookVII/propVII14.html>VII.14</a></div>
+<p>But it was also proved that, <i>H</i> as <i>G</i> is to <i>H</i> as <i>A</i> is to <i>L,</i> therefore, <i>ex aequali, L</i> as <i>G</i> is to <i>K</i> as <i>A</i> is to <i>B.</i>
+
+<p>But <i>G</i> has to <i>K</i> the ratio compounded of the ratios of the sides, therefore <i>A</i> also has to <i>B</i> the ratio compounded of the ratios of the sides.
+
+<p>Therefore, <i>plane numbers have to one another the ratio compounded of the ratios of their sides.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+<h4>Compounded ratios</h4>
+
+Compound ratios such as these only appear in a few places in the <i>Elements.</i>  They appear here in this proposition, and in <a href="../bookVI/propVI23.html">VI.23</a>, an analogous proposition for rectangles and parallelograms.  But duplicate and triplicate ratios are also special kinds of compound ratios, and they are used in Books VI, VIII, IX, X, XI, and XII. Duplicate and triplicate ratios were defined in general in <a href="../bookV/defV8.html">V.9-10</a>, where they are defined as the ratio of the ends of a continued proportion (with constant ratio).  That is, if <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c</i>, then the duplicate ratio of <i>a</i>&nbsp;:&nbsp;<i>b</i> is <i>a</i>&nbsp;:&nbsp;<i>c.</i>  For lines, the construction of the third proportional <i>c</i> needed to duplicate the ratio <i>a</i>&nbsp;:&nbsp;<i>b</i> was done in proposition <a href="../bookVI/propVI11.html">VI.11</a>, but for numbers, the third proportional can be constructed by <a href="propVIII2.html">VIII.2</a>.
+
+<p>The ratio <i>compounded</i> from two given ratios <i>a</i>&nbsp;:&nbsp;<i>b</i> and <i>b</i>&nbsp;:&nbsp;<i>c</i> is just the ratio <i>a</i>&nbsp;:&nbsp;<i>c.</i> But if the middle term <i>b</i> is not shared by the two given ratios, then equal ratios must be found that do have a shared middle term.
+
+<p>To find the ratio compounded from two given ratios <i>a</i>&nbsp;:&nbsp;<i>b</i> and <i>c</i>&nbsp;:&nbsp;<i>d,</i> first find <i>e, f,</i> and <i>g</i> so that <i>e</i>&nbsp;:&nbsp;<i>f</i>&nbsp;=&nbsp;<i>a</i>&nbsp;:&nbsp;<i>b</i>
+and <i>f</i>&nbsp;:&nbsp;<i>g</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d.</i>  Then, the ratio compounded from the ratios <i>a</i>&nbsp;:&nbsp;<i>b</i> and <i>c</i>&nbsp;:&nbsp;<i>d</i> will be the same as the ratio compounded from the ratios
+<i>e</i>&nbsp;:&nbsp;<i>f</i> and <i>f</i>&nbsp;:&nbsp;<i>g,</i> namely <i>e</i>&nbsp;:&nbsp;<i>g.</i>  For numbers, this construction was done in the previous proposition <a href=propVIII4.html>VIII.4</a>.
+
+<h4>This proposition</h4>
+
+The problem is to find a ratio compounded from two ratios <i>c</i>&nbsp;:&nbsp;<i>e</i> and <i>d</i>&nbsp;:&nbsp;<i>f</i>. Since
+<p><center>
+<i>c</i>&nbsp;:&nbsp;<i>e</i>&nbsp;=&nbsp;<i>cd</i>&nbsp;:&nbsp;<i>de</i>,
+</center>
+and
+<center>
+<i>d</i>&nbsp;:&nbsp;<i>f</i>&nbsp;=&nbsp;<i>de</i>&nbsp;:&nbsp;<i>ef</i>,
+</center><p>
+therefore, the ratio of the plane numbers <i>cd</i>&nbsp;:&nbsp;<i>ef</i> will do.  
+
+<p>Euclid&rsquo;s proof is complicated because (1) his symbolic notation is limited, and (2) the application of <a href=propVIII4.html>VIII.4</a> to find the least numbers continuously in the ratios <i>c</i>&nbsp;:&nbsp;<i>d</i> and <i>e</i>&nbsp;:&nbsp;<i>f</i>  makes the proof more difficult. 
+
+<h4>Outline of the proof</h4>
+
+Let the plane number <i>a</i> be the product <i>cd</i> of its sides, and let the plane number <i>b</i> be the product <i>ef</i> of its sides.  Use <a href=propVIII4.html>VIII.4</a> to construct a continued ratio <i>g</i>&nbsp;:&nbsp;<i>h</i>&nbsp;:&nbsp;<i>k</i> so that <i>g</i>&nbsp;:&nbsp;<i>h</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>e</i> and <i>h</i>&nbsp;:&nbsp;<i>k</i>&nbsp;=&nbsp;<i>d</i>&nbsp;:&nbsp;<i>f</i> so that <i>g</i>&nbsp;:&nbsp;<i>k</i> is the ratio compounded of the ratios <i>c</i>&nbsp;:&nbsp;<i>e</i> and <i>d</i>&nbsp;:&nbsp;<i>f</i> of the sides.
+
+<p>Since <i>a</i>&nbsp;=&nbsp;<i>cd,</i> therefore <i>c</i>&nbsp;:&nbsp;<i>e</i>&nbsp;=&nbsp;<i>a</i>&nbsp;:&nbsp;<i>de,</i> and so <i>g</i>&nbsp;:&nbsp;<i>h</i>&nbsp;=&nbsp;<i>a</i>&nbsp;:&nbsp;<i>de.</i>  Since <i>b</i>&nbsp;=&nbsp;<i>ef,</i> therefore <i>d</i>&nbsp;:&nbsp;<i>f</i>&nbsp;=&nbsp;<i>de</i>&nbsp;:&nbsp;<i>b,</i> and so <i>h</i>&nbsp;:&nbsp;<i>k</i>&nbsp;=&nbsp;<i>de</i>&nbsp;:&nbsp;<i>b.</i> From the two proportions 
+<i>g</i>&nbsp;:&nbsp;<i>h</i>&nbsp;=&nbsp;<i>a</i>&nbsp;:&nbsp;<i>de</i> and
+<i>h</i>&nbsp;:&nbsp;<i>k</i>&nbsp;=&nbsp;<i>de</i>&nbsp;:&nbsp;<i>b</i> therefore, <i>ex aequali,</i> 
+<i>g</i>&nbsp;:&nbsp;<i>k</i>&nbsp;=&nbsp;<i>a</i>&nbsp;:&nbsp;<i>b.</i>  Thus, ratio the plane numbers is the ratio compounded of the ratios of their sides.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,230 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 31</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 31</h1>
+
+<div class="statement">Parallelepipedal solids which are on equal bases and of the same height equal one another.</div>
+
+<p>Let the parallelepipedal solids <i>AE</i> and <i>CF</i>  of the same height be on equal bases <i>AB</i> and <i>CD.</i>
+
+<p>I say that the solid <i>AE</i> equals the solid <i>CF.</i>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a>
+<br><a href="../bookI/propI3.html">I.3</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>First, let the sides which stand up, <i>HK, BE, AG, LM, PQ, DF, CO,</i> and <i>RS,</i> be at right angles to the bases <i>AB</i> and <i>CD.</i>  Produce the straight line <i>RT</i> in a straight line with <i>CR.</i>  Construct the angle <i>TRU</i> equal to the angle <i>ALB</i> at the point <i>R</i> on the straight line <i>RT.</i> Make <i>RT</i>  equal to <i>A,</i> and <i>RU</i> equal to <i>LB.</i>  Complete the base <i>RW</i> and the solid <i>XU.</i>
+
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=400 height=280>
+<img src="propXI31a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.31">
+<param name=e[1] value="G;point;fixed;60,120,0">
+<param name=basepoint value=G>
+<param name=e[2] value="1X;point;fixed;260,93,36;0;0">
+<param name=e[3] value="1Y;point;fixed;15,0,160;0;0">
+<param name=e[4] value="1Z;point;fixed;60,264,123;0;0">
+<param name=e[5] value="ceiling;plane;3points;G,1X,1Y;0;0;0;0">
+<param name=e[6] value="A;point;lineSlider;G,1Z,220,130,200">
+<param name=e[7] value="M;point;planeSlider;ceiling,130,120,0">
+<param name=e[8] value="K;point;planeSlider;ceiling,30,150,100">
+<param name=e[9] value="L;point;parallelogram;A,G,M">
+<param name=e[10] value="H;point;parallelogram;A,G,K">
+<param name=e[11] value="B;point;parallelogram;L,A,H">
+<param name=e[12] value="E;point;parallelogram;M,G,K">
+<param name=e[13] value="floor;plane;3points;A,L,H;0;0;0;0">
+<param name=e[14] value="AGKH;polygon;quadrilateral;A,G,K,H;0;0;black;60,75,100">
+<param name=e[15] value="ALMG;polygon;quadrilateral;A,L,M,G;0;0;black;60,100,90">
+<param name=e[16] value="GKEM;polygon;quadrilateral;G,K,E,M;0;0;black;60,50,100">
+<param name=e[17] value="EB;line;connect;E,B">
+<param name=e[18] value="HB;line;connect;H,B">
+<param name=e[19] value="LB;line;connect;L,B">
+<param name=e[20] value="H'';point;perpendicular;A,L,floor;0;0">
+<param name=e[21] value="H';point;intersection;A,H'',H,B,floor;0;0">
+
+<param name=e[22] value="C;point;planeSlider;floor,200,140,0">
+<param name=e[23] value="P;point;planeSlider;floor,160,30,0">
+<param name=e[24] value="D';point;perpendicular;C,P,floor;0;0">
+<param name=e[25] value="D'';point;proportion;C,P,A,L,A,H',C,D';0;0">
+<param name=e[26] value="D''';point;parallelogram;D'',C,P;0;0">
+<param name=e[27] value="D;point;lineSlider;D'',D''',170,10,0">
+<param name=e[28] value="R;point;parallelogram;C,P,D">
+<param name=e[29] value="F;point;parallelogram;D,A,G">
+<param name=e[30] value="Q;point;parallelogram;P,A,G">
+<param name=e[31] value="O;point;parallelogram;C,A,G">
+<param name=e[32] value="S;point;parallelogram;R,A,G">
+<param name=e[33] value="QOCP;polygon;quadrilateral;Q,O,C,P;0;0;black;180,100,90">
+<param name=e[34] value="QOSF;polygon;quadrilateral;Q,O,S,F;0;0;black;180,50,100">
+<param name=e[35] value="COSR;polygon;quadrilateral;C,O,S,R;0;0;black;180,75,100">
+<param name=e[36] value="FD;line;connect;F,D">
+<param name=e[37] value="PD;line;connect;P,D">
+<param name=e[38] value="RD;line;connect;R,D">
+
+<param name=e[39] value="T;point;extend;C,R,A,L">
+<param name=e[40] value="U;point;similar;T,R,floor,A,L,B,floor">
+<param name=e[41] value="W;point;parallelogram;T,R,U">
+<param name=e[42] value="X;point;parallelogram;T,A,G">
+<param name=e[43] value="V;point;parallelogram;W,A,G">
+<param name=e[44] value="d;point;parallelogram;U,A,G">
+<param name=e[45] value="UdSR;polygon;quadrilateral;U,d,S,R;0;0;black;60,75,100">
+<param name=e[46] value="UWVd;polygon;quadrilateral;U,W,V,d;0;0;black;60,100,90">
+<param name=e[47] value="dSXV;polygon;quadrilateral;d,S,X,V;0;0;black;60,50,100">
+<param name=e[48] value="RT;line;connect;R,T">
+<param name=e[49] value="WT;line;connect;W,T">
+<param name=e[50] value="XT;line;connect;X,T">
+
+<param name=e[51] value="Y;point;intersection;D,R,W,U,floor">
+<param name=e[52] value="a;point;parallelogram;T,R,D">
+<param name=e[53] value="b;point;parallelogram;T,R,Y">
+<param name=e[54] value="I;point;parallelogram;a,A,G">
+<param name=e[55] value="c;point;parallelogram;b,A,G">
+<param name=e[56] value="e;point;parallelogram;Y,A,G">
+<param name=e[57] value="abcI;polygon;quadrilateral;a,b,c,I;0;0;black;0">
+<param name=e[58] value="FI;line;connect;F,I">
+<param name=e[59] value="Da;line;connect;D,a">
+<param name=e[60] value="Se;line;connect;S,e">
+<param name=e[61] value="RY;line;connect;R,Y">
+<param name=e[62] value="eY;line;connect;e,Y">
+<param name=e[63] value="cV;line;connect;c,V">
+<param name=e[64] value="bW;line;connect;b,W">
+<param name=e[65] value="de;line;connect;d,e">
+<param name=e[66] value="UY;line;connect;U,Y">
+</applet></div>
+
+<p>Now, since the two sides <i>TR</i> and <i>RU</i> equal the two sides <i>AL</i> and <i>LB,</i> and they contain equal angles, therefore the parallelogram <i>RW</i> equals and is similar to the parallelogram <i>HL.</i>  Since again <i>AL</i> equals <i>RT,</i> and <i>LM</i> equals <i>RS,</i> and they contain right angles, therefore the parallelogram <i>RX</i> equals and is similar to the parallelogram <i>AM.</i>  For the same reason <i>LE</i> also equals and is similar to <i>SU.</i>
+
+<div class="just"><a href="propXI24.html">XI.24</a>
+<br><a href=defXI9.html>XI.Def.10</a></div>
+<p>Therefore three parallelograms of the solid <i>AE</i> equal and are similar to three parallelograms of the solid <i>XU.</i>  But the former three equal and are similar to the three opposite, and the latter three equal and are similar the three opposite, therefore the whole parallelepipedal solid <i>AE</i> equals the whole parallelepipedal solid <i>XU.</i>
+
+<div class="just"><a href="../bookI/propI31.html">I.31</a></div>
+<p>Draw <i>DR</i> and <i>WU</i> through to meet one another at <i>Y,</i> draw <i>aTb</i> through <i>T</i> parallel to <i>DY,</i> produce <i>PD</i> to <i>a,</i> and complete the solids <i>YX</i> and <i>RI.</i>
+
+<div class="just"><a href="propXI29.html">XI.29</a></div>
+<p>Then the solid <i>XY,</i> of which the parallelogram <i>RX</i> is the base and <i>Yc</i> its opposite, equals the solid <i>XU,</i> of which the parallelogram <i>RX</i> is the base and <i>UV</i> its opposite, for they are on the same base <i>RX</i> and of the same height, and the ends of their edges which stand up, namely <i>RY, RU, Tb, TW, Se, Sd, Xc,</i> and <i>XV,</i> are on the same straight lines <i>YW</i> and <i>eV.</i>  But the solid <i>XU</i> equals <i>AE,</i> therefore the solid <i>XY</i> also equals the solid <i>AE.</i>
+
+<div class="just"><a href="../bookI/propI35.html">I.35</a></div>
+<p>And, since the parallelogram <i>RUWT</i> equals the parallelogram <i>YT,</i> for they are on the same base <i>RT</i> and in the same parallels <i>RT</i> and <i>YW,</i>  and <i>RUWT</i> equals <i>CD,</i> since it also equals <i>AB,</i> therefore the parallelogram <i>YT</i> also equals <i>CD.</i>
+
+<div class="just"><a href="../bookV/propV7.html">V.7</a></div>
+<p>But <i>DT</i> is another parallelogram, therefore the base <i>CD</i> is to <i>DT</i> as <i>YT</i> is to <i>DT.</i>
+
+<div class="just"><a href="propXI25.html">XI.25</a></div>
+<p>And, since the parallelepipedal solid <i>CI</i> is cut by the plane <i>RF</i> which is parallel to opposite planes, therefore the base <i>CD</i> is to the base <i>DT</i> as the solid <i>CF</i> is to the solid <i>RI.</i>   For the same reason, since the parallelepipedal solid <i>YI</i> is cut by the plane <i>RX</i> which is parallel to opposite planes, therefore the base <i>YT</i> is to the base <i>TD</i>  as the solid <i>YX</i> is to the solid <i>RI.</i>
+
+<div class="just"><a href="../bookV/propV11.html">V.11</a></div>
+<p>But the base <i>CD</i> is to <i>DT</i> as <i>YT</i> is to <i>DT,</i> therefore  the solid <i>CF</i> is to the solid <i>RI</i> as the solid <i>YX</i> is to <i>RI.</i>
+
+<div class="just"><a href="../bookV/propV9.html">V.9</a></div>
+<p>Therefore each of the solids <i>CF</i> and <i>YX</i> has to <i>RI</i> the same ratio.  Therefore the solid <i>CF</i> equals the solid <i>YX.</i>  But <i>YX</i> was proved equal to <i>AE,</i> therefore <i>AE</i> also equals <i>CF.</i>
+
+<hr width=50%>
+
+<p>Next, let the sides standing up, <i>AG, HK, BE, LM, CN, PQ, DF,</i> and <i>RS,</i> not be at right angles to the bases <i>AB</i> and <i>CD.</i>
+
+<p>I say again that the solid <i>AE</i> equals the solid <i>CF.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=400 height=280>
+<img src="propXI31b.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.31">
+<param name=e[1] value="G;point;fixed;60,120,0;black;green">
+<param name=basepoint value=G>
+<param name=e[2] value="1X;point;fixed;260,93,36;0;0">
+<param name=e[3] value="1Y;point;fixed;15,0,160;0;0">
+<param name=e[4] value="1Z;point;fixed;60,264,123;0;0">
+<param name=e[5] value="ceiling;plane;3points;G,1X,1Y;0;0;0;0">
+<param name=e[6] value="U;point;lineSlider;G,1Z,220,130,200">
+<param name=e[7] value="xf;point;parallelogram;1X,G,U;0;0">
+<param name=e[8] value="yf;point;parallelogram;1Y,G,U;0;0">
+<param name=e[9] value="floor;plane;3points;U,xf,yf;0;0;0;0">
+<param name=e[10] value="A;point;planeSlider;floor,120,220,20">
+<param name=e[11] value="M;point;planeSlider;ceiling,30,120,0">
+<param name=e[12] value="K;point;planeSlider;ceiling,130,150,100">
+<param name=e[13] value="L;point;parallelogram;A,G,M">
+<param name=e[14] value="H;point;parallelogram;A,G,K">
+<param name=e[15] value="B;point;parallelogram;L,A,H">
+<param name=e[16] value="E;point;parallelogram;M,G,K">
+<param name=e[17] value="AGKH;polygon;quadrilateral;A,G,K,H;0;0;black;60,75,100">
+<param name=e[18] value="ALMG;polygon;quadrilateral;A,L,M,G;0;0;black;60,100,90">
+<param name=e[19] value="GKEM;polygon;quadrilateral;G,K,E,M;0;0;black;60,50,100">
+<param name=e[20] value="EB;line;connect;E,B">
+<param name=e[21] value="HB;line;connect;H,B">
+<param name=e[22] value="LB;line;connect;L,B">
+<param name=e[23] value="H'';point;perpendicular;A,L,floor;0;0">
+<param name=e[24] value="H';point;intersection;A,H'',H,B,floor;0;0">
+
+<param name=e[25] value="Q;point;planeSlider;ceiling,200,150,100">
+<param name=e[26] value="P;point;planeSlider;floor,230,273,100">
+<param name=e[27] value="C;point;planeSlider;floor,305,140,0">
+<param name=e[28] value="D';point;perpendicular;C,P,floor;0;0">
+<param name=e[29] value="D'';point;proportion;C,P,A,L,A,H',C,D';0;0">
+<param name=e[30] value="D''';point;parallelogram;D'',C,P;0;0">
+<param name=e[31] value="D;point;lineSlider;D'',D''',270,10,0">
+<param name=e[32] value="R;point;parallelogram;C,P,D">
+<param name=e[33] value="F;point;parallelogram;D,P,Q">
+<param name=e[34] value="S;point;parallelogram;R,P,Q">
+<param name=e[35] value="N;point;parallelogram;C,P,Q">
+<param name=e[36] value="QNCP;polygon;quadrilateral;Q,N,C,P;0;0;black;180,100,90">
+<param name=e[37] value="QNSF;polygon;quadrilateral;Q,N,S,F;0;0;black;180,50,100">
+<param name=e[38] value="CNSR;polygon;quadrilateral;C,N,S,R;0;0;black;180,75,100">
+<param name=e[39] value="FD;line;connect;F,D">
+<param name=e[40] value="PD;line;connect;P,D">
+<param name=e[41] value="RD;line;connect;R,D">
+
+<param name=e[42] value="O;point;parallelogram;K,G,U">
+<param name=e[43] value="V;point;parallelogram;M,G,U">
+<param name=e[44] value="T;point;parallelogram;E,G,U">
+<param name=e[45] value="UOTV;polygon;quadrilateral;U,O,T,V;0;0;black;0">
+<param name=e[46] value="GU;line;connect;G,U">
+<param name=e[47] value="KO;line;connect;K,O">
+<param name=e[48] value="ET;line;connect;E,T">
+<param name=e[49] value="MV;line;connect;M,V">
+
+<param name=e[50] value="W;point;parallelogram;Q,G,U">
+<param name=e[51] value="X;point;parallelogram;F,G,U">
+<param name=e[52] value="Y;point;parallelogram;N,G,U">
+<param name=e[53] value="I;point;parallelogram;S,G,U">
+<param name=e[54] value="WXIY;polygon;quadrilateral;W,X,I,Y;0;0;black;0">
+<param name=e[55] value="QW;line;connect;Q,W">
+<param name=e[56] value="NY;line;connect;N,Y">
+<param name=e[57] value="FX;line;connect;F,X">
+<param name=e[58] value="SI;line;connect;S,I">
+</applet></div>
+
+<div class="just"><a href=propXI11.html>XI.11</a></div>
+<p>Draw <i>KO, ET, GU, MV, QW, FX, NY</i> and <i>SI</i> from the points <i>K, E, G, M, Q, F, N,</i> and <i>S</i> perpendicular to the plane of reference, and let them meet the plane at the points  <i>O, T, U, V, W, X, Y,</i> and <i>I.</i>
+
+<div class="just">Above</div>
+<p>Then the solid <i>KV</i> equals the solid <i>QI,</i> for they are on the equal bases <i>KM </i>and <i>QS</i> and of the same height, and their sides which stand up are at right angles to their bases.
+
+<div class="just"><a href="propXI30.html">XI.30</a></div>
+<p>But the solid <i>KV</i> equals the solid <i>AE,</i> and <i>QI</i> equals <i>CF,</i> for they are on the same base and of the same height, while the ends of their edges which stand up are not on the same straight lines.
+
+<p>Therefore the solid <i>AE</i> also equals the solid <i>CF.</i>
+
+<p>Therefore, <i>parallelepipedal solids which are on equal bases and of the same height equal one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+The statement that started with <a href="propXI29.html">XI.29</a> has now been generalized two steps.  In the next proposition the heights of the two parallelepipeds remain equal, but the bases vary.  The present proposition is used not only in the proof of the next, but also in three more of the remaining propositions of Book XI.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

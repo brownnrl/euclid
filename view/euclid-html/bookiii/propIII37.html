@@ -1,0 +1,79 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 37</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 37</h1>
+
+<div class="statement">If a point is taken outside a circle and from the point there fall on the circle two straight lines, if one of them cuts the circle, and the other falls on it, and if further the rectangle contained by the whole of the straight line which cuts the circle and the straight line intercepted on it outside between the point and the convex circumference equals the square on the straight line which falls on the circle, then the straight line which falls on it touches the circle.</div>
+
+<p>Let a point <i>D</i> be taken outside the circle <i>ABC,</i> from <i>D</i> let the two straight lines <i>DCA</i> and <i>DB</i> fall on the circle <i>ACB,</i> let <i>DCA</i> cut the circle and <i>DB</i> fall on it, and let the rectangle <i>AD</i> by <i>DC</i> equal the square on <i>DB.</i> 
+
+<p>I say that <i>DB</i> touches the circle <i>ABC.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=315>
+<img src=propIII37.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.37">
+<param name=e[1] value="A;point;free;218,225">
+<param name=e[2] value="D;point;free;40,39">
+<param name=e[3] value="F;point;free;180,136">
+<param name=e[4] value="ABC;circle;radius;F,A;0;0;black;random">
+<param name=e[5] value="AD;line;connect;A,D">
+<param name=e[6] value="FD;line;connect;F,D">
+<param name=e[7] value="AC;line;chord;AD,ABC;0;0;0">
+<param name=e[8] value="C;point;last;AC">
+<param name=e[9] value="M;point;midpoint;FD;0;0">
+<param name=e[10] value="BCEF;circle;radius;M,F;0;0;0;0">
+<param name=e[11] value="EB;line;bichord;ABC,BCEF;0;0;0">
+<param name=e[12] value="E;point;first;EB">
+<param name=e[13] value="B;point;last;EB">
+<param name=e[14] value="ED;line;connect;E,D">
+<param name=e[15] value="BD;line;connect;B,D">
+<param name=e[16] value="EF;line;connect;E,F">
+<param name=e[17] value="BF;line;connect;B,F">
+</applet></div>
+
+<div class="just"><a href="propIII17.html">III.17</a>,
+<a href="propIII1.html">III.1</a></div>
+<p>Draw <i>DE</i> touching <i>ABC.</i>  Take the center <i>F</i> of the circle <i>ABC,</i> and join <i>FE, FB,</i> and <i>FD.</i>
+
+<div class="just"><a href="propIII18.html">III.18</a></div>
+<p>Thus the angle <i>FED</i> is right.
+
+<div class="just"><a href="propIII36.html">III.36</a></div>
+<p>Now, since <i>DE</i> touches the circle <i>ABC,</i> and <i>DCA</i> cuts it, the rectangle <i>AD</i> by <i>DC</i> equals the square on <i>DE.</i>
+
+<p>But the rectangle <i>AD</i> by <i>DC</i> was also equal to the square on <i>DB,</i> therefore the square on <i>DE</i> equals the square on <i>DB.</i> Therefore <i>DE</i> equals <i>DB.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>And <i>FE</i> equals <i>FB,</i> therefore the two sides <i>DE</i> and <i>EF</i> equal the two sides <i>DB</i> and <i>BF,</i> and <i>FD</i> is the common base of the triangles, therefore the angle <i>DEF</i> equals the angle <i>DBF.</i>
+
+<p>But the angle <i>DEF</i> is right, therefore the angle <i>DBF</i> is also right.
+
+<div class="just"><a href="propIII16.html#cor">III.16 Cor</a></div>
+<p>And <i>FB</i> produced is a diameter, and the straight line drawn at right angles to the diameter of a circle, from its end, touches the circle, therefore <i>DB</i> touches the circle.
+
+<p>Similarly this can be proved to be the case even if the center is on <i>AC.</i>
+
+<p>Therefore <i>if a point is taken outside a circle and from the point there fall on the circle two straight lines, if one of them cuts the circle, and the other falls on it, and if further the rectangle contained by the whole of the straight line which cuts the circle and the straight line intercepted on it outside between the point and the convex circumference equals the square on the straight line which falls on the circle, then the straight line which falls on it touches the circle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in <a href=../bookIV/propIV10.html>IV.10</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

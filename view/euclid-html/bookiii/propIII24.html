@@ -1,0 +1,72 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 24</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 24</h1>
+
+<div class="statement">Similar segments of circles on equal straight lines equal one another. </div>
+
+<p>Let <i>AEB</i> and <i>CFD</i> be similar segments of circles on equal straight lines <i>AB</i> and <i>CD.</i>
+
+<p>I say that the segment <i>AEB</i> equals the segment <i>CFD.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=110 width=350>
+<img src=propIII24.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.24">
+<param name=e[1] value="A;point;free;40,80">
+<param name=e[2] value="B;point;free;160,80">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="E;point;free;90,30;black;0">
+<param name=e[5] value="BEA;sector;arc;B,E,A;0;0;black;0">
+<param name=e[6] value="C;point;free;190,80">
+<param name=e[7] value="Ccirc;circle;radius;C,AB;0;0;0;0">
+<param name=e[8] value="D;point;circleSlider;Ccirc,310,80">
+<param name=e[9] value="CD;line;connect;C,D">
+<param name=e[10] value="F';point;similar;C,D,A,B,E;0;0">
+<param name=e[11] value="CF'G;circle;circumcircle;D,F',C;0;0;0;0">
+<param name=e[12] value="F;point;circleSlider;CF'G,230,35;black;0">
+<param name=e[13] value="DFC;sector;arc;D,F,C;0;0;black;0">
+<param name=e[14] value="G;point;circleSlider;CF'G,270,40">
+<param name=e[15] value="GCH;polygon;equilateralTriangle;G,C;0;0;0;0">
+<param name=e[16] value="H;point;vertex;GCH,3;0;0">
+<param name=e[17] value="GC;sector;sector;H,G,C;0;0;black;0">
+<param name=e[18] value="M;point;midpoint;D,G;0;0">
+<param name=e[19] value="M';point;perpendicular;M,D;0;0">
+<param name=e[20] value="K;point;intersection;M,M',H,G;0;0">
+<param name=e[21] value="DG;sector;sector;K,D,G;0;0;black;0">
+</applet></div>
+
+<p>For, if the segment <i>AEB</i> is superposed on <i>CFD,</i> and if the point <i>A</i> is placed on <i>C</i> and the straight line <i>AB</i> on <i>CD,</i> then the point <i>B</i> coincides with the point <i>D,</i> because <i>AB</i> equals <i>CD,</i> and, <i>AB</i> coinciding with <i>CD,</i> the segment <i>AEB</i> also coincides with <i>CFD.</i>
+
+<div class="just"><a href="propIII23.html">III.23</a>
+<br><a href=propIII10.html>III.10</a></div>
+<p>For, if the straight line <i>AB</i> coincides with <i>CD</i> but the segment <i>AEB</i> does not coincide with <i>CFD,</i> then it either falls within it, or outside it, or it cuts across it, as <i>CGD,</i> and a circle cuts a circle at more points than two, which is impossible.
+
+<div class="just"><a href=../bookI/cn.html>C.N.4</a></div>
+<p>Therefore, if the straight line <i>AB</i> is superposed on <i>CD,</i> then the segment <i>AEB</i> does not fail to coincide with <i>CFD</i> also, therefore it coincides with it and equals it.
+
+<p>Therefore <i>similar segments of circles on equal straight lines equal one another. </i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The proof here uses the method of superposition which was also used for <a href=../bookI/propI4.html>I.4</a> and <a href=../bookI/propI8.html>I.8</a>.
+
+<p>This proposition is used in <a href=propIII26.html>III.26</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,77 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 31</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 31</h1>
+
+<div class="statement">In a circle the angle in the semicircle is right, that in a greater segment less than a right angle, and that in a less segment greater than a right angle;  further the angle of the greater segment is greater than a right angle, and the angle of the less segment is less than a right angle.</div>
+
+<p>Let <i>ABCD</i> be a circle, let <i>BC</i> be its diameter, and <i>E</i> its center.  Join <i>BA, AC, AD,</i> and <i>DC.</i>
+
+<p>I say that the angle <i>BAC</i> in the semicircle <i>BAC</i> is right, the angle <i>ABC</i> in the segment <i>ABC</i> greater than the semicircle is less than a right angle, and the angle <i>ADC</i> in the segment <i>ADC</i> less than the semicircle is greater than a right angle.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=280 width=280>
+<img src=propIII31.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.31">
+<param name=e[1] value="B;point;free;130,240">
+<param name=e[2] value="C;point;free;210,40">
+<param name=e[3] value="BC;line;connect;B,C">
+<param name=e[4] value="E;point;midpoint;BC;black;green">
+<param name=pivot value=E>
+<param name=e[5] value="ABCD;circle;radius;E,B;0;0;0,0,0;random">
+<param name=e[6] value="A;point;circleSlider;ABCD,60,90">
+<param name=e[7] value="D;point;circleSlider;ABCD,80,40">
+<param name=e[8] value="AB;line;connect;A,B">
+<param name=e[9] value="AC;line;connect;A,C">
+<param name=e[10] value="AD;line;connect;A,D">
+<param name=e[11] value="CD;line;connect;C,D">
+<param name=e[12] value="AE;line;connect;A,E">
+<param name=e[13] value="F;point;lineSlider;A,B,30,30">
+<param name=e[14] value="FA;line;connect;F,A">
+</applet></div>
+
+<p>Join <i>AE,</i> and carry <i>BA</i> through to <i>F.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>Then, since <i>BE</i> equals <i>EA,</i> the angle <i>ABE</i> also equals the angle <i>BAE.</i>  Again, since <i>CE</i> equals <i>EA,</i> the angle <i>ACE</i> also equals the angle <i>CAE.</i>  Therefore the whole angle <i>BAC</i> equals the sum of the two angles <i>ABC</i> and <i>ACB.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>But the angle <i>FAC</i> exterior to the triangle <i>ABC</i> also equals the sum of the two angles <i>ABC</i> and <i>ACB.</i>  Therefore the angle <i>BAC</i> also equals the angle <i>FAC.</i>  Therefore each is right.  Therefore the angle <i>BAC</i> in the semicircle <i>BAC</i> is right.
+
+<div class="just"><a href="../bookI/propI17.html">I.17</a></div>
+<p>Next, since in the triangle <i>ABC</i> the sum of the two angles <i>ABC</i> and <i>BAC</i> is less than two right angles, and the angle <i>BAC</i> is a right angle, the angle <i>ABC</i> is less than a right angle.  And it is the angle in the segment <i>ABC</i> greater than the semicircle.
+
+<div class="just"><a href="propIII22.html">III.22</a></div>
+<p>Next, since <i>ABCD</i> is a quadrilateral in a circle, and the sum of the opposite angles of quadrilaterals in circles equals two right angles, while the angle <i>ABC</i> is less than a right angle, therefore the remaining angle <i>ADC</i> is greater than a right angle.  And it is the angle in the segment <i>ADC</i> less than the semicircle.
+
+<p>I say further that the angle of the greater segment, namely that contained by the circumference <i>ABC</i> and the straight line <i>AC,</i> is greater than a right angle, and the angle of the less segment, namely that contained by the circumference <i>ADC</i> and the straight line <i>AC,</i> is less than a right angle. 
+
+<p>This is at once manifest.  For, since the angle contained by the straight lines <i>BA</i> and <i>AC</i> is right, the angle contained by the circumference <i>ABC</i> and the straight line <i>AC</i> is greater than a right angle. 
+
+<p>Again, since the angle contained by the straight lines <i>AC</i> and <i>AF</i> is right, the angle contained by the straight line <i>CA</i> and the circumference <i>ADC</i> is less than a right angle.
+
+<p>Therefore <i>in a circle the angle in the semicircle is right, that in a greater segment less than a right angle, and that in a less segment greater than a right angle; further the angle of the greater segment is greater than a right angle, and the angle of the less segment is less than a right angle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>The part of this proposition which says that an angle inscribed in a semicircle is a right angle is often called <i>Thale&rsquo;s theorem</i>.
+
+<p>This proposition is used in <a href=propIII32.html>III.32</a> and in each of the rest of the geometry books, namely, Books IV, VI, XI, XII, XIII.  It is also used in Book X.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

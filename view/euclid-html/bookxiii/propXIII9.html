@@ -1,0 +1,87 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 9</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 9</h1>
+
+<div class="statement">
+If the side of the hexagon and that of the decagon inscribed in the same circle are added together, then the whole straight line has been cut in extreme and mean ratio, and its greater segment is the side of the hexagon.</div>
+
+<p>Let <i>ABC</i> be a circle, and of the figures inscribed in the circle <i>ABC</i> let <i>BC</i> be the side of a decagon, and <i>CD</i> that of a hexagon, and let them be in a straight line.
+<p>I say that the whole straight line <i>BD</i> is cut in extreme and mean ratio, and <i>CD</i> is its greater segment.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=260 >
+<img src="propXIII9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.9">
+<param name=e[1] value="A;point;free;200,110">
+<param name=e[2] value="B;point;free;40,110">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="E;point;midpoint;AB;black;green">
+<param name=pivot value=E>
+<param name=e[5] value="ABC;circle;radius;E,A;0;0;black;random">
+<param name=e[6] value="EBX;polygon;equilateralTriangle;E,B;0;0;0;0">
+<param name=e[7] value="X;point;vertex;EBX,3;0;0">
+<param name=e[8] value="Y;point;midpoint;B,X;0;0">
+<param name=e[9] value="C;point;cutoff;E,Y,E,A">
+<param name=e[10] value="CE;line;connect;C,E">
+<param name=e[11] value="D;point;extend;B,C,A,E">
+<param name=e[12] value="BD;line;connect;B,D">
+<param name=e[13] value="DE;line;connect;D,E">
+<param name=e[14] value="F;point;cutoff;E,D,E,A;black;0">
+</applet></div>
+
+<div class="just"><a href="../bookIII/propIII1.html">III.1</a></div>
+<p>Take the center <i>E</i> of the circle, join <i>EB, EC,</i> and <i>ED,</i> and carry <i>BE</i> through to <i>A.</i>
+
+<p>Since <i>BC</i> is the side of an equilateral decagon, therefore the circumference <i>ACB</i> is five times the circumference <i>BC.</i> Therefore the circumference <i>AC</i> is quadruple <i>CB.</i>
+
+<div class="just"><a href="../bookVI/propVI33.html">VI.33</a></div>
+<p>But the circumference <i>AC</i> is to <i>CB</i> as the angle <i>AEC</i> is to the angle <i>CEB.</i> Therefore the angle <i>AEC</i> is quadruple the angle <i>CEB.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a>
+<br><a href="../bookI/propI32.html">I.32</a></div>
+<p>And, since the angle <i>EBC</i> equals the angle <i>ECB,</i> therefore the angle <i>AEC</i> is double the angle <i>ECB.</i>
+
+<div class="just"><a href="../bookIV/propIV15.html#cor">IV.15,Cor.</a>
+<br><a href="../bookI/propI5.html">I.5</a>,
+<a href="../bookI/propI32.html">I.32</a></div>
+<p>And, since the straight line <i>EC</i> equals <i>CD,</i> for each of them equals the side of the hexagon inscribed in the circle <i>ABC.</i> Therefore the angle <i>CED</i> also equals the angle <i>CDE.</i>  Therefore the angle <i>ECB</i> is double the angle <i>EDC.</i>
+
+<p>But the angle <i>AEC</i> was proved double the angle <i>ECB,</i> therefore the angle <i>AEC</i> is quadruple the angle <i>EDC.</i>  And the angle <i>AEC</i> was also proved quadruple the angle <i>BEC,</i> therefore the angle <i>EDC</i> equals the angle <i>BEC.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>But the angle <i>EBD</i> is common to the two triangles <i>BEC</i> and <i>BED,</i> therefore the remaining angle <i>BED</i>  equals the remaining angle <i>ECB.</i> Therefore the triangle <i>EBD</i> is equiangular with the triangle <i>EBC.</i>
+
+<div class="just"><a href="../bookVI/propVI4.html">VI.4</a></div>
+<p>Therefore, proportionally <i>DB</i> is to <i>BE</i> as <i>EB</i> is to <i>BC.</i>
+
+<p>But <i>EB</i> equals <i>CD.</i> Therefore <i>BD</i> is to <i>DC</i> as <i>DC</i> is to <i>CB.</i>  And <i>BD</i> is greater than <i>DC,</i> therefore <i>DC</i> is also greater than <i>CB.</i>
+
+<p>Therefore the straight line <i>BD</i> is cut in extreme and mean ratio, and <i>DC</i> is its greater segment. 
+
+<p>Therefore, <i>if the side of the hexagon and that of the decagon inscribed in the same circle are added together, then the whole straight line has been cut in extreme and mean ratio, and its greater segment is the side of the hexagon.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<h4>Use of this proposition</h4>
+
+This result is used in the construction of an icosahedron in propositions
+<a href=propXIII16.html>XIII.16</a> and <a href=propXIII18.html>XIII.18</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

@@ -1,0 +1,126 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 46</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 46</h1>
+
+<div class="statement">To describe a square on a given straight line.</div>
+
+<p>Let <i>AB</i> be the given straight line.
+<p>It is required to describe a square on the straight line <i>AB.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=230 width=220>
+<img src="propI46.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.46">
+<param name=e[1] value="A;point;free;50,190">
+<param name=e[2] value="B;point;free;170,190">
+<param name=e[3] value="ABED;polygon;square;A,B;0;0;0,0,0;random">
+<param name=e[4] value="E;point;vertex;ABED,3">
+<param name=e[5] value="D;point;vertex;ABED,4">
+<param name=e[6] value="C;point;lineSlider;A,D,30,30">
+<param name=e[7] value="CD;line;connect;C,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI46.gif" hspace=10 vspace=10 alt="I.46">';
+</script>
+</div>
+
+<div class="just"><a href="propI11.html">I.11</a>
+<br><a href="propI3.html">I.3</a>,
+<a href="propI31.html">I.31</a></div>
+<p>Draw <i>AC</i> at right angles to the straight line <i>AB</i> from the point <i>A</i> on it.  Make <i>AD</i> equal to <i>AB.</i>  Draw <i>DE</i> through the point <i>D</i> parallel to <i>AB,</i> and draw <i>BE</i> through the point <i>B</i> parallel to <i>AD.</i>
+
+<div class="just"><a href="propI34.html">I.34</a></div>
+<p>Then <i>ADEB</i> is a parallelogram. Therefore <i>AB</i> equals <i>DE,</i> and <i>AD</i> equals <i>BE.</i>
+
+<p>But <i>AB</i> equals <i>AD,</i> therefore the four straight lines <i>BA, AD, DE,</i> and <i>EB</i> equal one another. Therefore the parallelogram <i>ADEB</i> is equilateral.
+
+<p>I say next that it is also right-angled.
+
+<div class="just"><a href="propI29.html">I.29</a></div>
+<p>Since the straight line <i>AD</i> falls upon the parallels <i>AB</i> and <i>DE,</i> therefore the sum of the angles <i>BAD</i> and <i>ADE</i> equals two right angles.
+
+<div class="just"><a href=post4.html>I.Post.4</a></div>
+<p>But the angle <i>BAD</i> is right, therefore the angle <i>ADE</i> is also right.
+
+<div class="just"><a href="propI34.html">I.34</a></div>
+<p>And in parallelogrammic areas the opposite sides and angles equal one another, therefore each of the opposite angles <i>ABE</i> and <i>BED</i> is also right. Therefore <i>ADEB</i> is right-angled.
+
+<p>And it was also proved equilateral.
+
+<div class="just"><a href=defI22.html>I.Def.22</a></div>
+<p>Therefore it is a square, and it is described on the straight line <i>AB.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+We now have the second regular polygon, the first being the equilateral triangle of proposition <a href=propI1.html>I.1</a>.  Regular polygons with 5, 6, and 15 sides are constructed in <a href=../bookIV/bookIV.html>Book IV</a>.
+<h4>Construction steps</h4>
+
+<table cellpadding=5>
+<tr><td>
+There are quite a few steps needed to construct a square on <i>AB.</i>  In order to construct the perpendicular <i>AC,</i> first <i>AB</i> has to be extended in the direction of <i>A</i> and a point <i>F</i> on the far side the same distance from <i>A</i> as <i>B</i> is, then two more circles centered at <i>B</i> and <i>F</i> to get a perpendicular line, and then it needs to be cut off at length <i>C,</i> but fortunately, the needed circle has already been drawn.
+
+<p>
+Next, <i>EB</i> is to be drawn through <i>B</i> parallel to <i>AD.</i>  In general that construction given in <a href=propI31.html>I.31</a> takes six circles, but in this case if <i>EB</i> is drawn perpendicular to <i>AB,</i> then it will be parallel to <i>AD,</i> too, and that construction only takes three circles with radii <i>BA, AG,</i> and <i>GA.</i>
+
+<p>This abbreviation of Euclid&rsquo;s construction requires six circles and four lines.  There are alternate constructions that are a bit shorter.
+</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=270 width=280>
+<img src="propI46a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.46">
+<param name=e[1] value="A;point;free;100,160">
+<param name=e[2] value="B;point;free;160,160">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="ABcirc;circle;radius;A,B">
+<param name=e[5] value="F;point;extend;B,A,B,A">
+<param name=e[6] value="AF;line;connect;A,F">
+<param name=e[7] value="Fline;line;extend;A,F,B,A">
+<param name=e[8] value="BFcirc;circle;radius;B,F">
+<param name=e[9] value="FBcirc;circle;radius;F,B">
+<param name=e[10] value="CC';line;bichord;BFcirc,FBcirc">
+<param name=e[11] value="C;point;first;CC'">
+<param name=e[12] value="D;point;cutoff;A,C,A,B">
+<param name=e[13] value="BAcirc;circle;radius;B,A">
+<param name=e[14] value="G;point;extend;A,B,A,B">
+<param name=e[15] value="Bline;line;extend;A,B,F,B">
+<param name=e[16] value="AGcirc;circle;radius;A,G">
+<param name=e[17] value="GAcirc;circle;radius;G,A">
+<param name=e[18] value="HH';line;bichord;GAcirc,AGcirc">
+<param name=e[19] value="H;point;first;HH'">
+<param name=e[20] value="E;point;cutoff;B,H,B,A">
+<param name=e[21] value="ABED;polygon;quadrilateral;A,B,E,D;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI46a.gif" hspace=10 vspace=10 alt="I.46">';
+</script>
+</td></tr></table>
+
+<h4>Use of Proposition 46</h4>
+
+The construction of a square given in this proposition is used in the next proposition, numerous propositions in Book II, and others in Books VI, XII, and XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

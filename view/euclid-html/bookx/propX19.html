@@ -1,0 +1,85 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 19</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<h1>Proposition 19</h1>
+
+<div class="theorem">
+
+<a name=lemma></a>
+<h3>Lemma.</h3>
+
+<p>Since it has been proved that straight lines commensurable in length are always commensurable in square also, while those commensurable in square are not always commensurable in length also, but can of course be either commensurable or incommensurable in length, it is manifest that, if any straight line is commensurable in length with a given rational straight line, it is called rational and commensurable with the other not only in length but in square also, since straight lines commensurable in length are always commensurable in square also. 
+
+<p>But, if any straight line is commensurable in square with a given rational straight line, then, if it is also commensurable in length with it, in this case it is also called rational and commensurable with it both in length and in square, but, if again any straight line, being commensurable in square with a given rational straight line, is incommensurable in length with it, in this case it is also called rational but commensurable in square only.
+</div>
+
+<br>
+
+<div class="theorem">
+
+<h1>Proposition 19</h1>
+
+<div class="statement">The rectangle contained by rational straight lines commensurable in length is rational.</div>
+
+<p>Let the rectangle <i>AC</i> be contained by the rational straight lines <i>AB</i> and <i>BC</i> commensurable in length.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=240>
+<img src="propX19.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.19">
+<param name=e[1] value="A0;point;free;-1000,200;0;0">
+<param name=e[2] value="A3;point;free;1000,200;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,200,0">
+<param name=e[5] value="AD;polygon;square;A,B;0;0;black;random">
+<param name=e[6] value="D;point;vertex;AD,3">
+<param name=e[7] value="C;point;lineSlider;B,D,200,90">
+<param name=e[8] value="AC;polygon;parallelogram;A,B,C">
+</applet></div>
+
+<p>I say that <i>AC</i> is rational.
+
+<div class="just"><a href=../bookI/propI46.html>I.46</a>,
+<a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>Describe the square <i>AD</i> on <i>AB</i>.  Then  <i>AD</i> is rational.
+
+<p>And, since <i>AB</i> is commensurable in length with <i>BC</i>, while <i>AB</i> equals <i>BD</i>, therefore <i>BD</i> is commensurable in length with <i>BC</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a></div>
+<p>And <i>BD</i> is to <i>BC</i> as <i>DA</i> is to <i>AC</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>Therefore <i>DA</i> is commensurable with <i>AC</i>.
+
+<div class="just"><a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>But <i>DA</i> is rational, therefore <i>AC</i> is also rational.
+
+<p>Therefore, <i>the rectangle contained by rational straight lines commensurable in length is rational.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This is the first proposition that deals with rational lines and rational squares.  As required by definitions <a href=defX.I.html#3>X.Def.I.3</a> and <a href=defX.I.html#3>X.Def.I.3</a>, there is some assigned straight line to act as a standard to which other lines and squares are compared for rationality.  That line is usually not mentioned in the propositions.
+
+<p>In this proposition, it is assumed that both sides of the rectangle <i>AB</i> and <i>BC</i> are rational lines.  That means these lines are commensurable in square to the standard line, that is, their squares are commensurable with the standard square.  It is also assumed that <i>AB</i> and <i>BC</i> are commensurable with each other.  Therefore the rectangle <i>AC</i> is commensurable with the square on <i>AB</i>, but that&rsquo;s commensurable with the standard square, so the rectangle <i>AC</i> is too.
+
+<p>The proposition is used several times starting with  <a href=propX25.html>X.25</a>.   The lemma is used in <a href=propX23.html>X.23</a>.
+
+<p>The next proposition is a converse of this one, but the language obscures that from notice.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

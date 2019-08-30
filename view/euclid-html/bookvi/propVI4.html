@@ -1,0 +1,83 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 4</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 4</h1>
+
+<div class="statement">
+In equiangular triangles the sides about the equal angles are proportional where the corresponding sides are opposite the equal angles.
+</div>
+
+<p>Let <i>ABC</i> and <i>DCE</i> be equiangular triangles having the angle <i>ABC</i> equal to the angle <i>DCE,</i> the angle <i>BAC</i> equal to the angle <i>CDE,</i> and the angle <i>ACB</i> equal to the angle <i>CED.</i>
+
+<p>I say that  in the triangles <i>ABC</i> and <i>DEC</i> the sides about the equal angles are proportional where the corresponding sides are opposite the equal angles.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=330>
+<img src=propVI4.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.4">
+<param name=e[1] value="A;point;free;170,130">
+<param name=e[2] value="B;point;free;40,260">
+<param name=e[3] value="C;point;free;200,260">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[5] value="E;point;lineSlider;B,C,290,260">
+<param name=e[6] value="D1;point;parallelogram;A,B,C;0;0">
+<param name=e[7] value="D2;point;parallelogram;A,C,E;0;0">
+<param name=e[8] value="D;point;intersection;C,D1,E,D2">
+<param name=e[9] value="CDE;polygon;triangle;C,D,E;0;0;black;random">
+<param name=e[10] value="F;point;intersection;B,A,E,D">
+<param name=e[11] value="AF;line;connect;A,F">
+<param name=e[12] value="DF;line;connect;D,F">
+</applet>
+</div>
+
+<p>Let <i>BC</i> be placed in a straight line with <i>CE.</i>
+
+<div class="just"><a href="../bookI/propI17.html">I.17</a>
+<br><a href=../bookI/post1.html>I.Post.5</a></div>
+<p>Then, since the sum of the angles <i>ABC</i> and <i>ACB</i> is less than two right angles, and the angle <i>ACB</i> equals the angle <i>DEC,</i> therefore the sum of the angles <i>ABC</i> and <i>DEC</i> is less than two right angles.  Therefore <i>BA</i> and <i>ED,</i> when produced, will meet. Let them be produced and meet at <i>F.</i>
+
+<div class="just"><a href="../bookI/propI28.html">I.28</a></div>
+<p>Now, since the angle <i>DCE</i> equals the angle <i>ABC, DC</i> is parallel to <i>FB.</i>  Again, since the angle <i>ACB</i> equals the angle <i>DEC, AC</i> is parallel to <i>FE.</i>
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>Therefore <i>FACD</i> is a parallelogram, therefore <i>FA</i> equals <i>DC,</i> and <i>AC</i> equals <i>FD.</i>
+
+<div class="just"><a href="propVI2.html">VI.2</a></div>
+<p>And, since <i>AC</i> is parallel to a side <i>FE</i> of the triangle <i>FBE,</i> therefore <i>BA</i> is to <i>AF</i> as <i>BC</i> is to <i>CE.</i>
+
+<div class="just"><a href="../bookV/propV7.html">V.7</a>
+<br><a href="../bookV/propV16.html">V.16</a></div>
+<p>But <i>FD</i> equals <i>AC,</i> therefore <i>BC</i> is to <i>CE</i> as <i>AC</i> is to <i>DE,</i> and alternately <i>BC</i> is to <i>CA</i> as <i>CE</i> is to <i>ED.</i>
+
+<div class="just"><a href="../bookV/propV22.html">V.22</a></div>
+<p>Since then it was proved that <i>AB</i> is to <i>BC</i> as <i>DC</i> is to <i>CE,</i> and <i>BC</i> is to <i>CA</i> as <i>CE</i> is to <i>ED,</i> therefore, <i>ex aequali, BA</i> is to <i>AC</i> as <i>CD</i> is to <i>DE.</i>
+
+<p>Therefore, <i>in equiangular triangles the sides about the equal angles are proportional where the corresponding sides are opposite the equal angles.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+In the enunciation of this proposition the term &ldquo;equiangular triangles&rdquo; refers to two triangles whose corresponding angles are equal, not to two triangles each of which is equiangular (equilateral).
+
+<p>Euclid has placed the triangles in particular positions in order to employ this particular proof.  Such positioning is common in Book VI and is easily justified.
+
+<p>This proposition implies that equiangular triangles are similar, a fact proved in detail in the proof of proposition <a href=propVI8.html>VI.8</a>.  It also implies that triangles similar to the same triangle are similar to each other, also proved in detail in VI.8.  The latter statement is generalized in <a href=propVI21.html>VI.21</a> to rectilinear figures in general. 
+
+<p>This proposition is frequently used in the rest of Book VI starting with the next proposition, its converse.  It is also used in  Books X through XIII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

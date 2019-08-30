@@ -1,0 +1,147 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 12</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 12</h1>
+
+<div class="statement">
+To find a fourth proportional to three given straight lines.
+</div>
+
+<p>Let <i>A</i> and <i>B</i> and <i>C</i> be the three given straight lines.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=320>
+<img src=propVI12.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.12">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0,0">
+<param name=e[2] value="A3;point;free;1000,30;0,0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,160,0;0">
+<param name=e[5] value="A;line;connect;A1,A2;black">
+<param name=e[6] value="B0;point;free;-1000,60;0,0">
+<param name=e[7] value="B3;point;free;1000,60;0,0">
+<param name=e[8] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[9] value="B2;point;lineSlider;B0,B3,140,0;0">
+<param name=e[10] value="B;line;connect;B1,B2;black">
+<param name=e[11] value="C0;point;free;-1000,90;0,0">
+<param name=e[12] value="C3;point;free;1000,90;0,0">
+<param name=e[13] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[14] value="C2;point;lineSlider;C0,C3,110,0;0">
+<param name=e[15] value="C;line;connect;C1,C2;black">
+<param name=e[16] value="D;point;free;30,230">
+<param name=e[17] value="E';point;free;280,50;0">
+<param name=e[18] value="F';point;free;280,230;0">
+<param name=e[19] value="G;point;cutoff;D,E',A1,A2">
+<param name=e[20] value="E;point;extend;D,G,B1,B2">
+<param name=e[21] value="H;point;cutoff;D,F',C1,C2">
+<param name=e[22] value="F;point;similar;D,E,D,G,H">
+<param name=e[23] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+<param name=e[24] value="DGH;polygon;triangle;D,G,H;0;0;black;random">
+<param name=e[25] value="EE';line;connect;E,E'">
+<param name=e[26] value="FF';line;connect;F,F'">
+</applet></div>
+
+<p>It is required to find a fourth proportional to <i>A, B,</i> and <i>C.</i>
+
+<div class="just"><a href="../bookI/propI3.html">I.3</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Set out two straight lines <i>DE</i> and <i>DF</i> containing any angle <i>EDF.</i>  Make <i>DG</i> equal to <i>A, GE</i> equal to <i>B,</i> and  <i>DH</i> equal to <i>C.</i>  Join <i>GH,</i> and draw <i>EF</i> through <i>E</i> parallel to it.
+
+<div class="just"><a href="propVI2.html">VI.2</a></div>
+<p>Then since <i>GH</i> is parallel to a side <i>EF</i> of the triangle <i>DEF,</i> therefore <i>DG</i> is to <i>GE</i> as <i>DH</i> is to <i>HF.</i>
+
+<div class="just"><a href="../bookV/propV7.html">V.7</a></div>
+<p>But <i>DG</i> equals <i>A</i> and <i>GE</i> to <i>B,</i> and <i>DH</i> to <i>C,</i> therefore <i>A</i> is to <i>B</i> as <i>C</i> is to <i>HF.</i>
+
+<p>Therefore a fourth proportional <i>HF</i> has been found to the three given straight lines <i>A, B,</i> and <i>C.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+
+<a name=guide><h2>Guide</h2></a>
+
+Of course, the previous proposition is a special case of this one.
+
+
+<h4>Descartes&rsquo; geometric algebra</h4>
+
+Descartes (1591&ndash;1661) is well known for his coordinate geometry which he and Fermat developed in the 16th century.  This subject, also called analytic geometry, places an <i>x-y</i>-coordinate system on a plane so that a curve in the plane corresponds to an equation in two variables <i>x</i> and <i>y.</i>  The usual way this correspondence is used is to convert a problem in geometry into an algebraic problem about equations.
+
+<p>Descartes was equally interested is using geometry to solve algebraic problems, but using a method quite distinct from that in the <i>Elements</i> which began in Book II.
+
+<p>His idea was to take an equation in one variable and find a geometric figure which can be used to solve the equation.  The idea wasn&rsquo;t particularly new as even Menaechmus (fl. about 350 B.C.E) had about 50 years before Euclid intersected two parabolas to find cube roots, which are solutions to particular cubic equations. Furthermore, about 1100, Omar Khayyam solved all cubic equations by means of parabolas and hyperbolas. But Descartes was systematic and was able to use the relatively recent invention of symbolic algebra to make more connections.
+
+<p>Descartes began by interpreting the algebraic operations of addition, subtraction, multiplication, division, and extraction of square roots as geometric constructions on lines.  He represented each (positive) magnitude by a line.  Addition and subtraction were the same as Euclid&rsquo;s.  To add two lines, just extend one by the length of the other.  To subtract one line from another, just take the remainder after cutting it off the other. Multiplication and division, however, were different from Euclid&rsquo;s.  Euclid represented the product of two lines by a rectangle, the product of three lines by a box in space, and Euclid didn&rsquo;t represent the product of four lines.
+
+<table><tr>
+<td>But Descartes took the product of two lines to be another line.  That required selecting a unit line, that is, a line of length 1.  Then to find the product <i>ab</i> of two quantities <i>a</i> and <i>b,</i> he only needed to find the fourth proportional of 1, <i>a,</i> and <i>b.</i>  This proposition VI.10 does that.
+
+<p>In the diagram to the right, <i>u</i> is the unit line, <i>a</i> and <i>b</i> are to be multiplied, and <i>ab</i> is their product, the fourth proportional.
+</td>
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=250>
+<img src=propVI12a.gif alt="Decartes multiplies">
+<param name=background value="35,19,100">
+<param name=title value="Descartes multiplies">
+<param name=align value=above>
+<param name=e[1] value="A;point;free;30,230;0">
+<param name=e[2] value="B;point;free;100,160;0">
+<param name=e[3] value="u;line;connect;A,B;black">
+<param name=e[4] value="C;point;lineSlider;u,220,30;0">
+<param name=e[5] value="a;line;connect;B,C;black">
+<param name=e[6] value="D;point;free;80,230;0">
+<param name=e[7] value="b;line;connect;A,D;black">
+<param name=e[8] value="E;point;similar;D,A,B,A,C;0">
+<param name=e[9] value="ab;line;connect;D,E;black">
+<param name=e[10] value="BD;line;connect;B,D">
+<param name=e[11] value="CE;line;connect;C,E">
+</applet>
+</td></tr>
+<tr><td>
+This same proposition works to construct the quotient of two quantities.  If <i>b</i> and <i>c</i> are two quantities, then the fourth proportional for <i>b, c,</i> and 1 is the quotient <i>c/b.</i>
+
+<p>Descartes achieved the fifth operation, extraction of square roots, by means of the semicircle
+and right angle construction described in the next proposition <a href="propVI13.html">VI.13</a>.
+</td>
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=160 width=250>
+<img src=propVI12b.gif alt="Decartes divides">
+<param name=background value="35,19,100">
+<param name=title value="Descartes divides">
+<param name=align value=above>
+<param name=e[1] value="A;point;free;20,130;0">
+<param name=e[2] value="B;point;free;60,90;0">
+<param name=e[3] value="b;line;connect;A,B;black">
+<param name=e[4] value="C;point;lineSlider;b,120,40;0">
+<param name=e[5] value="c;line;connect;B,C;black">
+<param name=e[6] value="D;point;free;110,130;0">
+<param name=e[7] value="u;line;connect;A,D;black">
+<param name=e[8] value="E;point;similar;D,A,B,A,C;0">
+<param name=e[9] value="c/b;line;connect;D,E;black">
+<param name=e[10] value="BD;line;connect;B,D">
+<param name=e[11] value="CE;line;connect;C,E">
+</applet>
+</td></tr>
+</table>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proofs of <a href=propVI22.html>VI.22</a>, <a href=propVI23.html>VI.23</a>, and half a dozen propositions in Book X.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

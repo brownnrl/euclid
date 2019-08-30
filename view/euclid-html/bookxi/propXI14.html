@@ -1,0 +1,83 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 14</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 14</h1>
+
+<div class="statement">
+Planes at right angles to the same straight line are parallel.</div>
+
+<p>Let any straight line <i>AB</i> be at right angles to each of the planes <i>CD</i> and <i>EF.</i>
+
+<p>I say that the planes are parallel.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=310 height=200 >
+<img src="propXI14.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.14">
+<param name=e[1] value="X;point;free;100000,200">
+<param name=e[2] value="Y;point;free;200,-100000">
+<param name=e[3] value="Z;point;free;40000,-100000">
+<param name=e[4] value="C;point;free;160,40;black;0,75,100">
+<param name=e[5] value="D;point;free;40,100;black;0,75,100">
+<param name=e[6] value="C1;point;intersection;C,X,D,Z;0;0">
+<param name=e[7] value="D1;point;intersection;D,X,C,Z;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;C,C1,D,D1;0;0;gray;brighter">
+<param name=e[9] value="F;point;free;160,120;black;0,75,100">
+<param name=e[10] value="E;point;free;40,180;black;0,75,100">
+<param name=e[11] value="F1;point;intersection;F,X,E,Z;0;0">
+<param name=e[12] value="E1;point;intersection;E,X,F,Z;0;0">
+<param name=e[13] value="Q;polygon;quadrilateral;F,F1,E,E1;0;0;gray;brighter">
+<param name=e[14] value="A;point;free;100,75">
+<param name=e[15] value="B;point;lineSlider;A,Y,100,145">
+<param name=e[16] value="AB;line;connect;A,B">
+<param name=e[17] value="G;point;free;270,30">
+<param name=e[18] value="H;point;lineSlider;G,Z,210,170">
+<param name=e[19] value="GH;line;connect;G,H">
+<param name=e[20] value="K;point;lineSlider;GH,240,125">
+<param name=e[21] value="AK;line;connect;A,K">
+<param name=e[22] value="BK;line;connect;B,K">
+</applet></div>
+
+<div class="just"><a href="defXI6.html">XI.Def.8</a>,
+<a href="propXI3.html">XI.3</a></div>
+<p>For, if not, then they meet when produced.  Let them meet.  Then they intersect as a straight line.  Let it be <i>GH.</i>
+
+<p>Take a point <i>K</i> at random on <i>GH,</i> and join <i>AK</i> and <i>BK.</i>
+
+<div class="just"><a href=defXI3.html>XI.Def.3</a></div>
+<p>Now, since <i>AB</i> is at right angles to the plane <i>EF,</i> therefore <i>AB</i> is also at right angle to <i>BK</i> which is a straight line in the plane <i>EF</i> produced.  Therefore the angle <i>ABK</i> is right.  For the same reason the angle <i>BAK</i> is also right.
+
+<div class="just"><a href="../bookI/propI17.html">I.17</a></div>
+<p>Thus, in the triangle <i>ABK</i> the sum of the two angles <i>ABK</i> and <i>BAK</i> equals two right angles, which is impossible.
+
+<div class="just"><a href=defXI6.html>XI.Def.8</a></div>
+<p>Therefore the planes <i>CD</i> and <i>EF</i> do not meet when produced.  Therefore the planes <i>CD</i> and <i>EF</i> are parallel.
+
+<p>Therefore, <i>planes at right angles to the same straight line are parallel.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Part of this proof is unnecessary. The line <i>GH</i> is irrelevant. If the two points meet, then they meet at some point, so the point <i>K</i> might just as well be taken as a point where they meet.  The proof should, however, include another case, and that is where the given line meets both given planes at a point common to both planes.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proof of the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2013");
+</script>
+</BODY></HTML>

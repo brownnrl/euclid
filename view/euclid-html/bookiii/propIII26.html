@@ -1,0 +1,73 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 26</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 26</h1>
+
+<div class="statement">In equal circles equal angles stand on equal circumferences whether they stand at the centers or at the circumferences.</div>
+
+<p>Let <i>ABC</i> and <i>DEF</i> be equal circles, and in them let there be equal angles, namely at the centers the angles <i>BGC</i> and <i>EHF,</i> and at the circumferences the angles <i>BAC</i> and <i>EDF.</i>  
+<p>I say that the circumference <i>BKC</i> equals the circumference <i>ELF.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=465>
+<img src=propIII26.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.26">
+<param name=e[1] value="G;point;free;120,115">
+<param name=e[2] value="A;point;free;75,30">
+<param name=e[3] value="ABC;circle;radius;G,A">
+<param name=e[4] value="B;point;circleSlider;ABC,60,190">
+<param name=e[5] value="C;point;circleSlider;ABC,180,190">
+<param name=e[6] value="H;point;free;340,115">
+<param name=e[7] value="DEF;circle;radius;H,G,A">
+<param name=e[8] value="D;point;circleSlider;DEF,380,100">
+<param name=e[9] value="E;point;circleSlider;DEF,280,190">
+<param name=e[10] value="F;point;similar;H,E,G,B,C">
+<param name=e[11] value="AB;line;connect;A,B">
+<param name=e[12] value="triABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[13] value="triDEF;polygon;triangle;D,E,F;0;0;black;random">
+<param name=e[14] value="GBC;sector;sector;G,B,C;0;0;0;random">
+<param name=e[15] value="HEF;sector;sector;H,E,F;0;0;0;random">
+<param name=e[16] value="GB;line;connect;G,B">
+<param name=e[17] value="GC;line;connect;G,C">
+<param name=e[18] value="HF;line;connect;H,F">
+<param name=e[19] value="HE;line;connect;H,E">
+<param name=e[20] value="K;point;circleSlider;ABC,120,210;black;0">
+<param name=e[21] value="L;point;circleSlider;DEF,340,210;black;0">
+</applet></div>
+
+<p>Join <i>BC</i> and <i>EF.</i> 
+
+<p>Now, since the circles <i>ABC</i> and <i>DEF</i> are equal, the radii are equal.
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Thus the two straight lines <i>BG</i> and <i>GC</i> equal the two straight lines <i>EH</i> and <i>HF,</i> and the angle at <i>G</i> equals the angle at <i>H,</i> therefore the base <i>BC</i> equals the base <i>EF.</i>
+
+<div class="just"><a href=defIII11.html>III.Def.11</a></div>
+<p>And, since the angle at <i>A</i> equals the angle at <i>D,</i> the segment <i>BAC</i> is similar to the segment <i>EDF,</i> and they are upon equal straight lines.
+
+<div class="just"><a href="propIII24.html">III.24</a></div>
+<p>But similar segments of circles on equal straight lines equal one another, therefore the segment <i>BAC</i> equals <i>EDF.</i>  But the whole circle <i>ABC</i> also equals the whole circle <i>DEF,</i> therefore the remaining circumference <i>BKC</i> equals the circumference <i>ELF.</i>
+
+<p>Therefore <i>in equal circles equal angles stand on equal circumferences whether they stand at the centers or at the circumferences.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in <a href=propIII28.html>III.28</a>, <a href=../bookIV/propIV11.html>IV.11</a>,  <a href=../bookIV/propIV15.html>IV,15</a>, and  <a href=../bookXIII/propXIII10.html>XIII.10</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,80 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 12</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 12</h1>
+
+<div class="statement">If any number of numbers are proportional, then one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents.</div>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=150 height=230 >
+<img src=propVII12.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.12">
+<param name=align value=right>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="B0;point;free;60,-1000;0;0">
+<param name=e[5] value="B3;point;free;60,1000;0;0">
+<param name=e[6] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[7] value="C0;point;free;90,-1000;0;0">
+<param name=e[8] value="C3;point;free;90,1000;0;0">
+<param name=e[9] value="C1;point;lineSlider;C0,C3,90,30;0">
+<param name=e[10] value="D0;point;free;120,-1000;0;0">
+<param name=e[11] value="D3;point;free;120,1000;0;0">
+<param name=e[12] value="D1;point;lineSlider;D0,D3,120,30;0">
+<param name=e[13] value="A2;point;lineSlider;A0,A3,30,200;0">
+<param name=e[14] value="A;line;connect;A1,A2;black">
+<param name=e[15] value="B2;point;lineSlider;B0,B3,60,120;0">
+<param name=e[16] value="B;line;connect;B1,B2;black">
+<param name=e[17] value="C2;point;lineSlider;C0,C3,90,175;0">
+<param name=e[18] value="C;line;connect;C1,C2;black">
+<param name=e[19] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<p>Let <i>A, B, C,</i> and <i>D</i> be as many numbers as we please in proportion, so that <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D.</i>
+<p>I say that <i>A</i> is to <i>B</i> as the sum of <i>A</i> and <i>C</i> is to the sum of <i>B</i> and <i>D.</i>
+
+<div class="just"><a href=defVII20.html>VII.Def.20</a>
+<br><a href="propVII5.html">VII.5</a>,
+<a href="propVII6.html">VII.6</a></div>
+<p>Since <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D,</i> therefore  <i>A</i> is the same part or parts of <i>B</i> as <i>C</i> is of <i>D.</i> Therefore the sum of <i>A</i> and <i>C</i> is the same part or parts of the sum of <i>B</i> and <i>D</i> that <i>A</i> is of <i>B.</i>
+
+<div class="just"><a href=defVII20.html>VII.Def.20</a></div>
+<p>Therefore <i>A</i> is to <i>B</i> as the sum of <i>A</i> and <i>C</i> is to the sum of <i>B</i> and <i>D.</i>
+
+<p>Therefore, <i>if any number of numbers are proportional, then one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is the numerical analogue of <a href=../bookV/propV12.html>V.12</a>.  
+Symbolically,
+<p><center>if <i>a</i><sub>1</sub>&nbsp;:&nbsp;<i>b</i><sub>1</sub>&nbsp;=&nbsp;<i>a</i><sub>2</sub>&nbsp;:&nbsp;<i>b</i><sub>2</sub>&nbsp;=&nbsp;... =
+<i>a<sub>n</sub></i>&nbsp;:&nbsp;<i>b<sub>n</sub>,</i></center><p>
+then each of these ratios also equals the ratio 
+<p><center>(<i>a</i><sub>1</sub>&nbsp;+&nbsp;<i>a</i><sub>2</sub>&nbsp;+&nbsp;... +
+<i>a<sub>n</sub></i>)&nbsp;:&nbsp;(<i>b</i><sub>1</sub>&nbsp;+&nbsp;<i>b</i><sub>2</sub>&nbsp;+&nbsp;... +
+<i>b<sub>n</sub></i>).</center>
+
+<p>Euclid takes <i>n</i> to be 2 in his proof.
+
+<p>This proposition is used in <a href=propVII15.html>VII.15</a> , <a href=propVII20.html>VII.20</a>, and
+<a href=../bookIX/propIX35.html>IX.35</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

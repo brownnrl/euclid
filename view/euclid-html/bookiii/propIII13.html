@@ -1,0 +1,112 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 13</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 13</h1>
+
+<div class="statement">A circle does not touch another circle at more than one point whether it touches it internally or externally.</div>
+
+<p>For, if possible, let the circle <i>ABDC</i> touch the circle <i>EBFD,</i> first internally, at more points than one, namely <i>D</i> and <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=260>
+<img src=propIII13a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.13a">
+<param name=e[1] value="A;point;free;150,40">
+<param name=e[2] value="B;point;free;40,170">
+<param name=e[3] value="D;point;free;220,170">
+<param name=e[4] value="BD;line;connect;B,D">
+<param name=e[5] value="M;point;midpoint;BD;0;0">
+<param name=e[6] value="ABD;circle;circumcircle;A,B,D;0;0;black;random">
+<param name=e[7] value="O;point;center;ABD;0;0">
+<param name=e[8] value="C;point;circleSlider;ABD,200,70;black;0">
+<param name=e[9] value="N;point;extend;M,O,M,O;0;0">
+<param name=e[10] value="P;point;midpoint;O,B;0;0">
+<param name=e[11] value="Q;point;midpoint;O,D;0;0">
+<param name=e[12] value="S;point;extend;N,P,P,B;0;0">
+<param name=e[13] value="U;point;extend;N,Q,Q,D;0;0">
+<param name=e[14] value="W;point;intersection;P,Q,N,O;0;0">
+<param name=e[15] value="V;point;extend;N,W,N,W;0;0">
+<param name=e[16] value="G;point;intersection;V,P,B,D">
+<param name=e[17] value="H;point;intersection;V,Q,B,D">
+<param name=e[18] value="R;point;extend;V,P,P,B;0;0">
+<param name=e[19] value="T;point;extend;V,Q,Q,D;0;0">
+<param name=e[20] value="E;point;cutoff;V,N,V,R;black;0">
+<param name=e[21] value="F;point;cutoff;N,V,N,S;black;0">
+<param name=e[22] value="arcTR;sector;sector;V,T,R;0;0;black;0">
+<param name=e[23] value="arcRS;sector;sector;P,R,S;0;0;black;0">
+<param name=e[24] value="arcSU;sector;sector;N,S,U;0;0;black;0">
+<param name=e[25] value="arcUT;sector;sector;Q,U,T;0;0;black;0">
+</applet></div>
+
+<div class="just"><a href="propIII1.html">III.1</a></div>
+<p>Take the center <i>G</i> of the circle <i>ABDC</i> and the center <i>H</i> of <i>EBFD.</i>
+
+<div class="just"><a href="propIII11.html">III.11</a></div>
+<p>Therefore the straight line joined from <i>G</i> to <i>H</i> falls on <i>B</i> and <i>D.</i>
+
+<p>Let it so fall, as <i>BGHD.</i> 
+
+<p>Then, since the point <i>G</i> is the center of the circle <i>ABCD</i> and <i>BG</i> equals <i>GD,</i> therefore <i>BG</i> is greater than <i>HD.</i>  Therefore <i>BH</i> is much greater than HD.
+
+<p>Again, since the point <i>H</i> is the center of the circle <i>EBFD, BH</i> equals <i>HD,</i> but it was also proved much greater than it, which is impossible. 
+
+<div class="rdiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=270>
+<img src=propIII13b.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.13b">
+<param name=e[1] value="A;point;free;140,100">
+<param name=e[2] value="B;point;free;50,220">
+<param name=e[3] value="C;point;free;170,140">
+<param name=e[4] value="ABC;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[5] value="D;point;circleSlider;ABC,200,230;black;0">
+<param name=e[6] value="AC;line;connect;A,C">
+<param name=e[7] value="M;point;midpoint;A,C;0;0">
+<param name=e[8] value="KK';line;perpendicular;M,A;0;0;0">
+<param name=e[9] value="K;point;lineSlider;KK',220,40;black">
+<param name=e[10] value="ACK;circle;circumcircle;A,C,K">
+</applet></div>
+
+<p>Therefore a circle does not touch a circle internally at more points than one. 
+
+<hr width=30%>
+
+<p>I say further that neither does it so touch it externally.
+
+<p>For, if possible, let the circle <i>ACK</i> touch the circle <i>ABDC</i> at more points than one, namely <i>A</i> and <i>C.</i>  Join <i>AC.</i>
+
+<div class="just"><a href="propIII2.html">III.2</a>
+<br><a href=defIII2.html>III.Def.3</a></div>
+<p>Then, since on the circumference of each of the circles <i>ABDC</i> and <i>ACK</i> two points <i>A</i> and <i>C</i> have been taken at random, the straight line joining the points falls within each circle, but it fell within the circle <i>ABCD</i> and outside <i>ACK,</i> which is absurd.
+
+<p>Therefore a circle does not touch a circle externally at more points than one. 
+
+<p>And it was proved that neither does it so touch it internally.
+
+<p>Therefore <i>a circle does not touch another circle at more than one point whether it touches it internally or externally.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+In the second impossible figure there are three curves connecting <i>A</i> to <i>C.</i>  The two circles are not supposed to cut each other, but just to touch each other at the two points <i>A</i> and <i>C,</i> and the straight line <i>AC</i> should lie between the two circles and not within either one.
+
+<p>There are logical flaws in this proof similar to those in the last two proofs.
+
+<p>This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

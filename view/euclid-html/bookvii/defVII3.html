@@ -1,0 +1,98 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VII, Definitions 3 through 5</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definitions 3&ndash;5</h1>
+
+<div class="statement">
+<p>3. A number is <i>a part</i> of a number, the less of the greater, when it measures the greater;
+<p>4. But <i>parts</i> when it does not measure it.
+<p>5. The greater number is a <i>multiple</i> of the less when it is measured by the less.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+These definitions are in preparation for the definition of proportion of numbers given in <a href="defVII20.html">VII.Def.20</a>.  In the current definitions, the possible relations between a pair of numbers, <i>a</i> and <i>b,</i> are classified.  Later in Book VII, the term &ldquo;ratio&rdquo; will be used for this relation.
+
+<p>In all three of these definitions, the concept of &ldquo;measures&ldquo; is assumed to be understood. There is more to these definitions than meets the eye, though, at least part of the intent is evident.
+
+<h4>On Definitions 3 and 5</h4>
+
+<p>To illustrate VII.Def.3, take <i>a</i>&nbsp;=&nbsp;2<i>u</i>, which is a part of <i>b</i>&nbsp;=&nbsp;6<i>u</i>, namely, <i>a</i> is the 1/3 part of <i>b</i>.
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=70 width=450>
+<img src=defVII3.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.Def.3-5">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0,0">
+<param name=e[2] value="A4;point;free;1000,40;0,0">
+
+<param name=e[3] value="A;point;lineSlider;A0,A4,40,0">
+<param name=e[4] value="A';point;lineSlider;A0,A4,80,0;0">
+<param name=e[5] value="u;line;connect;A,A';blue;0;blue">
+<param name=e[6] value="B;point;cutoff;A',A4,A,A'">
+<param name=e[7] value="AB;line;connect;A',B">
+<param name=e[8] value="C;point;lineSlider;A0,A4,170,0">
+<param name=e[9] value="C';point;cutoff;C,A4,A,A';0">
+<param name=e[10] value="D;point;cutoff;C',A4,A,A'">
+<param name=e[11] value="D';point;cutoff;D,A4,A,A';0">
+<param name=e[12] value="E;point;cutoff;D',A4,A,A'">
+<param name=e[13] value="E';point;cutoff;E,A4,A,A';0">
+<param name=e[14] value="F;point;cutoff;E',A4,A,A'">
+<param name=e[15] value="CF;line;connect;C,F">
+</applet></center>
+
+<p>If <font color="0000ff"><i>u</i></font> is the unit, then <i>a</i>&nbsp;=&nbsp;2<i>u</i> is represented as <i>AB</i> while <i>b</i>&nbsp;=&nbsp;6<i>u</i> is represented by <i>CF.</i>  As <i>AB</i> measures <i>CF</i>, a certain number of times, namely <i>n</i>&nbsp;=&nbsp;3 times, by <i>CD, DE,</i> and <i>DF,</i> therefore <i>a</i> is a part of <i>b</i>, namely, the one-third part since it measures <i>b</i> three times.  Note that although <i>a</i> and <i>b</i> are formal numbers, the number of times <i>n</i> that <i>a</i> measures <i>b</i> is not a formal number.  This <i>n</i> doesn't appear in the definition.
+
+<p>We can also use the same figure as an illustration of VII.Def.5 to see that <i>b</i> is a multiple of <i>a</i>, in particular, the <i>n</i><sup>th</sup> multiple of <i>a</i>.
+
+<h4>Divisors</h4> 
+
+<p>Where Euclid would say that one number is a part of another number, modern mathematicians would say that the first number is a <i>proper divisor</i> of the second number.  A <i>divisor</i> of <i>n</i> is any whole number <i>m</i> (including 1) that divides <i>n</i> in the sense that there is another number <i>k</i> such that <i>mk</i>&nbsp;=&nbsp;<i>n.</i>  A <i>proper divisor</i> of <i>n</i> is any divisor except <i>n</i> itself.
+
+<p>For example, the proper divisors of the number 12 are 1, 2, 3, 4, and 6.
+
+<h4>On Definition 4</h4>
+
+<p>Definition VII.Def.4 is less clear, but its intent can be read from the use to which it&rsquo;s put in <a href="defVII20.html">VII.Def.20</a> for proportions of numbers. For an example, consider the numbers <i>a</i>&nbsp;=&nbsp;4<i>u</i> and <i>b</i>&nbsp;=&nbsp;6<i>u</i>.  The number <i>a</i> does not measure the number <i>b</i>, but it is parts of <i>b</i>.
+
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=70 width=440>
+<img src=defVII3a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.Def.3-5">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0,0">
+<param name=e[2] value="A4;point;free;1000,40;0,0">
+<param name=e[3] value="A;point;lineSlider;A0,A4,40,0">
+<param name=e[4] value="A';point;lineSlider;A0,A4,70,0;0">
+<param name=e[5] value="u;line;connect;A,A';blue;0;blue">
+<param name=e[6] value="B;point;cutoff;A',A4,A,A'">
+<param name=e[7] value="B';point;cutoff;B,A4,A,A';0">
+<param name=e[8] value="C;point;cutoff;B',A4,A,A'">
+<param name=e[9] value="AC;line;connect;A',C">
+<param name=e[10] value="D;point;lineSlider;A0,A4,210,0">
+<param name=e[11] value="D';point;cutoff;D,A4,A,A';0">
+<param name=e[12] value="E;point;cutoff;D',A4,A,A'">
+<param name=e[13] value="E';point;cutoff;E,A4,A,A';0">
+<param name=e[14] value="F;point;cutoff;E',A4,A,A'">
+<param name=e[15] value="F';point;cutoff;F,A4,A,A';0">
+<param name=e[16] value="G;point;cutoff;F',A4,A,A'">
+<param name=e[17] value="DG;line;connect;D,G">
+</applet></center>
+
+<p>Here, <i>a</i>&nbsp;=&nbsp;4<i>u</i> is represented as <i>AC</i> while <i>b</i>&nbsp;=&nbsp;6<i>u</i> is represented as <i>DG.</i> Clearly, <i>AC</i> does not measure <i>DG.</i>  The way this definition is used in VII.Def.4, just the knowledge that &ldquo;<i>a</i> is parts of <i>b</i>&rdquo; is not enough, what is also needed is how many parts of <i>b</i> is <i>a</i>.  This will be needed to define a proportion such as 4&nbsp;:&nbsp;6&nbsp;=&nbsp;6&nbsp;:&nbsp;9.  That proportion is supposed to hold since 4 is the same parts of 6 as 6 is of 9, namely 2 third parts.  Thus, one number being parts of another also carries along with it how many of what parts.
+
+<p>There is one more difficulty with this definition.  It seems obvious that when one number <i>a</i>&nbsp;=<i>mu</i> is less than another <i>b</i>&nbsp;=<i>nu</i>, then in all cases <i>a</i> would be parts of <i>b,</i> namely  <i>a</i> consists of <i>m</i> one-<i>n</i><sup>th</sup> parts of <i>b.</i> Yet, the proposition <a href=propVII4.html>VII.4</a> has a proof to show that <i>a</i> is either a part or parts of <i>b.</i> The reason is that the desired parts should be in lowest terms.  For our example, where <i>a</i>&nbsp;=&nbsp;4<i>u</i> and <i>b</i>&nbsp;=&nbsp;6<i>u</i>, it isn&rsquo;t enough to say that <i>a</i> is 4 one-sixth parts of <i>b</i>; what&rsquo;s needed is that <i>a</i> is 2 one-third parts of <i>b</i>.
+
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002, 2013");
+</script>
+</BODY></HTML>

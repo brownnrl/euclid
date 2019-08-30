@@ -1,0 +1,82 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 14</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">If a number is the least that is measured by prime numbers, then it is not measured by any other prime number except those originally measuring it.</div>
+
+<p>Let the number <i>A</i> be the least that is measured by the prime numbers <i>B, C,</i> and <i>D.</i>
+
+<p>I say that <i>A</i> is not measured by any other prime number except <i>B, C,</i> or <i>D.</i>
+
+<p>If possible, let it be measured by the prime number <i>E,</i> and let <i>E</i> not be the same as any one of the numbers <i>B, C,</i> or <i>D.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=130 >
+<img src="propIX14.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.14">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="E0;point;free;-1000,65;0;0">
+<param name=e[4] value="E3;point;free;1000,65;0;0">
+<param name=e[5] value="F0;point;free;-1000,100;0;0">
+<param name=e[6] value="F3;point;free;1000,100;0;0">
+<param name=e[7] value="U1;point;free;1000,0;0;0">
+<param name=e[8] value="U2;point;free;1000,35;0;0">
+
+<param name=e[9] value="B1;point;lineSlider;A0,A3,180,0;0">
+<param name=e[10] value="B2;point;lineSlider;A0,A3,220,0;0">
+<param name=e[11] value="B;line;connect;B1,B2;black">
+<param name=e[12] value="C1;point;lineSlider;E0,E3,180,0;0">
+<param name=e[13] value="C2;point;lineSlider;E0,E3,230,0;0">
+<param name=e[14] value="C;line;connect;C1,C2;black">
+<param name=e[15] value="D1;point;lineSlider;F0,F3,180,0;0">
+<param name=e[16] value="D2;point;lineSlider;F0,F3,250,0;0">
+<param name=e[17] value="D;line;connect;D1,D2;black">
+<param name=e[18] value="C4;point;proportion;U1,U2,B1,B2,C1,C2,C1,E3;0;0">
+<param name=e[19] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[20] value="A2;point;proportion;U1,U2,C1,C4,D1,D2,A1,A3;0">
+<param name=e[21] value="A;line;connect;A1,A2;black">
+<param name=e[22] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[23] value="E2;point;lineSlider;E0,E3,80,0;0">
+<param name=e[24] value="E;line;connect;E1,E2;black">
+<param name=e[25] value="F1;point;lineSlider;F0,F3,30,0;0">
+<param name=e[26] value="F2;point;proportion;E1,E2,A1,A2,U1,U2,F1,F3;0">
+<param name=e[27] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<p>Now, since <i>E</i> measures <i>A,</i> let it measure it according to <i>F,</i> therefore <i>E</i> multiplied by <i>F</i> makes <i>A.</i> And <i>A</i> is measured by the prime numbers <i>B, C,</i> and <i>D.</i>
+
+<div class="just"><a href="../bookVII/propVII30.html">VII.30</a></div>
+<p>But, if two numbers multiplied by one another make some number, and any prime number measures the product, then it also measures one of the original numbers, therefore each of <i>B, C,</i> and <i>D</i> measures one of the numbers <i>E</i> or <i>F.</i>
+
+<p>Now they do not measure <i>E,</i> for <i>E</i> is prime and not the same with any one of the numbers <i>B, C,</i> or <i>D.</i> Therefore they measure <i>F,</i> which is less than <i>A,</i> which is impossible, for <i>A</i> is by hypothesis the least number measured by <i>B, C,</i> and <i>D.</i>
+
+<p>Therefore no prime number measures <i>A</i> except <i>B, C,</i> and <i>D.</i>
+
+<p>Therefore, <i>if a number is the least that is measured by prime numbers, then it is not measured by any other prime number except those originally measuring it.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition states that the least common multiple of a set of prime numbers is not divisible by any other prime.  The least common multiple is actually the product of those primes, but that isn&rsquo;t mentioned.
+
+<p>The proof is clear, and it depends on <a href="../bookVII/propVII30.html">VII.30</a>, that if a prime divides a product, then it divides one of the factors.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,230 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 13</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 13</h1>
+
+<div class="statement">
+To construct a pyramid, to comprehend it in a given sphere; and to prove that the square on the diameter of the sphere is one and a half times the square on the side of the pyramid.</div>
+
+<div class="just"><a href="../bookVI/propVI9.html">VI.9</a>
+<br><a href="../bookI/propI11.html">I.11</a></div>
+<p>Set out the diameter <i>AB</i> of the given sphere, cut it at the point <i>C</i> so that <i>AC</i> is double <i>CB,</i> describe the semicircle <i>ADB</i> on <i>AB,</i> draw <i>CD</i> from the point <i>C</i> at right angles to <i>AB,</i> and join <i>DA.</i>
+
+<div class="just"><a href="../bookI/propI1.html">I.1</a>
+<br><a href="../bookIV/propIV2.html">IV.2</a></div>
+<p>Set out the circle <i>EFG</i> with radius equal to <i>DC,</i> inscribe the equilateral triangle <i>EFG</i> in the circle <i>EFG,</i> take the center <i>H</i> of the circle, and join <i>EH, HF,</i> and <i>HG.</i>
+
+<div class="just"><a href="../bookXI/propXI12.html">XI.12</a><br>
+<a href=../bookI/propI3.html>I.3</a></div>
+<p>Set <i>HK</i> up from the point <i>H</i> at right angles to the plane of the circle <i>EFG,</i> cut off <i>HK</i> equal to the straight line <i>AC</i> from <i>HK,</i> and join <i>KE, KF,</i> and <i>KG.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=440 height=280 >
+<img src="propXIII13.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.13">
+<param name=e[1] value="A0;point;free;40,-1000;0;0">
+<param name=e[2] value="A3;point;free;40,1000;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,0,40">
+<param name=e[4] value="B;point;lineSlider;A0,A3,0,250">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="ABmid;point;midpoint;A,B;0;0">
+<param name=e[7] value="ABcirc;circle;radius;ABmid,B;0;0;0;0">
+<param name=e[8] value="semi;sector;sector;ABmid,B,A;0;0;black;random">
+<param name=e[9] value="A1;point;perpendicular;A,B;0;0">
+<param name=e[10] value="A2;point;extend;A,A1,A,A1;0;0">
+<param name=e[11] value="B1;point;perpendicular;B,A;0;0">
+<param name=e[12] value="C;point;intersection;A,B,A2,B1">
+<param name=e[13] value="D';point;perpendicular;C,A;0;0">
+<param name=e[14] value="Dch;line;chord;C,D',ABcirc;0;0;0">
+<param name=e[15] value="D;point;last;Dch">
+<param name=e[16] value="CD;line;connect;C,D">
+<param name=e[17] value="AD;line;connect;A,D">
+
+<param name=e[18] value="M;point;free;290,145;0">
+<param name=e[19] value="Msphere;sphere;radius;M,ABmid,A;0;0;lightGray">
+<param name=e[20] value="K;point;sphereSlider;Msphere,200,80,100">
+<param name=e[21] value="L;point;extend;K,M,M,K">
+<param name=e[22] value="H;point;cutoff;K,L,A,C">
+<param name=e[23] value="KL;line;connect;K,L">
+<param name=e[24] value="EFGplane;plane;perpendicular;H,K;0;0;0;0">
+<param name=e[25] value="EFGcirc;circle;radius;H,D,C,EFGplane">
+<param name=e[26] value="E;point;circleSlider;EFGcirc,260,30,-20">
+<param name=e[27] value="N;point;extend;E,H,E,H;0;0">
+<param name=e[28] value="Ncirc;circle;radius;N,H,EFGplane;0;0;0;0">
+<param name=e[29] value="FG;line;bichord;EFGcirc,Ncirc;0;0;0">
+<param name=e[30] value="F;point;first;FG">
+<param name=e[31] value="G;point;last;FG">
+<param name=e[32] value="EFGK;polyhedron;tetrahedron;E,F,G,K;0;0;black;random">
+<param name=e[33] value="HE;line;connect;H,E">
+<param name=e[34] value="HF;line;connect;H,F">
+<param name=e[35] value="HG;line;connect;H,G">
+</applet></div>
+
+<div class="just"><a href=../bookXI/defXI3.html>XI.Def.3</a></div>
+<p>Now, since <i>KH</i> is at right angles to the plane of the circle <i>EFG,</i> therefore it makes right angles with all the straight lines which meet it and are in the plane of the circle <i>EFG.</i>  But each of the straight lines <i>HE, HF,</i> and <i>HG</i> meets it, therefore <i>HK</i> is at right angles to each of the straight lines <i>HE, HF,</i> and <i>HG.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>And, since <i>AC</i> equals <i>HK,</i> and <i>CD</i> equals <i>HE,</i> and they contain right angles, therefore the base <i>DA</i> equals the base <i>KE.</i>  For the same reason each of the straight lines <i>KF</i> and <i>KG</i> also equals <i>DA.</i> Therefore the three straight lines <i>KE, KF,</i> and <i>KG</i> equal one another.
+
+<p>And, since <i>AC</i> is double <i>CB,</i> therefore <i>AB</i> is triple <i>BC.</i>
+
+<p>But that <i>AB</i> is to <i>BC</i> as the square on <i>AD</i> is to the square on <i>DC</i> will be proved afterwards.
+
+<div class="just"><a href="propXIII12.html">XIII.12</a></div>
+<p>Therefore the square on <i>AD</i> is triple the square on <i>DC.</i> But the square on <i>FE</i> is also triple the square on <i>EH,</i> and <i>DC</i> equals <i>EH,</i> therefore <i>DA</i> also equals <i>EF.</i>
+
+<p>But <i>DA</i> was proved equal to each of the straight lines <i>KE, KF,</i> and <i>KG,</i> therefore each of the straight lines <i>EF, FG,</i> and <i>GE</i> also equals each of the straight lines <i>KE, KF,</i> and <i>KG.</i>  Therefore the four triangles <i>EFG, KEF, KFG,</i> and <i>KEG</i> are equilateral.
+
+<p>Therefore a pyramid has been constructed out of four equilateral triangles, the triangle <i>EFG</i> being its base and the point <i>K</i> its vertex.
+
+<p>It is next required to comprehend it in the given sphere and to prove that the square on the diameter of the sphere is one and a half times the square on the side of the pyramid.
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a></div>
+<p>Produce the straight line <i>HL</i> in a straight line with <i>KH,</i> and make <i>HL</i> equal to <i>CB.</i>
+
+<div class="just"><a href="../bookVI/propVI8.html#cor">VI.8,Cor.</a>
+<br><a href="../bookVI/propVI17.html">VI.17</a></div>
+<p>Now, since <i>AC</i> is to <i>CD</i> as <i>CD</i> is to <i>CB,</i> while <i>AC</i> equals <i>KH, CD</i> equals <i>HE,</i> and <i>CB</i> equals <i>HL,</i> therefore <i>KH</i> is to <i>HE</i> as <i>EH</i> is to <i>HL.</i> Therefore the rectangle <i>KH</i> by <i>HL</i> equals the square on <i>EH.</i>
+
+<div class="just">cf. <a href="../bookVI/propVI8.html">VI.8</a>,
+<a href="../bookIII/propIII31.html">III.31</a></div>
+<p>And each of the angles <i>KHE, EHL</i> is right, therefore the semicircle described on <i>KL</i> passes through <i>E</i> also.
+
+<p>If then, <i>KL</i> remaining fixed, the semicircle is carried round and restored to the same position from which it began to be moved, then it also passes  through the points <i>F</i> and <i>G,</i> since, if <i>FL</i> and <i>LG</i> are joined, then the angles at <i>F</i> and <i>G</i> similarly become right angles, and the pyramid is comprehended in the given sphere. For <i>KL,</i> the diameter of the sphere, equals the diameter <i>AB</i> of the given sphere, since <i>KH</i> was made equal to <i>AC,</i> and <i>HL</i> to <i>CB.</i>
+
+<hr width=50%>
+
+<p>I say next that the square on the diameter of the sphere is one and a half times the square on the side of the pyramid.
+
+<p>Since <i>AC</i> is double <i>CB,</i> therefore <i>AB</i> is triple <i>BC,</i> and, in conversion, <i>BA</i> is one and a half times <i>AC.</i>
+
+<p>But <i>BA</i> is to <i>AC</i> as the square on <i>BA</i> is to the square on <i>AD.</i> Therefore the square on <i>BA</i> is also one and a half times the square on <i>AD.</i> And <i>BA</i> is the diameter of the given sphere, and <i>AD</i> equals the side of the pyramid. Therefore the square on the diameter of the sphere is one and a half times the square on the side of the pyramid.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<br>
+
+<a name=#lemma></a>
+<div class="theorem">
+<h1>Lemma</h1>
+
+<p>It is to be proved that <i>AB</i> is to <i>BC</i> as the square on <i>AD</i> is to the square  on <i>DC.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=260 >
+<img src="propXIII13l.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.13,Lemma">
+<param name=e[1] value="A0;point;free;-1000,110;0;0">
+<param name=e[2] value="A3;point;free;1000,110;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,190,0">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="ABmid;point;midpoint;A,B;0;0">
+<param name=e[7] value="ABcirc;circle;radius;ABmid,B;0;0;0;0">
+<param name=e[8] value="semi;sector;sector;ABmid,B,A;0;0;black;random">
+<param name=e[9] value="A1;point;perpendicular;A,B;0;0">
+<param name=e[10] value="A2;point;extend;A,A1,A,A1;0;0">
+<param name=e[11] value="B1;point;perpendicular;B,A;0;0">
+<param name=e[12] value="C;point;intersection;A,B,A2,B1">
+<param name=e[13] value="D';point;perpendicular;C,A;0;0">
+<param name=e[14] value="Dch;line;chord;C,D',ABcirc;0;0;0">
+<param name=e[15] value="D;point;last;Dch">
+<param name=e[16] value="AD;line;connect;A,D">
+<param name=e[17] value="BD;line;connect;B,D">
+
+<param name=e[18] value="F;point;perpendicular;C,A">
+<param name=e[19] value="E;point;parallelogram;A,C,F">
+<param name=e[20] value="BE;polygon;parallelogram;B,A,E;0;0;black;random">
+<param name=e[21] value="DF;line;connect;D,F">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI46.html">I.46</a></div>
+<p>Set out the figure of the semicircle, join <i>DB,</i> describe the square <i>EC</i> on <i>AC,</i>  and complete the parallelogram <i>FB.</i>
+
+<div class="just"><a href="../bookVI/propVI8.html">VI.8</a>,
+<a href="../bookVI/propVI4.html">VI.4</a>
+<br><a href="../bookVI/propVI17.html">VI.17</a></div>
+<p>Since  the triangle <i>DAB</i> is equiangular with the triangle <i>DAC,</i> therefore <i>BA</i> is to <i>AD</i> as <i>DA</i> is to <i>AC.</i>  Therefore the rectangle <i>BA</i> by <i>AC</i> equals the square on <i>AD.</i>
+
+<div class="just"><a href="../bookVI/propVI1.html">VI.1</a></div>
+<p>And since <i>AB</i> is to <i>BC</i> as <i>EB</i> is to <i>BF,</i> and <i>EB</i> is the rectangle <i>BA</i> by <i>AC,</i> for <i>EA</i> equals <i>AC,</i> and <i>BF</i> is the rectangle <i>AC</i> by <i>CB,</i> therefore <i>AB</i> is to <i>BC</i> as the rectangle <i>BA</i> by <i>AC</i> is to the rectangle <i>AC</i> by <i>CB.</i>
+
+<div class="just"><a href="../bookVI/propVI8.html#cor">VI.8,Cor.</a></div>
+<p>And the rectangle <i>BA</i> by <i>AC</i> equals the square on <i>AD,</i> and the rectangle <i>AC</i> by <i>CB</i> equals the square on <i>DC,</i> for the perpendicular <i>DC</i> is a mean proportional between the segments <i>AC</i> and <i>CB</i> of the base, because the angle <i>ADB</i> is right.  Therefore <i>AB</i> is to <i>BC</i> as the square on <i>AD</i> is to the square on <i>DC.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+This figure is usually called a regular tetrahedron, that is, a solid figure contained by four equal and equilateral triangles.  Euclid simply calls it &ldquo;a pyramid&rdquo; with the understanding that by that he means not just any pyramid, but a regular tetrahedron.  A similar ambiguity occured in ancient Greek when the word &ldquo;tetragon&rdquo; was used.  It meant either any four-angled figure or specifically a square, depending on the context.
+
+<h4>Summary of the construction</h4>
+
+<p><table><tr>
+<td colspan=2>
+
+<p>Standardize the radius of the sphere at 1 unit, so that <i>AB</i>&nbsp;=&nbsp;2.  Then cut <i>AB</i> at <i>C</i> so that <i>AC</i>&nbsp;=&nbsp;4/3 and <i>BC</i>&nbsp;=&nbsp;2/3.  Let <i>DC</i> be their mean proportional (2/3)&radic;2.  Then <i>AD</i>&nbsp;=&nbsp;(2/3)&radic;6.  This line <i>AD</i> will end up being the length of the side of the tetrahedron.  Note that it has the correct value so that &ldquo;the square on the diameter of the sphere is one and a half times the square on the side of the pyramid.&rdquo;
+
+<p>Set out the circle <i>EFG</i> of radius <i>EH</i>&nbsp;=&nbsp;(2/3)&radic;2, and inscribe in that circle an equilateral triangle.  Then each side of the triangle will be (2/3)&radic;6, the same as <i>AD</i> (<a href="propXIII12.html">XIII.12</a>).
+
+<p>Make <i>HK</i>  of length 4/3 and perpendicular to the plane of the triangle, and connect <i>KE, KF,</i> and <i>KG.</i>  Then <i>K</i> lies on the surface of the sphere.  And since the triangle <i>HKE</i> is a right triangle, therefore its hypotenuse <i>KE</i>&nbsp;=&nbsp;(2/3)&radic;6, the same as <i>AD.</i> Likewise <i>KF</i> and <i>KG</i> have the same length.  That constructs the tetrahedron in the sphere.
+</td>
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=230 >
+<img src="propXIII13a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.13">
+<param name=e[1] value="H;point;free;120,120">
+<param name=e[2] value="E;point;free;120,30">
+<param name=e[3] value="circ;circle;radius;H,E;0;0;black;random">
+<param name=e[4] value="E';point;midpoint;H,E;0;0">
+<param name=e[5] value="E'';point;extend;E,H,E,E';0">
+<param name=e[6] value="F';point;perpendicular;E'',E;0;0">
+<param name=e[7] value="F'G;line;chord;E'',F',circ">
+<param name=e[8] value="F;point;first;F'G">
+<param name=e[9] value="G;point;last;F'G">
+<param name=e[10] value="EFG;polygon;triangle;E,F,G;0;0;black;random">
+<param name=e[11] value="EH;line;connect;E,H">
+<param name=e[12] value="FH;line;connect;F,H">
+<param name=e[13] value="GH;line;connect;G,H">
+<param name=e[14] value="EE'';line;connect;E,E''">
+</applet>
+</td></tr>
+</table>
+
+<h4>Coordinates for the vertices of the tetrahedron</h4>
+
+A cube can be easily constructed from a tetrahedron since the four vertices of a tetrahedron are four of the eight vertices of a cube.  See proposition <a href=propXIII15.html>XIII.15</a>.  That being the case, an obvious coordinate system will make eight vertices of a cube have the coordinates
+<p><center>
+(1,1,1) &nbsp; (1,1,&ndash;1) &nbsp; (1,&ndash;1,1) &nbsp; (1,&ndash;1,&ndash;1) &nbsp; (&ndash;1,1,1) &nbsp; (&ndash;1,1,&ndash;1) &nbsp; (&ndash;1,&ndash;1,1) &nbsp; (&ndash;1,&ndash;1,&ndash;1)
+</center><p>
+that is, all eight combinations of &ndash;1 and 1 in all three coordinates.  The radius for such a cube is &radic;3, so if a unit sphere is desired, then all the coordinates would have to be divided by  &radic;3.
+
+<p>The tetrahedron has only half of these eight vertices, and they can be chosen to be
+<p><center>
+(1,1,1) &nbsp; (1,&ndash;1,&ndash;1) &nbsp; (&ndash;1,1,&ndash;1) &nbsp; (&ndash;1,&ndash;1,1)
+</center><p>
+that is, the points which have an odd number of positive coordinates.  There is another tetrahedron which has as its vertices the remaining four points which have an even number of positive coordinates.
+
+<h4>Use of this construction</h4>
+
+Constructing this regular tetrahedron is an end in itself. In the last proposition of the <i>Elements</i> <a href=propXIII18.html>XIII.18</a>, the five regular polyhedra are compared, and this construction is needed there as well as constructions of the other four regular polyhedra.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

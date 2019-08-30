@@ -1,0 +1,84 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 8</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">
+To inscribe a circle in a given square.</div>
+
+<p>Let <i>ABCD</i> be the given square.
+
+<p>It is required to inscribe a circle in the given square <i>ABCD.</i>
+
+<div class="just"><a href="../bookI/propI10.html">I.10</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Bisect the straight lines <i>AD</i> and <i>AB</i> at the points <i>E</i> and <i>F</i> respectively.  Draw <i>EH</i>  through <i>E</i> parallel to either <i>AB</i> or <i>CD,</i> and draw <i>FK</i>  through <i>F</i> parallel to either <i>AD</i> or <i>BC.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=280 width=290>
+<img src="propIV8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.8">
+<param name=e[1] value="A;point;free;40,40">
+<param name=e[2] value="B;point;free;40,240">
+<param name=e[3] value="ABCD;polygon;square;A,B;0;0;black;random">
+<param name=e[4] value="C;point;vertex;ABCD,3">
+<param name=e[5] value="D;point;vertex;ABCD,4">
+<param name=e[6] value="E;point;midpoint;A,D">
+<param name=e[7] value="F;point;midpoint;A,B">
+<param name=e[8] value="H;point;midpoint;B,C">
+<param name=e[9] value="K;point;midpoint;C,D">
+<param name=e[10] value="EH;line;connect;E,H">
+<param name=e[11] value="FK;line;connect;F,K">
+<param name=e[12] value="G;point;intersection;EH,FK;black;green">
+<param name=pivot value=G>
+<param name=e[13] value="EFHK;circle;radius;G,E;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV8.gif" hspace=10 alt="IV8">';
+</script>
+</div>  
+
+<div class="just"><a href="../bookI/propI34.html">I.34</a></div>
+<p>Therefore each of the figures <i>AK, KB, AH, HD, AG, GC, BG,</i> and <i>GD</i> is a parallelogram, and their opposite sides are evidently equal.
+
+<p>Now, since <i>AD</i> equals <i>AB,</i> and <i>AE</i> is half of <i>AD,</i> and <i>AF</i> half of <i>AB,</i> therefore <i>AE</i> equals <i>AF,</i> so that the opposite sides are also equal, therefore <i>FG</i> equals <i>GE.</i>
+
+<p>Similarly we can prove that each of the straight lines <i>GH</i> and <i>GK</i> equals each of the straight lines <i>FG</i> and <i>GE.</i> Therefore the four straight lines <i>GE, GF,</i> <i>GH,</i> and <i>GK</i> equal one another.
+
+<p>Therefore the circle described with center <i>G</i> and radius one of the straight lines <i>GE,</i> <i>GF, GH,</i> or <i>GK</i> also passes through the remaining points.
+
+<p>And it touches the straight lines <i>AB, BC, CD,</i> and <i>DA,</i> because the angles at <i>E, F, H,</i> and <i>K</i> are right.
+
+<div class="just"<a href="../bookIII/propIII16.html">III.16</a></div>
+<p>For, if the circle cuts <i>AB, BC, CD,</i> or <i>DA,</i> the straight line drawn at right angles to the diameter of the circle from its end will fall within the circle, which was proved absurd. Therefore the circle described with center <i>G</i> and radius one of the straight lines <i>GE, GF, GH,</i> or <i>GK</i> does not cut the straight lines <i>AB, BC, CD,</i> and <i>DA.</i>
+
+<p>Therefore it touches them, and has been inscribed in the square <i>ABCD.</i>
+
+<p>Therefore a circle has been inscribed in the given square.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+This is a straightforward proposition, one of four in the sequence IV.6 through IV.9 about
+circles and squares.
+
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

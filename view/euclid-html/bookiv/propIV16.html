@@ -1,0 +1,117 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 16</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 16</h1>
+
+<div class="statement">
+To inscribe an equilateral and equiangular fifteen-angled figure in a given circle.</div>
+
+<p>Let <i>ABCD</i> be the given circle.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=350 width=325>
+<img src="propIV16.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.16">
+<param name=e[1] value="F;point;free;90,300;0">
+<param name=e[2] value="G;point;free;260,300;0">
+<param name=e[3] value="pentagon;polygon;regularPolygon;F,G,5;0;0;black;0">
+<param name=e[4] value="A;point;vertex;pentagon,4">
+<param name=e[5] value="B;point;vertex;pentagon,5">
+<param name=e[6] value="circ;circle;circumcircle;F,G,A;0;0;black;random">
+<param name=e[7] value="duppent;polygon;regularPolygon;F,G,5;0;0;0;random">
+<param name=e[8] value="O;point;center;circ;0;0">
+<param name=e[9] value="Acirc;circle;radius;A,O;0;0;0;0">
+<param name=e[10] value="PQ;line;bichord;circ,Acirc;0;0;0">
+<param name=e[11] value="P;point;first;PQ;0;0">
+<param name=e[12] value="C;point;extend;P,O,P,O">
+<param name=e[13] value="Q;point;last;PQ;0;0">
+<param name=e[14] value="D;point;extend;Q,O,Q,O">
+<param name=e[15] value="ACD;polygon;triangle;A,C,D;0;0;black;random">
+<param name=e[16] value="OE';line;angleBisector;B,O,C;0;0;0">
+<param name=e[17] value="E';point;last;OE';0;0">
+<param name=e[18] value="E;point;cutoff;O,E',O,A">
+<param name=e[19] value="fifteen;polygon;regularPolygon;B,E,15;0;0;black;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV16.gif" hspace=10 alt="IV16">';
+</script>
+</div>
+
+<p>It is required to inscribe in the circle <i>ABCD</i> a fifteen-angled figure which shall be both equilateral and equiangular.
+
+<div class="just"><a href="propIV2.html">IV.2</a>
+<br><a href="propIV11.html">IV.11</a></div>
+<p>Inscribe a side <i>AC</i> of an equilateral triangle and a side <i>AB</i> of an equilateral pentagon in in the circle <i>ABCD.</i>   Therefore, of the equal segments of which there are fifteen in the circle <i>ABCD,</i> there will be five in the circumference <i>ABC</i> which is one-third of the circle, and there will be three in the circumference <i>AB</i> which is one-fifth of the circle.  Therefore in the remainder <i>BC</i> there will be two of the equal segments.
+
+<div class="just"><a href="propIV2.html">IV.2</a>
+<br><a href="propIV11.html">IV.11</a></div>
+<p>Inscribe a side <i>AC</i> of an equilateral triangle and a side <i>AB</i> of an equilateral pentagon in in the circle <i>ABCD.</i>   Therefore, of the equal segments of which there are fifteen in the circle <i>ABCD,</i> there will be five in the circumference <i>ABC</i> which is one-third of the circle, and there will be three in the circumference <i>AB</i> which is one-fifth of the circle.  Therefore in the remainder <i>BC</i> there will be two of the equal segments.
+
+<div class="just"><a href="../bookIII/propIII30.html">III.30</a></div>
+<p>Bisect <i>BC</i> at <i>E.</i>  Therefore each of the circumferences <i>BE</i> and <i>EC</i> is a fifteenth of the circle <i>ABCD.</i>
+
+<div class="just"><a href="propIV1.html">IV.1</a></div>
+<p>If therefore we join <i>BE</i> and <i>EC</i> and continually fit into the circle <i>ABCD</i> straight lines equal to them, a fifteen-angled figure which is both equilateral and equiangular will be inscribed in it.
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<br>
+
+<a name=cor>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+<p>And, in like manner as in the case of the pentagon, if through the points of division on the circle we draw tangents to the circle, there will be circumscribed about the circle a fifteen-angled figure which is equilateral and equiangular.
+
+<p>And further, by proofs similar to those in the case of the pentagon, we can both inscribe a circle in the given fifteen-angled figure and circumscribe one about it.
+</div>
+</div>
+
+<h2>Guide</h2>
+
+The arc <i>AC</i> is 1/3 of the circle, since <i>A</i> and <i>B</i> are two of
+the three equally spaced vertices of a regular triangle. Likewise,
+the arc <i>AC</i> is 1/5 of the circle, since <i>A</i> and <i>C</i> are two adjacent points
+of a regular pentagon.  Therefore, the difference of these two arcs,
+<i>AC</i>&nbsp;&#150;&nbsp;<i>AB,</i> which is the arc <i>BC</i> is
+1/3&nbsp;&#150;1/5 of the circle, that is 2/15 of the circle.  Since <i>E</i> bisects
+that arc <i>BC,</i> therefore <i>BE</i> and <i>EC</i> are each 1/15 of the circle. The rest of the
+regular 15-gon can then easily be constructed.
+
+<h4>Constructible regular polygons</h4>
+
+Now, by the end of Book IV, Euclid has described how to construct many regular polygons.  The regular 3-gon, known as the equilateral triangle, was constructed in <a href="../bookI/propI1.html">I.1</a>, while the regular 4-gon, known as the square, was constructed in <a href="../bookI/propI46.html">I.46</a>.  In book IV, regular 5-gons and regular 6-gons have been constructed.  An application of <a href="../bookIII/propIII30.html">III.30</a> (which was used in this proposition) can double the number of sides of a regular polygon, and therefore regular polygons with 8, 10, 12, 16, 20, 24, etc., sides can be constructed.  This proposition shows how to use a regular <i>m</i>-gon and a regular <i>n</i>-gon to produce a regular <i>mn</i>-gon, provided that <i>m</i> and <i>n</i> are relatively prime numbers.  That produced a 15-gon, and from that we can produce regular polygons with 30, 60, 120, etc., sides.  Thus, a regular <i>n</i>-gon can be constructed if the only prime numbers that divide <i>n</i> are 2, 3, and 5, where 2 can be a repeated factor, but 3 and 5 are not repeated.
+
+<p>But are there any others?  What about regular polygons with 7, 9, 11, 13, 17, 18, 19, etc., sides?  Euclid said nothing about them, but the ancient Greek mathematicians expected that they couldn&rsquo;t be constructed with only the Euclidean tools of straightedge and compass.  There were constructions involving conic sections (hyperbolas, parabolas, ellipses) to trisect an angle. With such a construction a 9-gon can be made.  But methods involving conic sections go beyond Euclidean tools.  With the help of non-algebraic curves, like Archimedes&rsquo; spiral, an angle can be divided into any number of equal parts, and with the aid of those curves any <i>n</i>-gon can be constructed.  But, again, they go beyond Euclidean tools.
+
+<p>The problem of constructing other regular polygons with Euclidean tools remained just that, a problem, for over 2000 years.  Finally, Carl Friedrich Gauss (1777&ndash;1855) made progress.  He described in his <i>Disquitiones Arithmeticae,</i> a major work on number theory, how to construct a regular 17-gon with Euclidean tools.  Thus, 17 can be added to 3 and 5 as prime numbers that can divide <i>n,</i> but at most once.  Furthermore, he showed that any prime number which is of the form
+2<sup>2<sup><i>k</i></sup></sup>&nbsp;+&nbsp;1 can be included. Such prime numbers are called <i>Fermat primes.</i> The known Fermat primes are
+ 3 (which is 2<sup>2<sup>0</sup></sup>&nbsp;+&nbsp;1),
+ 5 (which is 2<sup>2<sup>1</sup></sup>&nbsp;+&nbsp;1), 
+ 17 (which is 2<sup>2<sup>2</sup></sup>&nbsp;+&nbsp;1),
+ 257 (which is 2<sup>2<sup>3</sup></sup>&nbsp;+&nbsp;1), and
+ 65537 (which is 2<sup>2<sup>4</sup></sup>&nbsp;+&nbsp;1).  Thus, 257 and 65537 can be appended to the list 3, 5, 17.
+It is not known whether there are any more Fermat primes.
+
+<p>Gauss was convinced that the <i>only</i> constructible <i>n</i>-gons were those where <i>n</i> was only divisible by 2 and the Fermat primes, where the Fermat primes were not repeated.  He had no proof of that, but in 1837 Wantzel did.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

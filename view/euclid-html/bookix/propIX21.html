@@ -1,0 +1,89 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 21</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 21</h1>
+
+<div class="statement">If as many even numbers as we please are added together, then the sum is even.</div>
+
+<p>Let as many even numbers as we please, <i>AB, BC, CD,</i> and <i>DE,</i> be added together.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=70 >
+<img src="propIX21.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.21">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,72,0">
+<param name=e[5] value="C;point;lineSlider;A0,A3,120,0">
+<param name=e[6] value="D;point;lineSlider;A0,A3,194,0">
+<param name=e[7] value="E;point;lineSlider;A0,A3,220,0">
+<param name=e[8] value="AE;line;connect;A,E">
+</applet></div>
+
+<p>I say that the sum <i>AE</i> is even.
+
+<div class="just"><a href="../bookVII/defVII6.html">VII.Def.6</a></div>
+<p>Since each of the numbers <i>AB, BC, CD,</i> and <i>DE</i> is even, therefore each has a half part, so that the sum <i>AE</i> also has a half part. But an even number is that which is divisible into two equal parts, therefore <i>AE</i> is even.
+
+<p>Therefore, <i>if as many even numbers as we please are added together, then the sum is even.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+With this proposition, Euclid commences the study of even and odd numbers.  The study continues through proposition <a href="propIX34.html">IX.34</a>.  The statements of these propositions probably constitute the oldest part of the <i>Elements</i> and date back to the Pythagoreans.  Indeed, their proofs depend on no other propositions (except <a href="propIX31.html">IX.31</a> which discusses prime numbers and may have been inserted among these propositions because it involves odd numbers), so that the statements together with the proofs may be the oldest part of the <i>Elements.</i>
+
+<h4>Commutativity and associativity of addition</h4>
+
+The proof of this proposition implicitly relies on a principle that the order that numbers are summed is irrelevant.  For example, when showing that the sum of the two even numbers <i>a</i> and <i>b</i> is even, first <i>a</i> is divided into two equal parts, <i>a</i>&nbsp;=&nbsp;<i>c</i>&nbsp;+&nbsp;<i>c,</i> and <i>b</i> is divided into two equal parts, <i>b</i>&nbsp;=&nbsp;<i>d</i>&nbsp;+&nbsp;<i>d,</i> therefore
+<p><center>
+<i>a</i>&nbsp;+&nbsp;<i>b</i>&nbsp;=&nbsp;(<i>c</i>&nbsp;+&nbsp;<i>c</i>)&nbsp;+&nbsp;(<i>d</i>&nbsp;+&nbsp;<i>d</i>).
+</center><p>
+But to reach the conclusion that <i>a</i>&nbsp;+&nbsp;<i>b</i> is divisible into two equal parts, we need
+<p><center>
+<i>a</i>&nbsp;+&nbsp;<i>b</i>&nbsp;=&nbsp;(<i>c</i>&nbsp;+&nbsp;<i>d</i>)&nbsp;+&nbsp;(<i>c</i>&nbsp;+&nbsp;<i>d</i>),
+</center><p>
+which adds the terms in a different order.
+
+<p>Of course the order that the terms are added has no effect on the sum.  That is an implicit assumption made by Euclid and most everyone after him until the 19th century.
+
+<p>The modern way to deal with this question is to recognize two properties of addition of numbers.  One of them is <i>commutativity.</i>  Addition is commutative since for any two numbers <i>a</i> and <i>b,</i>
+<p><center>
+<i>a</i> + <i>b</i> = <i>b</i> + <i>a.</i>
+</center><p>
+
+Commutativity says we can two numbers in any order and get the same result.
+
+<p>The other property, <i>associativity,</i> is more subtle. When computing the sum 
+<i>a</i>&nbsp;+&nbsp;<i>b</i>&nbsp;+&nbsp;<i>c</i>
+of three numbers, there is still a choice of which numbers to add first.  You can either
+add <i>a</i>&nbsp;+&nbsp;<i>b</i> first to get <i>d,</i> then add <i>d</i>&nbsp;+&nbsp;<i>c</i> to get the sum, or you can add <i>b</i>&nbsp;+&nbsp;<i>c</i> first to get <i>e,</i> then add <i>a</i>&nbsp;+&nbsp;<i>e</i> to get the sum.  The same sum should result.  As an equation, associativity says you can move the parentheses around:
+<p><center>
+(<i>a</i> + <i>b</i>) + <i>c</i> = <i>a</i> + (<i>b</i> + <i>c</i>).
+</center><p>
+
+These two properties, commutativity and associativity, are enough to guarantee that when you add any number of terms together, the order that they&rsquo;re added is irrelvant.  
+
+<p>These properties should either be taken as postulates about numbers, or else proven from more basic assumptions.  Besides these properties of addition, Euclid missed some other basic properties of the arithmetic operations.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next two and in <a href=propIX28.html>IX.28</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

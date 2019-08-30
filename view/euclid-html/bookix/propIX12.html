@@ -1,0 +1,141 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 12</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 12</h1>
+
+<div class="statement">If as many numbers as we please beginning from a unit are in continued proportion, then by whatever prime numbers the last is measured, the next to the unit is also measured by the same.</div>
+
+<p>Let <i>A, B, C,</i> and <i>D</i> be as many numbers as we please beginning from a unit in continued proportion.
+
+
+<tr>
+<td>I say that, by whatever prime numbers <i>D</i> is measured, <i>A</i> is also measured by the same.
+
+<p>Let <i>D</i> be measured by any prime number <i>E.</i>
+
+<p>I say that <i>E</i> measures <i>A.</i>
+
+<p>Suppose it does not.</td>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=200 >
+<img src="propIX12.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.12">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="C0;point;free;-1000,100;0;0">
+<param name=e[6] value="C3;point;free;1000,100;0;0">
+<param name=e[7] value="D0;point;free;-1000,135;0;0">
+<param name=e[8] value="D3;point;free;1000,135;0;0">
+<param name=e[9] value="E0;point;free;-1000,170;0;0">
+<param name=e[10] value="E3;point;free;1000,170;0;0">
+<param name=e[11] value="U1;point;free;1000,0;0;0">
+<param name=e[12] value="U2;point;free;1000,20;0;0">
+
+<param name=e[13] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[14] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[15] value="A;line;connect;A1,A2;black">
+<param name=e[16] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[17] value="B2;point;lineSlider;B0,B3,105,0;0">
+<param name=e[18] value="B;line;connect;B1,B2;black">
+<param name=e[19] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[20] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[21] value="C;line;connect;C1,C2;black">
+<param name=e[22] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[23] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[24] value="D;line;connect;D1,D2;black">
+<param name=e[25] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[26] value="E2;point;lineSlider;E0,E3,60,0;0">
+<param name=e[27] value="E;line;connect;E1,E2;black">
+<param name=e[28] value="F1;point;lineSlider;A0,A3,180,0;0">
+<param name=e[29] value="F2;point;proportion;E1,E2,D1,D2,U1,U2,F1,A3;0">
+<param name=e[30] value="F;line;connect;F1,F2;black">
+<param name=e[31] value="G1;point;lineSlider;B0,B3,180,0;0">
+<param name=e[32] value="G2;point;proportion;E1,E2,C1,C2,U1,U2,G1,B3;0">
+<param name=e[33] value="G;line;connect;G1,G2;black">
+<param name=e[34] value="H1;point;lineSlider;C0,C3,180,0;0">
+<param name=e[35] value="H2;point;proportion;E1,E2,B1,B2,U1,U2,H1,C3;0">
+<param name=e[36] value="H;line;connect;H1,H2;black">
+</applet></div>
+
+<div class="just"><a href="../bookVII/propVII29.html">VII.29</a></div>
+<p>Now <i>E</i> is prime, and any prime number is relatively prime to any which it does not measure, therefore <i>E</i> and <i>A</i> are relatively prime. And, since <i>E</i> measures <i>D,</i> let it measure it according to <i>F,</i> therefore <i>E</i> multiplied by <i>F</i> makes <i>D.</i>
+
+<div class="just"><a href="propIX11.html">IX.11</a>
+<br>and <a href="propIX11.html#cor">Cor.</a></div>
+<p>Again, since <i>A</i> measures <i>D</i> according to the units in <i>C,</i> therefore <i>A</i> multiplied by <i>C</i> makes <i>D.</i> But, further, <i>E</i> multiplied by <i>F</i> makes <i>D,</i> therefore the product of <i>A</i> and <i>C</i> equals the product of <i>E</i> and <i>F.</i>
+
+<div class="just"><a href="../bookVII/propVII19.html">VII.19</a>
+<br><a href="../bookVII/propVII21.html">VII.21</a>
+<br><a href="../bookVII/propVII20.html">VII.20</a></div>
+<p>Therefore <i>A</i> is to <i>E</i> as <i>F</i> is to <i>C.</i> But <i>A</i> and <i>E</i> are relatively prime, primes are also least,  and the least measure those which have the same ratio the same number of times, the antecedent the antecedent and the consequent the consequent,  therefore <i>E</i> measures <i>C.</i> Let it measure it according to <i>G.</i>
+
+<div class="just"><a href="propIX11.html">IX.11</a>
+<br>and
+<a href="propIX11.html#cor">Cor.</a></div>
+<p>Therefore <i>E</i> multiplied by <i>G</i> makes <i>C.</i> But, further, by the previous theorem, <i>A</i> multiplied by <i>B</i> makes <i>C.</i>  Therefore the product of <i>A</i> and <i>B</i> equals the product of <i>E</i> and <i>G.</i>
+
+<div class="just"><a href="../bookVII/propVII19.html">VII.19</a>
+<br><a href="../bookVII/propVII21.html">VII.21</a>
+<br><a href="../bookVII/propVII20.html">VII.20</a></div>
+<p>Therefore <i>A</i> is to <i>E</i> as <i>G</i> is to <i>B.</i> But <i>A</i> and <i>E</i> are relatively prime, primes are also least, and the least numbers measure those which have the same ratio with them the same number of times, the antecedent the antecedent and the consequent the consequent, therefore <i>E</i> measures <i>B.</i> Let it measure it according to <i>H.</i> Then <i>E</i> multiplied by <i>H</i> makes <i>B.</i>
+
+<div class="just"><a href="propIX8.html">IX.8</a>,
+<a href="../bookVII/propVII19.html">VII.19</a></div>
+<p>But, further, <i>A</i> multiplied by itself makes <i>B,</i> therefore the product of <i>E</i> and <i>H</i> equals the square on <i>A.</i> Therefore <i>E</i> is to <i>A</i> as <i>A</i> is to <i>H.</i>
+
+<div class="just"><a href="../bookVII/propVII21.html">VII.21</a>
+<br><a href="../bookVII/propVII20.html">VII.20</a></div>
+<p>But <i>A</i> and <i>E</i> are relatively prime, primes are also least, and the least measure those which have the same ratio the same number of times, the antecedent the antecedent and the consequent the consequent, therefore <i>E</i> measures <i>A</i> antecedent antecedent. But, again, it also does not measure it, which is impossible.
+
+<div class="just"><a href=../bookVII/defVII11.html>VII.Def.14</a></div>
+<p>Therefore <i>E</i> and <i>A</i> are not relatively prime. Therefore they are relatively composite. But numbers relatively composite are measured by some number.
+
+<p>And, since <i>E</i> is by hypothesis prime, and a prime is not measured by any number other than itself, therefore <i>E</i> measures <i>A</i> and <i>E,</i> so that <i>E</i> measures <i>A.</i>
+
+<p>But it also measures <i>D,</i> therefore <i>E</i> measures <i>A</i> and <i>D.</i> Similarly we can prove that, by whatever prime numbers <i>D</i> is measured, <i>A</i> also is measured by the same.
+
+<p>Therefore, <i>if as many numbers as we please beginning from a unit are in continued proportion, then by whatever prime numbers the last is measured, the next to the unit is also measured by the same.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition says that if a prime number <i>p</i> divides a power <i>a</i><sup><i>k</i></sup> of a number <i>a,</i> then it divides the number <i>a</i> itself.
+
+<h4>Outline of the proof</h4>
+
+The proof is both elegant and inelegant.  The elegant part is the reduction step from <i>p</i> dividing <i>a</i><sup><i>k</i></sup> to <i>p</i> dividing <i>a</i><sup><i>k</i>-1</sup>.  There are two inelegant parts.  One is that the reduction step is applied three times starting with <i>k</i> equal to 4.  The other is that three unnecessary statements are tacked on to the end of the proof 
+after the goal is already reached.
+
+<p>Assume that a prime number <i>p</i> divides a power <i>a</i><sup><i>k</i></sup> of a number <i>a.</i>  Suppose that <i>p</i> does not divide <i>a.</i> Then <i>p</i> is relatively prime to <i>a</i> (<a href="../bookVII/propVII29.html">VII.29</a>).  From the proportion
+<p><center>
+(<i>a</i><sup><i>k</i></sup>/<i>p</i>)&nbsp;:&nbsp;<i>a</i><sup><i>k</i>-1</sup> =
+<i>a</i>&nbsp;:&nbsp;<i>p,</i>
+</center><p>
+we see that the ratio (<i>a</i><sup><i>k</i></sup>/<i>p</i>)&nbsp;:&nbsp;<i>a</i><sup><i>k</i>-1</sup> reduces to <i>a</i>&nbsp;:&nbsp;<i>p</i> in lowest terms (<a href="../bookVII/propVII21.html">VII.21</a>).  Therefore, <i>p</i> divides <i>a</i><sup><i>k</i>-1</sup> (<a href="../bookVII/propVII20.html">VII.20</a>).
+
+<p>Apply this reduction step repeatedly until the conclusion <i>p</i> divides <i>a</i> is reached.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

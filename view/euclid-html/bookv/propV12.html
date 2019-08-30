@@ -1,0 +1,108 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book V, Proposition 12</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 12</h1>
+
+<div class="statement">If any number of magnitudes are proportional, then one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents.</div>
+
+<p>Let any number of magnitudes <i>A, B, C, D, E,</i> and <i>F</i> be proportional, so that <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D,</i> and as <i>E</i> is to <i>F.</i>
+<p>I say that <i>A</i> is to <i>B</i> as the sum of <i>A, C,</i> and  <i>E</i> is to the sum of <i>B, D,</i> and <i>F.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=500 height=150>
+<img src=propV12.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.12">
+<param name=align value=left>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,60;0;0">
+<param name=e[4] value="V1;point;free;1000,60;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+<param name=e[7] value="X0;point;free;-1000,130;0;0">
+<param name=e[8] value="X1;point;free;1000,130;0;0">
+
+<param name=e[9] value="A;point;lineSlider;U0,U1,30,30">
+<param name=e[10] value="A1;point;lineSlider;U0,U1,80,30;0">
+<param name=e[11] value="AA1;line;connect;A,A1;0;0;blue">
+<param name=e[12] value="B;point;lineSlider;V0,V1,30,60">
+<param name=e[13] value="B1;point;lineSlider;V0,V1,70,60;0">
+<param name=e[14] value="BB1;line;connect;B,B1;0;0;blue">
+<param name=e[15] value="C;point;lineSlider;U0,U1,200,30">
+<param name=e[16] value="C1;point;lineSlider;U0,U1,260,30;0">
+<param name=e[17] value="CC1;line;connect;C,C1;0;0;blue">
+<param name=e[18] value="D;point;lineSlider;V0,V1,200,60">
+<param name=e[19] value="D1;point;proportion;A,A1,B,B1,C,C1,D,V1;0">
+<param name=e[20] value="DD1;line;connect;D,D1;0;0;blue">
+<param name=e[21] value="E;point;lineSlider;U0,U1,370,30">
+<param name=e[22] value="E1;point;lineSlider;U0,U1,410,30;0">
+<param name=e[23] value="EE1;line;connect;E,E1;0;0;blue">
+<param name=e[24] value="F;point;lineSlider;V0,V1,370,60">
+<param name=e[25] value="F1;point;proportion;A,A1,B,B1,E,E1,F,V1;0">
+<param name=e[26] value="FF1;line;connect;F,F1;0;0;blue">
+
+<param name=e[27] value="G;point;lineSlider;W0,W1,30,30">
+<param name=e[28] value="G1;point;cutoff;G,W1,A,A1;0;lightGray">
+<param name=e[29] value="G2;point;cutoff;G1,W1,A,A1;0">
+<param name=e[30] value="GG2;line;connect;G,G2;0;0;blue">
+<param name=e[31] value="L;point;lineSlider;X0,X1,30,60">
+<param name=e[32] value="L1;point;cutoff;L,X1,B,B1;0;lightGray">
+<param name=e[33] value="L2;point;cutoff;L1,X1,B,B1;0;lightGray">
+<param name=e[34] value="L3;point;cutoff;L2,X1,B,B1;0">
+<param name=e[35] value="LL3;line;connect;L,L3;0;0;blue">
+
+<param name=e[36] value="H;point;lineSlider;W0,W1,200,30">
+<param name=e[37] value="H1;point;cutoff;H,W1,C,C1;0;lightGray">
+<param name=e[38] value="H2;point;cutoff;H1,W1,C,C1;0">
+<param name=e[39] value="HH2;line;connect;H,H2;0;0;blue">
+<param name=e[40] value="M;point;lineSlider;X0,X1,200,60">
+<param name=e[41] value="M1;point;cutoff;M,X1,D,D1;0;lightGray">
+<param name=e[42] value="M2;point;cutoff;M1,X1,D,D1;0;lightGray">
+<param name=e[43] value="M3;point;cutoff;M2,X1,D,D1;0">
+<param name=e[44] value="MM3;line;connect;M,M3;0;0;blue">
+
+<param name=e[45] value="K;point;lineSlider;W0,W1,370,30">
+<param name=e[46] value="K1;point;cutoff;K,W1,E,E1;0;lightGray">
+<param name=e[47] value="K2;point;cutoff;K1,W1,E,E1;0">
+<param name=e[48] value="KK2;line;connect;K,K2;0;0;blue">
+<param name=e[49] value="N;point;lineSlider;X0,X1,370,60">
+<param name=e[50] value="N1;point;cutoff;N,X1,F,F1;0;lightGray">
+<param name=e[51] value="N2;point;cutoff;N1,X1,F,F1;0;lightGray">
+<param name=e[52] value="N3;point;cutoff;N2,X1,F,F1;0">
+<param name=e[53] value="NN3;line;connect;N,N3;0;0;blue">
+</applet></div>
+
+<p>Take equimultiples <i>G, H,</i> and <i>K</i> of <i>A, C,</i> and <i>E,</i> and take other, arbitrary, equimultiples <i>L, M,</i> and <i>N</i> of <i>B, D,</i> and <i>F.</i>
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>Then since <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D,</i> and as <i>E</i> is to <i>F,</i> and of <i>A, C,</i> and <i>E</i> equimultiples <i>G, H,</i> and <i>K</i> have been taken, and of <i>B, D,</i> and <i>F</i> other, arbitrary, equimultiples <i>L, M,</i> and <i>N,</i> therefore, if <i>G</i> is in excess of <i>L,</i> then <i>H</i> is also in excess of <i>M,</i> and <i>K</i> of <i>N</i>; if equal, equal; and if less, less.  So that, in addition, if <i>G</i> is in excess of <i>L,</i> then the sum of <i>G, H,</i> and <i>K</i> is in excess of the sum of <i>L, M,</i> and <i>N</i>; if equal, equal; and if less, less.
+
+<div class="just"><a href=propV1.html>V.1</a></div>
+<p>Now <i>G</i> and the sum of <i>G, H,</i> and <i>K</i> are equimultiples of <i>A</i> and the sum of <i>A, C,</i> and <i>E,</i> since, if any number of magnitudes are each the same multiple the same number of other magnitudes, then the sum is that multiple of the sum.
+
+<div class="just"><a href=defV5.html>V.Def.5</a></div>
+<p>For the same reason <i>L</i> and the sum of <i>L, M,</i> and <i>N</i> are also equimultiples of <i>B</i> and the sum of <i>B, D,</i> and <i>F,</i> therefore <i>A</i> is to <i>B</i> as the sum of <i>A, C,</i> and <i>E</i> is to the sum of <i>B, D,</i> and <i>F.</i>
+
+<p>Therefore, <i>if any number of magnitudes are proportional, then one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The general form for this proposition is that if <i>x</i><sub>1</sub>&nbsp;:&nbsp;<i>y</i><sub>1</sub>&nbsp;=&nbsp;<i>x</i><sub>2</sub>&nbsp;:&nbsp;<i>y</i><sub>2</sub>&nbsp;=&nbsp;...&nbsp;=&nbsp;<i>x<sub>n</sub></i>&nbsp;:&nbsp;<i>y<sub>n</sub>,</i> then each of these ratios also equals the ratio (<i>x</i><sub>1</sub>&nbsp;+&nbsp;<i>x</i><sub>2</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>x<sub>n</sub></i>)&nbsp;:&nbsp;(<i>y</i><sub>1</sub>&nbsp;+&nbsp;<i>y</i><sub>2</sub>&nbsp;+&nbsp;...&nbsp;+&nbsp;<i>y<sub>n</sub></i>).
+
+<p>This proposition is used in <a href=propV15.html>V.15</a> and a few other propositions in books VI, X, and XII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

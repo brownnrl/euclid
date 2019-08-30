@@ -1,0 +1,73 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 9</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 9</h1>
+
+<div class="statement">If a point is taken within a circle, and more than two equal straight lines fall from the point on the circle, then the point taken is the center of the circle.</div>
+
+<p>Let <i>D</i> a point within a circle <i>ABC,</i> and from <i>D</i> let more than two equal straight lines, namely <i>DA</i> and <i>DB</i> and <i>DC,</i> fall on the circle <i>ABC.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=250>
+<img src=propIII9.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.9">
+<param name=e[1] value="A;point;free;70,190">
+<param name=e[2] value="B;point;free;70,50">
+<param name=e[3] value="C;point;free;210,90">
+<param name=e[4] value="ABC;circle;circumcircle;A,B,C">
+<param name=e[5] value="D;point;center;ABC;black;green">
+<param name=pivot value="D">
+<param name=e[6] value="ABD;polygon;triangle;A,B,D;0;0;black;random">
+<param name=e[7] value="BCD;polygon;triangle;B,C,D;0;0;black;random">
+<param name=e[8] value="E;point;midpoint;A,B">
+<param name=e[9] value="F;point;midpoint;B,C">
+<param name=e[10] value="GK;line;chord;D,E,ABC">
+<param name=e[11] value="G;point;first;GK">
+<param name=e[12] value="K;point;last;GK">
+<param name=e[13] value="HL;line;chord;D,F,ABC">
+<param name=e[14] value="H;point;first;HL">
+<param name=e[15] value="L;point;last;HL">
+</applet></div>
+
+<p>I say that the point <i>D</i> is the center of the circle <i>ABC.</i>
+
+<div class="just"><a href="../bookI/propI10.html">I.10</a></div>
+<p>Join <i>AB</i> and <i>BC,</i> and bisect them at the points <i>E</i> and <i>F.</i>  Join <i>ED</i> and <i>FD,</i> and draw them through to the points <i>G, K, H,</i> and <i>L.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>Then, since <i>AE</i> equals <i>EB,</i> and <i>ED</i> is common, the two sides <i>AE</i> and <i>ED</i> equal the two sides <i>BE</i> and <i>ED,</i> and the base <i>DA</i> equals the base <i>DB,</i> therefore the angle <i>AED</i> equals the angle <i>BED.</i>
+
+<p>Therefore the angles <i>AED</i> and <i>BED</i> are each right. Therefore <i>GK</i> cuts <i>AB</i> into two equal parts and at right angles.
+
+<div class="just"><a href="propIII1.html#cor">III.1,Cor</a></div>
+<p>And since, if in a circle a straight line cuts a straight line into two equal parts and at right angles, the center of the circle is on the cutting straight line, therefore the center of the circle is on <i>GK.</i>
+
+<p>For the same reason the center of the circle <i>ABC</i> is also on <i>HL.</i>
+
+<p>And the straight lines <i>GK</i> and <i>HL</i> have no other point common but the point <i>D,</i> therefore the point <i>D</i> is the center of the circle <i>ABC.</i>
+
+<p>Therefore <i>if a point is taken within a circle, and more than two equal straight lines fall from the point on the circle, then the point taken is the center of the circle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The statement of this proposition is already covered by the last part of Proposition <a href=propIII7.html>III.7</a> which says for a point in a circle that is not the center at most two points lie on the circumference at any distance from that point.
+
+<p>This proposition is used in <a href=propIII25.html>III.25</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

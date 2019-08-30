@@ -1,0 +1,95 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 84</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 84</h1>
+
+<div class="statement">To a straight line which produces with a medial area a medial whole only one straight line can be annexed which is incommensurable in square with the whole straight line and which with the whole straight line makes the sum of squares on them medial and twice the rectangle contained by them both medial and also incommensurable with the sum of the squares on them.</div>
+
+<div class="just"><a href=propX78.html>X.78</a></div>
+<p>Let <i>AB</i> be the straight line which produces with a medial area a medial whole, and <i>BC</i> an annex to it.  Then <i>AC</i> and <i>CB</i> are straight lines incommensurable in square which fulfill the aforesaid conditions.
+
+<p>I say that no other straight line can be annexed to <i>AB</i> which fulfills the aforesaid conditions.
+
+<div class="just"><a href=propX78.html>X.78</a></div>
+<p>If possible, let <i>BD</i> be so annexed, so that <i>AD</i> and <i>DB</i> are also straight lines incommensurable in square which make the squares on <i>AD</i> and <i>DB</i> added together medial, twice the rectangle <i>AD</i> by <i>DB</i> medial, and also the sum of the squares on <i>AD</i> and <i>DB</i> incommensurable with twice the rectangle <i>AD</i> by <i>DB</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=200 height=270>
+<img src="propX81.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.84">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="F0;point;free;-1000,75;0;0">
+<param name=e[4] value="F3;point;free;1000,75;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,105,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,135,0">
+<param name=e[8] value="D;point;lineSlider;A0,A3,160,0">
+<param name=e[9] value="AD;line;connect;A,D">
+
+<param name=e[10] value="F;point;lineSlider;F0,F3,40,0">
+<param name=e[11] value="E;point;lineSlider;F0,F3,160,0">
+<param name=e[12] value="G''';point;perpendicular;F,E;0;0">
+<param name=e[13] value="G'';point;extend;G''',F,A0,A3;0;0">
+<param name=e[14] value="G';point;proportion;F,E,A,C,A,C,F,G'';0;0">
+<param name=e[15] value="G;point;proportion;F,E,B,C,B,C,G',G''">
+<param name=e[16] value="M;point;parallelogram;E,F,G">
+<param name=e[17] value="EFGM;polygon;quadrilateral;E,F,G,M;0;0;black;random">
+<param name=e[18] value="L';point;proportion;F,E,A,C,C,B,G,F;0;0">
+<param name=e[19] value="L;point;extend;G,L',G,L'">
+<param name=e[20] value="H;point;parallelogram;M,G,L">
+<param name=e[21] value="MGLH;polygon;quadrilateral;M,G,L,H;0;0;black;random">
+<param name=e[22] value="I';point;proportion;F,E,A,D,A,D,F,G'';0;0">
+<param name=e[23] value="I;point;proportion;F,E,B,D,B,D,I',G''">
+<param name=e[24] value="N;point;parallelogram;E,F,I">
+<param name=e[25] value="MGIN;polygon;quadrilateral;M,G,I,N;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=../bookII/propII7.html>II.7</a></div>
+<p>Set out a rational straight line <i>EF</i>.  Apply <i>EG</i>, equal to the sum of the squares on <i>AC</i> and <i>CB</i>, to <i>EF</i> producing <i>EM</i> as breadth.  Apply <i>HG</i>, equal to twice the rectangle <i>AC</i> by <i>CB</i>,  to <i>EF</i> producing <i>HM</i> as breadth.  Then the remainder, the square on <i>AB</i>, equals <i>EL</i>. Therefore <i>AB</i> is the side of <i>EL</i>.
+
+<p>Again, apply <i>EI</i>, equal to the sum of the squares on <i>AD</i> and <i>DB</i>,  to <i>EF</i> producing <i>EN</i> as breadth.
+
+<div class="just"><a href=../bookII/propII7.html>II.7</a></div>
+<p>But the square on <i>AB</i> also equals <i>EL</i>, therefore the remainder, twice the rectangle <i>AD</i> by <i>DB</i>, equals <i>HI</i>.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>Now, since the sum of the squares on <i>AC</i> and <i>CB</i> is medial and equals <i>EG</i>, therefore <i>EG</i> is also medial. And it is applied to the rational straight line <i>EF</i> producing <i>EM</i> as breadth, therefore <i>EM</i> is rational and incommensurable in length with <i>EF</i>.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>Again, since twice the rectangle <i>AC</i> by <i>CB</i> is medial and equals <i>HG</i>, therefore <i>HG</i> is also medial. And it is applied to the rational straight line <i>EF</i> producing <i>HM</i> as breadth, therefore <i>HM</i> is rational and incommensurable in length with <i>EF</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>Since the sum of the squares on <i>AC</i> and <i>CB</i> is incommensurable with twice the rectangle <i>AC</i> by <i>CB</i>, therefore <i>EG</i> is also incommensurable with <i>HG</i>. Therefore <i>EM</i> is also incommensurable in length with <i>MH</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>And both are rational, therefore <i>EM</i> and <i>MH</i> are rational straight lines commensurable in square only.  Therefore <i>EH</i> is an apotome, and <i>HM</i> an annex to it.
+
+<div class="just"><a href=propX79.html>X.79</a></div>
+<p>Similarly we can prove that <i>EH</i> is again an apotome and <i>HN</i> an annex to it. Therefore to an apotome different rational straight lines are annexed which are commensurable with the wholes in square only, which was proved impossible.
+
+<p>Therefore no other straight line can be so annexed to <i>AB</i>. Therefore to <i>AB</i> only one straight line can be annexed which is incommensurable in square with the whole and which with the whole makes the squares on them added together medial, twice the rectangle contained by them medial, and also the sum of the squares on them incommensurable with twice the rectangle contained by them.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

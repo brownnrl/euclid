@@ -1,0 +1,73 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 35</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 35</h1>
+
+<div class="statement">If two numbers measure any number, then the least number measured by them also measures the same.</div>
+
+<p>Let the two numbers <i>A</i> and <i>B</i> measure any number <i>CD,</i> and let <i>E</i> be the least that they measure.
+
+<p>I say that <i>E</i> also measures <i>CD.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=140 >
+<img src=propVII35.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.35">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,35;0;0">
+<param name=e[2] value="A3;point;free;1000,35;0;0">
+<param name=e[3] value="C0;point;free;-1000,70;0;0">
+<param name=e[4] value="C3;point;free;1000,70;0;0">
+<param name=e[5] value="E0;point;free;-1000,105;0;0">
+<param name=e[6] value="E3;point;free;1000,105;0;0">
+
+<param name=e[7] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[8] value="A2;point;lineSlider;A0,A3,100,0;0">
+<param name=e[9] value="A;line;connect;A1,A2;black">
+<param name=e[10] value="B1;point;lineSlider;A0,A3,130,0;0">
+<param name=e[11] value="B2;point;lineSlider;A0,A3,210,0;0">
+<param name=e[12] value="B;line;connect;B1,B2;black">
+<param name=e[13] value="C;point;lineSlider;C0,C3,30,0">
+<param name=e[14] value="D;point;lineSlider;C0,C3,220,0">
+<param name=e[15] value="CD;line;connect;C,D">
+<param name=e[16] value="F;point;lineSlider;C0,C3,90,0">
+<param name=e[17] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[18] value="E2;point;lineSlider;E0,E3,80,0;0">
+<param name=e[19] value="E;line;connect;E1,E2;black">
+</applet></div>
+
+<p>If <i>E</i> does not measure <i>CD,</i> let <i>E,</i> measuring <i>DF,</i> leave <i>CF</i> less than itself.
+
+<p>Now, since <i>A</i> and <i>B</i> measure <i>E,</i> and <i>E</i> measures <i>DF,</i> therefore <i>A</i> and <i>B</i> also measure <i>DF.</i> But they also measure the whole <i>CD,</i> therefore they measure the remainder <i>CF</i> which is less than <i>E,</i> which is impossible.
+
+<p>Therefore <i>E</i> cannot fail to measure <i>CD.</i> Therefore it measures it.
+
+<p>Therefore, <i>if two numbers measure any number, then the least number measured by them also measures the same.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<h4>Outline of the proof</h4>
+
+Assume both <i>a</i> and <i>b</i> divide <i>c.</i>  Let <i>e</i> be their least common multiple. Suppose that <i>e</i> does not divide <i>c.</i>  Then repeatedly subtract <i>e</i> from <i>c</i> to get <i>c</i>&nbsp;=&nbsp;<i>ne</i>&nbsp;+&nbsp;<i>f,</i> where the remainder <i>f</i> is less than <i>e</i>.  Since <i>a</i> and <i>b</i> both divide <i>c</i> and <i>e,</i>
+they also divide <i>f</i> making <i>f</i> a smaller common multiple than the least common multiple <i>e,</i> a contradiction.  Thus the least common multiple also divides <i>c.</i>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next one and in <a href=../bookVIII/propVIII4.html>VIII.4</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

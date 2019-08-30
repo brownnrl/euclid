@@ -1,0 +1,132 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 111</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 111</h1>
+
+<div class="statement">The apotome is not the same with the binomial straight line.</div>
+
+<p>Let <i>AB</i> be an apotome.
+
+<p>I say that <i>AB</i> is not the same with the binomial straight line.
+
+<p>If possible, let it be so. Set out a rational straight line <i>DC</i>, and to <i>CD</i> apply the rectangle <i>CE</i> equal to the square on <i>AB</i> and producing <i>DE</i> as breadth.
+
+<div class="just"><a href=propX97.html>X.97</a></div>
+<p>Then, since <i>AB</i> is an apotome, <i>DE</i> is a first apotome.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=210>
+<img src="propX111.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.111">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="D0;point;free;40,-1000;0;0">
+<param name=e[4] value="D3;point;free;40,1000;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,50,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,160,0">
+<param name=e[7] value="AB;line;connect;A,B">
+<param name=e[8] value="D;point;lineSlider;D0,D3,0,75">
+<param name=e[9] value="C;point;lineSlider;D0,D3,0,190">
+<param name=e[10] value="E';point;perpendicular;D,C;0;0">
+<param name=e[11] value="E;point;proportion;D,C,A,B,A,B,D,E'">
+<param name=e[12] value="CE;polygon;parallelogram;E,D,C;0;0;black;random">
+<param name=e[13] value="M;point;midpoint;D,E;0;0">
+<param name=e[14] value="F;point;extend;D,E,D,M">
+<param name=e[15] value="EF;line;connect;E,F">
+<param name=e[16] value="G;point;midpoint;D,F">
+</applet></div>
+
+<div class="just"><a href=defX.III.html#1>X.Def.III.2</a></div>
+<p>Let <i>EF</i> be the annex to it.  Then <i>DF</i> and <i>FE</i> are rational straight lines commensurable in square only, the square on <i>DF</i> is greater than the square on <i>FE</i> by the square on a straight line commensurable with <i>DF</i>, and <i>DF</i> is commensurable in length with the rational straight line <i>DC</i> set out.
+
+<div class="just"><a href=propX60.html>X.60</a></div>
+<p>Again, since <i>AB</i> is binomial, therefore <i>DE</i> is a first binomial straight line.
+
+<div class="just"><a href=defX.II.html#1>X.Def.II.1</a></div>
+<p>Divide it into its terms at <i>G</i>, and let <i>DG</i> be the greater term. Then <i>DG</i> and <i>GE</i> are rational straight lines commensurable in square only, the square on <i>DG</i> is greater than the square on <i>GE</i> by the square on a straight line commensurable with <i>DG</i>, and the greater term <i>DG</i> is commensurable in length with the rational straight line <i>DC</i> set out.
+
+<div class="just"><a href=propX12.html>X.12</a>,
+<a href=propX15.html>X.15</a></div>
+<p>Therefore <i>DF</i> is also commensurable in length with <i>DG</i>. Therefore the remainder <i>GF</i> is also commensurable in length with <i>DF</i>.
+
+<div class="just"><a href=propX13.html>X.13</a></div>
+<p>But <i>DF</i> is incommensurable in length with <i>EF</i>, therefore <i>FG</i> is also incommensurable in length with <i>EF</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>Therefore <i>GF</i> and <i>FE</i> are rational straight lines commensurable in square only, therefore <i>EG</i> is an apotome.   But it is also rational: which is impossible.
+
+<p>Therefore, <i>the apotome is not the same with the binomial straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+<a name=prop></a>
+<div class="theorem">
+<h1>Remark</h1>
+
+<div class="statement">The apotome and the irrational straight lines following it are neither the same with the medial straight line nor with one another.</div>
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>For the square on a medial straight line, if applied to a rational straight line, produces as breadth a straight line rational and incommensurable in length with that to which it is applied,
+
+<div class="just"><a href=propX97.html>X.97</a></div>
+<p>while the square on an apotome, if applied to a rational straight line, produces as breadth a first apotome,
+
+<div class="just"><a href=propX98.html>X.98</a></div>
+<p>the square on a first apotome of a medial straight line, if applied to a rational straight line, produces as breadth a second apotome,
+
+<div class="just"><a href=propX99.html>X.99</a></div>
+<p>the square on a second apotome of a medial straight line, if applied to a rational straight line, produces as breadth a third apotome,
+
+<div class="just"><a href=propX100.html>X.100</a></div>
+<p>the square on a minor straight line, if applied to a rational straight line, produces as breadth a fourth apotome,
+
+<div class="just"><a href=propX101.html>X.101</a></div>
+<p>the square on the straight line which produces with a rational area a medial whole, if applied to a rational straight line, produces as breadth a fifth apotome,
+
+<div class="just"><a href=propX102.html>X.102</a></div>
+<p>and the square on the straight line which produces with a medial area a medial whole, if applied to a rational straight line, produces as breadth a sixth apotome.
+
+<p>Since the said breadths differ from the first and from one another, from the first because it is rational, and from one another since they are not the same in order, it is clear that the irrational straight lines themselves also differ from one an other.
+
+<div class="just"><a href=propX111.html>X.111</a></div>
+<p>Since the apotome has been proved not to be the same as the binomial straight line,
+
+<p>but, if applied to a rational straight line, the straight lines following the apotome produce breadths, each according to its own order, apotomes, and those following the binomial straight line themselves also, according to their order, produce the binomials as breadths, therefore those following the apotome are different, and those following the binomial straight line are different, so that there are, in order, thirteen irrational straight lines in all:
+<ul>
+Medial
+<br>Binomial
+<br>First bimedial
+<br>Second bimedial
+<br>Major
+<br>Side of a rational plus a medial area
+<br>Side of the sum of two medial areas
+<br>Apotome
+<br>First apotome of a medial straight line
+<br>Second apotome of a medial straight line
+<br>Minor
+<br>Producing with a rational area a medial whole
+<br>Producing with a medial area a medial whole
+</ul>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,323 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 23</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 23</h1>
+
+<div class="just"><a href=propXI20.html>XI.20</a>
+<br><a href=propXI21.html>XI.21</a></div>
+<div class="statement">
+To construct a solid angles out of three plane angles such that the sum of any two is greater than the remaining one: thus the sum of the three angles must be less than four right angles.</div>
+
+<p>Let the angles <i>ABC, DEF,</i> and <i>GHK</i> be the three given plane angles, and let the sum of any two of them be greater than the remaining one, and further, let the sum of all three be less than four right angles.
+
+<p>It is required to construct a solid angle out of angles equal to the angles <i>ABC, DEF,</i> and <i>GHK.</i>
+
+<div class="just"><a href=../bookI/propI3.html>I.3</a></div>
+<p>Cut off <i>AB, BC, DE, EF, GH,</i> and <i>HK</i> equal to one another, and join <i>AC, DF,</i> and <i>GK.</i>
+
+<div class="just"><a href="propXI22.html">XI.22</a></div>
+<p>It is therefore possible to construct a triangle out of straight lines equal to <i>AC, DF,</i> and <i>GK.</i>  Construct <i>LMN</i> so that <i>AC</i> equals <i>LM, DF</i> equals <i>MN,</i> and  <i>GK</i> equals <i>NL.</i>
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=600 height=270>
+<img src="propXI23a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.23">
+<param name=e[1] value="A0;point;free;-1000,170;0;0">
+<param name=e[2] value="A3;point;free;1000,170;0;0">
+<param name=e[3] value="D0;point;free;-1000,230;0;0">
+<param name=e[4] value="D3;point;free;1000,230;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,30,160">
+<param name=e[6] value="C;point;lineSlider;A0,A3,130,160">
+<param name=e[7] value="ACmid;point;midpoint;A,C;0;0">
+<param name=e[8] value="B';point;perpendicular;ACmid,A;0;0">
+<param name=e[9] value="B;point;lineSlider;ACmid,B',70,40">
+<param name=e[10] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+
+<param name=e[11] value="D;point;lineSlider;D0,D3,140,160">
+<param name=e[12] value="F;point;lineSlider;D0,D3,250,160">
+<param name=e[13] value="Dcirc;circle;radius;D,A,B;0;0;0;0">
+<param name=e[14] value="Fcirc;circle;radius;F,A,B;0;0;0;0">
+<param name=e[15] value="EE';line;bichord;Dcirc,Fcirc;0;0;0">
+<param name=e[16] value="E;point;last;EE'">
+<param name=e[17] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+
+<param name=e[18] value="G;point;lineSlider;A0,A3,260,160">
+<param name=e[19] value="K;point;lineSlider;A0,A3,375,160">
+<param name=e[20] value="Gcirc;circle;radius;G,A,B;0;0;0;0">
+<param name=e[21] value="Kcirc;circle;radius;K,A,B;0;0;0;0">
+<param name=e[22] value="HH';line;bichord;Gcirc,Kcirc;0;0;0">
+<param name=e[23] value="H;point;last;HH'">
+<param name=e[24] value="GHK;polygon;triangle;G,H,K;0;0;black;random">
+
+<param name=e[25] value="L;point;free;440,180">
+<param name=e[26] value="LMcirc;circle;radius;L,A,C;0;0;0;0">
+<param name=e[27] value="M;point;circleSlider;LMcirc,440,100">
+<param name=e[28] value="LNcirc;circle;radius;L,G,K;0;0;0;0">
+<param name=e[29] value="MNcirc;circle;radius;M,D,F;0;0;0;0">
+<param name=e[30] value="NN';line;bichord;LNcirc,MNcirc;0;0;0">
+<param name=e[31] value="N;point;first;NN'">
+<param name=e[32] value="LMNcirc;circle;circumcircle;L,M,N;0;0;black;random">
+<param name=e[33] value="LMN;polygon;triangle;L,M,N">
+<param name=e[34] value="O;point;center;LMNcirc">
+<param name=e[35] value="OL;line;connect;O,L">
+<param name=e[36] value="OM;line;connect;O,M">
+<param name=e[37] value="ON;line;connect;O,N">
+
+<param name=e[38] value="P';point;midpoint;O,L;0;0">
+<param name=e[39] value="P;point;midpoint;P',L">
+<param name=e[40] value="Q;point;cutoff;O,M,O,P">
+<param name=e[41] value="PQ;line;connect;P,Q">
+</applet></center>
+
+<div class="just"><a href="../bookIV/propIV5.html">IV.5</a>,
+<a href="../bookIII/propIII1.html">III.1</a></div>
+<p>Describe the circle <i>LMN</i> about the triangle <i>LMN,</i> and take its center <i>O.</i>  Join <i>LO, MO,</i> and <i>NO.</i>
+
+<p>I say that <i>AB</i> is greater than <i>LO.</i>
+
+<p>For, if not, <i>AB</i> either equals <i>LO,</i> or is less.
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>First, let it be equal. Then, since <i>AB</i> equals <i>LO,</i> while <i>AB</i> equals <i>BC,</i> and <i>LO</i> equals <i>OM,</i> therefore the two sides <i>AB</i> and <i>BC</i> equal the two sides <i>LO</i> and <i>OM</i> respectively.  And, by hypothesis, the base <i>AC</i> equals the base <i>LM,</i> therefore the angle <i>ABC</i> equals the angle <i>LOM.</i>
+
+<p>For the same reason the angle <i>DEF</i> also equals the angle <i>MON,</i> and the angle <i>GHK</i> equals the angle <i>NOL.</i>  Therefore the sum of the three angles <i>ABC, DEF,</i> and <i>GHK</i> equals the sum of the three angles <i>LOM, MON,</i> and <i>NOL.</i>
+
+<p>But the sum of the three angles <i>LOM, MON,</i> and <i>NOL</i> equals four right angles, therefore the sum of the three angles <i>ABC, DEF,</i> and <i>GHK</i> equals four right angles.
+
+<p>But the sum is also, by hypothesis, less than four right angles, which is absurd.  Therefore <i>AB</i> is not equal to <i>LO.</i>
+
+<p>I say next that neither is <i>AB</i> less than <i>LO.</i> 
+
+<p>For, if possible, let it be so.  Make <i>OP</i> equal to <i>AB,</i> and <i>OQ</i> equal to <i>BC,</i> and join <i>PQ.</i> 
+<div class="just"><a href=../bookI/propI3.html>I.3</a></div>
+
+<p>Then, since <i>AB</i> equals <i>BC,</i> therefore <i>OP</i> also equals <i>OQ,</i> so that the remainder <i>LP</i> equals <i>QM.</i>
+
+<div class="just"><a href="../bookVI/propVI2.html">VI.2</a>,
+<a href="../bookI/propI29.html">I.29</a></div>
+<p>Therefore <i>LM</i> is parallel to <i>PQ,</i>  and <i>LMO</i> is equiangular with <i>PQO.</i>
+
+<div class="just"><a href="../bookVI/propVI4.html">VI.4</a>,
+<a href="../bookV/propV16.html">V.16</a></div>
+<p>Therefore, <i>OL</i> is to <i>LM</i> as <i>OP</i> is to <i>PQ,</i> and alternately, <i>LO</i> is to <i>OP</i> as <i>LM</i> is to <i>PQ.</i>
+
+<p>But <i>LO</i> is greater than <i>OP,</i> therefore <i>LM</i> is greater than <i>PQ.</i>  And <i>LM</i> equals <i>AC,</i> therefore <i>AC</i> is greater than <i>PQ.</i>
+
+<p>Since, then, the two sides <i>AB</i> and <i>BC</i> equal the two sides <i>PO</i> and <i>OQ,</i> and the base <i>AC</i> is greater than the base <i>PQ,</i> therefore the angle <i>ABC</i> is greater than the angle <i>POQ.</i>
+<div class="just"><a href="../bookI/propI25.html">I.25</a></div>
+
+<p>Similarly we can prove that the angle <i>DEF</i> is also greater than the angle <i>MON,</i> and the angle <i>GHK</i> is greater than the angle <i>NOL.</i>
+
+<p>Therefore the sum of the three angles <i>ABC, DEF,</i> and <i>GHK</i> is greater than the sum of the three angles <i>LOM, MON,</i> and <i>NOL.</i>   But, by hypothesis, the sum of the angles <i>ABC, DEF,</i> and <i>GHK</i> is less than four right angles, therefore the sum of the angles <i>LOM, MON,</i> and <i>NOL</i> is much less than four right angles. But the sum also equals four right angles, which is absurd.  Therefore <i>AB</i> is not less than <i>LO.</i>
+
+<p>And it was proved that neither is it equal, therefore <i>AB</i> is greater than <i>LO.</i>
+
+<div class="just"><a href="propXI12.html">XI.12</a>
+<br><a href="#lemma">Lemma</a> below</div>
+<p>Next set up <i>OR</i> from the point <i>O</i> at right angles to the plane of the circle <i>LMN</i> so that the square on <i>OR</i> equals the square on <i>AB</i> minus the square on <i>LO.</i>   Join <i>RL, RM,</i> and <i>RN.</i>
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=600 height=270 >
+<img src="propXI23b.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.23">
+<param name=e[1] value="A0;point;free;-1000,170;0;0">
+<param name=e[2] value="A3;point;free;1000,170;0;0">
+<param name=e[3] value="D0;point;free;-1000,230;0;0">
+<param name=e[4] value="D3;point;free;1000,230;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,40,160">
+<param name=e[6] value="C;point;lineSlider;A0,A3,120,160">
+<param name=e[7] value="ACmid;point;midpoint;A,C;0;0">
+<param name=e[8] value="B';point;perpendicular;ACmid,A;0;0">
+<param name=e[9] value="B;point;lineSlider;ACmid,B',70,40">
+<param name=e[10] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+
+<param name=e[11] value="D;point;lineSlider;D0,D3,140,160">
+<param name=e[12] value="F;point;lineSlider;D0,D3,240,160">
+<param name=e[13] value="Dcirc;circle;radius;D,A,B;0;0;0;0">
+<param name=e[14] value="Fcirc;circle;radius;F,A,B;0;0;0;0">
+<param name=e[15] value="EE';line;bichord;Dcirc,Fcirc;0;0;0">
+<param name=e[16] value="E;point;last;EE'">
+<param name=e[17] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+
+<param name=e[18] value="G;point;lineSlider;A0,A3,265,160">
+<param name=e[19] value="K;point;lineSlider;A0,A3,380,160">
+<param name=e[20] value="Gcirc;circle;radius;G,A,B;0;0;0;0">
+<param name=e[21] value="Kcirc;circle;radius;K,A,B;0;0;0;0">
+<param name=e[22] value="HH';line;bichord;Gcirc,Kcirc;0;0;0">
+<param name=e[23] value="H;point;last;HH'">
+<param name=e[24] value="GHK;polygon;triangle;G,H,K;0;0;black;random">
+
+<param name=e[25] value="Acirc;circle;radius;A,D,F;0;0;0;0">
+<param name=e[26] value="Ccirc;circle;radius;C,G,K;0;0;0;0">
+<param name=e[27] value="aa';line;bichord;Acirc,Ccirc;0;0;0;0">
+<param name=e[28] value="a;point;first;aa';0;0">
+<param name=e[29] value="b;point;circumcenter;A,C,a;0;0">
+
+<param name=e[30] value="O;point;free;490,200">
+<param name=e[31] value="z;point;fixed;490,0,70;0;0">
+<param name=e[32] value="xyplane;plane;perpendicular;O,z;0;0;0;0">
+<param name=e[33] value="LMNcirc;circle;radius;O,A,b,xyplane;0;0;black;random">
+<param name=e[34] value="L;point;circleSlider;LMNcirc,370,200,0">
+<param name=e[35] value="LMcirc;circle;radius;L,A,C,xyplane;0;0;0;0">
+<param name=e[36] value="MM';line;bichord;LMNcirc,LMcirc;0;0;0">
+<param name=e[37] value="M;point;first;MM'">
+<param name=e[38] value="LNcirc;circle;radius;L,G,K,xyplane;0;0;0;0">
+<param name=e[39] value="NN';line;bichord;LNcirc,LMNcirc;0;0;0">
+<param name=e[40] value="N;point;first;NN'">
+<param name=e[41] value="LMN;polygon;triangle;L,M,N">
+<param name=e[42] value="OL;line;connect;O,L">
+<param name=e[43] value="OM;line;connect;O,M">
+<param name=e[44] value="ON;line;connect;O,N">
+
+<param name=e[45] value="c;point;midpoint;A,B;0;0">
+<param name=e[46] value="ccirc;circle;radius;c,A;0;0;0;0">
+<param name=e[47] value="ALOcirc;circle;radius;A,L,O;0;0;0;0">
+<param name=e[48] value="dd';line;bichord;ccirc,ALOcirc;0;0;0">
+<param name=e[49] value="d;point;first;dd';0;0">
+<param name=e[50] value="R;point;perpendicular;xyplane,O,d,B">
+<param name=e[51] value="OR;line;connect;O,R">
+<param name=e[52] value="pyr;polyhedron;pyramid;R,LMN;0;0;black;random">
+</applet></center>
+
+<div class="just"><a href="defXI3.html">XI.Def.3</a>
+<br><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since <i>RO</i> is at right angles to the plane of the circle <i>LMN,</i> therefore <i>RO</i> is also at right angles to each of the straight lines <i>LO, MO,</i> and <i>NO.</i> And, since <i>LO</i> equals <i>OM,</i> and <i>OR</i> is common and at right angles, therefore the base <i>RL</i> equals the base <i>RM.</i>
+
+<p>For the same reason <i>RN</i> also equals each of the straight lines <i>RL</i> and <i>RM.</i>  Therefore the three straight lines <i>RL, RM,</i> and <i>RN</i> equal one another.
+
+<p>Next, since by hypothesis the square on <i>OR</i> equals equals the square on <i>AB</i> minus the square on <i>LO,</i> therefore the square on <i>AB</i> equals the sum of the squares on <i>LO</i> and <i>OR.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>But the square on <i>LR</i> equals the sum of the squares on <i>LO</i> and <i>OR,</i> for the angle <i>LOR</i> is right,  therefore the square on <i>AB</i> equals the square on <i>RL.</i>  Therefore <i>AB</i> equals <i>RL.</i>
+
+<p>But each of the straight lines <i>BC, DE, EF, GH,</i> and <i>HK</i> equals <i>AB,</i> while each of the straight lines <i>RM</i> and <i>RN</i> equals <i>RL,</i> therefore each of the straight lines <i>AB, BC, DE, EF, GH,</i> and <i>HK</i> equals each of the straight lines <i>RL, RM,</i> and <i>RN.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>Since the two sides <i>LR</i> and <i>RM</i> equal the two sides <i>AB</i> and <i>BC,</i> and, by hypothesis, the base <i>LM</i> equals the base <i>AC,</i> therefore the angle <i>LRM</i> equals the angle <i>ABC.</i>  For the same reason the angle <i>MRN</i> equals the angle <i>DEF,</i> and the angle <i>LRN</i> equals the angle <i>GHK.</i>
+
+<p>Therefore, out of the three plane angles <i>LRM, MRN,</i> and <i>LRN,</i> which equal the three given angles <i>ABC, DEF,</i> and <i>GHK,</i> the solid angle at <i>R</i> has been constructed, which is contained by the angles <i>LRM, MRN,</i> and <i>LRN.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<br>
+
+<a name=lemma></a>
+<div class="theorem">
+<h1>Lemma</h1>
+
+<p>But how it is possible to take the square on <i>OR</i> equal to the square on <i>AB</i> minus the square on <i>LO</i> we can show as follows.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=220 height=180 >
+<img src="propXI23l.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.23, Lemma">
+<param name=e[1] value="A;point;free;40,140">
+<param name=e[2] value="B;point;free;180,140">
+<param name=e[3] value="O;point;midpoint;A,B;0;0">
+<param name=e[4] value="circ;circle;radius;O,A;0;0;0;0">
+<param name=e[5] value="C;point;circleSlider;circ,80,40">
+<param name=e[6] value="semi;sector;arc;B,C,A;0;0;black;random">
+<param name=e[7] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+</applet></div>
+
+<p>Set out the straight lines <i>AB</i> and <i>LO,</i> and let <i>AB</i> be the greater.  Describe the semicircle <i>ABC</i> on <i>AB.</i> Fit <i>AC</i> into the semicircle <i>ABC</i> equal to the straight line <i>LO,</i> not being greater than the diameter <i>AB.</i>  Join <i>CB.</i>
+<div class="just"><a href="../bookIV/propIV1.html">IV.1</a></div>
+
+<p>Since the angle <i>ACB</i> is an angle in the semicircle <i>ACB,</i> therefore the angle <i>ACB</i> is right.
+<div class="just"><a href="../bookIII/propIII31.html">III.31</a></div>            
+
+<p>Therefore the square on <i>AB</i> equals the sum of the squares on <i>AC</i> and <i>CB.</i>
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+
+<p>Hence the square on <i>AB</i> equals the square on <i>AC</i> minus the square on <i>CB.</i>  But <i>AC</i> equals <i>LO.</i>   Therefore the square on <i>AB</i> equals the square on <i>LO</i> minus the square on <i>CB.</i>  Therefore if we cut off <i>OR</i> equal to <i>BC,</i> then the square on <i>AB</i> will equal the square on <i>LO</i> minus the square on <i>OR.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition shows that the necessary conditions for constructing a solid angle found in <a href=propXI20.html>XI.20</a> (the sum any two angles must be less than the third) and <a href=propXI21.html>XI.21</a> (the sum of the three angles must be less than four right angles) are, in fact, sufficient. It is interesting to see how parts of the construction disappear as the angles <i>B, E,</i> and <i>H</i> grow so that these conditions fail.
+
+<p>This proposition completes the introductory portion of Book XI.  Most of the remainder deals with parallelepipedal solids and their properties.
+
+<h4>About the proof</h4>
+
+This is a rather long proof that has several stages.  First, the base <i>LMN</i> for the proposed solid angle is constructed.  This first stage has been set off as the previous proposition 
+<a href="propXI24.html">XI.24</a>.  
+
+<p>After the circumcircle for this base is constructed, it is shown that the proposed edges for the solid angle, which are all equal, are greater than the radius of the circle.  That part of the demonstration takes some time, and it is separated into two parts to show, first, that the edges can&rsquo;t equal the radius, and, second, that the edges can&rsquo;t be less than the radius.
+
+<p>The next stage is to place the proposed vertex <i>R</i> for the solid angle.  It is placed above the center <i>O</i> of the circumcircle so that <i>OR</i><sup>2</sup> is the difference of the square of the edge and the square of the radius.  A separate lemma appears after the proposition to construct a line of this particular length. This lemma is the same as the <a href=../bookX/propX14.html#lemma>lemma</a> for proposition X.14 in Book X.
+
+<p>The remainder of the proof is the verification that the proposed solid angle satisfies the requirements of the construction.
+
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=600 height=260>
+<img src="propXI23d.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.23">
+<param name=e[1] value="A0;point;free;-1000,170;0;0">
+<param name=e[2] value="A3;point;free;1000,170;0;0">
+<param name=e[3] value="D0;point;free;-1000,230;0;0">
+<param name=e[4] value="D3;point;free;1000,230;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,40,160">
+<param name=e[6] value="C;point;lineSlider;A0,A3,110,160">
+<param name=e[7] value="ACmid;point;midpoint;A,C;0;0">
+<param name=e[8] value="B';point;perpendicular;ACmid,A;0;0">
+<param name=e[9] value="B;point;lineSlider;ACmid,B',70,40">
+<param name=e[10] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+
+<param name=e[11] value="D;point;lineSlider;D0,D3,110,160">
+<param name=e[12] value="F;point;lineSlider;D0,D3,245,160">
+<param name=e[13] value="Dcirc;circle;radius;D,A,B;0;0;0;0">
+<param name=e[14] value="Fcirc;circle;radius;F,A,B;0;0;0;0">
+<param name=e[15] value="EE';line;bichord;Dcirc,Fcirc;0;0;0">
+<param name=e[16] value="E;point;last;EE'">
+<param name=e[17] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+
+<param name=e[18] value="G;point;lineSlider;A0,A3,260,160">
+<param name=e[19] value="K;point;lineSlider;A0,A3,355,160">
+<param name=e[20] value="Gcirc;circle;radius;G,A,B;0;0;0;0">
+<param name=e[21] value="Kcirc;circle;radius;K,A,B;0;0;0;0">
+<param name=e[22] value="HH';line;bichord;Gcirc,Kcirc;0;0;0">
+<param name=e[23] value="H;point;last;HH'">
+<param name=e[24] value="GHK;polygon;triangle;G,H,K;0;0;black;random">
+
+<param name=e[25] value="L;point;free;540,160">
+<param name=e[26] value="LMcirc;circle;radius;L,A,C;0;0;0;0">
+<param name=e[27] value="M;point;circleSlider;LMcirc,460,220">
+<param name=e[28] value="LNcirc;circle;radius;L,G,K;0;0;0;0">
+<param name=e[29] value="MNcirc;circle;radius;M,D,F;0;0;0;0">
+<param name=e[30] value="NN';line;bichord;LNcirc,MNcirc;0;0;0">
+<param name=e[31] value="N;point;first;NN'">
+<param name=e[32] value="LMNcirc;circle;circumcircle;L,M,N;0;0;black;random">
+<param name=e[33] value="LMN;polygon;triangle;L,M,N">
+<param name=e[34] value="O;point;center;LMNcirc">
+<param name=e[35] value="OL;line;connect;O,L">
+<param name=e[36] value="OM;line;connect;O,M">
+<param name=e[37] value="ON;line;connect;O,N">
+</applet></center>
+
+<p>The proof only covers the case when the circumcenter <i>O</i> of the triangle <i>LMN</i> lies within that triangle.  Two other cases need to be considered as well&#151;when <i>O</i> lies outside the triangle and when <i>O</i> lies on the boundary of the triangle.  The three different cases need only be considered in the stage which shows that the proposed edges are greater than the radius of the circumcircle; the proof doesn&rsquo;t have to be split into three cases for the other stages of the proof.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

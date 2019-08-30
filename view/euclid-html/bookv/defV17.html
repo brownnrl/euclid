@@ -1,0 +1,105 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book V, Definitions 17 and 18</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 17</h1>
+
+<div class="statement">A ratio <i>ex aequali</i> arises when, there being several magnitudes and another set equal to them in multitude which taken two and two are in the same proportion, the first is to the last among the first magnitudes as the first is to the last among the second magnitudes.  Or, in other words, it means taking the extreme terms by virtue of the removal of the intermediate terms.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 18</h1>
+
+<div class="statement">A <i>perturbed proportion</i> arises when, there being three magnitudes and another set equal to them in multitude,  antecedent is to consequent among the first magnitudes as antecedent is to consequent among the second magnitudes, while, the consequent is to a third among the first magnitudes as a third is to the antecedent among the second magnitudes.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<center><table cellspacing=5>
+<tr><td>
+If <i>A</i>&nbsp;:&nbsp;<i>B</i>&nbsp;=&nbsp;<i>D</i>&nbsp;:&nbsp;<i>E,</i> and <i>B</i>&nbsp;:&nbsp;<i>C</i>&nbsp;=&nbsp;<i>E</i>&nbsp;:&nbsp;<i>F,</i> then as shown in proposition <a href=propV22.html>V.22</a>, <i>ex aequali, A</i>&nbsp;:&nbsp;<i>C</i>&nbsp;=&nbsp;<i>D</i>&nbsp;:&nbsp;<i>F.</i>
+<p>
+In Book VII ratios of three terms are used in proposition <a href=../bookVII/propVII33.html>VI.33</a>.  In that proposition, a certain proportion <i>A</i>&nbsp;:&nbsp;<i>B</i>&nbsp;:&nbsp;<i>C</i>&nbsp;=&nbsp;<i>E</i>&nbsp;:&nbsp;<i>F</i>&nbsp;:&nbsp;<i>G</i> is shown.  This multiterm proportion may be interpreted as an abbreviation for two proportions  <i>A</i>&nbsp;:&nbsp;<i>B</i>&nbsp;=&nbsp;<i>E</i>&nbsp;:&nbsp;<i>F</i> and <i>B</i>&nbsp;:&nbsp;<i>C</i>&nbsp;=&nbsp;<i>F</i>&nbsp;:&nbsp;<i>G.</i>  Then it follows <i>ex aequali</i> that <i>A</i>&nbsp;:&nbsp;<i>C</i>&nbsp;=&nbsp;<i>E</i>&nbsp;:&nbsp;<i>G.</i>
+</td>
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  width=380 height=130>
+<img src=defV17.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.Def.17">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,65;0;0">
+<param name=e[4] value="V1;point;free;1000,65;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+
+<param name=e[7] value="A0;point;lineSlider;U0,U1,30,30;0">
+<param name=e[8] value="A1;point;lineSlider;U0,U1,130,30;0">
+<param name=e[9] value="A;line;connect;A0,A1;black;0;30,100,80">
+<param name=e[10] value="B0;point;lineSlider;V0,V1,30,65;0">
+<param name=e[11] value="B1;point;lineSlider;V0,V1,80,65;0">
+<param name=e[12] value="B;line;connect;B0,B1;black;0;30,100,80">
+<param name=e[13] value="C0;point;lineSlider;W0,W1,30,100;0">
+<param name=e[14] value="C1;point;lineSlider;W0,W1,120,100;0">
+<param name=e[15] value="C;line;connect;C0,C1;black;0;30,100,80">
+
+<param name=e[16] value="D0;point;lineSlider;U0,U1,200,30;0">
+<param name=e[17] value="D1;point;lineSlider;U0,U1,340,30;0">
+<param name=e[18] value="D;line;connect;D0,D1;black;0;blue">
+<param name=e[19] value="E0;point;lineSlider;V0,V1,200,65;0">
+<param name=e[20] value="E1;point;proportion;A0,A1,B0,B1,D0,D1,E0,V1;0">
+<param name=e[21] value="E;line;connect;E0,E1;black;0;blue">
+<param name=e[22] value="F0;point;lineSlider;W0,W1,200,100;0">
+<param name=e[23] value="F1;point;proportion;B0,B1,C0,C1,E0,E1,F0,W1;0">
+<param name=e[24] value="F;line;connect;F0,F1;black;0;blue">
+</applet></td></tr>
+
+<tr><td>However, if <i>G</i>&nbsp;:&nbsp;<i>H</i>&nbsp;=&nbsp;<i>M</i>&nbsp;:&nbsp;<i>N,</i> and <i>H</i>&nbsp;:&nbsp;<i>K</i>&nbsp;=&nbsp;<i>L</i>&nbsp;:&nbsp;<i>M,</i> then a perturbed proportion holds as shown in proposition <a href=propV23.html>V.23</a>, namely, <i>G</i>&nbsp;:&nbsp;<i>K</i>&nbsp;=&nbsp;<i>L</i>&nbsp;:&nbsp;<i>N.</i>
+</td>
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  width=380 height=130>
+<img src=defV18.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="V.Def.18">
+<param name=align value=above>
+<param name=e[1] value="U0;point;free;-1000,30;0;0">
+<param name=e[2] value="U1;point;free;1000,30;0;0">
+<param name=e[3] value="V0;point;free;-1000,65;0;0">
+<param name=e[4] value="V1;point;free;1000,65;0;0">
+<param name=e[5] value="W0;point;free;-1000,100;0;0">
+<param name=e[6] value="W1;point;free;1000,100;0;0">
+
+<param name=e[7] value="G0;point;lineSlider;U0,U1,30,30;0">
+<param name=e[8] value="G1;point;lineSlider;U0,U1,140,30;0">
+<param name=e[9] value="G;line;connect;G0,G1;black;0;green">
+<param name=e[10] value="H0;point;lineSlider;V0,V1,30,65;0">
+<param name=e[11] value="H1;point;lineSlider;V0,V1,80,65;0">
+<param name=e[12] value="H;line;connect;H0,H1;black;0;green">
+<param name=e[13] value="K0;point;lineSlider;W0,W1,30,100;0">
+<param name=e[14] value="K1;point;lineSlider;W0,W1,120,100;0">
+<param name=e[15] value="K;line;connect;K0,K1;black;0;green">
+
+<param name=e[16] value="L0;point;lineSlider;U0,U1,200,30;0">
+<param name=e[17] value="L1;point;lineSlider;U0,U1,280,30;0">
+<param name=e[18] value="L;line;connect;L0,L1;black;0;red">
+<param name=e[19] value="M0;point;lineSlider;V0,V1,200,65;0">
+<param name=e[20] value="M1;point;proportion;H0,H1,K0,K1,L0,L1,M0,V1;0">
+<param name=e[21] value="M;line;connect;M0,M1;black;0;red">
+<param name=e[22] value="N0;point;lineSlider;W0,W1,200,100;0">
+<param name=e[23] value="N1;point;proportion;G0,G1,H0,H1,M0,M1,N0,W1;0">
+<param name=e[24] value="N;line;connect;N0,N1;black;0;red">
+</applet></td></tr>
+</table></center>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

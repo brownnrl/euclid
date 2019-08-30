@@ -1,0 +1,170 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 47</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 47</h1>
+
+<div class="statement">In right-angled triangles the square on the side opposite the right angle equals the sum of the squares on the sides containing the right angle.</div>
+
+<p>Let <i>ABC</i> be a right-angled triangle having the angle <i>BAC</i> right.
+<p>I say that the square on <i>BC</i> equals the sum of the squares on <i>BA</i> and <i>AC.</i>
+
+<div class="just"><a href="propI46.html">I.46</a>
+<br><a href="propI31.html">I.31</a>, <a href=post1.html>I.Post.1</a></div>
+<p>Describe the square <i>BDEC</i> on <i>BC,</i> and the squares <i>GB</i> and <i>HC</i> on <i>BA</i> and <i>AC.</i>  Draw <i>AL</i> through <i>A</i> parallel to either <i>BD</i> or <i>CE,</i> and join <i>AD</i> and <i>FC.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=380 width=320>
+<img src="propI47.gif">
+<param name=background value="35,19,100">
+<param name=title value="I.47">
+<param name=e[1] value="B;point;free;100,200">
+<param name=e[2] value="C;point;free;230,200">
+<param name=e[3] value="O;point;midpoint;B,C;none;none">
+<param name=e[4] value="OABC;circle;radius;O,B;none;none;none;none">
+<param name=e[5] value="A;point;circleSlider;OABC,140,100">
+<param name=e[6] value="ABC;polygon;triangle;A,B,C;none;none;black;random">
+<param name=e[7] value="A2;polygon;square;C,B;none;none;black">
+<param name=e[8] value="B2;polygon;square;B,A;none;none;black">
+<param name=e[9] value="C2;polygon;square;A,C;none;none;black">
+<param name=e[10] value="G;point;vertex;B2,3">
+<param name=e[11] value="F;point;vertex;B2,4">
+<param name=e[12] value="K;point;vertex;C2,3">
+<param name=e[13] value="H;point;vertex;C2,4">
+<param name=e[14] value="D;point;vertex;A2,3">
+<param name=e[15] value="E;point;vertex;A2,4">
+<param name=e[16] value="AL;line;foot;A,D,E">
+<param name=e[17] value="L;point;last;AL">
+<param name=e[18] value="J;point;intersection;B,C,A,L;0;green">
+<param name=pivot value="J">
+<param name=e[19] value="AD;line;connect;A,D">
+<param name=e[20] value="CF;line;connect;C,F">
+<param name=e[21] value="BK;line;connect;B,K">
+<param name=e[22] value="AE;line;connect;A,E">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI47.gif" hspace=10 vspace=10 alt="I.47">';
+</script>
+</div>
+
+<div class="just"><a href=defI22.html>I.Def.22</a>
+<br><a href="propI14.html">I.14</a></div>
+<p>Since each of the angles <i>BAC</i> and <i>BAG</i> is right, it follows that with a straight line <i>BA,</i> and at the point <i>A</i> on it, the two straight lines <i>AC</i> and <i>AG</i> not lying on the same side make the adjacent angles equal to two right angles, therefore <i>CA</i> is in a straight line with <i>AG.</i>
+
+<p>For the same reason <i>BA</i> is also in a straight line with <i>AH.</i>
+
+<div class="just"><a href=defI22.html>I.Def.22</a>
+<br><a href=post4.html>I.Post.4</a>
+<br><a href=cn.html>C.N.2</a></div>
+<p>Since the angle <i>DBC</i> equals the angle <i>FBA,</i> for each is right, add the angle <i>ABC</i>  to each, therefore the whole angle <i>DBA</i> equals the whole angle <i>FBC.</i>
+
+<div class="just"><a href=defI22.html>I.Def.22</a>
+<br><a href="propI4.html">I.4</a></div>
+<p>Since <i>DB</i> equals <i>BC,</i> and <i>FB</i> equals <i>BA,</i> the two sides <i>AB</i> and <i>BD</i> equal the two sides <i>FB</i> and <i>BC</i> respectively, and the angle <i>ABD</i> equals the angle <i>FBC,</i> therefore the base <i>AD</i> equals the base <i>FC,</i> and the triangle <i>ABD</i> equals the triangle <i>FBC.</i>
+
+<p>Now the parallelogram <i>BL</i> is double the triangle <i>ABD,</i> for they have the same base <i>BD</i> and are in the same parallels <i>BD</i> and <i>AL.</i>  And the square <i>GB</i> is double the triangle <i>FBC,</i> for they again have the same base <i>FB</i> and are in the same parallels <i>FB</i> and <i>GC.</i>
+<div class="just"><a href="propI41.html">I.41</a></div>
+
+<p>Therefore the parallelogram <i>BL</i> also equals the square <i>GB.</i>
+
+<p>Similarly, if <i>AE</i> and <i>BK</i> are joined, the parallelogram <i>CL</i> can also be proved equal to the square <i>HC.</i>  Therefore the whole square <i>BDEC</i> equals the sum of the two squares <i>GB</i> and <i>HC.</i>
+<div class="just"><a href=cn.html>C.N.2</a></div>
+
+<p>And the square <i>BDEC</i> is described on <i>BC,</i> and the squares <i>GB</i> and <i>HC</i> on <i>BA</i> and <i>AC.</i>
+<p>Therefore the square on <i>BC</i> equals the sum of the squares on <i>BA</i> and <i>AC.</i>
+
+<p>Therefore <i>in right-angled triangles the square on the side opposite the right angle equals the sum of the squares on the sides containing the right angle..</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is generalized in <a href=../bookVI/propVI31.html>VI.31</a> to arbitrary similar figures placed on the sides of the triangle <i>ABC.</i>  If the rectilinear figures on the sides of the triangle are similar, then the figure on the hypotenuse is the sum of the other two figures.
+
+<h4>A bit of history</h4>
+This proposition, I.47, is often called the Pythagorean theorem, called so by Proclus and others centuries after Pythagoras and even centuries after Euclid.  The statement of the proposition was very likely known to the Pythagoreans if not to Pythagoras himself.  The Pythagoreans and perhaps Pythagoras even knew a proof of it.  But the knowledge of this relation was far older than Pythagoras.
+
+<p>More than a millennium before Pythagoras, the Old Babylonians (ca. 1900-1600 B.C.E) used this relation to solve geometric problems involving right triangles.  Moreover, the tablet known as Plimpton 322 shows that the Old Babylonians could construct all the so-called Pythagorean triples, those triples of numbers <i>a, b,</i> and <i>c</i> such that <i>a</i><sup>2</sup>&nbsp;+&nbsp;<i>b</i><sup>2</sup>&nbsp;=&nbsp;<i>c</i><sup>2</sup> which describe triangles with integral sides. (The smallest of these is 3, 4, 5.)  For more on Pythagorean triples, see 
+<a href="../bookX/propX29.html#guide">X.29.Lemma 1</a>.
+
+<h4>The hypotenuse diagram in the <i>Zhou bi suan jing</i></h4>
+
+The rule for computing the hypotenuse of a right triangle was well known in ancient China.  It is used in the <i>Zhou bi suan jing,</i> a work on astronomy and mathematics compiled during the Han period, and in the later important mathematical work <i>Jiu zhang suan shu</i> [<i>Nine Chapters</i>] to solve right triangles.
+
+<p>The <i>Zhou bi</i> includes a very interesting diagram known as the hypotenuse diagram.
+<img src="propI47a.gif" alt="xian tu" align=right hspace=10 vspace=10>
+This diagram may not have been in the original text but added by its primary commentator Zhao Shuang sometime in the third century C.E. A particular case of this proposition is illustrated by this diagram, namely, the 3-4-5 right triangle.
+
+<p>Place four 3 by 4 rectangles around a 1 by 1 square. A 7 by 7 square results.  The four diagonals of the rectangles bound a tilted square as illustrated.  The area of tilted square is  49 minus 4 times 6 (the 6 is the area of one right triangle with legs 3 and 4), which is 25.  Therefore the tilted square is 5 by 5, and the diagonal of the original 3 by 4 rectangles is 5.
+
+<p>Zhao Shuang referred to the hypotenuse figure in a general way.  He described all the ways the sides, the hypotenuse, and their squares can be found in terms of each other.
+
+<p>The <i>Zhou bi</i> has recently been translated into English with an excellent commentary.  See <i>Astronomy and mathematics in ancient China: the</i> Zhou bi suan jing, by Christopher Cullin, Cambridge University Press, 1996.
+<br clear=all>
+
+<h4>Alternate methods of proof</h4>
+According to Proclus, the specific proof of this proposition given in the <i>Elements</i> is Euclid&rsquo;s own.  It is likely that older proofs depended on the theories of proportion and similarity, and as such this proposition would have to wait until after Books V and VI where those theories are developed.  It appears that Euclid devised this proof so that the proposition could be placed in Book I.
+
+<p>Euclid presents a proof based on proportion and similarity in the <a href=../bookX/propX33.html#lemma>lemma</a> for proposition X.33.  Compare it, summarized here, to the proof in I.47.  
+
+<p><table cellpadding=5>
+<tr><td>Let <i>ABC</i> be a right-angled triangle with a right angle at <i>A.</i>  Draw <i>AM</i> perpendicular to <i>BC.</i>
+
+<p>According to <a href=../bookVI/propVI8.html>VI.8</a>,
+the triangles <i>ABM</i> and <i>AMC</i> are similar both to the whole <i>ABC</i> and to one another.  (VI.8 concludes the triangles are similar after showing they have the same angles, see <a href=../bookVI/propVI4.html>VI.4</a>.)
+
+<p>Since triangle <i>ABC</i> is similar to triangle <i>ABD,</i> therefore, by the definition of similarity <a href=../bookVI/defVI1.html>VI.Def.1</a>, <i>CB</i> is to <i>BA</i> as <i>BA</i> is to <i>BM.</i> </td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=200>
+<img src="../bookI/propI47b.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="lemma for X.33">
+<param name=e[1] value="B;point;free;30,170">
+<param name=e[2] value="C;point;free;250,170">
+<param name=e[3] value="BCmid;point;midpoint;B,C;0;0">
+<param name=e[4] value="ABC;circle;radius;BCmid,B;0;0;0;0">
+<param name=e[5] value="A;point;circleSlider;ABC,120,40">
+<param name=e[6] value="M;point;foot;A,B,C">
+<param name=e[7] value="ABM;polygon;triangle;A,B,M;0;0;black;random">
+<param name=e[8] value="ACM;polygon;triangle;A,C,M;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI47b.gif" hspace=10 vspace=10 alt="I.47">';
+</script>
+
+</td></tr></table>
+
+<p>Next <a href=../bookVI/propVI17.html>VI.17</a> converts this proportion to a statement about areas, namely, the rectangle <i>CB</i> by <i>BM</i> (which is the parallelogram <i>BL</i> in the proof of I.47) equals the square on <i>AB.</i>  For the same reason the rectangle <i>BC</i> by <i>CM</i> (which is the parallelogram <i>CL</i> in the proof of I.47) also equals the square on <i>AC.</i>  Therefore the sum of the two rectangles <i>CB</i> by <i>BM</i> and <i>BC</i> by <i>CM,</i> which is the square on <i>BC,</i> equals the sum of the squares on <i>AC</i> and <i>BC.</i> Q.E.D.</table>
+
+<p>(Actually, the final sentence is not part of the lemma, probably because Euclid moved that statement to the first Book as I.47.)
+
+<p>So, although Euclid&rsquo;s proof in I.47 may be more complicated than some others, we can see how it well it corresponds to a simpler proof that depends on the theories of proportion and similarity. 
+
+<h4>Generalizations of I.47</h4> 
+
+<p>Propositions <a href="../bookII/propII12.html">II.12</a> and <a href="../bookII/propII13.html">II.13</a> consider triangles other than right triangles.  In II.12 the right angle is replaced by an obtuse angle, while in II.13 the right angle is replaced by an acute angle.  The resulting statements are actually geometric forms of the law of cosines.
+
+<p>Proposition <a href="../bookVI/propVI31.html">VI.31</a> generalizes the figures that can be placed on the sides of the right triangle to any three similar figures instead of the three squares here in I.47.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next one, which its converse, in propositions <a href=../bookII/propII9.html>II.9</a> through II.14 in Book II, and several propositions in the rest of the books on geometry.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

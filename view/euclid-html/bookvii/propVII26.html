@@ -1,0 +1,82 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 26</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 26</h1>
+
+<div class="statement">If two numbers are relatively prime to two numbers, both to each, then their products are also relatively prime.</div>
+
+<p>Let the two numbers <i>A</i> and <i>B</i> be relatively prime to the two numbers <i>C</i> and <i>D,</i> both to each, and let <i>A</i> multiplied by <i>B</i> make <i>E,</i> and let <i>C</i> multiplied by <i>D</i> make <i>F.</i>
+
+<p>I say that <i>E</i> and <i>F</i> are relatively prime.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=170 >
+<img src=propVII26.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.26">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="E0;point;free;-1000,110;0;0">
+<param name=e[6] value="E3;point;free;1000,110;0;0">
+<param name=e[7] value="F0;point;free;-1000,145;0;0">
+<param name=e[8] value="F3;point;free;1000,145;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,40;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,130,40;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;B0,B3,30,75;0">
+<param name=e[13] value="B2;point;lineSlider;B0,B3,110,75;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;A0,A3,150,40;0">
+<param name=e[16] value="C2;point;lineSlider;A0,A3,260,40;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+<param name=e[18] value="D1;point;lineSlider;B0,B3,150,75;0">
+<param name=e[19] value="D2;point;lineSlider;B0,B3,225,75;0">
+<param name=e[20] value="D;line;connect;D1,D2;black">
+
+<param name=e[21] value="U1;point;free;1000,0;0;0">
+<param name=e[22] value="U2;point;free;1000,40;0;0">
+<param name=e[23] value="E1;point;lineSlider;E0,E3,30,145;0">
+<param name=e[24] value="E2;point;proportion;U1,U2,A1,A2,B1,B2,E1,E3;0">
+<param name=e[25] value="E;line;connect;E1,E2;black">
+<param name=e[26] value="F1;point;lineSlider;F0,F3,30,145;0">
+<param name=e[27] value="F2;point;proportion;U1,U2,C1,C2,D1,D2,F1,F3;0">
+<param name=e[28] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<div class="just"><a href="propVII24.html">VII.24</a></div>
+<p>Since each of the numbers <i>A</i> and <i>B</i> is relatively prime to <i>C,</i> therefore the product of <i>A</i> and <i>B</i> is also relatively prime to <i>C.</i>  But the product of <i>A</i> and <i>B</i> is <i>E,</i> therefore <i>E</i> and <i>C</i> are relatively prime. For the same reason <i>E</i> and <i>D</i> are also relatively prime. Therefore each of the numbers <i>C</i> and <i>D</i> is relatively prime to <i>E.</i>
+
+<div class="just"><a href="propVII24.html">VII.24</a></div>
+<p>Therefore the product of <i>C</i> and <i>D</i> is also relatively prime to <i>E.</i> But the product of <i>C</i> and <i>D</i> is <i>F.</i> Therefore <i>E</i> and <i>F</i> are relatively prime.
+
+<p>Therefore, <i>if two numbers are relatively prime to two numbers, both to each, then their products are also relatively prime.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<p>This proposition says that if <i>a</i> and <i>b</i> are each relatively prime to both <i>c</i> and <i>d</i>, then <i>ab</i> is relatively prime to <i>cd</i>.  
+
+<p>For example, 45 and 75 are each relatively prime to 26 and 77, so 45&middot;75, which is 3375, and 26&middot;77, which is 1144, are relatively prime.
+
+<p>The proof of this proposition uses proposition <a href="propVII24.html">VII.24</a> twice.  If <i>a</i> and <i>b</i> are both relatively prime to both <i>c</i> and <i>d,</i> then so is their product <i>ab.</i>  Now since <i>c</i> and <i>d</i> are both relatively prime to <i>ab,</i> therefore so is their product <i>cd.</i>
+
+<p>This proposition is used in the proof of the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002, 2013");
+</script>
+</BODY></HTML>

@@ -1,0 +1,89 @@
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">If two similar plane numbers multiplied by one another make some number, then the product is square.</div>
+
+<p>Let <i>A</i> and <i>B</i> be two similar plane numbers, and let <i>A</i> multiplied by <i>B</i> make <i>C.</i>
+
+<p>I say that <i>C</i> is square.
+
+<p>Multiply <i>A</i> by itself to make <i>D.</i> Then <i>D</i> is square.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=290 height=200 >
+<img src="propIX1.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.1">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="D0;point;free;-1000,145;0;0">
+<param name=e[8] value="D3;point;free;1000,145;0;0">
+<param name=e[9] value="U1;point;free;1000,0;0;0">
+<param name=e[10] value="U2;point;free;1000,35;0;0">
+
+<param name=e[11] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[12] value="A2;point;lineSlider;A0,A3,100,0;0">
+<param name=e[13] value="A;line;connect;A1,A2;black">
+<param name=e[14] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[15] value="B2;point;lineSlider;B0,B3,140,0;0">
+<param name=e[16] value="B;line;connect;B1,B2;black">
+<param name=e[17] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[18] value="C2;point;proportion;U1,U2,A1,A2,B1,B2,C1,C3;0">
+<param name=e[19] value="C;line;connect;C1,C2;black">
+<param name=e[20] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[21] value="D2;point;proportion;U1,U2,A1,A2,A1,A2,D1,D3;0">
+<param name=e[22] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<div class="just"><a href="../bookVII/propVII17.html">VII.17</a></div>
+<p>Since then <i>A</i> multiplied by itself makes <i>D,</i> and multiplied by <i>B</i> makes <i>C,</i> therefore <i>A</i> is to <i>B</i> as <i>D</i> is to <i>C.</i>
+
+<div class="just"><a href="../bookVIII/propVIII18.html">VIII.18</a></div>
+<p>And, since <i>A</i> and <i>B</i> are similar plane numbers, therefore one mean proportional number falls between <i>A</i> and <i>B.</i>
+
+<div class="just"><a href="../bookVIII/propVIII8.html">VIII.8</a></div>
+<p>Since as many number fall in continued proportion between those which have the same ratio, therefore  one mean proportional number falls between <i>D</i> and <i>C</i> also.
+
+<div class="just"><a href="../bookVIII/propVIII22.html">VIII.22</a></div>
+<p>And <i>D</i> is square, therefore <i>C</i> is also square.
+
+<p>Therefore, <i>if two similar plane numbers multiplied by one another make some number, then the product is square.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Although this is the first proposition in Book IX, it and the succeeding propositions continue those of Book VIII without break.
+
+<p>To illustrate this proposition, consider the two similar plane numbers <i>a</i>&nbsp;=&nbsp;18 and <i>b</i>&nbsp;=&nbsp;8, as illustrated in the Guide to <a href="../bookVII/defVII21.html">VII.Def.21</a>. According to <a href="../bookVIII/propVIII18.html">VIII.18</a>, there is a mean proportional between them, namely, 12.  And the square of the mean proportional is their product, <i>ab</i>&nbsp;=&nbsp;144.
+
+<h4>Outline of the proof</h4>
+
+It is not clear why the proof of the proposition does not use the fact that the square of the mean proportional of two numbers equals their product, but instead uses slightly more complicated reasoning.
+
+<p>Let <i>a</i> and <i>b</i> be the given similar plane numbers.  Then there is a mean proportional between them (<a href="../bookVIII/propVIII18.html">VIII.18</a>).  And, since <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>a</i><sup>2</sup>:<i>ab,</i> therefore there is also a mean proportional between <i>a</i><sup>2</sup> and <i>ab</i> (<a href="../bookVIII/propVIII1.html">VIII.1</a>).  But since <i>a</i><sup>2</sup> is a square, therefore <i>ab</i> is also a square (<a href="../bookVIII/propVIII22.html">VIII.22</a>).  Thus, the product of the original similar plane numbers is a square.
+
+<h4>Use of this proposition</h4>
+
+The next proposition <a href="propIX2.html">IX.2</a> is the converse of this one. This proposition is used in <a href=../bookX/propX29.html>X.29</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

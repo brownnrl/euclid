@@ -1,0 +1,105 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 30</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 30</h1>
+
+<div class="statement">Straight lines parallel to the same straight line are also parallel to one another.</div>
+
+<p>Let each of the straight lines <i>AB</i> and <i>CD</i> be parallel to <i>EF.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=200 width=240>
+<img src="propI30.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.30">
+<param name=e[1] value="A;point;free;40,60">
+<param name=e[2] value="B;point;free;200,60">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;free;40,160">
+<param name=e[5] value="D';point;parallelogram;C,A,B;0;0">
+<param name=e[6] value="D;point;lineSlider;C,D',200,160">
+<param name=e[7] value="CD;line;connect;C,D">
+<param name=e[8] value="E;point;free;40,120">
+<param name=e[9] value="F';point;parallelogram;E,A,B;0;0">
+<param name=e[10] value="F;point;lineSlider;E,F',200,120">
+<param name=e[11] value="EF;line;connect;E,F">
+<param name=e[12] value="G;point;lineSlider;A,B,80,60">
+<param name=e[13] value="K;point;lineSlider;C,D,140,160">
+<param name=e[14] value="H;point;intersection;E,F,G,K">
+<param name=e[15] value="G';point;extend;K,G,K,G;0;0">
+<param name=e[16] value="K';point;extend;G,K,G,K;0;0">
+<param name=e[17] value="GK;line;connect;G',K'">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI30.gif" hspace=10 vspace=10 alt="I.30">';
+</script>
+</div>
+
+<p>I say that <i>AB</i> is also parallel to <i>CD.</i>
+
+<div class="just"><a href=propI29.html>I.29</a></div>
+<p>Let the straight line <i>GK</i> fall upon them.
+Since the straight line <i>GK</i> falls on the parallel straight lines <i>AB</i> and <i>EF,</i> therefore the angle <i>AGK</i> equals the angle <i>GHF.</i> 
+
+<div class="just"><a href=propI29.html>I.29</a></div>
+<p>Again, since the straight line <i>GK</i> falls on the parallel straight lines <i>EF</i> and <i>CD,</i> therefore the angle <i>GHF</i> equals the angle <i>GKD.</i>
+
+<div class="just"><a href=cn.html>C.N.1</a></div>
+<p>But the angle <i>AGK</i> was also proved equal to the angle <i>GHF.</i> Therefore the angle <i>AGK</i> also equals the angle <i>GKD,</i>  and they are alternate.
+
+<p>Therefore <i>AB</i> is parallel to <i>CD.</i> 
+
+<p>Therefore <i>straight lines parallel to the same straight line are also parallel to one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+For this proposition it is supposed that the three lines lie in one plane.  Proposition <a href=../bookXI/propXI9.html>XI.9</a> applies to the case where the three lines do not lie in a plane.
+
+<h4>Playfair&rsquo;s axiom</h4>
+
+A number of the propositions in the <i>Elements</i> are equivalent to the parallel postulate <a href=post5.html>Post.5</a> in the sense that if the rest of the postulates are assumed and any one of these propositions is assumed, then the parallel postulate can be proved as a proposition.  This one I.30, the last <a href=propI29.html>I.29</a>, either part of <a href=propI32.html>I.32</a>, and almost any later one.  Thus, Euclid had many statements to choose from to take as a postulate.
+
+<p>In many modern expositions of synthetic geometry, Playfair&rsquo;s axiom (John Playfair, 1748&ndash;1819) is chosen as that postulate instead of Euclid&rsquo;s parallel postulate Post.5.  Playfair&rsquo;s axiom states that there is at most one line parallel to a given line passing through a given point.  (That there is at least one follows from the next proposition <a href=propI31.html>I.31</a>, which doesn&rsquo;t depend on the parallel postulate.)
+
+<p>Two advantages of Playfair&rsquo;s axiom over Euclid&rsquo;s parallel postulate are that it is a simpler statement, and it emphasizes the distinction between Euclidean and hyperbolic geometry.
+
+<p>Two disadvantages are that it does not have the historical importance of Euclid&rsquo;s parallel postulate, and the proof of the parallel postulate from Playfair&rsquo;s axiom is nonconstructive.  That proof is a proof by contradiction that begins assuming that a point does not exist, deriving a contradiction, and concluding that the point must exist, but does not construct it. It may well be that Euclid chose to make the construction an assumption of his parallel postulate rather rather than choosing some other equivalent statement for his postulate.
+
+<h4>Elegance in mathematics</h4>
+
+Euclid&rsquo;s <i>Elements</i> form one of the most beautiful works of science
+in the history of humankind.  This beauty lies more in the logical development
+of geometry rather than in geometry itself.  It is not the diagrams that
+excite our interest; rather it is the concepts, the way the concepts interconnect,
+and the way Euclid selected and presented these concepts and their interconnections.
+The <i>Elements</i> are elegant.  Elegance in mathematics is characterized by
+simplicity and clarity.  An elegant presentation is easy for the reader to follow.
+But elegance is not only in the presentation, it is in the selection of definitions
+and proofs.  The elegant definition is the one that makes the rest of the theory
+easy.  The elegant proof is the one that is easiest to follow, one that is designed
+just right to fit the goal.  Extraneous concepts should not be involved.  Even
+the goals need to be adjusted to the right level of generality to cover the concepts,
+but not so abstract that the abstraction itself obscures the goal.
+
+<p>One of the criticisms of Euclid&rsquo;s parallel postulate was that it isn&rsquo;t simple.The statement of this proposition, I.30, is much simpler, and Playfair&rsquo;s axiom is much simpler.  As they&rsquo;re each logically equivalent to Euclid&rsquo;s parallel postulate, if elegance were the primary goal, then Euclid would have chosen one of them in place of his postulate. Perhaps the reasons mentioned above explain why Euclid used Post.5 instead.
+
+<h4>Use of Proposition 30</h4>
+This proposition is used in <a href=propI45.html>I.45</a> and <a href=../bookIV/propIV7.html>IV.7</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997, 2003");
+</script>
+</BODY></HTML>

@@ -1,0 +1,61 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book XI, Definitions 18 through 20</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 18</h1>
+
+<div class="statement">When a right triangle with one side of those about the right angle remains fixed is carried round and restored again to the same position from which it began to be moved, the figure so comprehended is a cone. And, if the straight line which remains fixed equals the remaining side about the right angle which is carried round, the cone will be right-angled; if less, obtuse-angled; and if greater, acute-angled.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 19</h1>
+
+<div class="statement">The axis of the cone is the straight line which remains fixed and about which the triangle is turned.</div>
+</div>
+
+<br>
+
+<div class="theorem">
+<h1>Definition 20</h1>
+
+<div class="statement">And the base is the circle described by the straight line which is carried round.</div>
+</div>
+
+<h2>Guide</h2>
+
+<table cellspacing=5>
+<tr><td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=190 height=240 >
+<img src="defXI18.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Def.XI.18-20">
+<param name=e[1] value="origin;point;free;70,220;0;0">
+<param name=e[2] value="z;point;fixed;70,80,100;0;0">
+<param name=e[3] value="xyplane;plane;perpendicular;origin,z;0;0;0;0">
+
+<param name=e[4] value="A;point;planeSlider;xyplane,90,120,0">
+<param name=e[5] value="B;point;planeSlider;xyplane,140,120,0">
+<param name=e[6] value="D;point;extend;B,A,B,A;0">
+<param name=e[7] value="C';point;perpendicular;A,xyplane,A,B;0;0">
+<param name=e[8] value="C;point;lineSlider;A,C',70,140,200">
+<param name=e[9] value="AC;line;connect;A,C">
+<param name=e[10] value="CBD;polygon;triangle;C,B,D;0;0;black;75,50,100">
+<param name=e[11] value="circle;circle;radius;A,B,xyplane;0;0;black;75,50,100">
+</applet></td>
+
+<td>The right triangle <i>ABC</i> with right angle at <i>A</i> is rotated about the side <i>AC</i> to produce a cone.  The axis of the cone is <i>AC,</i> and its base is the circle with center at <i>A</i> and radius <i>AB.</i>
+<p>The three different kinds of cone are not used by Euclid in the <i>Elements,</i> but they were important in the theory of conic sections until Apollonius&rsquo; work <i>Conics.</i>  In Euclid&rsquo;s time conic sections were taken as the intersections of a plane at right angles to an edge (straight line from the vertex) of a cone.  When the cone is acute-angled, the section is an ellipse; when right-angled, a parabola; and when obtuse-angle, a hyperbola.  Even the names of these three curves were given by the kind of angle, so, for instance, Euclid knew a parabola as a &ldquo;section of a right-angled cone.&rdquo;  It was Apollonius who named them ellipse, parabola, and hyperbola.
+</td></tr></table>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1998");
+</script>
+</BODY></HTML>

@@ -1,0 +1,87 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 7</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 7</h1>
+
+<div class="statement">
+If three angles of an equilateral pentagon, taken either in order or not in order, are equal, then the pentagon is equiangular.</div>
+
+<p>First, let three angles <i>A, B,</i> and <i>C</i> taken in order in the equilateral pentagon <i>ABCDE</i>  be equal to one another.
+
+<p>I say that the pentagon <i>ABCDE</i> is equiangular.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=265 height=240 >
+<img src="propXIII7.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.7">
+<param name=e[1] value="A;point;free;130,40">
+<param name=e[2] value="B;point;free;39,106">
+<param name=e[3] value="ABCDE;polygon;regularPolygon;A,B,5;0;0;black;random">
+<param name=e[4] value="C;point;vertex;ABCDE,3">
+<param name=e[5] value="D;point;vertex;ABCDE,4">
+<param name=e[6] value="E;point;vertex;ABCDE,5">
+<param name=e[7] value="AC;line;connect;A,C">
+<param name=e[8] value="BE;line;connect;B,E">
+<param name=e[9] value="F;point;intersection;AC,BE">
+<param name=e[10] value="FC;line;connect;F,D">
+<param name=e[11] value="BD;line;connect;B,D">
+</applet></div>
+
+<p>Join <i>AC, BE,</i> and <i>FD.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Now, since the two sides <i>CB</i> and <i>BA</i> equal the two sides <i>BA</i> and <i>AE</i> respectively, and the angle <i>CBA</i> equals the angle <i>BAE,</i> therefore the base <i>AC</i> equals the base <i>BE,</i> the triangle <i>ABC</i> equals the triangle <i>ABE,</i>and the remaining angles equal the remaining angles, namely those opposite the equal sides, that is, the angle <i>BCA</i> equals the angle <i>BEA,</i> and the angle <i>ABE</i> equals the angle <i>CAB.</i>
+
+<div class="just"><a href="../bookI/propI6.html">I.6</a></div>
+<p>Hence the side <i>AF</i> also equals the side <i>BF.</i>
+
+<div class="just"><a href="../bookI/propI8.html">I.8</a></div>
+<p>But the whole <i>AC</i> equals the whole <i>BE,</i> therefore the remainder <i>FC</i> equals the remainder <i>FE.</i> But <i>CD</i> also equals <i>DE.</i> Therefore the two sides <i>FC</i> and <i>CD</i> equal the two sides <i>FE</i> and <i>ED,</i> and the base <i>FD</i> is common to them, therefore the angle <i>FCD</i> equals the angle <i>FED.</i>
+
+<p>But the angle <i>BCA</i> was also proved equal to the angle <i>AEB,</i> therefore the whole angle <i>BCD</i> equals the whole angle <i>AED.</i> And, by hypothesis, the angle <i>BCD</i> equals the angles at <i>A</i> and <i>B,</i> therefore the angle <i>AED</i> also equals the angles at <i>A</i> and <i>B.</i> Similarly we can prove that the angle <i>CDE</i> also equals the angles at <i>A, B,</i> and <i>C.</i>  Therefore the pentagon <i>ABCDE</i> is equiangular.
+
+<hr width=40%>
+
+<p>Next, let the given equal angles not be angles taken in order, but let the angles at the points <i>A, C,</i> and <i>D</i> be equal.
+
+<p>I say that in this case too the pentagon <i>ABCDE</i> is equiangular.
+
+<p>Join <i>BD.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since the two sides <i>BA</i> and <i>AE</i> equal the two sides <i>BC</i> and <i>CD,</i>  and they contain equal angles, therefore the base <i>BE</i> equals the base <i>BD,</i> the triangle <i>ABE</i> equals the triangle <i>BCD,</i> and the remaining angles equal the remaining angles, namely those opposite the equal sides. Therefore the angle <i>AEB</i> equals the angle <i>CDB.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>But the angle <i>BED</i> also equals the angle <i>BDE,</i> since the side <i>BE</i> equals the side <i>BD.</i>
+
+<p>Therefore the whole angle <i>AED</i> equals the whole angle <i>CDE.</i>
+
+<p>But the angle <i>CDE</i> is, by hypothesis, equal to the angles at <i>A</i> and <i>C,</i> therefore the angle <i>AED</i> also equals the angles at <i>A</i> and <i>C.</i>
+
+<p>For the same reason the angle <i>ABC</i> also equals the angles at <i>A, C,</i> and <i>D.</i> Therefore the pentagon <i>ABCDE</i> is equiangular. 
+
+<p>Therefore, <i>if three angles of an equilateral pentagon, taken either in order or not in order, are equal, then the pentagon is equiangular.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<h4>Use of this proposition</h4>
+
+This proposition is needed in <a href=propXIII17.html>XIII.17</a> to show that the dodecahedron constructed there has equiangular pentagons as faces.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

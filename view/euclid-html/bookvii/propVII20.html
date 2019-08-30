@@ -1,0 +1,90 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 20</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 20</h1>
+
+<div class="statement">The least numbers of those which have the same ratio with them measure those which have the same ratio with them the same number of times; the greater the greater; and the less the less.</div>
+
+<p>Let <i>CD</i> and <i>EF</i> be the least numbers of those which have the same ratio with <i>A</i> and <i>B.</i>
+
+<p>I say that <i>CD</i> measures <i>A</i> the same number of times that <i>EF</i> measures <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=160 height=280 >
+<img src=propVII20.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.20">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,30;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,30,240;0">
+<param name=e[5] value="A;line;connect;A1,A2;black">
+<param name=e[6] value="B0;point;free;60,-1000;0;0">
+<param name=e[7] value="B3;point;free;60,1000;0;0">
+<param name=e[8] value="B1;point;lineSlider;B0,B3,60,30;0">
+<param name=e[9] value="B2;point;lineSlider;B0,B3,60,190;0">
+<param name=e[10] value="B;line;connect;B1,B2;black">
+
+<param name=e[11] value="C0;point;free;100,-1000;0;0">
+<param name=e[12] value="C3;point;free;100,1000;0;0">
+<param name=e[13] value="C;point;lineSlider;C0,C3,100,30">
+<param name=e[14] value="M;point;midpoint;A1,A2;0;0">
+<param name=e[15] value="D;point;cutoff;C,C3,A1,M">
+<param name=e[16] value="CD;line;connect;C,D">
+<param name=e[17] value="G;point;midpoint;CD">
+<param name=e[18] value="E0;point;free;130,-1000;0;0">
+<param name=e[19] value="E3;point;free;130,1000;0;0">
+<param name=e[20] value="E;point;lineSlider;E0,E3,130,30">
+<param name=e[21] value="F;point;proportion;A1,A2,B1,B2,C,D,E,E3">
+<param name=e[22] value="EF;line;connect;E,F">
+<param name=e[23] value="H;point;midpoint;EF">
+</applet></div>
+
+<div class="just"><a href="propVII13.html">VII.13</a>
+<br><a href=defVII20.html>VII.Def.20</a></div>
+<p>Now <i>CD</i> is not parts of <i>A.</i> If possible, let it be so. Therefore <i>EF</i> is also the same parts of <i>B</i> that <i>CD</i> is of <i>A.</i>
+
+<p>Therefore there are as many parts of <i>B</i> in <i>EF</i> are there are parts of <i>A</i>  in <i>CD.</i>
+
+<p>Divide <i>CD</i> into the parts of <i>A,</i> namely <i>CG</i> and <i>GD,</i> and divide <i>EF</i> into the parts of <i>B,</i> namely <i>EH</i> and <i>HF.</i> Thus the multitude of <i>CG</i> and <i>GD</i> equals the multitude of <i>EH</i> and <i>HF.</i>
+
+<p>Now, since the numbers <i>CG</i> and <i>GD</i> equal one another, and the numbers <i>EH</i> and <i>HF</i> also equal one another, while the multitude of <i>CG</i> and <i>GD</i> equals the multitude of <i>EH</i> and <i>HF,</i> therefore <i>CG</i> is to <i>EH</i> as <i>GD</i> is to <i>HF.</i>
+
+<div class="just"><a href="propVII12.html">VII.12</a></div>
+<p>Since one of the antecedents is to one of the consequents as the sum of the antecedents is to the sum of the consequents, therefore <i>CG</i> is to <i>EH</i> as <i>CD</i> is to <i>EF.</i>
+
+<div class="just"><a href="propVII4.html">VII.4</a></div>
+<p>Therefore <i>CG</i> and <i>EH</i> are in the same ratio with <i>CD</i> and <i>EF,</i> being less than they, which is impossible, for by hypothesis <i>CD</i> and <i>EF</i> are the least numbers of those which have the same ratio with them. Therefore <i>CD</i> is not parts of <i>A,</i> therefore it is a part of it.
+
+<div class="just"><a href="propVII13.html">VII.13</a>
+<br><a href=defVII20.html>VII.Def.20</a></div>
+<p>And <i>EF</i> is the same part of <i>B</i> that <i>CD</i> is of <i>A,</i> therefore <i>CD</i> measures <i>A</i> the same number of times that <i>EF</i> measures <i>B.</i>
+
+<p>Therefore, <i>the least numbers of those which have the same ratio with them measure those which have the same ratio with them the same number of times; the greater the greater; and the less the less.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition says that given a ratio <i>a</i>&nbsp;:&nbsp;<i>b,</i> if <i>c</i>&nbsp;:&nbsp;<i>d</i> is the same ratio and the least among all those ratios with the same ratio, then, first of all, <i>c</i> divides <i>a,</i> and <i>d</i> divides <i>b,</i> but also, <i>c</i> divides <i>a</i> the same number of times that <i>d</i> divides <i>b.</i>  For example, the ratio 91&nbsp;:&nbsp;132 is the same ratio as 7&nbsp;:&nbsp;11, which is least among all the ratios equal to 91&nbsp;:&nbsp;132, that is to say 91&nbsp;:&nbsp;132 reduces to 7&nbsp;:&nbsp;11 in lowest terms, therefore 7 divides 91 the same number of times that 11 divides 132, namely, 13 times.
+
+<p>The proof goes along like this. Suppose <i>a</i>&nbsp;:&nbsp;<i>b</i> reduces to <i>c</i>&nbsp;:&nbsp;<i>e</i> in lowest terms. In order to show that <i>c</i> divides <i>a,</i> assume that it doesn&rsquo;t, assume that <i>c</i>&nbsp;=&nbsp;(<i>m/n</i>)<i>a.</i>  Since <i>a</i>&nbsp;:&nbsp;<i>b</i> is the same ratio as <i>c</i>&nbsp;:&nbsp;<i>e,</i> therefore <i>e</i>&nbsp;=&nbsp;(<i>m/n</i>)<i>d.</i>  But then <i>c/m</i>&nbsp;=&nbsp;(1/<i>n</i>)<i>a,</i> and <i>e/m</i>&nbsp;=&nbsp;(1/<i>n</i>)<i>b.</i>  Therefore  <i>c/m</i>&nbsp;:&nbsp;<i>e/m</i> is the same ratio as <i>a</i>&nbsp;:&nbsp;<i>b,</i> which shows that <i>c</i>&nbsp;:&nbsp;<i>e</i> is not in lowest terms, a contradiction.  Therefore <i>c</i> does divide <i>a,</i> and <i>e</i> divides <i>b</i> the same number of times.
+
+<h4>Use of this proposition</h4>
+
+This proposition is used frequently in Books VII through IX starting with the next proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

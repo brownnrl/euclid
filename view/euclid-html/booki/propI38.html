@@ -1,0 +1,80 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 38</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 38</h1>
+
+<div class="statement">Triangles which are on equal bases and in the same parallels equal one another.</div>
+
+<p>Let <i>ABC</i> and <i>DEF</i> be triangles on equal bases <i>BC</i> and <i>EF</i> and in the same parallels <i>BF</i> and <i>AD.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=210 width=310> 
+<img src="propI38.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.38">
+<param name=e[1] value="B;point;free;60,170">
+<param name=e[2] value="C;point;free;130,170">
+<param name=e[3] value="A;point;free;120,40">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;0,0,0;random">
+<param name=e[5] value="AD';line;parallel;A,B,C;0;0;0">
+<param name=e[6] value="D;point;lineSlider;AD',150,40">
+<param name=e[7] value="E;point;lineSlider;B,C,190,170">
+<param name=e[8] value="F;point;parallelogram;C,B,E">
+<param name=e[9] value="DEF;polygon;triangle;D,E,F;0;0;0,0,0;random">
+<param name=e[10] value="AD;line;connect;A,D">
+<param name=e[11] value="CE;line;connect;C,E">
+<param name=e[12] value="G;point;parallelogram;A,C,B">
+<param name=e[13] value="GA;line;connect;G,A">
+<param name=e[14] value="GB;line;connect;G,B">
+<param name=e[15] value="H;point;parallelogram;D,E,F">
+<param name=e[16] value="HD;line;connect;H,D">
+<param name=e[17] value="HF;line;connect;H,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI38.gif" hspace=10 vspace=10 alt="I.38">';
+</script>
+</div>
+
+<p>I say that the triangle <i>ABC</i> equals the triangle <i>DEF.</i>
+
+<div class="just"><a href=post2.html>I.Post.2</a>
+<br><a href="propI31.html">I.31</a></div>
+<p>Produce <i>AD</i> in both directions to <i>G</i> and <i>H.</i>  Draw <i>BG</i> through <i>B</i> parallel to <i>CA,</i> and draw <i>FH</i> through <i>F</i> parallel to <i>DE.</i>
+
+<div class="just"><a href="propI36.html">I.36</a></div>
+<p>Then each of the figures <i>GBCA</i> and <i>DEFH</i> is a parallelogram, and <i>GBCA</i> equals <i>DEFH,</i> for they are on equal bases <i>BC</i> and <i>EF</i> and in the same parallels <i>BF</i> and <i>GH.</i>
+
+<div class="just"><a href="propI34.html">I.34</a></div>
+<p>Moreover the triangle <i>ABC</i> is half of the parallelogram <i>GBCA,</i> for the diameter <i>AB</i> bisects it.  And the triangle <i>FED</i> is half of the parallelogram <i>DEFH,</i> for the diameter <i>DF</i> bisects it.
+
+<div class="just"><a href=cn.html>C.N.</a></div>
+<p>Therefore the triangle <i>ABC</i> equals the triangle <i>DEF.</i>
+
+<p>Therefore <i>triangles which are on equal bases and in the same parallels equal one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+The idea of the argument is clear: since parallelograms on equal bases and in the same parallels are equal by <a href=propI36.html>I.36</a>, and the triangles are half the parallelograms by <a href=propI34.html>I.34</a>, therefore the triangles are also equal.
+
+<h4>Use of Proposition 38</h4>
+
+This proposition is used in <a href=propI40.html>I.40</a>, <a href=propI42.html>I.42</a>, and <a href=../bookVI/propVI1.html>VI.1</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,97 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 10</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 10</h1>
+
+<div class="statement">If as many numbers as we please beginning from a unit are in continued proportion, and the number after the unit is not square, then neither is any other square except the third from the unit and all those which leave out one; and, if the number after the unit is not cubic, then neither is any other cubic except the fourth from the unit and all those which leave out two.</div>
+
+<p>Let there be as many numbers as we please, <i>A, B, C, D, E,</i> and <i>F,</i> beginning from a unit and in continued proportion, and let <i>A,</i> the number after the unit, not be square.
+
+<p>I say that neither are any other square except the third from the unit and those which leave out one.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=230 >
+<img src="propIX8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.10">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="C0;point;free;-1000,100;0;0">
+<param name=e[6] value="C3;point;free;1000,100;0;0">
+<param name=e[7] value="D0;point;free;-1000,135;0;0">
+<param name=e[8] value="D3;point;free;1000,135;0;0">
+<param name=e[9] value="E0;point;free;-1000,170;0;0">
+<param name=e[10] value="E3;point;free;1000,170;0;0">
+<param name=e[11] value="F0;point;free;-1000,205;0;0">
+<param name=e[12] value="F3;point;free;1000,205;0;0">
+
+<param name=e[13] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[14] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[15] value="A;line;connect;A1,A2;black">
+<param name=e[16] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[17] value="B2;point;lineSlider;B0,B3,105,0;0">
+<param name=e[18] value="B;line;connect;B1,B2;black">
+<param name=e[19] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[20] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[21] value="C;line;connect;C1,C2;black">
+<param name=e[22] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[23] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,D3;0">
+<param name=e[24] value="D;line;connect;D1,D2;black">
+<param name=e[25] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[26] value="E2;point;proportion;A1,A2,B1,B2,D1,D2,E1,E3;0">
+<param name=e[27] value="E;line;connect;E1,E2;black">
+<param name=e[28] value="F1;point;lineSlider;F0,F3,30,0;0">
+<param name=e[29] value="F2;point;proportion;A1,A2,B1,B2,E1,E2,F1,F3;0">
+<param name=e[30] value="F;line;connect;F1,F2;black">
+</applet></div>
+
+<div class="just"><a href="propIX8.html">IX.8</a></div>
+<p>If possible, let <i>C</i> be square. But <i>B</i> is also square, therefore <i>B</i> and <i>C</i> have to one another the ratio which a square number has to a square number.
+
+<div class="just"><a href="../bookVIII/propVIII26.html">VIII.26</a> converse</div>
+<p>And <i>B</i> is to <i>C</i> as <i>A</i> is to <i>B,</i> therefore <i>A</i> and <i>B</i> have to one another the ratio which a square number has to a square number, so that <i>A</i> and <i>B</i> are similar plane numbers.
+
+<p>And <i>B</i> is square, therefore <i>A</i> is also square, which is contrary to the hypothesis.
+
+<p>Therefore <i>C</i> is not square. Similarly we can prove that neither is any other of the numbers square except the third from the unit and those which leave out one.
+
+<p>Next, let <i>A</i> not be a cube.
+
+<p>I say that neither are any other cubes except the fourth from the unit and those which leave out two.
+
+<p>If possible, let <i>D</i> be a cube.
+
+<div class="just"><a href="propIX8.html">IX.8</a>
+<br><a href="../bookVIII/propVIII25.html">VIII.25</a></div>
+<p>Now <i>C</i> is also a cube, for it is fourth from the unit.  And <i>C</i> is to <i>D</i> as <i>B</i> is to <i>C,</i> therefore <i>B</i> has to <i>C</i> the ratio which a cube has to a cube. And <i>C</i> is a cube, therefore <i>B</i> is also a cube.
+
+<p>And since the unit is to <i>A</i> as <i>A</i> is to <i>B,</i> and the unit measures <i>A</i> according to the units in it, therefore <i>A</i> also measures <i>B</i> according to the units in itself. Therefore <i>A</i> multiplied by itself makes the cubic number <i>B.</i>
+
+<div class="just"><a href="propIX6.html">IX.6</a></div>
+<p>But, if a number multiplied by itself makes cubic number, then it is itself a cube.  Therefore <i>A</i> is also a cube, contrary to the hypothesis. Therefore <i>D</i> is not a cube. Similarly we can prove that neither is any other of the numbers a cube except the fourth from the unit and those which leave out two.
+
+<p>Therefore, <i>if as many numbers as we please beginning from a unit are in continued proportion, and the number after the unit is not square, then neither is any other square except the third from the unit and all those which leave out one; and, if the number after the unit is not cubic, then neither is any other cubic except the fourth from the unit and all those which leave out two.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This is a converse of the previous theorem.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

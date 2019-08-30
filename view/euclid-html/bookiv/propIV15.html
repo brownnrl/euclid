@@ -1,0 +1,119 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 15</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 15</h1>
+
+<div class="statement">
+To inscribe an equilateral and equiangular hexagon in a given circle.</div>
+
+<p>Let <i>ABCDEF</i> be the given circle.
+
+<p>It is required to inscribe an equilateral and equiangular hexagon in the circle <i>ABCDEF.</i>
+
+<div class="just"><a href="../bookIII/propIII1.html">III.1</a></div>
+<p>Draw the diameter <i>AD</i> of the circle <i>ABCDEF.</i>  Take the center <i>G</i> of the circle.  Describe the circle <i>EGCH</i> with center <i>D</i> and radius <i>DG.</i>  Join <i>EG</i> and <i>CG</i> and carry them through to the points <i>B</i> and <i>F.</i>  Join <i>AB,</i> <i>BC, CD, DE, EF,</i> and <i>FA.</i>
+
+<p>I say that the hexagon <i>ABCDEF</i> is equilateral and equiangular.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=380 width=300>
+<img src="propIV15.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IV.15">
+<param name=e[1] value="A;point;free;150,340">
+<param name=e[2] value="D;point;free;150,140">
+<param name=e[3] value="AD;line;connect;A,D">
+<param name=e[4] value="G;point;midpoint;A,D;black;green">
+<param name=pivot value=G>
+<param name=e[5] value="ABCDEF;circle;radius;G,A;0;0;black;random">
+<param name=e[6] value="EGCH;circle;radius;D,G;0;0;black;0">
+<param name=e[7] value="CE;line;bichord;ABCDEF,EGCH;0;0;0">
+<param name=e[8] value="C;point;first;CE">
+<param name=e[9] value="E;point;last;CE">
+<param name=e[10] value="B;point;extend;E,G,E,G">
+<param name=e[11] value="F;point;extend;C,G,C,G">
+<param name=e[12] value="H;point;extend;G,D,G,D;black;0">
+<param name=e[13] value="BE;line;connect;B,E">
+<param name=e[14] value="CF;line;connect;C,F">
+<param name=e[15] value="hexagon;polygon;hexagon;A,B,C,D,E,F;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV15.gif" hspace=10 alt="IV15">';
+</script>
+</div>
+
+<p>For, since the point <i>G</i> is the center of the circle <i>ABCDEF, GE</i> equals <i>GD.</i>
+
+<p>Again, since the point <i>D</i> is the center of the circle <i>GCH, DE</i> equals <i>DG.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>But <i>GE</i> was proved equal to <i>GD,</i> therefore <i>GE</i> also equals <i>ED.</i>  Therefore the triangle <i>EGD</i> is equilateral, and therefore its three angles <i>EGD,</i> <i>GDE,</i> and <i>DEG</i> equal one another, inasmuch as, in isosceles triangles, the angles at the base equal one another.
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>And the sum of the three angles of the triangle equals two right angles, therefore the angle <i>EGD</i> is one-third of two right angles.
+
+<p>Similarly, the angle <i>DGC</i> can also be proved to be one third of two right angles.
+
+<div class="just"><a href="../bookI/propI13.html">I.13</a></div>
+<p>And, since the straight line <i>CG</i> standing on <i>EB</i> makes the sum of the adjacent angles <i>EGC</i> and <i>CGB</i> equal to two right angles, therefore the remaining angle <i>CGB</i> is also one-third of two right angles.
+
+<div class="just"><a href="../bookI/propI15.html">I.15</a></div>
+<p>Therefore the angles <i>EGD, DGC,</i> and <i>CGB</i> equal one another, so that the angles vertical to them, the angles <i>BGA, AGF,</i> and <i>FGE,</i> are equal.
+
+<p>Therefore the six angles <i>EGD, DGC, CGB, BGA, AGF,</i> and <i>FGE</i> equal one another.
+
+<div class="just"><a href="../bookIII/propIII26.html">III.26</a></div>
+<p>But equal angles stand on equal circumferences, therefore the six circumferences <i>AB, BC, CD, DE, EF,</i> and <i>FA</i> equal one another.
+
+<div class="just"><a href="../bookIII/propIII29.html">III.29</a></div>
+<p>And straight lines that cut off equal circumferences are equal, therefore the six straight lines equal one another.  Therefore the hexagon <i>ABCDEF</i> is equilateral.
+
+<p>I say next that it is also equiangular.
+
+<div class="just"><a href="../bookIII/propIII27.html">III.27</a></div>
+<p>For, since the circumference <i>FA</i> equals the circumference <i>ED,</i> add the circumference <i>ABCD</i> to each, therefore the whole <i>FABCD</i> equals the whole <i>EDCBA.</i>  And the angle <i>FED</i> stands on the circumference <i>FABCD,</i> and the angle <i>AFE</i> on the circumference <i>EDCBA,</i> therefore the angle <i>AFE</i> equals the angle <i>DEF.</i>
+
+<p>Similarly it can be proved that the remaining angles of the hexagon <i>ABCDEF</i> are also severally equal to each of the angles <i>AFE</i> and <i>FED,</i> therefore the hexagon <i>ABCDEF</i> is equiangular.
+
+<p>But it was also proved equilateral, and it has been inscribed in the circle <i>ABCDEF.</i>
+
+<p>Therefore an equilateral and equiangular hexagon has been inscribed in the given circle.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<br>
+<a name=cor>
+<div class="theorem">
+<h1>Corollary</h1>
+
+<div class="statement">
+<p>From this it is clear that he side of the hexagon equals the radius of the circle.
+
+<p>And, in like manner as in the case of the pentagon, if through the points of division on the circle we draw tangents to the circle, there will be circumscribed about the circle an equilateral and equiangular hexagon in conformity with what was explained in the case of the pentagon.
+
+<p>And further by means similar to those explained in the case of the pentagon we can both inscribe a circle in a given hexagon and circumscribe one about it.
+</div>
+</div>
+
+<h2>Guide</h2>
+
+The corollary is used in several propositions in Book XIII starting with <a
+ href=../bookXIII/propXIII9.html>XIII.9</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

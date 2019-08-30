@@ -1,0 +1,91 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 18</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 18</h1>
+
+<div class="statement">
+To describe a rectilinear figure similar and similarly situated to a given rectilinear figure on a given straight line.</i>
+</div>
+
+<p>Let <i>AB</i> be the given straight line and <i>CE</i> the given rectilinear figure.
+
+<p>It is required to describe on the straight line <i>AB</i> a rectilinear figure similar and similarly situated to the rectilinear figure <i>CE.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=270 width=350>
+<img src=propVI18.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.18">
+<param name=e[1] value="A0;point;free;-1000,240;0;0">
+<param name=e[2] value="A3;point;free;1000,240;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,220,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,310,0">
+<param name=e[5] value="C;point;lineSlider;A0,A3,30,0">
+<param name=e[6] value="D;point;lineSlider;A0,A3,160,0">
+<param name=e[7] value="E;point;free;130,30">
+<param name=e[8] value="F;point;free;60,130">
+<param name=e[9] value="CDEF;polygon;quadrilateral;C,D,E,F;0;0;black;random">
+<param name=e[10] value="DF;line;connect;D,F">
+<param name=e[11] value="G;point;similar;A,B,C,D,F">
+<param name=e[12] value="ABG;polygon;triangle;A,B,G;0;0;black;random">
+<param name=e[13] value="H;point;similar;B,G,D,F,E">
+<param name=e[14] value="BGH;polygon;triangle;B,G,H;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a></div>
+<p>Join <i>DF.</i>  Construct the angle <i>GAB</i> equal to the angle at <i>C,</i> and the angle <i>ABG</i> equal to the angle <i>CDF,</i> on the straight line <i>AB</i> at the points <i>A</i> and <i>B</i> on it.
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div> 
+<p>Therefore the remaining angle <i>CFD</i> equals the angle <i>AGB.</i> Therefore the triangle <i>FCD</i> is equiangular with the triangle <i>GAB.</i>
+
+<div class="just"><a href=propVI4.html>VI.4</a>
+<br><a href="../bookV/propV16.html">V.16</a></div>
+<p>Therefore, proportionally, <i>FD</i> is to <i>GB</i> as <i>FC</i> is to <i>GA,</i> and as <i>CD</i> is to <i>AB.</i>
+
+<div class="just"><a href="../bookI/propI23.html">I.23</a></div>
+<p>Again, construct the angle <i>BGH</i> equal to the angle <i>DFE,</i> and the angle <i>GBH</i> equal to the angle <i>FDE,</i> on the straight line <i>BG</i> and at the points <i>B</i> and <i>G</i> on it.
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a>
+<br><a href=propVI4.html>VI.4</a>
+<br><a href="../bookV/propV16.html">V.16</a></div>
+<p>Therefore the remaining angle at <i>E</i> equals the remaining angle at <i>H.</i>  Therefore the triangle <i>FDE</i> is equiangular with the triangle <i>GBH.</i>  Therefore, proportionally, <i>FD</i> is to <i>GB</i> as <i>FE</i> is to <i>GH,</i> and as <i>ED</i> is to <i>HB.</i>
+
+<div class="just"><a href="../bookV/propV11.html">V.11</a></div>
+<p>But it was also proved that <i>FD</i> is to <i>GB</i> as <i>FC</i> is to <i>GA,</i> and as <i>CD</i> is to <i>AB.</i> Therefore  <i>FC</i> is to <i>AG</i> as <i>CD</i> is to <i>AB,</i> and as <i>FE</i> is to <i>GH,</i> and further as <i>ED</i> is to <i>HB.</i>
+
+<p>And, since the angle <i>CFD</i> equals the angle <i>AGB,</i> and the angle <i>DFE</i> equals the angle <i>BGH,</i> therefore the whole angle <i>CFE</i> equals the whole angle <i>AGH.</i>
+
+<p>For the same reason the angle <i>CDE</i> also equals the angle <i>ABH.</i>
+
+<p>And the angle at <i>C</i> also equals the angle at <i>A,</i> and the angle at <i>E</i> equals the angle at <i>H.</i>
+
+<div class="just"><a href=defVI1.html>VI.Def.1</a></div>
+<p>Therefore <i>AH</i> is equiangular with <i>CE,</i> and they have the sides about their equal angles proportional.  Therefore the rectilinear figure <i>AH</i> is similar to the rectilinear figure <i>CE.</i>
+
+<p>Therefore the rectilinear figure <i>AH</i> has been described similar and similarly situated to the given rectilinear figure <i>CE</i> on the given straight line <i>AB.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+
+<a name=guide><h2>Guide</h2></a>
+
+It is evident from the diagram, if not from the text, that <i>AB</i> should correspond to <i>CD.</i>
+
+<p>Although the figure has only four sides, it is clear that the method applies to figures with more than four sides.
+
+<p>This proposition is used in the proofs of propositions <a href=propVI22.html>VI.22</a>, <a href=propVI25.html>VI.25</a>, and <a href=propVI28.html>VI.28</a>, and the corollary is used in <a href=../bookXII/propXII17.html>XII.17</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

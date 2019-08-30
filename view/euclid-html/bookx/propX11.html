@@ -1,0 +1,77 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 11</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 11</h1>
+
+<div class="statement">If four magnitudes are proportional, and the first is commensurable with the second, then the third also is commensurable with the fourth; but, if the first is incommensurable with the second, then the third also is incommensurable with the fourth.</div>
+
+<p>Let <i>A</i>, <i>B</i>, <i>C</i>, and <i>D</i> be four magnitudes in proportion, so that <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D</i>, and let <i>A</i> be commensurable with <i>B</i>.
+
+<p>I say that <i>C</i> is also commensurable with <i>D</i>.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=100>
+<img src="propX11.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.11">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,65;0;0">
+<param name=e[4] value="B3;point;free;1000,65;0;0">
+<param name=e[5] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[6] value="A2;point;lineSlider;A0,A3,130,0;0">
+<param name=e[7] value="A;line;connect;A1,A2;black">
+<param name=e[8] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[9] value="B2;point;lineSlider;B0,B3,109,0;0">
+<param name=e[10] value="B;line;connect;B1,B2;black">
+<param name=e[11] value="C1;point;lineSlider;A0,A3,160,0;0">
+<param name=e[12] value="C2;point;lineSlider;A0,A3,230,0;0">
+<param name=e[13] value="C;line;connect;C1,C2;black">
+<param name=e[14] value="D1;point;lineSlider;B0,B3,160,0;0">
+<param name=e[15] value="D2;point;proportion;A1,A2,B1,B2,C1,C2,D1,B3;0">
+<param name=e[16] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<div class="just"><a href=propX5.html>X.5</a></div>
+<p>Since <i>A</i> is commensurable with <i>B</i>, therefore <i>A</i> has to <i>B</i> the ratio which a number has to a number.
+
+<div class="just"><a href=../bookV/propV11.html>V.11</a>
+<br><a href=propX6.html>X.6</a></div>
+<p>And <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D</i>, therefore <i>C</i> also has to <i>D</i> the ratio which a number has to a number.  Therefore <i>C</i> is commensurable with <i>D</i>.
+
+<p>Next, let <i>A</i> be incommensurable with <i>B</i>.
+
+<p>I say that <i>C</i> is also incommensurable with <i>D</i>.
+
+<div class="just"><a href=propX7.html>X.7</a></div>
+<p>Since <i>A</i> is incommensurable with <i>B</i>, therefore <i>A</i> does not have to <i>B</i> the ratio which a number has to a number.
+
+<div class="just"><a href=../bookV/propV11.html>V.11</a>,
+<a href=propX8.html>X.8</a></div>
+<p>And <i>A</i> is to <i>B</i> as <i>C</i> is to <i>D</i>, therefore neither has <i>C</i> to <i>D</i> the ratio which a number has to a number. Therefore <i>C</i> is incommensurable with <i>D</i>.
+
+<p>Therefore, <i>if four magnitudes are proportional, and the first is commensurable with the second, then the third also is commensurable with the fourth; but, if the first is incommensurable with the second, then the third also is incommensurable with the fourth.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The proof if very direct.  If <i>A</i>&nbsp;:&nbsp;<i>B</i> = <i>C</i>&nbsp;:&nbsp;<i>D</i>, and the first ratio equals a numeric ratio, then the second equals that, too, but if the first is not a numeric ratio, then neither is the second.
+
+<p>This proposition is used in repeatedly in Book X starting with <a href=propX14.html>X.14</a>.  It is also used in the previous proposition which was, no doubt, not in the original <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

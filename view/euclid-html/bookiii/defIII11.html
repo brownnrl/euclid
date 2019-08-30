@@ -1,0 +1,58 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book III, Definition 11</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 11</h1>
+
+<div class="statement">Similar segments</i> of circles are those which admit equal angles, or in which the angles equal one another.</div>
+</div>
+
+<a name=guide>
+<h2>Guide</h2></a>
+
+<p><center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=240 width=420>
+<img src=defIII11.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.Def.11">
+<param name=e[1] value="A;point;free;120,120">
+<param name=e[2] value="B;point;free;120,50">
+<param name=e[3] value="Acirc;circle;radius;A,B;0;0;black;yellow">
+<param name=e[4] value="C;point;circleSlider;Acirc,50,180">
+<param name=e[5] value="BCsect;sector;sector;A,B,C;0;0;0;random">
+<param name=e[6] value="Atri;polygon;triangle;A,B,C;0;0;yellow;yellow">
+<param name=e[7] value="BC;line;connect;B,C">
+
+<param name=e[8] value="D;point;free;300,120">
+<param name=e[9] value="E;point;free;380,120">
+<param name=e[10] value="Dcirc;circle;radius;D,E;0;0;black;pink">
+<param name=e[11] value="F;point;similar;E,D,B,A,C">
+<param name=e[12] value="EFsect;sector;sector;D,E,F;0;0;0;random">
+<param name=e[13] value="Dtri;polygon;triangle;D,E,F;0;0;pink;pink">
+<param name=e[14] value="EF;line;connect;E,F">
+
+<param name=e[15] value="G;point;circleSlider;Acirc,50,50">
+<param name=e[16] value="BG;line;connect;B,G">
+<param name=e[17] value="CG;line;connect;C,G">
+<param name=e[18] value="H;point;circleSlider;Dcirc,290,50">
+<param name=e[19] value="EH;line;connect;E,H">
+<param name=e[20] value="FH;line;connect;F,H">
+</applet></center>
+
+<p>Since the segments <i>BGC</i> and <i>EHF</i> have in them equal angles <i>BGC</i> and <i>EHF,</i> this definition declares them to be similar segments.
+
+<p>This is hardly a proper definition considering that proposition <a href=propIII21.html>III.21</a> has yet to be proved in which it is shown that all the angles in one segment are equal.
+
+<p>Besides III.21, similar segments are mentioned in <a href=propIII24.html>III.24</a> and <a href=propIII26.html>III.26</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2013");
+</script>
+</BODY></HTML>

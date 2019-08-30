@@ -1,0 +1,101 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 12</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 12</h1>
+
+<div class="statement">Magnitudes commensurable with the same magnitude are also commensurable with one another.</div>
+
+<p>Let each of the magnitudes <i>A</i> and <i>B</i> be commensurable with <i>C</i>. 
+
+<p>I say that <i>A</i> is also commensurable with <i>B</i>.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=320 height=200>
+<img src="propX12.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.12">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="D0;point;free;-1000,65;0;0">
+<param name=e[4] value="D3;point;free;1000,65;0;0">
+<param name=e[5] value="E0;point;free;-1000,100;0;0">
+<param name=e[6] value="E3;point;free;1000,100;0;0">
+<param name=e[7] value="F0;point;free;-1000,135;0;0">
+<param name=e[8] value="F3;point;free;1000,135;0;0">
+<param name=e[9] value="G0;point;free;-1000,170;0;0">
+<param name=e[10] value="G3;point;free;1000,170;0;0">
+<param name=e[11] value="U1;point;free;1000,0;0;0">
+<param name=e[12] value="U2;point;free;1000,30;0;0">
+
+<param name=e[13] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[14] value="A2;point;lineSlider;A0,A3,100,0;0">
+<param name=e[15] value="A;line;connect;A1,A2;black">
+<param name=e[16] value="B1;point;lineSlider;A0,A3,130,0;0">
+<param name=e[17] value="B2;point;lineSlider;A0,A3,220,0;0">
+<param name=e[18] value="B;line;connect;B1,B2;black">
+<param name=e[19] value="C1;point;lineSlider;A0,A3,250,0;0">
+<param name=e[20] value="C2;point;lineSlider;A0,A3,290,0;0">
+<param name=e[21] value="C;line;connect;C1,C2;black">
+
+<param name=e[22] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[23] value="D2;point;lineSlider;D0,D3,80,0;0">
+<param name=e[24] value="D;line;connect;D1,D2;black;0;blue">
+<param name=e[25] value="E1;point;lineSlider;E0,E3,30,0;0">
+<param name=e[26] value="E2;point;proportion;A1,A2,C1,C2,D1,D2,E1,E3;0">
+<param name=e[27] value="E;line;connect;E1,E2;black;0;blue">
+<param name=e[28] value="F1;point;lineSlider;F0,F3,30,0;0">
+<param name=e[29] value="F2;point;lineSlider;F0,F3,90,0;0">
+<param name=e[30] value="F;line;connect;F1,F2;black;0;blue">
+<param name=e[31] value="G1;point;lineSlider;G0,G3,30,0;0">
+<param name=e[32] value="G2;point;proportion;B1,B2,C1,C2,F1,F2,G1,G3;0">
+<param name=e[33] value="G;line;connect;G1,G2;black;0;blue">
+<param name=e[34] value="H1;point;lineSlider;E0,E3,150,0;0">
+<param name=e[35] value="H2;point;lineSlider;E0,E3,270,0;0">
+<param name=e[36] value="H;line;connect;H1,H2;black;0;blue">
+<param name=e[37] value="K1;point;lineSlider;F0,F3,150,0;0">
+<param name=e[38] value="K2;point;proportion;D1,D2,E1,E2,H1,H2,K1,F3;0">
+<param name=e[39] value="K;line;connect;K1,K2;black;0;blue">
+<param name=e[40] value="L1;point;lineSlider;G0,G3,150,0;0">
+<param name=e[41] value="L2;point;proportion;F1,F2,G1,G2,K1,K2,L1,G3;0">
+<param name=e[42] value="L;line;connect;L1,L2;black;0;blue">
+</applet></div>
+
+<div class="just"><a href=propX5.html>X.5</a></div>
+<p>Since <i>A</i> is commensurable with <i>C</i>, therefore <i>A</i> has to <i>C</i> the ratio which a number has to a number. Let it have the ratio which <i>D</i> has to <i>E</i>. Again, since <i>C</i> is commensurable with <i>B</i>, therefore <i>C</i> has to <i>B</i> the ratio which a number has to a number.  Let it have the ratio which <i>F</i> has to <i>G</i>. 
+
+<div class="just"><a href=../bookVIII/propVIII4.html>VIII.4</a></div>
+<p>And, given any number of ratios we please, namely the ratio which <i>D</i> has to <i>E</i> and that which <i>F</i> has to <i>G</i>, take the numbers <i>H</i>, <i>K</i>, and <i>L</i> continuously in the given ratios, so that <i>D</i> is to <i>E</i> as <i>H</i> is to <i>K</i>, and <i>F</i> is to <i>G</i> as <i>K</i> is to <i>L</i>.
+
+<div class="just"><a href=../bookV/propV11.html>V.11</a></div>
+<p>Since <i>A</i> is to <i>C</i> as <i>D</i> is to <i>E</i>, while <i>D</i> is to <i>E</i> as <i>H</i> is to <i>K</i>, therefore <i>A</i> is to <i>C</i> as <i>H</i> is to <i>K</i>. Again, since <i>C</i> is to <i>B</i> as <i>F</i> is to <i>G</i>, while <i>F</i> is to <i>G</i> as <i>K</i> is to <i>L</i>, therefore <i>C</i> is to <i>B</i> as <i>K</i> is to <i>L</i>.
+
+<div class="just"><a href=../bookV/propV22.html>V.22</a></div>
+<p>But <i>A</i> is to <i>C</i> as <i>H</i> is to <i>K</i>, therefore, <i>ex aequali</i>, <i>A</i> is to <i>B</i> as <i>H</i> is to <i>L</i>.
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>Therefore <i>A</i> has to <i>B</i> the ratio which a number has to a number. Therefore <i>A</i> is commensurable with <i>B</i>.
+
+<p>Therefore, <i>magnitudes commensurable with the same magnitude are also commensurable with one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+The proof is primarily an application of <a href=../bookVIII/propVIII4.html>VIII.4</a>.
+
+<p>This proposition is used in frequently in Book X starting with the next proposition.  It is also used in <a href=../bookXIII/propXIII11.html>XIII.11</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

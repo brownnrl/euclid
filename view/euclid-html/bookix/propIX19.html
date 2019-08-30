@@ -1,0 +1,61 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 19</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 19</h1>
+
+<div class="statement">Given three numbers, to investigate when it is possible to find a fourth proportional to them.</div>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=170 height=120>
+<img src="propIX19.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.19">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="B0;point;free;-1000,60;0;0">
+<param name=e[4] value="B3;point;free;1000,60;0;0">
+<param name=e[5] value="C0;point;free;-1000,90;0;0">
+<param name=e[6] value="C3;point;free;1000,90;0;0">
+<param name=e[7] value="D0;point;free;-1000,145;0;0">
+<param name=e[8] value="D3;point;free;1000,145;0;0">
+<param name=e[9] value="U1;point;free;1000,0;0;0">
+<param name=e[10] value="U2;point;free;1000,35;0;0">
+
+<param name=e[11] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[12] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[13] value="A;line;connect;A1,A2;black">
+<param name=e[14] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[15] value="B2;point;lineSlider;B0,B3,100,0;0">
+<param name=e[16] value="B;line;connect;B1,B2;black">
+<param name=e[17] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[18] value="C2;point;lineSlider;C0,C3,130,0;0">
+<param name=e[19] value="C;line;connect;C1,C2;black">
+</applet></div>
+
+<p>Let <i>A, B,</i> and <i>C</i> be the given three numbers.  It is required to investigate when it is possible to find a fourth proportional to them.
+
+[The Greek text of this Proposition is corrupt. However, analogously to Proposition 18 the condition that a fourth proportional to <i>A, B,</i> and <i>C</i> exists is that <i>A</i> measure the product of <i>B</i> and <i>C.</i> ]
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+Note that a fourth proportional <i>d</i> to <i>a, b</i> and <i>c</i> has to satisfy 
+<i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>d,</i> so <i>d</i> would have to be <i>bc</i>/<i>a.</i>  So the third proportional exists when <i>a</i> divides <i>bc</i>.  No doubt that is what Euclid concludes in the missing part of this proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

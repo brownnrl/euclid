@@ -1,0 +1,108 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 44</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 44</h1>
+
+<div class="statement">To a given straight line in a given rectilinear angle, to apply a parallelogram equal to a given triangle.</div>
+
+<p>Let <i>AB</i> be the given straight line, <i>D</i> the given rectilinear angle, and <i>C</i> the given triangle.
+
+<p>It is required to apply a parallelogram equal to the given triangle <i>C</i> to the given straight line <i>AB</i> in an angle equal to <i>D.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=310 width=320>
+<img src="propI44.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.44">
+<param name=e[1] value="A0;point;free;-1000,230;0;0">
+<param name=e[2] value="A3;point;free;1000,230;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,70,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,140,0">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="C1;point;free;130,40;0">
+<param name=e[7] value="C2;point;free;20,40;0">
+<param name=e[8] value="C3;point;free;50,130;0">
+<param name=e[9] value="C;polygon;triangle;C1,C2,C3;0,0,0;0;0,0,0;random">
+<param name=e[10] value="D1;point;free;150,90;0">
+<param name=e[11] value="D2;point;free;210,90;0">
+<param name=e[12] value="D3;point;free;230,30;0">
+<param name=e[13] value="D1D2;line;connect;D1,D2">
+<param name=e[14] value="D2D3;line;connect;D2,D3">
+<param name=e[15] value="D;polygon;triangle;D1,D2,D3;0,0,0;0;0;0">
+<param name=e[16] value="E;point;lineSlider;A0,A3,240,0">
+<param name=e[17] value="G';point;similar;E,B,D1,D2,D3;0;0">
+<param name=e[18] value="BEFG;polygon;application;C,B,E,G';0;0;0,0,0;random">
+<param name=e[19] value="G;point;vertex;BEFG,4">
+<param name=e[20] value="F;point;vertex;BEFG,3">
+<param name=e[21] value="ABGH;polygon;parallelogram;A,B,G;0;0;black;0">
+<param name=e[22] value="H;point;vertex;ABGH,4">
+<param name=e[23] value="K;point;intersection;F,E,H,B">
+<param name=e[24] value="HK;line;connect;H,K">
+<param name=e[25] value="EK;line;connect;E,K">
+<param name=e[26] value="L;point;parallelogram;K,F,H">
+<param name=e[27] value="M;point;intersection;L,K,G,B">
+<param name=e[28] value="LABM;polygon;quadrilateral;L,A,B,M;0;0;0,0,0;random">
+<param name=e[29] value="KM;line;connect;K,M">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI44.gif" hspace=10 vspace=10 alt="I.44">';
+</script>
+</div>
+
+<div class="just"><a href="propI42.html">I.42</a></div>
+<p>Construct the parallelogram <i>BEFG</i> equal to the triangle <i>C</i> in the angle <i>EBG</i> which equals <i>D,</i> and let it be placed so that <i>BE</i> is in a straight line with <i>AB.</i>
+
+<div class="just"><a href=post2.html>I.Post.2</a>
+<br><a href="propI31.html">I.31</a>,
+<a href=post1.html>I.Post.1</a></div>
+<p>Draw <i>FG</i> through to <i>H,</i> and draw <i>AH</i> through <i>A</i> parallel to either <i>BG</i> or <i>EF.</i> Join <i>HB.</i>
+
+<div class="just"><a href="propI29.html">I.29</a>
+<br><a href=post5.html>I.Post.5</a></div>
+<p>Since the straight line <i>HF</i> falls upon the parallels <i>AH</i> and <i>EF,</i> therefore the sum of the angles <i>AHF</i> and <i>HFE</i> equals two right angles. Therefore the sum of the angles <i>BHG</i> and <i>GFE</i> is less than two right angles. And straight lines produced indefinitely from angles less than two right angles meet, therefore <i>HB</i> and <i>FE,</i> when produced, will meet.
+
+<div class="just"><a href="propI31.html">I.31</a></div>
+<p>Let them be produced and meet at <i>K.</i> Draw <i>KL</i> through the point <i>K</i> parallel to either <i>EA</i> or <i>FH.</i>  Produce <i>HA</i> and <i>GB</i> to the points <i>L</i> and <i>M.</i>
+
+<div class="just"><a href="propI43.html">I.43</a></div>
+<p>Then <i>HLKF</i> is a parallelogram, <i>HK</i> is its diameter, and <i>AG</i> and <i>ME</i> are parallelograms, and <i>LB</i> and <i>BF</i> are the so-called complements about <i>HK.</i>  Therefore <i>LB</i> equals <i>BF.</i>
+
+<div class="just"><a href=cn.html>C.N.1</a></div>
+<p>But <i>BF</i> equals the triangle <i>C,</i> therefore <i>LB</i> also equals <i>C.</i>
+
+<div class="just"><a href="propI15.html">I.15</a>,
+<a href=cn.html>C.N.1</a></div>
+<p>Since the angle <i>GBE</i> equals the angle <i>ABM,</i> while the angle <i>GBE</i> equals <i>D,</i> therefore the angle <i>ABM</i> also equals the angle <i>D.</i>
+
+<p>Therefore the parallelogram <i>LB</i> equal to the given triangle <i>C</i> has been applied to the given straight line <i>AB,</i> in the angle <i>ABM</i> which equals <i>D.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+There are two steps in this construction.  The first uses proposition <a href=propI42.html>I.42</a> to construct some parallelogram with the correct angle equal to the given triangle.  The second uses <a href=propI43.html>I.43</a> to change its length to the proper length.
+
+<p>To &ldquo;apply an area to a line in an angle&rdquo; means just what this construction accomplishes, namely, to construct a parallelogram equal to that area with one side as the given line and one angle equal to the given angle.  
+
+<p>In practice the angle is often a right angle.  The given line may be thought of as a unit line.  Then the length of the resulting rectangle represents the the area.
+
+<h4>Use of Proposition 44</h4>
+
+Besides being used in the next proposition, this construction is used in <a href=../bookVI/propVI25.html>VI.25</a> to make a figure similar to one rectilinear figure but equal to another.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997");
+</script>
+</BODY></HTML>

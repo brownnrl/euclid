@@ -1,0 +1,119 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VIII, Proposition 8</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<center><h2><a href=../elements.html><img src=../ee.gif width=276 height=37 alt="Euclid's Elements" border=0></a>
+<br><a href=bookVIII.html><img src=bkVIII.gif width=152 height=37 alt="Book VIII" border=0></a>
+<br>Proposition 8</h2></center>
+
+<table cellpadding=5>
+<tr><td colspan=3><big><i>If between two numbers there fall numbers in continued proportion with them, then, however many numbers fall between them in continued proportion, so many also fall in continued proportion between the numbers which have the same ratios with the original numbers.</i></big></td></tr>
+
+<tr><td colspan=2>Let the numbers <i>C</i> and <i>D</i> fall between the two numbers <i>A</i> and <i>B</i> in continued proportion with them, and make <i>E</i> in the same ratio to <i>F</i> as <i>A</i> is to <i>B</i>.
+
+<p>I say that, as many numbers as have fallen between <i>A</i> and <i>B</i> in continued proportion, so many also fall between <i>E</i> and <i>F</i> in continued proportion.</td></tr>
+
+<tr><td rowspan=2>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=310 >
+<img src="propVIII8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VIII.8">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="C0;point;free;-1000,75;0;0">
+<param name=e[4] value="C3;point;free;1000,75;0;0">
+<param name=e[5] value="D0;point;free;-1000,110;0;0">
+<param name=e[6] value="D3;point;free;1000,110;0;0">
+<param name=e[7] value="B0;point;free;-1000,145;0;0">
+<param name=e[8] value="B3;point;free;1000,145;0;0">
+<param name=e[9] value="G0;point;free;-1000,180;0;0">
+<param name=e[10] value="G3;point;free;1000,180;0;0">
+<param name=e[11] value="H0;point;free;-1000,215;0;0">
+<param name=e[12] value="H3;point;free;1000,215;0;0">
+<param name=e[13] value="K0;point;free;-1000,250;0;0">
+<param name=e[14] value="K3;point;free;1000,250;0;0">
+<param name=e[15] value="L0;point;free;-1000,285;0;0">
+<param name=e[16] value="L3;point;free;1000,285;0;0">
+<param name=e[17] value="U0;point;free;1000,0;0;0">
+<param name=e[18] value="U1;point;free;1000,20;0;0">
+<param name=e[19] value="U2;point;free;1000,50;0;0">
+
+<param name=e[20] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[21] value="A2;point;lineSlider;A0,A3,100,0;0">
+<param name=e[22] value="A;line;connect;A1,A2;black">
+<param name=e[23] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[24] value="C2;point;lineSlider;C0,C3,110,0;0">
+<param name=e[25] value="C;line;connect;C1,C2;black">
+<param name=e[26] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[27] value="D2;point;proportion;A1,A2,C1,C2,C1,C2,D1,D3;0">
+<param name=e[28] value="D;line;connect;D1,D2;black">
+<param name=e[29] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[30] value="B2;point;proportion;A1,A2,C1,C2,D1,D2,B1,B3;0">
+<param name=e[31] value="B;line;connect;B1,B2;black">
+<param name=e[32] value="E1;point;lineSlider;A0,A3,180,0;0">
+<param name=e[33] value="E2;point;lineSlider;A0,A3,230,0;0">
+<param name=e[34] value="E;line;connect;E1,E2;black">
+
+<param name=e[35] value="F1;point;lineSlider;B0,B3,180,0;0">
+<param name=e[36] value="F2;point;proportion;A1,A2,B1,B2,E1,E2,F1,B3;0">
+<param name=e[37] value="F;line;connect;F1,F2;black">
+<param name=e[38] value="G1;point;lineSlider;G0,G3,30,0;0">
+<param name=e[39] value="G2;point;proportion;U0,U2,U1,U2,A1,A2,G1,G3;0">
+<param name=e[40] value="G;line;connect;G1,G2;black">
+<param name=e[41] value="H1;point;lineSlider;H0,H3,30,0;0">
+<param name=e[42] value="H2;point;proportion;U0,U2,U1,U2,C1,C2,H1,H3;0">
+<param name=e[43] value="H;line;connect;H1,H2;black">
+<param name=e[44] value="K1;point;lineSlider;K0,K3,30,0;0">
+<param name=e[45] value="K2;point;proportion;U0,U2,U1,U2,D1,D2,K1,K3;0">
+<param name=e[46] value="K;line;connect;K1,K2;black">
+<param name=e[47] value="L1;point;lineSlider;L0,L3,30,0;0">
+<param name=e[48] value="L2;point;proportion;U0,U2,U1,U2,B1,B2,L1,L3;0">
+<param name=e[49] value="L;line;connect;L1,L2;black">
+<param name=e[50] value="M1;point;lineSlider;C0,C3,180,0;0">
+<param name=e[51] value="M2;point;proportion;G1,G2,E1,E2,H1,H2,M1,C3;0">
+<param name=e[52] value="M;line;connect;M1,M2;black">
+<param name=e[53] value="N1;point;lineSlider;D0,D3,180,0;0">
+<param name=e[54] value="N2;point;proportion;G1,G2,E1,E2,K1,K2,N1,D3;0">
+<param name=e[55] value="N;line;connect;N1,N2;black">
+</applet></td>
+
+<td>As many as <i>A</i>, <i>B</i>, <i>C</i>, and <i>D</i> are in multitude, take so many numbers <i>G</i>, <i>H</i>, <i>K</i>, and <i>L</i>, the least of those which have the same ratio with <i>A</i>, <i>C</i>, <i>D</i>, and <i>B</i>. Then the extremes of them <i>G</i> and <i>L</i> are relatively prime.</td>
+<td><small><a href=../bookVII/propVII33.html>VII.33</a>
+<p><a href=propVIII3.html>VIII.3</a></small></td></tr>
+
+<tr><td>Now, since <i>A</i>, <i>C</i>, <i>D</i>, and <i>B</i> are in the same ratio with <i>G</i>, <i>H</i>, <i>K</i>, and <i>L</i>, and the multitude of the numbers <i>A</i>, <i>C</i>, <i>D</i>, and <i>B</i> equals the multitude of the numbers <i>G</i>, <i>H</i>, <i>K</i>, and <i>L</i>, therefore, <i>ex aequali</i> <i>A</i> is to <i>B</i> as <i>G</i> is to <i>L</i>.</td>
+<td><small><a href=../bookVII/propVII14.html>VII.14</a></small></td></tr>
+
+<tr><td colspan=2>But <i>A</i> is to <i>B</i> as <i>E</i> is to <i>F</i>, therefore <i>G</i> is to <i>L</i> as <i>E</i> is to <i>F</i>.</td></tr>
+
+<tr><td colspan=2>But <i>G</i> and <i>L</i> are relatively prime, primes are also least, and the least numbers measure those which have the same ratio the same number of times, the greater the greater and the less the less, that is, the antecedent the antecedent and the consequent the consequent.</td>
+<td><small><a href=../bookVII/propVII21.html>VII.21</a>
+<p><a href=../bookVII/propVII20.html>VII.20</a></small></td></tr>
+
+<tr><td colspan=2>Therefore <i>G</i> measures <i>E</i> the same number of times as <i>L</i> measures <i>F</i>.</td></tr>
+
+<tr><td colspan=2>Next, let <i>H</i> and <i>K</i> measure <i>M</i> and <i>N</i>, respectively, as many times as <i>G</i> measures <i>E</i>. Then <i>G</i>, <i>H</i>, <i>K</i>, and <i>L</i> measure <i>E</i>, <i>M</i>, <i>N</i>, and <i>F</i> the same number of times. Therefore <i>G</i>, <i>H</i>, <i>K</i>, and <i>L</i> are in the same ratio with <i>E</i>, <i>M</i>, <i>N</i>, and <i>F</i>.</td>
+<td><small><a href=../bookVII/defVII20.html>VII.Def.20</a></small></td></tr>
+
+<tr><td colspan=2>But <i>G</i>, <i>H</i>, <i>K</i>, and <i>L</i> are in the same ratio with <i>A</i>, <i>C</i>, <i>D</i>, and <i>B</i>, therefore <i>A</i>, <i>C</i>, <i>D</i>, and <i>B</i> are also in the same ratio with <i>E</i>, <i>M</i>, <i>N</i>, and <i>F</i>.
+<p>
+But <i>A</i>, <i>C</i>, <i>D</i>, and <i>B</i> are in continued proportion, therefore <i>E</i>, <i>M</i>, <i>N</i>, and <i>F</i> are also in continued proportion. Therefore, as many numbers as have fallen between <i>A</i> and <i>B</i> in continued proportion with them, so many numbers have also fallen between <i>E</i> and <i>F</i> in continued proportion.</td></tr>
+
+<tr><td colspan=3>Therefore, <i>if between two numbers there fall numbers in continued proportion with them, then, however many numbers fall between them in continued proportion, so many also fall in continued proportion between the numbers which have the same ratios with the original numbers.</i></td></tr>
+
+<tr><td colspan=3 align=right><small>Q.E.D.</small></td></tr></table>
+
+<h3><img src=../guide.gif alt=Guide width=83 height=37></h3>
+This proposition implies, among other things, that  there is no number which forms a mean
+proportional between a number <i>n</i> and the number 2<i>n</i>, for if there were, there would be a number <i>m</i> so that 2, <i>m</i>, and 4 would form a continued proportion, but the only number between 2 and 4 is 3, and 2, 3, and 4 do not form a continued proportion.  (If 1 is considered to be a number, the argument simplifies.)  In modern terminology, this conclusion would be stated as saying the the square root of 2 is not a rational number.  See proposition <a href=../bookX/propX9.html>X.9</a> for implications of this conclusion for imcommensurability of line segments.
+
+<p>Although this proposition is not used in Book VIII, it is used in the first six propositions of <a href=../bookIX/bookIX.html>Book IX</a>.
+
+<p><hr size=6><p>
+<a href=bookVIII.html>Book VIII Introduction</a> -
+<a href=propVIII7.html>Proposition VIII.7</a> -
+<a href=propVIII9.html>Proposition VIII.9</a>.
+<p><small><a href=../copyright.html>&copy; 1996, 1998.</a>
+<br><a href="http://aleph0.clarku.edu/~djoyce/home.html">D.E.Joyce</a>
+<br><a href=http://www.clarku.edu/>Clark University</a></small>
+</BODY></HTML>

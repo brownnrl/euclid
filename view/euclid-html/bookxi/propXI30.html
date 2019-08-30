@@ -1,0 +1,86 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 30</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 30</h1>
+
+<div class="statement">Parallelepipedal solids which are on the same base and of the same height, and in which the ends of their edges which stand up are not on the same straight lines, equal one another.</div>
+
+<p>Let <i>CM</i> and <i>CN</i> be parallelepipedal solids on the same base <i>AB</i> and of the same height, and let the ends of their edges which stand up, namely <i>AF, AG, LM, LN, CD, CE, BH,</i> and <i>BK,</i> not be on the same straight lines.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=320 height=310 >
+<img src="propXI30.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.30">
+<param name=e[1] value="G;point;fixed;60,120,0;black;green">
+<param name=basepoint value=G>
+<param name=e[2] value="1X;point;fixed;260,93,36;0;0">
+<param name=e[3] value="1Y;point;fixed;15,0,160;0;0">
+<param name=e[4] value="1Z;point;fixed;60,264,123;0;0">
+<param name=e[5] value="E;point;lineSlider;G,1X,200,50,0">
+<param name=e[6] value="N;point;lineSlider;G,1Y,50,50,100">
+<param name=e[7] value="A;point;lineSlider;G,1Z,200,220,200">
+<param name=e[8] value="ceiling;plane;3points;G,E,N;0;0;black;150,50,100">
+<param name=e[9] value="C;point;parallelogram;A,G,E">
+<param name=e[10] value="L;point;parallelogram;A,G,N">
+<param name=e[11] value="B;point;parallelogram;C,A,L">
+<param name=e[12] value="K;point;parallelogram;E,G,N">
+
+<param name=e[13] value="floor;plane;3points;A,C,L;0;0;black;0">
+<param name=e[14] value="AGNL;polygon;quadrilateral;A,G,N,L;0;0;black;150,75,100">
+<param name=e[15] value="ACEG;polygon;quadrilateral;A,C,E,G;0;0;black;150,100,100">
+<param name=e[16] value="KB;line;connect;K,B">
+
+<param name=e[17] value="D;point;planeSlider;ceiling,280,190,10">
+<param name=e[18] value="F;point;parallelogram;D,C,A">
+<param name=e[19] value="H;point;parallelogram;D,C,B">
+<param name=e[20] value="M;point;parallelogram;D,C,L">
+<param name=e[21] value="ACDF;polygon;quadrilateral;A,C,D,F;0;0;black;0">
+<param name=e[22] value="LBHM;polygon;quadrilateral;L,B,H,M;0;0;black;0">
+
+<param name=e[23] value="O;point;intersection;G,E,F,M,ceiling">
+<param name=e[24] value="P;point;intersection;N,K,F,M,ceiling">
+<param name=e[25] value="Q;point;intersection;D,H,G,E,ceiling">
+<param name=e[26] value="R;point;intersection;N,K,D,H,ceiling">
+<param name=e[27] value="FP;line;connect;F,P">
+<param name=e[28] value="DR;line;connect;D,R">
+<param name=e[29] value="BRPL;polygon;quadrilateral;B,R,P,L;0;0;black;0">
+<param name=e[30] value="CQOA;polygon;quadrilateral;C,Q,O,A;0;0;black;0">
+</applet></div>
+
+<p>I say that the solid <i>CM</i> equals the solid <i>CN.</i>
+
+<p>Produce <i>NK</i> and <i>DH</i> to meet one another at <i>R,</i> and produce <i>FM</i> and <i>GE</i> to <i>P</i> and <i>Q.</i>  Join <i>AO, LP, CQ,</i> and <i>BR.</i>
+
+<div class="just"><a href="propXI29.html">XI.29</a></div>
+<p>Then the solid <i>CM,</i> of which the parallelogram <i>ACBL</i> is the base and <i>FDHM</i> its opposite, equals the solid <i>CP,</i> of which the parallelogram <i>ACBL</i> is the base and <i>OQRP</i> its opposite, for they are on the same base <i>ACBL</i> and of the same height, and the ends of their edges which stand up, namely <i>AF, AO, LM, LP, CD, CQ, BH,</i> and <i>BR,</i> are on the same straight lines <i>FP</i> and <i>DR.</i>
+
+<div class="just"><a href="propXI29.html">XI.29</a></div>
+<p>But the solid <i>CP,</i> of which the parallelogram <i>ACBL</i> is the base and <i>OQRP</i> its opposite, equals the solid <i>CN,</i> of which the parallelogram <i>ACBL</i> is the base and <i>GEKN</i> its opposite, for they are again on the same base <i>ACBL</i> and of the same height, and the ends of their edges which stand up, namely <i>AG, AO, CE, CQ, LN, LP, BK,</i> and <i>BR,</i> are on the same straight lines <i>GQ</i> and <i>NR.</i>
+
+<p>Hence the solid <i>CM</i> also equals the solid <i>CN.</i></tr>
+
+<p>Therefore, <i>parallelepipedal solids which are on the same base and of the same height, and in which the ends of their edges which stand up are not on the same straight lines, equal one another.</i>
+
+<div class="qed">Q.E.D.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+Two applications of the previous proposition allow its generalization to  the present proposition.  It is generalized one step further in the next proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

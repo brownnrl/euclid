@@ -1,0 +1,87 @@
+
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 3</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 3</h1>
+
+<div class="statement">To cut off from the greater of two given unequal straight lines a straight line equal to the less.</div>
+
+<p>Let <i>AB</i> and <i>C</i> be the two given unequal straight lines, and let <i>AB</i> be the greater of them.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=270 width=350>
+<img src="propI3.gif" alt="java applet or image">
+<param name=title value="I.3">
+<param name=background value="35,19,100">
+<param name=e[1] value="C0;point;free;-1000,50;0,0">
+<param name=e[2] value="C3;point;free;1000,50;0,0">
+<param name=e[3] value="C1;point;lineSlider;C0,C3,250,50;0">
+<param name=e[4] value="C2;point;lineSlider;C0,C3,320,50;0">
+<param name=e[5] value="C;line;connect;C1,C2;0,0,0">
+<param name=e[6] value="A;point;free;140,150">
+<param name=e[7] value="B;point;free;290,150">
+<param name=e[8] value="AB;line;connect;A,B">
+<param name=e[9] value="E;point;cutoff;AB,C">
+<param name=e[10] value="DEF;circle;radius;A,E">
+<param name=e[11] value="D;point;circleSlider;DEF,100,120">
+<param name=e[12] value="AD;line;connect;A,D">
+<param name=e[13] value="F;point;extend;D,A,D,A;0,0,0;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI3.gif" hspace=10 vspace=10 alt="I.3">';
+</script>
+</div>
+
+<p>It is required to cut off from <i>AB</i> the greater a straight line equal to <i>C</i> the less.
+
+<div class="just"><a href=propI2.html>I.2</a>
+<br><a href=post3.html>I.Post.3</a></div>
+<p>Place <i>AD</i> at the point <i>A</i> equal to the straight line <i>C,</i> and describe the circle <i>DEF</i> with center <i>A</i> and radius <i>AD.</i>
+
+<div class="just"><a href=defI15.html>I.Def.15</a></div>
+<p>Now, since the point <i>A</i> is the center of the circle <i>DEF,</i> therefore <i>AE</i> equals <i>AD.</i>
+
+<div class="just"><a href=cn.html>C.N.1</a></div>
+<p>But <i>C</i> also equals <i>AD,</i> therefore each of the straight lines <i>AE</i> and <i>C</i> equals <i>AD,</i> so that <i>AE</i> also equals <i>C.</i>
+
+<p>Therefore, given the two straight lines <i>AB</i> and <i>C, AE</i> has been cut off from <i>AB</i> the greater equal to <i>C</i> the less.
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+Now it is clear that the purpose of Proposition 2 is to effect the construction in this proposition.
+
+<p>According to Proclus (410&ndash;485 C.E.) in his <i>Commentary on Book I,</i> Hippocrates of Chios (fl. ca. 430 B.C.E.) was the first to write an <i>Elements.</i>  Leon and Theudius also wrote versions before Euclid (fl. ca. 295 B.C.E.).  These other <i>Elements</i> have all been lost since Euclid&rsquo;s replaced them.  It is conceivable that in some of these earlier versions the construction in proposition I.2 was not known, so this proposition would instead have been a postulate (a stronger version of <a href=post3.html>I.Post.3</a>).  Once the construction in I.2 was discovered, the current weaker <a href=post3.html>I.Post.3</a> would do.  Then again, I.2 might go back to the time of Hippocrates.
+
+<h4>Construction steps</h4>
+
+This construction takes one more step beyond that of <a href=propI2.html>I.2</a>, and that is the final circle, the circle shown in the diagram accompanying this proposition.  Altogether, therefore, five circles and two lines are required for this construction.
+
+<p>Frequently, though, one end of the line <i>C</i> is already placed at <i>A,</i> and then the construction of I.2 isn&rsquo;t required.  In that case, only one circle needs to be drawn.
+
+<h4>Use of Proposition 3</h4>
+
+This proposition begins the geometric arithmetic of lines.  Explicitly, it allows lines to be subtracted, but it can also be used to compare lines for equality and to add lines, that is, one line can be placed alongside another to determine if they are equal, or if not, which is greater.  In other words, this construction justifies the law of trichotomy for lines.
+
+<p>The construction is use more often in the <i>Elements</i> than any other starting with proposition <a href=propI5.html>I.5</a>.  It is used in all the books on geometry, that is in Books I through IV, VI, and XI through XIII.
+
+<p>Naturally a construction of this sort is needed in the solid geometry of Books XI through XIII.  Surprisingly, the construction given here also works in solid geometry, even the lines <i>AB</i> and <i>C</i> don&rsquo;t lie in the same plane.  Since the point <i>A</i> and the line <i>C</i> lie in one plane, the construction of <a href=propI2.html>I.2</a> produces a line <i>AD</i> equal to <i>C</i> in that plane.  Now <i>AD</i> and <i>AB</i> also lie in one plane, but not the same one, and the circle <i>AEF</i> can be drawn there.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

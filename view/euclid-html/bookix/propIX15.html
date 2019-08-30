@@ -1,0 +1,120 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 15</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 15</h1>
+
+<div class="statement">If three numbers in continued proportion are the least of those which have the same ratio with them, then the sum of any two is relatively prime to the remaining number.</div>
+
+<p>Let <i>A, B,</i> and <i>C,</i> three numbers in continued proportion, be the least of those which have the same ratio with them.
+
+<p>I say that the sum of any two of the numbers <i>A, B,</i> and <i>C</i> is relatively prime to the remaining number, that is, <i>A</i> plus <i>B</i> is relatively prime to <i>C, B</i> plus <i>C</i> is relatively prime to <i>A,</i> and <i>A</i> plus <i>C</i> is relatively prime to <i>B.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=130 >
+<img src="propIX15.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.15">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="C0;point;free;-1000,65;0;0">
+<param name=e[4] value="C3;point;free;1000,65;0;0">
+<param name=e[5] value="D0;point;free;-1000,100;0;0">
+<param name=e[6] value="D3;point;free;1000,100;0;0">
+<param name=e[7] value="U1;point;free;1000,0;0;0">
+<param name=e[8] value="U2;point;free;1000,35;0;0">
+
+<param name=e[9] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[10] value="A2;point;lineSlider;A0,A3,90,0;0">
+<param name=e[11] value="A;line;connect;A1,A2;black">
+<param name=e[12] value="B1;point;lineSlider;A0,A3,130,0;0">
+<param name=e[13] value="B2;point;lineSlider;A0,A3,230,0;0">
+<param name=e[14] value="B;line;connect;B1,B2;black">
+<param name=e[15] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[16] value="C2;point;proportion;A1,A2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[17] value="C;line;connect;C1,C2;black">
+
+<param name=e[18] value="E;point;lineSlider;D0,D3,110,0">
+<param name=e[19] value="D;point;lineSlider;D0,D3,75,0">
+<param name=e[20] value="F;point;proportion;A1,A2,B1,B2,D,E,E,D3">
+<param name=e[21] value="DF;line;connect;D,F">
+</applet></div>
+
+<div class="just"><a href="../bookVIII/propVIII2.html">VIII.2</a></div>
+<p>Take two numbers <i>DE</i> and <i>EF</i> to be the least of those which have the same ratio with <i>A, B,</i> and <i>C.</i>
+
+<div class="just"><a href="../bookVIII/propVIII2.html#cor">Cor.</a> to VIII.2</div>
+<p>It is then manifest that <i>DE</i> multiplied by itself makes <i>A,</i> and multiplied by <i>EF</i> makes <i>B,</i> and that <i>EF</i> multiplied by itself makes <i>C.</i>
+
+<div class="just"><a href="../bookVII/propVII22.html">VII.22</a>
+<br><a href="../bookVII/propVII28.html">VII.28</a></div>
+<p>Now, since <i>DE</i> and <i>EF</i> are least, therefore they are relatively prime. But, if two numbers are relatively prime, then their sum is also relatively prime to each, therefore <i>DF</i> is relatively prime to each of the numbers <i>DE</i> and <i>EF.</i>
+
+<div class="just"><a href="../bookVII/propVII24.html">VII.24</a>
+<br><a href="../bookVII/propVII25.html">VII.25</a></div>
+<p>But, further, <i>DE</i> is also relatively prime to <i>EF,</i> therefore <i>DF</i> and <i>DE</i> are relatively prime to <i>EF.</i> But, if two numbers are relatively prime to any number, then their product is also relatively prime to the other, so that the product of <i>FD</i> and <i>DE</i> is relatively prime to <i>EF,</i> hence the product of <i>FD</i> and <i>DE</i> is also relatively prime to the square on <i>EF.</i>
+
+<div class="just"><a href="../bookII/propII3.html">II.3</a></div>
+<p>But the product of <i>FD</i> and <i>DE</i> is the square on <i>DE</i> together with the product of <i>DE</i> and <i>EF,</i> therefore the sum of the square on <i>DE</i> and the product of <i>DE</i> and <i>EF</i> is relatively prime to the square on <i>EF.</i>
+
+<p>And the square on <i>DE</i> is <i>A,</i> the product of <i>DE</i> and <i>EF</i> is <i>B,</i> and the square on <i>EF</i> is <i>C,</i> therefore the sum of <i>A</i> and <i>B</i> is prime to <i>C.</i>
+
+<p>Similarly we can prove that the sum of <i>B</i> and <i>C</i> is relatively prime to <i>A.</i>
+
+<p>I say next that the sum of <i>A</i> and <i>C</i> is also relatively prime to <i>B.</i>
+
+<div class="just"><a href="../bookVII/propVII24.html">VII.24</a>
+<br><a href="../bookVII/propVII25.html">VII.25</a></div>
+<p>Since <i>DF</i> is relatively prime to each of the numbers <i>DE</i> and <i>EF,</i> therefore the square on <i>DF</i> is also relatively prime to the product of <i>DE</i> and <i>EF.</i>
+
+<div class="just"><a href="../bookII/propII4.html">II.4</a></div>
+<p>But the sum of the squares on <i>DE</i> and <i>EF</i> together with twice the product of <i>DE</i> and <i>EF</i> equals the square on <i>DF,</i> therefore the sum of the squares on <i>DE</i> and <i>EF</i> together with twice the product of <i>DE</i> and <i>EF</i> is relatively prime to the product of <i>DE</i> and <i>EF.</i>
+
+<p>Taken separately, the sum of the squares on <i>DE</i> and <i>EF</i> together with the product of <i>DE</i> and <i>EF</i> is relatively prime to the product of <i>DE</i> and <i>EF.</i>
+
+<p>Therefore, taken separately again, the sum of the squares on <i>DE</i> and <i>EF</i> is relatively prime to the product of <i>DE</i> and <i>EF.</i>
+
+<p>And the square on <i>DE</i> is <i>A,</i> the product of <i>DE</i> and <i>EF</i> is <i>B,</i> and the square on <i>EF</i> is <i>C.</i>
+
+<p>Therefore the sum of <i>A</i> and <i>C</i> is relatively prime to <i>B.</i>
+
+<p>Therefore, <i>if three numbers in continued proportion are the least of those which have the same ratio with them, then the sum of any two is relatively prime to the remaining number.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+<h4>Outline of the proof</h4>
+
+Let <i>a, b, c</i> be three numbers in continued proportion.  Then according to <a href="../bookVIII/propVIII2.html">VIII.2</a>, they are of the form
+<p><center>
+<i>a</i> = <i>d</i><sup>2</sup>, &nbsp; &nbsp; 
+<i>b</i> = <i>de</i>, &nbsp; &nbsp;
+<i>c</i> = <i>e</i><sup>2</sup>,
+</center><p>
+where <i>d</i> and <i>e</i> are relatively prime. Then the sum, <i>d</i>&nbsp;+&nbsp;<i>e,</i> is relatively prime to both <i>d</i> and <i>e</i> (<a href="../bookVII/propVII28.html">VII.28</a>).
+
+<p>Now, since both <i>d</i> and <i>d</i>&nbsp;+&nbsp;<i>e</i> are relatively prime to <i>e,</i> so is their product <i>d</i><sup>2</sup>&nbsp;+&nbsp;<i>de</i> relatively prime to <i>e</i> (<a href="../bookVII/propVII24.html">VII.24</a>), and therefore to <i>e</i><sup>2</sup> (<a href="../bookVII/propVII25.html">VII.25</a>).  Thus, <i>a</i>&nbsp;+&nbsp;<i>b</i> is relatively prime to <i>c.</i>
+
+<p>Likewise, <i>b</i>&nbsp;+&nbsp;<i>c</i> is relatively prime to <i>a.</i>
+
+<p>Next, since <i>d</i>&nbsp;+&nbsp;<i>e</i> is relatively prime to both <i>d</i> and <i>e,</i>
+so is its square (<i>d</i>&nbsp;+&nbsp;<i>e</i>)<sup>2</sup> relatively prime to the product <i>de</i> (<a href="../bookVII/propVII24.html">VII.24</a> and <a href="../bookVII/propVII25.html">VII.25</a>). That is, <i>d</i><sup>2</sup>&nbsp;+&nbsp;<i>e</i><sup>2</sup>&nbsp;+&nbsp;2<i>de</i> is relatively prime to <i>de.</i>  Subtract 2<i>de</i> to conclude that <i>d</i><sup>2</sup>&nbsp;+&nbsp;<i>e</i><sup>2</sup> is relatively prime to <i>de.</i> Thus, <i>b</i> is relatively prime to <i>a</i>&nbsp;+&nbsp;<i>c.</i> 
+<small>Q.E.D.</small>
+
+<p>This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002");
+</script>
+</BODY></HTML>

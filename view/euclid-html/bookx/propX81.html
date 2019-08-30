@@ -1,0 +1,113 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 81</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 81</h1>
+
+<div class="statement">To a second apotome of a medial straight line only one medial straight line can be annexed which is commensurable with the whole in square only and which contains with the whole a medial rectangle.</div>
+
+<div class="just"><a href=propX75.html>X.75</a></div>
+<p>Let <i>AB</i> be a second apotome of a medial straight line and <i>BC</i> an annex to <i>AB</i>.  Then <i>AC</i> and <i>CB</i> are medial straight lines commensurable in square only such that the rectangle <i>AC</i> by <i>CB</i> which they contain is medial.
+
+<p>I say that no other medial straight line can be annexed to <i>AB</i> which is commensurable with the whole in square only and which contains with the whole a medial rectangle.
+
+<div class="just"><a href=propX75.html>X.75</a></div>
+<p>If possible, let <i>BD</i> also be so annexed.  Then <i>AD</i> and <i>DB</i> are also medial straight lines commensurable in square only such that the rectangle <i>AD</i> by <i>DB</i> which they contain is medial.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=200 height=280>
+<img src="propX81.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.81">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="F0;point;free;-1000,75;0;0">
+<param name=e[4] value="F3;point;free;1000,75;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,105,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,135,0">
+<param name=e[8] value="D;point;lineSlider;A0,A3,160,0">
+<param name=e[9] value="AD;line;connect;A,D">
+
+<param name=e[10] value="F;point;lineSlider;F0,F3,40,0">
+<param name=e[11] value="E;point;lineSlider;F0,F3,160,0">
+<param name=e[12] value="G''';point;perpendicular;F,E;0;0">
+<param name=e[13] value="G'';point;extend;G''',F,A0,A3;0;0">
+<param name=e[14] value="G';point;proportion;F,E,A,C,A,C,F,G'';0;0">
+<param name=e[15] value="G;point;proportion;F,E,B,C,B,C,G',G''">
+<param name=e[16] value="M;point;parallelogram;E,F,G">
+<param name=e[17] value="EFGM;polygon;quadrilateral;E,F,G,M;0;0;black;random">
+<param name=e[18] value="L';point;proportion;F,E,A,C,C,B,G,F;0;0">
+<param name=e[19] value="L;point;extend;G,L',G,L'">
+<param name=e[20] value="H;point;parallelogram;M,G,L">
+<param name=e[21] value="MGLH;polygon;quadrilateral;M,G,L,H;0;0;black;random">
+<param name=e[22] value="I';point;proportion;F,E,A,D,A,D,F,G'';0;0">
+<param name=e[23] value="I;point;proportion;F,E,B,D,B,D,I',G''">
+<param name=e[24] value="N;point;parallelogram;E,F,I">
+<param name=e[25] value="MGIN;polygon;quadrilateral;M,G,I,N;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=../bookII/propII7.html>II.7</a></div>
+<p>Set out a rational straight line <i>EF</i>.  Apply <i>EG</i>, equal to the sum of the squares on <i>AC</i> and <i>CB</i>,  to <i>EF</i> producing <i>EM</i> as breadth.  Subtract <i>HG</i>, equal to twice the rectangle <i>AC</i> by <i>CB</i>, producing <i>HM</i> as breadth. Then the remainder <i>EL</i> equals the square on <i>AB</i>, so that <i>AB</i> is the side of <i>EL</i>.
+
+<p>Again, apply <i>EI</i>, equal to the sum of the squares on <i>AD</i> and <i>DB</i>,  to <i>EF</i> producing <i>EN</i> as breadth.
+
+<div class="just"><a href=../bookII/propII7.html>II.7</a></div>
+<p>But <i>EL</i> also equals the square on <i>AB</i>, therefore the remainder <i>HI</i> equals twice the rectangle <i>AD</i> by <i>DB</i>.
+
+<div class="just"><a href=propX15.html>X.15</a>
+<br><a href=propX23.html#cor>X.23,Cor.</a></div>
+<p>Now, since <i>AC</i> and <i>CB</i> are medial straight lines, therefore the squares on <i>AC</i> and <i>CB</i> are also medial. And they equal <i>EG</i>, therefore <i>EG</i> is also medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And it is applied to the rational straight line <i>EF</i>, producing <i>EM</i> as breadth, therefore <i>EM</i> is rational and incommensurable in length with <i>EF</i>.
+
+<div class="just"><a href=propX23.html#cor>X.23,Cor.</a></div>
+<p>Again, since the rectangle <i>AC</i> by <i>CB</i> is medial, twice the rectangle <i>AC</i> by <i>CB</i> is also medial.  And it equals <i>HG</i>, therefore <i>HG</i> is also medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And it is applied to the rational straight line <i>EF</i>, producing <i>HM</i> as breadth, therefore <i>HM</i> is also rational and incommensurable in length with <i>EF</i>.
+
+<p>Since <i>AC</i> and <i>CB</i> are commensurable in square only, therefore <i>AC</i> is incommensurable in length with <i>CB</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>But <i>AC</i> is to <i>CB</i> as the square on <i>AC</i> is to the rectangle <i>AC</i> by <i>CB</i>, therefore the square on <i>AC</i> is incommensurable with the rectangle <i>AC</i> by <i>CB</i>.
+
+<div class="just"><a href=propX6.html>X.6</a>
+<br><a href=propX13.html>X.13</a></div>
+<p>But the sum of the squares on <i>AC</i> and <i>CB</i> is commensurable with the square on <i>AC</i>, while twice the rectangle <i>AC</i> by <i>CB</i> is commensurable with the rectangle <i>AC</i> by <i>CB</i>, therefore the sum of the squares on <i>AC</i> and <i>CB</i> is incommensurable with twice the rectangle <i>AC</i> by <i>CB</i>.
+
+<p>And <i>EG</i> equals the sum of the squares on <i>AC</i> and <i>CB</i>, while <i>GH</i> equals twice the rectangle <i>AC</i> by <i>CB</i>, therefore <i>EG</i> is incommensurable with <i>HG</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>,
+<a href=propX11.html>X.11</a></div>
+<p>But <i>EG</i> is to <i>HG</i> as <i>EM</i> is to <i>HM</i>, therefore <i>EM</i> is incommensurable in length with <i>MH</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>And both are rational, therefore <i>EM</i> and <i>MH</i> are rational straight lines commensurable in square only, therefore <i>EH</i> is an apotome, and <i>HM</i> an annex to it.
+
+<div class="just"><a href=propX79.html>X.79</a></div>
+<p>Similarly we can prove that <i>HN</i> is also an annex to it.  Therefore to an apotome different straight lines are annexed which are commensurable with the wholes in square only, which is impossible.
+
+<p>Therefore, <i>to a second apotome of a medial straight line only one medial straight line can be annexed which is commensurable with the whole in square only and which contains with the whole a medial rectangle.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

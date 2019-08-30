@@ -1,0 +1,88 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 47</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 47</h1>
+
+<div class="statement">The side of the sum of two medial areas is divided at one point only.</div>
+
+<p>Let <i>AB</i> be divided at <i>C</i>, so that <i>AC</i> and <i>CB</i> are incommensurable in square and let the sum of the squares on <i>AC</i> and <i>CB</i> be medial, and the rectangle <i>AC</i> by <i>CB</i> medial and also incommensurable with the sum of the squares on them.
+
+<p>I say that <i>AB</i> is not divided at another point so as to fulfill the given conditions.
+
+<p>If possible, let it be divided at <i>D</i>, so that again <i>AC</i> is of course not the same as <i>BD</i>, but <i>AC</i> is supposed greater.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=210>
+<img src="propX44.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.47">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="E0;point;free;40,-1000;0;0">
+<param name=e[4] value="E3;point;free;40,1000;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,90,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,245,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,220,0">
+<param name=e[8] value="AB;line;connect;A,B">
+<param name=e[9] value="D;point;lineSlider;A0,A3,170,0">
+<param name=e[10] value="E;point;lineSlider;E0,E3,0,80">
+<param name=e[11] value="F;point;lineSlider;E0,E3,0,170">
+
+<param name=e[12] value="N';point;parallelogram;B,A,E;0;0">
+<param name=e[13] value="N;point;proportion;E,F,A,B,A,B,E,N'">
+<param name=e[14] value="K;point;parallelogram;F,E,N">
+<param name=e[15] value="F,E,N,K;polygon;quadrilateral;F,E,N,K;0;0;black;random">
+<param name=e[16] value="H';point;proportion;E,F,A,C,A,C,E,N;0;0">
+<param name=e[17] value="H;point;proportion;E,F,C,B,C,B,H',N">
+<param name=e[18] value="G;point;parallelogram;F,E,H">
+<param name=e[19] value="M';point;proportion;E,F,A,D,A,D,E,N;0;0">
+<param name=e[20] value="M;point;proportion;E,F,D,B,D,B,M',N">
+<param name=e[21] value="L;point;parallelogram;F,E,M">
+<param name=e[22] value="GHML;polygon;quadrilateral;G,H,M,L;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=../bookII/propII4.html>II.4</a></div>
+<p>Set out a rational straight line <i>EF</i>, and apply to <i>EF</i> the rectangle <i>EG</i> equal to the sum of the squares on <i>AC</i> and <i>CB</i>, and the rectangle <i>HK</i> equal to twice the rectangle <i>AC</i> by <i>CB</i>. Then the whole <i>EK</i> equals the square on <i>AB</i>.
+
+<p>Again, to <i>EP</i> apply <i>EL</i>, equal to the sum of the squares on <i>AD</i> and <i>DB</i>. Then the remainder, twice the rectangle <i>AD</i> by <i>DB</i>, equals the remainder <i>MK</i>.
+
+<p>And since, by hypothesis, the sum of the squares on <i>AC</i> and <i>CB</i> is medial, therefore <i>EG</i> is also medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And it is applied to the rational straight line <i>EF</i>, therefore <i>HE</i> is rational and incommensurable in length with <i>EF</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>For the same reason <i>HN</i> is also rational and incommensurable in length with <i>EF</i>. And, since the sum of the squares on <i>AC</i> and <i>CB</i> is incommensurable with twice the rectangle <i>AC</i> by <i>CB</i>, therefore <i>EG</i> is also incommensurable with <i>GN</i>, so that <i>EH</i> is also incommensurable with <i>HN</i>.
+
+<div class="just"><a href=propX36.html>X.36</a></div>
+<p>And they are rational, therefore <i>EH</i> and <i>HN</i> are rational straight lines commensurable in square only.  Therefore <i>EN</i> is a binomial straight line divided at <i>H</i>.
+
+<div class="just"><a href=propX42.html>X.42</a></div>
+<p>Similarly we can prove that it is also divided at <i>M</i>. And <i>EH</i> is not the same with <i>MN</i>, therefore a binomial has been divided at different points, which is absurd.
+
+<p>Therefore a side of the sum of two medial areas is not divided at different points. Therefore it is divided at one point only.
+
+<p>Therefore, <i>the side of the sum of two medial areas is divided at one point only.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

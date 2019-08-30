@@ -1,0 +1,143 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 29</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 29</h1>
+
+<div class="statement">A straight line falling on parallel straight lines makes the alternate angles equal to one another, the exterior angle equal to the interior and opposite angle, and the sum of the interior angles on the same side equal to two right angles.</div>
+
+<p>Let the straight line <i>EF</i> fall on the parallel straight lines <i>AB</i> and <i>CD.</i>
+
+<p>I say that it makes the alternate angles <i>AGH</i> and <i>GHD</i> equal, the exterior angle <i>EGB</i> equal to the interior and opposite angle <i>GHD,</i> and the sum of the interior angles on the same side, namely <i>BGH</i> and <i>GHD,</i> equal to two right angles.
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=210 width=220>
+<img src="propI29.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.29">
+<param name=e[1] value="A;point;free;40,80">
+<param name=e[2] value="B;point;free;180,80">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;free;40,120">
+<param name=e[5] value="D';point;parallelogram;C,A,B;0;0">
+<param name=e[6] value="D;point;lineSlider;C,D',180,40">
+<param name=e[7] value="CD;line;connect;C,D">
+<param name=e[8] value="E;point;free;70,40">
+<param name=e[9] value="F;point;free;120,170">
+<param name=e[10] value="EF;line;connect;E,F">
+<param name=e[11] value="G;point;intersection;A,B,E,F">
+<param name=e[12] value="H;point;intersection;C,D,E,F">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propI29.gif" hspace=10 vspace=10 alt="I.29">';
+</script>
+</div>
+
+<p>If the angle <i>AGH</i> does not equal the angle <i>GHD,</i> then one of them is greater.  Let the angle <i>AGH</i> be greater.
+
+<p>Add the angle <i>BGH</i>  to each. Therefore the sum of the angles <i>AGH</i> and <i>BGH</i> is greater than the sum of the angles <i>BGH</i> and <i>GHD.</i>
+
+<div class="just"><a href=propI13.html>I.13</a></div>
+<p>But sum of the angles <i>AGH</i> and <i>BGH</i> equals two right angles.  Therefore the sum of the angles <i>BGH</i> and <i>GHD</i> is less than two right angles.
+
+<div class="just"><a href=post5.html>Post.5</a></div>
+<p>But straight lines produced indefinitely from angles less than two right angles meet. Therefore <i>AB</i> and <i>CD,</i> if produced indefinitely, will meet. But they do not meet, because they are by hypothesis parallel.
+
+<p>Therefore the angle <i>AGH</i> is not unequal to the angle <i>GHD,</i> and therefore equals it.
+
+<div class="just"><a href=propI15.html>I.15</a>,
+<a href=cn.html>C.N.1</a></div>
+<p>Again, the angle <i>AGH</i> equals the angle <i>EGB.</i> Therefore the angle <i>EGB</i> also equals the angle <i>GHD.</i>
+
+<div class="just"><a href=cn.html>C.N.2</a></div>
+<p>Add the angle <i>BGH</i> to each. Therefore the sum of the angles <i>EGB</i> and <i> BGH</i> equals the sum of the angles <i>BGH</i> and <i>GHD.</i> 
+
+<div class="just"><a href=propI13.html>I.13</a>
+<br><a href=cn.html>C.N.1</a></div>
+<p>But the sum of the angles <i>EGB</i> and <i>BGH</i> equals two right angles.  Therefore the sum of the angles <i>BGH</i> and <i>GHD</i> also equals two right angles.
+
+<p>Therefore <i>a straight line falling on parallel straight lines makes the alternate angles equal to one another, the exterior angle equal to the interior and opposite angle, and the sum of the interior angles on the same side equal to two right angles.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<p>The statement of this proposition includes three parts, one the converse of <a href=propI27.html>I.27</a>, the other two the converse of <a href=propI28.html>I.28</a>.  Like those propositions, this one assumes an ambient plane containing all the three lines.
+
+<p>This is the first proposition which depends on the parallel postulate.  As such it does not hold in hyperbolic geometry.
+
+<a name=hyperbolic><h4>Hyperbolic geometry</h4></a>
+
+Two  important geometries alternative to Euclidean geometry are elliptic geometry and hyperbolic geometry.  Elliptic geometry was discussed in the 
+<a href=propI16.html#elliptic>note</a> after Proposition I.16, that being the first proposition which doesn&rsquo;t hold in elliptic geometry.  This, I.29, is the first which doesn&rsquo;t hold in hyperbolic geometry.
+
+<p>These three geometries can be distinguished by the number of lines parallel to a given line passing through a given point.  For elliptic geometry, there is no such parallel line; for Euclidean geometry (which may be called parabolic geometry), there is exactly one; and for hyperbolic geometry, there are infinitely many.
+
+<p>It is not possible to illustrate hyperbolic geometry with correct distances on a flat surface since a flat surface is Euclidean.   Poincar&eacute;, however, described a useful model of hyperbolic geometry where the &ldquo;points&rdquo; in a hyperbolic plane are taken to be points inside a fixed circle (but not the points on the circumference).  The &ldquo;lines&rdquo; in the hyperbolic plane are the parts of circles orthogonal, that is, at right angles to the fixed circle.  And in this model, &ldquo;angles&rdquo; in the hyperbolic plane are angles between these arcs, or, more precisely, angles between the tangents to the arcs at the point of intersection.  Since &ldquo;angles&rdquo; are just angles, this model is called a <i>conformal</i> model.  Distances in the hyperbolic plane, however, are not measured by distances along the arcs.  There is a more complicated relation between distances so that near the edge of the fixed circle a very short arc models a very long &ldquo;line.&rdquo;
+
+<p><table cellspacing=5>
+<tr><td>
+Once this model is accepted, it is easy to see why there are infinitely many &ldquo;lines&rdquo; parallel to a given &ldquo;line&rdquo; through a given &ldquo;point.&rdquo;  That is just that there are infinitely many circles orthogonal to the fixed circle which don&rsquo;t intersect the given circle orthogonal to the fixed circle but do pass through the given point.
+
+<p>In the diagram, <i>AB</i> is a &ldquo;line&rdquo; in the hyperbolic plane, that is, a circle orthogonal to the circumference of the shaded disk which represents the hyperbolic plane.  A &ldquo;point&rdquo; <i>C</i> lies in that plane.  Two &ldquo;lines&rdquo; are shown passing through <i>C,</i> one gets close to the line <i>AB</i> in the direction of <i>A,</i> the other gets close in the direction of <i>B.</i>  But these two &ldquo;lines&rdquo; don&rsquo;t intersect <i>AB</i> since the arcs representing them only intersect on the circumference of the disk, and points on the circumference don&rsquo;t represent &ldquo;points&rdquo; in the hyperbolic plane.
+</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=300>
+<img src="propI29a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Poincare disk">
+<param name=e[1] value="O;point;free;150,150;0;0">
+<param name=e[2] value="P;point;free;270,150;0;0">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;0;random">
+<param name=e[4] value="A;point;free;100,140">
+<param name=e[5] value="B;point;free;150,140">
+<param name=e[6] value="C;point;free;125,100">
+<param name=e[7] value="A*;point;proportion;O,A,O,P,O,P,O,A;0;0">
+<param name=e[8] value="ABcirc;circle;circumcircle;A,B,A*;0;0;0;0">
+<param name=e[9] value="A'B';line;bichord;disk,ABcirc;0;0;0">
+<param name=e[10] value="A';point;first;A'B';0;0">
+<param name=e[11] value="B';point;last;A'B';0;0">
+<param name=e[12] value="AB;sector;arc;B',B,A';0;0;black;0">
+
+<param name=e[13] value="C*;point;proportion;O,C,O,P,O,P,O,C;0;0">
+<param name=e[14] value="A'Ccirc;circle;circumcircle;A',C,C*;0;0;0;0">
+<param name=e[15] value="Apar;line;bichord;disk,A'Ccirc;0;0;0">
+<param name=e[16] value="A1;point;first;Apar;0;0">
+<param name=e[17] value="A2;point;last;Apar;0;0">
+<param name=e[18] value="Ap;sector;arc;A2,C,A1;0;0;black;0">
+<param name=e[19] value="B'Ccirc;circle;circumcircle;B',C,C*;0;0;0;0">
+<param name=e[20] value="Bpar;line;bichord;disk,B'Ccirc;0;0;0">
+<param name=e[21] value="B1;point;first;Bpar;0;0">
+<param name=e[22] value="B2;point;last;Bpar;0;0">
+<param name=e[23] value="Bp;sector;arc;B2,C,B1;0;0;black;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propI29a.gif" hspace=10 vspace=10 alt="I.29">';
+</script>
+</td></tr></table>
+
+
+<p>These two parallel &ldquo;lines&rdquo; are called the <i>asymptotic</i> parallels of <i>AB</i> since they approach <i>AB</i> at one end or the other.  There are infinitely many parallels between them.  (In much of the literature on hyperbolic geometry, the word &ldquo;parallels&rdquo; is used for what are called &ldquo;asymptotic parallels&rdquo; here, while &ldquo;nonintersecting lines&rdquo; is used for what are called &ldquo;parallels&rdquo; here.)
+
+<h4>Use of Proposition 29</h4>
+This proposition is used in very frequently in Book I starting with the next proposition.  It is also used frequently in Book II,  VI, and XI, and once in Book XII.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

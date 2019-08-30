@@ -1,0 +1,68 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book VI, Definition 1</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 1</h1>
+
+<div class="statement"><i>Similar</i> rectilinear figures are such as have their angles severally equal and the sides about the equal angles proportional.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The words in this definition do not quite express its entire intent.  It is apparent from its use that the notion of similarity assumes a specific correspondence of consecutive vertices and sides. Consider, for instance, pentagons.
+
+<br>
+<center><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  height=260 width=480>
+<img src=defVI1.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.Def.1">
+<param name=e[1] value="A;point;free;70,220">
+<param name=e[2] value="B;point;free;160,220">
+<param name=e[3] value="C;point;free;220,170">
+<param name=e[4] value="D;point;free;120,40">
+<param name=e[5] value="E;point;free;50,70">
+<param name=e[6] value="ABCDE;polygon;pentagon;A,B,C,D,E;0;0;black;random">
+<param name=e[7] value="F;point;free;310,200">
+<param name=e[8] value="G;point;free;380,200">
+<param name=e[9] value="H;point;similar;F,G,A,B,C">
+<param name=e[10] value="K;point;similar;F,G,A,B,D">
+<param name=e[11] value="L;point;similar;F,G,A,B,E">
+<param name=e[12] value="FGHKL;polygon;pentagon;F,G,H,K,L;0;0;black;random">
+</applet></center>
+<br>
+
+In order for the pentagons <i>ABCDE</i> and <i>FGHKL</i> to be similar, it is required that 
+<ol>
+<li>corresponding angles taken in order are equal, that is, 
+<i>A</i>&nbsp;=&nbsp;<i>F, B</i>&nbsp;=&nbsp;<i>G, C</i>&nbsp;=&nbsp;<i>H, D</i>&nbsp;=&nbsp;<i>K,</i> and <i>E</i>&nbsp;=&nbsp;<i>L,</i> and
+<li>the sides about their equal angles are proportional in the same order:
+<p><center><table>
+<tr><td><i>EA</I>:<i>AB</i></td><td>=</td><td><i>LF</i>&nbsp;:&nbsp;<i>FG,</i></td></tr>
+<tr><td><i>AB</I>:<i>BC</i></td><td>=</td><td><i>FG</i>&nbsp;:&nbsp;<i>GH,</i></td></tr>
+<tr><td><i>BC</I>:<i>CD</i></td><td>=</td><td><i>GH</i>&nbsp;:&nbsp;<i>HK,</i></td></tr>
+<tr><td><i>CD</I>:<i>EF</i></td><td>=</td><td><i>HK</i>&nbsp;:&nbsp;<i>KL,</i> and</td></tr>
+<tr><td><i>EA</I>:<i>AB</i></td><td>=</td><td><i>KL</i>&nbsp;:&nbsp;<i>LF.</i></td></tr>
+</table></center></p>
+</li>
+</ol>
+
+It wouldn&rsquo;t be allowed, for instance, if the angles of one figure were equal to the angles of the other, but in some haphazard order.  And it wouldn&rsquo;t be allowed for the orders of the terms in the proportions to be permuted, or inverted, for instance, the second proportion could not be <i>AB</I>:<i>BC</i>&nbsp;=&nbsp;<i>GH</i>&nbsp;:&nbsp;<i>FG.</i>
+
+<h4>Use of this definition</h4>
+
+Propositions <a href=propVI4.html>VI.4</a> and <a href=propVI5.html>VI.5</a> give two criteria for two triangles to be similar. Proposition VI.4 says that condition 1 implies similarity, while VI.5 says condition 2 implies similarity.  Proposition <a href=propVI6.html>VI.6</a> is a side-angle-side similarity theorem, and <a href=propVI7.html>VI.7</a> is a side-side-angle similarity theorem.  Many of the other propositions in this and later books involve similarity in one way or another.
+
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2002");
+</script>
+</BODY></HTML>

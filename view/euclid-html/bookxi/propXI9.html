@@ -1,0 +1,104 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 9</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 9</h1>
+
+<div class="statement">Straight lines which are parallel to the same straight line but do not lie in the same plane with it are also parallel to each other.</div>
+
+<p>Let each of the straight lines <i>AB</i> and <i>CD</i> be parallel to <i>EF,</i> but not in the same plane with it.
+
+<p>I say that <i>AB</i> is parallel to <i>CD.</i>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=200 >
+<img src="propXI9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.9">
+<param name=e[1] value="A;point;free;220,40">
+<param name=e[2] value="B;point;free;90,40">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;free;210,160">
+<param name=e[5] value="D';point;parallelogram;B,A,C;0;0">
+<param name=e[6] value="D;point;lineSlider;C,D',80,160">
+<param name=e[7] value="CD;line;connect;C,D">
+<param name=e[8] value="E;point;free;160,120">
+<param name=e[9] value="F';point;parallelogram;B,A,E;0;0">
+<param name=e[10] value="F;point;lineSlider;E,F',30,120">
+<param name=e[11] value="EF;line;connect;E,F">
+<param name=e[12] value="G;point;lineSlider;EF,100,160">
+<param name=e[13] value="H;point;parallelogram;A,E,G">
+<param name=e[14] value="K;point;parallelogram;C,E,G">
+<param name=e[15] value="GH;line;connect;G,H">
+<param name=e[16] value="GK;line;connect;G,K">
+</applet></div>
+
+<div class="just"><a href="../bookI/propI11.html">I.11</a></div>
+<p>Let a point <i>G</i> be taken at random on <i>EF,</i> and from it draw <i>GH</i> in the plane through <i>EF</i> and <i>AB</i> at right angles to <i>EF,</i> and <i>GK</i> in the plane through <i>EF</i> and <i>CD</i> again at right angles to <i>EF.</i>
+
+<div class="just"><a href="propXI4.html">XI.4</a></div>
+<p>Now, since <i>EF</i> is at right angles to each of the straight lines <i>GH</i> and <i>GK,</i> therefore <i>EF</i> is also at right angles to the plane through <i>GH</i> and <i>GK.</i>
+
+<div class="just"><a href="propXI8.html">XI.8</a></div>
+<p>And <i>EF</i> is parallel to <i>AB,</i> therefore <i>AB</i> is also at right angles to the plane through <i>HG</i> and <i>GK.</i>
+
+<p>For the same reason <i>CD</i> is also at right angles to the plane through <i>HG</i> and <i>GK.</i>  Therefore each of the straight lines <i>AB</i> and <i>CD</i> is at right angles to the plane through <i>HG</i> and <i>GK.</i>
+
+<div class="just"><a href="propXI6.html">XI.6</a></div>
+<p>But if two straight lines are at right angles to the same plane, then the straight lines are parallel.  Therefore <i>AB</i> is parallel to <i>CD.</i>
+
+<p>Therefore, <i>straight lines which are parallel to the same straight line but do not lie in the same plane with it are also parallel to each other.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Note that this proposition is the three-dimensional analogue to proposition <a href=../bookI/propI30.html>I.30</a>.
+
+<h4>The Varignon parallelogram of space quadrilaterals</h4>
+<table cellpadding=5><tr><td>
+Consider a quadrilateral <i>ABCD</i> whose four vertices may or may not lie in a plane.  Let <i>E, F, G,</i> and <i>H</i> be the midpoints of the sides <i>AB, BC, CD,</i> and <i>DA,</i> respectively.  Then the quadrilateral <i>EFGH</i> lies in a plane and is a parallelogram, called the Varignon parallelogram.  Varignon (1654&ndash;1722) showed the area of a planar quadrilateral is twice the area of this parallelogram.
+
+<p>The proof that <i>EFGH</i> is a parallelogram relies on this proposition XI.9 to show the sides are parallel, since it is readily shown that both <i>EF</i> and <i>HG</i> are parallel to the line <i>AC,</i> and both <i>FG</i> and <i>EH</i> are parallel to the line <i>BD.</i>
+
+<p>As a corollary, it follows that the lines joining the midpoints of an arbitrary quadrilateral are concurrent and bisect each other, even if the four sides of the quadrilateral do not lie in a plane.  (These are the lines <i>EG</i> and <i>FH</i> which are not drawn in the diagram.)
+</td>
+
+<td>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=250 >
+<img src="propXI9a.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Varignon parallelogram">
+<param name=e[1] value="A;point;free;110,40">
+<param name=e[2] value="B;point;free;45,210">
+<param name=e[3] value="C;point;free;220,130">
+<param name=e[4] value="D;point;free;210,210">
+<param name=e[5] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;black;0">
+<param name=e[6] value="E;point;midpoint;A,B">
+<param name=e[7] value="F;point;midpoint;B,C">
+<param name=e[8] value="G;point;midpoint;C,D">
+<param name=e[9] value="H;point;midpoint;D,A">
+<param name=e[10] value="EFGH;polygon;quadrilateral;E,F,G,H;0;0;black;random">
+<param name=e[11] value="AC;line;connect;A,C;0;0;gray">
+<param name=e[12] value="BD;line;connect;B,D;0;0;gray">
+</applet>
+</td></tr></table>
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the proof of the next proposition as well as others in this and the next book.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 1999");
+</script>
+</BODY></HTML>

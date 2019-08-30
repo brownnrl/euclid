@@ -1,0 +1,76 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 34</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 34</h1>
+
+<div class="statement">To find two straight lines incommensurable in square which make the sum of the squares on them medial but the rectangle contained by them rational.</div>
+
+<div class="just"><a href=propX31.html>X.31</a> ad fin.</div>
+<p>Set out two medial straight lines <i>AB</i> and <i>BC</i>, commensurable in square only, such that the rectangle which they contain is rational and the square on <i>AB</i> is greater than the square on <i>BC</i> by the square on a straight line incommensurable with <i>AB</i>.
+
+<div class="just"><a href=../bookVI/propVI28.html>VI.28</a>
+<br><a href=propX18.html>X.18</a></div>
+<p>Describe the semicircle <i>ADB</i> on <i>AB</i>. Apply a parallelogram to <i>AB</i> equal to the square on <i>BE</i> and deficient by a square figure, namely the rectangle <i>AF</i> by <i>FB</i>. Then <i>AF</i> is incommensurable in length with <i>FB</i>.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=200>
+<img src="propX34.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.34">
+<param name=e[1] value="A;point;free;40,160">
+<param name=e[2] value="B;point;free;220,160">
+<param name=e[3] value="C;point;lineSlider;A,B,320,160">
+<param name=e[4] value="BC;line;connect;B,C">
+<param name=e[5] value="M;point;midpoint;A,B;0;0">
+<param name=e[6] value="ADB;circle;radius;M,B;0;0;0;0">
+<param name=e[7] value="E;point;midpoint;B,C">
+<param name=e[8] value="F;point;lineSlider;A,B,190,160">
+<param name=e[9] value="FD';line;perpendicular;F,A;0;0;0">
+<param name=e[10] value="DD';line;chord;FD',ADB;0;0;0">
+<param name=e[11] value="D;point;last;DD'">
+<param name=e[12] value="semi;sector;arc;B,D,A;0;0;black;random">
+<param name=e[13] value="tri;polygon;triangle;A,D,B;0;0;black;random">
+<param name=e[14] value="FD;line;connect;F,D">
+</applet></div>
+
+<p>Draw <i>FD</i> from <i>F</i> at right angles to <i>AB</i>, and join <i>AD</i> and <i>DB</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>Since <i>AF</i> is incommensurable in length with <i>FB</i>, therefore the rectangle <i>BA</i> by <i>AF</i> is also incommensurable with the rectangle <i>AB</i> by <i>BF</i>.
+
+<p>But the rectangle <i>BA</i> by <i>AF</i> equals the square on <i>AD</i>, and the rectangle <i>AB</i> by <i>BF</i> equals the square on <i>DB</i>, therefore the square on <i>AD</i> is also incommensurable with the square on <i>DB</i>.
+
+<div class="just"><a href=../bookIII/propIII31.html>III.31</a>,
+<a href=../bookI/propI47.html>I.47</a></div>
+<p>And, since the square on <i>AB</i> is medial, therefore the sum of the squares on <i>AD</i> and <i>DB</i> is also medial.
+
+<p>And, since <i>BC</i> is double <i>DF</i>, therefore the rectangle <i>AB</i> by <i>BC</i> is also double the rectangle <i>AB</i> by <i>FD</i>.
+
+<div class="just"><a href=propX6.html>X.6</a></div>
+<p>But the rectangle <i>AB</i> by <i>BC</i> is rational, therefore the rectangle <i>AB</i> by <i>FD</i> is also rational.
+
+<div class="just"><a href=propX32.html#lemma>X.32.Lemma</a></div>
+<p>But the rectangle <i>AB</i> by <i>FD</i> equals the rectangle <i>AD</i> by <i>DB</i>, so that the rectangle <i>AD</i> by <i>DB</i> is also rational.
+
+<p>Therefore two straight lines <i>AD</i> and <i>DB</i> incommensurable in square have been found which make the sum of the squares on them medial, but the rectangle contained by them rational.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in proposition <a href=propX40.html>X.40</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

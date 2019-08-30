@@ -1,0 +1,93 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XIII, Proposition 8</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 8</h1>
+
+<div class="statement">
+If in an equilateral and equiangular pentagon straight lines
+subtend two angles are taken in order, then they cut one another in extreme and mean ratio, and their greater segments equal the side of the pentagon.</div>
+
+<p>In the equilateral and equiangular pentagon <i>ABCDE</i> let the straight lines <i>AC</i> and <i>BE,</i> cutting one another at the point <i>H,</i> subtend two angles taken in order, the angles at <i>A</i> and <i>B.</i>
+ 
+<p>I say that each of them has been cut in extreme and mean ratio at the point <i>H,</i> and their greater segments equal the side of the pentagon.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=240 >
+<img src="propXIII8.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XIII.8">
+<param name=e[1] value="A;point;free;130,40">
+<param name=e[2] value="B;point;free;217,103">
+<param name=e[3] value="BAEDC;polygon;regularPolygon;B,A,5;0;0;black;random">
+<param name=e[4] value="C;point;vertex;BAEDC,5">
+<param name=e[5] value="D;point;vertex;BAEDC,4">
+<param name=e[6] value="E;point;vertex;BAEDC,3">
+<param name=e[7] value="circ;circle;circumcircle;A,B,D;0;0;black;0">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="BE;line;connect;B,E">
+<param name=e[10] value="H;point;intersection;AC,BE">
+</applet></div>
+
+<div class="just"><a href="../bookIV/propIV14.html">IV.14</a></div>
+<p>Circumscribe the circle <i>ABCDE</i> about the pentagon <i>ABCDE.</i>
+
+<div class="just"><a href="../bookI/propI4.html">I.4</a></div>
+<p>Then, since the two straight lines <i>EA</i> and <i>AB</i> equal the two lines <i>AB</i> and <i>BC,</i> and they contain equal angles, therefore the base <i>BE</i> equals the base <i>AC,</i> the triangle <i>ABE</i> equals the triangle <i>ABC,</i> and the remaining angles  equal the remaining angles respectively, namely those opposite the equal sides. 
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>Therefore the angle <i>BAC</i> equals the angle <i>ABE.</i>  Therefore the angle <i>AHE</i> is double the angle <i>BAH.</i>
+
+<div class="just"><a href="../bookIII/propIII28.html">III.28</a>,
+<a href="../bookVI/propVI33.html">VI.33</a></div>
+<p>But the angle <i>EAC</i> is also double the angle <i>BAC,</i> for the circumference <i>EDC</i> is also double the circumference <i>CB.</i>
+
+<div class="just"><a href="../bookI/propI6.html">I.6</a></div>
+<p>Therefore the angle <i>HAE</i> equals the angle <i>AHE.</i> Hence the straight line <i>HE</i> also equals <i>EA,</i> that is, <i>AB.</i>
+
+<div class="just"><a href="../bookI/propI5.html">I.5</a></div>
+<p>And, since the straight line <i>BA</i> equals <i>AE,</i> therefore the angle <i>ABE</i> also equals the angle <i>AEB.</i>
+
+<p>But the angle <i>ABE</i> was proved equal to the angle <i>BAH,</i> therefore the angle <i>BEA</i> also equals the angle <i>BAH.</i>
+
+<div class="just"><a href="../bookI/propI32.html">I.32</a></div>
+<p>And the angle <i>ABE</i> is common to the two triangles <i>ABE</i> and <i>ABH,</i> therefore the remaining angle <i>BAE</i> equals the remaining angle <i>AHB.</i>  Therefore the triangle <i>ABE</i> is equiangular with the triangle <i>ABH.</i>
+
+<div class="just"><a href="../bookVI/propVI4.html">VI.4</a></div>
+<p>Therefore, proportionally <i>EB</i> is to <i>BA</i> as <i>AB</i> is to <i>BH.</i>
+
+<p>But <i>BA</i> equals <i>EH,</i> therefore <i>BE</i> is to <i>EH</i> as <i>EH</i> is to <i>HB.</i>
+
+<div class="just"><a href="../bookV/propV14.html">VI.14</a></div>
+<p>And <i>BE</i> is greater than <i>EH,</i>  therefore <i>EH</i> is also greater than <i>HB.</i>
+
+<p>Therefore <i>BE</i> has been cut in extreme and mean ratio at <i>H,</i> and the greater segment <i>HE</i> equals the side of the pentagon.
+
+<p>Similarly we can prove that <i>AC</i> has also been cut in extreme and mean ratio at <i>H,</i> and its greater segment <i>CH</i> equals the side of the pentagon. 
+
+<p>Therefore, <i>if in an equilateral and equiangular pentagon straight lines subtend two angles are taken in order, then they cut one another in extreme and mean ratio, and their
+ greater segments equal the side of the pentagon.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name="guide"></a>
+<h2>Guide</h2>
+
+<p>This proposition shows why cutting a line in extreme and mean ratio is so important.
+
+<h4>Use of this proposition</h4>
+
+<p>This proposition is used in the proof of <a href=propXIII11.html>XIII.11</a>  to establish that the side of a regular pentagon inscribed in a circle with rational diameter is the irrational straight line called minor.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997, 2013");
+</script>
+</BODY></HTML>

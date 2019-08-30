@@ -1,0 +1,64 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 12</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 12</h1>
+
+<div class="statement">
+To set up a straight line at right angles to a given plane from a given point in it.</div>
+
+<p>Let the plane of reference be the given plane and <i>A</i> the point in it.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=240 height=200 >
+<img src="propXI12.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.12">
+<param name=e[1] value="X;point;free;100000,100">
+<param name=e[2] value="Y;point;free;100,-100000">
+<param name=e[3] value="Z;point;free;50000,-100000">
+<param name=e[4] value="P0;point;free;30,170;0;0,75,100">
+<param name=e[5] value="P1;point;lineSlider;P0,X,160,170;0;30,75,100">
+<param name=e[6] value="P3;point;lineSlider;P0,Z,90,90;0;30,75,100">
+<param name=e[7] value="P2;point;parallelogram;P3,P0,P1;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;P0,P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[9] value="A;point;free;80,140">
+<param name=e[10] value="B;point;free;150,40">
+<param name=e[11] value="C;point;lineSlider;B,Y,150,120">
+<param name=e[12] value="BC;line;connect;B,C">
+<param name=e[13] value="D;point;parallelogram;A,C,B">
+<param name=e[14] value="AD;line;connect;A,D">
+</applet></div>
+
+<p>It is required to set up from the point <i>A</i> a straight line at right angles to the plane of reference.
+
+<div class="just"><a href="propXI11.html">XI.11</a>,
+<a href="../bookI/propI31.html">I.31</a></div>
+<p>From an elevated point <i>B</i> draw <i>BC</i> perpendicular to the plane of reference, and draw <i>AD</i> parallel to to <i>BC</i> through the point <i>A.</i>
+
+<div class="just"><a href="propXI8.html">XI.8</a></div>
+<p>Then since <i>AD</i> and <i>BC</i> are two parallel straight lines, and one of them, <i>BC,</i> is at right angles to the plane of reference, therefore the remaining one, <i>AD,</i> is also at right angles to the plane of reference.
+
+<p>Therefore <i>AD</i> is set up at right angles to the given plane from the point <i>A</i> in it.
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<h2>Guide</h2>
+
+This proposition, like the last, is used frequently in the rest of the <i>Elements</i> to construct lines perpendicular to planes.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

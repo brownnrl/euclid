@@ -1,0 +1,83 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book IX, Proposition 18</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+
+<div class="theorem">
+<h1>Proposition 18</h1>
+
+<div class="statement">Given two numbers, to investigate whether it is possible to find a third proportional to them.</div>
+
+<p>Let <i>A</i> and <i>B</i> be the given two numbers. It is required to investigate whether it is possible to find a third proportional to them.
+
+<div class="just"><a href="propIX16.html">IX.16</a></div>
+<p>Now <i>A</i> and <i>B</i> are either relatively prime or not. And, if they are relatively prime, it was proved that it is impossible to find a third proportional to them.
+
+<p>Next, let <i>A</i> and <i>B</i> not be relatively prime, and let <i>B</i> multiplied by itself make <i>C.</i> Then <i>A</i> either measures <i>C</i> or does not measure it.
+
+<p>First, let it measure it according to <i>D,</i> therefore <i>A</i> multiplied by <i>D</i> makes <i>C.</i> But, further, <i>B</i> multiplied by itself makes <i>C,</i> therefore the product of <i>A</i> and <i>D</i> equals the square on <i>B.</i></td>
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=170>
+<img src="propIX18.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="IX.18">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="B0;point;free;-1000,75;0;0">
+<param name=e[4] value="B3;point;free;1000,75;0;0">
+<param name=e[5] value="C0;point;free;-1000,110;0;0">
+<param name=e[6] value="C3;point;free;1000,110;0;0">
+<param name=e[7] value="D0;point;free;-1000,145;0;0">
+<param name=e[8] value="D3;point;free;1000,145;0;0">
+<param name=e[9] value="U1;point;free;1000,0;0;0">
+<param name=e[10] value="U2;point;free;1000,35;0;0">
+
+<param name=e[11] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[12] value="A2;point;lineSlider;A0,A3,95,0;0">
+<param name=e[13] value="A;line;connect;A1,A2;black">
+<param name=e[14] value="B1;point;lineSlider;B0,B3,30,0;0">
+<param name=e[15] value="B2;point;lineSlider;B0,B3,110,0;0">
+<param name=e[16] value="B;line;connect;B1,B2;black">
+<param name=e[17] value="C1;point;lineSlider;C0,C3,30,0;0">
+<param name=e[18] value="C2;point;proportion;U1,U2,B1,B2,B1,B2,C1,C3;0">
+<param name=e[19] value="C;line;connect;C1,C2;black">
+<param name=e[20] value="D1;point;lineSlider;D0,D3,30,0;0">
+<param name=e[21] value="D2;point;proportion;U1,U2,A1,A2,B1,B2,D1,D3;0">
+<param name=e[22] value="D;line;connect;D1,D2;black">
+</applet></div>
+
+<div class="just"><a href="../bookVII/propVII19.html">VII.19</a></div>
+<p>Therefore <i>A</i> is to <i>B</i> as <i>B</i> is to <i>D,</i> therefore a third proportional number <i>D</i> has been found to <i>A</i> and <i>B.</i>
+
+<p>Next, let <i>A</i> not measure <i>C.</i>
+
+<p>I say that it is impossible to find a third proportional number to <i>A</i> and <i>B.</i>
+
+<p>If possible, let <i>D</i> be such third proportional. Then the product of <i>A</i> and <i>D</i> equals the square on <i>B.</i> But the square on <i>B</i> is <i>C,</i> therefore the product of <i>A</i> and <i>D</i> equals <i>C.</i>
+
+<p>Hence <i>A</i> multiplied by <i>D</i> makes <i>C,</i> therefore <i>A</i> measures <i>C</i> according to <i>D.</i>
+
+<p>But, by hypothesis, it also does not measure it, which is absurd.
+
+<p>Therefore it is not possible to find a third proportional number to <i>A</i> and <i>B</i> when <i>A</i> does not measure <i>C.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+Note that a third proportional <i>d</i> to <i>a</i> and <i>b</i> has to satisfy 
+<i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;=&nbsp;<i>b</i>&nbsp;:&nbsp;<i>d,</i> so <i>d</i> would have to be <i>b</i><sup>2</sup>/<i>a.</i>  So the third proportional exists when <i>a</i> divides <i>b</i><sup>2</sup>.  This conclusion is just what Euclid discovers in this proposition.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,162 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 29</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 29</h1>
+
+<div class="statement">
+To apply a parallelogram equal to a given rectilinear figure to a given straight line but exceeding it by a parallelogram similar to a given one.</div>
+
+<p>Let <i>C</i> be the given rectilinear figure, <i>AB</i> be the given straight line, and <i>D</i> the parallelogram to which the excess is required to be similar.
+<p>It is required to apply a parallelogram equal to the the rectilinear figure <i>C</i>  to the straight line <i>AB</i> but exceeding it by a parallelogram similar to <i>D.</i>
+
+<center>
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=550>
+<img src=propVI29.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.29">
+<param name=e[1] value="Z0;point;free;-1000,180;0;0">
+<param name=e[2] value="Z1;point;free;1000,180;0;0">
+<param name=e[3] value="A;point;lineSlider;Z0,Z1,170,180">
+<param name=e[4] value="B;point;lineSlider;Z0,Z1,300,250">
+<param name=e[5] value="E;point;midpoint;A,B">
+<param name=e[6] value="C1;point;free;30,160;0">
+<param name=e[7] value="C2;point;free;40,80;0">
+<param name=e[8] value="C3;point;free;90,40;0">
+<param name=e[9] value="C4;point;free;100,160;0">
+<param name=e[10] value="C5;point;free;80,200;0">
+<param name=e[11] value="C;polygon;pentagon;C1,C2,C3,C4,C5;black;0;black;random">
+<param name=e[12] value="Y0;point;free;-1000,140;0;0">
+<param name=e[13] value="Y1;point;free;1000,140;0;0">
+<param name=e[14] value="D1;point;free;140,80;0">
+<param name=e[15] value="D2;point;lineSlider;Y0,Y1,130,140;0">
+<param name=e[16] value="D3;point;lineSlider;Y0,Y1,190,140;0">
+<param name=e[17] value="D;polygon;parallelogram;D1,D2,D3;black;0;black;random">
+<param name=e[18] value="D4;point;vertex;D,4;0">
+<param name=e[19] value="F;point;similar;E,B,D2,D3,D1">
+<param name=e[20] value="L;point;similar;E,B,D2,D3,D4">
+<param name=e[21] value="EBLF;polygon;quadrilateral;E,B,L,F;0;0;0;0">
+<param name=e[22] value="FAA'F';polygon;application;C,E,F,A;0;0;0;0;0">
+<param name=e[23] value="F';point;vertex;FAA'F',4;0;0">
+<param name=e[24] value="A';point;vertex;FAA'F',3;0;0">
+<param name=e[25] value="BLA'F';polygon;quadrilateral;B,L,A',F';0;0;0;0">
+<param name=e[26] value="D';polygon;application;BLA'F',D3,D4,D2;0;0;0;0">
+<param name=e[27] value="D6;point;vertex;D',4;0;0">
+<param name=e[28] value="X0;point;free;-1000,50;0;0">
+<param name=e[29] value="X1;point;free;1000,50;0;0">
+<param name=e[30] value="K;point;lineSlider;X0,X1,410,50">
+<param name=e[31] value="H;point;meanProportional;D2,D3,D3,D6,K,X1">
+<param name=e[32] value="G';point;similar;K,H,D1,D4,D2;0;0">
+<param name=e[33] value="GH;polygon;application;BLA'F',K,H,G';0;0;black;random">
+<param name=e[34] value="G;point;vertex;GH,4">
+<param name=e[35] value="M;point;cutoff;F,L,K,H">
+<param name=e[36] value="N;point;cutoff;F,E,K,G">
+<param name=e[37] value="O;point;parallelogram;N,F,M">
+<param name=e[38] value="FO;line;connect;F,O">
+<param name=e[39] value="P;point;intersection;A,B,M,O">
+<param name=e[40] value="Q;point;intersection;L,B,N,O">
+<param name=e[41] value="AO;polygon;parallelogram;A,P,O;0;0;black;random">
+<param name=e[42] value="FP;polygon;parallelogram;F,E,P;0;0;black;random">
+<param name=e[43] value="LQ;line;connect;L,Q">
+<param name=e[44] value="EN;line;connect;E,N">
+<param name=e[45] value="Y;point;midpoint;B,P;0;0">
+<param name=e[46] value="V;point;cutoff;B,L,B,Y;black;0">
+<param name=e[47] value="W;point;cutoff;B,O,B,Y;black;0">
+<param name=e[48] value="X;point;cutoff;B,A,B,Y;black;0">
+<param name=e[49] value="XWV;sector;arc;X,W,V;0;0;darkGray;0">
+</applet>
+</center>
+
+<div class="just"><a href=propVI25.html>VI.25</a></div>
+<p>Bisect <i>AB</i> at <i>E.</i> Describe the parallelogram <i>BF</i> on <i>EB</i> similar and similarly situated to <i>D,</i> and construct <i>GH</i> equal to the sum of <i>BF</i> and <i>C</i> and similar and similarly situated to <i>D.</i>
+
+<p>Let <i>KH</i> correspond to <i>FL</i> and <i>KG</i> to <i>FE.</i>
+
+<p>Now, since <i>GH</i> is greater than <i>FB,</i> therefore <i>KH</i> is also greater than <i>FL,</i> and <i>KG</i> greater than<i>FE.</i>
+
+<p>Produce <i>FL</i> and <i>FE.</i>  Make <i>FLM</i> equal to <i>KH,</i> and <i>FEN</i> equal to <i>KG.</i> Complete <i>MN.</i>  Then <i>MN</i> is both equal and similar to <i>GH.</i>
+
+<div class="just"><a href="propVI21.html">VI.21</a>,
+<a href="propVI26.html">VI.26</a></div>
+<p>But <i>GH</i> is similar to <i>EL,</i> therefore <i>MN</i> is also similar to <i>EL,</i>  therefore <i>EL</i> is about the same diameter with <i>MN.</i>
+
+<p>Draw their diameter <i>FO,</i> and describe the figure.
+
+<p>Since <i>GH</i> equals the sum of <i>EL</i> and <i>C,</i> while <i>GH</i> equals <i>MN,</i> therefore <i>MN</i> also equals the sum of <i>EL</i> and <i>C.</i>
+
+<p>Subtract <i>EL</i> from each.  Therefore the remainder, the gnomon <i>XWV,</i> equals <i>C.</i>
+
+<div class="just"><a href="../bookI/propI36.html">I.36</a>,
+<a href="../bookI/propI43.html">I.43</a></div>
+<p>Now, since <i>AE</i> equals <i>EB,</i> therefore <i>AN</i> equals <i>NB,</i> that is, <i>LP.</i>
+
+<p>Add <i>EO</i> to each.  Therefore the whole <i>AO</i> equals the gnomon <i>VWX.</i>
+
+<p>But the gnomon <i>VWX</i> equals <i>C,</i> therefore <i>AO</i> also equals <i>C.</i>
+
+<div class="just"><a href="propVI24.html">VI.24</a></div>
+<p>Therefore the parallelogram <i>AO</i> equal to the given rectilinear figure <i>C</i> has been applied to the given straight line <i>AB</i> but exceeding it by a parallelogram <i>QP</i> similar to <i>D,</i> since <i>PQ</i> is also similar to <i>EL.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+The construction in this proposition is a generalization of that described in the <a href="../bookII/propII6.html#guide">Guide</a> for II.6.  In that proposition, the figure <i>D</i> is a square.
+
+<h4>The outline of a simplified proof for rectangles</h4>
+
+Like the last proposition, this one is more easily understood when the given parallelogram <i>D</i> is a square.  
+
+<p><table cellpadding=5>
+<tr><td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=270 width=250>
+<img src=propVI29a.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.29">
+<param name=e[1] value="Z0;point;free;-1000,180;0;0">
+<param name=e[2] value="Z1;point;free;1000,180;0;0">
+<param name=e[3] value="A;point;lineSlider;Z0,Z1,30,0">
+<param name=e[4] value="B;point;lineSlider;Z0,Z1,160,0">
+<param name=e[5] value="E;point;midpoint;A,B">
+<param name=e[6] value="C1;point;free;30,20;0">
+<param name=e[7] value="C2;point;free;200,20;0">
+<param name=e[8] value="C3;point;free;200,80;0">
+<param name=e[9] value="C4;point;free;30,80;0">
+<param name=e[10] value="C;polygon;quadrilateral;C1,C2,C3,C4;black;0;black;random">
+<param name=e[11] value="F;point;perpendicular;E,B">
+<param name=e[12] value="L;point;parallelogram;F,E,B">
+<param name=e[13] value="FAA'F';polygon;application;C,E,F,A;0;0;0;0">
+<param name=e[14] value="A';point;vertex;FAA'F',3;0;0">
+<param name=e[15] value="M;point;meanProportional;L,A',B,L,F,L">
+<param name=e[16] value="N;point;cutoff;F,E,F,M">
+<param name=e[17] value="O;point;parallelogram;N,F,M">
+<param name=e[18] value="FO;line;connect;F,O">
+<param name=e[19] value="P;point;intersection;A,B,M,O">
+<param name=e[20] value="Q;point;intersection;L,B,N,O">
+<param name=e[21] value="AQ;polygon;parallelogram;A,B,Q;0;0;black;random">
+<param name=e[22] value="PQ;polygon;parallelogram;P,B,Q;0;0;black;random">
+<param name=e[23] value="MN;polygon;parallelogram;M,F,N;0;0;black;0">
+<param name=e[24] value="BL;line;connect;B,L">
+</applet></td>
+
+<td>In that case of this proposition a rectangle <i>AO</i> equal to a given rectilinear figure <i>C</i> is applied to a given straight line <i>AB</i> but exceeds it by a square (<i>BQOP</i> in the figure). So the rectangle being laid alongside the line extends past the end of the line <i>AB,</i> but the part that extends beyond the end is a square.
+
+<p>For the construction, bisect <i>AB</i> at <i>E,</i> construct the square <i>BEFL,</i> then make the square <i>FNOM</i> equal to the square <i>BEFL</i> plus the figure <i>C,</i> and complete the figure. </td></tr></table>
+
+<p>As in the last proposition we can understand the meaning of this construction more easily if we interpret it algebraically. Let <i>a</i> stand for the known quantity <i>AB</i> and <i>x</i> stand for the unknown quantity <i>BP.</i> Then this
+construction finds <i>x</i> so that (<i>a</i>&nbsp;+&nbsp;<i>x</i>) <i>x</i>&nbsp;=&nbsp;<i>C.</i> In other words it solves the quadratic equation <i>ax</i>&nbsp;+&nbsp;<i>x</i><sup>2</sup>&nbsp;=&nbsp;<i>C.</i> 
+
+<p>The construction of this proposition is used in the next proposition to cut a straight line in extreme and mean ratio.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

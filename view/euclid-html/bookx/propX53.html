@@ -1,0 +1,103 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 53</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 53</h1>
+
+<div class="statement">To find the sixth binomial line.</div>
+
+<p>Set out two numbers <i>AC</i> and <i>CB</i> such that <i>AB</i> does not have to either of them the ratio which a square number has to a square number, and let there also be another number <i>D</i> which is not square and which does not have to either of the numbers <i>BA</i> or <i>AC</i> the ratio which a square number has to a square number.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=160 height=270>
+<img src="propX53.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.53">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;40,-1000;0;0">
+<param name=e[2] value="A3;point;free;40,1000;0;0">
+<param name=e[3] value="D0;point;free;70,-1000;0;0">
+<param name=e[4] value="D3;point;free;70,1000;0;0">
+<param name=e[5] value="E0;point;free;100,-1000;0;0">
+<param name=e[6] value="E3;point;free;100,1000;0;0">
+<param name=e[7] value="F0;point;free;130,-1000;0;0">
+<param name=e[8] value="F3;point;free;130,1000;0;0">
+
+<param name=e[9] value="A;point;lineSlider;A0,A3,0,30">
+<param name=e[10] value="B;point;lineSlider;A0,A3,0,220">
+<param name=e[11] value="C;point;lineSlider;A0,A3,0,150">
+<param name=e[12] value="AB;line;connect;A,B;0;0;blue">
+<param name=e[13] value="D1;point;lineSlider;D0,D3,0,30;0">
+<param name=e[14] value="D2;point;lineSlider;D0,D3,0,125;0">
+<param name=e[15] value="D;line;connect;D1,D2;black;0;blue">
+<param name=e[16] value="E1;point;lineSlider;E0,E3,0,30;0">
+<param name=e[17] value="E2;point;lineSlider;E0,E3,0,110;0">
+<param name=e[18] value="E;line;connect;E1,E2;black">
+<param name=e[19] value="F;point;lineSlider;F0,F3,0,30">
+<param name=e[20] value="G';point;proportion;D1,D2,A,B,E1,E2,F,F3;0;0">
+<param name=e[21] value="G;point;meanProportional;E1,E2,F,G',F,F3">
+<param name=e[22] value="H';point;proportion;B,A,A,C,F,G,G,F3;0;0">
+<param name=e[23] value="H;point;meanProportional;F,G,G,H',G,F3">
+<param name=e[24] value="FH;line;connect;F,H">
+</applet></div>
+
+<div class="just"><a href=propX6.html#cor>X.6,Cor.</a>
+<br><a href=propX6.html>X.6</a></div>
+<p>Set out any rational straight line <i>E</i>, and let it be contrived that <i>D</i> is to <i>AB</i> as the square on <i>E</i> is to the square on <i>FG</i>. Then the square on <i>E</i> is commensurable with the square on <i>FG</i>.  And <i>E</i> is rational, therefore <i>FG</i> is also rational.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>Now, since <i>D</i> does not have to <i>AB</i> the ratio which a square number has to a square number, neither does the square on <i>E</i> have to the square on <i>FG</i> the ratio which a square number has to a square number, therefore <i>E</i> is incommensurable in length with <i>FG</i>.
+
+<div class="just"><a href=propX6.html#cor>X.6,Cor.</a>
+<br><a href=propX6.html>X.6</a></div>
+<p>Again, let it be contrived that <i>BA</i> is to <i>AC</i> as the square on <i>FG</i> is to the square on <i>GH</i>. Then the square on <i>FG</i> is commensurable with the square on <i>HG</i>.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>Therefore the square on <i>HG</i> is rational. Therefore <i>HG</i> is rational. And, since <i>BA</i> does not have to <i>AC</i> the ratio which a square number has to a square number, neither does the square on <i>FG</i> have to the square on <i>GH</i> the ratio which a square number has to a square number, therefore <i>FG</i> is incommensurable in length with <i>GH</i>.
+
+<div class="just"><a href=propX36.html>X.36</a></div>
+<p>Therefore <i>FG</i> and <i>GH</i> are rational straight lines commensurable in square only. Therefore <i>FH</i> is binomial.
+
+<p>It is next to be proved that it is also a sixth binomial straight line.
+
+<div class="just"><a href=../bookV/propV22.html>V.22</a></div>
+<p>Since <i>D</i> is to <i>AB</i> as the square on <i>E</i> is to the square on <i>FG</i>, and also <i>BA</i> is to <i>AC</i> as the square on <i>FG</i> is to the square on <i>GH</i>, therefore, <i>ex aequali</i>, <i>D</i> is to <i>AC</i> as the square on <i>E</i> is to the square on <i>GH</i>.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>But <i>D</i> does not have to <i>AC</i> the ratio which a square number has to a square number, therefore neither does the square on <i>E</i> have to the square on <i>GH</i> the ratio which a square number has to a square number, therefore <i>E</i> is incommensurable in length with <i>GH</i>.
+
+<p>But it was also proved incommensurable with <i>FG</i>, therefore each of the straight lines <i>FG</i> and <i>GH</i> is incommensurable in length with <i>E</i>.
+
+<p>And, since <i>BA</i> is to <i>AC</i> as the square on <i>FG</i> is to the square on <i>GH</i>, therefore the square on <i>FG</i> is greater than the square on <i>GH</i>.
+
+<div class="just"><a href=../bookV/propV19.html#cor>V.19,Cor.</a></div>
+<p>Let then the sum of the squares on <i>GH</i> and <i>K</i> equal the square on <i>FG</i>.  Then, in conversion, <i>AB</i> is to <i>BC</i> as the square on <i>FG</i> is to the square on <i>K</i>.
+
+<p>But <i>AB</i> does not have to <i>BC</i> the ratio which a square number has to a square number, so that neither does the square on <i>FG</i> have to the square on <i>K</i> the ratio which a square number has to a square number.
+
+<div class="just"><a href=propX9.html>X.9</a></div>
+<p>Therefore <i>FG</i> is incommensurable in length with <i>A</i>. Therefore the square on <i>FG</i> is greater than the square on <i>GH</i> by the square on a straight line incommensurable with <i>FG</i>.
+
+<p>And <i>FG</i> and <i>GH</i> are rational straight lines commensurable in square only, and neither of them is commensurable in length with the rational straight line <i>E</i> set out.
+
+<p>Therefore <i>FH</i> is a sixth binomial straight line.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

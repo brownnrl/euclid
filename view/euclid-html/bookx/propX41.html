@@ -1,0 +1,125 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 41</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 41</h1>
+
+<div class="statement">If two straight lines incommensurable in square which make the sum of the squares on them medial and the rectangle contained by them medial and also incommensurable with the sum of the squares on them are added together, then the whole straight line is irrational; let it be called the <i>side of the sum of two medial areas.</i></div>
+
+<p>Let two straight lines <i>AB</i> and <i>BC</i> incommensurable in square and satisfying the given conditions be added together.
+<div class="just"><a href=propX35.html>X.35</a></div>
+
+<p>I say that <i>AC</i> is irrational.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=210 height=350>
+<img src="propX41.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.41">
+<param name=e[1] value="A0;point;free;-1000,320;0;0">
+<param name=e[2] value="A3;point;free;1000,320;0;0">
+<param name=e[3] value="D0;point;free;-1000,280;0;0">
+<param name=e[4] value="D3;point;free;1000,280;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,120,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,170,0">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="D;point;lineSlider;D0,D3,60,0">
+<param name=e[10] value="E;point;lineSlider;D0,D3,140,0">
+<param name=e[11] value="DD';line;perpendicular;D,E;0;0;0">
+<param name=e[12] value="D2;point;last;DD';0;0">
+<param name=e[13] value="D';point;cutoff;D,D2,A0,A3;0;0">
+<param name=e[14] value="G';point;proportion;D,E,A,B,A,B,D,D';0;0">
+<param name=e[15] value="G;point;proportion;D,E,B,C,B,C,G',D'">
+<param name=e[16] value="F;point;parallelogram;E,D,G">
+<param name=e[17] value="DEFG;polygon;quadrilateral;D,E,F,G;0;0;black;random">
+<param name=e[18] value="K';point;proportion;G,F,B,C,A,B,G,D';0;0">
+<param name=e[19] value="K;point;extend;D,K',G,K'">
+<param name=e[20] value="FGKH;polygon;parallelogram;F,G,K;0;0;black;random">
+<param name=e[21] value="H;point;vertex;FGKH,4">
+</applet></div>
+
+<div class="just"><a href=../bookII/propII4.html>II.4</a></div>
+<p>Set out a rational straight line <i>DE</i>. Apply to <i>DE</i> the rectangle <i>DF</i> equal to the sum of the squares on <i>AB</i> and <i>BC</i>, and  apply to <i>DE</i> the rectangle <i>GH</i> equal to twice the rectangle <i>AB</i> by <i>BC</i>.  Then the whole <i>DH</i> equals the square on <i>AC</i>.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>Now, since the sum of the squares on <i>AB</i> and <i>BC</i> is medial, and equals <i>DF</i>, therefore <i>DF</i> is also medial. And it is applied to the rational straight line <i>DE</i>, therefore <i>DG</i> is rational and incommensurable in length with <i>DE</i>. For the same reason <i>GK</i> is also rational and incommensurable in length with <i>GF</i>, that is, <i>DE</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>Since the sum of the squares on <i>AB</i> and <i>BC</i> is incommensurable with twice the rectangle <i>AB</i> by <i>BC</i>, therefore <i>DF</i> is incommensurable with <i>GH</i>, so that <i>DG</i> is also incommensurable with <i>GK</i>.
+
+<div class="just"><a href=propX36.html>X.36</a></div>
+<p>And they are rational, therefore <i>DG</i> and <i>GK</i> are rational straight lines commensurable in square only. Therefore <i>DK</i> is irrational and what is called binomial.
+
+<div class="just"><a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>But <i>DE</i> is rational, therefore <i>DH</i> is irrational, and the side of the square which equals it is irrational.
+
+<p>But <i>AC</i> is the side of the square equal to <i>HD</i>, therefore <i>AC</i> is irrational. Let it be called the side of the sum two medial areas.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<br>
+
+<a name=lemma></a>
+
+<div class="theorem">
+<h1>Proposition 41</h1>
+
+<p>And that <i>the aforesaid irrational straight lines are divided only in one way into the straight lines of which they are the sum and which produce the types in question</i> we will now prove after premising the following lemma.
+
+<p>Set out the straight line <i>AB</i>, cut the whole into unequal parts at each of the points <i>C</i> and <i>D</i>, and let <i>AC</i> be supposed greater than <i>DB</i>.
+
+<p>I say that the sum of the squares on <i>AC</i> and <i>CB</i> is greater than the sum of the squares on <i>AD</i> and <i>DB</i>.
+
+<p>Bisect <i>AB</i> at <i>E</i>.
+
+<p>Since <i>AC</i> is greater than <i>DB</i>, subtract <i>DC</i> from each, therefore the remainder <i>AD</i> is greater than the remainder <i>CB</i>.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=60>
+<img src="propX41l.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Lemma">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,230,0">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="C;point;lineSlider;A0,A3,180,0">
+<param name=e[7] value="D;point;lineSlider;A0,A3,100,0">
+<param name=e[8] value="E;point;midpoint;A,B">
+</applet></div>
+
+<p>But <i>AE</i> equals <i>EB</i>, therefore <i>DE</i> is less than <i>EC</i>. Therefore the points <i>C</i> and <i>D</i> are not equidistant from the point of bisection.
+
+<div class="just"><a href=../bookII/propII5.html>II.5</a></div>
+<p>Since the rectangle <i>AC</i> by <i>CB</i> together with the square on <i>EC</i> equals the square on <i>EB</i>, and, further, the rectangle <i>AD</i> by <i>DB</i> together with the square on <i>DE</i> equals the square on <i>EB</i>, therefore the rectangle <i>AC</i> by <i>CB</i> together with the square on <i>EC</i> equals the rectangle <i>AD</i> by <i>DB</i> together with the square on <i>DE</i>.
+
+<p>And of these the square on <i>DE</i> is less than the square on <i>EC</i>, therefore the remainder, the rectangle <i>AC</i> by <i>CB</i>, is also less than the rectangle <i>AD</i> by <i>DB</i> so that twice the rectangle <i>AC</i> by <i>CB</i> is also less than twice the rectangle <i>AD</i> by <i>DB</i>.
+
+<p>Therefore the remainder, the sum of the squares on <i>AC</i> and <i>CB</i>, is greater than the sum of the squares on <i>AD</i> and <i>DB</i>.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+This proposition is used in <a href=propX59.html>X.59</a>, <a href=propX65.html>X.65</a> and <a href=propX70.html>X.70</a>.
+
+<p>The lemma is used in <a href=propX44.html>X.44</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

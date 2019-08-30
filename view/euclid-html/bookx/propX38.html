@@ -1,0 +1,93 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 38</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 38</h1>
+
+<div class="statement">If two medial straight lines commensurable in square only and containing a medial rectangle are added together, then the whole is irrational; let it be called the <i>second bimedial</i> straight line.</div>
+
+<p>Let two medial straight lines <i>AB</i> and <i>BC</i> commensurable in square only and containing a medial rectangle be added together.
+
+<p>I say that <i>AC</i> is irrational.
+
+<div class="just"><a href=../bookI/propI41.html>I.41</a></div>
+<p>Set out a rational straight line <i>DE</i>, and apply parallelogram <i>DF</i> to <i>DE</i> equal to the square on <i>AC</i>, producing <i>DG</i> as breadth.
+
+<div class="ldiagram">
+<applet  code=Geometry codebase="../../Geometry" archive=Geometry.zip width=250 height=250>
+<img src="propX38.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.38">
+<param name=e[1] value="A0;point;free;-1000,40;0;0">
+<param name=e[2] value="A3;point;free;1000,40;0;0">
+<param name=e[3] value="D0;point;free;40,-1000;0;0">
+<param name=e[4] value="D3;point;free;40,1000;0;0">
+
+<param name=e[5] value="A;point;lineSlider;A0,A3,40,0">
+<param name=e[6] value="B;point;lineSlider;A0,A3,140,0">
+<param name=e[7] value="C;point;lineSlider;A0,A3,180,0">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="D;point;lineSlider;D0,D3,0,90">
+<param name=e[10] value="E;point;lineSlider;D0,D3,0,210">
+<param name=e[11] value="DG';line;perpendicular;D,E;0;0;0">
+<param name=e[12] value="G';point;last;DG';0;0">
+<param name=e[13] value="G;point;proportion;D,E,A,C,A,C,D,G'">
+<param name=e[14] value="F;point;parallelogram;E,D,G">
+<param name=e[15] value="DEFG;polygon;quadrilateral;D,E,F,G;0;0;black;random">
+<param name=e[16] value="H';point;proportion;D,E,A,B,A,B,D,G;0;0">
+<param name=e[17] value="H;point;proportion;D,E,B,C,B,C,H',G">
+<param name=e[18] value="EH;polygon;parallelogram;E,D,H;0;0;black;random">
+</applet></div>
+
+<div class="just"><a href=../bookII/propII4.html>II.4</a></div>
+<p>Since the square on <i>AC</i> equals the sum of the squares on <i>AB</i> and <i>BC</i> and twice the rectangle <i>AB</i> by <i>BC</i>, apply <i>EH</i>, equal to the sum of the squares on <i>AB</i> and <i>BC</i>, to <i>DE</i>.  Then the remainder <i>HF</i> equals twice the rectangle <i>AB</i> by <i>BC</i>.
+
+<p>Since each of the straight lines <i>AB</i> and <i>BC</i> is medial, therefore the squares on <i>AB</i> and <i>BC</i> are also medial. But, by hypothesis, twice the rectangle <i>AB</i> by <i>BC</i> is also medial. And <i>EH</i> equals the sum of the squares on <i>AB</i> and <i>BC</i>, while <i>FH</i> equals twice the rectangle <i>AB</i> by <i>BC</i>, therefore each of the rectangles <i>EH</i> and <i>HF</i> is medial.
+
+<div class="just"><a href=propX22.html>X.22</a></div>
+<p>And they are applied to the rational straight line <i>DE</i>, therefore each of the straight lines <i>DH</i> and <i>HG</i> is rational and incommensurable in length with <i>DE</i>.
+
+<div class="just"><a href=propX11.html>X.11</a></div>
+<p>Since <i>AB</i> is incommensurable in length with <i>BC</i>, and <i>AB</i> is to <i>BC</i> as the square on <i>AB</i> is to the rectangle <i>AB</i> by <i>BC</i>, therefore the square on <i>AB</i> is incommensurable with the rectangle <i>AB</i> by <i>BC</i>.
+
+<div class="just"><a href=propX15.html>X.15</a>
+<br><a href=propX6.html>X.6</a></div>
+<p>But the sum of the squares on <i>AB</i> and <i>BC</i> is commensurable with the square on <i>AB</i>, and twice the rectangle <i>AB</i> by <i>BC</i> is commensurable with the rectangle <i>AB</i> by <i>BC</i>.
+
+<div class="just"><a href=propX13.html>X.13</a></div>
+<p>Therefore the sum of the squares on <i>AB</i> and <i>BC</i> is incommensurable with twice the rectangle <i>AB</i> by <i>BC</i>.
+
+<p>But <i>EH</i> equals the sum of the squares on <i>AB</i> and <i>BC</i>, and <i>HF</i> equals twice the rectangle <i>AB</i> by <i>BC</i>.
+
+<div class="just"><a href=../bookVI/propVI1.html>VI.1</a>
+<br><a href=propX11.html>X.11</a></div>
+<p>Therefore <i>EH</i> is incommensurable with <i>HF</i>, so that <i>DH</i> is also incommensurable in length with <i>HG</i>.
+
+<div class="just"><a href=propX36.html>X.36</a></div>
+<p>Therefore <i>DH</i> and <i>HG</i> are rational straight lines commensurable in square only, so that <i>DG</i> is irrational.
+
+<div class="just">cf. <a href=propX20.html>X.20</a>
+<br><a href=defX.I.html#4>X.Def.I.4</a></div>
+<p>But <i>DE</i> is rational, and the rectangle contained by an irrational and a rational straight line is irrational,  therefore the area <i>DF</i> is irrational, and the side of the square equal to it is irrational.
+
+<p>But <i>AC</i> is the side of the square equal to <i>DF</i>, therefore <i>AC</i> is irrational. Let it be called a <i>second bimedial</i> straight line.
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is used in <a href=propX44.html>X.44</a>, <a href=propX56.html>X.56</a>, <a href=propX62.html>X.62</a>, and <a href=propX67.html>X.67</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

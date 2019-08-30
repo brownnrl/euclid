@@ -1,0 +1,102 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 32</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 32</h1>
+
+<div class="statement">
+Parallelepipedal solids which are of the same height are to one another as their bases.
+</div>
+
+<p>Let <i>AB</i> and <i>CD</i> be parallelepipedal solids of the same height.
+
+<p>I say that the parallelepipedal solids <i>AB</i> and <i>CD</i> are to one another as their bases, that is, that the solid <i>AB</i> to the solid <i>CD</i> as the base <i>AE</i> is to the base <i>CF</i> .
+
+<div class="just"><a href="../bookI/propI45.html">I.45</a>
+<br><a href="../bookI/propI31.html">I.31</a></div>
+<p>Apply <i>FH</i> equal to <i>AE</i> to <i>FG.</i>   Complete the parallelepipedal solid <i>GK</i> with the same height as that of <i>CD</i> on <i>FH</i> as base.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=440 height=240>
+<img src="propXI32.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.32">
+<param name=e[1] value="B;point;fixed;160,30,0;black;green">
+<param name=basepoint value=B>
+<param name=e[2] value="1X;point;fixed;360,57,36;0;0">
+<param name=e[3] value="1Y;point;fixed;115,150,160;0;0">
+<param name=e[4] value="1Z;point;fixed;160,-114,123;0;0">
+<param name=e[5] value="ceiling;plane;3points;B,1X,1Y;0;0;0;0">
+<param name=e[6] value="E;point;lineSlider;B,1Z,220,230,100">
+<param name=e[7] value="xf;point;parallelogram;1X,B,E;0;0">
+<param name=e[8] value="yf;point;parallelogram;1Y,B,E;0;0">
+<param name=e[9] value="floor;plane;3points;E,xf,yf;0;0;0;0">
+<param name=e[10] value="A;point;planeSlider;floor,40,240,20">
+<param name=e[11] value="M;point;planeSlider;ceiling,100,30,0;0">
+<param name=e[12] value="N;point;parallelogram;M,B,E;0;0">
+<param name=e[13] value="O;point;parallelogram;M,N,A;0;0">
+<param name=e[14] value="P;point;parallelogram;E,N,A;0;0">
+<param name=e[15] value="Q;point;parallelogram;B,M,O;0;0">
+<param name=e[16] value="AOMN;polygon;quadrilateral;A,O,M,N;0;0;black;220,75,100">
+<param name=e[17] value="ANEP;polygon;quadrilateral;A,N,E,P;0;0;black;220,100,90">
+<param name=e[18] value="EBMN;polygon;quadrilateral;E,B,M,N;0;0;black;220,50,100">
+<param name=e[19] value="BQ;line;connect;B,Q">
+<param name=e[20] value="OQ;line;connect;O,Q">
+<param name=e[21] value="PQ;line;connect;P,Q">
+
+<param name=e[22] value="C;point;planeSlider;floor,200,150,100">
+<param name=e[23] value="G;point;planeSlider;floor,270,150,100">
+<param name=e[24] value="F;point;planeSlider;floor,240,30,100">
+<param name=e[25] value="D;point;planeSlider;ceiling,300,30,0">
+<param name=e[26] value="L;point;parallelogram;C,G,F;0;0">
+<param name=e[27] value="R;point;parallelogram;D,F,L;0;0">
+<param name=e[28] value="S;point;parallelogram;D,F,C;0;0">
+<param name=e[29] value="T;point;parallelogram;D,F,G;0;0">
+<param name=e[30] value="CSTG;polygon;quadrilateral;C,S,T,G;0;0;black;330,75,90">
+<param name=e[31] value="RSTD;polygon;quadrilateral;R,S,T,D;0;0;black;330,40,100">
+<param name=e[32] value="RSCL;polygon;quadrilateral;R,S,C,L;0;0;black;330,70,100">
+<param name=e[33] value="FD;line;connect;F,D">
+<param name=e[34] value="FL;line;connect;F,L">
+<param name=e[35] value="FG;line;connect;F,G">
+
+<param name=e[36] value="H';point;extend;C,G,C,G;0;0">
+<param name=e[37] value="FGUH;polygon;application;EBMN,G,F,H';0;0;black;0">
+<param name=e[38] value="H;point;vertex;FGUH,4">
+<param name=e[39] value="U;point;vertex;FGUH,3;0;0">
+<param name=e[40] value="K;point;parallelogram;D,F,U">
+<param name=e[41] value="V;point;parallelogram;H,G,T;0;0">
+<param name=e[42] value="DTVK;polygon;quadrilateral;D,T,V,K;0;0;black;130,40,100">
+<param name=e[43] value="TGHV;polygon;quadrilateral;T,G,H,V;0;0;black;130,75,90">
+<param name=e[44] value="UK;line;connect;U,K">
+</applet></div>
+
+<div class="just"><a href="propXI31.html">XI.31</a></div>
+<p>Then the solid <i>AB</i> equals the solid <i>GK</i> for they are on equal bases <i>AE</i> and <i>FH</i> and of the same height.
+
+<div class="just"><a href="propXI25.html">XI.25</a></div>
+<p>And, since the parallelepipedal solid <i>CK</i> is cut by the plane <i>DG</i> which is parallel to opposite planes, therefore the solid <i>CD</i> is to the solid <i>DH</i> as the base <i>CF</i> is to the base <i>FH.</i>
+
+<p>But the base <i>FH</i> equals the base <i>AE,</i> and the solid <i>GK</i> equals the solid <i>AB,</i> therefore the solid <i>AB</i> to the solid <i>CD</i> as the base <i>AE</i> is to the base <i>CF.</i>
+
+<p>Therefore, <i>parallelepipedal solids which are of the same height are to one another as their bases.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This completes the sequence of generalizations of proposition <a href=propXI29.html>XI.29</a>.  Euclid does not specifically have a corresponding proposition &ldquo;parallelepipedal solids with equal bases are to one another as their heights,&rdquo; but in the next two propositions, which depend on this one, he investigates other aspects of volumes of parallelepipeds.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

@@ -1,0 +1,85 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VI, Proposition 27</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 27</h1>
+
+<div class="statement">
+Of all the parallelograms applied to the same straight line falling short by parallelogrammic figures similar and similarly situated to that described on the half of the straight line, that parallelogram is greatest which is applied to the half of the straight line and is similar to the difference.</div>
+
+<p>Let <i>AB</i> be a straight line and let it be bisected at <i>C.</i>  Let there be applied to the straight line <i>AB</i> the parallelogram <i>AD</i> falling short by the parallelogrammic figure <i>DB</i> described on the half of <i>AB,</i> that is, <i>CB.</i>
+
+<p>I say that, of all the parallelograms applied to <i>AB</i> falling short by parallelogrammic figures similar and similarly situated to <i>DB, AD</i> is greatest.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=250 width=350>
+<img src=propVI27.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.27">
+<param name=e[1] value="A;point;free;70,210">
+<param name=e[2] value="B;point;free;310,210">
+<param name=e[3] value="C;point;midpoint;A,B">
+<param name=e[4] value="D;point;free;150,50">
+<param name=e[5] value="E;point;parallelogram;B,C,D">
+<param name=e[6] value="AE;polygon;parallelogram;A,B,E;0;0;black;random">
+<param name=e[7] value="BD;line;connect;B,D">
+<param name=e[8] value="F;point;lineSlider;BD,190,100">
+<param name=e[9] value="K';point;parallelogram;B,E,F;0;0">
+<param name=e[10] value="K;point;intersection;F,K',A,B">
+<param name=e[11] value="AKFG;polygon;parallelogram;A,K,F;0;0;black;random">
+<param name=e[12] value="G;point;vertex;AKFG,4">
+<param name=e[13] value="DC;line;connect;D,C">
+<param name=e[14] value="H;point;parallelogram;B,K,F">
+<param name=e[15] value="FH;line;connect;F,H">
+<param name=e[16] value="X;point;intersection;D,E,F,K;0;0">
+<param name=e[17] value="FX;line;connect;F,X">
+<param name=e[18] value="N;point;midpoint;X,F;black;0">
+<param name=e[19] value="M;point;cutoff;F,H,F,N;black;0">
+<param name=e[20] value="L;point;cutoff;F,G,F,N;black;0">
+<param name=e[21] value="LMN;sector;arc;L,M,N;0;0;darkGray;0">
+</applet>
+</div>
+
+<p>Let there be applied to the straight line <i>AB</i> the parallelogram <i>AF</i> falling short by the parallelogrammic figure <i>FB</i> similar and similarly situated to <i>DB.</i>
+
+<p>I say that <i>AD</i> is greater than <i>AF.</i>
+
+<div class="just"><a href="propVI26.html">VI.26</a></div>
+<p>Since the parallelogram <i>DB</i> is similar to the parallelogram <i>FB,</i> therefore they are about the same diameter.
+
+<p>Draw their diameter <i>DB,</i> and describe the figure.
+
+<div class="just"><a href="../bookI/propI43.html">I.43</a></div>
+<p>Then, since <i>CF</i> equals <i>FE,</i>  and <i>FB</i> is common, therefore the whole <i>CH</i> equals the whole <i>KE.</i>
+
+<div class="just"><a href="../bookI/propI36.html">I.36</a></div>
+<p>But <i>CH</i> equals <i>CG,</i> since <i>AC</i> also equals <i>CB.</i>
+
+<p>Therefore <i>CG</i> also equals <i>KE.</i>
+
+<p>Add <i>CF</i> to each.  Therefore the whole <i>AF</i> equals the gnomon <i>LMN,</i> so that the parallelogram <i>DB,</i> that is, <i>AD,</i> is greater than the parallelogram <i>AF.</i>
+
+<p>Therefore, <i>of all the parallelograms applied to the same straight line falling short by parallelogrammic figures similar and similarly situated to that described on the half of the straight line, that parallelogram is greatest which is applied to the half of the straight line and is similar to the difference.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition clarifies the limitations of the next one, <a href=propVI28.html>VI.28</a>. In VI.28 a construction is made to apply a parallelogram equal to a given rectilinear figure to a line falling short by a parallelogrammic figure.  This proposition implies that that construction cannot be made if the given rectilinear figure is too large.
+
+<p>When that proposition is applied, the part which falls short is usually a square, not just any parallelogram, and this and the next proposition are much more easily understood in that case.  In that case, the next proposition applies a rectangle equal to a given area to a line but falling short by a square.  And this proposition implies that can only be done if the given area is at least the square on half the line, since that square is the greatest rectangle that can be so applied.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

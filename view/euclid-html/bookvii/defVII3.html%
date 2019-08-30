@@ -1,0 +1,46 @@
+<HTML><HEAD><TITLE>Euclid's Elements, Book VII, Definitions 3 through 5</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+
+<center><h2>Euclid's <i>Elements</i> Book VII
+<br>Definitions 3 through 5</h2></center>
+
+<big>Def. 3. A number is <i>a part</i> of a number, the less of the greater, when it measures the greater;
+
+<p>Def. 4. But <i>parts</i> when it does not measure it.
+
+<p>Def. 5. The greater number is a <i>multiple</i> of the less when it is measured by the less.</big>
+
+<a name=guide><h3><img src=../guide.gif alt=Guide width=83 height=37></h3></a>
+
+These definitions assume that "measures" is understood.  It is clear what is meant by these definitions, namely, <i>m</i> measures <i>n</i> if <i>m</i> divides <i>n</i>, that is, there is some number <i>k</i> (greater than 1) so that <i>mk</i> = <i>n</i>. But division and multiplication haven't been defined yet, so this definition is inadequate, too.  The problem, of course, is that Euclid has no foundations for number theory.  The concepts of arithmetic were as obvious to him as as they were all others after him until the skeptic formalists of the late nineteenth century recognized a need for foundations of number theory.
+
+<center><applet code=Geometry codebase="../../Geometry" height=50 width=300>
+<img src=defVII1.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.Def.3-5">
+<param name=align value=above>
+<param name=e[1] value="A0;point;free;-1000,30;0,0">
+<param name=e[2] value="A3;point;free;1000,30;0,0">
+
+<param name=e[3] value="A1;point;lineSlider;A0,A3,30,0;0">
+<param name=e[4] value="A2;point;lineSlider;A0,A3,70,0;0">
+<param name=e[5] value="A;line;connect;A1,A2;black;0;blue">
+<param name=e[6] value="B;point;lineSlider;A0,A3,130,0">
+<param name=e[7] value="C;point;cutoff;B,A3,A1,A2">
+<param name=e[8] value="D;point;cutoff;C,A3,A1,A2">
+<param name=e[9] value="E;point;cutoff;D,A3,A1,A2">
+<param name=e[10] value="BE;line;connect;B,E;0;0;blue">
+</applet></center>
+
+At any rate, the intent of definitions 3 and 5 is evident.  The words "part" and "parts" in definitions 3 and 4 are literal translations from the Greek, but they're not usually used this way in English.  Perhaps "unit fraction" would be better for "part," and "non-unit proper fraction" would be better for "parts."  Thus, <i>BC</i> is a part of <i>BE</i>, a 1/3 part, and <i>BD</i> is parts of <i>BE</i>, in particular, 2/3 parts.
+
+<p><hr size=6><p>
+<a href=bookVII.html>Book VII Introduction</a> -
+<a href=defVII1.html>Definitions 1 and 2</a>  -
+<a href=defVII6.html>Definitions 6 through 10</a>.
+<p>
+<small><a href=../copyright.html>&copy; 1997</a>
+<br><a href="http://aleph0.clarku.edu/~djoyce/home.html">D.E.Joyce</a>
+<br><a href=http://www.clarku.edu/>Clark University</a></small>
+</BODY>
+</HTML>

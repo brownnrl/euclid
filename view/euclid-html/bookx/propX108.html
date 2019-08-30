@@ -1,0 +1,89 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book X, Proposition 108</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 108</h1>
+
+<div class="statement">If a medial area is subtracted from a rational area, then the side of the remaining area becomes one of two irrational straight lines, either an apotome or a minor straight line.</div>
+
+<p>Let the medial area <i>BD</i> be subtracted from the rational area <i>BC</i>.
+
+<p>I say that the side of the remainder <i>EC</i> becomes one of two irrational straight lines, either an apotome or a minor straight line.
+
+<p>Set out a rational straight line <i>FG</i>, to <i>FG</i> apply the rectangular parallelogram <i>GH</i> equal to <i>BC</i>, and subtract <i>GK</i> equal to <i>DB</i>.  Then the remainder <i>EC</i> equals <i>LH</i>.
+
+<p>Since, then, <i>BC</i> is rational, and <i>BD</i> medial, while <i>BC</i> equals <i>GH</i>, and <i>BD</i> equals <i>GK</i>, therefore <i>GH</i> is rational, and <i>GK</i> is medial.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=280 height=240>
+<img src="propX108.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="X.108">
+<param name=e[1] value="A0;point;free;-1000,30;0;0">
+<param name=e[2] value="A3;point;free;1000,30;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,70,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,200,0">
+<param name=e[5] value="C';point;perpendicular;A,B;0;0;0">
+<param name=e[6] value="C;point;lineSlider;A,C',0,110">
+<param name=e[7] value="BC;polygon;parallelogram;B,A,C;0;0;black;50,100,100">
+<param name=e[8] value="E;point;lineSlider;A0,A3,150,0">
+<param name=e[9] value="D;point;parallelogram;E,A,C">
+<param name=e[10] value="BD;polygon;parallelogram;B,E,D;0;0;black;90,100,100">
+
+<param name=e[11] value="F0;point;free;240,-1000;0;0">
+<param name=e[12] value="F3;point;free;240,1000;0;0">
+<param name=e[13] value="F;point;lineSlider;F0,F3,0,200">
+<param name=e[14] value="G;point;lineSlider;F0,F3,0,140">
+<param name=e[15] value="H';point;perpendicular;F,G;0;0">
+<param name=e[16] value="H;point;proportion;G,F,A,C,A,B,F,H'">
+<param name=e[17] value="GH;polygon;parallelogram;G,F,H;0;0;black;50,100,100">
+<param name=e[18] value="K;point;proportion;G,F,E,B,E,D,F,H'">
+<param name=e[19] value="L;point;parallelogram;G,F,K">
+<param name=e[20] value="GFKL;polygon;quadrilateral;G,F,K,L;0;0;black;90,100,100">
+</applet></div>
+
+<div class="just"><a href=propX20.html>X.20</a>,
+<a href=propX22.html>X.22</a>
+<br><a href=propX13.html>X.13</a></div>
+<p>And they are applied to the rational straight line <i>FG</i>, therefore <i>FH</i> is rational and commensurable in length with <i>FG</i>, while <i>FK</i> is rational and incommensurable in length with <i>FG</i>. Therefore <i>FH</i> is incommensurable in length with <i>FK</i>.
+
+<div class="just"><a href=propX73.html>X.73</a></div>
+<p>Therefore <i>FH</i> and <i>FK</i> are rational straight lines commensurable in square only. Therefore <i>KH</i> is an apotome, and <i>KF</i> the annex to it.
+
+<p>Now the square on <i>HF</i> is greater than the square on <i>FK</i> by the square on a straight line either commensurable with <i>HF</i> or not commensurable.
+
+<p>First, let the square on it be greater by the square on a straight line commensurable with it.
+
+<div class="just"><a href=defX.III.html#1>X.Def.III.2</a></div>
+<p>Now the whole <i>HF</i> is commensurable in length with the rational straight line <i>FG</i> set out, therefore <i>KH</i> is a first apotome.
+
+<div class="just"><a href=propX91.html>X.91</a></div>
+<p>But the side of the rectangle contained by a rational straight line and a first apotome is an apotome.  Therefore the side of <i>LH</i>, that is, of <i>EC</i>, is an apotome.
+
+<div class="just"><a href=defX.III.html#4>X.Def.III.4</a></div>
+<p>But, if the square on <i>HF</i> is greater than the square on <i>FK</i> by the square on a straight line incommensurable with <i>HF</i>, while the whole <i>FH</i> is commensurable in length with the rational straight line <i>FG</i> set out, then <i>KH</i> is a fourth apotome.
+
+<div class="just"><a href=propX94.html>X.94</a></div>
+<p>But the side of the rectangle contained by a rational straight line and a fourth apotome is minor.
+
+<p>Therefore, <i>if a medial area is subtracted from a rational area, then the side of the remaining area becomes one of two irrational straight lines, either an apotome or a minor straight line.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+This proposition is not used in the rest of the <i>Elements</i>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,141 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book VII, Proposition 33</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 33</h1>
+
+<div class="statement">Given as many numbers as we please, to find the least of those which have the same ratio with them.</div>
+
+<p>Let <i>A, B,</i> and <i>C</i> be the given numbers, as many as we please.
+<p>It is required to find the least of those which have the same ratio with <i>A, B,</i> and <i>C.</i>
+
+<p>Either <i>A, B,</i> and <i>C</i> are relatively prime or they are not.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=270 height=280 >
+<img src=propVII33.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VII.33">
+<param name=align value=left>
+<param name=e[1] value="A0;point;free;30,-1000;0;0">
+<param name=e[2] value="A3;point;free;30,1000;0;0">
+<param name=e[3] value="B0;point;free;65,-1000;0;0">
+<param name=e[4] value="B3;point;free;65,1000;0;0">
+<param name=e[5] value="C0;point;free;100,-1000;0;0">
+<param name=e[6] value="C3;point;free;100,1000;0;0">
+<param name=e[7] value="D0;point;free;135,-1000;0;0">
+<param name=e[8] value="D3;point;free;135,1000;0;0">
+<param name=e[9] value="E0;point;free;170,-1000;0;0">
+<param name=e[10] value="E3;point;free;170,1000;0;0">
+<param name=e[11] value="F0;point;free;205,-1000;0;0">
+<param name=e[12] value="F3;point;free;205,1000;0;0">
+<param name=e[13] value="G0;point;free;240,-1000;0;0">
+<param name=e[14] value="G3;point;free;240,1000;0;0">
+
+<param name=e[15] value="A1;point;lineSlider;A0,A3,0,30;0">
+<param name=e[16] value="A2;point;lineSlider;A0,A3,0,100;0">
+<param name=e[17] value="A;line;connect;A1,A2;black">
+<param name=e[18] value="X;point;midpoint;A;0;0">
+<param name=e[19] value="D1;point;lineSlider;D0,D3,0,30;0">
+<param name=e[20] value="D2;point;lineSlider;D0,D3,0,60;0">
+<param name=e[21] value="D;line;connect;D1,D2;black">
+<param name=e[22] value="B1;point;lineSlider;B0,B3,0,30;0">
+<param name=e[23] value="B15;point;cutoff;B1,B3,A1,A2;0;0">
+<param name=e[24] value="B2;point;cutoff;B15,B3,A1,X;0">
+<param name=e[25] value="B;line;connect;B1,B2;black">
+<param name=e[26] value="C1;point;lineSlider;C0,C3,0,30;0">
+<param name=e[27] value="C15;point;cutoff;C1,C3,A1,A2;0;0">
+<param name=e[28] value="C2;point;cutoff;C15,C3,A1,A2;0">
+<param name=e[29] value="C;line;connect;C1,C2;black">
+
+<param name=e[30] value="U1;point;free;1000,0;0;0">
+<param name=e[31] value="U2;point;free;1000,25;0;0">
+<param name=e[32] value="E1;point;lineSlider;E0,E3,0,30;0">
+<param name=e[33] value="E2;point;proportion;D1,D2,A1,A2,U1,U2,E1,E3;0">
+<param name=e[34] value="E;line;connect;E1,E2;black">
+<param name=e[35] value="F1;point;lineSlider;F0,F3,0,30;0">
+<param name=e[36] value="F2;point;proportion;D1,D2,B1,B2,U1,U2,F1,F3;0">
+<param name=e[37] value="F;line;connect;F1,F2;black">
+<param name=e[38] value="G1;point;lineSlider;G0,G3,0,30;0">
+<param name=e[39] value="G2;point;proportion;D1,D2,C1,C2,U1,U2,G1,G3;0">
+<param name=e[40] value="G;line;connect;G1,G2;black">
+
+<param name=e[41] value="H1;point;lineSlider;E0,E3,0,180;0">
+<param name=e[42] value="H2;point;proportion;A1,A2,A1,X,E1,E2,H1,E3;0">
+<param name=e[43] value="H;line;connect;H1,H2;black">
+<param name=e[44] value="K1;point;lineSlider;F0,F3,0,180;0">
+<param name=e[45] value="K2;point;proportion;A1,A2,A1,X,F1,F2,K1,F3;0">
+<param name=e[46] value="K;line;connect;K1,K2;black">
+<param name=e[47] value="L1;point;lineSlider;G0,G3,0,180;0">
+<param name=e[48] value="L2;point;proportion;A1,A2,A1,X,G1,G2,L1,G3;0">
+<param name=e[49] value="L;line;connect;L1,L2;black">
+<param name=e[50] value="M1;point;lineSlider;A0,A3,0,180;0">
+<param name=e[51] value="M2;point;proportion;H1,H2,A1,A2,U1,U2,M1,A3;0">
+<param name=e[52] value="M;line;connect;M1,M2;black">
+</applet></div>
+
+<div class="just"><a href="propVII21.html">VII.21</a></div>
+<p>Now, if <i>A, B,</i> and <i>C</i> are relatively prime, then they are the least of those which have the same ratio with them.
+
+<div class="just"><a href="propVII3.html">VII.3</a></div>
+<p>But, if not, take <i>D</i> the greatest common measure of <i>A, B,</i> and <i>C.</i>  Let there be as many units in the numbers <i>E, F,</i> and <i>G</i> as the times that <i>D</i> measures the numbers <i>A, B,</i> and <i>C</i> respectively.
+
+<div class="just"><a href="propVII16.html">VII.16</a>
+<br><a href=defVII20.html>VII.Def.20</a></div>
+<p>Therefore the numbers <i>E, F,</i> and <i>G</i> measure the numbers <i>A, B,</i> and <i>C</i> respectively according to the units in <i>D.</i> Therefore <i>E, F,</i> and <i>G</i> measure <i>A, B,</i> and <i>C</i> the same number of times. Therefore <i>E, F,</i> and <i>G</i> are in the same ratio with <i>A, B,</i> and <i>C.</i>
+
+<p>I say next that they are the least that are in that ratio.
+
+<p>If <i>E, F,</i> and <i>G</i> are not the least of those which have the same ratio with <i>A, B,</i> and <i>C,</i> then there are numbers less than <i>E, F,</i> and <i>G</i> in the same ratio with <i>A, B,</i> and <i>C.</i> Let them be <i>H, K,</i> and <i>L.</i> Therefore <i>H</i> measures <i>A</i> the same number of times that the numbers <i>K</i> and <i>L</i> measure the numbers <i>B</i> and <i>C</i> respectively.
+
+<p>Let there be as many units in <i>M</i> as the times that <i>H</i> measures <i>A.</i> Then the numbers <i>K</i> and <i>L</i> also measure the numbers <i>B</i> and <i>C</i> respectively according to the units in <i>M.</i>
+
+<div class="just"><a href="propVII16.html">VII.16</a></div>
+<p>And, since <i>H</i> measures <i>A</i> according to the units in <i>M,</i> therefore <i>M</i> also measures <i>A</i> according to the units in <i>H.</i>  For the same reason <i>M</i> also measures the numbers <i>B</i> and <i>C</i> according to the units in the numbers <i>K</i> and <i>L</i> respectively. Therefore <i>M</i> measures <i>A, B,</i> and <i>C.</i>
+
+<div class="just"><a href=defVII15.html>VII.Def.15</a></div>
+<p>Now, since <i>H</i> measures <i>A</i> according to the units in <i>M,</i> therefore <i>H</i> multiplied by <i>M</i> makes <i>A.</i>  For the same reason also <i>E</i> multiplied by <i>D</i> makes <i>A.</i>
+
+<div class="just"><a href="propVII19.html">VII.19</a></div>
+<p>Therefore the product of <i>E</i> and <i>D</i> equals the product of <i>H</i> and <i>M.</i> Therefore <i>E</i> is to <i>H</i> as <i>M</i> is to <i>D.</i>
+
+<p>But <i>E</i> is greater than <i>H,</i> therefore <i>M</i> is also greater than <i>D.</i> And it measures <i>A, B,</i> and <i>C,</i> which is impossible, for by hypothesis, <i>D</i> is the greatest common measure of <i>A, B,</i> and <i>C.</i>
+
+<p>Therefore there cannot be any numbers less than <i>E, F,</i> and <i>G</i> which are in the same ratio with <i>A, B,</i> and <i>C.</i> Therefore <i>E, F,</i> and <i>G</i> are the least of those which have the same ratio with <i>A, B,</i> and <i>C.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<h4>The beginning of the proof</h4>
+
+<p>Given three numbers <i>a</i>, <i>b</i>, etc., let <i>d</i> be their greatest common divisor.  If <i>d</i> measures <i>a</i> <i>m</i> times, let <i>e</i>&nbsp;=&nbsp;<i>mu</i>, where <i>u</i> is the unit.  Likewise, if <i>b</i>&nbsp;=&nbsp;<i>nd</i>, let <i>f</i>&nbsp;=&nbsp;<i>nb</i>, etc.  (Euclid hasn&rsquo;t defined division, but he&rsquo;s essentially saying let <i>e</i>&nbsp;=&nbsp;<i>a</i>/<i>d</i>, <i>f</i>&nbsp;=&nbsp;<i>b</i>/<i>d</i>, etc.)
+Then <i>a</i>&nbsp;=&nbsp;<i>kd</i>, <i>b</i>&nbsp;=&nbsp;<i>ke</i>, etc., where <i>d</i>&nbsp;=&nbsp;<i>ku</i>.  Therefore, <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f</i>&nbsp;:&nbsp;<i>g.</i>
+
+<p>The remainder of the proof shows that no smaller numbers are in the same ratio.
+
+<h4>Multiple term ratios</h4>
+
+<p>This proposition is unusual in that it discusses a ratio <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c</i> of three (or more) numbers.  It also has the proportion <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f</i>&nbsp;:&nbsp;<i>g.</i> These multiterm ratios and proportions may have been left over from an earlier time.  Euclid argues that the proportion holds because <i>e, f,</i> and <i>g</i> measure <i>a, b,</i> and <i>c,</i> respectively, the same number, <i>d,</i> times.  By the definition of proportion, that observation directly implies
+<p><center>
+<i>a</i>&nbsp;:&nbsp;<i>e</i>&nbsp;=&nbsp;<i>b</i>&nbsp;:&nbsp;<i>f</i>&nbsp;=&nbsp;<i>c</i>&nbsp;:&nbsp;<i>g</i>
+</center><p>
+The desired proportion,  <i>a</i>&nbsp;:&nbsp;<i>b</i>&nbsp;:&nbsp;<i>c</i>&nbsp;=&nbsp;<i>e</i>&nbsp;:&nbsp;<i>f</i>&nbsp;:&nbsp;<i>g</i> is an alternate form of that multiple proportion.  See <a href="../bookV/defV11.html">V.Def.13</a> for the definition of alternate ratios.
+
+
+<h4>Use of this proposition</h4>
+
+This proposition is used in the next one and several propositions in Book VIII starting with <a href="../bookVIII/propVIII6.html">VIII.6</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2002, 2013");
+</script>
+</BODY></HTML>

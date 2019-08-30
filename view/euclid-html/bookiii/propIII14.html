@@ -1,0 +1,86 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book III, Proposition 14</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 14</h1>
+
+<div class="statement">Equal straight lines in a circle are equally distant from the center, and those which are equally distant from the center equal one another.</div>
+
+<p>Let <i>AB</i> and <i>CD</i> be equal straight lines in a circle <i>ABDC.</i>
+
+<p>I say that <i>AB</i> and <i>CD</i> are equally distant from the center.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=270 width=270>
+<img src=propIII14.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="III.14">
+<param name=e[1] value="A;point;free;135,235">
+<param name=e[2] value="E;point;free;135,135">
+<param name=e[3] value="ABC;circle;radius;E,A;0;0;0,0,0;random">
+<param name=e[4] value="B;point;circleSlider;ABC,40,70">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="C;point;circleSlider;ABC,150,180">
+<param name=e[7] value="ECD;polygon;similar;E,C,E,B,A;0;0;0;0">
+<param name=e[8] value="D;point;vertex;ECD,3">
+<param name=e[9] value="CD;line;connect;C,D">
+<param name=e[10] value="EA;line;connect;E,A">
+<param name=e[11] value="EC;line;connect;E,C">
+<param name=e[12] value="F;point;midpoint;AB">
+<param name=e[13] value="G;point;midpoint;CD">
+<param name=e[14] value="EF;line;connect;E,F">
+<param name=e[15] value="EG;line;connect;E,G">
+<param name=e[16] value="EAF;polygon;triangle;E,A,F;0;0;0">
+<param name=e[17] value="ECG;polygon;triangle;E,C,G;0;0;0">
+</applet></div>
+
+<div class="just"><a href="propIII1.html">III.1</a>
+<br><a href="../bookI/propI12.html">I.12</a></div>
+<p>Take the center <i>E</i> of the circle <i>ABDC.</i> Draw <i>EF</i> and <i>EG</i> from <i>E</i>  perpendicular to <i>AB</i> and <i>CD,</i> and join <i>AE</i> and <i>EC.</i>
+
+<div class="just"><a href="propIII3.html">III.3</a></div>
+<p>Then, since a straight line <i>EF</i> passing through the center cuts a straight line <i>AB</i> not passing through the center at right angles, it also bisects it.  Therefore <i>AF</i> equals <i>FB.</i> Therefore <i>AB</i> is double <i>AF.</i>
+
+<p>For the same reason <i>CD</i> is also double <i>CG.</i> But <i>AB</i> equals <i>CD,</i> therefore <i>AF</i> also equals <i>CG.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>Also, since <i>AE</i> equals <i>EC,</i> the square on <i>AE</i> also equals the square on <i>EC.</i>  But the sum of the squares on <i>AF</i> and <i>EF</i> equals the square on <i>AE,</i> for the angle at <i>F</i> is right, and the sum of the squares on <i>EG</i> and <i>GC</i> equals the square on <i>EC,</i> for the angle at <i>G</i> is right.  Therefore the sum of the squares on <i>AF</i> and <i>FE</i> equals the sum of the squares on <i>CG</i> and <i>GE,</i> of which the square on <i>AF</i> equals the square on <i>CG,</i> for <i>AF</i> equals <i>CG.</i>  Therefore the remaining square on <i>FE</i> equals the square on <i>EG.</i>  Therefore <i>EF</i> equals <i>EG.</i>
+
+<div class="just"><a href=defIII4.html>III.Def.4</a></div>
+<p>But straight lines in a circle are said to be equally distant from the center when the perpendiculars drawn to them from the center are equal.  Therefore <i>AB</i> and <i>CD</i> are equally distant from the center.
+
+<hr width=50%>
+
+<p>Next, let the straight lines <i>AB</i> and <i>CD</i> be equally distant from the center, that is, let <i>EF</i> equal <i>EG.</i> 
+
+<p>I say that <i>AB</i> also equals <i>CD.</i>
+
+<div class="just"><a href="../bookI/propI47.html">I.47</a></div>
+<p>For, with the same construction, we can prove, as before, that <i>AB</i> is double <i>AF,</i> and <i>CD</i> double <i>CG.</i>  And, since <i>AE</i> equals <i>CE,</i> the square on <i>AE</i> equals the square on <i>CE.</i>  But the sum of the squares on <i>EF</i> and <i>FA</i> equals the square on <i>AE,</i> and the sum of the squares on <i>EG</i> and <i>GC</i> equals the square on <i>CE.</i>
+
+<p>Therefore the sum of the squares on <i>EF</i> and <i>FA</i> equals the sum of the squares on <i>EG</i> and <i>GC,</i> of which the square on <i>EF</i> equals the square on <i>EG,</i> for <i>EF</i> equals <i>EG.</i> Therefore the remaining square on <i>AF</i> equals the square on <i>CG.</i>  Therefore <i>AF</i> equals <i>CG.</i>  And <i>AB</i> is double <i>AF,</i> and <i>CD</i> double <i>CG,</i> therefore <i>AB</i> equals <i>CD.</i>
+
+<p>Therefore <i>equal straight lines in a circle are equally distant from the center, and those which are equally distant from the center equal one another.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+Note how Euclid has proved twice in the course of this proof the side-side-right angle congruence theorem.  See the <a href="../bookI/propI26.html#cong">note</a> after I.26 about congruence theorems for triangles.
+
+<p>This proposition is used in the next one.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,61 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book VI, Definition 4</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Definition 4</h1>
+
+<div class="statement">
+The <i>height</i> of any figure is the perpendicular drawn from the vertex to the base.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+<center><table cellspacing=5>
+<tr><td>
+Evidently, what is meant by &ldquo;vertex&rdquo; is the highest point in the figure, or a highest point when many points are equally high.  But to define &ldquo;height&rdquo; in terms of &ldquo;highest point&rdquo; would be a circular definition.  Indeed, this definition only suggests what &ldquo;height&rdquo; might mean without defining it at all.  Still, by the way the term is used in the <i>Elements,</i> we can determine its meaning. The only planar figures where heights are used in the <i>Elements</i> are triangles and parallelograms.
+
+<p>If the figure is a triangle, and one side has been declared the base, then the height is the expected line, the line drawn from the opposite vertex perpendicular to the base.  If the figure is a parallelogram, and one side has been declared the base, then the height may be taken to be a perpendicular from either of the two vertices not on the base.
+
+<p>In the later books on solid geometry, other figures also can have bases and heights such as parallelepipeds, pyramids, prisms, cones, and cylinders.</td>
+
+<td><applet code=Geometry codebase="../../Geometry" archive=Geometry.zip  archive=Geometry.zip  height=270 width=220>
+<img src=defVI4.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="VI.Def.4">
+<param name=e[1] value="A0;point;free;-1000,140;0;0">
+<param name=e[2] value="A3;point;free;1000,140;0;0">
+<param name=e[3] value="A;point;lineSlider;A0,A3,30,0">
+<param name=e[4] value="B;point;lineSlider;A0,A3,190,0">
+<param name=e[5] value="C;point;free;80,30">
+<param name=e[6] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[7] value="X;line;foot;C,A,B;0;0;red">
+
+<param name=e[8] value="D0;point;free;-1000,240;0;0">
+<param name=e[9] value="D3;point;free;1000,240;0;0">
+<param name=e[10] value="D;point;lineSlider;D0,D3,90,0">
+<param name=e[11] value="E;point;lineSlider;D0,D3,190,0">
+<param name=e[12] value="F;point;free;150,170">
+<param name=e[13] value="DEFG;polygon;parallelogram;D,E,F;0;0;black;random">
+<param name=e[14] value="G;point;vertex;DEFG,4">
+<param name=e[15] value="Y;line;foot;F,D,E;0;0;red">
+</applet></td></tr>
+</table></center>
+
+
+
+
+<p>Different sides of a figure may be selected as the base depending on the application.  In proposition <a href=../bookXI/propXI39.html>XI.39</a> there are two triangular prisms.  A triangle is chosen taken to be the base of one, while the base of the other is a parallelogram.  The height of the first is a perpendicular drawn between two triangular opposite faces, but the height of the other is a perpendicular drawn between the parallelogram taken as the base and the opposite parallelogram.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

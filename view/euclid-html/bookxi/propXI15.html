@@ -1,0 +1,98 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book XI, Proposition 15</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+
+<h1>Proposition 15</h1>
+
+<div class="statement">
+If two straight lines meeting one another are parallel to two straight lines meeting one another not in the same plane, then the planes through them are parallel.</div>
+
+<p>Let the two straight lines <i>AB</i> and <i>BC</i> meeting one another be parallel to the two straight lines <i>DE</i> and <i>EF</i> meeting one another not in the same plane.
+
+<p>I say that the plane produced through <i>AB</i> and <i>BC</i> and the plane produced through <i>DE</i> and <i>EF</i> do not meet one another.
+
+<div class="ldiagram">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=260 height=310 >
+<img src="propXI15.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.15">
+<param name=e[1] value="X;point;free;100000,200">
+<param name=e[2] value="Y;point;free;200,-100000">
+<param name=e[3] value="Z;point;free;30000,-100000">
+<param name=e[4] value="P0;point;free;30,100;0;0,75,100">
+<param name=e[5] value="P2;point;free;180,20;0;0,75,100">
+<param name=e[6] value="P1;point;intersection;P0,X,P2,Z;0;0">
+<param name=e[7] value="P3;point;intersection;P2,X,P0,Z;0;0">
+<param name=e[8] value="P;polygon;quadrilateral;P0,P1,P2,P3;0;0;gray;brighter">
+<param name=e[9] value="Q0;point;free;30,280;0;0,75,100">
+<param name=e[10] value="Q2;point;free;230,140;0;0,75,100">
+<param name=e[11] value="Q1;point;intersection;Q0,X,Q2,Z;0;0">
+<param name=e[12] value="Q3;point;intersection;Q2,X,Q0,Z;0;0">
+<param name=e[13] value="Q;polygon;quadrilateral;Q0,Q1,Q2,Q3;0;0;gray;brighter">
+<param name=e[14] value="A;point;free;70,80">
+<param name=e[15] value="B;point;free;110,50">
+<param name=e[16] value="C;point;free;140,70">
+<param name=e[17] value="AB;line;connect;A,B">
+<param name=e[18] value="BC;line;connect;B,C">
+<param name=e[19] value="E;point;free;140,160">
+<param name=e[20] value="D';point;parallelogram;A,B,E;0;0">
+<param name=e[21] value="D;point;lineSlider;E,D',80,210">
+<param name=e[22] value="F';point;parallelogram;C,B,E;0;0">
+<param name=e[23] value="F;point;lineSlider;E,F',180,210">
+<param name=e[24] value="DE;line;connect;D,E">
+<param name=e[25] value="EF;line;connect;E,F">
+<param name=e[26] value="G;point;lineSlider;B,Y,110,220">
+<param name=e[27] value="BG;line;connect;B,G">
+<param name=e[28] value="H';point;parallelogram;D,E,G;0;0">
+<param name=e[29] value="H;point;lineSlider;G,H',80,250">
+<param name=e[30] value="K';point;parallelogram;F,E,G;0;0">
+<param name=e[31] value="K;point;lineSlider;G,K',160,250">
+<param name=e[32] value="GH;line;connect;G,H">
+<param name=e[33] value="GK;line;connect;G,K">
+</applet></div>
+
+<div class="just"><a href="propXI11.html">XI.11</a></div>
+<p>Draw <i>BG</i> from the point <i>B</i> perpendicular to the plane through <i>DE</i> and <i>EF</i> to where it meets the plane at the point <i>G.</i>
+
+<div class="just"><a href="../bookI/propI31.html">I.31</a></div>
+<p>Draw <i>GH</i> through <i>G</i> parallel to <i>ED,</i> and <i>GK</i> parallel to <i>EF.</i>
+
+<div class="just"><a href=defXI3.html>XI.Def.3</a></div>
+<p>Now, since <i>BG</i> is at right angles to the plane through <i>DE</i> and <i>EF,</i> therefore it makes right angles with all the straight lines which meet it and lie in the plane through <i>DE</i> and <i>EF.</i>
+
+<p>But each of the straight lines <i>GH</i> and <i>GK</i> meets it and lies in the plane through <i>DE</i> and <i>EF,</i> therefore each of the angles <i>BGH</i> and <i>BGK</i> is right.
+
+<div class="just"><a href="propXI9.html">XI.9</a>,
+<a href="../bookI/propI29.html">I.29</a></div>
+<p>And, since <i>BA</i> is parallel to <i>GH,</i> therefore the sum of the angles <i>GBA</i> and <i>BGH</i> equals two right angles.
+
+<p>But the angle <i>BGH</i> is right, therefore the angle <i>GBA</i> is also right.  Therefore <i>GB</i> is at right angles to <i>BA.</i>  For the same reason <i>GB</i> is also at right angles to <i>BC.</i>
+
+<div class="just"><a href="propXI4.html">XI.4</a></div>
+<p>Since then the straight line <i>GB</i> is set up at right angles to the two straight lines <i>BA</i> and <i>BC</i> which cut one another, therefore <i>GB</i> is also at right angles to the plane through <i>BA</i> and <i>BC.</i>
+
+<div class="just"><a href="propXI14.html">XI.14</a></div>
+<p>But planes to which the same straight line is at right angles are parallel, therefore the plane through <i>AB</i> and <i>BC</i> is parallel to the plane through <i>DE</i> and <i>EF.</i>
+
+<p>Therefore, <i>if two straight lines meeting one another are parallel to two straight lines meeting one another not in the same plane, then the planes through them are parallel.</i>
+
+<div class="qed">Q.E.D.</div>
+</div>
+
+<h2>Guide</h2>
+
+This proposition is not used in the rest of the <i>Elements.</i>
+
+<div id="footer"></div>
+<script>
+  loadFooter("1997");
+</script>
+</BODY></HTML>

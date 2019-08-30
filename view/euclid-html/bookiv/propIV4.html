@@ -1,0 +1,240 @@
+<HTML><HEAD>
+<TITLE>Euclid's Elements, Book IV, Proposition 4</TITLE>
+<link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Proposition 4</h1>
+
+<div class="statement">
+To inscribe a circle in a given triangle.</div>
+
+<p>Let <i>ABC</i> be the given triangle.
+
+<p>It is required to inscribe a circle in the triangle <i>ABC.</i>
+
+<div class="ldiagram">
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=260 width=320>
+<img src="propIV4.gif" hspace=10 alt="IV.4">
+<param name=background value="35,19,100">
+<param name=title value="IV.4">
+<param name=e[1] value="A;point;free;210,40">
+<param name=e[2] value="B;point;free;40,190">
+<param name=e[3] value="C;point;free;280,220">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[5] value="BB';line;angleBisector;A,B,C;0;0;0">
+<param name=e[6] value="CC';line;angleBisector;B,C,A;0;0;0">
+<param name=e[7] value="D;point;intersection;BB',CC';black;green">
+<param name=pivot value=D>
+<param name=e[8] value="F;point;foot;D,B,C">
+<param name=e[9] value="E;point;foot;D,A,B">
+<param name=e[10] value="G;point;foot;D,C,A">
+<param name=e[11] value="EFG;circle;radius;D,E;0;0;black;random">
+<param name=e[12] value="BD;line;connect;B,D">
+<param name=e[13] value="CD;line;connect;C,D">
+<param name=e[14] value="ED;line;connect;E,D">
+<param name=e[15] value="FD;line;connect;F,D">
+<param name=e[16] value="GD;line;connect;G,D">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="propIV4.gif" hspace=10 alt="IV.4">';
+</script>
+</div>
+
+<div class="just"><a href="../bookI/propI9.html">I.9</a>
+<br><a href="../bookI/propI12.html">I.12</a></div>
+<p>Bisect the angles <i>ABC</i> and <i>ACB</i> by the straight lines <i>BD</i> and <i>CD,</i> and let these meet one another at the point <i>D.</i> Draw <i>DE, DF,</i> and <i>DG</i> from <i>D</i>  perpendicular to the straight lines <i>AB, BC,</i> and <i>CA.</i>
+
+<div class="just"><a href="../bookI/propI26.html">I.26</a></div>
+<p>Now, since the angle <i>ABD</i> equals the angle <i>CBD,</i> and the right angle <i>BED</i> also equals the right angle <i>BFD, EBD</i> and <i>FBD</i> are two triangles having two angles equal to two angles and one side equal to one side, namely that opposite one of the equal angles, which is <i>BD</i> common to the triangles, therefore they will also have the remaining sides equal to the remaining sides, therefore <i>DE</i> equals <i>DF.</i>
+
+<p>For the same reason <i>DG</i> also equals <i>DF.</i>
+
+<p>Therefore the three straight lines <i>DE, DF,</i> and <i>DG</i> equal one another.  Therefore the circle described with center <i>D</i> and radius one of the straight lines <i>DE, DF,</i> or <i>DG</i> also passes through the remaining points and touches the straight lines <i>AB, BC,</i> and <i>CA,</i> because the angles at the points <i>E, F,</i> and <i>G</i> are right.
+
+<div class="just"><a href="../bookIII/propIII16.html">III.16</a>
+<br><a href=../bookIV/defIV.html>IV.Def.5</a></div>
+<p>For, if it cuts them, the straight line drawn at right angles to the diameter of the circle from its end will be found to fall within the circle, which was proved absurd, therefore the circle described with center <i>D</i> and radius one of the straight lines <i>DE, DF,</i> or <i>DG</i> does not cut the straight lines <i>AB, BC,</i> and <i>CA</i>  Therefore it touches them, and is the circle inscribed in the triangle <i>ABC.</i>
+
+<p>Let it be inscribed as <i>FGE.</i>
+
+<p>Therefore the circle <i>EFG</i> has been inscribed in the given triangle <i>ABC.</i>
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+It is easy to supply the missing argument that the angle bisectors <i>BD</i> and <i>CD</i> do meet.
+
+<h4>Incircles and excircles</h4>  
+
+<table cellspacing=5><tr><td>
+
+This circle inscribed in a triangle has come to be known as the <i>incircle</i> of the triangle, its center the <i>incenter</i> of the triangle, and its radius the <i>inradius</i> of the triangle.
+
+<p>The incircle is a circle tangent to the three lines <i>AB, BC,</i> and <i>AC.</i>  If these three lines are extended, then there are three other circles also tangent to them, but outside the triangle.  They are called the <i>excircles.</i>
+
+<p>The points on the internal angle bisector <i>AD</i> are equidistant from the two sides of the triangle <i>AB</i> and <i>AC.</i>  The line <i>KL</i> is perpendicular to <i>AD</i> at <i>A,</i> and the points on it are also equidistant from the extended sides <i>AB</i> and <i>AC.</i>  The line <i>B'C'</i> is called the <i>external angle bisector</i> at <i>A.</i>  Whereas the incenter <i>D</i> lies at the confluence of the three internal angle bisectors, the excenter <i>B'</i> lies at the confluence of two external angle bisectors <i>AB'</i> and <i>CB'</i> and one internal angle bisector <i>BB'.</i>  Likewise for the other two excenters <i>A'</i> and <i>C'.</i>
+
+<p><font size=-1>(Drag around the points <i>A</i>, <i>B</i>, and <i>C</i> to see how the figure changes.)</font>
+</td>
+
+<td>
+<div id="ap2">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=350 width=350>
+<img src="propIV4a.gif" alt="Incircle and excircles">
+<param name=background value="35,19,100">
+<param name=title value="Incircle and excircles">
+<param name=e[1] value="A;point;free;140,100">
+<param name=e[2] value="B;point;free;90,160">
+<param name=e[3] value="C;point;free;200,180">
+<param name=e[4] value="L0;point;free;0,0;0;0">
+<param name=e[5] value="L1;point;free;500,0;0;0">
+<param name=e[6] value="ABend;point;extend;A,B,L0,L1;0;0">
+<param name=e[7] value="BAend;point;extend;B,A,L0,L1;0;0">
+<param name=e[8] value="AB;line;connect;ABend,BAend">
+<param name=e[9] value="ACend;point;extend;A,C,L0,L1;0;0">
+<param name=e[10] value="CAend;point;extend;C,A,L0,L1;0;0">
+<param name=e[11] value="AC;line;connect;ACend,CAend">
+<param name=e[12] value="CBend;point;extend;C,B,L0,L1;0;0">
+<param name=e[13] value="BCend;point;extend;B,C,L0,L1;0;0">
+<param name=e[14] value="CB;line;connect;CBend,BCend">
+<param name=e[15] value="Bbis;line;angleBisector;A,B,C;0;0;0">
+<param name=e[16] value="Cbis;line;angleBisector;B,C,A;0;0;0">
+<param name=e[17] value="D;point;intersection;Bbis,Cbis;black;green">
+<param name=pivot value=D>
+<param name=e[18] value="E;point;foot;D,A,B;0;0">
+<param name=e[19] value="incircle;circle;radius;D,E;0;0;black;random">
+<param name=e[20] value="Aperp;line;perpendicular;A,D;0;0;0">
+<param name=e[21] value="Bperp;line;perpendicular;B,D;0;0;0">
+<param name=e[22] value="Cperp;line;perpendicular;C,D;0;0;0">
+<param name=e[23] value="A';point;intersection;Bperp,Cperp">
+<param name=e[24] value="B';point;intersection;Aperp,Cperp">
+<param name=e[25] value="C';point;intersection;Bperp,Aperp">
+<param name=e[26] value="A'B'C';polygon;triangle;A',B',C';0;0;black;0">
+<param name=e[27] value="AA';line;connect;A,A'">
+<param name=e[28] value="BB';line;connect;B,B'">
+<param name=e[29] value="CC';line;connect;C,C'">
+<param name=e[30] value="A'foot;point;foot;A',B,C;0;0">
+<param name=e[31] value="B'foot;point;foot;B',A,C;0;0">
+<param name=e[32] value="C'foot;point;foot;C',A,B;0;0">
+<param name=e[33] value="A'circ;circle;radius;A',A'foot;0;0;black;random">
+<param name=e[34] value="B'circ;circle;radius;B',B'foot;0;0;black;random">
+<param name=e[35] value="C'circ;circle;radius;C',C'foot;0;0;black;random">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap2').innerHTML =
+  '<img src="propIV4a.gif" alt="Incircle and excircles" hspace=10>';
+</script>
+</td></tr></table>
+
+<h4>Heron&rsquo;s formula</h4>
+
+<p><table cellpadding=5><tr><td>
+<div id="ap3">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=280>
+<img src="propIV4b.gif" alt="Heron's formula">
+<param name=background value="35,19,100">
+<param name=title value="Heron&rsquo;s formula">
+<param name=e[1] value="A;point;free;160,30">
+<param name=e[2] value="B;point;free;30,190">
+<param name=e[3] value="C;point;free;240,260">
+<param name=e[4] value="Bbis;line;angleBisector;A,B,C;0;0;0">
+<param name=e[5] value="Cbis;line;angleBisector;B,C,A;0;0;0">
+<param name=e[6] value="D;point;intersection;Bbis,Cbis;black;green">
+<param name=pivot value=D>
+<param name=e[7] value="F;point;foot;D,B,C">
+<param name=e[8] value="E;point;foot;D,A,B">
+<param name=e[9] value="G;point;foot;D,C,A">
+<param name=e[10] value="ADB;polygon;triangle;A,D,B;0;0;black;random">
+<param name=e[11] value="CDB;polygon;triangle;C,D,B;0;0;black;random">
+<param name=e[12] value="CDA;polygon;triangle;C,D,A;0;0;black;random">
+<param name=e[13] value="ED;line;connect;E,D">
+<param name=e[14] value="FD;line;connect;F,D">
+<param name=e[15] value="GD;line;connect;G,D">
+<param name=e[16] value="incircle;circle;radius;D,E;0;0;lightGray;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap3').innerHTML =
+  '<img src="propIV4b.gif" alt="Area equals radius times semiperimeter" hspace=10>';
+</script>
+</td>
+
+<td>
+Heron of Alexandria (first century C.E.) was an important Greek mathematician who wrote, among other things, a commentary on the <i>Elements</i> which is lost now but was known to Proclus and an-Nairizi.  In Heron&rsquo;s <i>Metrica,</i> which was rediscovered in 1896, there appears a proof of what is called Heron&rsquo;s formula.  It states that the area of a triangle is the square root of <i>s</i>(<i>s</i>&nbsp;&ndash;&nbsp;<i>a</i>)(<i>s</i>&nbsp;&ndash;&nbsp;<i>b</i>)(<i>s</i>&nbsp;&ndash;&nbsp;<i>c</i>) where <i>a</i>&nbsp;=&nbsp;<i>BC, b</i>&nbsp;=&nbsp;<i>AC,</i> and <i>c</i>&nbsp;=&nbsp;<i>AB,</i> the sides of the triangle, and <i>s</i> is the semiperimeter (<i>a</i>&nbsp;+&nbsp;<i>b</i>&nbsp;+&nbsp;<i>c</i>)/2.  Archimedes may have known this formula, but but we don&rsquo;t have his proof.  Heath gives Heron&rsquo;s complete proof, but here we&rsquo;ll just look at the first part that  involves the incircle.
+
+<p>
+Let <i>D</i> be the incenter of the triangle <i>ABC,</i> and let <i>DE, DF,</i> and <i>DG</i> be perpendicular lines drawn to the sides as in Euclid&rsquo;s proof.  These three lines are radii of the incircle, and therefore have length <i>r,</i> the inradius. The triangle <i>ABD</i> has base <i>AB</i> and height <i>r,</i> so its area is <i>r AB</i>/2.  Likewise, the area of triangle <i>BCD</i> is <i>r BC</i>/2, and the area of triangle <i>CAD</i> is <i>r CA</i>/2.  Adding these together we find the area of triangle <i>ABC</i> is <i>r</i> (<i>AB</i>&nbsp;+&nbsp;<i>BC</i>&nbsp;+&nbsp;<i>CA</i>)/2.  Therefore we have
+<p><center>Area(<i>ABC</i>)&nbsp;=&nbsp;<i>rs</i></center><p>
+an interesting result in itself.
+</td></tr></table>
+
+<p>
+We&rsquo;ll leave Heron&rsquo;s proof now and consider the corresponding statement for excircles.
+
+<table cellpadding=5><tr>
+<td>Now let <i>A'</i> be the excenter on the bisector of the internal angle at <i>A.</i>  Let <i>A'E', A'F',</i> and <i>A'G'</i> be the perpendiculars drawn from <i>A'</i> to the sides of the triangle.  They are radii of the excircle of length <i>r<sub>A</sub>.</i>  Triangle <i>ABA'</i> has base <i>AB</i> and height <i>A'E',</i> so its area is <i>r<sub>A</sub> AB</i>/2.  Likewise, the area of triangle <i>BCA'</i> is <i>r<sub>A</sub> BC</i>/2, and the area of triangle <i>CAA'</i> is <i>r<sub>A</sub> CA</i>/2.   Triangle <i>ABC</i> is the sum of triangles <i>ABA'</i> and <i>ACA'</i> minus triangle <i>BCA',</i> so its area is <i>r<sub>A</sub></i> (<i>AB</i>&nbsp;+&nbsp;<i>AC</i>&nbsp;&#150;&nbsp;<i>CA</i>)/2 which equals <i>r<sub>A</sub></i>(<i>s</i>&nbsp;&#150;&nbsp;<i>A</i>).
+
+<p><p>From the other excircles we get two more equations.  We then have
+<p><center>Area(<i>ABC</i>)&nbsp;=&nbsp;<i>rs</i>&nbsp;=&nbsp;<i>r<sub>A</sub></i>(<i>s</i>&nbsp;&#150;&nbsp;<i>A</i>)&nbsp;=&nbsp;<i>r<sub>B</sub></i>(<i>s</i>&nbsp;&#150;&nbsp;<i>B</i>)&nbsp;=&nbsp;<i>r<sub>C</sub></i>(<i>s</i>&nbsp;&#150;&nbsp;<i>C</i>).</center><p>
+
+<p>There are other relationships among these radii, for instance,
+<p><center>1/<i>r</i>&nbsp;=&nbsp;1/<i>r<sub>A</sub></i>&nbsp;+&nbsp;1/<i>r<sub>B</sub></i>&nbsp;+&nbsp;1/<i>r<sub>C</sub>,</i></center>
+<p>but let&rsquo;s stop here to go on to the circumcircle of a triangle.
+</td>
+
+<td>
+<div id="ap4">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=280>
+<img src="propIV4c.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Heron&rsquo;s formula">
+<param name=e[1] value="A;point;free;130,30">
+<param name=e[2] value="B;point;free;70,110">
+<param name=e[3] value="C;point;free;180,120">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;black;0">
+<param name=e[5] value="L0;point;free;0,0;0;0">
+<param name=e[6] value="L1;point;free;500,0;0;0">
+<param name=e[7] value="ABend;point;extend;A,B,L0,L1;0;0">
+<param name=e[8] value="ACend;point;extend;A,C,L0,L1;0;0">
+<param name=e[9] value="AB;line;connect;B,ABend">
+<param name=e[10] value="AC;line;connect;C,ACend">
+<param name=e[11] value="Bperp;line;angleBisector;ABend,B,C;0;0;0">
+<param name=e[12] value="Cperp;line;angleBisector;ACend,C,B;0;0;0">
+<param name=e[13] value="A';point;intersection;Bperp,Cperp;black;green">
+<param name=e[14] value="F';point;foot;A',B,C">
+<param name=e[15] value="E';point;foot;A',A,B">
+<param name=e[16] value="G';point;foot;A',C,A">
+<param name=e[17] value="AA'B;polygon;triangle;A,A',B;0;0;black;random">
+<param name=e[18] value="CA'B;polygon;triangle;C,A',B;0;0;black;0">
+<param name=e[19] value="CA'A;polygon;triangle;C,A',A;0;0;black;random">
+<param name=e[20] value="E'A';line;connect;E',A'">
+<param name=e[21] value="F'A';line;connect;F',A'">
+<param name=e[22] value="G'A';line;connect;G',A'">
+<param name=e[23] value="excircle;circle;radius;A',E';0;0;lightGray;0">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap4').innerHTML =
+  '<img src="propIV4c.gif" alt="relations among radii" hspace=10>';
+</script>
+</td></tr></table>
+
+
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996");
+</script>
+</BODY></HTML>

@@ -1,0 +1,59 @@
+<HTML>
+<HEAD><TITLE>Euclid's Elements, Book I, Postulate 4</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="../elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<script>loadHeader();</script>
+
+<div class="theorem">
+<h1>Postulate 4</h1>
+
+<div class="statement">That all right angles equal one another.</div>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+<table cellspacing=5>
+<tr><td>
+<div id="ap1">
+<applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=160 width=310>
+<img src="post4.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="Post.4">
+<param name=e[1] value="A;point;free;40,130">
+<param name=e[2] value="B;point;free;160,130">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;lineSlider;AB,90,130">
+<param name=e[5] value="D;point;perpendicular;C,B">
+<param name=e[6] value="CD;line;connect;C,D">
+<param name=e[7] value="E;point;free;160,40">
+<param name=e[8] value="F;point;free;270,130">
+<param name=e[9] value="EF;line;connect;E,F">
+<param name=e[10] value="G;point;lineSlider;EF,215,85">
+<param name=e[11] value="H;point;perpendicular;G,F">
+<param name=e[12] value="GH;line;connect;G,H">
+</applet>
+</div>
+<script>
+if (!navigator.javaEnabled()) document.getElementById('ap1').innerHTML =
+  '<img src="post4.gif" hspace=10 vspace=10 alt="Post.4">';
+</script>
+</td>
+
+<td>In the definition of right angle, it is clear that the two angles at the foot of a perpendicular, such as angles <i>ACD</i> and <i>BCD,</i> are equal.  This postulate says that an angle at the foot of one perpendicular, such as angle <i>ACD,</i> equals an angle at the foot of any other perpendicular, such as angle <i>EGH.</i>
+</td></tr>
+</table>
+
+<p>This postulate forms the basis of angle measurement.  The only angle measurement that occurs in the <i>Elements</i> is in terms of right angles.  For instance, in proposition <a href=propI17.html>I.17</a> the sum of two angles is shown to be less than two right angles.  Another example is in the proof of proposition <a href=../bookII/propII9.html>II.9</a> in which two angles are shown to each be half of a right angle, so they are equal. Also, in proposition <a href="../bookIII/propIII.16.html">III.16</a> this postulate is used to claim that two angles cannot sum to less than two right angles yet be equal to two other right angles.
+ 
+
+<p>This postulate is first explicitly used in proposition <a href=propI14.html>I.14</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 2011, 2013");
+</script>
+</BODY></HTML>
