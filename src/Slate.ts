@@ -2,11 +2,14 @@ import {GeomElement} from "./elements/GeomElement";
 import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
 import {AllConstructions, Construction, constructions} from "./elements/Constructions";
+import {PointElement} from "./elements/point/PointElement";
 
 export class Slate {
 
+    protected _originalElements : GeomElement[];
     protected _elements : GeomElement[];
     protected _screen : PlaneElement;
+    protected _pick : PointElement;
 
     constructor() {
         this._elements = [];
@@ -25,10 +28,12 @@ export class Slate {
         });
         screen.name = "screen";
         this._screen = screen;
+        this._pick = new PointElement();
 
         for(let e of [screen_origin, screen_x, screen_y, screen]) {
             this._elements.push(e);
         }
+        this._originalElements = [...this._elements];
     }
 
     get elements() : GeomElement[] {
@@ -83,6 +88,22 @@ export class Slate {
             g.name = name;
         this._elements.push(g);
         return g;
+    }
+
+    reset() : void {
+        this._elements = [...this._originalElements];
+    }
+
+    updateCoordinates(i : number) {
+        for(i; i <= this.elements.length; i++) {
+            if(!this._elements[i].defined())
+                this._elements[i].reset();
+            this._elements[i].update();
+        }
+    }
+
+    translateCoordinates(i : number, d: number) {
+        
     }
 
 }
