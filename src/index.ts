@@ -8,7 +8,6 @@ export type AllConstructions = AllConstructions;
 export type Color = paper.Color;
 export type Align = Align
 export var E = e;
-export const slate = new Slate();
 
 export interface IConstructionInfo {
     name: string;
@@ -29,5 +28,4 @@ export function init(i : IInitialization) {
     let canvasid : string = i.canvasid;
     if(canvasid == null) canvasid = "canvasid";
     // TODO : resume here
-
 }

@@ -126,10 +126,12 @@ export type AllConstructions =
     SectorConstructions  |
     PolyhedraConstructions;
 
+export type PreExists = boolean
+
 export abstract class Construction {
     public abstract constructionMethod : AllConstructions;
     public abstract signature: ConstructionTypes[];
-    public abstract construct(screen: PlaneElement, params: any[]) : GeomElement;
+    public abstract construct(screen: PlaneElement, params: any[]) : [PreExists, GeomElement];
     public validateSignature(cm : AllConstructions, params: any[]) : boolean {
         if (cm != this.constructionMethod) return false;
         const sigCopy : ConstructionTypes[] = [...this.signature].reverse();
@@ -174,11 +176,11 @@ let ct = ConstructionTypes;
 export class FreePointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.free;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer];
-    construct(screen : PlaneElement, params: any[]): GeomElement {
+    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
         let x : number = params[0];
         let y : number = params[1];
 
-        return new PlaneSlider(screen, x, y, 0);
+        return [false, new PlaneSlider(screen, x, y, 0)];
     }
 
 }
@@ -186,22 +188,22 @@ export class FreePointConstruction extends Construction {
 export class MidPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.midpoint;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): GeomElement {
+    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
         let a : PointElement = params[0];
         let b : PointElement = params[1];
 
-        return new Midpoint(a, b);
+        return [false, new Midpoint(a, b)];
     }
 }
 
 export class LineConnectConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.connect;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): GeomElement {
+    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
         let a : PointElement = params[0];
         let b : PointElement = params[1];
 
-        return new LineElement({A:a, B:b});
+        return [false, new LineElement({A:a, B:b})];
     }
 }
 

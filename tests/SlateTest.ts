@@ -6,6 +6,8 @@ import {E, IConstructionInfo} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
 import {LineElement} from "../src/elements/line/LineElement";
+import {createCanvas} from "canvas";
+import {create} from "domain";
 
 describe("slate", ()=> {
 
@@ -22,7 +24,7 @@ describe("slate", ()=> {
     }
 
     it("should create a free point as a PlaneSlider", () => {
-        let slate : Slate = new Slate();
+        let slate : Slate = new Slate(createCanvas(200,200));
         let e = slate.createElement(E.Point.free, [100,100], "A");
         assert.ok(e == slate.elements[slate.elements.length-1])
         assert.ok(e instanceof PlaneSlider);
@@ -32,7 +34,7 @@ describe("slate", ()=> {
     });
 
     it("should create a connection as a LineElement", () => {
-        let slate : Slate = new Slate();
+        let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, connected_line_data);
         let p1 = elms[0] as PointElement;
         let p2 = elms[1] as PointElement;
@@ -42,7 +44,7 @@ describe("slate", ()=> {
     });
 
     it("should facilitate updates", () => {
-        let slate : Slate = new Slate();
+        let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, connected_line_data);
         slate.elements.forEach(e => e.update());
     });

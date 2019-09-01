@@ -15,6 +15,7 @@
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
 
+import paper = require('paper');
 import {Point, PointText, Rectangle, Color} from "paper";
 import {PointElement} from "./point/PointElement"
 
@@ -122,4 +123,51 @@ export abstract class GeomElement {
     public abstract drawEdge() : void;
     public abstract drawVertex() : void;
 
+    get nameColor(): paper.Color {
+        return this._nameColor;
+    }
+
+    get vertexColor(): paper.Color {
+        return this._vertexColor;
+    }
+
+    get edgeColor(): paper.Color {
+        return this._edgeColor;
+    }
+
+    get faceColor(): paper.Color {
+        return this._faceColor;
+    }
+
+    get nameHighlightColor(): paper.Color {
+        return this._nameHighlightColor;
+    }
+
+    get vertexHighlightColor(): paper.Color {
+        return this._vertexHighlightColor;
+    }
+
+    get edgeHighlightColor(): paper.Color {
+        return this._edgeHighlightColor;
+    }
+
+    get faceHighlightColor(): paper.Color {
+        return this._faceHighlightColor;
+    }
+
+    get draggable(): boolean {
+        return this._draggable;
+    }
+
+    get dimension(): number {
+        return this._dimension;
+    }
+
+    get align(): Align {
+        return this._align;
+    }
+
+    get shouldHighlight(): boolean {
+        return this._shouldHighlight;
+    }
 }

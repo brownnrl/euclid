@@ -1,18 +1,28 @@
 import {GeomElement} from "./elements/GeomElement";
 import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
-import {AllConstructions, Construction, constructions} from "./elements/Constructions";
+import {AllConstructions, Construction, constructions, PreExists} from "./elements/Constructions";
 import {PointElement} from "./elements/point/PointElement";
+import {Canvas} from "canvas";
+
+export type SlateCanvas = HTMLCanvasElement | Canvas;
 
 export class Slate {
 
     protected _originalElements : GeomElement[];
     protected _elements : GeomElement[];
+    protected _preExists : PreExists[];
     protected _screen : PlaneElement;
     protected _pick : PointElement;
+    protected _canvas : SlateCanvas;
 
-    constructor() {
+    constructor(canvas: SlateCanvas) {
         this._elements = [];
+        this._preExists = [];
+        if(canvas == null || canvas == undefined) {
+            throw new TypeError("canvas cannot be null or undefined.");
+        }
+        this._canvas = canvas;
 
         let screen_origin = new FixedPoint(0,0,0);
         screen_origin.name = "screen_origin";
@@ -28,7 +38,7 @@ export class Slate {
         });
         screen.name = "screen";
         this._screen = screen;
-        this._pick = new PointElement();
+        this._pick = null;
 
         for(let e of [screen_origin, screen_x, screen_y, screen]) {
             this._elements.push(e);
@@ -83,10 +93,11 @@ export class Slate {
         let c : Construction = this.findConstruction(cm, params);
         if(c == null)
             throw new TypeError(`Construction not found for ${cm} with params ${params}`);
-        let g : GeomElement = c.construct(this._screen, params);
+        let [p, g] = c.construct(this._screen, params);
         if(name != null)
             g.name = name;
         this._elements.push(g);
+        this._preExists.push(p);
         return g;
     }
 
@@ -102,8 +113,64 @@ export class Slate {
         }
     }
 
-    translateCoordinates(i : number, d: number) {
-        
+    translateCoordinates(dx : number, dy: number) {
+        for(let i = 0; i <= this._elements.length; i++) {
+            let elem = this._elements[i];
+            if(!this._preExists[i]) {
+                elem.translate(dx, dy);
+            }
+        }
+    }
+
+    movePick(c: number, d: number) : void {
+        let currentPoint = new PointElement({x:c,y:d});
+        let sortedDistanceElements = this._elements
+            .filter(e => e instanceof PointElement)
+            .map(e => e as PointElement)
+            .filter(e => e.vertexColor != null)
+            .sort((a,b) => {
+                let adcp = a.distance2(currentPoint);
+                let bdcp = b.distance2(currentPoint);
+                if(adcp < bdcp) {
+                    return -1;
+                } else if (bdcp < adcp) {
+                    return 1;
+                }
+                return 0;
+            });
+        if (sortedDistanceElements.length == 0) return;
+        let bestDistPoint = sortedDistanceElements[0];
+        if(bestDistPoint.distance(currentPoint) < 100) return;
+        let picki = this._elements.indexOf(bestDistPoint);
+        this._pick = bestDistPoint;
+
+        let w : number = this._canvas.width;
+        if (c < 0) c = 0;
+        else if (c > w) c = w;
+        let h : number = this._canvas.height;
+        if (d < 0) d = 0;
+        else if (d > h) d = h;
+        if (Math.abs(c - this._pick.x) + Math.abs(d - this._pick.y) < 1.0) {
+            return; // no motion
+        }
+        if ( this._pick.draggable ) {
+            if(this._pick.drag(c,d)) {
+                this.updateCoordinates(picki);
+            } else {
+                return;
+            }
+        } // TODO: PORT PIVOT CODE WHEN PIVOT IMPLEMENTED
+        /* Pivot code
+         else if (pick.AP != null && pick.AP.pivot != null
+                 && pick.AP.pivot != pick) // rotate around the pivot
+              rotateCoordinates(c,d);
+         */
+        else {
+            let dx = c - this._pick.x;
+            let dy = d - this._pick.y;
+            this.translateCoordinates(dx,dy);
+        }
+        // repaint done automatically
     }
 
 }
