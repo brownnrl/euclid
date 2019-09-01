@@ -131,6 +131,10 @@ export abstract class GeomElement {
         return this._vertexColor;
     }
 
+    set vertexColor(c : paper.Color) {
+        this._vertexColor = c;
+    }
+
     get edgeColor(): paper.Color {
         return this._edgeColor;
     }

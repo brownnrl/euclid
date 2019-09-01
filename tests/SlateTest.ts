@@ -8,6 +8,7 @@ import {PointElement} from "../src/elements/point/PointElement";
 import {LineElement} from "../src/elements/line/LineElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
+import Color = paper.Color;
 
 describe("slate", ()=> {
 
@@ -47,5 +48,22 @@ describe("slate", ()=> {
         let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, connected_line_data);
         slate.elements.forEach(e => e.update());
+    });
+
+    it("should be able to find the closest visible point within a tolerance", () =>{
+        let slate : Slate = new Slate(createCanvas(200,200));
+        let elms = toElements(slate, connected_line_data);
+        let A = slate.lookupElement("A") as PointElement;
+        let B = slate.lookupElement("B") as PointElement;
+        let red = new paper.Color("#FF0000");
+        A.vertexColor = red;
+        B.vertexColor = red;
+
+        let P = slate.closestVisiblePoint(slate.elements,
+                                  new PointElement({x:(10+100)/2 + 1, y:100}))
+        assert(P.name == "B");
+        P = slate.closestVisiblePoint(slate.elements,
+            new PointElement({x:(10+100)/2 - 1, y:100}))
+        assert(P.name == "A");
     });
 });

@@ -122,27 +122,33 @@ export class Slate {
         }
     }
 
-    movePick(c: number, d: number) : void {
-        let currentPoint = new PointElement({x:c,y:d});
-        let sortedDistanceElements = this._elements
+    closestVisiblePoint(elements : GeomElement[], p : PointElement, tolerance : number = 100) : PointElement {
+        let sortedDistanceElements = elements
             .filter(e => e instanceof PointElement)
             .map(e => e as PointElement)
             .filter(e => e.vertexColor != null)
             .sort((a,b) => {
-                let adcp = a.distance2(currentPoint);
-                let bdcp = b.distance2(currentPoint);
+                let adcp = a.distance2(p);
+                let bdcp = b.distance2(p);
                 if(adcp < bdcp) {
-                    return -1;
+                    return 1; // As we want the reverse at the end
                 } else if (bdcp < adcp) {
-                    return 1;
+                    return -1;
                 }
                 return 0;
             });
-        if (sortedDistanceElements.length == 0) return;
+        if (sortedDistanceElements.length == 0) return null;
         let bestDistPoint = sortedDistanceElements[0];
-        if(bestDistPoint.distance(currentPoint) < 100) return;
-        let picki = this._elements.indexOf(bestDistPoint);
-        this._pick = bestDistPoint;
+        if(bestDistPoint.distance(p) > tolerance) return null;
+        return bestDistPoint;
+    }
+
+    movePick(c: number, d: number) : void {
+        let currentPoint = new PointElement({x:c,y:d});
+        let closestVisiblePoint = this.closestVisiblePoint(this._elements, currentPoint);
+        if(closestVisiblePoint == null) return;
+        let picki = this._elements.indexOf(closestVisiblePoint);
+        this._pick = closestVisiblePoint;
 
         let w : number = this._canvas.width;
         if (c < 0) c = 0;
