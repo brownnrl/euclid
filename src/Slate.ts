@@ -131,9 +131,9 @@ export class Slate {
                 let adcp = a.distance2(p);
                 let bdcp = b.distance2(p);
                 if(adcp < bdcp) {
-                    return 1; // As we want the reverse at the end
-                } else if (bdcp < adcp) {
                     return -1;
+                } else if (bdcp < adcp) {
+                    return 1;
                 }
                 return 0;
             });

@@ -13,8 +13,8 @@ import Color = paper.Color;
 describe("slate", ()=> {
 
     let connected_line_data : IConstructionInfo[] = [
-        { construction: E.Point.free,   name: "A",  params: [100,100]},
-        { construction: E.Point.free,   name: "B",  params: [10,100]},
+        { construction: E.Point.free,   name: "A",  params: [10,100]},
+        { construction: E.Point.free,   name: "B",  params: [100,100]},
         { construction: E.Line.connect, name: "AB", params: ["A","B"]},
     ];
 
@@ -60,10 +60,22 @@ describe("slate", ()=> {
         B.vertexColor = red;
 
         let P = slate.closestVisiblePoint(slate.elements,
-                                  new PointElement({x:(10+100)/2 + 1, y:100}))
-        assert(P.name == "B");
-        P = slate.closestVisiblePoint(slate.elements,
-            new PointElement({x:(10+100)/2 - 1, y:100}))
+                                  new PointElement({x:(10+100)/2 - 1, y:100}));
         assert(P.name == "A");
+        P = slate.closestVisiblePoint(slate.elements,
+            new PointElement({x:(10+100)/2 + 1, y:100}));
+        assert(P.name == "B");
+
+        P = slate.closestVisiblePoint(slate.elements,
+            new PointElement({x:(10+100)/2 - 1, y:100}), 10);
+        assert(P == null);
+
+        P = slate.closestVisiblePoint(slate.elements,
+            new PointElement({x:89, y:100}), 10);
+        assert(P == null);
+
+        P = slate.closestVisiblePoint(slate.elements,
+            new PointElement({x:91, y:100}), 10);
+        assert(P.name == "B");
     });
 });
