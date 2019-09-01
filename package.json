@@ -19,15 +19,20 @@
     "@types/paper": "^0.11.14",
     "awesome-typescript-loader": "^5.2.1",
     "canvas": "^2.6.0",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
     "install": "^0.13.0",
     "mocha": "^6.2.0",
+    "node-loader": "^0.6.0",
     "paper": "^0.11.8",
+    "style-loader": "^1.0.0",
     "ts-loader": "^6.0.4",
     "ts-node": "^3.3.0",
-    "typescript": "^2.9.2",
+    "typescript": "^3.5.1",
     "typescript-cli": "^0.1.0",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.6",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
   }
 }
