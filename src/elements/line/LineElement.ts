@@ -20,6 +20,9 @@ import paper = require('paper');
 import Rectangle = paper.Rectangle;
 import {GeomElement} from "../GeomElement";
 import {PointElement} from "../point/PointElement";
+import Line = paper.Path.Line;
+import Color = paper.Color;
+import Point = paper.Point;
 
 interface ILineElementConstructor {
     A : PointElement;
@@ -28,6 +31,9 @@ interface ILineElementConstructor {
 
 export class LineElement extends GeomElement {
     protected _A : PointElement;
+
+    protected _paperJSLine : Line = null;
+
     get A() : PointElement { return this._A; }
 
     protected _B : PointElement;
@@ -35,12 +41,31 @@ export class LineElement extends GeomElement {
 
     constructor(ile?: ILineElementConstructor) {
         super();
-        this._dimension = 1;
+        this.dimension = 1;
         this._A = ile && ile.A || null;
         this._B = ile && ile.B || null;
     }
 
-    public drawEdge(): void {
+    public drawEdge(c?: Color): void {
+        if (c == null) {
+            if (this.shouldHighlight) {
+                c = this.edgeHighlightColor;
+            } else {
+                c = this.edgeColor;
+            }
+        }
+
+        let from = new Point(this._A.x, this._A.y);
+        let to = new Point(this._B.x, this._B.y);
+        if (this._paperJSLine == null) {
+            this._paperJSLine = new Line(from, to);
+        } else {
+            this._paperJSLine.firstCurve.point1 = from;
+            this._paperJSLine.firstCurve.point2 = to;
+        }
+        this._paperJSLine.strokeColor = c;
+        this._paperJSLine.strokeWidth = 1;
+        this._paperJSLine.insertBelow(this._A.paper);
     }
 
     public drawFace(): void {

@@ -9,7 +9,7 @@ export class FixedPoint extends PointElement {
 
     constructor(xVal : number, yVal : number, zVal : number) {
         super();
-        this._dimension = 0;
+        this.dimension = 0;
         this._x = this._initx = xVal;
         this._y = this._inity = yVal;
         this._z = this._initz = zVal;

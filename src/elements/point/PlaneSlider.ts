@@ -13,8 +13,8 @@ export class PlaneSlider extends PointElement {
 
     constructor(Qval : PlaneElement, xVal : number, yVal : number, zVal : number) {
         super();
-        this._dimension = 0;
-        this._draggable = true;
+        this.dimension = 0;
+        this.draggable = true;
         this._AP = Qval;
         this._x = this._initx = xVal;
         this._y = this._inity = yVal;

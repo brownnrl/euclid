@@ -28,7 +28,7 @@ export class CircleElement extends GeomElement {
 
     constructor() {
         super();
-        this._dimension = 2;
+        this.dimension = 2;
     }
 
     get radius() {

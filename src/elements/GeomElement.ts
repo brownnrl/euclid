@@ -34,24 +34,24 @@ export abstract class GeomElement {
     }
 
     protected _name: string;
-    protected _nameColor: Color;
-    protected _vertexColor : Color;
-    protected _edgeColor : Color;
-    protected _faceColor : Color;
+    private _nameColor: Color = new Color('black');
+    protected _vertexColor : Color = new Color('red');
+    private _edgeColor : Color = new Color('black');
+    private _faceColor : Color = new Color('blue');
 
-    protected _nameHighlightColor   : Color = new Color(255, 0, 0); // Color.red;
-    protected _vertexHighlightColor : Color = new Color(255,255,255); // Color.WHITE;
-    protected _edgeHighlightColor   : Color = new Color(255,255,255); // Color.white;
-    protected _faceHighlightColor   : Color = new Color(0, 255, 255); // Color.CYAN;
+    private _nameHighlightColor   : Color = new Color(255, 0, 0); // Color.red;
+    private _vertexHighlightColor : Color = new Color(255,255,255); // Color.WHITE;
+    private _edgeHighlightColor   : Color = new Color(255,255,255); // Color.white;
+    private _faceHighlightColor   : Color = new Color(0, 255, 255); // Color.CYAN;
 
     protected _inTest : boolean;
-    protected _draggable : boolean;
-    protected _dimension : number;
+    private _draggable : boolean;
+    private _dimension : number;
 
-    protected _align : Align;
+    private _align : Align;
 
-    protected _shouldHighlight : boolean;
-    protected _pixelTolerance : number;
+    private _shouldHighlight : boolean = false;
+    protected _pixelTolerance : number = 50;
 
     protected _paperJSNameLabel : PointText = null;
 
@@ -59,9 +59,12 @@ export abstract class GeomElement {
         let p = new Point(ix, iy);
         if(this._paperJSNameLabel == null) {
             this._paperJSNameLabel = new PointText(p);
-        } else {
-            this._paperJSNameLabel.position = p;
+            this._paperJSNameLabel.fontSize = 12;
+            this._paperJSNameLabel.fontFamily = 'Times New Roman';
+            this._paperJSNameLabel.fontWeight = 'Normal Italic';
         }
+        this._paperJSNameLabel.position = p;
+        this._paperJSNameLabel.fillColor = this._nameColor;
         let text = this._paperJSNameLabel;
         text.content = this._name;
         let w = text.bounds.width;
@@ -97,6 +100,7 @@ export abstract class GeomElement {
             else 		// put name above
                 text.point = new Point( ix-w/2, iy-h/2+4);
         }
+        console.log("drawing ", text);
     }
 
     public get name() {
@@ -122,6 +126,50 @@ export abstract class GeomElement {
     public abstract drawFace() : void;
     public abstract drawEdge() : void;
     public abstract drawVertex() : void;
+
+    set nameColor(value: paper.Color) {
+        this._nameColor = value;
+    }
+
+    set edgeColor(value: paper.Color) {
+        this._edgeColor = value;
+    }
+
+    set faceColor(value: paper.Color) {
+        this._faceColor = value;
+    }
+
+    set nameHighlightColor(value: paper.Color) {
+        this._nameHighlightColor = value;
+    }
+
+    set vertexHighlightColor(value: paper.Color) {
+        this._vertexHighlightColor = value;
+    }
+
+    set edgeHighlightColor(value: paper.Color) {
+        this._edgeHighlightColor = value;
+    }
+
+    set faceHighlightColor(value: paper.Color) {
+        this._faceHighlightColor = value;
+    }
+
+    set draggable(value: boolean) {
+        this._draggable = value;
+    }
+
+    set dimension(value: number) {
+        this._dimension = value;
+    }
+
+    set align(value: Align) {
+        this._align = value;
+    }
+
+    set shouldHighlight(value: boolean) {
+        this._shouldHighlight = value;
+    }
 
     get nameColor(): paper.Color {
         return this._nameColor;

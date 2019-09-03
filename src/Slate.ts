@@ -1,9 +1,11 @@
+import paper = require('paper');
 import {GeomElement} from "./elements/GeomElement";
 import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
 import {AllConstructions, Construction, constructions, PreExists} from "./elements/Constructions";
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas} from "canvas";
+import {Point, Rectangle} from "paper";
 
 export type SlateCanvas = HTMLCanvasElement | Canvas;
 
@@ -105,8 +107,23 @@ export class Slate {
         this._elements = [...this._originalElements];
     }
 
+    update() : void {
+        this.drawElements();
+    }
+
+    drawElements(): void {
+        for(let element of this._elements) {
+            element.drawFace();
+            element.drawEdge();
+            element.drawVertex();
+            let w = this._canvas.width;
+            let h = this._canvas.height;
+            element.drawName(new Rectangle(new Point(w, 0), new Point(0, h)));
+        }
+    }
+
     updateCoordinates(i : number) {
-        for(i; i <= this.elements.length; i++) {
+        for(i; i < this.elements.length; i++) {
             if(!this._elements[i].defined())
                 this._elements[i].reset();
             this._elements[i].update();

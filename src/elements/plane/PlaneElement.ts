@@ -48,7 +48,7 @@ export class PlaneElement extends GeomElement {
 
     constructor(ip? : IPlaneElementConstruction) {
         super();
-        this._dimension = 2;
+        this.dimension = 2;
         this.isScreen = false;
         if (ip != null) {
             this.A = ip.A;

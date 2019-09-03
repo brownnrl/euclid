@@ -6,7 +6,7 @@ export class Midpoint extends PointElement {
 
     constructor(A: PointElement, B: PointElement) {
         super();
-        this._dimension = 0;
+        this.dimension = 0;
         this._A = A;
         this._B = B;
         if (this._A.AP == this._B.AP) {

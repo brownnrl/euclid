@@ -22,6 +22,7 @@ import {CircleElement} from "../circle/CircleElement";
 import Point = paper.Point;
 import Color = paper.Color;
 import Circle = paper.Path.Circle;
+import Item = paper.Item;
 
 export interface IPointElementConstruction {
     x : number;
@@ -51,6 +52,10 @@ export class PointElement extends GeomElement {
     get z() { return this._z }
 
     get AP() { return this._AP; }
+
+    get paper() : Item {
+        return this._PaperJSElement;
+    }
 
     public defined() : boolean {
         return !isNaN(this._x) && !isNaN(this._y) && ! isNaN(this._z);
@@ -378,7 +383,7 @@ export class PointElement extends GeomElement {
     }
 
     public drawName(d: paper.Rectangle): void {
-        if (this._nameColor != null && this._name != null && this.defined()) {
+        if (this.nameColor != null && this.name != null && this.defined()) {
             this.drawString(Math.round(this.x), Math.round(this.y), d)
         }
     }
@@ -386,10 +391,10 @@ export class PointElement extends GeomElement {
     public drawVertex(c?: Color): void {
         let pointCenter = new Point(this._x, this._y);
         if (c == null) {
-            if (!this._shouldHighlight) {
-                c = this._vertexHighlightColor;
+            if (this.shouldHighlight) {
+                c = this.vertexHighlightColor;
             } else {
-                c = this._vertexColor;
+                c = this.vertexColor;
             }
         }
         if (this._PaperJSElement == null) {
@@ -399,6 +404,7 @@ export class PointElement extends GeomElement {
             })
         }
         this._PaperJSElement.position = pointCenter;
+        this._PaperJSElement.fillColor = c;
     }
 
 
