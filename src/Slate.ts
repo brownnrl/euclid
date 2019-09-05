@@ -17,6 +17,7 @@ export class Slate {
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
+    public    inTest : boolean = false;
 
     constructor(canvas: SlateCanvas) {
         this._elements = [];
@@ -39,6 +40,7 @@ export class Slate {
                 C: screen_y
         });
         screen.name = "screen";
+        screen.isScreen = true;
         this._screen = screen;
         this._pick = null;
 
@@ -46,6 +48,25 @@ export class Slate {
             this._elements.push(e);
         }
         this._originalElements = [...this._elements];
+
+        let slate = this;
+        let tool = new paper.Tool();
+
+        tool.onMouseDown = function(te: paper.ToolEvent) {
+            console.log("d", te.point);
+            slate._pick = null;
+            slate.movePick(te.point.x, te.point.y);
+        };
+
+        tool.onMouseUp = function(te: paper.ToolEvent) {
+            console.log("u", te.point);
+            if (slate._pick == null) return;
+            slate.movePick(te.point.x, te.point.y);
+        };
+
+        tool.onMouseDrag = function(te: paper.ToolEvent) {
+            slate.movePick(te.point.x, te.point.y);
+        };
     }
 
     get elements() : GeomElement[] {
@@ -112,6 +133,7 @@ export class Slate {
     }
 
     drawElements(): void {
+        if(this.inTest) return;
         for(let element of this._elements) {
             element.drawFace();
             element.drawEdge();
@@ -128,15 +150,17 @@ export class Slate {
                 this._elements[i].reset();
             this._elements[i].update();
         }
+        this.update();
     }
 
     translateCoordinates(dx : number, dy: number) {
-        for(let i = 0; i <= this._elements.length; i++) {
+        for(let i = 0; i < this._elements.length; i++) {
             let elem = this._elements[i];
             if(!this._preExists[i]) {
                 elem.translate(dx, dy);
             }
         }
+        this.update();
     }
 
     closestVisiblePoint(elements : GeomElement[], p : PointElement, tolerance : number = 100) : PointElement {
@@ -166,6 +190,7 @@ export class Slate {
         if(closestVisiblePoint == null) return;
         let picki = this._elements.indexOf(closestVisiblePoint);
         this._pick = closestVisiblePoint;
+        console.log("pick ", closestVisiblePoint)
 
         let w : number = this._canvas.width;
         if (c < 0) c = 0;

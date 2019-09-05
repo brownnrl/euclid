@@ -50,6 +50,20 @@ describe("slate", ()=> {
         slate.elements.forEach(e => e.update());
     });
 
+    it("should translate coordinates", () => {
+        let slate : Slate = new Slate(createCanvas(200,200));
+        slate.inTest = true;
+        let elms = toElements(slate, connected_line_data);
+        slate.translateCoordinates(1,0);
+        let A = slate.lookupElement("A") as PointElement;
+        let B = slate.lookupElement("B") as PointElement;
+        let AB = slate.lookupElement("AB") as LineElement;
+        assert.equal(A.x, 11);
+        assert.equal(A.y, 100);
+        assert.equal(B.x, 101);
+        assert.equal(B.y, 100);
+    });
+
     it("should be able to find the closest visible point within a tolerance", () =>{
         let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, connected_line_data);

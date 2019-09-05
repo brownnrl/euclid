@@ -58,7 +58,8 @@ export class PointElement extends GeomElement {
     }
 
     public defined() : boolean {
-        return !isNaN(this._x) && !isNaN(this._y) && ! isNaN(this._z);
+        return !isNaN(this._x) && !isNaN(this._y) && !isNaN(this._z)
+            && this._x != null && true && this._y != null && true && this._z != null;
     }
 
     public toString() : string {
