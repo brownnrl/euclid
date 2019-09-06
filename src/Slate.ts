@@ -163,7 +163,7 @@ export class Slate {
         this.update();
     }
 
-    closestVisiblePoint(elements : GeomElement[], p : PointElement, tolerance : number = 100) : PointElement {
+    closestVisiblePoint(elements : GeomElement[], p : PointElement, tolerance : number = 30) : PointElement {
         let sortedDistanceElements = elements
             .filter(e => e instanceof PointElement)
             .map(e => e as PointElement)
@@ -190,7 +190,7 @@ export class Slate {
         if(closestVisiblePoint == null) return;
         let picki = this._elements.indexOf(closestVisiblePoint);
         this._pick = closestVisiblePoint;
-        console.log("pick ", closestVisiblePoint)
+        console.log("pick ", closestVisiblePoint);
 
         let w : number = this._canvas.width;
         if (c < 0) c = 0;

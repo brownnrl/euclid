@@ -5,6 +5,7 @@ import {PointElement} from "./point/PointElement";
 import {PlaneSlider} from "./point/PlaneSlider";
 import {Midpoint} from "./point/Midpoint";
 import {LineElement} from "./line/LineElement";
+import {LineSlider} from "./point/LineSlider";
 
 export enum ConstructionTypes {
     Integer,
@@ -132,6 +133,7 @@ export abstract class Construction {
     public abstract constructionMethod : AllConstructions;
     public abstract signature: ConstructionTypes[];
     public abstract construct(screen: PlaneElement, params: any[]) : [PreExists, GeomElement];
+    // TODO: Optional values (such as null z coordinates) should be allowed
     public validateSignature(cm : AllConstructions, params: any[]) : boolean {
         if (cm != this.constructionMethod) return false;
         const sigCopy : ConstructionTypes[] = [...this.signature].reverse();
@@ -207,10 +209,38 @@ export class LineConnectConstruction extends Construction {
     }
 }
 
+// TODO: Optional values (such as null z coordinates) should be allowed
+export class LineSliderConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.lineSlider;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer, ct.Integer];
+    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let x : number = params[2];
+        let y : number = params[3];
+        let z : number = params[4];
+
+        return [false, this.createSlider(a,b,x,y,z)];
+    }
+    protected createSlider(a: PointElement, b: PointElement, x: number, y: number, z: number) {
+        return new LineSlider(a, b, x, y, z, false);
+    }
+}
+
+
+export class LineSliderSegmentConstruction extends LineSliderConstruction {
+    constructionMethod: AllConstructions = PointConstructions.lineSegmentSlider;
+    protected createSlider(a: PointElement, b: PointElement, x: number, y: number, z: number) {
+        return new LineSlider(a, b, x, y, z, true);
+    }
+}
+
 export const constructions : Construction[] = [
     new FreePointConstruction(),
     new MidPointConstruction(),
-    new LineConnectConstruction()
+    new LineConnectConstruction(),
+    new LineSliderConstruction(),
+    new LineSliderSegmentConstruction()
 ];
 
 

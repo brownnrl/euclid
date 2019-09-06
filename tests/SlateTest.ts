@@ -74,10 +74,10 @@ describe("slate", ()=> {
         B.vertexColor = red;
 
         let P = slate.closestVisiblePoint(slate.elements,
-                                  new PointElement({x:(10+100)/2 - 1, y:100}));
+                                  new PointElement({x:(10+100)/2 - 1, y:100}), 100);
         assert(P.name == "A");
         P = slate.closestVisiblePoint(slate.elements,
-            new PointElement({x:(10+100)/2 + 1, y:100}));
+            new PointElement({x:(10+100)/2 + 1, y:100}), 100);
         assert(P.name == "B");
 
         P = slate.closestVisiblePoint(slate.elements,

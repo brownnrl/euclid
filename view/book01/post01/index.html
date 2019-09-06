@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Test View</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:200px; height: 100px;"></canvas>
+<!-- Dependencies -->
+<script src="../../../node_modules/paper/dist/paper-full.js"></script>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    console.log(geomlib);
+    let Color = geomlib.Color;
+    let Align = geomlib.Align;
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Post.1",
+        align: Align.ABOVE,
+        canvasid: "canvasId",
+        elements: [
+            {
+                name: "A",
+                construction: E.Point.free,
+                params: [40, 40]
+            },
+            {
+                name: "B",
+                construction: E.Point.free,
+                params: [160, 40]
+            },
+            {
+                name: "AB",
+                construction: E.Line.connect,
+                params: ["A", "B"]
+            },
+        ]
+    })
+
+</script>
+</body>
+</html>

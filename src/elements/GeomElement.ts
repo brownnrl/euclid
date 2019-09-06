@@ -59,9 +59,9 @@ export abstract class GeomElement {
         let p = new Point(ix, iy);
         if(this._paperJSNameLabel == null) {
             this._paperJSNameLabel = new PointText(p);
+            this._paperJSNameLabel.fontFamily = 'Arial';
+            this._paperJSNameLabel.fontWeight = 'italic';
             this._paperJSNameLabel.fontSize = 12;
-            this._paperJSNameLabel.fontFamily = 'Times New Roman';
-            this._paperJSNameLabel.fontWeight = 'Normal Italic';
         }
         this._paperJSNameLabel.position = p;
         this._paperJSNameLabel.fillColor = this._nameColor;
