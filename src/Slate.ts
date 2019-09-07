@@ -184,13 +184,18 @@ export class Slate {
         return bestDistPoint;
     }
 
-    movePick(c: number, d: number) : void {
+    private _getPick(c: number, d: number) : PointElement {
+        if (this._pick != null) return this._pick;
         let currentPoint = new PointElement({x:c,y:d});
         let closestVisiblePoint = this.closestVisiblePoint(this._elements, currentPoint);
         if(closestVisiblePoint == null) return;
-        let picki = this._elements.indexOf(closestVisiblePoint);
         this._pick = closestVisiblePoint;
-        console.log("pick ", closestVisiblePoint);
+        return this._pick;
+    }
+
+    movePick(c: number, d: number) : void {
+        if(this._getPick(c, d) == null) return;
+        let picki = this._elements.indexOf(this._pick);
 
         let w : number = this._canvas.width;
         if (c < 0) c = 0;
