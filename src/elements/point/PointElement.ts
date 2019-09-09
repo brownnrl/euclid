@@ -152,7 +152,7 @@ export class PointElement extends GeomElement {
     }
 
 
-    protected toPlane (P : PlaneElement) : PointElement {
+    public toPlane (P : PlaneElement) : PointElement {
         /*---------------------------------------------------------------------+
         |  Project this point to the foot of the perpendicular from it to the  |
         |  plane P.                                                            |

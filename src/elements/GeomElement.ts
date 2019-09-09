@@ -65,6 +65,7 @@ export abstract class GeomElement {
         }
         this._paperJSNameLabel.position = p;
         this._paperJSNameLabel.fillColor = this._nameColor;
+        this._paperJSNameLabel.bringToFront();
         let text = this._paperJSNameLabel;
         text.content = this._name;
         let w = text.bounds.width;

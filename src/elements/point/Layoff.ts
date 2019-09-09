@@ -19,12 +19,37 @@ import {PointElement} from "./PointElement";
 
 export class Layoff extends PointElement {
 
+    // Lay off a line AB with endpoint A given, so that AB is parallel to CD
+    // and equal to EF.  (this is B)
+
     protected _A : PointElement;
-    protected _B : PointElement;
     protected _C : PointElement;
     protected _D : PointElement;
+    protected _E : PointElement;
+    protected _F : PointElement;
 
 
-    // TODO: Pick up here.
+    constructor(A: PointElement,
+                C: PointElement,
+                D: PointElement,
+                E: PointElement,
+                F: PointElement) {
+        super();
+        this.dimension = 0;
+        this._A = A;
+        this._C = C;
+        this._D = D;
+        this._E = E;
+        this._F = F;
+        if (A.AP == C.AP && A.AP == D.AP) {
+            this._AP = A.AP;
+        }
+    }
+
+    public update() {
+        let factor : number = this._E.distance(this._F) / this._C.distance(this._D);
+        this.to(this._D).minus(this._C);
+        this.times(factor).plus(this._A);
+    }
 
 }

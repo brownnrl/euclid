@@ -135,6 +135,7 @@ export class Slate {
     drawElements(): void {
         if(this.inTest) return;
         for(let element of this._elements) {
+            element.update();
             element.drawFace();
             element.drawEdge();
             element.drawVertex();
@@ -148,7 +149,7 @@ export class Slate {
         for(i; i < this.elements.length; i++) {
             if(!this._elements[i].defined())
                 this._elements[i].reset();
-            this._elements[i].update();
+            //this._elements[i].update();
         }
         this.update();
     }

@@ -22,6 +22,8 @@ import {PlaneSlider} from "./point/PlaneSlider";
 import {Midpoint} from "./point/Midpoint";
 import {LineElement} from "./line/LineElement";
 import {LineSlider} from "./point/LineSlider";
+import {Layoff} from "./point/Layoff";
+import {SectorElement} from "./sector/SectorElement";
 
 export enum ConstructionTypes {
     Integer,
@@ -251,12 +253,52 @@ export class LineSliderSegmentConstruction extends LineSliderConstruction {
     }
 }
 
+export class ExtendConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.extend;
+    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
+
+    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+        let ps : PointElement[] = params;
+        return [false, this._createLayoff(ps)];
+    }
+
+    protected _createLayoff(ps: PointElement[]) : GeomElement {
+        return new Layoff(ps[1], ps[0], ps[1], ps[2], ps[3]);
+    }
+}
+
+export class SectorConstruction extends Construction {
+    constructionMethod: AllConstructions = SectorConstructions.sector;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+        let ps : PointElement[] = params;
+        return [false, new SectorElement({O:ps[0], A:ps[1], B:ps[2], P: screen})];
+    }
+}
+
+export class CircleSliderConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.extend;
+    signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer, ct.Integer];
+
+    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+        let ps : PointElement[] = params;
+        return [false, this._createLayoff(ps)];
+    }
+
+    protected _createLayoff(ps: PointElement[]) : GeomElement {
+        return new Layoff(ps[1], ps[0], ps[1], ps[2], ps[3]);
+    }
+}
+
 export const constructions : Construction[] = [
     new FreePointConstruction(),
     new MidPointConstruction(),
     new LineConnectConstruction(),
     new LineSliderConstruction(),
-    new LineSliderSegmentConstruction()
+    new LineSliderSegmentConstruction(),
+    new ExtendConstruction(),
+    new SectorConstruction()
 ];
 
 
