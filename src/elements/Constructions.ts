@@ -24,6 +24,7 @@ import {LineElement} from "./line/LineElement";
 import {LineSlider} from "./point/LineSlider";
 import {Layoff} from "./point/Layoff";
 import {SectorElement} from "./sector/SectorElement";
+import {CircleSlider} from "./point/CircleSlider";
 
 export enum ConstructionTypes {
     Integer,
@@ -123,6 +124,26 @@ export enum PolyhedraConstructions {
     parallelepiped = 702,
     prism = 703,
     pyramid = 704
+}
+
+export function getConstructionName(cm: AllConstructions) : String {
+    if(cm < 100) {
+        return "Point." + PointConstructions[cm];
+    } else if (100 < cm && cm < 200) {
+        return "Line." + LineConstructions[cm];
+    } else if (300 < cm && cm < 400) {
+        return "Polygon." + PolygonConstructions[cm];
+    } else if (400 < cm && cm < 500) {
+        return "Sector." + SectorConstructions[cm];
+    } else if (500 < cm && cm < 600) {
+        return "Plane." + PlaneConstructions[cm];
+    } else if (600 < cm && cm < 700) {
+        return "Sphere." + SphereConstructions[cm];
+    } else if (700 < cm && cm < 800) {
+        return "Polyhedra." + PolyhedraConstructions[cm];
+    }
+
+    return "<Not Valid Construction>";
 }
 
 export var E =  {
@@ -278,16 +299,23 @@ export class SectorConstruction extends Construction {
 }
 
 export class CircleSliderConstruction extends Construction {
-    constructionMethod: AllConstructions = PointConstructions.extend;
+    constructionMethod: AllConstructions = PointConstructions.circleSlider;
     signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer, ct.Integer];
 
     construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
-        let ps : PointElement[] = params;
-        return [false, this._createLayoff(ps)];
+        let c : CircleElement = params[0];
+        let ns : number[] = params.slice(1,4);
+        return [false, new CircleSlider(c, ns[0], ns[1], ns[2])];
     }
+}
 
-    protected _createLayoff(ps: PointElement[]) : GeomElement {
-        return new Layoff(ps[1], ps[0], ps[1], ps[2], ps[3]);
+export class CircleRadiusCenterConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.radius;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+        let ps : PointElement[] = params;
+        return [false, new CircleElement({C:ps[0], B:ps[1], AP:screen})];
     }
 }
 
@@ -298,7 +326,9 @@ export const constructions : Construction[] = [
     new LineSliderConstruction(),
     new LineSliderSegmentConstruction(),
     new ExtendConstruction(),
-    new SectorConstruction()
+    new SectorConstruction(),
+    new CircleSliderConstruction(),
+    new CircleRadiusCenterConstruction()
 ];
 
 

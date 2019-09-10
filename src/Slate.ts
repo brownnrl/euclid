@@ -2,7 +2,7 @@ import paper = require('paper');
 import {GeomElement} from "./elements/GeomElement";
 import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
-import {AllConstructions, Construction, constructions, PreExists} from "./elements/Constructions";
+import {AllConstructions, Construction, constructions, getConstructionName, PreExists} from "./elements/Constructions";
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas} from "canvas";
 import {Point, Rectangle} from "paper";
@@ -114,8 +114,13 @@ export class Slate {
     createElement(cm : AllConstructions, params: any[], name?: string) : GeomElement {
         params = this.convertParams(params);
         let c : Construction = this.findConstruction(cm, params);
-        if(c == null)
-            throw new TypeError(`Construction not found for ${cm} with params ${params}`);
+        if(c == null) {
+            let cName : String = getConstructionName(cm);
+            if (name == null) {
+                name = "";
+            }
+            throw new TypeError(`Construction not found for "${name}" ${cName} with params ${params}`);
+        }
         let [p, g] = c.construct(this._screen, params);
         if(name != null)
             g.name = name;
@@ -134,11 +139,15 @@ export class Slate {
 
     drawElements(): void {
         if(this.inTest) return;
+        // we draw all the elements first
         for(let element of this._elements) {
             element.update();
             element.drawFace();
             element.drawEdge();
             element.drawVertex();
+        }
+        // and then draw their names.
+        for(let element of this._elements) {
             let w = this._canvas.width;
             let h = this._canvas.height;
             element.drawName(new Rectangle(new Point(w, 0), new Point(0, h)));

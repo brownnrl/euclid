@@ -22,12 +22,11 @@ export class CircleSlider extends PointElement {
     _initx : number;
     _inity : number;
     _initz : number;
-    _segment : boolean;
 
     _newP : PointElement = new PointElement();
 
     constructor(C: CircleElement,
-                x: number, y: number, z: number, segment: boolean) {
+                x: number, y: number, z: number) {
         super();
         this.dimension = 0;
         this.draggable = true;

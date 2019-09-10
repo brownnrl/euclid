@@ -15,6 +15,7 @@
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
 
+import paper = require("paper");
 import {Path} from "paper";
 import {GeomElement} from "../GeomElement";
 import {PointElement} from "../point/PointElement";
@@ -38,8 +39,6 @@ export class SectorElement extends GeomElement {
     // A and B are two points on a circle with the given center
 
     _M : Midpoint; // midpoint between A and B
-    _T : PointElement; // point "through" the arc
-
     _P : PlaneElement; // plane of the circle
 
     _paperJSArc   : Path.Arc = null;
@@ -103,7 +102,6 @@ export class SectorElement extends GeomElement {
         p = this._paperCenter.add(p.multiply(r));
         this._paperThrough.x = p.x;
         this._paperThrough.y = p.y;
-        console.log("paperthrough: ", this._paperThrough);
     }
 
     _createPaperJSElements() : void {

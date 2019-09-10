@@ -21,7 +21,7 @@
             {
                 name: "A",
                 construction: E.Point.free,
-                params: [100, 300]
+                params: [100, 100]
             },
             {
                 name: "B",
@@ -30,13 +30,18 @@
             },
             {
                 name: "C",
-                construction: E.Point.free,
-                params: [200, 200]
+                construction: E.Circle.radius,
+                params: ["B", "A"]
             },
             {
-                name: "S",
+                name: "D",
+                construction: E.Point.circleSlider,
+                params: ["C", 100, 300, 0]
+            },
+            {
+                name: "E",
                 construction: E.Sector.sector,
-                params: ["B", "A", "C"]
+                params: ["B", "A", "D"]
             }
         ]
     })

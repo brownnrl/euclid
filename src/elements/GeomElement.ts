@@ -101,7 +101,6 @@ export abstract class GeomElement {
             else 		// put name above
                 text.point = new Point( ix-w/2, iy-h/2+4);
         }
-        console.log("drawing ", text);
     }
 
     public get name() {

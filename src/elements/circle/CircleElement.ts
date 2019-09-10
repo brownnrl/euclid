@@ -19,6 +19,13 @@ import {GeomElement} from "../GeomElement";
 import {PlaneElement} from "../plane/PlaneElement";
 import {PointElement} from "../point/PointElement";
 
+
+export interface ICircleElementConstruction {
+    C : PointElement; // center of the circle
+    B : PointElement; // point on the circle
+    AP : PlaneElement;
+}
+
 export class CircleElement extends GeomElement {
 
     public Center : PointElement;
@@ -26,9 +33,18 @@ export class CircleElement extends GeomElement {
     public B : PointElement;
     public AP : PlaneElement;
 
-    constructor() {
+    constructor(ice? : ICircleElementConstruction) {
         super();
         this.dimension = 2;
+        if(ice == null) return;
+        this.Center = ice.C;
+        this.A = this.Center;
+        this.B = ice.B;
+        this.AP = ice.AP;
+    }
+
+    public toString() : string {
+        return `[${this._name} (${this.Center}, ${this.A} ${this.B})]`;
     }
 
     get radius() {
