@@ -274,17 +274,27 @@ export class LineSliderSegmentConstruction extends LineSliderConstruction {
     }
 }
 
-export class ExtendConstruction extends Construction {
-    constructionMethod: AllConstructions = PointConstructions.extend;
+abstract class LayoffConstruction extends Construction {
     signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
-
     construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
         let ps : PointElement[] = params;
         return [false, this._createLayoff(ps)];
     }
 
+    protected abstract _createLayoff(ps: PointElement[]) : GeomElement;
+}
+
+export class ExtendConstruction extends LayoffConstruction {
+    constructionMethod: AllConstructions = PointConstructions.extend;
     protected _createLayoff(ps: PointElement[]) : GeomElement {
         return new Layoff(ps[1], ps[0], ps[1], ps[2], ps[3]);
+    }
+}
+
+export class CutoffConstruction extends LayoffConstruction {
+    constructionMethod: AllConstructions = PointConstructions.cutoff;
+    protected _createLayoff(ps: PointElement[]) : GeomElement {
+        return new Layoff(ps[0], ps[0], ps[1], ps[2], ps[3]);
     }
 }
 
@@ -326,6 +336,7 @@ export const constructions : Construction[] = [
     new LineSliderConstruction(),
     new LineSliderSegmentConstruction(),
     new ExtendConstruction(),
+    new CutoffConstruction(),
     new SectorConstruction(),
     new CircleSliderConstruction(),
     new CircleRadiusCenterConstruction()
