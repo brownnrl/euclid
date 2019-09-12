@@ -41,14 +41,17 @@ export class SectorElement extends GeomElement {
     _M : Midpoint; // midpoint between A and B
     _P : PlaneElement; // plane of the circle
 
-    _paperJSArc   : Path.Arc = null;
-    _paperJSFace  : Path     = null;  // path with no edge to provide for fill (not arc)
-    _paperJSEdge1  : Line     = null; // line from center to A (paperFrom)
-    _paperJSEdge2  : Line     = null; // line from center to B (paperTo)
-    _paperFrom    : Point    = null;
-    _paperThrough : Point    = null;
-    _paperTo      : Point    = null;
-    _paperCenter  : Point    = null;
+    _paperJSArc     : Path.Arc = null;
+    _paperJSArcFace : Path.Arc = null;
+    _paperJSFace    : Path     = null;  // path with no edge to provide for fill (not arc)
+    _paperJSEdge1   : Line     = null; // line from center to A (paperFrom)
+    _paperJSEdge2   : Line     = null; // line from center to B (paperTo)
+    _paperFrom      : Point    = null;
+    _paperThrough   : Point    = null;
+    _paperTo        : Point    = null;
+    _paperCenter    : Point    = null;
+
+    _angle : number = null;
 
     constructor(isec?: ISectorElementConstruction) {
         super();
@@ -89,19 +92,16 @@ export class SectorElement extends GeomElement {
         this._paperTo.y = this._B.y;
         this._paperCenter.x = this._Center.x;
         this._paperCenter.y = this._Center.y;
-        this._paperThrough.x = this._M.x;
-        this._paperThrough.y = this._M.y;
-        let p = this._paperThrough.subtract(this._paperCenter);
-        p = p.divide(p.length);
         let r = this.radius();
         if(r == 0) { // degenerate circle
             this._paperThrough.x = this._Center.x;
             this._paperThrough.y = this._Center.y;
             return;
         }
-        p = this._paperCenter.add(p.multiply(r));
-        this._paperThrough.x = p.x;
-        this._paperThrough.y = p.y;
+        this._angle = Math.atan2(this._B.y - this._A.y, this._B.x - this._A.x) -
+            Math.atan2(this._Center.y - this._A.y, this._Center.x - this._A.x);
+        this._paperThrough.x = this._Center.x + Math.cos(this._angle/2) * r;
+        this._paperThrough.y = this._Center.y + Math.sin(this._angle/2) * r;
     }
 
     _createPaperJSElements() : void {
@@ -113,29 +113,39 @@ export class SectorElement extends GeomElement {
             this._updateThroughPoint();
         } else {
             this._paperJSArc.remove();
+            this._paperJSArcFace.remove();
             this._paperJSFace.remove();
             this._paperJSEdge1.remove();
             this._paperJSEdge2.remove();
         }
+    }
 
+
+    drawEdge(): void {
         this._paperJSArc = new Path.Arc(this._paperFrom,
             this._paperThrough,
             this._paperTo);
         this._paperJSEdge1 = new Line(this._paperCenter, this._paperFrom);
         this._paperJSEdge2 = new Line(this._paperCenter, this._paperTo);
-        this._paperJSFace = new Path([this._paperCenter, this._paperTo, this._paperFrom]);
-    }
-
-
-    drawEdge(): void {
         this._paperJSArc.strokeColor = this.edgeColor;
         this._paperJSEdge1.strokeColor = this.edgeColor;
         this._paperJSEdge2.strokeColor = this.edgeColor;
     }
 
     drawFace(): void {
-        this._paperJSArc.fillColor = this.faceColor;
-        this._paperJSFace.fillColor = this.faceColor;
+        this._paperJSArcFace = new Path.Arc(this._paperFrom,
+            this._paperThrough,
+            this._paperTo);
+        this._paperJSFace = new Path([this._paperCenter, this._paperTo, this._paperFrom]);
+        if(this._angle < Math.PI) {
+            this._paperJSFace.fillColor = this.faceColor;
+        } else {
+            this._paperJSFace.fillColor = null;
+        }
+        this._paperJSArcFace.strokeColor = null;
+        this._paperJSArcFace.fillColor = this.faceColor;
+        this._paperJSFace.sendToBack();
+        this._paperJSArcFace.sendToBack();
     }
 
     drawName(d: paper.Rectangle): void {

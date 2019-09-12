@@ -57,12 +57,10 @@ export class LineElement extends GeomElement {
 
         let from = new Point(this._A.x, this._A.y);
         let to = new Point(this._B.x, this._B.y);
-        if (this._paperJSLine == null) {
-            this._paperJSLine = new Line(from, to);
-        } else {
-            this._paperJSLine.firstCurve.point1 = from;
-            this._paperJSLine.firstCurve.point2 = to;
-        }
+        if (this._paperJSLine != null) this._paperJSLine.remove();
+        this._paperJSLine = new Line(from, to);
+        this._paperJSLine.firstCurve.point1 = from;
+        this._paperJSLine.firstCurve.point2 = to;
         this._paperJSLine.strokeColor = c;
         this._paperJSLine.strokeWidth = 1;
         this._paperJSLine.insertBelow(this._A.paper);

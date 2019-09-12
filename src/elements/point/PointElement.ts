@@ -398,12 +398,13 @@ export class PointElement extends GeomElement {
                 c = this.vertexColor;
             }
         }
-        if (this._PaperJSElement == null) {
-            this._PaperJSElement = new Circle({
-                center: pointCenter,
-                radius: 2
-            })
+        if (this._PaperJSElement != null) {
+            this._PaperJSElement.remove();
         }
+        this._PaperJSElement = new Circle({
+            center: pointCenter,
+            radius: 2
+        });
         this._PaperJSElement.position = pointCenter;
         this._PaperJSElement.fillColor = c;
     }

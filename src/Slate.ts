@@ -6,6 +6,7 @@ import {AllConstructions, Construction, constructions, getConstructionName, PreE
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas} from "canvas";
 import {Point, Rectangle} from "paper";
+import Color = paper.Color;
 
 export type SlateCanvas = HTMLCanvasElement | Canvas;
 
@@ -17,7 +18,9 @@ export class Slate {
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
+    protected _bgcolor : string | Color;
     public    inTest : boolean = false;
+    protected _bg : paper.Path.Rectangle = null;
 
     constructor(canvas: SlateCanvas) {
         this._elements = [];
@@ -71,6 +74,14 @@ export class Slate {
 
     get elements() : GeomElement[] {
         return this._elements;
+    }
+
+    set bgcolor(value: Color | string ) {
+        this._bgcolor = value;
+    }
+
+    get bgcolor() : Color | string {
+        return this._bgcolor;
     }
 
     lookupElement(name: string) : GeomElement {
@@ -140,18 +151,24 @@ export class Slate {
     drawElements(): void {
         if(this.inTest) return;
         // we draw all the elements first
-        for(let element of this._elements) {
-            element.update();
-            element.drawFace();
-            element.drawEdge();
-            element.drawVertex();
-        }
+        if(this._bg != null) this._bg.remove();
+        this._bg = new paper.Path.Rectangle({
+            point: [0, 0],
+            size: [this._canvas.width, this._canvas.height],
+            strokeColor: this._bgcolor,
+            selected: true
+        });
+        this._bg.fillColor = this._bgcolor;
+        for(let element of this._elements) element.update();
+        for(let element of this._elements) element.drawFace();
+        for(let element of this._elements) element.drawEdge();
+        for(let element of this._elements) element.drawVertex();
         // and then draw their names.
-        for(let element of this._elements) {
-            let w = this._canvas.width;
-            let h = this._canvas.height;
+        let w = this._canvas.width;
+        let h = this._canvas.height;
+        for(let element of this._elements)
             element.drawName(new Rectangle(new Point(w, 0), new Point(0, h)));
-        }
+        this._bg.sendToBack();
     }
 
     updateCoordinates(i : number) {

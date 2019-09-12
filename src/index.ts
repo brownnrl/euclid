@@ -45,6 +45,7 @@ export function init(i : IInitialization) {
     eval("paper = scope")
     let slate : Slate = new Slate(canvas);
     slates.push(slate);
+    slate.bgcolor = i.background;
     for(let param of i.elements) {
         let element = slate.createElement(param.construction, param.params, param.name);
 
@@ -74,14 +75,6 @@ export function init(i : IInitialization) {
 
     }
 
-    let bg = new paper.Path.Rectangle({
-        point: [0, 0],
-        size: [canvas.width, canvas.height],
-        strokeColor: i.background,
-        selected: true
-    });
-    bg.sendToBack();
-    bg.fillColor = i.background;
     slate.update();
     slate.updateCoordinates(0);
 

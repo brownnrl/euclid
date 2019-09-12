@@ -57,12 +57,11 @@ export abstract class GeomElement {
 
     drawString(ix : number, iy : number, d: Rectangle) {
         let p = new Point(ix, iy);
-        if(this._paperJSNameLabel == null) {
-            this._paperJSNameLabel = new PointText(p);
-            this._paperJSNameLabel.fontFamily = 'Arial';
-            this._paperJSNameLabel.fontWeight = 'italic';
-            this._paperJSNameLabel.fontSize = 12;
-        }
+        if(this._paperJSNameLabel != null) this._paperJSNameLabel.remove();
+        this._paperJSNameLabel = new PointText(p);
+        this._paperJSNameLabel.fontFamily = 'Arial';
+        this._paperJSNameLabel.fontWeight = 'italic';
+        this._paperJSNameLabel.fontSize = 12;
         this._paperJSNameLabel.position = p;
         this._paperJSNameLabel.fillColor = this._nameColor;
         this._paperJSNameLabel.bringToFront();
