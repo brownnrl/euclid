@@ -7,7 +7,7 @@ import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
 
 export type AllConstructions = AllConstructions;
-export {color as Color};
+export {color as string};
 export {align  as Align};
 export {e as E};
 
@@ -24,7 +24,7 @@ export interface IConstructionInfo {
 }
 
 interface IInitialization {
-    background : color | string;
+    background : string;
     title : string;
     align? : align;
     canvasid? : string;
@@ -37,40 +37,40 @@ export function init(i : IInitialization) {
     let canvasid : string = i.canvasid;
     if(canvasid == null) canvasid = "canvasid";
 
-    paper.install(window);
-    let scope = new paper.PaperScope();
-    scope.activate();
+    //paper.install(window);
+    //let scope = new paper.PaperScope();
+    //scope.activate();
     let canvas = document.getElementById(canvasid) as HTMLCanvasElement;
-    scope.setup(canvas);
-    eval("paper = scope")
+    //scope.setup(canvas);
+    //eval("paper = scope")
     let slate : Slate = new Slate(canvas);
     slates.push(slate);
     slate.bgcolor = i.background;
     for(let param of i.elements) {
         let element = slate.createElement(param.construction, param.params, param.name);
 
-        // Name Color
+        // Name string
         if(param.nameColor != null) {
-            element.nameColor = new color(param.nameColor);
+            element.nameColor = param.nameColor;
         } else if (element instanceof PointElement) {
-            element.nameColor = new color('black');
+            element.nameColor = 'black';
         }
 
         element.align = defaultAlign;
 
         if (param.vertexColor != null) {
-            element.vertexColor = new color(param.vertexColor);
+            element.vertexColor = param.vertexColor;
         } else if (element.dimension == 0) {
             element.vertexColor = element.draggable ?
                 ((element instanceof PlaneSlider) ?
-                    new color('red') : new color('orange'))
-                : new color('black');
+                    'red' : 'orange')
+                : 'black';
         }
 
         if (param.faceColor != null) {
-            element.faceColor = new color(param.faceColor);
+            element.faceColor = param.faceColor;
         } else if (element.dimension == 2) {
-            element.faceColor = new color('cyan'); // TODO: background.brighter()
+            element.faceColor = 'cyan'; // TODO: background.brighter()
         }
 
     }

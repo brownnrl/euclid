@@ -16,7 +16,7 @@
 +----------------------------------------------------------------------*/
 
 import paper = require('paper');
-import {Point, PointText, Rectangle, Color} from "paper";
+import {Point, PointText, Rectangle} from "paper";
 import {PointElement} from "./point/PointElement"
 
 
@@ -34,15 +34,15 @@ export abstract class GeomElement {
     }
 
     protected _name: string;
-    private _nameColor: Color = new Color('black');
-    protected _vertexColor : Color = new Color('red');
-    private _edgeColor : Color = new Color('black');
-    private _faceColor : Color = new Color('blue');
+    private _nameColor: string = 'black';
+    protected _vertexColor : string = 'red';
+    private _edgeColor : string = 'black';
+    private _faceColor : string = 'blue';
 
-    private _nameHighlightColor   : Color = new Color(255, 0, 0); // Color.red;
-    private _vertexHighlightColor : Color = new Color(255,255,255); // Color.WHITE;
-    private _edgeHighlightColor   : Color = new Color(255,255,255); // Color.white;
-    private _faceHighlightColor   : Color = new Color(0, 255, 255); // Color.CYAN;
+    private _nameHighlightColor   : string = '#FF0000';
+    private _vertexHighlightColor : string = '#FFFFFF';
+    private _edgeHighlightColor   : string = '#FFFFFF';
+    private _faceHighlightColor   : string = '#00FFFF';
 
     protected _inTest : boolean;
     private _draggable : boolean;
@@ -53,35 +53,35 @@ export abstract class GeomElement {
     private _shouldHighlight : boolean = false;
     protected _pixelTolerance : number = 50;
 
-    protected _paperJSNameLabel : PointText = null;
-
-    drawString(ix : number, iy : number, d: Rectangle) {
-        let p = new Point(ix, iy);
-        if(this._paperJSNameLabel != null) this._paperJSNameLabel.remove();
-        this._paperJSNameLabel = new PointText(p);
-        this._paperJSNameLabel.fontFamily = 'Arial';
-        this._paperJSNameLabel.fontWeight = 'italic';
-        this._paperJSNameLabel.fontSize = 12;
-        this._paperJSNameLabel.position = p;
-        this._paperJSNameLabel.fillColor = this._nameColor;
-        this._paperJSNameLabel.bringToFront();
-        let text = this._paperJSNameLabel;
-        text.content = this._name;
-        let w = text.bounds.width;
-        let h = text.bounds.height;
+    drawString(ix : number, iy : number, d: Rectangle, ctx: CanvasRenderingContext2D) {
+        if(this._nameColor == null) return;
+        ctx.font = "italic 12px Arial";
+        ctx.fillStyle = this._nameColor;
+        let textMetrics = ctx.measureText(this._name);
+        let w = textMetrics.width;
+        let h = 16; // assuming 12 font
 
         switch (this._align) {
             case Align.LEFT:
-                text.point = new Point(ix-w-6, iy+h/2-4);
+                ix = ix - w - 6;
+                iy = iy + h/2 - 4;
+                ctx.fillText(this._name, ix, iy);
                 return;
             case Align.RIGHT:
-                text.point = new Point(ix+2, iy+h/2-4);
+                ix += 2;
+                iy += h/2 - 4;
+                ctx.fillText(this._name, ix, iy);
                 return;
             case Align.ABOVE:
-                text.point = new Point(ix-w/2, iy+h/2+4);
+                ix -= w/2;
+                iy += h/2 + 4;
+                ctx.fillText(this._name, ix, iy);
+                console.log("filling text at", ix, iy, this._name);
                 return;
             case Align.BELOW:
-                text.point = new Point(ix-w/2, iy+h/2+6);
+                ix -= w/2;
+                iy += h/2 + 6;
+                ctx.fillText(this._name, ix, iy);
                 return;
         }
         // compute (dx,dy) coordinates relative to center of canvas
@@ -90,15 +90,28 @@ export abstract class GeomElement {
         let dy = (iy - d.height/2) * d.width;
         if (dy > dx) {
             if (dy >= -dx)	// put name below
-                text.point = new Point( ix-w/2, iy+h/2+6);
+            {
+                ix -= w/2;
+                iy += h/2 + 6;
+                ctx.fillText(this._name, ix, iy);
+            }
             else 		// put name left
-                text.point = new Point( ix-w-6, iy+h/2-4);
+            {
+                ix -= w/2;
+                iy += h/2 + 6;
+                ctx.fillText(this._name, ix, iy);
+            }
         }
         else {
-            if (dy >= -dx)	// put name right
-                text.point = new Point( ix+2, iy+h/2-4);
-            else 		// put name above
-                text.point = new Point( ix-w/2, iy-h/2+4);
+            if (dy >= -dx) {	// put name right {
+                    ix += 2;
+                    iy += h/2 - 4;
+                    ctx.fillText(this._name, ix, iy);
+            } else { 		// put name above
+                ix -= w/2;
+                iy += -h/2 + 4;
+                ctx.fillText(this._name, ix, iy);
+            }
         }
     }
 
@@ -121,36 +134,36 @@ export abstract class GeomElement {
     // drag returns true when the element is actually dragged
     public abstract translate(dx: number, dy: number) : void;
     public abstract rotate(pivot : PointElement, ac : number, as: number) : void;
-    public abstract drawName(d: Rectangle) : void;
-    public abstract drawFace() : void;
-    public abstract drawEdge() : void;
-    public abstract drawVertex() : void;
+    public abstract drawName(c: CanvasRenderingContext2D, d: Rectangle) : void;
+    public abstract drawFace(c: CanvasRenderingContext2D) : void;
+    public abstract drawEdge(c: CanvasRenderingContext2D) : void;
+    public abstract drawVertex(c: CanvasRenderingContext2D) : void;
 
-    set nameColor(value: paper.Color) {
+    set nameColor(value: string) {
         this._nameColor = value;
     }
 
-    set edgeColor(value: paper.Color) {
+    set edgeColor(value: string) {
         this._edgeColor = value;
     }
 
-    set faceColor(value: paper.Color) {
+    set faceColor(value: string) {
         this._faceColor = value;
     }
 
-    set nameHighlightColor(value: paper.Color) {
+    set nameHighlightColor(value: string) {
         this._nameHighlightColor = value;
     }
 
-    set vertexHighlightColor(value: paper.Color) {
+    set vertexHighlightColor(value: string) {
         this._vertexHighlightColor = value;
     }
 
-    set edgeHighlightColor(value: paper.Color) {
+    set edgeHighlightColor(value: string) {
         this._edgeHighlightColor = value;
     }
 
-    set faceHighlightColor(value: paper.Color) {
+    set faceHighlightColor(value: string) {
         this._faceHighlightColor = value;
     }
 
@@ -170,39 +183,39 @@ export abstract class GeomElement {
         this._shouldHighlight = value;
     }
 
-    get nameColor(): paper.Color {
+    get nameColor(): string {
         return this._nameColor;
     }
 
-    get vertexColor(): paper.Color {
+    get vertexColor(): string {
         return this._vertexColor;
     }
 
-    set vertexColor(c : paper.Color) {
+    set vertexColor(c : string) {
         this._vertexColor = c;
     }
 
-    get edgeColor(): paper.Color {
+    get edgeColor(): string {
         return this._edgeColor;
     }
 
-    get faceColor(): paper.Color {
+    get faceColor(): string {
         return this._faceColor;
     }
 
-    get nameHighlightColor(): paper.Color {
+    get nameHighlightColor(): string {
         return this._nameHighlightColor;
     }
 
-    get vertexHighlightColor(): paper.Color {
+    get vertexHighlightColor(): string {
         return this._vertexHighlightColor;
     }
 
-    get edgeHighlightColor(): paper.Color {
+    get edgeHighlightColor(): string {
         return this._edgeHighlightColor;
     }
 
-    get faceHighlightColor(): paper.Color {
+    get faceHighlightColor(): string {
         return this._faceHighlightColor;
     }
 

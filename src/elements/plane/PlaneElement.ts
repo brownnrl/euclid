@@ -60,16 +60,16 @@ export class PlaneElement extends GeomElement {
         }
     }
 
-    public drawEdge(): void {
+    public drawEdge(c: CanvasRenderingContext2D): void {
     }
 
-    public drawFace(): void {
+    public drawFace(c: CanvasRenderingContext2D): void {
     }
 
-    public drawName(d: Rectangle): void {
+    public drawName(c: CanvasRenderingContext2D, d: Rectangle): void {
     }
 
-    public drawVertex(): void {
+    public drawVertex(c: CanvasRenderingContext2D): void {
     }
 
     public rotate(pivot: PointElement, ac: number, as: number): void {

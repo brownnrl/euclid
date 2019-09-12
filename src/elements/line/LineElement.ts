@@ -46,12 +46,12 @@ export class LineElement extends GeomElement {
         this._B = ile && ile.B || null;
     }
 
-    public drawEdge(c?: Color): void {
-        if (c == null) {
+    public drawEdge(ctx: CanvasRenderingContext2D, color?: string): void {
+        if (color == null) {
             if (this.shouldHighlight) {
-                c = this.edgeHighlightColor;
+                color = this.edgeHighlightColor;
             } else {
-                c = this.edgeColor;
+                color = this.edgeColor;
             }
         }
 
@@ -61,18 +61,18 @@ export class LineElement extends GeomElement {
         this._paperJSLine = new Line(from, to);
         this._paperJSLine.firstCurve.point1 = from;
         this._paperJSLine.firstCurve.point2 = to;
-        this._paperJSLine.strokeColor = c;
+        this._paperJSLine.strokeColor = color;
         this._paperJSLine.strokeWidth = 1;
         this._paperJSLine.insertBelow(this._A.paper);
     }
 
-    public drawFace(): void {
+    public drawFace(c: CanvasRenderingContext2D): void {
     }
 
-    public drawName(d: Rectangle): void {
+    public drawName(c: CanvasRenderingContext2D, d: Rectangle): void {
     }
 
-    public drawVertex(): void {
+    public drawVertex(c: CanvasRenderingContext2D): void {
     }
 
     public rotate(pivot: PointElement, ac: number, as: number): void {

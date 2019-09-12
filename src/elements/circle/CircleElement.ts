@@ -55,16 +55,16 @@ export class CircleElement extends GeomElement {
         return this.A.distance2(this.B);
     }
 
-    public drawEdge(): void {
+    public drawEdge(c: CanvasRenderingContext2D): void {
     }
 
-    public drawFace(): void {
+    public drawFace(c: CanvasRenderingContext2D): void {
     }
 
-    public drawName(d: paper.Rectangle): void {
+    public drawName(c: CanvasRenderingContext2D, d: paper.Rectangle): void {
     }
 
-    public drawVertex(): void {
+    public drawVertex(c: CanvasRenderingContext2D): void {
     }
 
     public rotate(pivot: PointElement, ac: number, as: number): void {

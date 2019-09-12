@@ -18,17 +18,19 @@ export class Slate {
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
-    protected _bgcolor : string | Color;
+    protected _bgcolor : string;
     public    inTest : boolean = false;
     protected _bg : paper.Path.Rectangle = null;
+    private _ctx : CanvasRenderingContext2D = null;
 
     constructor(canvas: SlateCanvas) {
         this._elements = [];
         this._preExists = [];
-        if(canvas == null || canvas == undefined) {
+        if(canvas == null) {
             throw new TypeError("canvas cannot be null or undefined.");
         }
         this._canvas = canvas;
+        this._ctx = this._canvas.getContext("2d");
 
         let screen_origin = new FixedPoint(0,0,0);
         screen_origin.name = "screen_origin";
@@ -76,11 +78,11 @@ export class Slate {
         return this._elements;
     }
 
-    set bgcolor(value: Color | string ) {
+    set bgcolor(value: string ) {
         this._bgcolor = value;
     }
 
-    get bgcolor() : Color | string {
+    get bgcolor() : string {
         return this._bgcolor;
     }
 
@@ -151,24 +153,18 @@ export class Slate {
     drawElements(): void {
         if(this.inTest) return;
         // we draw all the elements first
-        if(this._bg != null) this._bg.remove();
-        this._bg = new paper.Path.Rectangle({
-            point: [0, 0],
-            size: [this._canvas.width, this._canvas.height],
-            strokeColor: this._bgcolor,
-            selected: true
-        });
-        this._bg.fillColor = this._bgcolor;
-        for(let element of this._elements) element.update();
-        for(let element of this._elements) element.drawFace();
-        for(let element of this._elements) element.drawEdge();
-        for(let element of this._elements) element.drawVertex();
-        // and then draw their names.
         let w = this._canvas.width;
         let h = this._canvas.height;
+        for(let element of this._elements) element.update();
+        this._ctx.clearRect(0,0,w,h);
+        this._ctx.fillStyle = this._bgcolor;
+        this._ctx.fillRect(0,0,w,h);
+        //for(let element of this._elements) element.drawFace(this._ctx);
+        //for(let element of this._elements) element.drawEdge(this._ctx);
+        for(let element of this._elements) element.drawVertex(this._ctx);
+        // and then draw their names.
         for(let element of this._elements)
-            element.drawName(new Rectangle(new Point(w, 0), new Point(0, h)));
-        this._bg.sendToBack();
+            element.drawName(this._ctx, new Rectangle(new Point(w, 0), new Point(0, h)));
     }
 
     updateCoordinates(i : number) {

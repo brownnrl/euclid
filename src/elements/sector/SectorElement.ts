@@ -121,7 +121,7 @@ export class SectorElement extends GeomElement {
     }
 
 
-    drawEdge(): void {
+    drawEdge(c: CanvasRenderingContext2D): void {
         this._paperJSArc = new Path.Arc(this._paperFrom,
             this._paperThrough,
             this._paperTo);
@@ -132,7 +132,7 @@ export class SectorElement extends GeomElement {
         this._paperJSEdge2.strokeColor = this.edgeColor;
     }
 
-    drawFace(): void {
+    drawFace(c: CanvasRenderingContext2D): void {
         this._paperJSArcFace = new Path.Arc(this._paperFrom,
             this._paperThrough,
             this._paperTo);
@@ -148,11 +148,11 @@ export class SectorElement extends GeomElement {
         this._paperJSArcFace.sendToBack();
     }
 
-    drawName(d: paper.Rectangle): void {
-        this.drawString(this._paperThrough.x, this._paperThrough.y, d);
+    drawName(c: CanvasRenderingContext2D, d: paper.Rectangle): void {
+        this.drawString(this._paperThrough.x, this._paperThrough.y, d, c);
     }
 
-    drawVertex(): void {}
+    drawVertex(c: CanvasRenderingContext2D): void {}
 
     rotate(pivot: PointElement, ac: number, as: number): void {}
 

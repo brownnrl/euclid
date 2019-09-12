@@ -383,30 +383,24 @@ export class PointElement extends GeomElement {
         }
     }
 
-    public drawName(d: paper.Rectangle): void {
+    public drawName(c: CanvasRenderingContext2D, d: paper.Rectangle): void {
         if (this.nameColor != null && this.name != null && this.defined()) {
-            this.drawString(Math.round(this.x), Math.round(this.y), d)
+            this.drawString(Math.round(this.x), Math.round(this.y), d, c)
         }
     }
 
-    public drawVertex(c?: Color): void {
-        let pointCenter = new Point(this._x, this._y);
-        if (c == null) {
+    public drawVertex(ctx: CanvasRenderingContext2D, color?: string): void {
+        if (color == null) {
             if (this.shouldHighlight) {
-                c = this.vertexHighlightColor;
+                color = this.vertexHighlightColor;
             } else {
-                c = this.vertexColor;
+                color = this.vertexColor;
             }
         }
-        if (this._PaperJSElement != null) {
-            this._PaperJSElement.remove();
-        }
-        this._PaperJSElement = new Circle({
-            center: pointCenter,
-            radius: 2
-        });
-        this._PaperJSElement.position = pointCenter;
-        this._PaperJSElement.fillColor = c;
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.arc(this._x, this._y, 2, 0, 2*Math.PI, false);
+        ctx.fill();
     }
 
 
@@ -418,9 +412,9 @@ export class PointElement extends GeomElement {
     public update(): void {
     }
 
-    public drawEdge(): void {
+    public drawEdge(c: CanvasRenderingContext2D): void {
     }
 
-    public drawFace(): void {
+    public drawFace(c: CanvasRenderingContext2D): void {
     }
 }

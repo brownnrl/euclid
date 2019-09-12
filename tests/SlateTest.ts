@@ -70,8 +70,8 @@ describe("slate", ()=> {
         let A = slate.lookupElement("A") as PointElement;
         let B = slate.lookupElement("B") as PointElement;
         let red = new paper.Color("#FF0000");
-        A.vertexColor = red;
-        B.vertexColor = red;
+        A.vertexColor = 'red';
+        B.vertexColor = 'red';
 
         let P = slate.closestVisiblePoint(slate.elements,
                                   new PointElement({x:(10+100)/2 - 1, y:100}), 100);
