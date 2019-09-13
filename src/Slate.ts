@@ -197,8 +197,8 @@ export class Slate {
         ctx.clearRect(0,0,w,h);
         ctx.fillStyle = this._bgcolor;
         ctx.fillRect(0,0,w,h);
-        //for(let element of this._elements) element.drawFace(this._ctx);
-        //for(let element of this._elements) element.drawEdge(this._ctx);
+        for(let element of this._elements) element.drawFace(this._canvas);
+        for(let element of this._elements) element.drawEdge(this._canvas);
         for(let element of this._elements) element.drawVertex(this._canvas);
         // and then draw their names.
         for(let element of this._elements)

@@ -73,7 +73,6 @@ export abstract class GeomElement {
                 ix -= w/2;
                 iy += h/2 + 4;
                 ctx.fillText(this._name, ix, iy);
-                console.log("filling text at", ix, iy, this._name);
                 return;
             case Align.BELOW:
                 ix -= w/2;

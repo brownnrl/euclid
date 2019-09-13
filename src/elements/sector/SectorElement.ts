@@ -35,7 +35,6 @@ export class SectorElement extends GeomElement {
     _B : PointElement;
     // A and B are two points on a circle with the given center
 
-    _M : Midpoint; // midpoint between A and B
     _P : PlaneElement; // plane of the circle
 
     _angle : number = null;
@@ -48,7 +47,6 @@ export class SectorElement extends GeomElement {
             this._A = isec.A;
             this._B = isec.B;
             this._P = isec.P;
-            this._M = new Midpoint(this._A, this._B);
         }
     }
 
@@ -64,6 +62,10 @@ export class SectorElement extends GeomElement {
         return this._Center.distance2(this._A);
     }
 
+    defined() {
+        return this._A.defined() && this._B.defined() && this._Center.defined();
+    }
+
 
     // Here, we differ from the original implementation.
     // Since A and B are on the circle, we find the midpoint M between them.
@@ -71,8 +73,6 @@ export class SectorElement extends GeomElement {
     // as the "through" point.
 
     _updateThroughPoint() : void {
-        if(this._M == null) return;
-        this._M.update();
         let r = this.radius();
         if(r == 0) { // degenerate circle
             return;
@@ -83,11 +83,45 @@ export class SectorElement extends GeomElement {
         let y = this._Center.y + Math.sin(this._angle/2) * r;
     }
 
-
     drawEdge(c: SlateCanvas): void {
+        if (this.edgeColor == null || !this.defined()) return;
+        let ctx = c.getContext("2d");
+        ctx.strokeStyle = this.edgeColor;
+        ctx.beginPath();
+        let r = this.radius();
+        let d = 2 * r;
+        let startAngle = Math.atan2(
+            this._A.y - this._Center.y,
+            this._A.x - this._Center.x);
+        let arcAngle = this._Center.angle(this._A, this._B, this._P);
+        let endAngle = startAngle + arcAngle;
+        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, true);
+        ctx.stroke();
     }
 
     drawFace(c: SlateCanvas): void {
+        if (this.faceColor == null || !this.defined()) return;
+        let ctx = c.getContext("2d");
+        ctx.fillStyle = this.faceColor;
+        ctx.beginPath();
+        let r = this.radius();
+        let d = 2 * r;
+        let startAngle = Math.atan2(
+            this._A.y - this._Center.y,
+            this._A.x - this._Center.x);
+        let arcAngle = this._Center.angle(this._A, this._B, this._P);
+        let endAngle = startAngle + arcAngle;
+        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, true);
+        ctx.moveTo(this._Center.x, this._Center.y);
+        if(arcAngle <= 180.) {
+            ctx.lineTo(this._A.x, this._A.y);
+            ctx.lineTo(this._B.x, this._B.y);
+        } else {
+            ctx.lineTo(this._B.x, this._B.y);
+            ctx.lineTo(this._A.x, this._A.y);
+        }
+        ctx.lineTo(this._Center.x, this._Center.y);
+        ctx.fill();
     }
 
     drawName(c: SlateCanvas): void {

@@ -3,7 +3,7 @@
     <title>Test View</title>
 </head>
 <body>
-<canvas id="canvasId" style="width:600px; height: 50px;"></canvas>
+<canvas id="canvasId" style="width:600px; height: 300px;"></canvas>
 <canvas id="canvasId2" style="width:600px; height: 300px;"></canvas>
 <!-- Dependencies -->
 <script src="../../../node_modules/paper/dist/paper-full.js"></script>
@@ -17,7 +17,7 @@
         background: '#ffe9cd',
         title: "Post.1",
         align: Align.ABOVE,
-        canvasid: "canvasId",
+        canvasid: "canvasId2",
         elements: [
             {
                 name: "A",
@@ -51,7 +51,7 @@
         background: '#ffe9cd',
         title: "Post.1",
         align: Align.ABOVE,
-        canvasid: "canvasId2",
+        canvasid: "canvasId",
         elements: [
         //    <param name=e[1] value="A;point;free;250,30">
             {
@@ -89,17 +89,23 @@
                 construction: E.Point.extend,
                 params: ["F", "B", "F", "B"]
             },
-        //    <param name=e[7] value="semi;sector;sector;B,F,D;0;0;black;random">
-            {
-                name: "semi",
-                construction: E.Sector.sector,
-                params: ["B", "F", "D"]
-            },
-        //    <param name=e[8] value="E;point;cutoff;B,A,B,F">
+            //    <param name=e[8] value="E;point;cutoff;B,A,B,F">
             {
                 name: "E",
                 construction: E.Point.cutoff,
                 params: ["B", "A", "B", "F"]
+            },
+        //    <param name=e[7] value="semi;sector;sector;B,F,D;0;0;black;random">
+            {
+                name: "semi1",
+                construction: E.Sector.sector,
+                params: ["B", "F", "E"]
+            },
+            //    <param name=e[7] value="semi;sector;sector;B,F,D;0;0;black;random">
+            {
+                name: "semi2",
+                construction: E.Sector.sector,
+                params: ["B", "F", "D"]
             },
         //    <param name=e[9] value="CD;line;connect;C,D">
             {

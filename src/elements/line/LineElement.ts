@@ -40,7 +40,7 @@ export class LineElement extends GeomElement {
         this._B = ile && ile.B || null;
     }
 
-    public drawEdge(ctx: HTMLCanvasElement, color?: string): void {
+    public drawEdge(c: HTMLCanvasElement, color?: string): void {
         if (color == null) {
             if (this.shouldHighlight) {
                 color = this.edgeHighlightColor;
@@ -49,8 +49,12 @@ export class LineElement extends GeomElement {
             }
         }
 
-        //let from = new Point(this._A.x, this._A.y);
-        //let to = new Point(this._B.x, this._B.y);
+        let ctx = c.getContext("2d");
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(this._A.x, this._A.y);
+        ctx.lineTo(this._B.x, this._B.y);
+        ctx.stroke();
     }
 
     public drawFace(c: SlateCanvas): void {
