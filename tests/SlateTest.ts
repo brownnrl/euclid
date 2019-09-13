@@ -1,6 +1,5 @@
 import "mocha";
 import * as assert from "assert";
-import paper = require('paper');
 import {Slate} from "../src/Slate";
 import {E, IConstructionInfo} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
@@ -8,7 +7,6 @@ import {PointElement} from "../src/elements/point/PointElement";
 import {LineElement} from "../src/elements/line/LineElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
-import Color = paper.Color;
 
 describe("slate", ()=> {
 
@@ -69,7 +67,7 @@ describe("slate", ()=> {
         let elms = toElements(slate, connected_line_data);
         let A = slate.lookupElement("A") as PointElement;
         let B = slate.lookupElement("B") as PointElement;
-        let red = new paper.Color("#FF0000");
+        let red = "#FF0000";
         A.vertexColor = 'red';
         B.vertexColor = 'red';
 
@@ -92,4 +90,5 @@ describe("slate", ()=> {
             new PointElement({x:91, y:100}), 10);
         assert(P.name == "B");
     });
+
 });

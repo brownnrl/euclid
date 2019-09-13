@@ -1,12 +1,9 @@
-import paper = require('paper');
 import {GeomElement} from "./elements/GeomElement";
 import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
 import {AllConstructions, Construction, constructions, getConstructionName, PreExists} from "./elements/Constructions";
 import {PointElement} from "./elements/point/PointElement";
-import {Canvas} from "canvas";
-import {Point, Rectangle} from "paper";
-import Color = paper.Color;
+import {Canvas, createCanvas} from "canvas";
 
 export type SlateCanvas = HTMLCanvasElement | Canvas;
 
@@ -18,10 +15,9 @@ export class Slate {
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
+    private _htmlCanvas : HTMLCanvasElement = null;
     protected _bgcolor : string;
     public    inTest : boolean = false;
-    protected _bg : paper.Path.Rectangle = null;
-    private _ctx : CanvasRenderingContext2D = null;
 
     constructor(canvas: SlateCanvas) {
         this._elements = [];
@@ -30,7 +26,6 @@ export class Slate {
             throw new TypeError("canvas cannot be null or undefined.");
         }
         this._canvas = canvas;
-        this._ctx = this._canvas.getContext("2d");
 
         let screen_origin = new FixedPoint(0,0,0);
         screen_origin.name = "screen_origin";
@@ -55,24 +50,66 @@ export class Slate {
         this._originalElements = [...this._elements];
 
         let slate = this;
-        let tool = new paper.Tool();
 
-        tool.onMouseDown = function(te: paper.ToolEvent) {
-            console.log("d", te.point);
-            slate._pick = null;
-            slate.movePick(te.point.x, te.point.y);
-        };
+        if(this._canvas instanceof HTMLCanvasElement) {
+            let cnv : HTMLCanvasElement = this._canvas as HTMLCanvasElement;
+            this._htmlCanvas = cnv;
 
-        tool.onMouseUp = function(te: paper.ToolEvent) {
-            console.log("u", te.point);
-            if (slate._pick == null) return;
-            slate.movePick(te.point.x, te.point.y);
-        };
+            cnv.addEventListener("mousedown", (ev) => {
+                slate._onMouseDown(ev.x, ev.y);
+            });
+            cnv.addEventListener("mouseup", (ev) => {
+                slate._onMouseUp(ev.x, ev.y);
+            });
+            cnv.addEventListener("mousemove", (ev) => {
+                slate._onMouseDrag(ev.x, ev.y);
+            });
 
-        tool.onMouseDrag = function(te: paper.ToolEvent) {
-            slate.movePick(te.point.x, te.point.y);
-        };
+            for(let [tEvent, mEvent] of [
+                ["touchend", "mouseup"],
+                ["touchstart", "mousedown"],
+                ["touchmove", "mousemove"]
+            ]) {
+                this._htmlCanvas.addEventListener(tEvent, (tv : TouchEvent) => {
+                    let pos = slate._getTouchPos(tv);
+                    let me = new MouseEvent(mEvent,
+                        {clientX: pos[0], clientY: pos[1]});
+                    slate._htmlCanvas.dispatchEvent(me);
+                });
+            }
+            for(let eventType of ["touchstart", "touchmove", "touchend"]) {
+                document.body.addEventListener(eventType, (tv) => {
+                    if (tv.target == slate._htmlCanvas) {
+                        tv.preventDefault();
+                    }
+                }, false);
+            }
+        }
+
     }
+
+    _getTouchPos(te : TouchEvent) : [number, number] {
+        if (this._htmlCanvas == null) return;
+        let r = this._htmlCanvas.getBoundingClientRect();
+        return [te.touches[0].clientX - r.left,
+                te.touches[0].clientY - r.top];
+    }
+
+    _onMouseDown(x: number, y: number) {
+        this._pick = null;
+        this.movePick(x, y);
+    };
+
+    _onMouseUp(x: number, y: number) {
+        if (this._pick == null) return;
+        this.movePick(x, y);
+        this._pick = null;
+    };
+
+    _onMouseDrag(x: number, y: number) {
+        if (this._pick == null) return;
+        this.movePick(x, y);
+    };
 
     get elements() : GeomElement[] {
         return this._elements;
@@ -156,15 +193,16 @@ export class Slate {
         let w = this._canvas.width;
         let h = this._canvas.height;
         for(let element of this._elements) element.update();
-        this._ctx.clearRect(0,0,w,h);
-        this._ctx.fillStyle = this._bgcolor;
-        this._ctx.fillRect(0,0,w,h);
+        let ctx = this._canvas.getContext("2d");
+        ctx.clearRect(0,0,w,h);
+        ctx.fillStyle = this._bgcolor;
+        ctx.fillRect(0,0,w,h);
         //for(let element of this._elements) element.drawFace(this._ctx);
         //for(let element of this._elements) element.drawEdge(this._ctx);
-        for(let element of this._elements) element.drawVertex(this._ctx);
+        for(let element of this._elements) element.drawVertex(this._canvas);
         // and then draw their names.
         for(let element of this._elements)
-            element.drawName(this._ctx, new Rectangle(new Point(w, 0), new Point(0, h)));
+            element.drawName(this._canvas);
     }
 
     updateCoordinates(i : number) {

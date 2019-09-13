@@ -15,10 +15,9 @@
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
 
-import paper = require('paper');
-import Rectangle = paper.Rectangle;
 import {GeomElement} from "../GeomElement";
 import {PointElement} from "../point/PointElement";
+import {SlateCanvas} from "../../Slate";
 
 
 export interface IPlaneElementConstruction {
@@ -60,16 +59,16 @@ export class PlaneElement extends GeomElement {
         }
     }
 
-    public drawEdge(c: CanvasRenderingContext2D): void {
+    public drawEdge(c: SlateCanvas): void {
     }
 
-    public drawFace(c: CanvasRenderingContext2D): void {
+    public drawFace(c: SlateCanvas): void {
     }
 
-    public drawName(c: CanvasRenderingContext2D, d: Rectangle): void {
+    public drawName(c: SlateCanvas): void {
     }
 
-    public drawVertex(c: CanvasRenderingContext2D): void {
+    public drawVertex(c: SlateCanvas): void {
     }
 
     public rotate(pivot: PointElement, ac: number, as: number): void {

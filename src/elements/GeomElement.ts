@@ -15,10 +15,8 @@
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
 
-import paper = require('paper');
-import {Point, PointText, Rectangle} from "paper";
 import {PointElement} from "./point/PointElement"
-
+import {SlateCanvas} from "../Slate";
 
 export enum Align {
     CENTRAL,
@@ -44,18 +42,17 @@ export abstract class GeomElement {
     private _edgeHighlightColor   : string = '#FFFFFF';
     private _faceHighlightColor   : string = '#00FFFF';
 
-    protected _inTest : boolean;
     private _draggable : boolean;
     private _dimension : number;
-
     private _align : Align;
 
     private _shouldHighlight : boolean = false;
     protected _pixelTolerance : number = 50;
 
-    drawString(ix : number, iy : number, d: Rectangle, ctx: CanvasRenderingContext2D) {
+    drawString(ix : number, iy : number,  c: SlateCanvas) {
+        let ctx = c.getContext("2d");
         if(this._nameColor == null) return;
-        ctx.font = "italic 12px Arial";
+        ctx.font = "italic 10pt Times New Roman";
         ctx.fillStyle = this._nameColor;
         let textMetrics = ctx.measureText(this._name);
         let w = textMetrics.width;
@@ -86,8 +83,10 @@ export abstract class GeomElement {
         }
         // compute (dx,dy) coordinates relative to center of canvas
         // and normalized
-        let dx = (ix - d.width/2) * d.height;
-        let dy = (iy - d.height/2) * d.width;
+        let cw = c.width;
+        let ch = c.height;
+        let dx = (ix - cw/2) * ch;
+        let dy = (iy - ch/2) * cw;
         if (dy > dx) {
             if (dy >= -dx)	// put name below
             {
@@ -134,10 +133,10 @@ export abstract class GeomElement {
     // drag returns true when the element is actually dragged
     public abstract translate(dx: number, dy: number) : void;
     public abstract rotate(pivot : PointElement, ac : number, as: number) : void;
-    public abstract drawName(c: CanvasRenderingContext2D, d: Rectangle) : void;
-    public abstract drawFace(c: CanvasRenderingContext2D) : void;
-    public abstract drawEdge(c: CanvasRenderingContext2D) : void;
-    public abstract drawVertex(c: CanvasRenderingContext2D) : void;
+    public abstract drawName(c: SlateCanvas) : void;
+    public abstract drawFace(c: SlateCanvas) : void;
+    public abstract drawEdge(c: SlateCanvas) : void;
+    public abstract drawVertex(c: SlateCanvas) : void;
 
     set nameColor(value: string) {
         this._nameColor = value;

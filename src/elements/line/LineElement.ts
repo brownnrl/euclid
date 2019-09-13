@@ -16,13 +16,9 @@
 +----------------------------------------------------------------------*/
 
 
-import paper = require('paper');
-import Rectangle = paper.Rectangle;
-import {GeomElement} from "../GeomElement";
 import {PointElement} from "../point/PointElement";
-import Line = paper.Path.Line;
-import Color = paper.Color;
-import Point = paper.Point;
+import {GeomElement} from "../GeomElement";
+import {SlateCanvas} from "../../Slate";
 
 interface ILineElementConstructor {
     A : PointElement;
@@ -31,8 +27,6 @@ interface ILineElementConstructor {
 
 export class LineElement extends GeomElement {
     protected _A : PointElement;
-
-    protected _paperJSLine : Line = null;
 
     get A() : PointElement { return this._A; }
 
@@ -46,7 +40,7 @@ export class LineElement extends GeomElement {
         this._B = ile && ile.B || null;
     }
 
-    public drawEdge(ctx: CanvasRenderingContext2D, color?: string): void {
+    public drawEdge(ctx: HTMLCanvasElement, color?: string): void {
         if (color == null) {
             if (this.shouldHighlight) {
                 color = this.edgeHighlightColor;
@@ -55,24 +49,17 @@ export class LineElement extends GeomElement {
             }
         }
 
-        let from = new Point(this._A.x, this._A.y);
-        let to = new Point(this._B.x, this._B.y);
-        if (this._paperJSLine != null) this._paperJSLine.remove();
-        this._paperJSLine = new Line(from, to);
-        this._paperJSLine.firstCurve.point1 = from;
-        this._paperJSLine.firstCurve.point2 = to;
-        this._paperJSLine.strokeColor = color;
-        this._paperJSLine.strokeWidth = 1;
-        this._paperJSLine.insertBelow(this._A.paper);
+        //let from = new Point(this._A.x, this._A.y);
+        //let to = new Point(this._B.x, this._B.y);
     }
 
-    public drawFace(c: CanvasRenderingContext2D): void {
+    public drawFace(c: SlateCanvas): void {
     }
 
-    public drawName(c: CanvasRenderingContext2D, d: Rectangle): void {
+    public drawName(c: SlateCanvas): void {
     }
 
-    public drawVertex(c: CanvasRenderingContext2D): void {
+    public drawVertex(c: SlateCanvas): void {
     }
 
     public rotate(pivot: PointElement, ac: number, as: number): void {

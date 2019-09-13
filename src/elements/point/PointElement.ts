@@ -15,14 +15,10 @@
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
 
-import paper = require('paper');
 import {GeomElement} from "../GeomElement";
 import {PlaneElement} from "../plane/PlaneElement";
 import {CircleElement} from "../circle/CircleElement";
-import Point = paper.Point;
-import Color = paper.Color;
-import Circle = paper.Path.Circle;
-import Item = paper.Item;
+import {SlateCanvas} from "../../Slate";
 
 export interface IPointElementConstruction {
     x : number;
@@ -37,7 +33,6 @@ export class PointElement extends GeomElement {
     protected _y : number;
     protected _z : number;
     protected _AP : PlaneElement;
-    protected _PaperJSElement : Circle = null;
 
     constructor(ip? : IPointElementConstruction) {
         super();
@@ -53,9 +48,6 @@ export class PointElement extends GeomElement {
 
     get AP() { return this._AP; }
 
-    get paper() : Item {
-        return this._PaperJSElement;
-    }
 
     public defined() : boolean {
         return !isNaN(this._x) && !isNaN(this._y) && !isNaN(this._z)
@@ -383,13 +375,14 @@ export class PointElement extends GeomElement {
         }
     }
 
-    public drawName(c: CanvasRenderingContext2D, d: paper.Rectangle): void {
+    public drawName(c: SlateCanvas): void {
         if (this.nameColor != null && this.name != null && this.defined()) {
-            this.drawString(Math.round(this.x), Math.round(this.y), d, c)
+            this.drawString(Math.round(this.x), Math.round(this.y), c)
         }
     }
 
-    public drawVertex(ctx: CanvasRenderingContext2D, color?: string): void {
+    public drawVertex(c: HTMLCanvasElement, color?: string): void {
+        let ctx = c.getContext("2d");
         if (color == null) {
             if (this.shouldHighlight) {
                 color = this.vertexHighlightColor;
@@ -412,9 +405,9 @@ export class PointElement extends GeomElement {
     public update(): void {
     }
 
-    public drawEdge(c: CanvasRenderingContext2D): void {
+    public drawEdge(c: SlateCanvas): void {
     }
 
-    public drawFace(c: CanvasRenderingContext2D): void {
+    public drawFace(c: SlateCanvas): void {
     }
 }
