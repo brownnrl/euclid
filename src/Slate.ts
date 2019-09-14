@@ -18,8 +18,13 @@ export class Slate {
     private _htmlCanvas : HTMLCanvasElement = null;
     protected _bgcolor : string;
     public    inTest : boolean = false;
+    private static numSlate : number = 0;
+    private _itsNumSlate : number = -1;
 
     constructor(canvas: SlateCanvas) {
+        Slate.numSlate += 1;
+        this._itsNumSlate = Slate.numSlate;
+
         this._elements = [];
         this._preExists = [];
         if(canvas == null) {
@@ -40,11 +45,17 @@ export class Slate {
                 C: screen_y
         });
         screen.name = "screen";
+        screen.nameColor = null;
         screen.isScreen = true;
         this._screen = screen;
         this._pick = null;
 
         for(let e of [screen_origin, screen_x, screen_y, screen]) {
+            e.nameColor = null;
+            e.vertexColor = null;
+            e.vertexHighlightColor = null;
+            e.faceColor = null;
+            e.faceHighlightColor = null;
             this._elements.push(e);
         }
         this._originalElements = [...this._elements];
@@ -56,13 +67,18 @@ export class Slate {
             this._htmlCanvas = cnv;
 
             cnv.addEventListener("mousedown", (ev) => {
-                slate._onMouseDown(ev.x, ev.y);
+                let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+                slate._onMouseDown(x, y);
             });
+
             cnv.addEventListener("mouseup", (ev) => {
-                slate._onMouseUp(ev.x, ev.y);
+                let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+                slate._onMouseUp(x, y);
             });
+
             cnv.addEventListener("mousemove", (ev) => {
-                slate._onMouseDrag(ev.x, ev.y);
+                let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+                slate._onMouseDrag(x, y);
             });
 
             for(let [tEvent, mEvent] of [
@@ -93,6 +109,12 @@ export class Slate {
         let r = this._htmlCanvas.getBoundingClientRect();
         return [te.touches[0].clientX - r.left,
                 te.touches[0].clientY - r.top];
+    }
+
+    _getCanvasPosition(x: number, y: number) : [number, number] {
+        let r = this._htmlCanvas.getBoundingClientRect();
+        return [x - r.left,
+                y - r.top];
     }
 
     _onMouseDown(x: number, y: number) {

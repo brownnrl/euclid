@@ -390,6 +390,7 @@ export class PointElement extends GeomElement {
                 color = this.vertexColor;
             }
         }
+        if (color == null) return;
         ctx.beginPath();
         ctx.fillStyle = color;
         ctx.arc(this._x, this._y, 2, 0, 2*Math.PI, false);
