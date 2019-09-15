@@ -3,6 +3,7 @@ import {AllConstructions, E as e} from "./elements/Constructions"
 import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
+import {colors, randomColor, lighten, darken, parseColor} from "./Colors";
 
 export type AllConstructions = AllConstructions;
 export {align  as Align};
@@ -53,33 +54,25 @@ export function init(i : IInitialization) {
     for(let param of i.elements) {
         let element = slate.createElement(param.construction, param.params, param.name);
 
-        // Name string
-        if(param.nameColor != null) {
-            element.nameColor = param.nameColor;
-        } else if (element instanceof PointElement) {
-            element.nameColor = 'black';
-        }
-
         element.align = defaultAlign;
 
-        if (param.vertexColor != null) {
-            element.vertexColor = param.vertexColor;
-        } else if (element.dimension == 0) {
-            element.vertexColor = element.draggable ?
-                ((element instanceof PlaneSlider) ?
-                    'red' : 'orange')
-                : 'black';
-        }
+        // Name string
+        let defaultNameColor = element instanceof PointElement ? "black" : null;
+        element.nameColor = parseColor(param.nameColor, defaultNameColor, slate.bgcolor);
 
-        if (param.faceColor != null) {
-            element.faceColor = param.faceColor;
-        } else if (element.dimension == 2) {
-            element.faceColor = 'cyan'; // TODO: background.brighter()
-        }
+        let defaultVertexColor = element.draggable ?
+            ((element instanceof PlaneSlider) ?
+                'red' : 'orange')
+            : 'black';
+        param.vertexColor = parseColor(param.vertexColor, defaultVertexColor, slate.bgcolor);
 
+        let lighterColor = lighten(slate.bgcolor);
+        let defaultFaceColor = element.dimension == 2 ? lighterColor : null;
+        element.faceColor = parseColor(param.faceColor, defaultFaceColor, slate.bgcolor);
     }
 
     slate.update();
     slate.updateCoordinates(0);
 
 }
+

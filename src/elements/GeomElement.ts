@@ -35,7 +35,7 @@ export abstract class GeomElement {
     private _nameColor: string = 'black';
     protected _vertexColor : string = 'red';
     private _edgeColor : string = 'black';
-    private _faceColor : string = 'blue';
+    private _faceColor : string = null;
 
     private _nameHighlightColor   : string = '#FF0000';
     private _vertexHighlightColor : string = '#FFFFFF';
