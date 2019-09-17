@@ -42,6 +42,8 @@ export abstract class GeomElement {
     private _edgeHighlightColor   : string = '#FFFFFF';
     private _faceHighlightColor   : string = '#00FFFF';
 
+    protected static _font : string = "italic 10pt Times New Roman";
+
     private _draggable : boolean;
     private _dimension : number;
     private _align : Align;
@@ -49,14 +51,19 @@ export abstract class GeomElement {
     private _shouldHighlight : boolean = false;
     protected _pixelTolerance : number = 50;
 
+    protected _getTextMetrics(ctx: CanvasRenderingContext2D, txt: string) : [number, number] {
+        let textMetrics = ctx.measureText(txt);
+        let w = textMetrics.width;
+        let h = 16; // assuming 12 font
+        return [w, h];
+    }
+
     drawString(ix : number, iy : number,  c: SlateCanvas) {
         let ctx = c.getContext("2d");
         if(this._nameColor == null) return;
-        ctx.font = "italic 10pt Times New Roman";
+        ctx.font = GeomElement._font;
         ctx.fillStyle = this._nameColor;
-        let textMetrics = ctx.measureText(this._name);
-        let w = textMetrics.width;
-        let h = 16; // assuming 12 font
+        let [w, h] = this._getTextMetrics(ctx, this._name);
 
         switch (this._align) {
             case Align.LEFT:

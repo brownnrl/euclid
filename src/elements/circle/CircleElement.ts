@@ -56,13 +56,69 @@ export class CircleElement extends GeomElement {
         return this.A.distance2(this.B);
     }
 
+    public defined() : boolean {
+        return true;
+        //return this.Center.defined() && this.A.defined()
+        //    && this.B.defined() && this.AP.defined();
+    }
+
     public drawEdge(c: SlateCanvas): void {
+        if (this.edgeColor!=null  && this.defined()) {
+            let ctx = c.getContext("2d");
+            ctx.strokeStyle = this.edgeColor;
+            ctx.beginPath();
+            let r2 : number = this.radius2;
+            let r : number = Math.sqrt(r2);
+            let amp2 : number = this.AP.S.z*this.AP.S.z + this.AP.T.z*this.AP.T.z;
+            if (Math.abs(amp2) < 0.01) { // the circle is flat
+                ctx.ellipse(
+                    this.Center.x,
+                    this.Center.y,
+                    r,
+                    r,
+                    0,
+                    0,
+                    2*Math.PI);
+                ctx.stroke();
+                console.log("drawing circle if");
+                return;
+            }
+            let h : number = r/Math.sqrt(amp2);
+            // determine major and minor radius vectors
+            let rcos :number = h*this.AP.T.z;
+            let rsin :number = -h*this.AP.S.z;
+            let majorx :number = rcos*this.AP.S.x + rsin*this.AP.T.x;
+            let majory :number = rcos*this.AP.S.y + rsin*this.AP.T.y;
+            let factor :number = (amp2 < 1.0)? Math.sqrt(1.0-amp2) : 0.0;
+            let minorx :number = -factor*majory;
+            let minory :number = factor*majorx;
+            let zeroPoint : PointElement = new PointElement({x:0,y:0})
+            let majorR : number = (new PointElement({x:majorx, y:majory})).distance(zeroPoint);
+            let minorR : number = (new PointElement({x:minorx, y:minory})).distance(zeroPoint);
+            ctx.ellipse(
+                this.Center.x,
+                this.Center.y,
+                majorR,
+                minorR,
+                0,
+                0,
+                2*Math.PI);
+            ctx.stroke();
+            console.log("drawing circle else");
+        }
     }
 
     public drawFace(c: SlateCanvas): void {
     }
 
     public drawName(c: SlateCanvas): void {
+        if (this.nameColor != null && this.name != null) {
+            let ctx = c.getContext("2d");
+            ctx.strokeStyle = this.nameColor;
+            ctx.font = GeomElement._font;
+            let [w, h] = this._getTextMetrics(ctx, this.name);
+            ctx.fillText(this._name, this.Center.x - w/2, this.Center.y - h/2);
+        }
     }
 
     public drawVertex(c: SlateCanvas): void {
