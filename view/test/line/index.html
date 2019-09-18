@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>Test View</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:600px; height: 600px;"></canvas>
+<!-- Dependencies -->
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    console.log(geomlib);
+    let Color = geomlib.Color;
+    let Align = geomlib.Align;
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Post.1",
+        align: Align.ABOVE,
+        canvasid: "canvasId",
+        elements: [
+        // <param name=background value="35,19,100">
+        // <param name=title value="Post.4">
+        // <param name=e[1] value="A;point;free;40,130">
+            {
+                name: "A",
+                construction: E.Point.free,
+                params: [40, 130]
+            },
+        // <param name=e[2] value="B;point;free;160,130">
+            {
+                name: "B",
+                construction: E.Point.free,
+                params: [160, 130]
+            },
+        // <param name=e[3] value="AB;line;connect;A,B">
+            {
+                name: "AB",
+                construction: E.Line.connect,
+                params: ["A", "B"]
+            },
+        // <param name=e[4] value="C;point;lineSlider;AB,90,130">
+            {
+                name: "C",
+                construction: E.Point.lineSlider,
+                params: ["A", "B", 90, 130]
+            },
+        // <param name=e[5] value="D;point;perpendicular;C,B">
+            {
+                name: "D",
+                construction: E.Point.perpendicular,
+                params: ["C", "B"]
+            },
+        // <param name=e[6] value="CD;line;connect;C,D">
+        // <param name=e[7] value="E;point;free;160,40">
+        // <param name=e[8] value="F;point;free;270,130">
+        // <param name=e[9] value="EF;line;connect;E,F">
+        // <param name=e[10] value="G;point;lineSlider;EF,215,85">
+        // <param name=e[11] value="H;point;perpendicular;G,F">
+        // <param name=e[12] value="GH;line;connect;G,H">
+        ]
+    })
+
+</script>
+</body>
+</html>
