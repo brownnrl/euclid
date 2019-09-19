@@ -22,8 +22,11 @@ import {LineElement} from "./LineElement";
 import {PlaneElement} from "../plane/PlaneElement";
 
 interface IPerpendicularElementConstructor {
-    A : PointElement;
-    B : PointElement;
+    C : PointElement;
+    D : PointElement;
+    P : PlaneElement;
+    E : PointElement;
+    F : PointElement;
 }
 
 export class Perpendicular extends LineElement {
@@ -36,46 +39,39 @@ export class Perpendicular extends LineElement {
     protected _F : PointElement;
     protected _P : PlaneElement;
 
-    // TODO: Pick it up from here.
-    constructor(ile?: IPerpendicularElementConstructor) {
+    constructor(ipe?: IPerpendicularElementConstructor) {
         super();
         this.dimension = 1;
-        this._A = ile && ile.A || null;
-        this._B = ile && ile.B || null;
-    }
-
-    public drawEdge(c: HTMLCanvasElement, color?: string): void {
-        if (color == null) {
-            if (this.shouldHighlight) {
-                color = this.edgeHighlightColor;
-            } else {
-                color = this.edgeColor;
-            }
-        }
-
-        let ctx = c.getContext("2d");
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.moveTo(this._A.x, this._A.y);
-        ctx.lineTo(this._B.x, this._B.y);
-        ctx.stroke();
-    }
-
-    public drawFace(c: SlateCanvas): void {
-    }
-
-    public drawName(c: SlateCanvas): void {
-    }
-
-    public drawVertex(c: SlateCanvas): void {
+        if(ipe == null) return;
+        this._P = ipe.P;
+        this._A = new PointElement({AP: ipe.P});
+        this._B = new PointElement({AP: ipe.P});
+        this._C = ipe.C;
+        this._D = ipe.D;
+        this._E = ipe.E;
+        this._F = ipe.F;
     }
 
     public rotate(pivot: PointElement, ac: number, as: number): void {
+        this.A.rotate(pivot, ac, as);
+        this.B.rotate(pivot, ac, as);
     }
 
     public translate(dx: number, dy: number): void {
+        this.A.translate(dx,dy);
+        this.B.translate(dx,dy);
     }
 
     public update(): void {
+        this._A.to(this._C).toPlane(this._P);
+        this._B.to(this._D).minus(this._A);
+        let Bs : number = PointElement.dot(this.B,this._P.S);
+        let Bt : number = PointElement.dot(this.B,this._P.T);
+        let factor : number = Math.sqrt(this._E.distance2(this._F)/(Bs*Bs+Bt*Bt));
+        Bs = -Bs/factor;
+        Bt /= factor;
+        this._B.x = Bt*this._P.S.x + Bs*this._P.T.x + this._A.x;
+        this._B.y = Bt*this._P.S.y + Bs*this._P.T.y + this._A.y;
+        this._B.z = Bt*this._P.S.z + Bs*this._P.T.z + this._A.z;
     }
 }

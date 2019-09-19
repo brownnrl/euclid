@@ -1,7 +1,7 @@
 import {GeomElement} from "./elements/GeomElement";
 import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
-import {AllConstructions, Construction, constructions, getConstructionName, PreExists} from "./elements/Constructions";
+import {AllConstructions, Construction, constructions, getConstructionName} from "./elements/Constructions";
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas, createCanvas} from "canvas";
 
@@ -11,7 +11,7 @@ export class Slate {
 
     protected _originalElements : GeomElement[];
     protected _elements : GeomElement[];
-    protected _preExists : PreExists[];
+    protected _elementsForUpdate : GeomElement[];
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
@@ -26,7 +26,7 @@ export class Slate {
         this._itsNumSlate = Slate.numSlate;
 
         this._elements = [];
-        this._preExists = [];
+        this._elementsForUpdate = [];
         if(canvas == null) {
             throw new TypeError("canvas cannot be null or undefined.");
         }
@@ -34,9 +34,9 @@ export class Slate {
 
         let screen_origin = new FixedPoint(0,0,0);
         screen_origin.name = "screen_origin";
-        let screen_x      = new FixedPoint(0,0,0);
+        let screen_x      = new FixedPoint(1,0,0);
         screen_x.name = "screen_x";
-        let screen_y      = new FixedPoint(0,0,0);
+        let screen_y      = new FixedPoint(0,1,0);
         screen_y.name = "screen_y";
 
         let screen = new PlaneElement({
@@ -59,6 +59,7 @@ export class Slate {
             this._elements.push(e);
         }
         this._originalElements = [...this._elements];
+        this._elementsForUpdate = [...this._elements];
 
         let slate = this;
 
@@ -193,11 +194,12 @@ export class Slate {
             }
             throw new TypeError(`Construction not found for "${name}" ${cName} with params ${params}`);
         }
-        let [p, g] = c.construct(this._screen, params);
+        let [gs, g] = c.construct(this._screen, params);
         if(name != null)
             g.name = name;
+        this._elementsForUpdate = this._elementsForUpdate.concat(gs);
+        this._elements = this._elements.concat(gs);
         this._elements.push(g);
-        this._preExists.push(p);
         return g;
     }
 
@@ -214,7 +216,7 @@ export class Slate {
         // we draw all the elements first
         let w = this._canvas.width;
         let h = this._canvas.height;
-        for(let element of this._elements) element.update();
+        for(let element of this._elementsForUpdate) element.update();
         let ctx = this._canvas.getContext("2d");
         ctx.clearRect(0,0,w,h);
         ctx.fillStyle = this._bgcolor;
@@ -239,9 +241,7 @@ export class Slate {
     translateCoordinates(dx : number, dy: number) {
         for(let i = 0; i < this._elements.length; i++) {
             let elem = this._elements[i];
-            if(!this._preExists[i]) {
-                elem.translate(dx, dy);
-            }
+            elem.translate(dx, dy);
         }
         this.update();
     }

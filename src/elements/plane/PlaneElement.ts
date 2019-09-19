@@ -72,11 +72,24 @@ export class PlaneElement extends GeomElement {
     }
 
     public rotate(pivot: PointElement, ac: number, as: number): void {
+        this.update();
     }
 
     public translate(dx: number, dy: number): void {
     }
 
     public update(): void {
+        if (this.isScreen && (this.A.z!=0.0 || this.B.z!=0.0 || this.C.z!=0.0))
+            this.isScreen = false;
+        // update the frame S,T,U
+        this.S.to(this.B).minus(this.A);
+        this.T.to(this.C).minus(this.A);
+        this.S.times(1.0/this.S.length());
+        let st : number = PointElement.dot(this.T, this.S);
+        this.T.x -= st*this.S.x;
+        this.T.y -= st*this.S.y;
+        this.T.z -= st*this.S.z;
+        this.T.times(1.0/this.T.length());
+        this.U.toCross(this.S,this.T);
     }
 }

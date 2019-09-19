@@ -25,6 +25,7 @@ import {LineSlider} from "./point/LineSlider";
 import {Layoff} from "./point/Layoff";
 import {SectorElement} from "./sector/SectorElement";
 import {CircleSlider} from "./point/CircleSlider";
+import {Perpendicular} from "./line/Perpendicular";
 
 export enum ConstructionTypes {
     Integer,
@@ -166,12 +167,12 @@ export type AllConstructions =
     SectorConstructions  |
     PolyhedraConstructions;
 
-export type PreExists = boolean
+export type GeomElementsForUpdate = GeomElement[];
 
 export abstract class Construction {
     public abstract constructionMethod : AllConstructions;
     public abstract signature: ConstructionTypes[];
-    public abstract construct(screen: PlaneElement, params: any[]) : [PreExists, GeomElement];
+    public abstract construct(screen: PlaneElement, params: any[]) : [GeomElementsForUpdate, GeomElement];
     // TODO: Optional values (such as null z coordinates) should be allowed
     public validateSignature(cm : AllConstructions, params: any[]) : boolean {
         if (cm != this.constructionMethod) return false;
@@ -217,11 +218,13 @@ let ct = ConstructionTypes;
 export class FreePointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.free;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer];
-    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let x : number = params[0];
         let y : number = params[1];
 
-        return [false, new PlaneSlider(screen, x, y, 0)];
+        let g = new PlaneSlider(screen, x, y, 0);
+
+        return [[g], g];
     }
 
 }
@@ -229,43 +232,61 @@ export class FreePointConstruction extends Construction {
 export class MidPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.midpoint;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let a : PointElement = params[0];
         let b : PointElement = params[1];
 
-        return [false, new Midpoint(a, b)];
+        let g = new Midpoint(a, b);
+
+        return [[g], g];
     }
 }
 
 export class LineConnectConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.connect;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let a : PointElement = params[0];
         let b : PointElement = params[1];
 
-        return [false, new LineElement({A:a, B:b})];
+        let g = new LineElement({A:a, B: b});
+
+        return [[g], g];
     }
 }
 
-// TODO: Optional values (such as null z coordinates) should be allowed
 export class LineSliderConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.lineSlider;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer, ct.Integer];
-    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let a : PointElement = params[0];
         let b : PointElement = params[1];
         let x : number = params[2];
         let y : number = params[3];
         let z : number = params[4];
 
-        return [false, this.createSlider(a,b,x,y,z)];
+        let g = this.createSlider(a,b,x,y,z);
+
+        return [[g], g];
     }
     protected createSlider(a: PointElement, b: PointElement, x: number, y: number, z: number) {
         return new LineSlider(a, b, x, y, z, false);
     }
 }
 
+export class LineSlider2dConstruction extends LineSliderConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let x : number = params[2];
+        let y : number = params[3];
+
+        let g = this.createSlider(a,b,x,y,0);
+
+        return [[g], g];
+    }
+}
 
 export class LineSliderSegmentConstruction extends LineSliderConstruction {
     constructionMethod: AllConstructions = PointConstructions.lineSegmentSlider;
@@ -276,9 +297,10 @@ export class LineSliderSegmentConstruction extends LineSliderConstruction {
 
 abstract class LayoffConstruction extends Construction {
     signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
-    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let ps : PointElement[] = params;
-        return [false, this._createLayoff(ps)];
+        let g = this._createLayoff(ps);
+        return [[g], g];
     }
 
     protected abstract _createLayoff(ps: PointElement[]) : GeomElement;
@@ -302,9 +324,10 @@ export class SectorConstruction extends Construction {
     constructionMethod: AllConstructions = SectorConstructions.sector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
 
-    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let ps : PointElement[] = params;
-        return [false, new SectorElement({O:ps[0], A:ps[1], B:ps[2], P: screen})];
+        let g = new SectorElement({O:ps[0], A:ps[1], B:ps[2], P: screen});
+        return [[g], g];
     }
 }
 
@@ -312,10 +335,11 @@ export class CircleSliderConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.circleSlider;
     signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer, ct.Integer];
 
-    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let c : CircleElement = params[0];
         let ns : number[] = params.slice(1,4);
-        return [false, new CircleSlider(c, ns[0], ns[1], ns[2])];
+        let g = new CircleSlider(c, ns[0], ns[1], ns[2]);
+        return [[g], g];
     }
 }
 
@@ -323,9 +347,21 @@ export class CircleRadiusCenterConstruction extends Construction {
     constructionMethod: AllConstructions = CircleConstructions.radius;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
 
-    construct(screen : PlaneElement, params: any[]): [PreExists, GeomElement] {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let ps : PointElement[] = params;
-        return [false, new CircleElement({C:ps[0], B:ps[1], AP:screen})];
+        let g = new CircleElement({C:ps[0], B:ps[1], AP:screen});
+        return [[g], g];
+    }
+}
+
+export class PointPerpendicular1Construction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.perpendicular;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new Perpendicular({C:ps[0], D:ps[1],P:screen, E:ps[0], F:ps[1]});
+        return [[g], g.B];
     }
 }
 
@@ -334,12 +370,14 @@ export const constructions : Construction[] = [
     new MidPointConstruction(),
     new LineConnectConstruction(),
     new LineSliderConstruction(),
+    new LineSlider2dConstruction(),
     new LineSliderSegmentConstruction(),
     new ExtendConstruction(),
     new CutoffConstruction(),
     new SectorConstruction(),
     new CircleSliderConstruction(),
-    new CircleRadiusCenterConstruction()
+    new CircleRadiusCenterConstruction(),
+    new PointPerpendicular1Construction()
 ];
 
 

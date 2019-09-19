@@ -21,8 +21,8 @@ import {CircleElement} from "../circle/CircleElement";
 import {SlateCanvas} from "../../Slate";
 
 export interface IPointElementConstruction {
-    x : number;
-    y : number;
+    x? : number;
+    y? : number;
     z? : number;
     AP? : PlaneElement;
 }
@@ -43,8 +43,11 @@ export class PointElement extends GeomElement {
     }
 
     get x() { return this._x }
+    set x(value: number) { this._x = value }
     get y() { return this._y }
+    set y(value: number) { this._y = value }
     get z() { return this._z }
+    set z(value: number) { this._z = value }
 
     get AP() { return this._AP; }
 
