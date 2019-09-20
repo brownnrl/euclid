@@ -69,17 +69,18 @@ export class Slate {
         if(this._htmlCanvas.addEventListener == null) return;
 
         this._htmlCanvas.addEventListener("mousedown", (ev) => {
-            let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+            let [x, y] : number[] = this._getCanvasPosition(ev.clientX, ev.clientY);
+            console.log("I heard a mouse down.");
             slate._onMouseDown(x, y);
         });
 
         this._htmlCanvas.addEventListener("mouseup", (ev) => {
-            let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+            let [x, y] : number[] = this._getCanvasPosition(ev.clientX, ev.clientY);
             slate._onMouseUp(x, y);
         });
 
         this._htmlCanvas.addEventListener("mousemove", (ev) => {
-            let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+            let [x, y] : number[] = this._getCanvasPosition(ev.clientX, ev.clientY);
             slate._onMouseDrag(x, y);
         });
 
@@ -121,6 +122,7 @@ export class Slate {
     _onMouseDown(x: number, y: number) {
         this._pick = null;
         this.movePick(x, y);
+        console.log("I heard a mouse down ", this._pick);
     };
 
     _onMouseUp(x: number, y: number) {
@@ -217,7 +219,7 @@ export class Slate {
         let w = this._canvas.width;
         let h = this._canvas.height;
         for(let element of this._elementsForUpdate) element.update();
-        let ctx = this._canvas.getContext("2d");
+        let ctx : CanvasRenderingContext2D = this._canvas.getContext("2d") as CanvasRenderingContext2D;
         ctx.clearRect(0,0,w,h);
         ctx.fillStyle = this._bgcolor;
         ctx.fillRect(0,0,w,h);

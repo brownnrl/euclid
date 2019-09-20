@@ -85,7 +85,7 @@ export class SectorElement extends GeomElement {
 
     drawEdge(c: SlateCanvas): void {
         if (this.edgeColor == null || !this.defined()) return;
-        let ctx = c.getContext("2d");
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.strokeStyle = this.edgeColor;
         ctx.beginPath();
         let r = this.radius();
@@ -101,7 +101,7 @@ export class SectorElement extends GeomElement {
 
     drawFace(c: SlateCanvas): void {
         if (this.faceColor == null || !this.defined()) return;
-        let ctx = c.getContext("2d");
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.fillStyle = this.faceColor;
         ctx.beginPath();
         let r = this.radius();

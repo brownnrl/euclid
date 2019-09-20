@@ -59,7 +59,7 @@ export abstract class GeomElement {
     }
 
     drawString(ix : number, iy : number,  c: SlateCanvas) {
-        let ctx = c.getContext("2d");
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         if(this._nameColor == null) return;
         ctx.font = GeomElement._font;
         ctx.fillStyle = this._nameColor;

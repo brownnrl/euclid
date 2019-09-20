@@ -106,7 +106,7 @@ export class CircleElement extends GeomElement {
 
     public drawEdge(c: SlateCanvas): void {
         if (this.edgeColor == null || !this.defined()) return;
-        let ctx = c.getContext("2d");
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.strokeStyle = this.edgeColor;
         this._drawCircle(ctx);
         ctx.stroke();
@@ -114,7 +114,7 @@ export class CircleElement extends GeomElement {
 
     public drawFace(c: SlateCanvas): void {
         if (this.faceColor == null || !this.defined()) return;
-        let ctx = c.getContext("2d");
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.fillStyle = this.faceColor;
         this._drawCircle(ctx);
         ctx.fill();
@@ -122,7 +122,7 @@ export class CircleElement extends GeomElement {
 
     public drawName(c: SlateCanvas): void {
         if (this.nameColor != null && this.name != null) {
-            let ctx = c.getContext("2d");
+            let ctx = c.getContext("2d") as CanvasRenderingContext2D;
             ctx.strokeStyle = this.nameColor;
             ctx.font = GeomElement._font;
             let [w, h] = this._getTextMetrics(ctx, this.name);
