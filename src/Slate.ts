@@ -63,44 +63,44 @@ export class Slate {
 
         let slate = this;
 
-        if(this._canvas instanceof HTMLCanvasElement) {
-            let cnv : HTMLCanvasElement = this._canvas as HTMLCanvasElement;
-            this._htmlCanvas = cnv;
+        if (this._canvas instanceof Canvas) return;
 
-            cnv.addEventListener("mousedown", (ev) => {
-                let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
-                slate._onMouseDown(x, y);
+        let cnv : HTMLCanvasElement = this._canvas as unknown as HTMLCanvasElement;
+        this._htmlCanvas = cnv;
+
+        cnv.addEventListener("mousedown", (ev) => {
+            let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+            slate._onMouseDown(x, y);
+        });
+
+        cnv.addEventListener("mouseup", (ev) => {
+            let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+            slate._onMouseUp(x, y);
+        });
+
+        cnv.addEventListener("mousemove", (ev) => {
+            let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
+            slate._onMouseDrag(x, y);
+        });
+
+        for(let [tEvent, mEvent] of [
+            ["touchend", "mouseup"],
+            ["touchstart", "mousedown"],
+            ["touchmove", "mousemove"]
+        ]) {
+            this._htmlCanvas.addEventListener(tEvent, (tv : TouchEvent) => {
+                let pos = slate._getTouchPos(tv);
+                let me = new MouseEvent(mEvent,
+                    {clientX: pos[0], clientY: pos[1]});
+                slate._htmlCanvas.dispatchEvent(me);
             });
-
-            cnv.addEventListener("mouseup", (ev) => {
-                let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
-                slate._onMouseUp(x, y);
-            });
-
-            cnv.addEventListener("mousemove", (ev) => {
-                let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
-                slate._onMouseDrag(x, y);
-            });
-
-            for(let [tEvent, mEvent] of [
-                ["touchend", "mouseup"],
-                ["touchstart", "mousedown"],
-                ["touchmove", "mousemove"]
-            ]) {
-                this._htmlCanvas.addEventListener(tEvent, (tv : TouchEvent) => {
-                    let pos = slate._getTouchPos(tv);
-                    let me = new MouseEvent(mEvent,
-                        {clientX: pos[0], clientY: pos[1]});
-                    slate._htmlCanvas.dispatchEvent(me);
-                });
-            }
-            for(let eventType of ["touchstart", "touchmove", "touchend"]) {
-                document.body.addEventListener(eventType, (tv) => {
-                    if (tv.target == slate._htmlCanvas) {
-                        tv.preventDefault();
-                    }
-                }, false);
-            }
+        }
+        for(let eventType of ["touchstart", "touchmove", "touchend"]) {
+            document.body.addEventListener(eventType, (tv) => {
+                if (tv.target == slate._htmlCanvas) {
+                    tv.preventDefault();
+                }
+            }, false);
         }
 
     }
@@ -199,7 +199,7 @@ export class Slate {
             g.name = name;
         this._elementsForUpdate = this._elementsForUpdate.concat(gs);
         this._elements = this._elements.concat(gs);
-        this._elements.push(g);
+        if (gs.indexOf(g) == -1) { this._elements.push(g)}
         return g;
     }
 
