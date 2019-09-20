@@ -3,7 +3,7 @@ import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
 import {AllConstructions, Construction, constructions, getConstructionName} from "./elements/Constructions";
 import {PointElement} from "./elements/point/PointElement";
-import {Canvas, createCanvas} from "canvas";
+import {Canvas} from "canvas";
 
 export type SlateCanvas = HTMLCanvasElement | Canvas;
 
@@ -63,22 +63,22 @@ export class Slate {
 
         let slate = this;
 
-        if (this._canvas instanceof Canvas) return;
-
-        let cnv : HTMLCanvasElement = this._canvas as unknown as HTMLCanvasElement;
+        let cnv : HTMLCanvasElement = this._canvas as HTMLCanvasElement;
         this._htmlCanvas = cnv;
 
-        cnv.addEventListener("mousedown", (ev) => {
+        if(this._htmlCanvas.addEventListener == null) return;
+
+        this._htmlCanvas.addEventListener("mousedown", (ev) => {
             let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
             slate._onMouseDown(x, y);
         });
 
-        cnv.addEventListener("mouseup", (ev) => {
+        this._htmlCanvas.addEventListener("mouseup", (ev) => {
             let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
             slate._onMouseUp(x, y);
         });
 
-        cnv.addEventListener("mousemove", (ev) => {
+        this._htmlCanvas.addEventListener("mousemove", (ev) => {
             let [x, y] : number[] = this._getCanvasPosition(ev.x, ev.y);
             slate._onMouseDrag(x, y);
         });
