@@ -49,6 +49,8 @@ export class LineElement extends GeomElement {
             }
         }
 
+        if (color == null) return;
+
         let ctx = c.getContext("2d");
         ctx.fillStyle = color;
         ctx.beginPath();

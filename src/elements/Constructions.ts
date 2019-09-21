@@ -26,6 +26,7 @@ import {Layoff} from "./point/Layoff";
 import {SectorElement} from "./sector/SectorElement";
 import {CircleSlider} from "./point/CircleSlider";
 import {Perpendicular} from "./line/Perpendicular";
+import {Bichord} from "./line/Bichord";
 
 export enum ConstructionTypes {
     Integer,
@@ -365,6 +366,17 @@ export class PointPerpendicular1Construction extends Construction {
     }
 }
 
+export class BichordConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.bichord;
+    signature: ConstructionTypes[] = [ct.CircleElement, ct.CircleElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : CircleElement[] = params;
+        let g = new Bichord({C:ps[0], D:ps[1]});
+        return [[g], g];
+    }
+}
+
 export const constructions : Construction[] = [
     new FreePointConstruction(),
     new MidPointConstruction(),
@@ -377,7 +389,8 @@ export const constructions : Construction[] = [
     new SectorConstruction(),
     new CircleSliderConstruction(),
     new CircleRadiusCenterConstruction(),
-    new PointPerpendicular1Construction()
+    new PointPerpendicular1Construction(),
+    new BichordConstruction()
 ];
 
 

@@ -64,7 +64,9 @@ export function init(i : IInitialization) {
             ((element instanceof PlaneSlider) ?
                 'red' : 'orange')
             : 'black';
-        param.vertexColor = parseColor(param.vertexColor, defaultVertexColor, slate.bgcolor);
+        element.vertexColor = parseColor(param.vertexColor, defaultVertexColor, slate.bgcolor);
+
+        element.edgeColor = parseColor(param.edgeColor, "black", slate.bgcolor);
 
         let lighterColor = lighten(slate.bgcolor);
         let defaultFaceColor = element.dimension == 2 ? lighterColor : null;

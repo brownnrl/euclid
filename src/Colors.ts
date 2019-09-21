@@ -28,6 +28,8 @@ export function parseColor(val: string, dfault: string, bgcolor: string) : strin
         return colors[val];
     } else if (val == null) {
         return dfault;
+    } else if (val == "none" || 0 || "0" || "") {
+        return null;
     } else {
         return val;
     }

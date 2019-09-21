@@ -32,7 +32,7 @@ export class PointElement extends GeomElement {
     protected _x : number;
     protected _y : number;
     protected _z : number;
-    protected _AP : PlaneElement;
+    _AP : PlaneElement;
 
     constructor(ip? : IPointElementConstruction) {
         super();
