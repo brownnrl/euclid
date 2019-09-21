@@ -230,6 +230,24 @@ export class FreePointConstruction extends Construction {
 
 }
 
+
+export class FirstPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.first;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        return [[], params[0] as PointElement];
+    }
+
+}
+
+export class LastPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.last;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        return [[], params[1] as PointElement];
+    }
+}
+
 export class MidPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.midpoint;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -321,6 +339,18 @@ export class CutoffConstruction extends LayoffConstruction {
     }
 }
 
+export class LineExtendConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.extend;
+    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let lo = new Layoff(ps[1], ps[0], ps[1], ps[2], ps[3]);
+        let g = new LineElement({A: ps[1], B: lo});
+        return [[lo, g], g];
+    }
+}
+
 export class SectorConstruction extends Construction {
     constructionMethod: AllConstructions = SectorConstructions.sector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
@@ -377,15 +407,19 @@ export class BichordConstruction extends Construction {
     }
 }
 
+
 export const constructions : Construction[] = [
     new FreePointConstruction(),
+    new FirstPointConstruction(),
+    new LastPointConstruction(),
     new MidPointConstruction(),
-    new LineConnectConstruction(),
+    new ExtendConstruction(),
+    new CutoffConstruction(),
     new LineSliderConstruction(),
     new LineSlider2dConstruction(),
     new LineSliderSegmentConstruction(),
-    new ExtendConstruction(),
-    new CutoffConstruction(),
+    new LineConnectConstruction(),
+    new LineExtendConstruction(),
     new SectorConstruction(),
     new CircleSliderConstruction(),
     new CircleRadiusCenterConstruction(),

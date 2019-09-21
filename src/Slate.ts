@@ -4,6 +4,7 @@ import {FixedPoint} from "./elements/point/FixedPoint";
 import {AllConstructions, Construction, constructions, getConstructionName} from "./elements/Constructions";
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas} from "canvas";
+import {LineElement} from "./elements/line/LineElement";
 
 export type SlateCanvas = HTMLCanvasElement | Canvas;
 
@@ -70,7 +71,6 @@ export class Slate {
 
         this._htmlCanvas.addEventListener("mousedown", (ev) => {
             let [x, y] : number[] = this._getCanvasPosition(ev.clientX, ev.clientY);
-            console.log("I heard a mouse down.");
             slate._onMouseDown(x, y);
         });
 
@@ -122,7 +122,6 @@ export class Slate {
     _onMouseDown(x: number, y: number) {
         this._pick = null;
         this.movePick(x, y);
-        console.log("I heard a mouse down ", this._pick);
     };
 
     _onMouseUp(x: number, y: number) {
@@ -164,8 +163,15 @@ export class Slate {
                 case "string":
                     let g : GeomElement = this.lookupElement(param);
                     if ( g == null )
-                        throw new TypeError(`Element with name ${param} not found.`)
-                    converted_params.push(g);
+                        throw new TypeError(`Element with name ${param} not found.`);
+                    if (g instanceof LineElement) {
+                        // We push the two point elements of the line on top
+                        converted_params.push(g.A);
+                        converted_params.push(g.B);
+
+                    } else {
+                        converted_params.push(g);
+                    }
                     break;
                 case "number":
                     converted_params.push(param);
