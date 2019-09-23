@@ -43,7 +43,8 @@ export class PlaneElement extends GeomElement {
     public T : PointElement;
     public U : PointElement;
 
-    public isScreen : boolean;
+    public pivot : PointElement; // pivot point for the plane, if any
+    public isScreen : boolean; // set true only for initial screen plane
 
     constructor(ip? : IPlaneElementConstruction) {
         super();

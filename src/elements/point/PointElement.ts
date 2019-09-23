@@ -50,6 +50,7 @@ export class PointElement extends GeomElement {
     set z(value: number) { this._z = value }
 
     get AP() { return this._AP; }
+    set AP(v : PlaneElement) { this._AP = v; }
 
 
     public defined() : boolean {

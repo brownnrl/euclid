@@ -205,9 +205,14 @@ export class Slate {
         let [gs, g] = c.construct(this._screen, params);
         if(name != null)
             g.name = name;
-        this._elementsForUpdate = this._elementsForUpdate.concat(gs);
-        this._elements = this._elements.concat(gs);
-        if (gs.indexOf(g) == -1) { this._elements.push(g)}
+        for (let elem of gs) {
+            if (this._elementsForUpdate.indexOf(elem) == -1)
+                this._elementsForUpdate.push(elem);
+            if (this._elements.indexOf(elem) == -1)
+                this._elements.push(elem);
+        }
+        if(this._elements.indexOf(g) == -1)
+            this._elements.push(g);
         return g;
     }
 
@@ -216,6 +221,7 @@ export class Slate {
     }
 
     update() : void {
+        for(let element of this._elementsForUpdate) element.update();
         this.drawElements();
     }
 
@@ -224,7 +230,6 @@ export class Slate {
         // we draw all the elements first
         let w = this._canvas.width;
         let h = this._canvas.height;
-        for(let element of this._elementsForUpdate) element.update();
         let ctx : CanvasRenderingContext2D = this._canvas.getContext("2d") as CanvasRenderingContext2D;
         ctx.clearRect(0,0,w,h);
         ctx.fillStyle = this._bgcolor;
@@ -284,6 +289,16 @@ export class Slate {
         return this._pick;
     }
 
+    setPivot(name : string) : void {
+        let e : GeomElement = this.lookupElement(name);
+        if ( e == null || !(e instanceof PointElement) ) {
+            throw new TypeError("Pivot element must be a PointElement");
+        }
+        let piv : PointElement = e as PointElement;
+        piv.AP = this._screen;
+        this._screen.pivot = piv;
+    }
+
     movePick(c: number, d: number) : void {
         if(this._getPick(c, d) == null) return;
         let picki = this._elements.indexOf(this._pick);
@@ -303,18 +318,43 @@ export class Slate {
             } else {
                 return;
             }
-        } // TODO: PORT PIVOT CODE WHEN PIVOT IMPLEMENTED
-        /* Pivot code
-         else if (pick.AP != null && pick.AP.pivot != null
-                 && pick.AP.pivot != pick) // rotate around the pivot
-              rotateCoordinates(c,d);
-         */
-        else {
+        } else if (this._pick.AP != null 
+          && this._pick.AP.pivot != null
+          && this._pick.AP.pivot != this._pick) { // rotate around the pivot
+              this.rotateCoordinates(c,d);
+        } else {
             let dx = c - this._pick.x;
             let dy = d - this._pick.y;
             this.translateCoordinates(dx,dy);
         }
-        // repaint done automatically
+        this.drawElements();
+    }
+
+    rotateCoordinates(c : number, d : number) : void {
+      // rotate space according to how pick goes around pivot in the plane
+      let pick : PointElement = this._pick;
+      let piv : PointElement = pick.AP.pivot;
+      // compute old and new pick's 3D coordinates relative to the pivot
+      let oldP : PointElement = PointElement.difference(pick,piv);
+      let newx : number = c-piv.x;
+      let newy : number = d-piv.y;		//(newz is irrelevant)
+      // find their 2D coordinates on the plane
+      let S : PointElement = pick.AP.S;
+      let T : PointElement = pick.AP.T;
+      let olds : number = PointElement.dot(oldP,S);
+      let oldt : number = PointElement.dot(oldP,T);
+      let den  : number = S.x * T.y - S.y * T.x;
+      let news : number = (newx*T.y - newy*T.x)/den;
+      let newt : number = (newy*S.x - newx*S.y)/den;
+      // compute the scale&rotation factors
+      den = olds*olds + oldt*oldt;
+      let ac : number = (news*olds + newt*oldt)/den;
+      let as : number = (newt*olds - news*oldt)/den;
+      // rotate all the elements  
+      for (let elem of this._elementsForUpdate) {
+          elem.rotate(piv, ac, as);
+      }
+
     }
 
 }

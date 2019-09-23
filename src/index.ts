@@ -26,6 +26,7 @@ interface IInitialization {
     title : string;
     align? : align;
     canvasid? : string;
+    pivot?: string;
     elements: IConstructionInfo[];
 }
 
@@ -71,6 +72,10 @@ export function init(i : IInitialization) {
         let lighterColor = lighten(slate.bgcolor);
         let defaultFaceColor = element.dimension == 2 ? lighterColor : null;
         element.faceColor = parseColor(param.faceColor, defaultFaceColor, slate.bgcolor);
+    }
+
+    if(i.pivot != null) {
+        slate.setPivot(i.pivot);
     }
 
     slate.update();
