@@ -385,8 +385,8 @@ export class PointElement extends GeomElement {
         }
     }
 
-    public drawVertex(c: HTMLCanvasElement, color?: string): void {
-        let ctx = c.getContext("2d");
+    public drawVertex(c: SlateCanvas, color?: string): void {
+        let ctx : CanvasRenderingContext2D = c.getContext("2d") as CanvasRenderingContext2D;
         if (color == null) {
             if (this.shouldHighlight) {
                 color = this.vertexHighlightColor;

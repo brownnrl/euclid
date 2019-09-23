@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>Test View</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:200px; height: 200px;"></canvas>
+<!-- Dependencies -->
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    console.log(geomlib);
+    let Color = geomlib.Color;
+    let Align = geomlib.Align;
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Post.1",
+        align: Align.ABOVE,
+        canvasid: "canvasId",
+        elements: [
+            {
+                name: "C",
+                construction: E.Point.free,
+                params: [100, 100]
+            },
+            {
+                name: "T",
+                construction: E.Point.free,
+                params: [100, 50]
+            },
+            {
+                name: "B",
+                construction: E.Point.free,
+                params: [100, 150]
+            },
+            {
+                name: "L",
+                construction: E.Point.free,
+                params: [50, 100]
+            },
+            {
+                name: "R",
+                construction: E.Point.free,
+                params: [150, 100]
+            },
+            {
+                name: "CT",
+                construction: E.Line.connect,
+                params: ["C", "T"]
+            },
+            {
+                name: "CB",
+                construction: E.Line.connect,
+                params: ["C", "B"]
+            },
+            {
+                name: "CL",
+                construction: E.Line.connect,
+                params: ["C", "L"]
+            },
+            {
+                name: "CR",
+                construction: E.Line.connect,
+                params: ["C", "R"]
+            },
+            {
+                name: "TLB",
+                construction: E.Polygon.triangle,
+                params: ["T", "L", "B"],
+                nameColor: "black",
+                faceColor: "random"
+            }
+        ]
+    })
+
+</script>
+</body>
+</html>

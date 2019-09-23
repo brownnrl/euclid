@@ -27,6 +27,7 @@ import {SectorElement} from "./sector/SectorElement";
 import {CircleSlider} from "./point/CircleSlider";
 import {Perpendicular} from "./line/Perpendicular";
 import {Bichord} from "./line/Bichord";
+import {PolygonElement} from "./polygon/PolygonElement";
 
 export enum ConstructionTypes {
     Integer,
@@ -407,6 +408,19 @@ export class BichordConstruction extends Construction {
     }
 }
 
+abstract class PolyConstruction extends Construction {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new PolygonElement(ps);
+        return [[g],g];
+    }
+}
+
+export class TrianglePolygonConstruction extends PolyConstruction {
+    constructionMethod: AllConstructions = PolygonConstructions.triangle;
+    signature: ConstructionTypes[] = (new Array(3)).fill(ct.PointElement);
+}
+
 
 export const constructions : Construction[] = [
     new FreePointConstruction(),
@@ -424,7 +438,8 @@ export const constructions : Construction[] = [
     new CircleSliderConstruction(),
     new CircleRadiusCenterConstruction(),
     new PointPerpendicular1Construction(),
-    new BichordConstruction()
+    new BichordConstruction(),
+    new TrianglePolygonConstruction()
 ];
 
 
