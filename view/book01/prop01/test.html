@@ -1,0 +1,122 @@
+<html>
+<head>
+    <title>Test View</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:600px; height: 600px;"></canvas>
+<!-- Dependencies -->
+<script src="./bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    console.log(geomlib);
+    let Color = geomlib.Color;
+    let Align = geomlib.Align;
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Post.1",
+        align: Align.ABOVE,
+        canvasid: "canvasId",
+        //<param name=pivot value=C>
+        pivot: "C",
+        elements: [
+            // <param name=e[1] value="A;point;free;125,130">
+            {
+                name: "A",
+                construction: E.Point.free,
+                params: [125, 130]
+            },
+            // <param name=e[2] value="B;point;free;215,130">
+            {
+                name: "B",
+                construction: E.Point.free,
+                params: [215, 130]
+            },
+            // <param name=e[3] value="AB;line;connect;A,B">
+            {
+                name: "AB",
+                construction: E.Line.connect,
+                params: ["A", "B"]
+            },
+            // <param name=e[4] value="Acirc;circle;radius;A,B">
+            {
+                name: "Acirc",
+                construction: E.Circle.radius,
+                params: ["A", "B"]
+            },
+            // <param name=e[5] value="Bcirc;circle;radius;B,A">
+            {
+                name: "Bcirc",
+                construction: E.Circle.radius,
+                params: ["B", "A"]
+            },
+            // <param name=e[6] value="CD;line;bichord;Bcirc,Acirc;0;0;0">
+            {
+                name: "CD",
+                construction: E.Line.bichord,
+                params: ["Bcirc", "Acirc"],
+                edgeColor: "none"
+            },
+            //<param name=e[7] value="C;point;first;CD;black;green">
+            {
+                name: "C",
+                construction: E.Point.first,
+                params: ["CD"],
+                vertexColor: "green"
+            },
+            //<param name=e[8] value="AC;line;connect;A,C">
+            {
+                name: "AC",
+                construction: E.Line.connect,
+                params: ["A", "C"]
+            },
+            //<param name=e[9] value="BC;line;connect;B,C">
+            {
+                name: "BC",
+                construction: E.Line.connect,
+                params: ["B", "C"]
+            },
+            //<param name=e[10] value="AE;line;extend;AB,AB;0;0;0">
+            {
+                name: "AE",
+                construction: E.Line.extend,
+                params: ["AB", "AB"],
+                edgeColor: "none"
+            },
+            //<param name=e[11] value="E;point;last;AE;black;0">
+            {
+                name: "E",
+                construction: E.Point.last,
+                params: ["AE"],
+                edgeColor: "none",
+                vertexColor: "none"
+            },
+            //<param name=e[12] value="BD;line;extend;B,A,A,B;0;0;0">
+            {
+                name: "BD",
+                construction: E.Line.extend,
+                params: ["B", "A", "A", "B"],
+                edgeColor: "none",
+                vertexColor: "none",
+            },
+            //<param name=e[13] value="D;point;last;BD;black;0">
+            {
+                name: "D",
+                construction: E.Point.last,
+                params: ["BD"]
+            },
+            //<param name=e[14] value="ABC;polygon;triangle;A,B,C;0;0;0;random">
+            {
+                name: "ABC",
+                construction: E.Polygon.triangle,
+                params: ["A","B","C"],
+                nameColor: "none",
+                vertexColor: "none",
+                edgeColor: "none",
+                faceColor: "random"
+            }
+        ]
+    })
+
+</script>
+</body>
+</html>

@@ -1,11 +1,116 @@
-<html>
-<head>
-    <title>Test View</title>
-</head>
-<body>
-<canvas id="canvasId" style="width:600px; height: 600px;"></canvas>
-<!-- Dependencies -->
-<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<HTML><HEAD><TITLE>Euclid's Elements, Book I, Proposition 1</TITLE><link rel="stylesheet" type="text/css" href="../elements.css">
+<script src="./elements.js"></script>
+</HEAD>
+<BODY>
+
+<div id="header"></div>
+<a class="hover" href="../elements.html"><h1>Euclid's Elements</h1></a>
+
+<a class="hover" href="bookI.html"><h1>Book I</h1></a>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+
+<div class="statement">To construct an equilateral triangle on a given finite straight line.</div>
+
+<p>Let <i>AB</i> be the given finite straight line.
+
+<div class="ldiagram">
+<div id="ap1">
+    <canvas id="canvasPropI1" width="350" height="240"/>
+</div>
+<noscript>
+  <img src="propI1.gif" hspace=10 vspace=10 alt="I.1"/>
+</noscript>
+</div>
+
+<p>It is required to construct an equilateral triangle on the straight line <i>AB.</i>
+
+<div class="just"><a href=post3.html>I.Post.3</a>
+<br><a href=post1.html>I.Post.1</a></div>
+<p>Describe the circle <i>BCD</i> with center <i>A</i> and radius <i>AB.</i>  Again describe the circle <i>ACE</i> with center <i>B</i> and radius <i>BA.</i>  Join the straight lines <i>CA</i> and <i>CB</i> from the point <i>C</i> at which the circles cut one another to the points <i>A</i> and <i>B.</i>
+
+<div class="just"><a href=defI15.html>I.Def.15</a></div>
+<p>Now, since the point <i>A</i> is the center of the circle <i>CDB,</i> therefore
+<i>AC</i> equals <i>AB.</i> Again, since the point <i>B</i> is the center of the circle <i>CAE,</i> therefore <i>BC</i> equals <i>BA.</i>
+
+<p>But <i>AC</i> was proved equal to <i>AB,</i> therefore each of the straight lines <i>AC</i> and <i>BC</i> equals <i>AB.</i>
+
+<div class="just"><a href=cn.html>C.N.1</a></div>
+<p>And things which equal the same thing also equal one another, therefore <i>AC</i> also equals <i>BC.</i>
+
+<p>Therefore the three straight lines <i>AC, AB,</i> and <i>BC</i> equal one another.
+
+<div class="just"><a href=defI20.html>I.Def.20</a></div>
+<p>Therefore the triangle <i>ABC</i> is equilateral, and it has been constructed on the given finite straight line <i>AB.</i>
+
+<div class="qed">Q.E.F.</div>
+<br clear=all>
+</div>
+
+<a name=guide><h2>Guide</h2></a>
+
+
+This proposition is a very pleasant choice for the first proposition in the <i>Elements.</i>  The construction of the triangle is clear, and the proof that it is an equilateral triangle is evident.  Of course, there are two choices for the point <i>C,</i> but either one will do.
+
+<p>Euclid could have chosen proposition <a href=propI4.html>I.4</a> to come first, since it doesn&rsquo;t logically depend on the previous three, but there are some good reasons for putting I.1 first.  For one thing, the <i>Elements</i> ends with constructions of the five regular solids in Book XIII, so it is a nice aesthetic touch to begin with the construction of a regular triangle.  More important, though, is I.1 is needed in <a href=propI2.html>I.2</a>, and that in <a href=propI3.html>I.3</a>.  Propositions I.2 and I.3 give constructions for moving lines, and I.4, although not logically dependent on I.2 or I.3, does use the concept of superposition which involves, in some sense, moving points and lines.
+
+<h4>Marginal references to postulates, definitions, etc.</h4>
+
+The abbreviations in the right column refer to postulates, definitions, common notions, and previously proved propositions.  Each indicates a justification of a construction or conclusion in a sentence to its left.  They are not part of Euclid&rsquo;s <i>Elements,</i> but it is a tradition to include them as a guide to the reader.
+
+<p>Sometimes the justification is quoted in full as C.N.1 is here, but usually it is left to the reader to determine the justification.
+
+<h4>Q.E.F. and Q.E.D. at the ends of proofs</h4>
+
+The Q.E.F. at the end of the proof is an abbreviation for the Latin words <i>quod erat faciendum</i> which means &ldquo;which was to be done.&rdquo;  A few of the propositions, as this one and the next two, solve problems by constructions.  These are the ones that end with Q.E.F.  (they&rsquo;re also printed in red here in the listings of propositions for each book.)
+
+<p>The rest of the proofs end with Q.E.D. instead, an abbreviation for <i>quod erat demonstrandum</i> which means &ldquo;which was to be demonstrated.&rdquo;  It&rsquo;s convenient to have a standard way to indicate the end of a proof.  These Latin abbreviations are a bit of an anachronism.  It would be less of an anachronism to use abbreviations for the original Greek phrase, or abbreviations for a modern English phrase since the rest of this version of the <i>Elements</i> is in English.  But by now, Q.E.F. and Q.E.D. are traditional.  In recent decades a small square has become common as a symbol to indicate the end of a proof.
+
+<h4>Critiques of the proof</h4>
+
+It is surprising that such a short, clear, and understandable proof can be so full of holes.  These are logical gaps where statements are made with insufficient justification.  Since the first proof in the <i>Elements</i> is the one in this proposition, it has received more criticism over the centuries than any other.
+
+<p><b>Why does the point <i>C</i> exist?</b> 
+Near the beginning of the proof, the point <i>C</i> is mentioned where the circles are supposed  to intersect, but there is no justification for its existence.  The only one of Euclid&rsquo;s postulate  that says a point exists the parallel postulate, and that postulate is not relevant here.  
+
+Indeed, some postulate is needed for that conclusion, such as &ldquo;If the sum of the radii of two circles is greater than the line joining their centers, then the two circles intersect.&rdquo;  Such a postulate is also needed in Proposition <a href=propI22.html>I.22</a>.
+
+There are models of geometry in which the circles do not intersect.  Thus, other postulates  not mentioned by Euclid are required.   In Book III, Euclid takes some care in analyzing the possible ways that circles can meet, but even with more care, there are missing postulates.
+
+<p><b>Why is <i>ABC</i> a plane figure?</b> 
+After concluding the three straight lines <i>AC, AB,</i> and <i>BC</i> are equal, what is the justification that they contain a plane figure <i>ABC</i>?  Recall that a triangle is a plane figure bounded by contained by three lines.  These lines have not been shown to lie in a plane and that the entire figure lies in a plane.  It is proposition <a href=../bookXI/propXI1.html>XI.1</a> that claims that all parts of a line  lie in a plane, and <a href=../bookXI/propXI2.html>XI.2</a> that claims that the entire triangle lie in a plane.  Logically, they should precede I.1.  The reason they don&rsquo;t, of course, is that those propositions belong to solid geometry, and plane geometry is developed first in the <i>Elements,</i> also, no doubt, plane geometry developed first historically.
+
+<p><b>Why does <i>ABC</i> contain an equilateral triangle?</b> Proclus relates that early on there were critiques of the proof and describes that of Zeno of Sidon, an Epicurean philosopher of the early first century B.C.E. (not to be confused with Zeno of Elea famous of the paradoxes who lived long before Euclid), and whose criticisms, Proclus says, were refuted in a book by Posidonius.  The critique is sound, however, and the refutation faulty.  
+
+<table cellpadding=5>
+<tr><td>
+Zeno of Sidon criticized the proof because it was not shown that the sides do not meet before they reach the vertices.  Suppose <i>AC</i> and <i>BC</i> meet at <i>E</i> before they reach <i>C,</i> that is, the straight lines <i>AEC</i> and <i>BEC</i> have a common segment <i>EC.</i>  Then they would contain a triangle <i>ABE</i> which is not equilateral, but isosceles.
+
+<p>Zeno recognized that in order to destroy his counterexample it was necessary to assume that straight lines cannot have a common segment.  Proclus relates a supposed proof of that statement, the same one found in proposition <a href=../bookXI/propXI1.html>XI.1</a>, but it is faulty.  Proclus and Posidonius quoted properties of lines and circles that were never proven and never explicitly assumed as postulates.</td>
+
+<td>
+<div id="ap2">
+    <canvas id="canvasPropI1a" width="300" height="200"/>
+    <noscript>
+        <img src="propI1a.gif" hspace=10 vspace=10 alt="Zeno of Sidon"/>
+    </noscript>
+</div>
+</td></tr></table>
+
+<p>The possibilities that haven&rsquo;t been excluded are much more numerous than Zeno&rsquo;s example.  The sides could meet numerous times and the region they contain could look like a necklace of bubbles.  What needs to be shown (or assumed as a postulate) is that two infinitely extended straight lines can meet in at most one point.
+
+<h4>Use of Proposition 1</h4>
+
+The construction in this proposition is directly used in propositions
+<a href=propI2.html>I.2</a>, <a href=propI9.html>I.9</a>, <a href=propI10.html>I.10</a>, <a href=propI11.html>I.11</a>, <a href=../bookXI/propXI11.html>XI.11</a>, and <a href=../bookXI/propXI22.html>XI.22</a>.
+
+<div id="footer"></div>
+<script>
+  loadFooter("1996, 1997, 2010");
+</script>
+<script src="./bundle.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     console.log(geomlib);
     let Color = geomlib.Color;
@@ -15,7 +120,8 @@
         background: '#ffe9cd',
         title: "Post.1",
         align: Align.ABOVE,
-        canvasid: "canvasId",
+        canvasid: "canvasPropI1",
+        //<param name=pivot value=C>
         pivot: "C",
         elements: [
             // <param name=e[1] value="A;point;free;125,130">
@@ -62,7 +168,6 @@
                 params: ["CD"],
                 vertexColor: "green"
             },
-            //<param name=pivot value=C>
             //<param name=e[8] value="AC;line;connect;A,C">
             {
                 name: "AC",
@@ -115,8 +220,86 @@
                 faceColor: "random"
             }
         ]
-    })
+    });
 
 </script>
-</body>
-</html>
+<!-- canvas 2 -->
+
+<script type="text/javascript">
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Zeno of Sidon",
+        align: Align.ABOVE,
+        canvasid: "canvasPropI1a",
+        elements: [
+            //<param name=e[1] value="A;point;free;60,100">
+            {
+                name: "A",
+                construction: E.Point.free,
+                params: [60+60, 100] // I added a little extra space to X
+            },
+            //<param name=e[2] value="B;point;free;140,100">
+            {
+                name: "B",
+                construction: E.Point.free,
+                params: [140+60, 100]
+            },
+
+            //<param name=e[3] value="AB;line;connect;A,B">
+            {
+                name: "AB",
+                construction: E.Line.connect,
+                params: ["A", "B"]
+            },
+            //<param name=e[4] value="Acirc;circle;radius;A,B">
+            {
+                name: "Acirc",
+                construction: E.Circle.radius,
+                params: ["A", "B"]
+            },
+            //<param name=e[5] value="Bcirc;circle;radius;B,A">
+            {
+                name: "Bcirc",
+                construction: E.Circle.radius,
+                params: ["B", "A"]
+            },
+            //<param name=e[6] value="CD;line;bichord;Bcirc,Acirc;0;0;0">
+            {
+                name: "CD",
+                construction: E.Line.bichord,
+                params: ["Bcirc", "Acirc"],
+                nameColor: 0,
+                vertexColor: 0,
+                edgeColor: 0
+            },
+            //<param name=e[7] value="C;point;first;CD">
+            {
+                name: "C",
+                construction: E.Point.first,
+                params: ["CD"]
+            },
+            //<param name=e[8] value="E;point;lineSlider;CD,100,70">
+            {
+                name: "E",
+                construction: E.Point.lineSlider,
+                params: ["CD", 100, 70]
+            },
+            //<param name=e[9] value="ABE;polygon;triangle;A,B,E;0;0;black;random">
+            {
+                name: "ABE",
+                construction: E.Polygon.triangle,
+                params: ["A", "B", "E"],
+                nameColor: "none",
+                vertexColor: "none",
+                faceColor: "random"
+            },
+            //<param name=e[10] value="CE;line;connect;C,E">
+            {
+                name: "CE",
+                construction: E.Line.connect,
+                params: ["C", "E"]
+            }
+        ]
+    });
+</script>
+</BODY></HTML>
