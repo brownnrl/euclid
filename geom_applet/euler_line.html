@@ -1,0 +1,69 @@
+
+<!-- saved from url=(0061)http://aleph0.clarku.edu/~djoyce/java/Geometry/eulerline.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>The Euler Line of a Triangle</title>
+<meta name="d41d8cd98f00b204e9800998ecf8427e_lib_detect" id="d41d8cd98f00b204e9800998ecf8427e_lib_detect"><script src="chrome-extension://cgaocdmhkmfnkdkbnckgmpopcbpaaejo/library/libraries.js"></script><script src="chrome-extension://cgaocdmhkmfnkdkbnckgmpopcbpaaejo/content_scripts/lib_detect.js"></script></head>
+<body bgcolor="ffe9cd">
+
+<center>
+<h1>The Euler Line of a Triangle</h1>
+</center>
+
+It's amazing how much geometry there is in the lowly triangle! Consider the triangle <i>ABC</i> below (colored magenta).  Several interesting points and lines can be constructed, and they all move as you drag about a vertex <i>A</i>, <i>B</i>, or <i>C</i> of the triangle.
+
+<center>
+<div id="ap1"><img src="./euler_line_files/eulerline.gif" alt="Euler line for a triangle"><p><b>*** If you can read this, you're only seeing an image, not the real java applet! Enable Java on your browser to see the applet. ***</b></p></div>
+<script>
+if (!navigator.javaEnabled())
+  document.getElementById('ap1').innerHTML='<img src="eulerline.gif" alt="Euler line for a triangle"><p><b>*** If you can read this, you\'re only seeing an image, not the real java applet! Enable Java on your browser to see the applet. ***</b>';
+</script>
+</center>
+
+<h3>The centroid <i>G</i> of the triangle</h3>
+
+Along the sides of the triangle, you see the midpoints labelled <i>A'</i>, <i>B'</i>, and <i>C'</i>.  (By the way, you can place your mouse cursor over the diagram and press the return key to lift the diagram off the page.  You can move and resize the window that appears.) The midpoint of the side <i>BC</i> is <i>A'</i>, the midpoint of the side <i>CA</i> is <i>B'</i>, and the midpoint of the side <i>AB</i> is <i>C'</i>.  A line connecting a vertex of the triangle to the midpoint of the opposite side is called a <i>median</i> of the triangle.  The medians of this triangle are <i>AA'</i>, <i>BB'</i>, <i>CC'</i>, and they’re colored green. Notice that they all meet at one point <i>G</i> in the triangle, also colored green.  This point is called the <i>centroid</i> of the triangle.  Other names for the centroid are the <i>barycenter</i>  and the <i>center of gravity</i> of the triangle.  If you make a real triangle out of cardboard, you can balance the triangle at this point.
+
+<p>It can be shown that the centroid trisects the medians, that is to say, the distance from a vertex to the centroid <i>G</i> is twice the distance from the centroid to the opposite side of the triangle.  So, for instance, <i>AG</i> is twice <i>A'G</i>.
+ 
+</p><p>Incidentally, you can drag around other points besides the vertices <i>A</i>, <i>B</i>, and <i>C</i>.  If you drag any other point, the figure is designed to
+swirl around the centroid <i>G</i>.  An exception is <i>G</i> itself, and if you move it, the figure will slide along with it.  Only moving  <i>A</i>, <i>B</i>, or <i>C</i> will actually change the shape of the triangle.
+
+</p><h3>The circumcircle and the circumcenter <i>O</i></h3>
+
+<p>You might have first noticed the circle on which the vertices of the triangle <i>A</i>, <i>B</i>, and <i>C</i> all lie.  It is called the <i>circumcircle</i> of the triangle.  Any three points, unless they lie on a straight line, determine a unique circle, this circumcircle.  The center of this circle is called the <i>circumcenter</i>, and it’s denoted <i>O</i> in the figure.  For acute triangles, the circumcenter <i>O</i> lies inside the triangle; for obtuse triangles, it lies outside the triangle; but for right triangles, it coincides with the midpoint of the hypotenuse.
+
+</p><p>As <a href="http://aleph0.clarku.edu/~djoyce/java/elements/Euclid.html">Euclid</a> proved in <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookIV/propIV3.html">Propsition IV.3</a> of his <a href="http://aleph0.clarku.edu/~djoyce/java/elements/elements.html"><i>Elements</i></a>, the circumcenter can be found as the intersection of the three perpendicular bisectors of the sides of the triangle.  These are the lines perpendicular to the sides of the triangle passing through the midpoints of the sides.  They’re labelled <i>A'OD'</i>, <i>B'OE'</i>, and <i>C'OF'</i>, and they're colored black, as are the lines connecting the midpoints of the sides, <i>A'B'</i>, <i>B'C'</i>, and <i>C'A'</i>.
+
+</p><h3>The altitudes and the orthocenter <i>H</i></h3>
+
+There's yet another interesting “center” of the triangle, the orthocenter.
+An <i>altitude</i> of the triangle is a line drawn through a vertex perpendicular to the side of the triangle opposite the vertex.  There are three altitudes: one is <i>AD</i> perpendicular to the side <i>BC</i>, the second is <i>BE</i> perpendicular to the side <i>CA</i>, and the third is <i>CF</i> perpendicular to the side <i>AB</i>.  They're colored blue here.  Note that when the triangle is obtuse, two of the altitudes lie outside the triangle, so they actually connect a vertex to the opposite side extended.  In the case of a right triangle, two of the altitudes are actually sides of the triangle.
+
+<p>The altitudes of a triangle meet at a point, called the <i>orthocenter</i>, denoted here by <i>H</i>.  For an acute triangle, the orthocenter lies inside the triangle; for an obtuse triangle, it lies outside the triangle; and for a right triangle, it coincides with the vertex at the right angle.
+
+</p><p>For fun, see what points and lines coincide for special triangles: isosceles triangles, right triangles, equilateral triangles, and right isosceles triangles.
+
+</p><h3>The Euler line <i>OGH</i> of the triangle</h3>
+
+These three “centers” of the triangle lie on one straight line, called the <i>Euler line</i>.  (“Euler” is pronounced something like “Oiler” in English.) Leonhard Euler (1707–1783) was a very prolific mathematician known for his discoveries in many branches of mathematics ranging from number theory to analysis to geometry.
+
+<p>It's surprising that these three points lie on a straight line.  But you might see why from the  picture.
+
+</p><p>Focus your attention on the centroid <i>G</i>.  For each point, like <i>A</i> on one side of it, there is another, like <i>A'</i> on the other side of it but half as far away.  On one side is <i>B</i>, the other <i>B'</i>; on one side <i>C</i>, the other <i>C'</i>.  In fact, this correspondence sends the whole triangle <i>ABC</i> to the smaller, but similar, triangle <i>A'B'C'</i>, called the <i>medial triangle</i>.  The sides of the medial triangle <i>A'B'C'</i> are parallel and half the length of the sides of the original triangle <i>ABC</i>.
+
+</p><p>You can see from the figure that this correspondence sends the altitudes of the original triangle, which are <i>AD</i>, <i>BE</i>, and <i>CF</i>, to the altitudes of the medial triangle, which are <i>A'D'</i>, <i>B'E'</i>, and <i>C'F'</i>.  Since the altitudes of the original triangle meet at the orthocenter <i>H</i> of the original triangle, the altitudes of the medial triangle will meet at its orthocenter <i>H'</i> which you can see in the figure is labelled <i>O</i>.  <font color="ff0000">Behold!</font> This orthocenter <i>O</i> of the medial triangle is the circumcenter of the original triangle!  Thus, this correspondence sends <i>H</i> to <i>O</i>, that is, <i>H</i> and <i>O</i> are on the opposite sides of the centroid <i>G</i>, and <i>O</i> is half as far away from <i>G</i> as <i>H</i> is.  
+
+</p><p></p><hr size="6"><p>
+
+<small>This figure utilizes the <a href="http://aleph0.clarku.edu/~djoyce/java/Geometry/Geometry.html">Geometry Applet</a>.
+</small></p><p><small>March, 1996.
+<br><a href="http://aleph0.clarku.edu/~djoyce/home.html">David E. Joyce</a> 
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br><a href="http://www.clarku.edu/">Clark University</a>
+<br>Worcester, MA 01610
+<br><img src="./euler_line_files/dj.gif">
+
+</small></p><p><small>The address of this file is http://aleph0.clarku.edu/~djoyce/java/Geometry/eulerline.html</small>
+
+
+</p></body></html>

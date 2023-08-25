@@ -1,0 +1,149 @@
+
+<!-- saved from url=(0059)http://aleph0.clarku.edu/~djoyce/java/compass/compass5.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Construction by Compasses Alone</title><meta name="d41d8cd98f00b204e9800998ecf8427e_lib_detect" id="d41d8cd98f00b204e9800998ecf8427e_lib_detect"><script src="chrome-extension://cgaocdmhkmfnkdkbnckgmpopcbpaaejo/library/libraries.js"></script><script src="chrome-extension://cgaocdmhkmfnkdkbnckgmpopcbpaaejo/content_scripts/lib_detect.js"></script></head>
+<body bgcolor="ffffff">
+
+<center><h2>Compass Geometry</h2></center>
+
+
+<h4>5. Construction <b>PC</b> to invert a point in a circle</h4>
+
+<p>Let there be  given a circle <i>C</i> with center <i>O</i> and point <i>A</i> on its circumference, and a point <i>P</i> either outside the circle <i>C</i> or inside but more than half the radius away from <i>O.</i>  Here is a construction to invert <i>P</i> in the circle <i>C</i> to get <i>P'</i> = <i>P</i><img src="./compass5_files/thru.gif" alt="&gt;"><i>C.</i>  Draw the circle with center <i>P</i> and radius <i>PO.</i>  Then this new circle meets the circle <i>C</i> at two points, <i>Q</i> and <i>Q'.</i>  Draw the two circles with centers <i>Q</i> and <i>Q'</i> and radii <i>QO</i> and <i>QO',</i> respectively.  Besides <i>O,</i> they will meet at another point <i>P'.</i> 
+
+</p><p>This point <i>P'</i> will be the image of the point <i>P</i> inverted in the circle <i>C.</i> The usual definition of the inverted point <i>P'</i> is that it is situated on the line <i>OP</i> from the center of the circle to <i>P</i>
+so that <i>OP</i>:<i>OA</i> = <i>OA</i>:<i>OP'.</i>  From the symmetry of the construction, <i>P'</i> is clearly on that line.  To see that the proportion is valid, note that the two triangles <i>QOP</i> and <i>P'OQ</i> are each isosceles, and they have the same base angles, so they're similar.  The proportion immediately follows.
+
+</p><p></p><center>
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" height="250" width="400">
+<img src="./compass5_files/compass5a.gif" alt="Invert P in a circle">
+<param name="background" value="0,0,100">
+<param name="title" value="Invert P in a circle">
+<param name="e[1]" value="O;point;free;100,125">
+<param name="e[2]" value="A;point;free;100,220">
+<param name="e[3]" value="P;point;free;170,125">
+<param name="e[4]" value="Ocirc;circle;radius;O,A;0;0;black;random">
+<param name="e[5]" value="Pcirc;circle;radius;P,O;0;0;black;0">
+<param name="e[6]" value="QQ&#39;;line;bichord;Ocirc,Pcirc;0;0;0">
+<param name="e[7]" value="Q;point;first;QQ&#39;">
+<param name="e[8]" value="Q&#39;;point;last;QQ&#39;">
+<param name="e[9]" value="Qcirc;circle;radius;Q,O;0;0;black;0">
+<param name="e[10]" value="Q&#39;circ;circle;radius;Q&#39;,O;0;0;black;0">
+<param name="e[11]" value="OP&#39;;line;bichord;Qcirc,Q&#39;circ;0;0;0">
+<param name="e[12]" value="OPmid;point;midpoint;OP&#39;;0;0">
+<param name="e[13]" value="P&#39;;point;extend;O,OPmid,O,OPmid">
+</applet></center><p>
+
+Now, this construction doesn't work if <i>P</i> is within half the radius of <i>O</i> since the two circles won't intersect to produce the points <i>Q</i> and <i>Q',</i> so some other construction is needed to invert such <i>P.</i>  But if <i>P</i> is at least a quarter of the radius away from <i>O,</i> then we will find the point <i>R</i> twice as far from <i>O</i> as <i>P</i> is, then invert <i>R</i> in the circle <i>C</i> to get <i>R'</i> = <i>R</i><img src="./compass5_files/thru.gif" alt="&gt;"><i>C</i> by the method described above, and then <i>P'</i> will be the point twice as far from <i>O</i> as <i>R'</i> is.  This requires a doubling construction <b>2OP</b>.
+
+</p><p>
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" height="250" width="300" align="right">
+<img src="./compass5_files/compass5b.gif" alt="Double OP" align="right">
+<param name="background" value="0,0,100">
+<param name="title" value="Double OP">
+<param name="e[1]" value="O;point;free;40,125">
+<param name="e[2]" value="P;point;free;120,125">
+<param name="e[3]" value="Ocirc;circle;radius;O,P;0;0;black;random">
+<param name="e[4]" value="Pcirc;circle;radius;P,O;0;0;black;0">
+<param name="e[5]" value="QQ&#39;;line;bichord;Ocirc,Pcirc;0;0;0">
+<param name="e[6]" value="Q;point;first;QQ&#39;">
+<param name="e[7]" value="Q&#39;;point;last;QQ&#39;">
+<param name="e[8]" value="Qcirc;circle;radius;Q,Q&#39;;0;0;black;0">
+<param name="e[9]" value="Q&#39;R;line;bichord;Qcirc,Pcirc;0;0;0">
+<param name="e[10]" value="Q&#39;Rmid;point;midpoint;Q&#39;R;0;0">
+<param name="e[11]" value="R;point;extend;Q&#39;,Q&#39;Rmid,Q&#39;,Q&#39;Rmid">
+</applet></p><p>
+
+
+</p><ul>
+<br><b>2OP</b>: given two points <i>O</i> and <i>P,</i> constuct the point <i>R</i> on the line <i>OP</i> twice as far from <i>O</i> as <i>P</i> is.
+</ul>
+
+The construction <b>2OP</b> can be effected as follows.  Draw the circles with centers <i>O</i> and <i>P</i> and radius <i>OP.</i>  Let them intersect at <i>Q</i> and <i>Q'.</i>  Draw the circle with center <i>Q</i> and radius <i>QQ'.</i>  It will intersect the circle with center <i>P</i> at the points <i>Q'</i> and <i>R.</i>
+
+<p>Now we can invert any point <i>P</i> in a circle so long as it is at least a quarter of a radius away from the center of the circle.
+<br clear="all">
+
+When <i>P</i> is very close to <i>O,</i> all we have to do is repeatedly double the distance from <i>O</i> until we've got a point at least half the radius from <i>O,</i> invert that point, and double the resulting distance the same number of times to get <i>P'.</i>
+
+</p><p></p><center>
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" height="250" width="400">
+<img src="./compass5_files/compass5c.gif" alt="Invert P in a circle">
+<param name="background" value="0,0,100">
+<param name="title" value="Invert P in a circle">
+<param name="e[1]" value="O;point;free;100,125">
+<param name="e[2]" value="A;point;free;100,210">
+<param name="e[3]" value="P;point;free;130,125">
+<param name="e[4]" value="R;point;extend;O,P,O,P">
+<param name="e[5]" value="Ocirc;circle;radius;O,A;0;0;black;random">
+<param name="e[6]" value="Rcirc;circle;radius;R,O;0;0;black;0">
+<param name="e[7]" value="QQ&#39;;line;bichord;Ocirc,Rcirc;0;0;0">
+<param name="e[8]" value="Q;point;first;QQ&#39;">
+<param name="e[9]" value="Q&#39;;point;last;QQ&#39;">
+<param name="e[10]" value="Qcirc;circle;radius;Q,O;0;0;black;0">
+<param name="e[11]" value="Q&#39;circ;circle;radius;Q&#39;,O;0;0;black;0">
+<param name="e[12]" value="OR&#39;;line;bichord;Qcirc,Q&#39;circ;0;0;0">
+<param name="e[13]" value="OR&#39;mid;point;midpoint;OR&#39;;0;0">
+<param name="e[14]" value="R&#39;;point;extend;O,OR&#39;mid,O,OR&#39;mid">
+<param name="e[15]" value="P&#39;;point;extend;O,R&#39;,O,R&#39;">
+</applet></center><p>
+
+</p><h4>Bisecting and multisecting lines</h4>
+
+Before going on, we can use inversion in circles to effect a construction to bisect a line segment, or more generally, cut off one <i>n</i>-th of a line segment.  To bisect a line segment <i>OP,</i> use construction <b>2OP</b> to double it to <i>OR,</i> then construction <b>PC</b> to invert <i>R</i> in the circle with center <i>O</i> and radius <i>OP</i> to get the midpoint <i>M</i> of <i>OP.</i>
+
+<p></p><center>
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" height="250" width="400">
+<img src="./compass5_files/compass5d.gif" alt="A midpoint construction">
+<param name="background" value="0,0,100">
+<param name="title" value="A midpoint construction">
+<param name="e[1]" value="O;point;free;100,125">
+<param name="e[2]" value="P;point;free;180,125">
+<param name="e[3]" value="R;point;extend;O,P,O,P">
+<param name="e[4]" value="Ocirc;circle;radius;O,P;0;0;black;random">
+<param name="e[5]" value="Rcirc;circle;radius;R,O;0;0;black;0">
+<param name="e[6]" value="QQ&#39;;line;bichord;Ocirc,Rcirc;0;0;0">
+<param name="e[7]" value="Q;point;first;QQ&#39;">
+<param name="e[8]" value="Q&#39;;point;last;QQ&#39;">
+<param name="e[9]" value="Qcirc;circle;radius;Q,O;0;0;black;0">
+<param name="e[10]" value="Q&#39;circ;circle;radius;Q&#39;,O;0;0;black;0">
+<param name="e[11]" value="OM;line;bichord;Qcirc,Q&#39;circ;0;0;0">
+<param name="e[12]" value="OMmid;point;midpoint;OM;0;0">
+<param name="e[13]" value="M;point;extend;O,OMmid,O,OMmid">
+</applet></center><p>
+
+We can trisect <i>OP</i> by doubling <i>OP</i> to <i>OR</i> then doubling <i>PR</i> to <i>PS,</i> so that <i>OS</i> is triple <i>OP,</i> then inverting <i>S</i> in the circle with center <i>O</i> and radius <i>OP</i> to get <i>S'.</i>  Then <i>OS'</i> will be one-third of <i>OP</i>
+
+</p><p>More generally, we can cut off an <i>n</i>-th of <i>OP</i> by first extending <i>OP</i> by a factor of <i>n</i> (which is easily seen as a variant of the doubling construction), then inverting in that same circle.
+
+</p><p></p><hr width="50%&lt;p">
+
+Next part: <a href="http://aleph0.clarku.edu/~djoyce/java/compass/compass6.html">6. Find the center of a circle</a>
+<form name="MyForm">
+  <select name="select1" size="1" onchange="if (options[selectedIndex].value) 
+   { location = options[selectedIndex].value }">
+   <option value="">Table of contents
+   </option><option value="../compass/">Introduction
+   </option><option value="compass1.html">1. Euclidean constructions
+   </option><option value="compass2.html">2. Reduction to circular constructions
+   </option><option value="compass3.html">3. Summary of inversion
+   </option><option value="compass4.html">4. Stereographic projection   
+   </option><option value="compass5.html">5. Invert a point in a circle
+   </option><option value="compass6.html">6. Find the center of a circle
+   </option><option value="compass7.html">7. Involutory quandles
+ </option></select>
+</form>
+
+<p></p><hr width="50%&lt;p">
+
+<p><small>April, 1998; March, 2002.
+<br>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+</small></p><p><small>Email: <a href="mailto:djoyce@clarku.edu">djoyce@clarku.edu</a>
+<br>
+My <a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+</small>
+
+
+</p></body></html>

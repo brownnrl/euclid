@@ -5,7 +5,7 @@ import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
 import {colors, randomColor, lighten, darken, parseColor} from "./Colors";
 
-export type AllConstructions = AllConstructions;
+export type IndexAllConstructions = AllConstructions;
 export {align  as Align};
 export {e as E};
 
@@ -13,7 +13,7 @@ export let slates : Slate[] = [];
 
 export interface IConstructionInfo {
     name: string;
-    construction: AllConstructions;
+    construction: IndexAllConstructions;
     params: any[];
     nameColor?: string;
     vertexColor?: string;

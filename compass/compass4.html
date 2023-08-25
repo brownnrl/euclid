@@ -1,0 +1,232 @@
+
+<!-- saved from url=(0059)http://aleph0.clarku.edu/~djoyce/java/compass/compass4.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Construction by Compasses Alone</title><meta name="d41d8cd98f00b204e9800998ecf8427e_lib_detect" id="d41d8cd98f00b204e9800998ecf8427e_lib_detect"><script src="chrome-extension://cgaocdmhkmfnkdkbnckgmpopcbpaaejo/library/libraries.js"></script><script src="chrome-extension://cgaocdmhkmfnkdkbnckgmpopcbpaaejo/content_scripts/lib_detect.js"></script></head>
+<body bgcolor="ffffff">
+
+<center><h2>Compass Geometry</h2></center>
+
+
+<h4>4. Stereographic projection</h4>
+
+So that the point at infinity, <img src="./compass4_files/infinity.gif" alt="infinity ">, is not treated separately, the ordinary Euclidean plane is replaced by the sphere.  This is most easily seen by means of the well-known stereographic projection.
+A nice feature of using the sphere is that straight lines in the Euclidean plane correspond to circles on the sphere, so that straight lines and circles are put on the same footing.  Furthermore, reflecting across a straight line becomes inversion in a circle on the sphere.
+
+<p>Here's how it works.  Take a sphere and a plane in three-space.  Typically, the plane is taken to cut through the center of the sphere, or it's taken tangent to the sphere, but it doesn't matter.  What's important is the selection of the projection point <i>N.</i>  It must be on the sphere and on a line through the center of the sphere perpendicular to the given plane. (It also can't be a point in the plane.) In this diagram, the sphere is tangent to the plane at the point <i>S</i> (south pole), <i>O</i> is the center of the sphere, and <i>N</i> (north pole) is the projection point.
+
+</p><center>
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" width="580" height="400">
+<img src="./compass4_files/compass4a.gif" alt="stereographic projection">
+<param name="background" value="0,0,100">
+<param name="title" value="Stereographic projection">
+<param name="e[1]" value="origin;point;fixed;0,400,0;0;0">
+<param name="e[2]" value="1X;point;fixed;100,390,20;0;0">
+<param name="e[3]" value="1Y;point;fixed;10,420,-40;0;0">
+<param name="e[4]" value="1Z;point;fixed;0,420,10;0;0">
+<param name="e[5]" value="floor;plane;3points;origin,1X,1Y;0;0;0;0">
+<param name="e[6]" value="a;point;planeSlider;floor,80,250,0;0">
+<param name="e[7]" value="ab;line;parallel;a,origin,1X;0;0;0">
+<param name="e[8]" value="b;point;lineSlider;ab,600,250,0;0">
+<param name="e[9]" value="ac;line;parallel;a,origin,1Y;0;0;0">
+<param name="e[10]" value="c;point;lineSlider;ac,50,-200,100;0">
+<param name="e[11]" value="abc;polygon;parallelogram;b,a,c;0;0;0,0,50;0,0,90">
+
+<param name="e[12]" value="S;point;planeSlider;floor,150,-50,50">
+<param name="e[13]" value="Sperp;line;perpendicular;S,floor,origin,1X;0;0;0">
+<param name="e[14]" value="N;point;lineSlider;Sperp,0,0,200">
+<param name="e[15]" value="O;point;midpoint;S,N">
+<param name="e[16]" value="SN;line;connect;S,N">
+<param name="e[17]" value="Sphere;sphere;radius;O,S;0;0;black;random">
+<param name="e[18]" value="Ofloor;plane;parallel;O,floor;0;0;0;0">
+<param name="e[19]" value="equator;circle;radius;O,Ofloor,O,S;0;0;gray;0">
+
+<param name="e[20]" value="A;point;sphereSlider;Sphere,500,50,200">
+<param name="e[21]" value="B;point;intersection;N,A,floor">
+<param name="e[22]" value="NB;line;connect;N,B">
+</applet></center>
+
+<p>A point <i>A</i> on the sphere corresponds to a point <i>B</i> on the plane when the three points <i>N, A,</i> and <i>B</i> are collinear.  The only point on the sphere that doesn't correspond to a point in the plane is the projection point <i>N,</i> and it corresponds to the point at infinity, <img src="./compass4_files/infinity.gif" alt="infinity ">.  Thus, we have a correspondence between the plane with a point of infinity with the sphere. 
+
+<br clear="all">
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" width="350" height="320" align="right">
+<img src="./compass4_files/compass4b.gif" alt="stereographic projection" align="right">
+<param name="background" value="0,0,100">
+<param name="title" value="Stereographic projection">
+<param name="e[1]" value="origin;point;fixed;0,400,0;0;0">
+<param name="e[2]" value="1X;point;fixed;100,390,20;0;0">
+<param name="e[3]" value="1Y;point;fixed;10,420,-40;0;0">
+<param name="e[4]" value="1Z;point;fixed;0,420,10;0;0">
+<param name="e[5]" value="floor;plane;3points;origin,1X,1Y;0;0;0;0">
+<param name="e[6]" value="a;point;planeSlider;floor,70,330,200;0">
+<param name="e[7]" value="ab;line;parallel;a,origin,1X;0;0;0">
+<param name="e[8]" value="b;point;lineSlider;ab,350,250,200;0">
+<param name="e[9]" value="ac;line;parallel;a,origin,1Y;0;0;0">
+<param name="e[10]" value="c;point;lineSlider;ac,50,-300,200;0">
+<param name="e[11]" value="abc;polygon;parallelogram;b,a,c;0;0;0,0,50;0,0,90">
+
+<param name="e[12]" value="S;point;planeSlider;floor,130,150,350">
+<param name="e[13]" value="Sperp;line;perpendicular;S,floor,origin,1X;0;0;0">
+<param name="e[14]" value="N;point;lineSlider;Sperp,0,100,150">
+<param name="e[15]" value="O;point;midpoint;S,N;0">
+<param name="e[16]" value="SN;line;connect;S,N">
+<param name="e[17]" value="Sphere;sphere;radius;O,S;0;0;black;random">
+<param name="e[18]" value="Ofloor;plane;parallel;O,floor;0;0;0;0">
+<param name="e[19]" value="equator;circle;radius;O,Ofloor,O,S;0;0;gray;0">
+
+<param name="e[20]" value="A;point;sphereSlider;Sphere,300,250,200">
+<param name="e[21]" value="B;point;intersection;N,A,floor">
+<param name="e[22]" value="NB;line;connect;N,B">
+
+<param name="e[23]" value="C;point;sphereSlider;Sphere,200,300,100">
+<param name="e[24]" value="ACNplane;plane;3points;A,C,N;0;0;0;0">
+<param name="e[25]" value="ACNcircle;circle;circumcircle;A,C,N,ACNplane;0;0;black;0">
+<param name="e[26]" value="D;point;intersection;N,C,floor">
+<param name="e[27]" value="ND;line;connect;N,D">
+<param name="e[28]" value="B1;point;extend;D,B,D,B;0;0">
+<param name="e[29]" value="D1;point;extend;B,D,B,D;0;0">
+<param name="e[30]" value="BD;line;connect;B1,D1;0;0">
+</applet>
+
+</p><p>It's fairly easy to see why a straight line in the plane, like <i>BD,</i> corresponds to a circle on the sphere passing through the projection point <i>N.</i>  Just consider the plane that includes the line <i>BD</i> and the point <i>N.</i>  It will cut the sphere in a circle <i>ACN.</i>  Conversely, given a circle <i>ACN</i> passing through the projection point <i>N,</i> the plane of the circle will intersect the base plane in a line <i>BD.</i>
+
+</p><p>It is more difficult to see why a cirle in the plane corresponds to a circle on the sphere not passing through the projection point <i>N.</i>  In the diagram below, we'll show that the circle <i>ACE</i> on the sphere is projected to the circle <i>BDF</i> on the plane.
+
+
+</p><center>
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" width="560" height="430">
+<img src="./compass4_files/compass4c.gif" alt="stereographic projection">
+<param name="background" value="0,0,100">
+<param name="e[1]" value="origin;point;fixed;0,400,0;0;0">
+<param name="e[2]" value="1X;point;fixed;100,390,20;0;0">
+<param name="e[3]" value="1Y;point;fixed;10,420,-40;0;0">
+<param name="e[4]" value="1Z;point;fixed;0,420,10;0;0">
+<param name="e[5]" value="floor;plane;3points;origin,1X,1Y;0;0;0;0">
+<param name="e[6]" value="a;point;planeSlider;floor,100,500,0;0">
+<param name="e[7]" value="ab;line;parallel;a,origin,1X;0;0;0">
+<param name="e[8]" value="b;point;lineSlider;ab,540,250,0;0">
+<param name="e[9]" value="ac;line;parallel;a,origin,1Y;0;0;0">
+<param name="e[10]" value="c;point;lineSlider;ac,50,-200,100;0">
+<param name="e[11]" value="abc;polygon;parallelogram;b,a,c;0;0;0,0,50;0,0,90">
+
+<param name="e[12]" value="S;point;planeSlider;floor,150,-50,50">
+<param name="e[13]" value="Sperp;line;perpendicular;S,floor,origin,1X;0;0;0">
+<param name="e[14]" value="N;point;lineSlider;Sperp,0,0,200">
+<param name="e[15]" value="O;point;midpoint;S,N;0">
+<param name="e[16]" value="SN;line;connect;S,N">
+<param name="e[17]" value="Sphere;sphere;radius;O,S;0;0;black;random">
+<param name="e[18]" value="Ofloor;plane;parallel;O,floor;0;0;0;0">
+<param name="e[19]" value="equator;circle;radius;O,Ofloor,O,S;0;0;gray;0">
+
+<param name="e[20]" value="A;point;sphereSlider;Sphere,300,250,200">
+<param name="e[21]" value="B;point;intersection;N,A,floor">
+<param name="e[22]" value="NB;line;connect;N,B">
+
+<param name="e[23]" value="C;point;sphereSlider;Sphere,200,300,100">
+<param name="e[24]" value="E;point;sphereSlider;Sphere,250,200,150">
+
+<param name="e[25]" value="ACEplane;plane;3points;A,C,E;0;0;0;0">
+<param name="e[26]" value="ACEcircle;circle;circumcircle;A,C,E,ACEplane;0;0;black;0">
+<param name="e[27]" value="D;point;intersection;N,C,floor">
+<param name="e[28]" value="ND;line;connect;N,D">
+<param name="e[29]" value="F;point;intersection;N,E,floor">
+<param name="e[30]" value="NF;line;connect;N,F">
+<param name="e[31]" value="BDFcircle;circle;circumcircle;B,D,F,floor;0;0;black;0">
+</applet></center>
+
+<p>The easiest way to see that is to recognize stereographic projection as an inversion in a sphere.  Inversions in a sphere are three-dimensional analogues of inversions in a circle. The defining proportion is the same. 
+
+</p><p>Inversion in a sphere has properties similar to inversion in a circle.  For instance, inverting a sphere <i>A</i> in a sphere <i>B</i> results in a sphere <i>A</i><img src="./compass4_files/thru.gif" alt="&gt;"><i>B,</i> unless the center of the <i>B</i> sphere lies on <i>A,</i> in which case the result is a plane.  
+
+
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" height="300" width="280" hspace="10" align="left">
+<img src="./compass4_files/compass4d.gif" alt="Inversion in a sphere" hspace="10" align="left">
+<param name="title" value="Inversion in a sphere">
+<param name="background" value="0,0,100">
+<param name="align" value="CENTER">
+<param name="e[1]" value="O;point;free;100,200">
+<param name="pivot" value="O">
+<param name="e[2]" value="A;point;free;160,270">
+<param name="e[3]" value="OA;sphere;radius;O,A;0;0;black;random">
+<param name="e[4]" value="P;point;free;205,75">
+<param name="e[5]" value="OP;line;connect;O,P">
+<param name="e[6]" value="B;point;lineSlider;OP,150,100">
+<param name="e[7]" value="PB;sphere;radius;P,B;0;0;black;random">
+<param name="e[8]" value="B1;point;extend;B,P,B,P;0;0">
+<param name="e[9]" value="B&#39;;point;proportion;O,B,O,A,O,A,O,B;0;0">
+<param name="e[10]" value="B1&#39;;point;proportion;O,B1,O,A,O,A,O,B1;0;0">
+<param name="e[11]" value="M;point;midpoint;B&#39;,B1&#39;;0;0">
+<param name="e[12]" value="Q;sphere;radius;M,B&#39;;0;0;black;random">
+
+<param name="e[13]" value="C;point;sphereSlider;PB,240,50,30">
+<param name="e[14]" value="BCP;plane;3points;B,C,P;0;0;0;0">
+<param name="e[15]" value="BCcirc;circle;circumcircle;B,B1,C,BCP;0;0;gray;0">
+<param name="e[16]" value="C&#39;;point;proportion;O,C,O,A,O,A,O,C;0;0">
+<param name="e[17]" value="B&#39;C&#39;circ;circle;circumcircle;B&#39;,B1&#39;,C&#39;,BCP;0;0;gray;0">
+<param name="e[18]" value="D;point;parallelogram;O,P,C;0;0">
+<param name="e[19]" value="E;point;cutoff;O,D,O,A;0;0">
+<param name="e[20]" value="OE;circle;radius;O,E,BCP;0;0;gray;0">
+</applet>
+
+</p><p>Take the first case where the center <i>P</i> of <i>B</i>  doesn't lie on the the sphere <i>A.</i>  The sphere <i>A</i>is generated by rotating a circle around an axis, so take the axis to be line <i>OP</i> connecting the centers <i>P</i> and <i>O</i> of the spheres.  Then the sphere <i>A</i> intersects that axis at two points <i>C</i> and <i>D,</i> and <i>A</i> is the sphere on the diameter <i>CD.</i>
+Let a plane containing this axis rotate around the axis.  That plane intersects <i>A</i> in a circle with diameter <i>CD,</i> and the inverse of that circle is the circle in that plane on the diameter <i>C'D',</i> where <i>C'</i> and <i>D'</i> are the points inverse to <i>C</i> and <i>D,</i> respectively.  As the plane rotates around the axis, the circles on the diameter <i>CD</i> are inverted to the circles on the diameter <i>C'D'.</i>  Thus, a sphere <i>A</i><img src="./compass4_files/thru.gif" alt="&gt;"><i>B</i> is generated by the rotating inverse circles.
+
+</p><p>The other case where the center of <i>B</i> does lie on  <i>A</i> is relevant to stereographic projection. The argument that <i>A</i><img src="./compass4_files/thru.gif" alt="&gt;"><i>B</i> is a plane is similar to the previous argument, but it depends on the fact that a plane is generated by a rotating line perpendicular to an axis at a point on that axis.
+
+<applet code="Geometry" codebase="../Geometry" archive="Geometry.zip" width="240" height="240" align="left" vspace="10" hspace="10">
+<img src="./compass4_files/compass4e.gif" alt="stereographic projection" align="left" vspace="10" hspace="10">
+<param name="background" value="0,0,100">
+<param name="e[1]" value="b0;point;fixed;-1000,200;0;0">
+<param name="e[2]" value="b1;point;fixed;1000,200;0;0">
+<param name="e[3]" value="base;line;connect;b0,b1">
+<param name="e[4]" value="S;point;lineSlider;b0,b1,60,0">
+<param name="e[5]" value="axis;line;perpendicular;S,b1;0;0;0">
+<param name="e[6]" value="N;point;lineSlider;axis,100,40">
+<param name="e[7]" value="NS;line;connect;N,S">
+<param name="e[8]" value="O;point;midpoint;N,S;0;0">
+<param name="e[9]" value="Ncirc;circle;radius;N,S;0;0;black;random">
+<param name="e[10]" value="NAS;circle;radius;O,S;0;0;black;random">
+
+<param name="e[11]" value="A;point;circleSlider;NAS,200,170">
+<param name="e[12]" value="B;point;intersection;N,A,base">
+<param name="e[13]" value="NB;line;connect;N,B">
+<param name="e[14]" value="AS;line;connect;A,S">
+</applet>
+
+</p><p>We'll show now that the stereographic projection of a sphere with diameter <i>NS</i> to the plane tangent to <i>S</i> is actually inversion in a sphere with center <i>N</i> and radius <i>NS.</i>  The diagram to 
+the left shows a cross section, that is, an intersection with a plane containing the axis <i>NS.</i>  The point <i>A</i> on the sphere is projected to the point <i>B.</i>  Note that we have three similar right triangles: <i>NSB, NAS,</i> and <i>SAB.</i>  Therefore, <i>NA</i>&nbsp;:&nbsp;<i>NS</i>&nbsp;=&nbsp;<i>NS</i>&nbsp;:&nbsp;<i>AB.</i> Thus, when <i>A</i> is inverted in the circle with radius <i>NS,</i> the resulting point is <i>B.</i>  We conclude that stereographic projection is inversion in a sphere.
+
+</p><p>Now we can answer why stereographic projection preserves circles.  Consider any circle on the sphere that doesn't pass through <i>N.</i>  It is the intersection of the sphere with a plane.  
+Since stereographic projection is an inversion in a circle, that plane will be inverted to a sphere , and that sphere will intersect the tangent plane is a circle.  Thus the image of a circle not passing through <i>N</i> is a circle.
+
+<br clear="all">
+</p><p></p><hr width="50%&lt;p">
+
+Next part: <a href="http://aleph0.clarku.edu/~djoyce/java/compass/compass5.html">5. Construction to invert a point in a circle</a>
+<form name="MyForm">
+  <select name="select1" size="1" onchange="if (options[selectedIndex].value) 
+   { location = options[selectedIndex].value }">
+   <option value="">Table of contents
+   </option><option value="../compass/">Introduction
+   </option><option value="compass1.html">1. Euclidean constructions
+   </option><option value="compass2.html">2. Reduction to circular constructions
+   </option><option value="compass3.html">3. Summary of inversion
+   </option><option value="compass4.html">4. Stereographic projection   
+   </option><option value="compass5.html">5. Invert a point in a circle
+   </option><option value="compass6.html">6. Find the center of a circle
+   </option><option value="compass7.html">7. Involutory quandles
+ </option></select>
+</form>
+
+<p></p><hr width="50%&lt;p">
+
+<p><small>March, 2002.
+<br>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+</small></p><p><small>Email: <a href="mailto:djoyce@clarku.edu">djoyce@clarku.edu</a>
+<br>
+My <a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+</small>
+
+
+</p></body></html>
