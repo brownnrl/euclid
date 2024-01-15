@@ -1,6 +1,3 @@
 #!/bin/bash
-cd src/
-tsc
-cd ..
-tsc
-npx webpack
+tsc --build --clean
+tsc --build

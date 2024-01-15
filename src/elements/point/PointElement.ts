@@ -36,6 +36,7 @@ export class PointElement extends GeomElement {
 
     constructor(ip? : IPointElementConstruction) {
         super();
+        this.dimension = 0;
         this._x = ip && ip.x || 0;
         this._y = ip && ip.y || 0;
         this._z = ip && ip.z || 0;

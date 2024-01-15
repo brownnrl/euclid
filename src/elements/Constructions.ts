@@ -18,6 +18,7 @@ import {GeomElement} from "./GeomElement";
 import {CircleElement} from "./circle/CircleElement";
 import {PlaneElement} from "./plane/PlaneElement";
 import {PointElement} from "./point/PointElement";
+import {FixedPoint} from "./point/FixedPoint";
 import {PlaneSlider} from "./point/PlaneSlider";
 import {Midpoint} from "./point/Midpoint";
 import {LineElement} from "./line/LineElement";
@@ -231,6 +232,33 @@ export class FreePointConstruction extends Construction {
 
 }
 
+export class FixedPoint2dConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.fixed;
+    signature: ConstructionTypes[] = [ct.Integer, ct.Integer];
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let x : number = params[0];
+        let y : number = params[1];
+
+        let g = new FixedPoint({x:x, y:y,z:0});
+
+        return [[g], g];
+    }
+}
+
+export class FixedPoint3dConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.fixed;
+    signature: ConstructionTypes[] = [ct.Integer, ct.Integer, ct.Integer];
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let x : number = params[0];
+        let y : number = params[1];
+        let z : number = params[2];
+
+        let g = new FixedPoint({x:x, y:y, z:z});
+
+        return [[g], g];
+    }
+}
+
 
 export class FirstPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.first;
@@ -408,6 +436,11 @@ export class BichordConstruction extends Construction {
     }
 }
 
+export class PlanePerpendicularConstructions extends Construction {
+    constructionMethod: AllConstructions = PlaneConstructions.perpendicular;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer
+}
+
 abstract class PolyConstruction extends Construction {
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let ps : PointElement[] = params;
@@ -424,6 +457,8 @@ export class TrianglePolygonConstruction extends PolyConstruction {
 
 export const constructions : Construction[] = [
     new FreePointConstruction(),
+    new FixedPoint2dConstruction(),
+    new FixedPoint3dConstruction(),
     new FirstPointConstruction(),
     new LastPointConstruction(),
     new MidPointConstruction(),

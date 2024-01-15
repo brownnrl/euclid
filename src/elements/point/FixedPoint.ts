@@ -14,7 +14,7 @@
 |    TypeScript Port: 2019, Nelson Brown, brownnrl@gmail.com            |
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
-import {PointElement} from "./PointElement";
+import {PointElement, IPointElementConstruction} from "./PointElement";
 import {PlaneElement} from "../plane/PlaneElement";
 
 export class FixedPoint extends PointElement {
@@ -23,12 +23,11 @@ export class FixedPoint extends PointElement {
     protected _inity : number;
     protected _initz : number;
 
-    constructor(xVal : number, yVal : number, zVal : number) {
-        super();
-        this.dimension = 0;
-        this._x = this._initx = xVal;
-        this._y = this._inity = yVal;
-        this._z = this._initz = zVal;
+    constructor(ip? : IPointElementConstruction) {
+        super(ip);
+        this._initx = this._x;
+        this._inity = this._y;
+        this._initz = this._z;
     }
 
     public reset() : void {

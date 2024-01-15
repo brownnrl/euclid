@@ -10,12 +10,6 @@ import {create} from "domain";
 
 describe("slate", ()=> {
 
-    let connected_line_data : IConstructionInfo[] = [
-        { construction: E.Point.free,   name: "A",  params: [10,100]},
-        { construction: E.Point.free,   name: "B",  params: [100,100]},
-        { construction: E.Line.connect, name: "AB", params: ["A","B"]},
-    ];
-
     function toElements(slate : Slate, data : IConstructionInfo[]) {
         return data.map(
             cld => slate.createElement(cld.construction, cld.params, cld.name)
@@ -31,6 +25,12 @@ describe("slate", ()=> {
         assert.ok(e.name == "A");
         assert.ok(ps.distance(new PointElement({x:100,y:100})) <= 0.001);
     });
+    
+    let connected_line_data : IConstructionInfo[] = [
+        { construction: E.Point.free,   name: "A",  params: [10,100]},
+        { construction: E.Point.free,   name: "B",  params: [100,100]},
+        { construction: E.Line.connect, name: "AB", params: ["A","B"]},
+    ];
 
     it("should create a connection as a LineElement", () => {
         let slate : Slate = new Slate(createCanvas(200,200));
@@ -41,7 +41,24 @@ describe("slate", ()=> {
         assert.ok(p1 == l1.A);
         assert.ok(p2 == l1.B);
     });
-
+    
+    // Book XI, Def 24
+    let perpendicular_plane_data : IConstructionInfo[] = [
+        { construction: E.Point.free,   name: "origin",  params: [70,220]},
+        { construction: E.Point.fixed,  name: "z",  params: [70,80,100]},
+        { construction: E.Plane.perpendicular, name: "xyplane", params: ["origin","z"]},
+    ];
+    
+    it("should fail", () => {
+        let slate : Slate = new Slate(createCanvas(200,200));
+        let elms = toElements(slate, perpendicular_plane_data);
+        let p1 = elms[0] as PointElement;
+        let p2 = elms[1] as PointElement;
+        let l1 = elms[2] as LineElement;
+        assert.ok(p1 == l1.A);
+        assert.ok(p2 == l1.B);
+    });
+    
     it("should facilitate updates", () => {
         let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, connected_line_data);

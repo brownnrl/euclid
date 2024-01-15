@@ -33,11 +33,11 @@ export class Slate {
         }
         this._canvas = canvas;
 
-        let screen_origin = new FixedPoint(0,0,0);
+        let screen_origin = new FixedPoint({x:0,y:0,z:0});
         screen_origin.name = "screen_origin";
-        let screen_x      = new FixedPoint(1,0,0);
+        let screen_x      = new FixedPoint({x:1,y:0,z:0});
         screen_x.name = "screen_x";
-        let screen_y      = new FixedPoint(0,1,0);
+        let screen_y      = new FixedPoint({x:0,y:1,z:0});
         screen_y.name = "screen_y";
 
         let screen = new PlaneElement({
