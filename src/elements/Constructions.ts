@@ -17,6 +17,8 @@
 import {GeomElement} from "./GeomElement";
 import {CircleElement} from "./circle/CircleElement";
 import {PlaneElement} from "./plane/PlaneElement";
+import {IPerpendicularPlaneElementConstruction, 
+        PerpendicularPlane} from "./plane/PerpendicularPlane";
 import {PointElement} from "./point/PointElement";
 import {FixedPoint} from "./point/FixedPoint";
 import {PlaneSlider} from "./point/PlaneSlider";
@@ -436,9 +438,14 @@ export class BichordConstruction extends Construction {
     }
 }
 
-export class PlanePerpendicularConstructions extends Construction {
+export class PerpendicularPlaneConstruction extends Construction {
     constructionMethod: AllConstructions = PlaneConstructions.perpendicular;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement]
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new PerpendicularPlane({A: ps[0], E: ps[1]});
+        return [[g], g];
+    }
 }
 
 abstract class PolyConstruction extends Construction {
@@ -474,7 +481,8 @@ export const constructions : Construction[] = [
     new CircleRadiusCenterConstruction(),
     new PointPerpendicular1Construction(),
     new BichordConstruction(),
-    new TrianglePolygonConstruction()
+    new TrianglePolygonConstruction(),
+    new PerpendicularPlaneConstruction()
 ];
 
 

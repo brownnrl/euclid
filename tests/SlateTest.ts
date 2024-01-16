@@ -4,6 +4,7 @@ import {Slate} from "../src/Slate";
 import {E, IConstructionInfo} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
+import {PlaneElement} from "../src/elements/plane/PlaneElement";
 import {LineElement} from "../src/elements/line/LineElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
@@ -52,11 +53,8 @@ describe("slate", ()=> {
     it("should fail", () => {
         let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, perpendicular_plane_data);
-        let p1 = elms[0] as PointElement;
-        let p2 = elms[1] as PointElement;
-        let l1 = elms[2] as LineElement;
-        assert.ok(p1 == l1.A);
-        assert.ok(p2 == l1.B);
+        let p1 = elms[0] as PlaneElement;
+        p1.update();
     });
     
     it("should facilitate updates", () => {
