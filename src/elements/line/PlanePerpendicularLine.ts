@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------+
-|    Title:	PlanePerpendicular.ts                                       |
+|    Title:	PlanePerpendicularLine.ts                                   |
 |    A port of the software Geometry Applet by                          |
 |    Author:    David E. Joyce                                          |
 |        Department of Mathematics and Computer Science                 |
@@ -21,14 +21,14 @@ import {LineElement} from "./LineElement";
 import {PlaneElement} from "../plane/PlaneElement";
 import {IPerpendicularElementConstructor} from "./Perpendicular";
 
-export interface IPlanePerpendicularElementConstructor {
+export interface IPlanePerpendicularLineConstructor {
     C : PointElement;
     P : PlaneElement;
     D : PointElement;
     E : PointElement;
 }
 
-export class PlanePerpendicular extends LineElement {
+export class PlanePerpendicularLine extends LineElement {
   
     // draw perpendicular at C to the plane P.  A is the proj of C onto P, while
     // AB is perpendicular to P and equal to DE

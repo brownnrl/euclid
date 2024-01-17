@@ -50,7 +50,7 @@ describe("slate", ()=> {
         { construction: E.Plane.perpendicular, name: "xyplane", params: ["origin","z"]},
     ];
     
-    it("should fail", () => {
+    it("should create a perpendicular plane", () => {
         let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, perpendicular_plane_data);
         let p1 = elms[0] as PlaneElement;
