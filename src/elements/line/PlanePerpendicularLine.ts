@@ -41,7 +41,7 @@ export class PlanePerpendicularLine extends LineElement {
     // The line AB will be perpendicular to the plane P.  A will be the projection
     // of C on to the plane P.  AB will equal DE.
 
-    constructor(ipe?: IPerpendicularElementConstructor) {
+    constructor(ipe?: IPlanePerpendicularLineConstructor) {
         super();
         this.dimension = 1;
         if(ipe == null) return;

@@ -29,6 +29,7 @@ import {Layoff} from "./point/Layoff";
 import {SectorElement} from "./sector/SectorElement";
 import {CircleSlider} from "./point/CircleSlider";
 import {Perpendicular} from "./line/Perpendicular";
+import {PlanePerpendicularLine} from "./line/PlanePerpendicularLine";
 import {Bichord} from "./line/Bichord";
 import {PolygonElement} from "./polygon/PolygonElement";
 
@@ -292,6 +293,85 @@ export class MidPointConstruction extends Construction {
     }
 }
 
+// point perpendicular constructions
+abstract class PointPerpendicularConstruction extends Construction {
+    constructionMethod : AllConstructions = PointConstructions.perpendicular;
+}
+
+export class PointPerpendicular1Construction extends PointPerpendicularConstruction {
+    /* points A, B, [plane C (screen)]
+     * the point D so that AD is equal and perpendicular to AB in plane C
+     * */
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let g = new Perpendicular({C:a, D:b,P:screen, E:a, F:b});
+        return [[g], g.B];
+    }
+}
+
+export class PointPerpendicular2Construction extends PointPerpendicularConstruction {
+    /* points A, B, plane C
+     * the point D so that AD is equal and perpendicular to AB in plane C
+     * */
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let c : PlaneElement = params[2];
+        let g = new Perpendicular({C:a, D:b,P:c, E:a, F:b});
+        return [[g], g.B];
+    }
+}
+
+export class PointPerpendicular3Construction extends PointPerpendicularConstruction {
+    /* points A, B, D, E [plane C (screen)]
+     * the point F so that AF is perpendicular to AB in plane C and equals DE
+    */
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let d : PointElement = params[2];
+        let e : PointElement = params[3];
+        let g = new Perpendicular({C:a, D:b,P:screen, E:d, F:e});
+        return [[g], g.B];
+    }
+}
+
+export class PointPerpendicular4Construction extends PointPerpendicularConstruction {
+    /* points A, B, D, E [plane C]
+     * the point F so that AF is perpendicular to AB in plane C and equals DE
+    */
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let c : PlaneElement = params[2];
+        let d : PointElement = params[3];
+        let e : PointElement = params[4];
+        let g = new Perpendicular({C:a, D:b,P:c, E:d, F:e});
+        return [[g], g.B];
+    }
+}
+
+export class PointPerpendicular5Construction extends PointPerpendicularConstruction {
+    /*points A, C, D plane B 
+     * the point E on the line perpendicular to plane B passing through 
+     * A so that the distance from E to B equals CD
+     */
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PlaneElement = params[1];
+        let c : PointElement = params[2];
+        let d : PointElement = params[3];
+        let g = new PlanePerpendicularLine({C:a, P:b, D:c, E:d});
+        return [[g], g.B];
+    }
+}
+
 export class LineConnectConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.connect;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -416,16 +496,6 @@ export class CircleRadiusCenterConstruction extends Construction {
     }
 }
 
-export class PointPerpendicular1Construction extends Construction {
-    constructionMethod: AllConstructions = PointConstructions.perpendicular;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let g = new Perpendicular({C:ps[0], D:ps[1],P:screen, E:ps[0], F:ps[1]});
-        return [[g], g.B];
-    }
-}
 
 export class BichordConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.bichord;
