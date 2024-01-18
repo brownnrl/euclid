@@ -463,12 +463,28 @@ export class LineExtendConstruction extends Construction {
 }
 
 export class SectorConstruction extends Construction {
+    // the sector of a circle in plane D (screen) given the center A and two points B and C on the circumference
     constructionMethod: AllConstructions = SectorConstructions.sector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
 
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let ps : PointElement[] = params;
         let g = new SectorElement({O:ps[0], A:ps[1], B:ps[2], P: screen});
+        return [[g], g];
+    }
+}
+
+export class Sector2Construction extends Construction {
+    // the sector of a circle in plane D given the center A and two points B and C on the circumference
+    constructionMethod: AllConstructions = SectorConstructions.sector;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let c : PointElement = params[2];
+        let d : PlaneElement = params[3];
+        let g = new SectorElement({O:a, A:b, B:c, P: d});
         return [[g], g];
     }
 }
@@ -547,6 +563,7 @@ export const constructions : Construction[] = [
     new LineConnectConstruction(),
     new LineExtendConstruction(),
     new SectorConstruction(),
+    new Sector2Construction(),
     new CircleSliderConstruction(),
     new CircleRadiusCenterConstruction(),
     new PointPerpendicular1Construction(),
