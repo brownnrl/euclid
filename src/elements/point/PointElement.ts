@@ -129,7 +129,7 @@ export class PointElement extends GeomElement {
                C.x*(A.y*B.z - A.z*B.y);
     }
 
-    protected toLine(A: PointElement, B: PointElement, segment: boolean) : PointElement{
+    toLine(A: PointElement, B: PointElement, segment: boolean) : PointElement{
         /*---------------------------------------------------------------------+
         |  Project this point to the foot of the perpendicular from it to the  |
         |  line determined by the points A and B. If A were the origin, then   |

@@ -26,6 +26,7 @@ import {Midpoint} from "./point/Midpoint";
 import {LineElement} from "./line/LineElement";
 import {LineSlider} from "./point/LineSlider";
 import {Layoff} from "./point/Layoff";
+import {Foot} from "./point/Foot";
 import {SectorElement} from "./sector/SectorElement";
 import {CircleSlider} from "./point/CircleSlider";
 import {Perpendicular} from "./line/Perpendicular";
@@ -293,6 +294,19 @@ export class MidPointConstruction extends Construction {
     }
 }
 
+export class FootPointConsturction extends Construction{
+    constructionMethod : AllConstructions = PointConstructions.foot;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+    construct(screen: PlaneElement, params: any[]) : [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let c : PointElement = params[2];
+        let g = new Foot(a, b, c);
+
+        return [[g], g];
+    }
+}
+
 // point perpendicular constructions
 abstract class PointPerpendicularConstruction extends Construction {
     constructionMethod : AllConstructions = PointConstructions.perpendicular;
@@ -501,6 +515,17 @@ export class CircleSliderConstruction extends Construction {
     }
 }
 
+export class CircleSliderConstruction2dPoint extends CircleSliderConstruction {
+    signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        params.push(0);
+        return super.construct(screen, params);
+    }
+}
+
+// TODO: Add circle slider with circle element reference to point
+
 export class CircleRadiusCenterConstruction extends Construction {
     constructionMethod: AllConstructions = CircleConstructions.radius;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -555,6 +580,7 @@ export const constructions : Construction[] = [
     new FirstPointConstruction(),
     new LastPointConstruction(),
     new MidPointConstruction(),
+    new FootPointConsturction(),
     new ExtendConstruction(),
     new CutoffConstruction(),
     new LineSliderConstruction(),
@@ -565,6 +591,7 @@ export const constructions : Construction[] = [
     new SectorConstruction(),
     new Sector2Construction(),
     new CircleSliderConstruction(),
+    new CircleSliderConstruction2dPoint(),
     new CircleRadiusCenterConstruction(),
     new PointPerpendicular1Construction(),
     new BichordConstruction(),
