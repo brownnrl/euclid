@@ -1,3 +1,3 @@
 #!/bin/bash
-tsc --build --clean
-tsc --build
+npx tsc --build --clean
+npx tsc --build

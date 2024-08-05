@@ -3,17 +3,25 @@
 Install typescript
 
 ```sh
-$ npm install --save-dev typescript typescript-cli ts-node awesome-typescript-loader webpack webpack-cli
+$ npm install --save-dev typescript
 ```
-
-Install paper js types and mocha
 
 ```sh
-$ npm install --save-dev @types/paper @types/mocha @types/node
+npx tsc
+```
+
+```sh
+$ npm install --save-dev ts-loader webpack webpack-cli
+```
+
+Install types and mocha
+
+```sh
+$ npm install --save-dev @types/mocha @types/node
 ```
 
 
-Finally, install remaining dependencies.
+Finally, install remaining dependencies. (maybe not this)
 
 ```sh
 $ node install --save-dev

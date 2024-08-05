@@ -15,22 +15,20 @@
   "devDependencies": {
     "@types/mocha": "^2.2.48",
     "@types/node": "^7.10.14",
-    "@types/paper": "^0.12.3",
-    "awesome-typescript-loader": "^5.2.1",
     "canvas": "^2.6.0",
-    "css-loader": "^3.2.0",
-    "file-loader": "^4.2.0",
-    "html-webpack-plugin": "^3.2.0",
+    "css-loader": "^7.1.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
     "install": "^0.13.0",
-    "mocha": "^6.2.0",
+    "mocha": "^10.7.0",
     "node-loader": "^0.6.0",
     "style-loader": "^1.0.0",
-    "ts-loader": "^6.0.4",
+    "ts-loader": "^6.2.2",
     "ts-node": "^3.3.0",
-    "typescript": "^3.9.10",
-    "typescript-cli": "^0.1.0",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.8.0"
+    "typescript": "^5.6.0-dev.20240805",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4",
+    "webpack-shell-plugin-next": "^2.3.1"
   }
 }
