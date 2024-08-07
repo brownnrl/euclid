@@ -222,6 +222,8 @@ export abstract class Construction {
 
 let ct = ConstructionTypes;
 
+
+/*free	integers x, y	a freely dragable point in the screen plane with initial coordinates (x,y,0)*/
 export class FreePointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.free;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer];
@@ -235,6 +237,112 @@ export class FreePointConstruction extends Construction {
     }
 
 }
+
+// midpoint	points A, B	the midpoint of a line AB
+export class MidPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.midpoint;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+
+        let g = new Midpoint(a, b);
+
+        return [[g], g];
+    }
+}
+
+// TBD
+// intersection	points A, B, C, D [plane E]	the intersection of two lines AB and CD in the plane E
+
+// TBD
+// intersection points B, C plane A	the intersection of the plane A and the line BC
+
+// first	points A, B	the first end A of the line AB
+export class FirstPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.first;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        return [[], params[0] as PointElement];
+    }
+
+}
+
+// last	points A, B	the last end B of the line AB
+export class LastPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.last;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        return [[], params[1] as PointElement];
+    }
+}
+
+// TBD
+// center	circle A	the center of the circle A
+
+// TBD
+// center   sphere A	the center of the sphere A
+
+// lineSlider	points A, B integers x, y,[z] a point that slides along a line AB with initial coordinates (x,y,z)
+export class LineSliderConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.lineSlider;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer, ct.Integer];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let x : number = params[2];
+        let y : number = params[3];
+        let z : number = params[4];
+
+        let g = this.createSlider(a,b,x,y,z);
+
+        return [[g], g];
+    }
+    protected createSlider(a: PointElement, b: PointElement, x: number, y: number, z: number) {
+        return new LineSlider(a, b, x, y, z, false);
+    }
+}
+
+// lineSlider (optional argument z excluded)
+export class LineSlider2dConstruction extends LineSliderConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let x : number = params[2];
+        let y : number = params[3];
+
+        let g = this.createSlider(a,b,x,y,0);
+
+        return [[g], g];
+    }
+}
+
+// circleSlider	circle A integers x, y,[z]	a point that slides along a circle A with given initial coordinates (x,y,z)
+export class CircleSliderConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.circleSlider;
+    signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer, ct.Integer];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let c : CircleElement = params[0];
+        let ns : number[] = params.slice(1,4);
+        let g = new CircleSlider(c, ns[0], ns[1], ns[2]);
+        return [[g], g];
+    }
+}
+
+// circleSlider (optional argument z excluded)
+export class CircleSliderConstruction2dPoint extends CircleSliderConstruction {
+    signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        params.push(0);
+        return super.construct(screen, params);
+    }
+}
+
+// TBD
+// circumcenter	points A, B, C [plane D]	the center of a circle ABC passing through 3 points A, B, and C in the plane D
 
 export class FixedPoint2dConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.fixed;
@@ -264,35 +372,6 @@ export class FixedPoint3dConstruction extends Construction {
 }
 
 
-export class FirstPointConstruction extends Construction {
-    constructionMethod: AllConstructions = PointConstructions.first;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        return [[], params[0] as PointElement];
-    }
-
-}
-
-export class LastPointConstruction extends Construction {
-    constructionMethod: AllConstructions = PointConstructions.last;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        return [[], params[1] as PointElement];
-    }
-}
-
-export class MidPointConstruction extends Construction {
-    constructionMethod: AllConstructions = PointConstructions.midpoint;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-
-        let g = new Midpoint(a, b);
-
-        return [[g], g];
-    }
-}
 
 export class FootPointConsturction extends Construction{
     constructionMethod : AllConstructions = PointConstructions.foot;
@@ -399,38 +478,6 @@ export class LineConnectConstruction extends Construction {
     }
 }
 
-export class LineSliderConstruction extends Construction {
-    constructionMethod: AllConstructions = PointConstructions.lineSlider;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer, ct.Integer];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-        let x : number = params[2];
-        let y : number = params[3];
-        let z : number = params[4];
-
-        let g = this.createSlider(a,b,x,y,z);
-
-        return [[g], g];
-    }
-    protected createSlider(a: PointElement, b: PointElement, x: number, y: number, z: number) {
-        return new LineSlider(a, b, x, y, z, false);
-    }
-}
-
-export class LineSlider2dConstruction extends LineSliderConstruction {
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-        let x : number = params[2];
-        let y : number = params[3];
-
-        let g = this.createSlider(a,b,x,y,0);
-
-        return [[g], g];
-    }
-}
 
 export class LineSliderSegmentConstruction extends LineSliderConstruction {
     constructionMethod: AllConstructions = PointConstructions.lineSegmentSlider;
@@ -503,26 +550,6 @@ export class Sector2Construction extends Construction {
     }
 }
 
-export class CircleSliderConstruction extends Construction {
-    constructionMethod: AllConstructions = PointConstructions.circleSlider;
-    signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer, ct.Integer];
-
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let c : CircleElement = params[0];
-        let ns : number[] = params.slice(1,4);
-        let g = new CircleSlider(c, ns[0], ns[1], ns[2]);
-        return [[g], g];
-    }
-}
-
-export class CircleSliderConstruction2dPoint extends CircleSliderConstruction {
-    signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer];
-
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        params.push(0);
-        return super.construct(screen, params);
-    }
-}
 
 // TODO: Add circle slider with circle element reference to point
 
