@@ -4,10 +4,16 @@ import {Slate} from "../src/Slate";
 import {E, IConstructionInfo} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
+import {CircleSlider} from "../src/elements/point/CircleSlider";
 import {PlaneElement} from "../src/elements/plane/PlaneElement";
 import {LineElement} from "../src/elements/line/LineElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
+
+let almostEqual = function (actual : number, expected : number, precision: number) {
+    return assert.equal(Math.abs(actual-expected) < precision, true, 
+                        "expected: " + expected + " actual: " + actual + " tolerance: " + precision);
+}
 
 describe("slate", ()=> {
 
@@ -55,6 +61,33 @@ describe("slate", ()=> {
         let elms = toElements(slate, perpendicular_plane_data);
         let p1 = elms[0] as PlaneElement;
         p1.update();
+    });
+
+    // Book I, Def I11
+    let circle_slider_midpoint_data : IConstructionInfo[] = [
+        /*<param name=e[1] value="A;point;free;40,110">
+        <param name=e[2] value="C;point;free;210,110">
+        <param name=e[3] value="AC;line;connect;A,C">
+        <param name=e[4] value="B;point;lineSlider;AC,100,110">
+        <param name=e[5] value="E;point;midpoint;B,C;0;0">
+        <param name=e[6] value="circ;circle;radius;E,C;0;0;0;0">
+        <param name=e[7] value="D;point;circleSlider;circ,140,40">*/
+        { construction: E.Point.free, name: "A", params: [40, 110]},
+        { construction: E.Point.free, name: "C", params: [210, 110]},
+        { construction: E.Line.connect, name: "AC", params: ["A", "C"]},
+        { construction: E.Point.lineSlider, name: "B", params: ["AC", 100, 110]},
+        { construction: E.Point.midpoint, name: "E", params: ["B", "C"]},
+        { construction: E.Circle.radius, name: "circ", params: ["E", "C"]},
+        { construction: E.Point.circleSlider, name: "D", params: ["circ", 140, 40]}
+    ];
+
+    it("should create a circle, circle slider, and midpoint", () => {
+        let slate : Slate = new Slate(createCanvas(200, 200));
+        let elms = toElements(slate, circle_slider_midpoint_data);
+        slate.elements.forEach(e => e.update());
+        let p7 = elms[6] as CircleSlider;
+        almostEqual(p7.x, 143, 1);
+        almostEqual(p7.y, 56, 1);
     });
     
     it("should facilitate updates", () => {
