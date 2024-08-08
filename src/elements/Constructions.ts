@@ -222,8 +222,15 @@ export abstract class Construction {
 
 let ct = ConstructionTypes;
 
+/***********************
+ * Element Class Point *
+ ***********************/
 
-/*free	integers x, y	a freely dragable point in the screen plane with initial coordinates (x,y,0)*/
+/* point
+ * free	
+ * integers x, y	
+ * a freely dragable point in the screen plane with initial coordinates (x,y,0)
+ */
 export class FreePointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.free;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer];
@@ -238,7 +245,10 @@ export class FreePointConstruction extends Construction {
 
 }
 
-// midpoint	points A, B	the midpoint of a line AB
+// point
+// midpoint
+// points A, B
+// the midpoint of a line AB
 export class MidPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.midpoint;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -253,12 +263,21 @@ export class MidPointConstruction extends Construction {
 }
 
 // TBD
-// intersection	points A, B, C, D [plane E]	the intersection of two lines AB and CD in the plane E
+// point
+// intersection
+// points A, B, C, D [plane E]
+// the intersection of two lines AB and CD in the plane E
 
 // TBD
-// intersection points B, C plane A	the intersection of the plane A and the line BC
+// point
+// intersection 
+// points B, C plane A
+// the intersection of the plane A and the line BC
 
-// first	points A, B	the first end A of the line AB
+// point
+// first
+// points A, B
+// the first end A of the line AB
 export class FirstPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.first;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -268,7 +287,10 @@ export class FirstPointConstruction extends Construction {
 
 }
 
-// last	points A, B	the last end B of the line AB
+// point
+// last
+// points A, B
+// the last end B of the line AB
 export class LastPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.last;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -278,12 +300,21 @@ export class LastPointConstruction extends Construction {
 }
 
 // TBD
-// center	circle A	the center of the circle A
+// point
+// center
+// circle A	
+// the center of the circle A
 
 // TBD
-// center   sphere A	the center of the sphere A
+// point
+// center
+// sphere A
+// the center of the sphere A
 
-// lineSlider	points A, B integers x, y,[z] a point that slides along a line AB with initial coordinates (x,y,z)
+// point
+// lineSlider
+// points A, B integers x, y,[z] 
+// a point that slides along a line AB with initial coordinates (x,y,z)
 export class LineSliderConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.lineSlider;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer, ct.Integer];
@@ -303,6 +334,7 @@ export class LineSliderConstruction extends Construction {
     }
 }
 
+// point
 // lineSlider (optional argument z excluded)
 export class LineSlider2dConstruction extends LineSliderConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer];
@@ -318,6 +350,7 @@ export class LineSlider2dConstruction extends LineSliderConstruction {
     }
 }
 
+// point
 // circleSlider	circle A integers x, y,[z]	a point that slides along a circle A with given initial coordinates (x,y,z)
 export class CircleSliderConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.circleSlider;
@@ -331,6 +364,7 @@ export class CircleSliderConstruction extends Construction {
     }
 }
 
+// point
 // circleSlider (optional argument z excluded)
 export class CircleSliderConstruction2dPoint extends CircleSliderConstruction {
     signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer];
@@ -342,8 +376,224 @@ export class CircleSliderConstruction2dPoint extends CircleSliderConstruction {
 }
 
 // TBD
-// circumcenter	points A, B, C [plane D]	the center of a circle ABC passing through 3 points A, B, and C in the plane D
+// point
+// circumcenter
+// points A, B, C [plane D]	
+// the center of a circle ABC passing through 3 points A, B, and C in the plane D
 
+// TBD
+/* point
+ * vertex
+ * polygon A integer i
+ * a vertex Ai of the polygon A1A2...An with index i
+ */
+
+/* point
+ * foot
+ * points A, B, C
+ * the foot of a perpendicular drawn from A to a line BC
+ */
+export class FootPointConsturction extends Construction {
+    constructionMethod : AllConstructions = PointConstructions.foot;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+    construct(screen: PlaneElement, params: any[]) : [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let c : PointElement = params[2];
+        let g = new Foot(a, b, c);
+
+        return [[g], g];
+    }
+}
+
+// TBD
+// point
+// foot
+// point A plane B
+// the foot of a perpendicular drawn from A to a plane B
+
+// point
+// layoff used for extend and cutoff
+abstract class LayoffConstruction extends Construction {
+    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = this._createLayoff(ps);
+        return [[g], g];
+    }
+
+    protected abstract _createLayoff(ps: PointElement[]) : GeomElement;
+}
+
+// point
+// cutoff
+// points A, B, C, 
+// the point E on a line AB so that AE = CD
+export class CutoffConstruction extends LayoffConstruction {
+    constructionMethod: AllConstructions = PointConstructions.cutoff;
+    protected _createLayoff(ps: PointElement[]) : GeomElement {
+        return new Layoff(ps[0], ps[0], ps[1], ps[2], ps[3]);
+    }
+}
+
+// point
+// extend
+// points A, B, C, D
+// the point E on a line AB so that BE = CD
+export class ExtendConstruction extends LayoffConstruction {
+    constructionMethod: AllConstructions = PointConstructions.extend;
+    protected _createLayoff(ps: PointElement[]) : GeomElement {
+        return new Layoff(ps[1], ps[0], ps[1], ps[2], ps[3]);
+    }
+}
+
+// TBD
+// point
+// parallelogram
+// points A, B, C
+// the 4th vertex D of a parallelogram ABCD given 3 vertices A, B, and C
+
+// TBD
+// point
+// similar	points A, B, D, E, F [planes C, G]
+// the point H so that triangle ABH in plane C is similar to triangle DEF in plane G
+
+
+// point perpendicular constructions
+abstract class PointPerpendicularConstruction extends Construction {
+    constructionMethod : AllConstructions = PointConstructions.perpendicular;
+}
+
+/* point
+ * perpendicular
+ * points A, B, [plane C (screen)]
+ * the point D so that AD is equal and perpendicular to AB in plane C
+ */
+export class PointPerpendicular1Construction extends PointPerpendicularConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let g = new Perpendicular({C:a, D:b,P:screen, E:a, F:b});
+        return [[g], g.B];
+    }
+}
+
+/* point
+ * perpendicular
+ * points A, B, plane C
+ * the point D so that AD is equal and perpendicular to AB in plane C
+ */
+export class PointPerpendicular2Construction extends PointPerpendicularConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let c : PlaneElement = params[2];
+        let g = new Perpendicular({C:a, D:b,P:c, E:a, F:b});
+        return [[g], g.B];
+    }
+}
+
+/* point
+ * perpendicular
+ * points A, B, D, E [plane C (screen)]
+ * the point F so that AF is perpendicular to AB in plane C and equals DE
+ */
+export class PointPerpendicular3Construction extends PointPerpendicularConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let d : PointElement = params[2];
+        let e : PointElement = params[3];
+        let g = new Perpendicular({C:a, D:b,P:screen, E:d, F:e});
+        return [[g], g.B];
+    }
+}
+
+/* point
+ * perpendicular
+ * points A, B, D, E [plane C]
+ * the point F so that AF is perpendicular to AB in plane C and equals DE
+ */
+export class PointPerpendicular4Construction extends PointPerpendicularConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let c : PlaneElement = params[2];
+        let d : PointElement = params[3];
+        let e : PointElement = params[4];
+        let g = new Perpendicular({C:a, D:b,P:c, E:d, F:e});
+        return [[g], g.B];
+    }
+}
+
+/* point
+ * perpendicular
+ * points A, C, D plane B 
+ * the point E on the line perpendicular to plane B passing through 
+ * A so that the distance from E to B equals CD
+ */
+export class PointPerpendicular5Construction extends PointPerpendicularConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PlaneElement = params[1];
+        let c : PointElement = params[2];
+        let d : PointElement = params[3];
+        let g = new PlanePerpendicularLine({C:a, P:b, D:c, E:d});
+        return [[g], g.B];
+    }
+}
+
+// TBD
+// point
+// proportion
+// 8 points A, B, C, D, E, F, G, H
+// the point I on GH so that AB:CD = EF:GI
+
+// TBD
+// point
+// invert
+// point A circle B
+// the image of a point A inverted in the circle B
+
+// TBD
+// point
+// meanProportional
+// 6 points A, B, C, D, E, F
+// the point G on EF so that AB:CD = CD:EG
+
+// TBD
+// point
+// planeSlider	
+// plane A integers x, y, z
+// a point that slides on the plane A with initial coordinates (x,y,z)
+
+// TBD
+// point
+// sphereSlider
+// sphere A integers x, y, z
+// a point that slides on the sphere A with initial coordinates (x,y,z)
+
+// TBD
+// point
+// angleBisector	
+// points A, B, C [plane D]
+// The point at the intersection of the angle bisector of angle BAC and the line BC in plane D
+
+// TBD
+// point
+// angleDivider
+// points A, B, C [plane D] integer n
+// The point E on the line BC so that angle BAE is the nth part of the angle BAC in plane D
+
+// point
+// fixed
+// integers x, y,[z=0]
+// the fixed point with coordinates (x, y, z)
 export class FixedPoint2dConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.fixed;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer];
@@ -357,6 +607,10 @@ export class FixedPoint2dConstruction extends Construction {
     }
 }
 
+// point
+// fixed
+// integers x, y, z
+// the fixed point with coordinates (x, y, z)
 export class FixedPoint3dConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.fixed;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer, ct.Integer];
@@ -371,100 +625,33 @@ export class FixedPoint3dConstruction extends Construction {
     }
 }
 
-
-
-export class FootPointConsturction extends Construction{
-    constructionMethod : AllConstructions = PointConstructions.foot;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
-    construct(screen: PlaneElement, params: any[]) : [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-        let c : PointElement = params[2];
-        let g = new Foot(a, b, c);
-
-        return [[g], g];
+// point
+// lineSegmentSlider
+// points A, B integers x, y,[z]
+// a point that slides along within the line segment AB with initial coordinates (x,y,z)
+export class LineSliderSegmentConstruction extends LineSliderConstruction {
+    constructionMethod: AllConstructions = PointConstructions.lineSegmentSlider;
+    protected createSlider(a: PointElement, b: PointElement, x: number, y: number, z: number) {
+        return new LineSlider(a, b, x, y, z, true);
     }
 }
 
-// point perpendicular constructions
-abstract class PointPerpendicularConstruction extends Construction {
-    constructionMethod : AllConstructions = PointConstructions.perpendicular;
-}
 
-export class PointPerpendicular1Construction extends PointPerpendicularConstruction {
-    /* points A, B, [plane C (screen)]
-     * the point D so that AD is equal and perpendicular to AB in plane C
-     * */
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-        let g = new Perpendicular({C:a, D:b,P:screen, E:a, F:b});
-        return [[g], g.B];
-    }
-}
+// TBD
+// point
+// harmonic
+// points B, C, D
+// the harmonic conjugate of B with respect to C and D
 
-export class PointPerpendicular2Construction extends PointPerpendicularConstruction {
-    /* points A, B, plane C
-     * the point D so that AD is equal and perpendicular to AB in plane C
-     * */
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-        let c : PlaneElement = params[2];
-        let g = new Perpendicular({C:a, D:b,P:c, E:a, F:b});
-        return [[g], g.B];
-    }
-}
 
-export class PointPerpendicular3Construction extends PointPerpendicularConstruction {
-    /* points A, B, D, E [plane C (screen)]
-     * the point F so that AF is perpendicular to AB in plane C and equals DE
-    */
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-        let d : PointElement = params[2];
-        let e : PointElement = params[3];
-        let g = new Perpendicular({C:a, D:b,P:screen, E:d, F:e});
-        return [[g], g.B];
-    }
-}
+/**********************
+ * Element Class Line *
+ **********************/
 
-export class PointPerpendicular4Construction extends PointPerpendicularConstruction {
-    /* points A, B, D, E [plane C]
-     * the point F so that AF is perpendicular to AB in plane C and equals DE
-    */
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-        let c : PlaneElement = params[2];
-        let d : PointElement = params[3];
-        let e : PointElement = params[4];
-        let g = new Perpendicular({C:a, D:b,P:c, E:d, F:e});
-        return [[g], g.B];
-    }
-}
-
-export class PointPerpendicular5Construction extends PointPerpendicularConstruction {
-    /*points A, C, D plane B 
-     * the point E on the line perpendicular to plane B passing through 
-     * A so that the distance from E to B equals CD
-     */
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PlaneElement = params[1];
-        let c : PointElement = params[2];
-        let d : PointElement = params[3];
-        let g = new PlanePerpendicularLine({C:a, P:b, D:c, E:d});
-        return [[g], g.B];
-    }
-}
-
+// line
+// connect
+// points A, B
+// the line AB connecting two points A and B
 export class LineConnectConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.connect;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -478,39 +665,82 @@ export class LineConnectConstruction extends Construction {
     }
 }
 
+// TBD
+// line
+// angleBisector
+// points A, B, C [plane D]
+// the line AE bisecting angle BAC with E on BC in plane D
 
-export class LineSliderSegmentConstruction extends LineSliderConstruction {
-    constructionMethod: AllConstructions = PointConstructions.lineSegmentSlider;
-    protected createSlider(a: PointElement, b: PointElement, x: number, y: number, z: number) {
-        return new LineSlider(a, b, x, y, z, true);
-    }
-}
+// TBD
+// line
+// angleDivider
+// points A, B, C [plane D] integer n
+// the line AE with E on BC so that BAE is the nth part of the angle BAC in plane D
 
-abstract class LayoffConstruction extends Construction {
-    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
+// TBD
+// line
+// foot	
+// 3 points A, B, C
+// the line AD drawn perpendicular to BC in the screen plane
+
+// TBD
+// *Solid Geometry Only*
+// line
+// foot
+// point A plane B
+// the line AD drawn perpendicular to plane B with the point D lying on B
+
+// TBD
+// line
+// chord
+// points A, B circle C
+// the intersection of the line AB in the circle C
+
+// line
+// bichord
+// circles A, B
+// the common chord connecting the two intersection points of the circles A and B
+export class BichordConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.bichord;
+    signature: ConstructionTypes[] = [ct.CircleElement, ct.CircleElement];
+
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let g = this._createLayoff(ps);
+        let ps : CircleElement[] = params;
+        let g = new Bichord({C:ps[0], D:ps[1]});
         return [[g], g];
     }
-
-    protected abstract _createLayoff(ps: PointElement[]) : GeomElement;
 }
 
-export class ExtendConstruction extends LayoffConstruction {
-    constructionMethod: AllConstructions = PointConstructions.extend;
-    protected _createLayoff(ps: PointElement[]) : GeomElement {
-        return new Layoff(ps[1], ps[0], ps[1], ps[2], ps[3]);
-    }
-}
+// TBD
+// line
+// perpendicular
+// points A, B [plane C]
+// the line AD equal and perpendicular to AB in plane C
 
-export class CutoffConstruction extends LayoffConstruction {
-    constructionMethod: AllConstructions = PointConstructions.cutoff;
-    protected _createLayoff(ps: PointElement[]) : GeomElement {
-        return new Layoff(ps[0], ps[0], ps[1], ps[2], ps[3]);
-    }
-}
+// TBD
+// line
+// perpendicular
+// points A, B, D, E [plane C]
+// the line AF perpendicular to AB in plane C equal to DE
 
+// TBD
+// *Solid Geometry Only*
+// line
+// perpendicular
+// point A, C, D plane B
+// the line EF perpendicular to plane B passing through A equal to CD with E lying on B
+
+// TBD
+// line
+// cutoff
+// points A, B, C, D
+// the line AE equal to CD along the line AB
+
+// TBD
+// line
+// extend
+// points A, B, C, D
+// the line BE equal to CD so that A, B, and C are collinear with B between A and C
 export class LineExtendConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.extend;
     signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
@@ -523,8 +753,192 @@ export class LineExtendConstruction extends Construction {
     }
 }
 
+// TBD
+// line
+// parallel
+// points A, B, C
+// the line AD parallel and equal to BC
+
+// TBD
+// line
+// similar
+// points A, B, D, E, F [planes C, G]
+// the line AH so that triangle ABH in plane C is similar to triangle DEF in plane G
+
+// TBD
+// line
+// proportion
+// 8 points A, B, C, D, E, F, G, H
+// the line GI along GH so that AB:CD = EF:GI
+
+// TBD
+// line
+// meanProportional
+// 6 points A, B, C, D, E, F
+// the line EG along EF so that AB:CD = CD:EG
+
+/************************
+ * Element Class Circle *
+ ************************/
+
+// circle
+// radius
+// points A, B [plane C=screen]
+// the circle with center A and radius AB in the plane C
+export class CircleRadiusCenterConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.radius;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new CircleElement({C:ps[0], B:ps[1], AP:screen});
+        return [[g], g];
+    }
+}
+
+// TBD
+// circle
+// radius
+// points A, B [plane C=any]
+// the circle with center A and radius AB in the plane C
+
+// TBD
+// circle
+// radius
+// points A, B, C [plane D]
+// the circle with center A and radius BC in the plane D
+
+// TBD
+// circle
+// circumcircle	
+// points A, B, C [plane D]
+// the circle passing through 3 points A, B, and C in the plane D
+
+// TBD
+// circle
+// invert
+// circles A, B	
+// the image of circle A inverted in circle B
+
+
+// TBD
+// *Solid Geometry Only*
+// circle
+// intersection
+// spheres A, B	
+// the intersection of spheres A and B
+
+/*************************
+ * Element Class Polygon *
+ *************************/
+
+abstract class PolyConstruction extends Construction {
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new PolygonElement(ps);
+        return [[g],g];
+    }
+}
+
+// TBD
+// polygon
+// square	
+// points A, B [plane C
+// the square on a side AB in plane C
+
+// polygon
+// triangle	
+// points A, B, C
+// the triangle ABC given 3 vertices A, B, and C
+export class TrianglePolygonConstruction extends PolyConstruction {
+    constructionMethod: AllConstructions = PolygonConstructions.triangle;
+    signature: ConstructionTypes[] = (new Array(3)).fill(ct.PointElement);
+}
+
+
+// TBD
+// polygon
+// quadrilateral
+// points A, B, C, D
+// the quadrilateral ABCD given 4 vertices A, B, C, and D
+
+// TBD
+// polygon
+// pentagon	
+// points A, B, C, D, E
+// the pentagon given 5 vertices
+
+// TBD
+// polygon
+// hexagon
+// points A, B, C, D, E, F
+// the hexagon given 6 vertices
+
+// TBD
+// polygon
+// equilateralTriangle
+// points A, B [plane C]
+// the equilateral triangle on a side AB in plane C
+
+// TBD
+// polygon
+// parallelogram
+// points A, B, C
+// the parallelogram ABCD given A, B, and C
+
+// TBD
+// polygon
+// regularPolygon
+// points A, B integer n
+// the regular polygon on a side AB given the number of vertices n
+
+
+// TBD
+// polygon
+// starPolygon
+// points A, B integers n, d
+// the star polygon on a side AB given the number of vertices n and the density d
+
+
+// TBD
+// polygon
+// similar
+// points A, B, D, E, F [planes C, G]
+// the triangle ABH in plane C is similar to triangle DEF in plane G
+
+
+// TBD
+// polygon
+// application
+// polygon A points B, C, D
+// the parallelogram equal to the given polygon A with one side BC and one angle BCD
+
+
+// TBD
+// polygon
+// octagon	
+// 8 points A, B, C, D, E, F, G, H
+// the octagon given 8 vertices
+
+
+// TBD
+// *Solid Geometry Only*
+// polygon
+// face	
+// polyhedron A integer n
+// the nth face of polyhedron A
+
+
+/************************
+ * Element Class Sector *
+ ************************/
+
+
+// sector
+// sector
+// points A, B, C [plane D]
+// the sector of a circle in plane D given the center A and two points B and C on the circumference
 export class SectorConstruction extends Construction {
-    // the sector of a circle in plane D (screen) given the center A and two points B and C on the circumference
     constructionMethod: AllConstructions = SectorConstructions.sector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
 
@@ -535,8 +949,11 @@ export class SectorConstruction extends Construction {
     }
 }
 
+// sector
+// sector
+// points A, B, C [plane D]
+// the sector of a circle in plane D given the center A and two points B and C on the circumference
 export class Sector2Construction extends Construction {
-    // the sector of a circle in plane D given the center A and two points B and C on the circumference
     constructionMethod: AllConstructions = SectorConstructions.sector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
 
@@ -550,32 +967,29 @@ export class Sector2Construction extends Construction {
     }
 }
 
+// TBD
+// sector
+// arc
+// points A, B, C [plane D]
+// the sector of a circle in plane D whose arc passes through the three points A, B and C
 
-// TODO: Add circle slider with circle element reference to point
+/***********************
+ * Element Class Plane *
+ ***********************/
 
-export class CircleRadiusCenterConstruction extends Construction {
-    constructionMethod: AllConstructions = CircleConstructions.radius;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let g = new CircleElement({C:ps[0], B:ps[1], AP:screen});
-        return [[g], g];
-    }
-}
+// TBD
+// *Solid Geometry Only*
+// plane
+// 3points
+// points A, B, C
+// the plane passing through points A, B, and C
 
 
-export class BichordConstruction extends Construction {
-    constructionMethod: AllConstructions = LineConstructions.bichord;
-    signature: ConstructionTypes[] = [ct.CircleElement, ct.CircleElement];
-
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : CircleElement[] = params;
-        let g = new Bichord({C:ps[0], D:ps[1]});
-        return [[g], g];
-    }
-}
-
+// *Solid Geometry Only*
+// plane
+// perpendicular
+// points A, B
+// the plane passing through point A and perpendicular to line AB
 export class PerpendicularPlaneConstruction extends Construction {
     constructionMethod: AllConstructions = PlaneConstructions.perpendicular;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement]
@@ -586,18 +1000,85 @@ export class PerpendicularPlaneConstruction extends Construction {
     }
 }
 
-abstract class PolyConstruction extends Construction {
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let g = new PolygonElement(ps);
-        return [[g],g];
-    }
-}
 
-export class TrianglePolygonConstruction extends PolyConstruction {
-    constructionMethod: AllConstructions = PolygonConstructions.triangle;
-    signature: ConstructionTypes[] = (new Array(3)).fill(ct.PointElement);
-}
+
+// TBD
+// *Solid Geometry Only*
+// plane
+// parallel	
+// plane A point B
+// the plane passing through point A and parallel to plane B
+
+
+// TBD
+// *Solid Geometry Only*
+// plane
+// ambient
+// point A
+// the ambient plane of point A
+
+
+// TBD
+// *Solid Geometry Only*
+// plane
+// ambient
+// circle A
+// the ambient plane of circle A
+
+
+/************************
+ * Element Class Sphere *
+ ************************/
+
+// TBD
+// *Solid Geometry Only*
+// sphere
+// radius
+// points A, B
+// the sphere with center A and radius AB
+
+
+// TBD
+// *Solid Geometry Only*
+// sphere
+// radius
+// points A, B, C
+// the sphere with center A and radius BC
+
+/****************************
+ * Element Class Polyhedron *
+ ****************************/
+
+// TBD
+// *Solid Geometry Only*
+// polyhedron
+// tetrahedron
+// points A, B, C, D
+// the tetrahedron given four vertices
+
+
+// TBD
+// *Solid Geometry Only*
+// polyhedron
+// parallelepiped
+// points A, B, C, D
+// the parallelepiped with three edges AB, AC, and AD
+
+
+// TBD
+// *Solid Geometry Only*
+// polyhedron
+// prism
+// polygon A points B, C
+// the prism with base A and side edges parallel and equal to BC
+
+
+// TBD
+// *Solid Geometry Only*
+// polyhedron
+// pyramid
+// polygon A point B
+// the pyramid with base A and apex B
 
 
 export const constructions : Construction[] = [
@@ -625,5 +1106,3 @@ export const constructions : Construction[] = [
     new TrianglePolygonConstruction(),
     new PerpendicularPlaneConstruction()
 ];
-
-
