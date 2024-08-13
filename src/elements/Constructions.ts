@@ -23,6 +23,7 @@ import {PointElement} from "./point/PointElement";
 import {FixedPoint} from "./point/FixedPoint";
 import {PlaneSlider} from "./point/PlaneSlider";
 import {Midpoint} from "./point/Midpoint";
+import {Intersection} from "./point/Intersection";
 import {LineElement} from "./line/LineElement";
 import {LineSlider} from "./point/LineSlider";
 import {Layoff} from "./point/Layoff";
@@ -262,11 +263,42 @@ export class MidPointConstruction extends Construction {
     }
 }
 
-// TBD
 // point
 // intersection
-// points A, B, C, D [plane E]
+// points A, B, C, D, plane E
 // the intersection of two lines AB and CD in the plane E
+export class IntersectionConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.intersection;
+    signature: ConstructionTypes[] = [ct.PointElement, 
+                                      ct.PointElement,
+                                      ct.PointElement,
+                                      ct.PointElement,
+                                      ct.PlaneElement
+                                     ];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let a : PointElement = params[0];
+        let b : PointElement = params[1];
+        let c : PointElement = params[2];
+        let d : PointElement = params[3];
+        let ap : PlaneElement = params[4];
+
+        let g = new Intersection(a,b,c,d,ap);
+
+        return [[g], g];
+    }
+}
+
+export class IntersectionConstructionScreen extends IntersectionConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, 
+                                      ct.PointElement,
+                                      ct.PointElement,
+                                      ct.PointElement,
+                                     ];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        params.push(screen);
+        return super.construct(screen, params);
+    }
+}
 
 // TBD
 // point
@@ -1088,6 +1120,8 @@ export const constructions : Construction[] = [
     new FirstPointConstruction(),
     new LastPointConstruction(),
     new MidPointConstruction(),
+    new IntersectionConstruction(),
+    new IntersectionConstructionScreen(),
     new FootPointConsturction(),
     new ExtendConstruction(),
     new CutoffConstruction(),

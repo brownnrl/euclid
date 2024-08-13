@@ -89,6 +89,8 @@ describe("slate", ()=> {
         almostEqual(p7.x, 143, 1);
         almostEqual(p7.y, 56, 1);
     });
+
+    // TODO: Add intersection tests then view element
     
     it("should facilitate updates", () => {
         let slate : Slate = new Slate(createCanvas(200,200));
