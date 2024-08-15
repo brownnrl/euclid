@@ -16,6 +16,7 @@
 +----------------------------------------------------------------------*/
 import {GeomElement} from "./GeomElement";
 import {CircleElement} from "./circle/CircleElement";
+import {CircumcircleElement} from "./circle/CircumcircleElement";
 import {PlaneElement} from "./plane/PlaneElement";
 import {IPerpendicularPlaneElementConstruction, 
         PerpendicularPlane} from "./plane/PerpendicularPlane";
@@ -336,6 +337,13 @@ export class LastPointConstruction extends Construction {
 // center
 // circle A	
 // the center of the circle A
+export class CircleCenterConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.center;
+    signature: ConstructionTypes[] = [ct.CircleElement];
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        return [[], (params[0] as CircleElement).Center as PointElement];
+    }
+}
 
 // TBD
 // point
@@ -843,8 +851,34 @@ export class CircleRadiusCenterConstruction extends Construction {
 // TBD
 // circle
 // circumcircle	
-// points A, B, C [plane D]
+// points A, B, C, plane D
 // the circle passing through 3 points A, B, and C in the plane D
+export class CircumcircleConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.circumcircle;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let A : PointElement = params[0];
+        let B : PointElement = params[1];
+        let C : PointElement = params[2];
+        let AP : PlaneElement = params[3];
+        let g = new CircumcircleElement(A,B,C,AP);
+        return [[g], g];
+    }
+}
+
+// circle
+// circumcircle	
+// points A, B, C [plane D=screen]
+// the circle passing through 3 points A, B, and C in the plane D
+export class CircumcircleConstruction2d extends CircumcircleConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        params.push(screen);
+        return super.construct(screen, params);
+    }
+}
 
 // TBD
 // circle
@@ -1119,12 +1153,15 @@ export const constructions : Construction[] = [
     new FixedPoint3dConstruction(),
     new FirstPointConstruction(),
     new LastPointConstruction(),
+    new CircleCenterConstruction(),
     new MidPointConstruction(),
     new IntersectionConstruction(),
     new IntersectionConstructionScreen(),
     new FootPointConsturction(),
     new ExtendConstruction(),
     new CutoffConstruction(),
+    new CircumcircleConstruction(),
+    new CircumcircleConstruction2d(),
     new LineSliderConstruction(),
     new LineSlider2dConstruction(),
     new LineSliderSegmentConstruction(),

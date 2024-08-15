@@ -122,6 +122,26 @@ describe("slate", ()=> {
         almostEqual(p8.x, 110, 1);
         almostEqual(p8.y, 3, 1);
     });
+
+
+    let circle_center_data : IConstructionInfo[] = [
+    /*
+     
+    <img src=propIII10.gif alt="java applet or image">
+    <param name=background value="35,19,100">
+    <param name=title value="III.10">
+    <param name=e[1] value="B;point;free;150,40">
+    <param name=e[2] value="F;point;free;150,260">
+    <param name=e[3] value="H;point;free;40,180">
+    <param name=e[4] value="ABC;circle;circumcircle;B,F,H;0;0;black;random">
+    <param name=e[5] value="P;point;center;ABC;black;green">
+   */
+        { construction: E.Point.free, name: "B", params: [150, 40]},
+        { construction: E.Point.free, name: "F", params: [110, 100]},
+        { construction: E.Point.free, name: "H", params: [190,100]},
+        { construction: E.Circle.circumcircle, name: "ABC", params: ["B","F","H"]},
+        { construction: E.Point.center, name: "P", params: ["ABC"]},
+    ]
     
     it("should facilitate updates", () => {
         let slate : Slate = new Slate(createCanvas(200,200));
