@@ -8,6 +8,7 @@ import {PointElement} from "../src/elements/point/PointElement";
 import {CircleSlider} from "../src/elements/point/CircleSlider";
 import {PlaneElement} from "../src/elements/plane/PlaneElement";
 import {LineElement} from "../src/elements/line/LineElement";
+import {CircumcircleElement} from "../src/elements/circle/CircumcircleElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -124,9 +125,8 @@ describe("slate", ()=> {
     });
 
 
-    let circle_center_data : IConstructionInfo[] = [
+    let circle_center_circumcircle_data : IConstructionInfo[] = [
     /*
-     
     <img src=propIII10.gif alt="java applet or image">
     <param name=background value="35,19,100">
     <param name=title value="III.10">
@@ -135,13 +135,38 @@ describe("slate", ()=> {
     <param name=e[3] value="H;point;free;40,180">
     <param name=e[4] value="ABC;circle;circumcircle;B,F,H;0;0;black;random">
     <param name=e[5] value="P;point;center;ABC;black;green">
-   */
+    */
         { construction: E.Point.free, name: "B", params: [150, 40]},
         { construction: E.Point.free, name: "F", params: [110, 100]},
         { construction: E.Point.free, name: "H", params: [190,100]},
         { construction: E.Circle.circumcircle, name: "ABC", params: ["B","F","H"]},
         { construction: E.Point.center, name: "P", params: ["ABC"]},
     ]
+
+    it("should create a circumcircle and center elements", () => {
+        let slate : Slate = new Slate(createCanvas(200, 200));
+        let elms = toElements(slate, circle_center_circumcircle_data);
+        slate.elements.forEach(e => e.update());
+        let p3 = elms[3] as CircumcircleElement;
+        let p4 = elms[4] as PointElement;
+        assert.equal(p3.Center, p4);
+        almostEqual(p4.x, 150, 1);
+        almostEqual(p4.y, 83, 1);
+    });
+
+
+    /* TBD for circumcenter
+    <img src=propIII25a.gif alt="java applet or image">
+    <param name=background value="35,19,100">
+    <param name=title value="III.25a">
+    <param name=e[1] value="A;point;free;60,30">
+    <param name=e[2] value="C;point;free;60,200">
+    <param name=e[3] value="AC;line;connect;A,C">
+    <param name=e[4] value="D;point;midpoint;AC">
+    <param name=e[5] value="DB;line;perpendicular;D,A;0;0;0">
+    <param name=e[6] value="B;point;lineSlider;DB,30,115">
+    <param name=e[7] value="E;point;circumcenter;A,B,C;black;green">
+    */
     
     it("should facilitate updates", () => {
         let slate : Slate = new Slate(createCanvas(200,200));
