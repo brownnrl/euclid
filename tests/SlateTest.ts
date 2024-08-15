@@ -3,6 +3,7 @@ import * as assert from "assert";
 import {Slate} from "../src/Slate";
 import {E, IConstructionInfo} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
+import {Intersection} from "../src/elements/point/Intersection";
 import {PointElement} from "../src/elements/point/PointElement";
 import {CircleSlider} from "../src/elements/point/CircleSlider";
 import {PlaneElement} from "../src/elements/plane/PlaneElement";
@@ -90,7 +91,37 @@ describe("slate", ()=> {
         almostEqual(p7.y, 56, 1);
     });
 
-    // TODO: Add intersection tests then view element
+    // Book I, Def I2
+    let intersection_data : IConstructionInfo[] = [
+        /* 
+        <param name=e[1] value="A;point;free;40,170;0">
+        <param name=e[2] value="B;point;free;110,100;0">
+        <param name=e[3] value="C;point;free;190,100;0">
+        <param name=e[4] value="D;point;free;280,50;0">
+        <param name=e[5] value="BC;line;connect;B,C">
+        <param name=e[6] value="E';point;perpendicular;B,C;0;0">
+        <param name=e[7] value="M;point;midpoint;A,B;0;0">
+        <param name=e[8] value="E'';point;perpendicular;M,B;0;0">
+        <param name=e[9] value="E;point;intersection;B,E',M,E'';0;0"> */
+        { construction: E.Point.free, name: "A", params: [40, 70]},
+        { construction: E.Point.free, name: "B", params: [110, 100]},
+        { construction: E.Point.free, name: "C", params: [190,100]},
+        { construction: E.Point.free, name: "D", params: [280,50]},
+        { construction: E.Line.connect, name: "BC", params: ["B", "C"]},
+        { construction: E.Point.perpendicular, name: "E'", params: ["B", "C"]},
+        { construction: E.Point.midpoint, name: "M", params: ["A", "B"]},
+        { construction: E.Point.perpendicular, name: "E''", params: ["M", "B"]},
+        { construction: E.Point.intersection, name: "E", params: ["B", "E'", "M", "E''"]},
+    ]
+
+    it("should create an intersection element", () => {
+        let slate : Slate = new Slate(createCanvas(200, 200));
+        let elms = toElements(slate, intersection_data);
+        slate.elements.forEach(e => e.update());
+        let p8 = elms[8] as Intersection;
+        almostEqual(p8.x, 110, 1);
+        almostEqual(p8.y, 3, 1);
+    });
     
     it("should facilitate updates", () => {
         let slate : Slate = new Slate(createCanvas(200,200));
