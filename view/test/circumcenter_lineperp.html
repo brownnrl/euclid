@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Test View : circumcenter and line</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:200px; height: 200px;"></canvas>
+<!-- Dependencies -->
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    console.log(geomlib);
+    let Color = geomlib.Color;
+    let Align = geomlib.Align;
+    let E = geomlib.E;
+    let elems = [
+        { construction: E.Point.free, name: "A", params: [60, 30]},
+        { construction: E.Point.free, name: "C", params: [60, 200]},
+        { construction: E.Line.connect, name: "AC", params: ["A", "C"]},
+        { construction: E.Point.midpoint, name: "D", params: ["AC"]},
+        { construction: E.Line.perpendicular, name: "DB", params: ["D", "A"]},
+        { construction: E.Point.lineSlider, name: "B", params: ["DB", 30, 115]},
+        { construction: E.Point.circumcenter, name: "E", params: ["A", "B", "C"]},
+    ]
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "propIII25",
+        align: Align.ABOVE,
+        canvasid: "canvasId",
+        elements: elems    })
+
+</script>
+</body>
+</html>

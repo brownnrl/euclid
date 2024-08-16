@@ -139,6 +139,10 @@ export class Slate {
         return this._elements;
     }
 
+    get elementsForUpdate() : GeomElement[] {
+        return this._elementsForUpdate;
+    }
+
     set bgcolor(value: string ) {
         this._bgcolor = value;
     }

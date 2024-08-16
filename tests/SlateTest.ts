@@ -155,6 +155,7 @@ describe("slate", ()=> {
     });
 
 
+    let circumcenter_data : IConstructionInfo[] = [
     /* TBD for circumcenter
     <img src=propIII25a.gif alt="java applet or image">
     <param name=background value="35,19,100">
@@ -167,6 +168,30 @@ describe("slate", ()=> {
     <param name=e[6] value="B;point;lineSlider;DB,30,115">
     <param name=e[7] value="E;point;circumcenter;A,B,C;black;green">
     */
+        { construction: E.Point.free, name: "A", params: [60, 30]},
+        { construction: E.Point.free, name: "C", params: [60, 200]},
+        { construction: E.Line.connect, name: "AC", params: ["A", "C"]},
+        { construction: E.Point.midpoint, name: "D", params: ["AC"]},
+        { construction: E.Line.perpendicular, name: "DB", params: ["D", "A"]},
+        { construction: E.Point.lineSlider, name: "B", params: ["DB", 30, 115]},
+        { construction: E.Point.circumcenter, name: "E", params: ["A", "B", "C"]},
+    ]
+
+    it("should create a circumcenter and line perpendiular element", () => {
+        let slate : Slate = new Slate(createCanvas(200, 200));
+        let elms = toElements(slate, circumcenter_data);
+        slate.elements.forEach(e => e.update());
+        // circumcenter pushes two elements on the update list
+        // the circumcircle as one, and the circumcenter as the other
+        let elmsUpdate = slate.elementsForUpdate;
+        let n = elmsUpdate.length;
+        let pcircle = elmsUpdate[n-2] as CircumcircleElement;
+        let pcenter = elmsUpdate[n-1] as PointElement;
+        assert.equal(pcircle.Center, pcenter);
+        almostEqual(pcenter.x, 165, 1);
+        almostEqual(pcenter.y, 115, 1);
+    });
+
     
     it("should facilitate updates", () => {
         let slate : Slate = new Slate(createCanvas(200,200));

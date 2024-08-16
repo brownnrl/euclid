@@ -332,7 +332,6 @@ export class LastPointConstruction extends Construction {
     }
 }
 
-// TBD
 // point
 // center
 // circle A	
@@ -415,11 +414,71 @@ export class CircleSliderConstruction2dPoint extends CircleSliderConstruction {
     }
 }
 
-// TBD
+/*******************************************
+ * Circle Elements needed for CircumCircle *
+ *******************************************/
+
+// circle
+// circumcircle	
+// points A, B, C, plane D
+// the circle passing through 3 points A, B, and C in the plane D
+export class CircumcircleConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.circumcircle;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let A : PointElement = params[0];
+        let B : PointElement = params[1];
+        let C : PointElement = params[2];
+        let AP : PlaneElement = params[3];
+        let g = new CircumcircleElement(A,B,C,AP);
+        return [[g], g];
+    }
+}
+
+// circle
+// circumcircle	
+// points A, B, C [plane D=screen]
+// the circle passing through 3 points A, B, and C in the plane D
+export class CircumcircleConstruction2d extends CircumcircleConstruction {
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        params.push(screen);
+        return super.construct(screen, params);
+    }
+}
+
 // point
 // circumcenter
-// points A, B, C [plane D]	
+// points A, B, C plane D	
 // the center of a circle ABC passing through 3 points A, B, and C in the plane D
+export class CircumcenterConstruction extends CircumcircleConstruction {
+    constructionMethod: AllConstructions = PointConstructions.circumcenter;
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es : [GeomElementsForUpdate, GeomElement] = super.construct(screen, params);
+        let g : CircleElement = es[1] as CircleElement;
+        es[0].push(g.Center);
+        // returns cirlce and circle center for update
+        // and the circle center as the constructed element
+        return [es[0], g.Center];
+    }
+}
+
+// point
+// circumcenter
+// points A, B, C plane D	
+// the center of a circle ABC passing through 3 points A, B, and C in the plane D
+export class CircumcenterConstruction2d extends CircumcenterConstruction {
+    constructionMethod: AllConstructions = PointConstructions.circumcenter;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        params.push(screen)
+        return super.construct(screen, params);
+    }
+}
 
 // TBD
 /* point
@@ -519,6 +578,27 @@ export class PointPerpendicular1Construction extends PointPerpendicularConstruct
     }
 }
 
+// TBD : TODO Move these line constructions and 
+// TODO: maybe find some common / better mixin pattern
+// line
+// perpendicular
+// points A, B, [plane C], D, E 
+// the line AF perpendicular to AB in plane C equal to DE
+
+// TBD
+// *Solid Geometry Only*
+// line
+// perpendicular
+// point A, plane B point C, D 
+// the line EF perpendicular to plane B passing through A equal to CD with E lying on B
+export class LinePerpendicular1Construction extends PointPerpendicular1Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
+    }
+}
+
 /* point
  * perpendicular
  * points A, B, plane C
@@ -532,6 +612,14 @@ export class PointPerpendicular2Construction extends PointPerpendicularConstruct
         let c : PlaneElement = params[2];
         let g = new Perpendicular({C:a, D:b,P:c, E:a, F:b});
         return [[g], g.B];
+    }
+}
+
+export class LinePerpendicular2Construction extends PointPerpendicular2Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
     }
 }
 
@@ -549,6 +637,14 @@ export class PointPerpendicular3Construction extends PointPerpendicularConstruct
         let e : PointElement = params[3];
         let g = new Perpendicular({C:a, D:b,P:screen, E:d, F:e});
         return [[g], g.B];
+    }
+}
+
+export class LinePerpendicular3Construction extends PointPerpendicular3Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
     }
 }
 
@@ -570,6 +666,14 @@ export class PointPerpendicular4Construction extends PointPerpendicularConstruct
     }
 }
 
+export class LinePerpendicular4Construction extends PointPerpendicular4Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
+    }
+}
+
 /* point
  * perpendicular
  * points A, C, D plane B 
@@ -585,6 +689,14 @@ export class PointPerpendicular5Construction extends PointPerpendicularConstruct
         let d : PointElement = params[3];
         let g = new PlanePerpendicularLine({C:a, P:b, D:c, E:d});
         return [[g], g.B];
+    }
+}
+
+export class LinePerpendicular5Construction extends PointPerpendicular5Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
     }
 }
 
@@ -751,24 +863,6 @@ export class BichordConstruction extends Construction {
     }
 }
 
-// TBD
-// line
-// perpendicular
-// points A, B [plane C]
-// the line AD equal and perpendicular to AB in plane C
-
-// TBD
-// line
-// perpendicular
-// points A, B, D, E [plane C]
-// the line AF perpendicular to AB in plane C equal to DE
-
-// TBD
-// *Solid Geometry Only*
-// line
-// perpendicular
-// point A, C, D plane B
-// the line EF perpendicular to plane B passing through A equal to CD with E lying on B
 
 // TBD
 // line
@@ -848,37 +942,6 @@ export class CircleRadiusCenterConstruction extends Construction {
 // points A, B, C [plane D]
 // the circle with center A and radius BC in the plane D
 
-// TBD
-// circle
-// circumcircle	
-// points A, B, C, plane D
-// the circle passing through 3 points A, B, and C in the plane D
-export class CircumcircleConstruction extends Construction {
-    constructionMethod: AllConstructions = CircleConstructions.circumcircle;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
-
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let A : PointElement = params[0];
-        let B : PointElement = params[1];
-        let C : PointElement = params[2];
-        let AP : PlaneElement = params[3];
-        let g = new CircumcircleElement(A,B,C,AP);
-        return [[g], g];
-    }
-}
-
-// circle
-// circumcircle	
-// points A, B, C [plane D=screen]
-// the circle passing through 3 points A, B, and C in the plane D
-export class CircumcircleConstruction2d extends CircumcircleConstruction {
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
-
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        params.push(screen);
-        return super.construct(screen, params);
-    }
-}
 
 // TBD
 // circle
@@ -1154,6 +1217,8 @@ export const constructions : Construction[] = [
     new FirstPointConstruction(),
     new LastPointConstruction(),
     new CircleCenterConstruction(),
+    new CircumcenterConstruction(),
+    new CircumcenterConstruction2d(),
     new MidPointConstruction(),
     new IntersectionConstruction(),
     new IntersectionConstructionScreen(),
@@ -1173,6 +1238,15 @@ export const constructions : Construction[] = [
     new CircleSliderConstruction2dPoint(),
     new CircleRadiusCenterConstruction(),
     new PointPerpendicular1Construction(),
+    new PointPerpendicular2Construction(),
+    new PointPerpendicular3Construction(),
+    new PointPerpendicular4Construction(),
+    new PointPerpendicular5Construction(),
+    new LinePerpendicular1Construction(),
+    new LinePerpendicular2Construction(),
+    new LinePerpendicular3Construction(),
+    new LinePerpendicular4Construction(),
+    new LinePerpendicular5Construction(),
     new BichordConstruction(),
     new TrianglePolygonConstruction(),
     new PerpendicularPlaneConstruction()
