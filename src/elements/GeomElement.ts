@@ -58,14 +58,14 @@ export abstract class GeomElement {
         return [w, h];
     }
 
-    drawString(ix : number, iy : number,  c: SlateCanvas) {
+    drawString(ix : number, iy : number,  c: SlateCanvas, overrideAlign? : Align) {
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         if(this._nameColor == null) return;
         ctx.font = GeomElement._font;
         ctx.fillStyle = this._nameColor;
         let [w, h] = this._getTextMetrics(ctx, this._name);
 
-        switch (this._align) {
+        switch (overrideAlign || this._align) {
             case Align.LEFT:
                 ix = ix - w - 6;
                 iy = iy + h/2 - 4;

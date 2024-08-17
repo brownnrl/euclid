@@ -9,6 +9,7 @@ import {CircleSlider} from "../src/elements/point/CircleSlider";
 import {PlaneElement} from "../src/elements/plane/PlaneElement";
 import {LineElement} from "../src/elements/line/LineElement";
 import {CircumcircleElement} from "../src/elements/circle/CircumcircleElement";
+import {SphereElement} from "../src/elements/sphere/SphereElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -156,17 +157,17 @@ describe("slate", ()=> {
 
 
     let circumcenter_data : IConstructionInfo[] = [
-    /* TBD for circumcenter
-    <img src=propIII25a.gif alt="java applet or image">
-    <param name=background value="35,19,100">
-    <param name=title value="III.25a">
-    <param name=e[1] value="A;point;free;60,30">
-    <param name=e[2] value="C;point;free;60,200">
-    <param name=e[3] value="AC;line;connect;A,C">
-    <param name=e[4] value="D;point;midpoint;AC">
-    <param name=e[5] value="DB;line;perpendicular;D,A;0;0;0">
-    <param name=e[6] value="B;point;lineSlider;DB,30,115">
-    <param name=e[7] value="E;point;circumcenter;A,B,C;black;green">
+    /*
+        <img src=propIII25a.gif alt="java applet or image">
+        <param name=background value="35,19,100">
+        <param name=title value="III.25a">
+        <param name=e[1] value="A;point;free;60,30">
+        <param name=e[2] value="C;point;free;60,200">
+        <param name=e[3] value="AC;line;connect;A,C">
+        <param name=e[4] value="D;point;midpoint;AC">
+        <param name=e[5] value="DB;line;perpendicular;D,A;0;0;0">
+        <param name=e[6] value="B;point;lineSlider;DB,30,115">
+        <param name=e[7] value="E;point;circumcenter;A,B,C;black;green">
     */
         { construction: E.Point.free, name: "A", params: [60, 30]},
         { construction: E.Point.free, name: "C", params: [60, 200]},
@@ -192,6 +193,33 @@ describe("slate", ()=> {
         almostEqual(pcenter.y, 115, 1);
     });
 
+    let sphere_data : IConstructionInfo[] = [
+    /*
+        <img src="propXII17.gif" alt="java applet or image">
+        <param name=background value="35,19,100">
+        <param name=title value="XII.17">
+        <param name=fontsize value=14>
+        <param name=e[1] value="zen;point;fixed;250,-10000,5000;0;0">
+        <param name=e[2] value="A;point;free;250,250">
+        <param name=e[3] value="eqplane;plane;perpendicular;A,zen;0;0;0;0">
+        <param name=e[4] value="B;point;planeSlider;eqplane,450,360,60">
+        <param name=e[5] value="Bsphere;sphere;radius;A,B;0;0;black;random">
+    */
+        { construction: E.Point.free, name: "A", params: [60, 30]},
+        { construction: E.Point.free, name: "B", params: [60, 200]},
+        { construction: E.Sphere.radius, name: "Asphere", params: ["A", "B"]},
+    ]
+
+    it("should create a sphere", () => {
+        let slate : Slate = new Slate(createCanvas(200, 200));
+        let elms = toElements(slate, sphere_data);
+        slate.elements.forEach(e => e.update());
+        let elmsUpdate = slate.elementsForUpdate;
+        let pcenter = elmsUpdate[2] as SphereElement;
+        /*assert.equal(pcircle.Center, pcenter);
+        almostEqual(pcenter.x, 165, 1);
+        almostEqual(pcenter.y, 115, 1);*/
+    });
     
     it("should facilitate updates", () => {
         let slate : Slate = new Slate(createCanvas(200,200));

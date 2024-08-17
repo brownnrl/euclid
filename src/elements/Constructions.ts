@@ -35,6 +35,7 @@ import {Perpendicular} from "./line/Perpendicular";
 import {PlanePerpendicularLine} from "./line/PlanePerpendicularLine";
 import {Bichord} from "./line/Bichord";
 import {PolygonElement} from "./polygon/PolygonElement";
+import {SphereElement} from "./sphere/SphereElement";
 
 export enum ConstructionTypes {
     Integer,
@@ -174,6 +175,7 @@ export type AllConstructions =
     PlaneConstructions   |
     PolygonConstructions |
     SectorConstructions  |
+    SphereConstructions  |
     PolyhedraConstructions;
 
 export type GeomElementsForUpdate = GeomElement[];
@@ -578,26 +580,6 @@ export class PointPerpendicular1Construction extends PointPerpendicularConstruct
     }
 }
 
-// TBD : TODO Move these line constructions and 
-// TODO: maybe find some common / better mixin pattern
-// line
-// perpendicular
-// points A, B, [plane C], D, E 
-// the line AF perpendicular to AB in plane C equal to DE
-
-// TBD
-// *Solid Geometry Only*
-// line
-// perpendicular
-// point A, plane B point C, D 
-// the line EF perpendicular to plane B passing through A equal to CD with E lying on B
-export class LinePerpendicular1Construction extends PointPerpendicular1Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
-}
 
 /* point
  * perpendicular
@@ -615,13 +597,6 @@ export class PointPerpendicular2Construction extends PointPerpendicularConstruct
     }
 }
 
-export class LinePerpendicular2Construction extends PointPerpendicular2Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
-}
 
 /* point
  * perpendicular
@@ -640,13 +615,6 @@ export class PointPerpendicular3Construction extends PointPerpendicularConstruct
     }
 }
 
-export class LinePerpendicular3Construction extends PointPerpendicular3Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
-}
 
 /* point
  * perpendicular
@@ -666,13 +634,6 @@ export class PointPerpendicular4Construction extends PointPerpendicularConstruct
     }
 }
 
-export class LinePerpendicular4Construction extends PointPerpendicular4Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
-}
 
 /* point
  * perpendicular
@@ -692,13 +653,6 @@ export class PointPerpendicular5Construction extends PointPerpendicularConstruct
     }
 }
 
-export class LinePerpendicular5Construction extends PointPerpendicular5Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
-}
 
 // TBD
 // point
@@ -863,6 +817,53 @@ export class BichordConstruction extends Construction {
     }
 }
 
+// TODO: maybe find some common / better mixin pattern for perpendiculars
+// line
+// perpendicular
+// points A, B, [plane C], D, E 
+// the line AF perpendicular to AB in plane C equal to DE
+
+// TBD
+// *Solid Geometry Only*
+// line
+// perpendicular
+// point A, plane B point C, D 
+// the line EF perpendicular to plane B passing through A equal to CD with E lying on B
+export class LinePerpendicular1Construction extends PointPerpendicular1Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
+    }
+}
+export class LinePerpendicular2Construction extends PointPerpendicular2Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
+    }
+}
+export class LinePerpendicular3Construction extends PointPerpendicular3Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
+    }
+}
+export class LinePerpendicular4Construction extends PointPerpendicular4Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
+    }
+}
+export class LinePerpendicular5Construction extends PointPerpendicular5Construction {
+    constructionMethod : AllConstructions = LineConstructions.perpendicular;
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let es = super.construct(screen, params);
+        return [es[0], es[0][0]];
+    }
+}
 
 // TBD
 // line
@@ -1165,6 +1166,16 @@ export class PerpendicularPlaneConstruction extends Construction {
 // radius
 // points A, B
 // the sphere with center A and radius AB
+export class SphereRadiusConstruction extends Construction {
+    constructionMethod: AllConstructions = SphereConstructions.radius;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement]
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new SphereElement({Center: ps[0], B: ps[1]});
+        return [[g], g];
+    }
+}
+
 
 
 // TBD
@@ -1249,5 +1260,6 @@ export const constructions : Construction[] = [
     new LinePerpendicular5Construction(),
     new BichordConstruction(),
     new TrianglePolygonConstruction(),
-    new PerpendicularPlaneConstruction()
+    new PerpendicularPlaneConstruction(),
+    new SphereRadiusConstruction()
 ];
