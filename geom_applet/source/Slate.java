@@ -778,6 +778,7 @@ public class Slate extends Canvas {
     }
     if (element.length < eCount+2)
       extendArrays();
+    System.out.println("Creating " + name + " element class " + elementClass + " with method " + constructionMethod + " and data " + data);
     createElement (c, m, choice, P, E, N);
     element[eCount].name = name;
     return element[eCount++];

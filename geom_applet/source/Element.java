@@ -43,7 +43,7 @@ public abstract class Element extends Object {
       FontMetrics fm = g.getFontMetrics();
       int w = fm.stringWidth(name);
       int h = fm.getHeight();
-      switch (Element.align) {
+      switch (align) { // nelson note: changed from Element.align
 	case Element.LEFT:
 	  g.drawString(name, ix-w-6, iy+h/2-4);
 	  return;

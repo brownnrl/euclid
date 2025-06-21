@@ -55,3 +55,31 @@ $ python3 -m http.server
 ```
 
 And navigate to `http://locahost:(port)/view/index.html` where port is that reported in the console. 
+
+
+# Euclid Applet Docker Environment
+
+This Docker setup runs a preserved Java 8 environment for exploring classic geometry applets such as David Joyce's "Euler Line".
+
+## How to Use
+
+1. **Ensure X11 is running on your Linux host.**
+   - If needed, allow Docker to access X:
+     ```
+     xhost +local:docker
+     ```
+
+2. **Run the applet container:** `./run-euclid-applet.sh`
+
+3. **Inside the container:**
+- Navigate to the applet directory:
+  ```
+  cd /usr/src/app/view
+  appletviewer   -J-Djava.security.manager   -J-Djava.security.policy=/usr/src/app/view/permissive.policy   -J-Djava.security.debug=all   eulerline.html
+  ```
+
+## Notes
+
+- This setup uses Java 8 and includes the required `.class` and `.zip` files.
+- You must be on Linux with X11 for GUI windows to appear.
+- You can modify the container and re-commit changes using: `docker commit <container_id> euclid-applet:latest`
