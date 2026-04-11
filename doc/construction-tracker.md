@@ -71,6 +71,24 @@ These affect the library as a whole, independent of individual constructions.
 - [ ] **`PerpendicularPlane` potential division by zero** (`src/elements/plane/PerpendicularPlane.ts`
   ~line 56) — Marked `// TODO: Check division by 0?` in the normalization step.
 
+- [ ] **Default `faceColor` for `dimension == 2` elements diverges from Java applet**
+  (`src/index.ts` line 73) — `init()` applies a default `faceColor = lighten(bgcolor)` to
+  any element whose `dimension == 2`, so `SectorElement` / `ArcElement` / polygons / filled
+  circles all pick up a pale-fill auto-face when the caller does not set `faceColor`
+  explicitly. The Java applet leaves face-color unset unless the param string specifies
+  one, so Joyce's propositions that wanted an open arc wrote `;0;0;…;0` to explicitly
+  suppress the (Java-side?) default. We can currently work around it in `IConstructionInfo`
+  only by passing a non-null string that `parseColor` interprets as transparent — but the
+  numeric-0 → null path is itself blocked by the `parseColor` bug at line 31 and by
+  `IConstructionInfo` not accepting `number | null` for color fields. Full fix needs all
+  three platform TODOs (this one + parseColor + numeric-0 handling in `init()`) resolved
+  together so a caller can write `faceColor: 0` or `faceColor: null` and get an open face.
+  - **First observed instance**: `sector;arc` in `view/test/sector/arc.html` renders a
+    pale-cream pie slice from `_Center → A → B → _Center` where Java's
+    [view/applet-tests/sector/arc/applet.html](../view/applet-tests/sector/arc/applet.html)
+    shows just the open arc curve. Geometry is identical; only the default fill differs.
+    Documented in the three-way harness comparison on 2026-04-11.
+
 ---
 
 ## Point constructions
@@ -286,9 +304,27 @@ These affect the library as a whole, independent of individual constructions.
 - [x] **`sector`** (2 signature variants) — `src/elements/sector/SectorElement.ts`
   - [x] test view: [view/test/sector/sector.html](../view/test/sector/sector.html)
 
-- [ ] **`arc`** — TBD
-  - Java source: `Arc.java` — computes circumcenter of three given points; draws arc through A, M, B
-  - Used in: I.4, I.16, I.29, II.5–II.8, III.2, III.10, III.13, III.23–III.25, III.30
+- [x] **`arc`** — `src/elements/sector/ArcElement.ts`
+  - Extends `SectorElement`; constructor takes `(A, M, B, Plane)` and creates a bare
+    internal `_Center = new PointElement()` that `update()` recomputes every frame via
+    `_Center.toCircumcenter(A, M, B)`. Overrides `translate`/`rotate` to move only
+    `_Center` (A, M, B are independent slate elements).
+  - Java source: `Arc.java` — 23 lines, line-for-line port.
+  - 2D variant only per the 2D-first policy; the 3D variant
+    `[PointElement, PointElement, PointElement, PlaneElement]` remains TBD. When
+    added, MUST be registered BEFORE `ArcConstruction` in the `constructions` array
+    (signature variant ordering rule).
+  - Mocha tests (3): circumcenter of propIII2 points, `translate()` isolation,
+    `rotate()` isolation — all in `tests/SlateTest.ts`.
+  - [x] test view: [view/test/sector/arc.html](../view/test/sector/arc.html) — propIII2
+  - [x] applet-tests pair:
+    [view/applet-tests/sector/arc/{original,applet}.html](../view/applet-tests/sector/arc/)
+  - **Known cosmetic divergence from Java applet**: the TS port renders a pale-cream
+    pie-slice fill under the arc curve where the Java applet shows an open curve. This
+    is the default-faceColor bug documented above — *not* a geometry bug. Dragging E
+    tracks the arc's circumcenter smoothly and matches Java behavior.
+  - Used in: I.4 (blocked — see below), I.16, II.5–II.8, III.2, III.10, III.13,
+    III.23–III.25, III.30
 
 ---
 
@@ -342,4 +378,5 @@ These affect the library as a whole, independent of individual constructions.
 | `Polygon.equilateralTriangle` | view/test/poly/equilateralTriangle.html | exists |
 | `Point.parallelogram` | view/test/point/parallelogram.html | exists |
 | `Sector.sector` | view/test/sector/sector.html | exists |
+| `Sector.arc` | view/test/sector/arc.html | exists |
 | All others | — | missing |
