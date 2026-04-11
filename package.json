@@ -4,7 +4,8 @@
   "description": "Euclid's Elements",
   "main": "dist/index.js",
   "scripts": {
-    "test": "mocha ./tests"
+    "build": "tsc --noEmit",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
