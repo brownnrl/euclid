@@ -30,6 +30,7 @@ import {LineSlider} from "./point/LineSlider";
 import {Layoff} from "./point/Layoff";
 import {Foot} from "./point/Foot";
 import {SectorElement} from "./sector/SectorElement";
+import {ArcElement} from "./sector/ArcElement";
 import {CircleSlider} from "./point/CircleSlider";
 import {Perpendicular} from "./line/Perpendicular";
 import {PlanePerpendicularLine} from "./line/PlanePerpendicularLine";
@@ -1139,11 +1140,22 @@ export class Sector2Construction extends Construction {
     }
 }
 
-// TBD
 // sector
 // arc
-// points A, B, C [plane D]
-// the sector of a circle in plane D whose arc passes through the three points A, B and C
+// points A, M, B
+// the arc of the circle through points A, M, B in the screen plane
+// (M is the "through" point between the two endpoints A and B)
+// 2D variant; the 3D variant [Point, Point, Point, Plane] is TBD per 2D-first policy.
+export class ArcConstruction extends Construction {
+    constructionMethod: AllConstructions = SectorConstructions.arc;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new ArcElement(ps[0], ps[1], ps[2], screen);
+        return [[g], g];
+    }
+}
 
 /***********************
  * Element Class Plane *
@@ -1288,6 +1300,7 @@ export const constructions : Construction[] = [
     new LineExtendConstruction(),
     new SectorConstruction(),
     new Sector2Construction(),
+    new ArcConstruction(),
     new CircleSliderConstruction(),
     new CircleSliderConstruction2dPoint(),
     new CircleRadiusCenterConstruction(),
