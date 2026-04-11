@@ -1,0 +1,23 @@
+<HTML><HEAD><TITLE>point;parallelogram — applet form of view/test/point/parallelogram.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS:       view/test/point/parallelogram.html -->
+<!-- ORIGINAL: view/applet-tests/point/parallelogram/original.html (propI28) -->
+<!--
+  Up-to-construction applet form of the TS test page. Trims the propI28
+  original's lineSlider/EFGH transversal/intersections down to just the four
+  parallelogram vertices A, B, C, D' and the connecting sides — same subset
+  the TS test page renders.
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip height=240 width=360>
+<param name=background value="35,19,100">
+<param name=title value="I.28">
+<param name=e[1] value="A;point;free;40,80">
+<param name=e[2] value="B;point;free;190,80">
+<param name=e[3] value="C;point;free;40,120">
+<param name=e[4] value="D';point;parallelogram;C,A,B;0;0">
+<param name=e[5] value="AB;line;connect;A,B">
+<param name=e[6] value="AC;line;connect;A,C">
+<param name=e[7] value="BD';line;connect;B,D'">
+<param name=e[8] value="CD';line;connect;C,D'">
+</applet>
+</BODY></HTML>

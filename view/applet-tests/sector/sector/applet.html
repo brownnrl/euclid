@@ -1,0 +1,20 @@
+<HTML><HEAD><TITLE>sector;sector — applet form of view/test/sector/sector.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS:       view/test/sector/sector.html -->
+<!-- ORIGINAL: view/applet-tests/sector/sector/original.html (Def III.10) -->
+<!--
+  Up-to-construction applet form of the TS test page. Visually equivalent to
+  what view/test/sector/sector.html renders: a circle filled with a random
+  faceColor, with a half-sector E (also random faceColor) drawn from A through
+  B to D so the circle splits into two filled halves.
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=400 height=400>
+<param name=background value="35,19,100">
+<param name=title value="Def III.10">
+<param name=e[1] value="A;point;free;200,200">
+<param name=e[2] value="B;point;free;200,300">
+<param name=e[3] value="C;circle;radius;B,A;0;0;0;random">
+<param name=e[4] value="D;point;circleSlider;C,200,400">
+<param name=e[5] value="E;sector;sector;B,A,D;0;0;0;random">
+</applet>
+</BODY></HTML>
