@@ -63,13 +63,18 @@ This Docker setup runs a preserved Java 8 environment for exploring classic geom
 
 ## How to Use
 
-1. **Ensure X11 is running on your Linux host.**
+1. **Build the image (once):**
+   ```
+   docker build -f Containerfile -t euclid-applet:latest .
+   ```
+
+2. **Ensure X11 is running on your Linux host.**
    - If needed, allow Docker to access X:
      ```
      xhost +local:docker
      ```
 
-2. **Run the applet container:** `./run-euclid-applet.sh`
+3. **Run the applet container:** `./start_java8_container.sh`
 
 3. **Inside the container:**
 - Navigate to the applet directory:
