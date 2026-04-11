@@ -241,6 +241,50 @@ describe("slate", ()=> {
         assert.equal(B.y, 100);
     });
 
+    it("should return the nth vertex of a triangle", () => {
+        const data: IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [100, 50] },
+            { name: "B", construction: E.Point.free, params: [50, 200] },
+            { name: "C", construction: E.Point.free, params: [250, 200] },
+            { name: "T", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
+            { name: "V1", construction: E.Point.vertex, params: ["T", 1] },
+            { name: "V2", construction: E.Point.vertex, params: ["T", 2] },
+            { name: "V3", construction: E.Point.vertex, params: ["T", 3] },
+        ];
+        let slate = new Slate(createCanvas(400, 300));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let V1 = slate.lookupElement("V1") as PointElement;
+        let V2 = slate.lookupElement("V2") as PointElement;
+        let V3 = slate.lookupElement("V3") as PointElement;
+        almostEqual(V1.x, 100, 1); almostEqual(V1.y, 50, 1);
+        almostEqual(V2.x, 50, 1);  almostEqual(V2.y, 200, 1);
+        almostEqual(V3.x, 250, 1); almostEqual(V3.y, 200, 1);
+    });
+
+    it("should produce an equilateral triangle", () => {
+        const data: IConstructionInfo[] = [
+            { name: "A",   construction: E.Point.free,               params: [40, 170] },
+            { name: "B",   construction: E.Point.free,               params: [200, 170] },
+            { name: "ABC", construction: E.Polygon.equilateralTriangle, params: ["A", "B"] },
+            { name: "C",   construction: E.Point.vertex,             params: ["ABC", 3] },
+        ];
+        const slate = new Slate(createCanvas(400, 300));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        const A = slate.lookupElement("A") as PointElement;
+        const B = slate.lookupElement("B") as PointElement;
+        const C = slate.lookupElement("C") as PointElement;
+        // All three sides must be equal length (equilateral)
+        const ab = Math.hypot(B.x - A.x, B.y - A.y);
+        const ac = Math.hypot(C.x - A.x, C.y - A.y);
+        const bc = Math.hypot(C.x - B.x, C.y - B.y);
+        almostEqual(ac, ab, 1);
+        almostEqual(bc, ab, 1);
+        // Apex should be above the base (smaller y in screen coordinates)
+        assert.ok(C.y < A.y);
+    });
+
     it("should be able to find the closest visible point within a tolerance", () =>{
         let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, connected_line_data);
