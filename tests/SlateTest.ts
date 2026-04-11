@@ -262,6 +262,22 @@ describe("slate", ()=> {
         almostEqual(V3.x, 250, 1); almostEqual(V3.y, 200, 1);
     });
 
+    it("should compute the 4th vertex of a parallelogram", () => {
+        // propI28: A(40,80), B(190,80), C(40,120) → D' = C + (B-A) = (190,120)
+        const data: IConstructionInfo[] = [
+            { name: "A",  construction: E.Point.free,          params: [40, 80] },
+            { name: "B",  construction: E.Point.free,          params: [190, 80] },
+            { name: "C",  construction: E.Point.free,          params: [40, 120] },
+            { name: "D'", construction: E.Point.parallelogram, params: ["C", "A", "B"] },
+        ];
+        const slate = new Slate(createCanvas(400, 300));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        const D = slate.lookupElement("D'") as PointElement;
+        almostEqual(D.x, 190, 1);
+        almostEqual(D.y, 120, 1);
+    });
+
     it("should produce an equilateral triangle", () => {
         const data: IConstructionInfo[] = [
             { name: "A",   construction: E.Point.free,               params: [40, 170] },

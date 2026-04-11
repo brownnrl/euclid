@@ -1,0 +1,45 @@
+<html>
+<head><title>Test View - Point.parallelogram (I.28)</title></head>
+<body>
+<canvas id="canvasId" style="width:360px; height:240px;"></canvas>
+<script src="../../../../dist/bundle.js" type="text/javascript"></script>
+
+<!--applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=240>
+<img src="../../euclid-html/booki/propI28.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.28">
+<param name=e[1] value="A;point;free;40,80">
+<param name=e[2] value="B;point;free;190,80">
+<param name=e[3] value="AB;line;connect;A,B">
+<param name=e[4] value="C;point;free;40,120">
+<param name=e[5] value="D';point;parallelogram;C,A,B;0;0">
+</applet-->
+
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.28 — point;parallelogram: D' = C + (B − A)",
+        canvasid: "canvasId",
+        elements: [
+            { name: "A",  construction: E.Point.free,          params: [40, 80],
+              nameColor: "black", vertexColor: "black" },
+            { name: "B",  construction: E.Point.free,          params: [190, 80],
+              nameColor: "black", vertexColor: "black" },
+            { name: "C",  construction: E.Point.free,          params: [40, 120],
+              nameColor: "black", vertexColor: "black" },
+            { name: "D'", construction: E.Point.parallelogram, params: ["C", "A", "B"],
+              nameColor: "black", vertexColor: "green" },
+            { name: "AB", construction: E.Line.connect,        params: ["A", "B"],
+              edgeColor: "black" },
+            { name: "AC", construction: E.Line.connect,        params: ["A", "C"],
+              edgeColor: "black" },
+            { name: "BD'",construction: E.Line.connect,        params: ["B", "D'"],
+              edgeColor: "black" },
+            { name: "CD'",construction: E.Line.connect,        params: ["C", "D'"],
+              edgeColor: "black" },
+        ]
+    });
+</script>
+</body>
+</html>

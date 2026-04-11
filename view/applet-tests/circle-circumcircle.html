@@ -1,0 +1,30 @@
+<HTML><HEAD><TITLE>III.10 — circle;circumcircle + point;center</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<applet code=Geometry codebase=.. archive=Geometry.zip height=300 width=300>
+<param name=background value="35,19,100">
+<param name=title value="III.10">
+<param name=e[1] value="B;point;free;150,40">
+<param name=e[2] value="F;point;free;150,260">
+<param name=e[3] value="H;point;free;40,180">
+<param name=e[4] value="ABC;circle;circumcircle;B,F,H;0;0;black;random">
+<param name=e[5] value="P;point;center;ABC;black;green">
+<param name=e[6] value="G;point;circleSlider;ABC,210,150">
+<param name=e[7] value="HB;line;connect;H,B">
+<param name=e[8] value="BG;line;connect;B,G">
+<param name=e[9] value="K;point;midpoint;HB">
+<param name=e[10] value="L;point;midpoint;BG">
+<param name=e[11] value="S;point;midpoint;H,F;0;0">
+<param name=e[12] value="BHY;polygon;equilateralTriangle;B,H;0;0;0;0">
+<param name=e[13] value="Y;point;vertex;BHY,3;0;0">
+<param name=e[14] value="Z;point;intersection;H,Y,S,P;0;0">
+<param name=e[15] value="W;point;intersection;B,Y,L,P;0;0">
+<param name=e[16] value="X;point;intersection;F,Z,G,W;0;0">
+<param name=e[17] value="arcFG;sector;sector;X,F,G;0;0;black;0">
+<param name=e[18] value="arcGB;sector;sector;W,G,B;0;0;black;0">
+<param name=e[19] value="arcBH;sector;sector;Y,B,H;0;0;black;0">
+<param name=e[20] value="arcHF;sector;sector;Z,H,F;0;0;black;0">
+<param name=e[21] value="A;point;cutoff;P,K,P,B">
+<param name=e[22] value="C;point;extend;A,P,A,P">
+<param name=e[23] value="AC;line;connect;A,C">
+</applet>
+</BODY></HTML>

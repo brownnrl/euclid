@@ -555,11 +555,21 @@ export class ExtendConstruction extends LayoffConstruction {
     }
 }
 
-// TBD
 // point
 // parallelogram
-// points A, B, C
-// the 4th vertex D of a parallelogram ABCD given 3 vertices A, B, and C
+// points C, A, B
+// the 4th vertex D' of the parallelogram C-A-B-D' given 3 vertices C, A, B
+// D' = C + (B - A)  [reuses Layoff with equal direction and length vectors]
+export class ParallelogramConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.parallelogram;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const [c, a, b] = params as [PointElement, PointElement, PointElement];
+        const g = new Layoff(c, a, b, a, b);
+        return [[g], g];
+    }
+}
 
 // TBD
 // point
@@ -1268,6 +1278,7 @@ export const constructions : Construction[] = [
     new FootPointConsturction(),
     new ExtendConstruction(),
     new CutoffConstruction(),
+    new ParallelogramConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),
