@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Test View - Sector.arc (III.2)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<!-- Dependencies -->
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let Color = geomlib.Color;
+    let Align = geomlib.Align;
+    let E = geomlib.E;
+    // Book III, Proposition 2 — "If two points are taken at random on the
+    // circumference of a circle, then the straight line joining the points
+    // falls within the circle."
+    //
+    // The arc AEB (sector;arc) is the wrong path Euclid is arguing against:
+    // given circumcircle ABC with center D, if you draw an arc through A, E, B
+    // (where E is outside the chord AB on the far side from D), then the
+    // line DE crossing the arc hits it at F such that DF < DA, which is a
+    // contradiction.
+    //
+    // Coordinates match propIII2 exactly and the Mocha test fixture
+    // arc_propIII2_data in tests/SlateTest.ts.
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "III.2 — sector;arc",
+        align: Align.ABOVE,
+        canvasid: "canvasId",
+        elements: [
+            { name: "A",   construction: E.Point.free,       params: [50, 130] },
+            { name: "B",   construction: E.Point.free,       params: [120, 200] },
+            { name: "C",   construction: E.Point.free,       params: [200, 50] },
+            { name: "ABC", construction: E.Circle.circumcircle, params: ["A", "B", "C"],
+              edgeColor: "black", faceColor: "random" },
+            { name: "D",   construction: E.Point.center,     params: ["ABC"],
+              vertexColor: "green", nameColor: "black" },
+            { name: "E",   construction: E.Point.free,       params: [70, 210] },
+            { name: "AEB", construction: E.Sector.arc,       params: ["A", "E", "B"],
+              edgeColor: "black" },
+            { name: "DE",  construction: E.Line.connect,     params: ["D", "E"] },
+            { name: "F",   construction: E.Point.cutoff,     params: ["D", "E", "D", "A"] },
+        ]
+    });
+</script>
+</body>
+</html>
