@@ -4,6 +4,29 @@ Each session works through one construction type at a time: read the Java source
 port it to TypeScript, create a test view page, and optionally verify it against
 the Java applet. Repeat until all constructions are done, then convert all books.
 
+## Commit per step, with human review between steps
+
+The steps below are designed to be **committed one at a time** on the feature branch.
+After each step is finished, stop and commit that step's artifacts as a standalone
+commit, then pause for a human to review the diff before moving on to the next step.
+
+- An AI agent running this workflow **may** make file edits, run tests, and build
+  the bundle autonomously *within* a single step.
+- An AI agent running this workflow **must not** begin the next step until the
+  human has reviewed and acknowledged the current step's commit.
+- Commit messages should name the step and what landed
+  (e.g. `sector-arc: step 4 — add ArcElement.ts`).
+- **Do not add a `Co-Authored-By:` trailer** to commits on this repo, even when
+  an AI agent authored the change. The human running the session is the author
+  of record; the agent is a tool.
+- If a step's work has to be redone after review, amend or revert on the feature
+  branch — master never sees the in-progress commits.
+
+The point is to keep the review granularity small: one file or one logical unit
+per commit. A reviewer can catch "this update() has the wrong sign" or "this
+signature list is in the wrong order for first-match-wins" at the step boundary
+instead of after eight interleaved changes.
+
 ---
 
 ## Step 1 — Choose the next construction
@@ -41,6 +64,28 @@ have already been copied into the repo as standalone applet HTML for nearby cons
 If the same proposition naturally exercises both your target and an already-implemented
 construction, prefer it — you can reuse the existing `inspiration.html` as a reference
 rather than creating a fresh one from scratch.
+
+### Create a feature branch off master
+
+Once the construction and verifying proposition are locked in, cut a fresh feature
+branch off `master` *before* touching any source files. One construction per branch
+keeps the diff reviewable and makes it trivial to back out or rebase if the port
+turns out wrong.
+
+```sh
+git checkout master
+git pull --ff-only
+git checkout -b feature/{type}-{construction}
+```
+
+Naming: `feature/point-vertex`, `feature/sector-arc`, `feature/line-chord`, etc. —
+mirror the `{type};{construction}` pair from the HTML param format so the branch
+name lines up with the tracker entry and the harness menu label.
+
+Do this up front, not at commit time: all subsequent steps (new element class,
+Construction subclass, test, `view/test/` page, `applet-tests/` pair, tracker and
+journal updates) land on the feature branch, and master stays pristine until the
+port is merged.
 
 ---
 
@@ -91,55 +136,11 @@ extraction of the source proposition. Copy the `<applet>...</applet>` block out 
 the `codebase` to `../../..` (three levels up to `view/`, where `Geometry.zip` lives),
 not the `codebase="../../Geometry"` that the proposition HTMLs use. This is the
 "as Joyce drew it" reference; do not trim it. The companion `applet.html` (added in
-Step 8) is the trimmed up-to-construction version that mirrors the TS test page.
+Step 7) is the trimmed up-to-construction version that mirrors the TS test page.
 
 ---
 
-## Step 4 — View in appletviewer (optional but recommended)
-
-First-time setup: build both docker images.
-
-```sh
-docker build -f Containerfile         -t euclid-applet:latest  .
-docker build -f Containerfile.firefox -t euclid-firefox:latest .
-```
-
-Then run the host-side three-way comparison harness:
-
-```sh
-python3 -m http.server 8000   # in another terminal at the repo root
-./run_euclid_applet.sh
-# pick the {type};{construction} entry you just created
-```
-
-The script auto-discovers every `view/applet-tests/{type}/{construction}/applet.html`
-file and pops three windows for the chosen construction:
-
-  1. **ORIGINAL appletviewer** — `original.html` (Joyce's full proposition)
-     in the `euclid-applet` container
-  2. **UP-TO appletviewer** — `applet.html` (same trimmed to focus on the construction)
-     in the `euclid-applet` container
-  3. **TypeScript firefox** — `view/test/{type}/{sub}.html` from `localhost:8000`,
-     opened in the `euclid-firefox` container against an isolated chromeless profile
-     so the window tiles under xmonad/i3/sway and the user's regular firefox instance
-     is never touched
-
-Windows 2 and 3 should be visually equivalent at rest; window 1 carries the full
-surrounding proposition for context. Drag free points in window 2 and watch dependent
-elements move — that is the ground truth for the construction's behavior, and any
-divergence between windows 2 and 3 is a porting bug in your TS element class.
-
-For the very first session of a new construction you may not yet have an `applet.html`
-(it's added in Step 8) — in that case the script will skip the construction. As a
-fallback you can either pre-create a stub `applet.html` that's a copy of `original.html`
-just to populate window 2, or use the `.gif` image alongside the proposition HTML in
-`view/euclid-html/`.
-
-Goal: verify every ported construction against appletviewer at least once to "close out" the port.
-
----
-
-## Step 5 — Implement the element class
+## Step 4 — Implement the element class
 
 Create `src/elements/{type}/FooElement.ts`.
 
@@ -170,7 +171,7 @@ export class FooElement extends PointElement {
 
 ---
 
-## Step 6 — Write the Construction class
+## Step 5 — Write the Construction class
 
 In `src/elements/Constructions.ts`, add a new `Construction` subclass:
 
@@ -198,7 +199,7 @@ would otherwise greedily consume 3D param lists.
 
 ---
 
-## Step 7 — Write a Mocha test
+## Step 6 — Write a Mocha test
 
 In `tests/SlateTest.ts`, add a test following the existing patterns.
 
@@ -222,11 +223,11 @@ it('should compute foo correctly', () => {
 ```
 
 Run with `npm test`. If time is short and the math is complex, it's acceptable to
-skip the unit test and rely on visual verification in Step 8 — note this in the journal.
+skip the unit test and rely on visual verification in Step 7 — note this in the journal.
 
 ---
 
-## Step 8 — Build the three-way comparison view (TS page + applet.html, then harness)
+## Step 7 — Build the three-way comparison view (TS page + applet.html, then harness)
 
 Each construction gets a triple of artifacts that are visually equivalent at rest and
 exercised together by `./run_euclid_applet.sh`:
@@ -338,7 +339,7 @@ image alongside the proposition HTML in `view/euclid-html/`.
 
 ---
 
-## Step 9 — Update the tracker and journal
+## Step 8 — Update the tracker and journal
 
 1. Mark the construction as **IMPL** in [constructions-reference.md](constructions-reference.md)
 2. Check off any newly-renderable propositions in [proposition-tracker.md](proposition-tracker.md)

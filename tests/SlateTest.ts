@@ -10,6 +10,7 @@ import {PlaneElement} from "../src/elements/plane/PlaneElement";
 import {LineElement} from "../src/elements/line/LineElement";
 import {CircumcircleElement} from "../src/elements/circle/CircumcircleElement";
 import {SphereElement} from "../src/elements/sphere/SphereElement";
+import {ArcElement} from "../src/elements/sector/ArcElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -299,6 +300,81 @@ describe("slate", ()=> {
         almostEqual(bc, ab, 1);
         // Apex should be above the base (smaller y in screen coordinates)
         assert.ok(C.y < A.y);
+    });
+
+    // Book III, Prop 2 — arc through three points
+    // <param name=e[1] value="A;point;free;50,130">
+    // <param name=e[2] value="B;point;free;120,200">
+    // <param name=e[6] value="E;point;free;70,210">
+    // <param name=e[7] value="AEB;sector;arc;A,E,B">
+    //
+    // The arc's internal _Center should be the circumcenter of A, E, B.
+    // Hand-computed:
+    //   u=-14800, v=-2700, den=-4200
+    //   cx = -364000 / -4200 ≈ 86.667
+    //   cy = -686000 / -4200 ≈ 163.333
+    //   r  = |Center-A| = sqrt(1344.5 + 1111.1) ≈ 49.554
+    let arc_propIII2_data : IConstructionInfo[] = [
+        { name: "A",   construction: E.Point.free,  params: [50, 130] },
+        { name: "E",   construction: E.Point.free,  params: [70, 210] },
+        { name: "B",   construction: E.Point.free,  params: [120, 200] },
+        { name: "AEB", construction: E.Sector.arc, params: ["A", "E", "B"] },
+    ];
+
+    it("should compute the circumcenter of an arc through three points", () => {
+        let slate = new Slate(createCanvas(260, 260));
+        toElements(slate, arc_propIII2_data);
+        slate.elements.forEach(e => e.update());
+        let arc = slate.lookupElement("AEB") as ArcElement;
+        almostEqual(arc._Center.x, 86.667, 0.01);
+        almostEqual(arc._Center.y, 163.333, 0.01);
+        // All three given points should be equidistant from the center
+        let rA = arc._Center.distance(arc._A);
+        let rM = arc._Center.distance(arc._M);
+        let rB = arc._Center.distance(arc._B);
+        almostEqual(rA, 49.554, 0.01);
+        almostEqual(rM, 49.554, 0.01);
+        almostEqual(rB, 49.554, 0.01);
+    });
+
+    it("should translate only the arc center, leaving A, M, B untouched", () => {
+        let slate = new Slate(createCanvas(260, 260));
+        toElements(slate, arc_propIII2_data);
+        slate.elements.forEach(e => e.update());
+        let arc = slate.lookupElement("AEB") as ArcElement;
+        let cx0 = arc._Center.x;
+        let cy0 = arc._Center.y;
+        arc.translate(5, 7);
+        almostEqual(arc._Center.x, cx0 + 5, 0.001);
+        almostEqual(arc._Center.y, cy0 + 7, 0.001);
+        // A, M, B are independent slate elements; arc.translate() must not touch them
+        let A = slate.lookupElement("A") as PointElement;
+        let M = slate.lookupElement("E") as PointElement;
+        let B = slate.lookupElement("B") as PointElement;
+        almostEqual(A.x, 50,  0.001); almostEqual(A.y, 130, 0.001);
+        almostEqual(M.x, 70,  0.001); almostEqual(M.y, 210, 0.001);
+        almostEqual(B.x, 120, 0.001); almostEqual(B.y, 200, 0.001);
+    });
+
+    it("should rotate only the arc center around a pivot", () => {
+        let slate = new Slate(createCanvas(260, 260));
+        toElements(slate, arc_propIII2_data);
+        slate.elements.forEach(e => e.update());
+        let arc = slate.lookupElement("AEB") as ArcElement;
+        let A = slate.lookupElement("A") as PointElement;
+        // 90° CCW rotation around A=(50,130): ac=cos(90°)=0, as=sin(90°)=1
+        // dx=36.667, dy=33.333
+        // new x = 50 + 0*36.667 - 1*33.333 = 16.667
+        // new y = 130 + 1*36.667 + 0*33.333 = 166.667
+        arc.rotate(A, 0, 1);
+        almostEqual(arc._Center.x, 16.667, 0.01);
+        almostEqual(arc._Center.y, 166.667, 0.01);
+        // A, M, B untouched
+        let M = slate.lookupElement("E") as PointElement;
+        let B = slate.lookupElement("B") as PointElement;
+        almostEqual(A.x, 50,  0.001); almostEqual(A.y, 130, 0.001);
+        almostEqual(M.x, 70,  0.001); almostEqual(M.y, 210, 0.001);
+        almostEqual(B.x, 120, 0.001); almostEqual(B.y, 200, 0.001);
     });
 
     it("should be able to find the closest visible point within a tolerance", () =>{

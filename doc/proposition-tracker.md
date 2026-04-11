@@ -16,8 +16,8 @@ Tracks the port status of all propositions across Euclid's Elements.
 |-------|-------|--------------------|------------------|
 | Book I | 48 | 16 | 0 |
 | Book II | 14 | 2 | 0 |
-| Book III | 37 | 14 | 0 |
-| **I–III total** | **99** | **32** | **0** |
+| Book III | 37 | 18 | 0 |
+| **I–III total** | **99** | **36** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -29,7 +29,7 @@ Update the summary table after each session.
 - [~] I.1 — To construct an equilateral triangle on a given finite straight line.
 - [ ] I.2 — To place a straight line equal to a given straight line with one end at a given point. NEEDS: `polygon;equilateralTriangle`, `point;vertex`
 - [~] I.3 — To cut off from the greater of two given unequal straight lines a straight line equal to the less.
-- [ ] I.4 — If two triangles have two sides equal to two sides respectively… (SAS congruence). NEEDS: `sector;arc`
+- [ ] I.4 — If two triangles have two sides equal to two sides respectively… (SAS congruence). NEEDS: `circle;radius` 3-point variant (`A,B,C` for "circle at A with radius |BC|" — TBD, distinct from the 2-point IMPL variant). Note: the only remaining arc-only blocker since `sector;arc` landed; this proposition still cannot render until the 3-point circle-radius variant is implemented.
 - [~] I.5 — In isosceles triangles the angles at the base equal one another.
 - [~] I.6 — If in a triangle two angles equal one another, then the sides opposite the equal angles also equal one another.
 - [~] I.7 — Given two straight lines constructed from the ends of a straight line and meeting in a point…
@@ -41,7 +41,7 @@ Update the summary table after each session.
 - [~] I.13 — If a straight line stands on a straight line, then it makes either two right angles or angles whose sum equals two right angles.
 - [~] I.14 — If with any straight line, and at a point on it, two straight lines not lying on the same side make the sum of the adjacent angles equal to two right angles, then the two straight lines are in a straight line with one another.
 - [~] I.15 — If two straight lines cut one another, then they make the vertical angles equal to one another.
-- [ ] I.16 — In any triangle, if one of the sides is produced, then the exterior angle is greater than either of the interior and opposite angles. NEEDS: `sector;arc`, `point;proportion`
+- [ ] I.16 — In any triangle, if one of the sides is produced, then the exterior angle is greater than either of the interior and opposite angles. NEEDS: `point;proportion`  (`sector;arc` landed 2026-04-11)
 - [~] I.17 — In any triangle the sum of any two angles is less than two right angles.
 - [~] I.18 — In any triangle the angle opposite the greater side is greater.
 - [~] I.19 — In any triangle the side opposite the greater angle is greater.
@@ -83,10 +83,10 @@ Update the summary table after each session.
 - [ ] II.2 — If a straight line is cut at random, then the sum of the rectangles contained by the whole and each of the segments equals the square on the whole. NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`, `point;vertex`
 - [ ] II.3 — If a straight line is cut at random, then the rectangle contained by the whole and one of the segments equals the sum of the rectangle contained by the segments and the square on the aforesaid segment. NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;square`, `point;vertex`
 - [ ] II.4 — If a straight line is cut at random, then the square on the whole equals the sum of the squares on the segments plus twice the rectangle contained by the segments. NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`, `point;vertex`
-- [ ] II.5 — If a straight line is cut into equal and unequal segments, then the rectangle contained by the unequal segments of the whole together with the square on the straight line between the points of section equals the square on the half. NEEDS: `sector;arc`, `line;chord`, `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`, `point;vertex`
-- [ ] II.6 — If a straight line is bisected and a straight line is added to it in a straight line… NEEDS: `sector;arc`, `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`, `point;vertex`
-- [ ] II.7 — If a straight line is cut at random, then the sum of the square on the whole and that on one of the segments… NEEDS: `sector;arc`, `point;parallelogram`, `polygon;parallelogram`, `polygon;square`, `point;vertex`
-- [ ] II.8 — If a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment… NEEDS: `sector;arc`, `line;parallel`, `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`, `point;vertex`
+- [ ] II.5 — If a straight line is cut into equal and unequal segments, then the rectangle contained by the unequal segments of the whole together with the square on the straight line between the points of section equals the square on the half. NEEDS: `line;chord`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
+- [ ] II.6 — If a straight line is bisected and a straight line is added to it in a straight line… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
+- [ ] II.7 — If a straight line is cut at random, then the sum of the square on the whole and that on one of the segments… NEEDS: `polygon;parallelogram`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
+- [ ] II.8 — If a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment… NEEDS: `line;parallel`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
 - [ ] II.9 — If a straight line is cut into equal and unequal segments, then the sum of the squares on the unequal segments of the whole is double… NEEDS: `line;parallel`, `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`
 - [ ] II.10 — If a straight line is bisected, and a straight line is added to it in a straight line… NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;square` (wait — II.10 uses triangle, not square… needs `point;parallelogram`, `point;vertex`)
 - [~] II.12 — In obtuse-angled triangles the square on the side opposite the obtuse angle is greater than the sum of the squares on the sides containing the obtuse angle…
@@ -99,7 +99,7 @@ Update the summary table after each session.
 ## Book III
 
 - [ ] III.1 — To find the center of a given circle. NEEDS: `line;chord`
-- [ ] III.2 — If two points are taken at random on the circumference of a circle, then the straight line joining the points falls within the circle. NEEDS: `sector;arc`
+- [~] III.2 — If two points are taken at random on the circumference of a circle, then the straight line joining the points falls within the circle. (sector;arc landed 2026-04-11; test page at view/test/sector/arc.html uses these exact params.)
 - [~] III.3 — If a straight line passing through the center of a circle bisects a straight line not passing through the center, then it also cuts it at right angles; and if it cuts it at right angles, then it also bisects it.
 - [~] III.4 — If in a circle two straight lines which do not pass through the center cut one another, then they do not bisect one another.
 - [ ] III.5 — If two circles cut one another, then they do not have the same center. NEEDS: `line;chord`
@@ -120,14 +120,14 @@ Update the summary table after each session.
 - [~] III.20 — In a circle the angle at the center is double the angle at the circumference when the angles have the same circumference as base.
 - [~] III.21 — In a circle the angles in the same segment equal one another.
 - [~] III.22 — The sum of the opposite angles of quadrilaterals in circles equals two right angles.
-- [ ] III.23 — On the same straight line there cannot be constructed two similar and unequal segments of circles on the same side. NEEDS: `sector;arc`
-- [ ] III.24 — Similar segments of circles on equal straight lines equal one another. NEEDS: `sector;arc`, `polygon;equilateralTriangle`, `point;similar`, `point;vertex`
-- [ ] III.25 — Given a segment of a circle, to describe the complete circle of which it is a segment. NEEDS: `sector;arc`
+- [~] III.23 — On the same straight line there cannot be constructed two similar and unequal segments of circles on the same side. (sector;arc landed 2026-04-11.)
+- [ ] III.24 — Similar segments of circles on equal straight lines equal one another. NEEDS: `point;similar`  (`polygon;equilateralTriangle`, `point;vertex`, `sector;arc` already landed)
+- [~] III.25 — Given a segment of a circle, to describe the complete circle of which it is a segment. (sector;arc landed 2026-04-11.)
 - [ ] III.26 — In equal circles equal angles stand on equal circumferences whether they stand at the centers or at the circumferences. NEEDS: `point;similar`
 - [ ] III.27 — In equal circles angles standing on equal circumferences equal one another whether they stand at the centers or at the circumferences. NEEDS: `point;similar`
 - [ ] III.28 — In equal circles equal straight lines cut off equal circumferences, the greater circumference equals the greater and the less equals the less. NEEDS: `point;similar`
 - [ ] III.29 — In equal circles straight lines that cut off equal circumferences are equal. NEEDS: `point;similar`
-- [ ] III.30 — To bisect a given circumference. NEEDS: `sector;arc`
+- [~] III.30 — To bisect a given circumference. (sector;arc landed 2026-04-11.)
 - [~] III.31 — In a circle the angle in the semicircle is right, that in a greater segment less than a right angle, and that in a less segment greater than a right angle…
 - [~] III.32 — If a straight line touches a circle, and from the point of contact there is drawn across, in the circle, a straight line cutting the circle, then the angles which it makes with the tangent equal the angles in the alternate segments of the circle.
 - [ ] III.33 — On a given straight line to describe a segment of a circle admitting an angle equal to a given rectilinear angle. NEEDS: `point;similar`

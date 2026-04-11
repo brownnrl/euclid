@@ -20,6 +20,100 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-11 — Implemented sector;arc + per-step review workflow + test infra fix
+
+**Completed:**
+- Restructured `doc/process.md` to institutionalize a per-step review workflow:
+  each step is committed standalone on a feature branch and reviewed by a human
+  before the next step begins. Added explicit "cut a `feature/{type}-{construction}`
+  branch off master first" guidance to step 1, dropped the old optional step 4
+  ("View in appletviewer") since it duplicated the mandatory step 7 harness run,
+  and renumbered the remaining steps 1..8. Also added a "no `Co-Authored-By:`
+  trailer on commits" rule to the preamble.
+- Ported `sector;arc` as `src/elements/sector/ArcElement.ts` — a 2D port of
+  `geom_applet/source/Arc.java`. Extends `SectorElement`; constructor takes
+  `(A, M, B, Plane)` and creates a bare internal
+  `_Center = new PointElement()` that `update()` recomputes every frame via
+  `_Center.toCircumcenter(A, M, B)`. Ported **every method** Java overrides
+  (update, translate, rotate) including the "arguably redundant" `_P.update()`
+  call at the top of `update()` — per the new "no half-done ports" feedback
+  rule (see memory/feedback_full_port.md).
+- Wired `ArcConstruction` into the dispatch table at
+  `src/elements/Constructions.ts` with 2D signature
+  `[PointElement, PointElement, PointElement]`, dispatching to the existing
+  `SectorConstructions.arc = 402` enum value.
+- Three Mocha tests in `tests/SlateTest.ts` exercising `update()` (hand-computed
+  circumcenter ≈ (86.667, 163.333) from propIII2 points), `translate()` isolation
+  (center shifts, A/M/B untouched), and `rotate()` isolation (center rotates
+  around a pivot, A/M/B untouched). 17/17 passing.
+- Three-way harness pair:
+  `view/applet-tests/sector/arc/{original,applet}.html` +
+  `view/test/sector/arc.html`, all using propIII2 coordinates identical to the
+  Mocha fixture `arc_propIII2_data`. Visual comparison confirmed: geometry
+  matches between Java appletviewer and TS firefox; dragging free point E tracks
+  the arc's circumcenter smoothly.
+- **Platform fix** — solved the stale-`.js` test-shadowing bug (discovered
+  during step 6 when my new Mocha tests silently failed to run). Root cause:
+  `tsc` without `--noEmit` deposited compiled `.js` siblings next to every
+  `.ts` file, and mocha picked up the stale `.js` instead of the fresh `.ts`.
+  Fix: added `.mocharc.json` with `ts-node/register` and
+  `spec: ["tests/**/*.ts"]`, switched `npm run build` to `tsc --noEmit`
+  (pure type-check — matching what AGENTS.md has claimed all along), deleted
+  56 vestigial `.js`/`.js.map` files from `src/` and `tests/` working trees.
+  Full toolchain verified: `npm run build` clean, `npm test` → 17/17,
+  `npx webpack` → `dist/bundle.js` in 1.3s. Zero new dependencies (ts-node
+  was already installed).
+- Book III renderable count: 14 → **18** (+III.2, III.23, III.25, III.30).
+
+**Discovered:**
+- **Face-color divergence from Java applet**: `src/index.ts:73` applies a
+  default `faceColor = lighten(bgcolor)` to every element with `dimension == 2`.
+  `ArcElement` has `dimension = 2` (matching Java), so without an explicit
+  `faceColor` in the `IConstructionInfo`, the TS port renders a pale-cream
+  pie-slice fill under the arc curve where Java shows an open curve. Joyce's
+  propIII2 param string explicitly writes `;0;0;black;0` to suppress the
+  default — we have no clean way to express this in `IConstructionInfo` today
+  because numeric-`0` → null handling is already a known platform bug. Added
+  as a new platform-level TODO in `doc/construction-tracker.md` with
+  `sector;arc` cited as the first observed instance. **Not a geometry bug;
+  purely cosmetic.**
+- **I.4 is not unblocked by arc after all**: the proposition-tracker had
+  I.4 listed as "NEEDS: sector;arc", but propI4.html's element e[6] is
+  `CircAB;circle;radius;A,D,E;0;0;0;0` — a **3-point** `circle;radius` form
+  ("circle at A with radius |DE|") that is TBD in TypeScript. The existing
+  `CircleRadiusCenterConstruction` only has a 2-point signature. Tracker
+  entry for I.4 corrected to call out this additional blocker.
+- **ts-node was already a devDependency** at `package.json:32` (`^10.9.2`).
+  This materially changed the right answer for the test-shadowing fix —
+  Option 2 (mocha + ts-node) became the canonical choice over Option 1
+  (pretest tsc) because no new dep was required.
+- Arc.java's internal `Center = new PointElement()` does NOT need to be
+  registered on the slate. It is a coordinate holder; `Arc.update()` writes
+  to it directly each frame. No entry in `elementsForUpdate`.
+- `SectorElement.drawFace` in TS draws a pie slice composed of an arc curve
+  plus line-to-Center-A-B — meaning arcs inherit pie-slice filling via the
+  base class, which is why the default-faceColor bug manifests so visibly.
+
+**Next session:**
+- Top priority: `line;chord` (17 uses, I.12, III.1, III.5–III.6, III.8–III.9,
+  III.12, III.15, III.17, III.34, III.36–III.37) — `Chord.java` is a modest
+  port.
+- Alternative: `polygon;parallelogram` (18 uses, reuses the same D=A+C−B
+  formula as the point variant that already landed, just wraps it in a
+  4-vertex polygon).
+- Or: `point;similar` (15 uses, calls existing `toSimilar()` on
+  `PointElement` — easy win, unlocks I.23, I.24, I.26, I.31, III.14, and
+  half of Book III's similar-segment propositions).
+- Optional follow-up for `sector;arc`: investigate whether the face-fill
+  divergence can be fixed at the `ArcElement` level by overriding `drawFace`
+  to always no-op (which would match Java behavior for arcs specifically),
+  versus fixing it at the platform level by making `IConstructionInfo`
+  accept `number | null` for color fields and fixing `parseColor`. The
+  platform fix unblocks all future cases; the per-element override is a
+  spot patch.
+
+---
+
 ## 2026-04-10 — Implemented point;parallelogram
 
 **Completed:**
