@@ -36,6 +36,12 @@ A proposition where the target construction is the *only* TBD construction is th
 If no such proposition exists for Books I–III, note this in the journal and rely on the
 standalone test view page for visual verification instead.
 
+Before locking in your pick, run `ls view/applet-tests/{type}/` to see which propositions
+have already been copied into the repo as standalone applet HTML for nearby constructions.
+If the same proposition naturally exercises both your target and an already-implemented
+construction, prefer it — you can reuse the existing `inspiration.html` as a reference
+rather than creating a fresh one from scratch.
+
 ---
 
 ## Step 2 — Read the Java source
@@ -78,25 +84,56 @@ Numeric `0` means transparent/hidden; `random` means a random color.
 > to its two endpoint `PointElement`s in `Slate.convertParams`. The construction
 > signature must match the post-expansion types.
 
+**Save an `original.html` into applet-tests.** Once you have picked the proposition,
+create `view/applet-tests/{type}/{construction}/original.html` — a single-applet
+extraction of the source proposition. Copy the `<applet>...</applet>` block out of
+`view/euclid-html/{book}/propXX.html` verbatim, wrap it in `<HTML><BODY>`, and adjust
+the `codebase` to `../../..` (three levels up to `view/`, where `Geometry.zip` lives),
+not the `codebase="../../Geometry"` that the proposition HTMLs use. This is the
+"as Joyce drew it" reference; do not trim it. The companion `applet.html` (added in
+Step 8) is the trimmed up-to-construction version that mirrors the TS test page.
+
 ---
 
 ## Step 4 — View in appletviewer (optional but recommended)
 
-Run the Docker Java 8 container to see the original behavior:
+First-time setup: build both docker images.
 
 ```sh
-./run-euclid-applet.sh
-# inside the container:
-cd /usr/src/app/view/euclid-html/booki
-appletviewer -J-Djava.security.manager \
-  -J-Djava.security.policy=/usr/src/app/view/permissive.policy \
-  propI1.html
+docker build -f Containerfile         -t euclid-applet:latest  .
+docker build -f Containerfile.firefox -t euclid-firefox:latest .
 ```
 
-Drag the free points and observe which elements move and how.
-This is the ground truth for the construction's behavior.
+Then run the host-side three-way comparison harness:
 
-If Docker/X11 is unavailable, fall back to the `.gif` static image alongside the HTML.
+```sh
+python3 -m http.server 8000   # in another terminal at the repo root
+./run_euclid_applet.sh
+# pick the {type};{construction} entry you just created
+```
+
+The script auto-discovers every `view/applet-tests/{type}/{construction}/applet.html`
+file and pops three windows for the chosen construction:
+
+  1. **ORIGINAL appletviewer** — `original.html` (Joyce's full proposition)
+     in the `euclid-applet` container
+  2. **UP-TO appletviewer** — `applet.html` (same trimmed to focus on the construction)
+     in the `euclid-applet` container
+  3. **TypeScript firefox** — `view/test/{type}/{sub}.html` from `localhost:8000`,
+     opened in the `euclid-firefox` container against an isolated chromeless profile
+     so the window tiles under xmonad/i3/sway and the user's regular firefox instance
+     is never touched
+
+Windows 2 and 3 should be visually equivalent at rest; window 1 carries the full
+surrounding proposition for context. Drag free points in window 2 and watch dependent
+elements move — that is the ground truth for the construction's behavior, and any
+divergence between windows 2 and 3 is a porting bug in your TS element class.
+
+For the very first session of a new construction you may not yet have an `applet.html`
+(it's added in Step 8) — in that case the script will skip the construction. As a
+fallback you can either pre-create a stub `applet.html` that's a copy of `original.html`
+just to populate window 2, or use the `.gif` image alongside the proposition HTML in
+`view/euclid-html/`.
 
 Goal: verify every ported construction against appletviewer at least once to "close out" the port.
 
@@ -189,20 +226,28 @@ skip the unit test and rely on visual verification in Step 8 — note this in th
 
 ---
 
-## Step 8 — Create the test view page
+## Step 8 — Build the three-way comparison view (TS page + applet.html, then harness)
 
-Create `view/test/{super_type}/{sub_type}.html`.
+Each construction gets a triple of artifacts that are visually equivalent at rest and
+exercised together by `./run_euclid_applet.sh`:
 
-Where possible, use the params from a verifiable proposition instance (identified in Step 1)
-as the test view, rather than a synthetic example. This lets you compare directly against
-the Java applet GIF or appletviewer output.
+1. **Window 1 — `original.html`** — already saved in Step 3, the unmodified source
+   proposition extracted to a single applet.
+2. **Window 2 — `applet.html`** (this step) — the same view trimmed to focus on the
+   construction, in Java applet `<param>` form.
+3. **Window 3 — `view/test/{type}/{sub}.html`** (this step) — the same view in the
+   TypeScript port.
 
-The naming convention:
+Windows 2 and 3 must render the same diagram at rest. Any divergence is a porting bug
+in the TS element class, *not* something to paper over by tweaking `applet.html`.
+
+### 8a. Create the TypeScript test view page
+
+Create `view/test/{super_type}/{sub_type}.html`. Where possible, use the params from a
+verifiable proposition instance (identified in Step 1) so the visual matches a real
+proposition's diagram. Naming convention:
 - `{super_type}` = element category: `point`, `line`, `circle`, `poly`, `sector`, `plane`, `sphere`
 - `{sub_type}` = construction name: `parallelogram`, `chord`, `arc`, etc.
-
-**Always preserve the original Java `<applet>` block as an HTML comment** above the
-TypeScript block. This keeps the original param format visible for reference:
 
 ```html
 <html>
@@ -210,15 +255,6 @@ TypeScript block. This keeps the original param format visible for reference:
 <body>
 <canvas id="canvasId" style="width:400px; height:400px;"></canvas>
 <script src="../../../../dist/bundle.js" type="text/javascript"></script>
-
-<!--applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=340 height=260>
-<img src="../booki/propI1.gif" alt="java applet or image">
-<param name=background value="35,19,100">
-<param name=e[1] value="A;point;free;60,100">
-<param name=e[2] value="B;point;free;140,100">
-<param name=e[3] value="F;point;foo;A,B">
-</applet-->
-
 <script type="text/javascript">
     let E = geomlib.E;
     let Align = geomlib.Align;
@@ -237,16 +273,68 @@ TypeScript block. This keeps the original param format visible for reference:
 </html>
 ```
 
-Rebuild and verify visually:
+Rebuild the bundle (`npx webpack`) so the page can render — the harness in 8c uses
+the live `dist/bundle.js`.
 
-```sh
-npx webpack
-python3 -m http.server
-# open http://localhost:PORT/view/test/point/foo.html
+### 8b. Create the applet.html companion
+
+Hand-translate the TS `geomlib.init({ elements: [...] })` block back into Java applet
+`<param>` format and save it as `view/applet-tests/{type}/{construction}/applet.html`.
+This file is window 2 of the harness; it must produce the same diagram as the TS test
+page in 8a using identical free-point coordinates.
+
+```html
+<HTML><HEAD><TITLE>{type};{construction} — applet form of view/test/{type}/{sub}.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS:       view/test/{type}/{sub}.html -->
+<!-- ORIGINAL: view/applet-tests/{type}/{construction}/original.html (propXX) -->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=400 height=400>
+<param name=background value="35,19,100">
+<param name=title value="...">
+<param name=e[1] value="A;point;free;60,100">
+<param name=e[2] value="B;point;free;140,100">
+<param name=e[3] value="F;point;foo;A,B">
+</applet>
+</BODY></HTML>
 ```
 
-Compare the diagram against appletviewer or the `.gif` image. Drag the free points
-and verify that dependent elements update correctly.
+The `<!-- TS: ... -->` header line is **load-bearing**: `run_euclid_applet.sh` greps it
+out to know which TS page to open in firefox. Use a single space after `TS:` and a
+repo-relative path (no leading `./` or `/`). The `<!-- ORIGINAL: ... -->` line is
+informational only — the harness finds `original.html` by sibling-file convention.
+
+The `codebase=../../..` resolves three levels up to `view/`, where `Geometry.zip` lives.
+This is different from the `codebase="../../Geometry"` used by the proposition HTMLs in
+`view/euclid-html/` — don't copy that path verbatim.
+
+### 8c. Run the three-way harness and verify all three windows agree
+
+Start a static dev server at the repo root in another terminal, then run the harness:
+
+```sh
+python3 -m http.server 8000
+./run_euclid_applet.sh
+# pick the {type};{construction} entry you just added
+```
+
+The harness auto-discovers your new `applet.html` on the next run (no script edits) and
+spawns three windows in parallel: `original.html` in appletviewer (containerised),
+`applet.html` in appletviewer (containerised), and the TS test page in firefox against
+`localhost:8000` (also containerised — the `euclid-firefox` image — using an isolated
+chromeless profile that hides the tab bar, nav bar, and titlebar so it tiles cleanly
+under xmonad/i3/sway and never disturbs the user's regular host firefox).
+
+Compare:
+- **Window 2 vs window 3** — must be visually identical at rest. Drag a free point in
+  one and the other should track. If they diverge, debug the TS element class.
+- **Window 1 vs window 2** — window 1 carries the full surrounding proposition for
+  context; window 2 strips it down to just the construction. Use this to sanity-check
+  that the `applet.html` trim didn't lose anything semantically important.
+
+Press Ctrl-C in the harness terminal to teardown all three windows.
+
+If Docker/X11 is unavailable, fall back to comparing the TS page against the `.gif`
+image alongside the proposition HTML in `view/euclid-html/`.
 
 ---
 

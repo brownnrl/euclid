@@ -63,10 +63,15 @@ This Docker setup runs a preserved Java 8 environment for exploring classic geom
 
 ## How to Use
 
-1. **Build the image (once):**
+1. **Build the images (once):**
    ```
-   docker build -f Containerfile -t euclid-applet:latest .
+   docker build -f Containerfile         -t euclid-applet:latest  .
+   docker build -f Containerfile.firefox -t euclid-firefox:latest .
    ```
+   The first image (`euclid-applet`) provides Java 8 + appletviewer for the
+   two appletviewer windows. The second (`euclid-firefox`) provides firefox
+   for the third comparison window in `./run_euclid_applet.sh`. Both share
+   the `ubuntu:20.04` base layer so the second build is small.
 
 2. **Ensure X11 is running on your Linux host.**
    - If needed, allow Docker to access X:

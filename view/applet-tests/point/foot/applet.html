@@ -1,0 +1,20 @@
+<HTML><HEAD><TITLE>point;foot — applet form of view/test/point/foot.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS:       view/test/point/foot.html -->
+<!-- ORIGINAL: view/applet-tests/point/foot/original.html (lemma X.33) -->
+<!--
+  Up-to-construction applet form of the TS test page. The two ABM/ACM
+  triangles from the lemma X.33 original are commented out in the TS port
+  (polygons not yet implemented at the time); we match the active TS subset.
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip height=300 width=400>
+<param name=background value="35,19,100">
+<param name=title value="lemma for X.33">
+<param name=e[1] value="B;point;free;30,170">
+<param name=e[2] value="C;point;free;250,170">
+<param name=e[3] value="BCmid;point;midpoint;B,C;0;0">
+<param name=e[4] value="ABC;circle;radius;BCmid,B;0;0;0;0">
+<param name=e[5] value="A;point;circleSlider;ABC,120,40">
+<param name=e[6] value="M;point;foot;A,B,C">
+</applet>
+</BODY></HTML>

@@ -33,20 +33,52 @@ npx webpack             # bundle to dist/bundle.js
 python3 -m http.server  # then open http://localhost:PORT/view/test/...
 ```
 
-## View the Java reference applet
+## Three-way construction comparison harness
 
-Requires Linux + X11. Run once per session to compare behavior:
+Requires Linux + X11 + Docker + a `python3 -m http.server 8000` running at the
+repo root. Both docker images must be built once (firefox runs in its own
+container, not on the host, so the user's regular firefox is never disturbed):
 
 ```sh
-./run-euclid-applet.sh
-# inside the container:
-cd /usr/src/app/view/euclid-html/booki
-appletviewer -J-Djava.security.manager \
-  -J-Djava.security.policy=/usr/src/app/view/permissive.policy \
-  propI1.html
+docker build -f Containerfile         -t euclid-applet:latest  .
+docker build -f Containerfile.firefox -t euclid-firefox:latest .
 ```
 
-If Docker/X11 is unavailable, each proposition has a fallback `.gif` image alongside the HTML file.
+Then run the harness from the host:
+
+```sh
+./run_euclid_applet.sh
+```
+
+You pick a `{type};{construction}` entry from the menu and the script pops three
+windows side by side:
+
+1. **ORIGINAL appletviewer** — Joyce's full proposition in the Java applet
+   (`view/applet-tests/{type}/{construction}/original.html`)
+2. **UP-TO appletviewer** — same proposition trimmed to focus on the construction,
+   in the Java applet (`view/applet-tests/{type}/{construction}/applet.html`)
+3. **TypeScript firefox (chromeless)** — same trimmed view in the TS port
+   (`view/test/{type}/{sub}.html` from `localhost:8000`)
+
+Windows 2 and 3 should be visually equivalent at rest; any divergence is a
+porting bug in the TS element class. Window 1 carries the full surrounding
+proposition for context.
+
+Each per-construction folder under `view/applet-tests/` has exactly two files:
+
+- **`original.html`** — single-applet extraction of the source proposition,
+  unmodified except for the `codebase=../../..` path. Window #1 above.
+- **`applet.html`** — hand-translation of the TS test page back into Java applet
+  `<param>` format. Window #2 above. Carries a `<!-- TS: ... -->` header comment
+  pointing at the matching `view/test/...` page so the harness knows what to
+  open in firefox; this header is **load-bearing** — don't drop it.
+
+Adding a new construction is just dropping `original.html` and `applet.html`
+into the right folder; the script auto-discovers them on the next run, no edits
+needed.
+
+If Docker/X11 is unavailable, each proposition under `view/euclid-html/` has a
+fallback `.gif` image alongside the HTML file.
 
 ## Original HTML param format
 
