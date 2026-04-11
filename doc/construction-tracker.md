@@ -31,6 +31,16 @@ These affect the library as a whole, independent of individual constructions.
   has no `align` field; all elements get the same `defaultAlign`. The Java applet supports
   per-element label placement.
 
+- [ ] **Labels all use the same default orientation** (`src/elements/GeomElement.ts`) —
+  In the TypeScript port every label is drawn at the same position relative to its vertex
+  (currently below/at the default align direction). In the Java applet labels adapt to the
+  geometry: a vertex at the top of a figure gets its label *above* the dot, a bottom vertex
+  gets its label *below*, etc. Example: in the equilateral triangle test (propI10), the apex
+  label "C" should sit above the vertex point, but in the port it sits below, making it harder
+  to read and obscuring the vertex dot. Fix requires either: (a) a per-element `align` field in
+  `IConstructionInfo` so callers can override placement, or (b) a heuristic in `drawName` that
+  infers placement from the element's position relative to other elements.
+
 - [ ] **Highlight colors not settable via init()** — `GeomElement` has
   `nameHighlightColor`, `vertexHighlightColor`, `edgeHighlightColor`, `faceHighlightColor`
   properties but `IConstructionInfo` exposes no way to set them. Currently only settable
@@ -102,7 +112,7 @@ These affect the library as a whole, independent of individual constructions.
   - no dedicated test page
 
 - [x] **`circleSlider`** — `src/elements/point/CircleSlider.ts`
-  - [~] tested in [view/test/sector/index.html](../view/test/sector/index.html) — no standalone page
+  - [~] tested in [view/test/sector/sector.html](../view/test/sector/sector.html) — no standalone page
 
 - [x] **`perpendicular`** (5 signature variants) — `src/elements/point/Perpendicular*.ts`
   - [~] tested in [view/test/circumcenter_lineperp.html](../view/test/circumcenter_lineperp.html) — no standalone page
@@ -111,8 +121,10 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: construct `Slate.java` or `Geometry.java` (4th vertex: D = A + C − B)
   - Used in: I.28, I.30, I.32–I.36, I.37–I.41, I.42–I.43, all of Book II
 
-- [ ] **`vertex`** — TBD
-  - Java source: `PolygonElement.java`
+- [x] **`vertex`** — `src/elements/Constructions.ts` (`VertexConstruction`)
+  - Returns `polygon.V[n-1]` (1-based index); no new element file needed
+  - Also added `PolygonElement` to `ConstructionTypes` enum and `validateSignature`
+  - [x] test view: [view/test/point/vertex.html](../view/test/point/vertex.html)
   - Used in: I.2, I.9–I.11, I.23–I.24, I.26, I.33–I.34, I.36, I.41–I.47, Book II, III.14, III.24–III.25
 
 - [ ] **`similar`** — TBD
@@ -216,7 +228,7 @@ These affect the library as a whole, independent of individual constructions.
 ## Polygon constructions
 
 - [x] **`triangle`** — `src/elements/polygon/PolygonElement.ts` (via `TrianglePolygonConstruction`)
-  - [~] test view: [view/test/poly/index.html](../view/test/poly/index.html) — tests triangle among other elements; no standalone triangle page
+  - [~] test view: [view/test/poly/triangle.html](../view/test/poly/triangle.html) — tests triangle among other elements; no standalone triangle page
 
 - [ ] **`quadrilateral`** — TBD
   - Java source: `PolygonElement.java`
@@ -230,8 +242,11 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: `PolygonElement.java`
   - Used in: I.46–I.47, II.2–II.8, II.11
 
-- [ ] **`equilateralTriangle`** — TBD
-  - Java source: `PolygonElement.java`
+- [x] **`equilateralTriangle`** — `src/elements/polygon/RegularPolygonElement.ts` (via `EquilateralTriangleConstruction`)
+  - 2D variant only (screen plane); 3D variant (`[PointElement, PointElement, PlaneElement]`) TBD
+  - Java source: `RegularPolygon.java` with n=3; theta=π/3, cos=0.5, sin=√3/2
+  - `update()`: V[2].to(V[0]).rotate(V[1], cos, sin, screen)
+  - [x] test view: [view/test/poly/equilateralTriangle.html](../view/test/poly/equilateralTriangle.html) — mirrors propI10 params
   - Used in: I.2, I.9–I.11, III.10, III.24
 
 - [ ] **`similar`** — TBD
@@ -267,7 +282,7 @@ These affect the library as a whole, independent of individual constructions.
 ## Sector constructions
 
 - [x] **`sector`** (2 signature variants) — `src/elements/sector/SectorElement.ts`
-  - [x] test view: [view/test/sector/index.html](../view/test/sector/index.html)
+  - [x] test view: [view/test/sector/sector.html](../view/test/sector/sector.html)
 
 - [ ] **`arc`** — TBD
   - Java source: `Arc.java` — computes circumcenter of three given points; draws arc through A, M, B
@@ -312,14 +327,16 @@ These affect the library as a whole, independent of individual constructions.
 | `Point.free` | (used in all pages) | implicit |
 | `Point.intersection` | view/test/point/intersection.html | exists |
 | `Point.foot` | view/test/point/foot.html | exists |
+| `Point.vertex` | view/test/point/vertex.html | exists |
 | `Point.circumcenter` | view/test/circumcenter_lineperp.html | compound |
-| `Point.circleSlider` | view/test/sector/index.html | compound |
+| `Point.circleSlider` | view/test/sector/sector.html | compound |
 | `Point.perpendicular` | view/test/circumcenter_lineperp.html | compound |
 | `Line.connect` | (used in all pages) | implicit |
 | `Line.perpendicular` | view/test/line/perpendicular.html | exists |
 | `Line.bichord` | view/test/line/bichord.html | exists |
 | `Circle.radius` | view/test/circle/circle.html | exists |
 | `Circle.circumcircle` | view/test/circle/circumcircle.html | exists |
-| `Polygon.triangle` | view/test/poly/index.html | compound |
-| `Sector.sector` | view/test/sector/index.html | exists |
+| `Polygon.triangle` | view/test/poly/triangle.html | compound |
+| `Polygon.equilateralTriangle` | view/test/poly/equilateralTriangle.html | exists |
+| `Sector.sector` | view/test/sector/sector.html | exists |
 | All others | — | missing |

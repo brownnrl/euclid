@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Test View - point;vertex</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:360px; height:300px;"></canvas>
+<script src="../../../../dist/bundle.js" type="text/javascript"></script>
+
+<!-- Reference: propI9.html (Book I, Proposition 9) extracts the apex F of an equilateral
+     triangle EDF using vertex;3. Here we use a plain triangle so no TBD constructions
+     are needed. Drag any vertex and watch V1/V2/V3 follow their respective points. -->
+<!--applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=300 width=360>
+<img src="../../booki/propI9.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="point;vertex">
+<param name=e[1] value="A;point;free;150,40">
+<param name=e[2] value="B;point;free;50,150">
+<param name=e[3] value="C;point;free;250,150">
+<param name=e[4] value="T;polygon;triangle;A,B,C;0;0;black;0">
+<param name=e[5] value="V1;point;vertex;T,1;black">
+<param name=e[6] value="V2;point;vertex;T,2;black">
+<param name=e[7] value="V3;point;vertex;T,3;black">
+</applet-->
+
+<script type="text/javascript">
+    let E = geomlib.E;
+    let Align = geomlib.Align;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "point;vertex — extract vertices from a triangle",
+        canvasid: "canvasId",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [150, 40] },
+            { name: "B", construction: E.Point.free, params: [50, 150] },
+            { name: "C", construction: E.Point.free, params: [250, 150] },
+            { name: "T", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              edgeColor: "black" },
+            { name: "V1", construction: E.Point.vertex, params: ["T", 1],
+              nameColor: "red", vertexColor: "red" },
+            { name: "V2", construction: E.Point.vertex, params: ["T", 2],
+              nameColor: "blue", vertexColor: "blue" },
+            { name: "V3", construction: E.Point.vertex, params: ["T", 3],
+              nameColor: "green", vertexColor: "green" },
+        ]
+    });
+</script>
+</body>
+</html>

@@ -14,6 +14,28 @@ TBD construction (sorted by Books I–III usage count at the bottom of that file
 Also check [proposition-tracker.md](proposition-tracker.md) to see which propositions
 will become renderable once the construction is done — this gives useful test cases.
 
+### Identifying a verifiable proposition instance
+
+Before locking in a construction choice, verify that at least one Book I–III proposition
+exists where the target construction appears and every element *before* it in the param list
+uses only already-implemented constructions.
+
+Search method:
+
+```sh
+grep -rl ";constructionname;" view/euclid-html/
+```
+
+For each candidate file, read the `<param name=e[N]>` lines in order. Starting from e[1],
+check each construction type against the implementation tracker. Stop at the first element
+that hits a TBD construction. If the target construction appears *before* that TBD element,
+you have a verifiable test case. If not, consider whether the element directly before the
+target is also something worth implementing first (the "unlock chain").
+
+A proposition where the target construction is the *only* TBD construction is the ideal case.
+If no such proposition exists for Books I–III, note this in the journal and rely on the
+standalone test view page for visual verification instead.
+
 ---
 
 ## Step 2 — Read the Java source
@@ -170,6 +192,10 @@ skip the unit test and rely on visual verification in Step 8 — note this in th
 ## Step 8 — Create the test view page
 
 Create `view/test/{super_type}/{sub_type}.html`.
+
+Where possible, use the params from a verifiable proposition instance (identified in Step 1)
+as the test view, rather than a synthetic example. This lets you compare directly against
+the Java applet GIF or appletviewer output.
 
 The naming convention:
 - `{super_type}` = element category: `point`, `line`, `circle`, `poly`, `sector`, `plane`, `sphere`

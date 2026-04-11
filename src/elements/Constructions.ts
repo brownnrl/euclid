@@ -35,6 +35,7 @@ import {Perpendicular} from "./line/Perpendicular";
 import {PlanePerpendicularLine} from "./line/PlanePerpendicularLine";
 import {Bichord} from "./line/Bichord";
 import {PolygonElement} from "./polygon/PolygonElement";
+import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
 import {SphereElement} from "./sphere/SphereElement";
 
 export enum ConstructionTypes {
@@ -42,7 +43,8 @@ export enum ConstructionTypes {
     PointElement,
     CircleElement,
     PlaneElement,
-    SphereElement
+    SphereElement,
+    PolygonElement
 }
 
 export enum PointConstructions {
@@ -215,6 +217,11 @@ export abstract class Construction {
                     break;
                 case ConstructionTypes.SphereElement:
                     // TODO:
+                    break;
+                case ConstructionTypes.PolygonElement:
+                    if (!(param instanceof PolygonElement)) {
+                        return false;
+                    }
                     break;
                 default:
                     return false;
@@ -986,6 +993,22 @@ export class TrianglePolygonConstruction extends PolyConstruction {
 }
 
 
+// point
+// vertex
+// polygon A, integer n
+// the nth vertex (1-based) of polygon A
+export class VertexConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.vertex;
+    signature: ConstructionTypes[] = [ct.PolygonElement, ct.Integer];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const poly = params[0] as PolygonElement;
+        const n    = params[1] as number;
+        const vertex = poly.V[n - 1];
+        return [[vertex], vertex];
+    }
+}
+
 // TBD
 // polygon
 // quadrilateral
@@ -1004,11 +1027,20 @@ export class TrianglePolygonConstruction extends PolyConstruction {
 // points A, B, C, D, E, F
 // the hexagon given 6 vertices
 
-// TBD
 // polygon
 // equilateralTriangle
-// points A, B [plane C]
-// the equilateral triangle on a side AB in plane C
+// points A, B [plane C = screen]
+// the equilateral triangle on side AB in the screen plane (2D variant)
+export class EquilateralTriangleConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.equilateralTriangle;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const [a, b] = params as [PointElement, PointElement];
+        const g = new RegularPolygonElement(a, b, screen, 3);
+        return [[g], g];
+    }
+}
 
 // TBD
 // polygon
@@ -1260,6 +1292,8 @@ export const constructions : Construction[] = [
     new LinePerpendicular5Construction(),
     new BichordConstruction(),
     new TrianglePolygonConstruction(),
+    new EquilateralTriangleConstruction(),
+    new VertexConstruction(),
     new PerpendicularPlaneConstruction(),
     new SphereRadiusConstruction()
 ];

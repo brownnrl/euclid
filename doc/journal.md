@@ -20,6 +20,54 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-10 — Implemented polygon;equilateralTriangle
+
+**Completed:**
+- Created `src/elements/polygon/RegularPolygonElement.ts` — port of `RegularPolygon.java` (n=3)
+- Added `EquilateralTriangleConstruction` to `Constructions.ts`; registered in `constructions` array
+- Wrote Mocha test (13 passing): equilateral side-length equality + apex above base
+- Created `view/test/poly/equilateralTriangle.html` mirroring propI10 params
+- Updated `doc/process.md` with "Identifying a verifiable proposition instance" guidance
+- I.9, I.10, I.11 are now fully renderable
+
+**Discovered:**
+- `RegularPolygon.java` builds all vertices iteratively: V[i] = V[i-2] rotated around V[i-1] by
+  θ = π(n-2)/n. For n=3 this runs once, placing the apex at A rotated 60° around B.
+- `PointElement.rotate(pivot, ac, as, plane?)` applies a 2D rotation matrix in screen coords
+  when `plane.isScreen` is true.
+- The 2D-first policy applies: signature `[PointElement, PointElement]` dispatches to screen plane
+  only. The 3D variant `[PointElement, PointElement, PlaneElement]` remains TBD.
+
+**Next session:**
+- `sector;arc` (20 uses) — needs `ArcElement.ts`; computes circumcenter of A,M,B and draws arc
+- `point;parallelogram` (48 uses) — D = A + C − B; very simple, no new element file needed
+- `line;chord` (17 uses) — `Chord.java`
+
+---
+
+## 2026-04-10 — Implemented point;vertex
+
+**Completed:**
+- Created feature branch `feature/point-vertex`
+- Added `PolygonElement` to `ConstructionTypes` enum in `src/elements/Constructions.ts`
+- Added `PolygonElement` case to `Construction.validateSignature`
+- Added `VertexConstruction` class — returns `polygon.V[n-1]` (1-based), no new element file needed
+- Registered `new VertexConstruction()` in the `constructions` array
+- Wrote Mocha test (12 passing)
+- Created `view/test/point/vertex.html` test page
+
+**Discovered:**
+- `vertex` uses the "preexists" pattern from Java — it aliases an existing vertex point under a new
+  name. `Slate.createElement` renames the element, so the old name is superseded by the new one.
+  This is intentional and matches the Java applet's behavior.
+- Adopted 2D-first policy: for constructions with both 2D and 3D variants, implement 2D first.
+
+**Next session:**
+- `point;parallelogram` (48 uses) — reuses `Layoff`, no new element file, very simple
+- `sector;arc` (20 uses) — needs `ArcElement.ts` extending `SectorElement`; implement 2D variant first
+
+---
+
 ## 2026-04-10 — Documentation created; project state surveyed
 
 **Completed:**
