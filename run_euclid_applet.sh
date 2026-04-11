@@ -45,6 +45,7 @@ echo ""
 echo "Euclid Applet — Construction Viewer"
 echo "====================================="
 PS3=$'\nSelect a construction (or Ctrl-C to quit): '
+COLUMNS=1
 
 select LABEL in "${LABELS[@]}"; do
   FILE="${ENTRIES[$LABEL]}"
