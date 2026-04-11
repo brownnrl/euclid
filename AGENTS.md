@@ -6,10 +6,96 @@ The main task is implementing construction types one at a time until all proposi
 
 ## Read these first
 
-- [doc/process.md](doc/process.md) — the step-by-step workflow for each session
+- [doc/process.md](doc/process.md) — the 8-step workflow for each session
 - [doc/construction-tracker.md](doc/construction-tracker.md) — which constructions are done, which are TBD, platform-level bugs
+- [doc/proposition-tracker.md](doc/proposition-tracker.md) — which Book I–III propositions are renderable today, and what blocks each of the rest
 - [doc/analysis/java-typescript-comparison.md](doc/analysis/java-typescript-comparison.md) — full Java↔TypeScript mapping, bugs found, easy wins list
 - [doc/constructions-reference.md](doc/constructions-reference.md) — every construction: params, usage count, priority ranking
+- [doc/journal.md](doc/journal.md) — dated session log; the top entry is always the canonical "what's next" handoff
+
+## Session startup protocol
+
+**This project's working cadence is one construction per session**, on its own
+feature branch, following [doc/process.md](doc/process.md)'s 8-step workflow.
+Sessions open with a cue phrase from the user, typically:
+
+> "Read AGENTS.md and let's begin the process again."
+
+When that cue arrives (or any paraphrase of it — "let's do another
+construction", "start a new port", etc.), execute **this protocol in order**
+and **do not start implementing** until the user has picked a construction:
+
+1. Read [doc/process.md](doc/process.md) — the 8-step workflow may have been
+   refined since you last ran it.
+2. Read [doc/construction-tracker.md](doc/construction-tracker.md) —
+   especially the **Platform-level TODOs** at the top (anything new might
+   block the next port) and the per-construction IMPL/TBD status.
+3. Read the priority ranking table at the bottom of
+   [doc/constructions-reference.md](doc/constructions-reference.md).
+4. Read the **top entry only** of [doc/journal.md](doc/journal.md). The most
+   recent session's "Next session" block is the canonical handoff; you do
+   not need to read older entries unless the top one explicitly points at them.
+5. Run `git status` and `git log --oneline master..HEAD` on whatever branch
+   the user is on. **If an in-flight `feature/*` branch exists, offer to
+   resume it** rather than start a new one; unfinished work from a prior
+   session should not be silently abandoned.
+6. Present a **top-5 ranked menu** of TBD constructions to the user, formatted
+   as a table with these columns:
+
+   | # | Construction | I–III uses | Difficulty | Verifying prop | Notes |
+   |---|---|---|---|---|---|
+
+   - **Difficulty** is a judgment call based on whether `PointElement.toX()`
+     math already exists, whether there are 2D/3D variants, whether a new
+     `*Element.ts` class is needed or the construction reuses an existing
+     one, and whether intermediate elements need to be pushed into
+     `elementsForUpdate`.
+     [doc/analysis/java-typescript-comparison.md](doc/analysis/java-typescript-comparison.md)
+     §7 ("Easy wins") is the canonical reference for what infrastructure
+     already exists.
+   - **Verifying prop** is the simplest Book I–III proposition that exercises
+     the construction *and* whose preceding elements are all IMPL — ideally
+     one where the target is the ONLY TBD blocker. **Verify this claim
+     against the proposition's actual param list**; the proposition-tracker's
+     NEEDS lines have been known to miss blockers (see the I.4 correction
+     in the 2026-04-11 journal entry). If no clean verifying prop exists for
+     Books I–III, say so explicitly so the user can decide whether to
+     proceed with a standalone test page instead.
+   - **Notes** should flag any infrastructure prerequisites still missing
+     (e.g., "needs new math on `PointElement`" vs. "wraps existing
+     `toSimilar()`"), and any signature-ordering hazards if a related
+     variant already exists.
+
+7. **Stop.** Wait for the user to pick before doing anything else. Do not
+   begin Step 1 of `doc/process.md` until the user has explicitly chosen.
+   If the user asks for a recommendation, give one **with reasoning** but
+   still defer to them for the final call.
+
+### Project phase
+
+As of this writing the project is in **Phase 1: porting remaining Java
+constructions to TypeScript.** This phase continues until
+[doc/construction-tracker.md](doc/construction-tracker.md) shows every
+construction as IMPL. ~24 of ~65 Java constructions were ported before this
+protocol was formalized; the remaining ~40 are tracked one-per-session.
+**Until Phase 1 completes, the session startup protocol above is the
+default onboarding for every fresh session.**
+
+After Phase 1 completes the project transitions to:
+
+- **Phase 2 — proposition HTML conversion.** Convert all 566 proposition
+  HTMLs in `view/euclid-html/` from Java `<param>` format to TypeScript
+  `geomlib.init()` calls in a new `view/books/` folder. The working unit
+  becomes "one proposition" instead of "one construction" but the
+  per-step-commit + feature-branch + human-review workflow is unchanged.
+- **Phase 3 — retire the Java toolchain.** `run_euclid_applet.sh` and both
+  `Containerfile*` files go away; `view/euclid-html/` and `Geometry.zip`
+  can be archived or deleted; the `geom_applet/source/*.java` reference
+  tree becomes read-only history.
+
+If the startup protocol finds Phase 1 complete (zero TBDs in the tracker),
+**flag this to the user first** so they can confirm the transition rather
+than quietly changing cadence.
 
 ## Key files
 
@@ -246,20 +332,12 @@ Rebuild and verify: `npx webpack && python3 -m http.server`
 
 ---
 
-## Current priority (Books I–III)
+## Current priority
 
-See [doc/constructions-reference.md](doc/constructions-reference.md) for the full ranked list.
-Top unimplemented constructions by proposition unlock count:
-
-| Priority | Construction | Uses | Example proposition |
-|----------|-------------|------|---------------------|
-| 1 | `point;vertex` | 59 | I.2, I.9, I.33, I.47 |
-| 2 | `point;parallelogram` | 48 | I.28, I.33, I.35, II.1 |
-| 3 | `sector;arc` | 20 | I.4, I.16, II.5, III.2 |
-| 4 | `line;chord` | 17 | I.12, III.1, III.5 |
-| 5 | `polygon;quadrilateral` | 11 | I.43, II.2, II.4 |
-| 6 | `polygon;equilateralTriangle` | 6 | I.2, I.9, I.10, I.11 |
-| 7 | `line;parallel` | 9 | I.22, I.27, I.37–I.40 |
-| 8 | `polygon;square` | 10 | I.46, I.47, II.2–II.11 |
-| 9 | `point;similar` | 15 | I.23, I.24, I.26, III.14 |
-| 10 | `polygon;parallelogram` | 18 | I.34, II.1, II.2 |
+See [doc/constructions-reference.md](doc/constructions-reference.md)'s priority
+ranking table for the full live list, and
+[doc/construction-tracker.md](doc/construction-tracker.md) for the
+per-construction IMPL/TBD status. The session startup protocol above will
+compute the current top-5 ranked menu from these files at session boot —
+there is no hardcoded priority list in this document, because a static
+list drifts out of sync with the trackers after every port.

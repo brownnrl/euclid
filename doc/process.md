@@ -4,6 +4,14 @@ Each session works through one construction type at a time: read the Java source
 port it to TypeScript, create a test view page, and optionally verify it against
 the Java applet. Repeat until all constructions are done, then convert all books.
 
+> **Getting here:** The normal entry point to this document is via
+> [AGENTS.md](../AGENTS.md)'s "Session startup protocol", which reads the
+> trackers, presents a ranked menu of TBD constructions, and hands control
+> to Step 1 below once the user has picked. If you reached this document
+> some other way (direct link, grep, etc.), scroll up to AGENTS.md and run
+> that protocol first — it handles the "which construction do we even
+> port next" question that Step 1 assumes has already been answered.
+
 ## Commit per step, with human review between steps
 
 The steps below are designed to be **committed one at a time** on the feature branch.
