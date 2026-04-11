@@ -31,6 +31,12 @@ import {PlaneElement} from "../plane/PlaneElement";
  * _Center is an internal bare PointElement, not registered on the
  * slate. Arc.update() writes into it directly, so it stays in sync
  * with A, M, B without needing a separate elementsForUpdate entry.
+ *
+ * translate / rotate are overridden so that grabbing and moving the
+ * arc (either via a drag or via a global pivot rotation) perturbs
+ * only the inherited _Center; A, M, B are independent slate elements
+ * and are moved by their own handlers. This mirrors Java Arc.java
+ * exactly — see geom_applet/source/Arc.java lines 19-23.
  */
 export class ArcElement extends SectorElement {
 
@@ -47,6 +53,19 @@ export class ArcElement extends SectorElement {
     }
 
     update(): void {
+        // Java Arc.update() explicitly calls P.update() first. The TS
+        // slate already updates elements in dependency order, so this
+        // is arguably redundant — but we keep it for parity with Java
+        // in case some emergent behavior depends on it.
+        this._P.update();
         this._Center.toCircumcenter(this._A, this._M, this._B);
+    }
+
+    translate(dx: number, dy: number): void {
+        this._Center.translate(dx, dy);
+    }
+
+    rotate(pivot: PointElement, ac: number, as: number): void {
+        this._Center.rotate(pivot, ac, as);
     }
 }
