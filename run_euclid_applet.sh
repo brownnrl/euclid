@@ -9,9 +9,10 @@
 #                         appletviewer (the original trimmed to focus on the
 #                         construction, visually equivalent to the TS test
 #                         page below).
-#   3. UP-TO TypeScript — view/test/{type}/{sub}.html opened in firefox kiosk
-#                         mode against http://localhost:8000/ (the TS port of
-#                         the same up-to-construction view).
+#   3. UP-TO TypeScript — view/test/{type}/{sub}.html opened in firefox
+#                         (against http://localhost:8000/) using a chromeless
+#                         profile, so the window tiles cleanly under WMs like
+#                         xmonad/i3/sway. The TS port of the same view.
 #
 # This makes a triple A/B/C visual comparison: how Joyce drew it (1),
 # how the port reproduces it in the original Java engine (2), and how the
@@ -25,10 +26,15 @@
 # files into the right folder.
 #
 # REQUIREMENTS (host side):
-#   - docker (with the euclid-applet:latest image already built)
+#   - docker
+#   - both images built:
+#       docker build -f Containerfile          -t euclid-applet:latest  .
+#       docker build -f Containerfile.firefox  -t euclid-firefox:latest .
 #   - X11 server with `xhost +local:docker` accepted
-#   - firefox in $PATH
 #   - python3 -m http.server already running at the repo root on :8000
+#
+# Note: firefox runs in its own euclid-firefox container (not on the host),
+# so the user's regular firefox instance is never disturbed.
 
 set -e
 
@@ -36,7 +42,8 @@ REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
 APPLET_DIR_HOST="$REPO_ROOT/view/applet-tests"
 APPLET_DIR_CONT=/usr/src/app/view/applet-tests
 HTTP_BASE=http://localhost:8000
-DOCKER_IMAGE=euclid-applet:latest
+APPLET_IMAGE=euclid-applet:latest
+FIREFOX_IMAGE=euclid-firefox:latest
 VIEWER_FLAGS='-J-Djava.security.manager -J-Djava.security.policy=/usr/src/app/permissive.policy'
 
 # ----------------------------------------------------------------------
@@ -47,7 +54,6 @@ require() {
   command -v "$1" >/dev/null 2>&1 || { echo "ERROR: '$1' is required but not found in PATH." >&2; exit 1; }
 }
 require docker
-require firefox
 require curl
 
 if ! curl -s -o /dev/null --connect-timeout 1 "$HTTP_BASE/" ; then
@@ -65,9 +71,15 @@ EOF
   exit 1
 fi
 
-if ! docker image inspect "$DOCKER_IMAGE" >/dev/null 2>&1; then
-  echo "ERROR: Docker image '$DOCKER_IMAGE' not found. Build it first:" >&2
-  echo "    docker build -f Containerfile -t $DOCKER_IMAGE ." >&2
+if ! docker image inspect "$APPLET_IMAGE" >/dev/null 2>&1; then
+  echo "ERROR: Docker image '$APPLET_IMAGE' not found. Build it first:" >&2
+  echo "    docker build -f Containerfile -t $APPLET_IMAGE ." >&2
+  exit 1
+fi
+
+if ! docker image inspect "$FIREFOX_IMAGE" >/dev/null 2>&1; then
+  echo "ERROR: Docker image '$FIREFOX_IMAGE' not found. Build it first:" >&2
+  echo "    docker build -f Containerfile.firefox -t $FIREFOX_IMAGE ." >&2
   exit 1
 fi
 
@@ -143,7 +155,7 @@ echo "Euclid 3-way construction comparison"
 echo "====================================="
 echo "  1. ORIGINAL  — Joyce's full proposition in Java appletviewer"
 echo "  2. UP-TO     — same trimmed to focus on this construction (Java)"
-echo "  3. TS        — same in the TypeScript port (firefox kiosk)"
+echo "  3. TS        — same in the TypeScript port (chromeless firefox)"
 echo ""
 PS3=$'\nSelect a construction (or Ctrl-C to quit): '
 COLUMNS=1
@@ -171,7 +183,6 @@ echo ""
 # Spawn the three windows
 # ----------------------------------------------------------------------
 
-PIDS=()
 CONTAINERS=()
 
 cleanup() {
@@ -179,9 +190,6 @@ cleanup() {
   echo "Cleaning up..."
   for cid in "${CONTAINERS[@]}"; do
     docker stop "$cid" >/dev/null 2>&1 || true
-  done
-  for pid in "${PIDS[@]}"; do
-    kill "$pid" >/dev/null 2>&1 || true
   done
 }
 trap cleanup EXIT INT TERM
@@ -195,12 +203,13 @@ run_appletviewer() {
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v "$REPO_ROOT":/usr/src/app \
     -w /usr/src/app \
-    "$DOCKER_IMAGE" \
+    "$APPLET_IMAGE" \
     bash -c "appletviewer $VIEWER_FLAGS $container_path" >/dev/null
 }
 
 ORIG_CONTAINER="euclid-orig-$$"
 APPLET_CONTAINER="euclid-applet-$$"
+FIREFOX_CONTAINER="euclid-firefox-$$"
 
 echo "Starting ORIGINAL appletviewer..."
 run_appletviewer "$ORIG_CONTAINER" "$APPLET_DIR_CONT/$ORIG_REL"
@@ -210,20 +219,92 @@ echo "Starting UP-TO appletviewer..."
 run_appletviewer "$APPLET_CONTAINER" "$APPLET_DIR_CONT/$APPLET_REL"
 CONTAINERS+=("$APPLET_CONTAINER")
 
-echo "Starting firefox kiosk for TS view..."
-firefox --new-window --kiosk "$HTTP_BASE/$TS_REL" >/dev/null 2>&1 &
-PIDS+=($!)
+# ----------------------------------------------------------------------
+# Firefox runs in its own euclid-firefox container so the user's regular
+# firefox instance is never disturbed (no "Close Firefox" dialog, no
+# profile collision, no MOZ_NO_REMOTE escape-hatch needed). The chromeless
+# profile is created on the host and bind-mounted into the container at
+# /profile so the userChrome.css customizations apply.
+# ----------------------------------------------------------------------
+
+FF_PROFILE_DIR_HOST="${XDG_CACHE_HOME:-$HOME/.cache}/euclid-harness/firefox-profile"
+FF_PROFILE_DIR_CONT=/profile
+
+if [[ ! -d "$FF_PROFILE_DIR_HOST" ]]; then
+  mkdir -p "$FF_PROFILE_DIR_HOST/chrome"
+  cat >"$FF_PROFILE_DIR_HOST/chrome/userChrome.css" <<'CSS_EOF'
+/* Hide tab bar, nav/url bar, bookmarks bar, and titlebar so the firefox
+   window content is just the rendered page — application-style view without
+   firefox requesting fullscreen (which tiling WMs honor by floating the
+   window on top of everything else). */
+#TabsToolbar,
+#nav-bar,
+#PersonalToolbar,
+#titlebar {
+  visibility: collapse !important;
+}
+CSS_EOF
+  cat >"$FF_PROFILE_DIR_HOST/user.js" <<'PREFS_EOF'
+// Allow userChrome.css to take effect (Firefox 69+ requires this opt-in).
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+// Don't restore previous session — we always pass an explicit URL.
+user_pref("browser.sessionstore.resume_from_crash", false);
+user_pref("browser.startup.page", 0);
+// Suppress the "default browser" prompt and other first-run noise.
+user_pref("browser.shell.checkDefaultBrowser", false);
+user_pref("browser.startup.homepage_override.mstone", "ignore");
+PREFS_EOF
+fi
+
+# Drop a stale lock file from a previous interrupted run.
+rm -f "$FF_PROFILE_DIR_HOST/.parentlock" "$FF_PROFILE_DIR_HOST/lock" 2>/dev/null
+
+echo "Starting firefox in container (chromeless profile) for TS view..."
+echo "  profile: $FF_PROFILE_DIR_HOST"
+
+# --network host: lets the container reach the host's python http.server
+#                 on localhost:8000 directly (no need for host.docker.internal).
+# --user $UID:$GID: matches host uid so the bind-mounted profile dir has
+#                   compatible ownership and firefox can write to it.
+# HOME=/tmp: gives firefox a writable scratch dir without needing a real
+#            user account inside the container.
+docker run --rm -d \
+  --name "$FIREFOX_CONTAINER" \
+  --network host \
+  --user "$(id -u):$(id -g)" \
+  -e DISPLAY="$DISPLAY" \
+  -e HOME=/tmp \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v "$FF_PROFILE_DIR_HOST":"$FF_PROFILE_DIR_CONT" \
+  "$FIREFOX_IMAGE" \
+  firefox -profile "$FF_PROFILE_DIR_CONT" "$HTTP_BASE/$TS_REL" >/dev/null
+
+CONTAINERS+=("$FIREFOX_CONTAINER")
+
+# Give firefox a moment to either show a window or exit. If the container
+# died immediately, dump its logs so the user can see why.
+sleep 2
+if ! docker ps --format '{{.Names}}' | grep -qE "^${FIREFOX_CONTAINER}\$"; then
+  echo "" >&2
+  echo "ERROR: firefox container exited within 2s of launch. Logs were:" >&2
+  echo "----" >&2
+  docker logs "$FIREFOX_CONTAINER" 2>&1 || true
+  echo "----" >&2
+  echo "" >&2
+  echo "Common causes:" >&2
+  echo "  - Profile dir corrupted: rm -rf $FF_PROFILE_DIR_HOST and retry" >&2
+  echo "  - X11 not reachable from docker: check \`xhost\` output" >&2
+  exit 1
+fi
 
 echo ""
 echo "Three windows launched. Press Ctrl-C in this terminal to close them."
 echo ""
 
-# Wait for any of: both containers to exit, or firefox to exit, or signal.
+# Wait until any of the three containers exits, then teardown via the trap.
 while true; do
-  if ! docker ps --format '{{.Names}}' | grep -qE "^($ORIG_CONTAINER|$APPLET_CONTAINER)\$"; then
-    break
-  fi
-  if ! kill -0 "${PIDS[0]}" >/dev/null 2>&1; then
+  running=$(docker ps --format '{{.Names}}' | grep -cE "^($ORIG_CONTAINER|$APPLET_CONTAINER|$FIREFOX_CONTAINER)\$" || true)
+  if [[ "$running" -lt 3 ]]; then
     break
   fi
   sleep 2

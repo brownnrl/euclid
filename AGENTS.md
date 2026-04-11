@@ -35,8 +35,16 @@ python3 -m http.server  # then open http://localhost:PORT/view/test/...
 
 ## Three-way construction comparison harness
 
-Requires Linux + X11 + Docker + firefox + a `python3 -m http.server 8000` running
-at the repo root. Then run from the host:
+Requires Linux + X11 + Docker + a `python3 -m http.server 8000` running at the
+repo root. Both docker images must be built once (firefox runs in its own
+container, not on the host, so the user's regular firefox is never disturbed):
+
+```sh
+docker build -f Containerfile         -t euclid-applet:latest  .
+docker build -f Containerfile.firefox -t euclid-firefox:latest .
+```
+
+Then run the harness from the host:
 
 ```sh
 ./run_euclid_applet.sh
@@ -49,7 +57,7 @@ windows side by side:
    (`view/applet-tests/{type}/{construction}/original.html`)
 2. **UP-TO appletviewer** — same proposition trimmed to focus on the construction,
    in the Java applet (`view/applet-tests/{type}/{construction}/applet.html`)
-3. **TypeScript firefox kiosk** — same trimmed view in the TS port
+3. **TypeScript firefox (chromeless)** — same trimmed view in the TS port
    (`view/test/{type}/{sub}.html` from `localhost:8000`)
 
 Windows 2 and 3 should be visually equivalent at rest; any divergence is a

@@ -97,7 +97,14 @@ Step 8) is the trimmed up-to-construction version that mirrors the TS test page.
 
 ## Step 4 — View in appletviewer (optional but recommended)
 
-Run the host-side three-way comparison harness:
+First-time setup: build both docker images.
+
+```sh
+docker build -f Containerfile         -t euclid-applet:latest  .
+docker build -f Containerfile.firefox -t euclid-firefox:latest .
+```
+
+Then run the host-side three-way comparison harness:
 
 ```sh
 python3 -m http.server 8000   # in another terminal at the repo root
@@ -109,8 +116,13 @@ The script auto-discovers every `view/applet-tests/{type}/{construction}/applet.
 file and pops three windows for the chosen construction:
 
   1. **ORIGINAL appletviewer** — `original.html` (Joyce's full proposition)
+     in the `euclid-applet` container
   2. **UP-TO appletviewer** — `applet.html` (same trimmed to focus on the construction)
-  3. **TypeScript firefox kiosk** — `view/test/{type}/{sub}.html` from `localhost:8000`
+     in the `euclid-applet` container
+  3. **TypeScript firefox** — `view/test/{type}/{sub}.html` from `localhost:8000`,
+     opened in the `euclid-firefox` container against an isolated chromeless profile
+     so the window tiles under xmonad/i3/sway and the user's regular firefox instance
+     is never touched
 
 Windows 2 and 3 should be visually equivalent at rest; window 1 carries the full
 surrounding proposition for context. Drag free points in window 2 and watch dependent
@@ -307,8 +319,10 @@ python3 -m http.server 8000
 
 The harness auto-discovers your new `applet.html` on the next run (no script edits) and
 spawns three windows in parallel: `original.html` in appletviewer (containerised),
-`applet.html` in appletviewer (containerised), and the TS test page in firefox kiosk
-mode against `localhost:8000`.
+`applet.html` in appletviewer (containerised), and the TS test page in firefox against
+`localhost:8000` (also containerised — the `euclid-firefox` image — using an isolated
+chromeless profile that hides the tab bar, nav bar, and titlebar so it tiles cleanly
+under xmonad/i3/sway and never disturbs the user's regular host firefox).
 
 Compare:
 - **Window 2 vs window 3** — must be visually identical at rest. Drag a free point in
