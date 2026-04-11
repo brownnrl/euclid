@@ -4,6 +4,29 @@ Each session works through one construction type at a time: read the Java source
 port it to TypeScript, create a test view page, and optionally verify it against
 the Java applet. Repeat until all constructions are done, then convert all books.
 
+## Commit per step, with human review between steps
+
+The steps below are designed to be **committed one at a time** on the feature branch.
+After each step is finished, stop and commit that step's artifacts as a standalone
+commit, then pause for a human to review the diff before moving on to the next step.
+
+- An AI agent running this workflow **may** make file edits, run tests, and build
+  the bundle autonomously *within* a single step.
+- An AI agent running this workflow **must not** begin the next step until the
+  human has reviewed and acknowledged the current step's commit.
+- Commit messages should name the step and what landed
+  (e.g. `sector-arc: step 5 — add ArcElement.ts`).
+- **Do not add a `Co-Authored-By:` trailer** to commits on this repo, even when
+  an AI agent authored the change. The human running the session is the author
+  of record; the agent is a tool.
+- If a step's work has to be redone after review, amend or revert on the feature
+  branch — master never sees the in-progress commits.
+
+The point is to keep the review granularity small: one file or one logical unit
+per commit. A reviewer can catch "this update() has the wrong sign" or "this
+signature list is in the wrong order for first-match-wins" at the step boundary
+instead of after eight interleaved changes.
+
 ---
 
 ## Step 1 — Choose the next construction
@@ -41,6 +64,28 @@ have already been copied into the repo as standalone applet HTML for nearby cons
 If the same proposition naturally exercises both your target and an already-implemented
 construction, prefer it — you can reuse the existing `inspiration.html` as a reference
 rather than creating a fresh one from scratch.
+
+### Create a feature branch off master
+
+Once the construction and verifying proposition are locked in, cut a fresh feature
+branch off `master` *before* touching any source files. One construction per branch
+keeps the diff reviewable and makes it trivial to back out or rebase if the port
+turns out wrong.
+
+```sh
+git checkout master
+git pull --ff-only
+git checkout -b feature/{type}-{construction}
+```
+
+Naming: `feature/point-vertex`, `feature/sector-arc`, `feature/line-chord`, etc. —
+mirror the `{type};{construction}` pair from the HTML param format so the branch
+name lines up with the tracker entry and the harness menu label.
+
+Do this up front, not at commit time: all subsequent steps (new element class,
+Construction subclass, test, `view/test/` page, `applet-tests/` pair, tracker and
+journal updates) land on the feature branch, and master stays pristine until the
+port is merged.
 
 ---
 
