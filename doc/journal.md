@@ -20,6 +20,28 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-10 — Implemented point;parallelogram
+
+**Completed:**
+- Added `ParallelogramConstruction` to `src/elements/Constructions.ts` — reuses existing `Layoff`
+  class with `new Layoff(C, A, B, A, B)`, which computes D′ = C + (B − A)
+- Registered in `constructions` array
+- Wrote Mocha test (14 passing): verifies D′ = (190, 120) from propI28 input coordinates
+- Created `view/test/point/parallelogram.html` based on propI28 params; draws all four sides
+
+**Discovered:**
+- Java dispatch is `case 13: new Layoff(P[0],P[1],P[2],P[1],P[2])` — the direction vector CD
+  and length vector EF are both set to (A→B), so factor = AB/AB = 1 and the result is
+  pure vector addition: D′ = C + (B − A). No new element class needed.
+- Verifiable against propI28 e[5]; elements 1–4 are all free points and connect, both implemented.
+
+**Next session:**
+- `sector;arc` (20 uses) — needs `ArcElement.ts`; circumcenter of A,M,B then arc through them
+- `line;chord` (17 uses) — `Chord.java`
+- `polygon;parallelogram` (18 uses) — full polygon (4 vertices) using same D′ formula
+
+---
+
 ## 2026-04-10 — Implemented polygon;equilateralTriangle
 
 **Completed:**

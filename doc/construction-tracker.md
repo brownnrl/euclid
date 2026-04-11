@@ -117,8 +117,10 @@ These affect the library as a whole, independent of individual constructions.
 - [x] **`perpendicular`** (5 signature variants) — `src/elements/point/Perpendicular*.ts`
   - [~] tested in [view/test/circumcenter_lineperp.html](../view/test/circumcenter_lineperp.html) — no standalone page
 
-- [ ] **`parallelogram`** — TBD
-  - Java source: construct `Slate.java` or `Geometry.java` (4th vertex: D = A + C − B)
+- [x] **`parallelogram`** — `src/elements/Constructions.ts` (`ParallelogramConstruction`, reuses `Layoff`)
+  - `new Layoff(C, A, B, A, B)` computes D′ = C + (B − A); factor=1 so it reduces to pure vector addition
+  - Java dispatch: `case 13: element[eCount] = new Layoff(P[0],P[1],P[2],P[1],P[2])`
+  - [x] test view: [view/test/point/parallelogram.html](../view/test/point/parallelogram.html) — based on propI28 params; shows the completed parallelogram ABCA→D′
   - Used in: I.28, I.30, I.32–I.36, I.37–I.41, I.42–I.43, all of Book II
 
 - [x] **`vertex`** — `src/elements/Constructions.ts` (`VertexConstruction`)
@@ -338,5 +340,6 @@ These affect the library as a whole, independent of individual constructions.
 | `Circle.circumcircle` | view/test/circle/circumcircle.html | exists |
 | `Polygon.triangle` | view/test/poly/triangle.html | compound |
 | `Polygon.equilateralTriangle` | view/test/poly/equilateralTriangle.html | exists |
+| `Point.parallelogram` | view/test/point/parallelogram.html | exists |
 | `Sector.sector` | view/test/sector/sector.html | exists |
 | All others | — | missing |
