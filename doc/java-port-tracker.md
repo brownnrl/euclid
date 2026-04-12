@@ -43,14 +43,14 @@ implementation status. Updated as constructions are ported.
 | `LineSlider.java` | PORTED | `src/elements/point/LineSlider.ts` | 2D, 3D, and segment variants. |
 | `Midpoint.java` | PORTED | `src/elements/point/Midpoint.ts` | |
 | `Perpendicular.java` | PORTED | `src/elements/point/Perpendicular*.ts` + `src/elements/line/Perpendicular.ts` | 5 signature variants across point and line constructions. |
-| `PlaneSlider.java` | PORTED | `src/elements/point/PlaneSlider.ts` | Used for `point;free` (draggable points). |
+| `PlaneSlider.java` | PARTIAL | `src/elements/point/PlaneSlider.ts` | Used for `point;free` (draggable screen-plane points). The `point;planeSlider` construction for non-screen planes is TBD — blocks 19 propositions in Books XI–XIII. |
 | `Proportion.java` | PORTED | `src/elements/point/ProportionElement.ts` | Fourth proportional. Ported 2026-04-12. |
 | `Similar.java` | PORTED | `src/elements/point/SimilarElement.ts` | All three type variants ported: `SimilarPointConstruction`, `SimilarLineConstruction`, `SimilarPolygonConstruction` (all in Constructions.ts). Ported 2026-04-12. |
-| `AngleDivider.java` | TBD | — | Handles both `angleBisector` and `angleDivider` for point and line types. Needed for Book IV (IV.4, IV.13, IV.16). |
-| `Harmonic.java` | TBD | — | Harmonic conjugate. No Books I–IV uses found. |
-| `InvertPoint.java` | TBD | — | Point inversion in circle. No Books I–IV uses found. |
-| `MeanProportional.java` | TBD | — | Mean proportional construction. No Books I–IV uses found. |
-| `SphereSlider.java` | TBD | — | Point slider on sphere surface. Needed for solid geometry (Books XI–XIII). |
+| `AngleDivider.java` | PORTED | `src/elements/point/AngleDividerElement.ts` | All four variants ported 2026-04-12: point/line × bisector/divider. Used in Book IV (IV.4, IV.13, IV.16). |
+| `Harmonic.java` | TBD | — | Harmonic conjugate. No Books I–XIII uses found in applet HTML. |
+| `InvertPoint.java` | TBD | — | Point inversion in circle. No Books I–X uses found; may appear in later analysis. |
+| `MeanProportional.java` | PORTED | `src/elements/point/MeanProportionalElement.ts` | Geometric mean. Both point and line variants wired. Ported 2026-04-12. Unblocked 35 propositions (VIII, X, XIII). |
+| `SphereSlider.java` | TBD | — | Point slider on sphere surface. Blocks XIII.13, XIII.14, XIII.15, XIII.16, XIII.17 + XI.35. |
 
 ---
 
@@ -125,9 +125,10 @@ implementation status. Updated as constructions are ported.
 
 | Status | Count | Files |
 |--------|-------|-------|
-| PORTED | 27 | Core element classes + all ported constructions |
-| PARTIAL | 3 | IntersectionPL, PerpendicularPL, Slate |
-| TBD | 9 | AngleDivider, Harmonic, InvertPoint, InvertCircle, MeanProportional, SphereSlider, PlaneFoot, Prism, Pyramid |
-| TBD (base) | 2 | PolyhedronElement, ParallelP (plane), IntersectionSS |
+| PORTED | 29 | Core element classes + all ported constructions (incl. AngleDivider, MeanProportional ported 2026-04-12) |
+| PARTIAL | 4 | IntersectionPL, PerpendicularPL, PlaneSlider (screen-only), Slate |
+| TBD | 7 | Harmonic, InvertPoint, InvertCircle, SphereSlider, PlaneFoot, Prism, Pyramid |
+| TBD (base) | 1 | PolyhedronElement |
+| TBD (plane/circle) | 2 | ParallelP (plane;parallel), IntersectionSS (circle;intersection) |
 | N/A | 3 | Geometry, ClientFrame, Remote |
 | **Total** | **44** | |
