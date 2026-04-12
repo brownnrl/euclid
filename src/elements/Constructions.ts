@@ -38,6 +38,7 @@ import {Bichord} from "./line/Bichord";
 import {Chord} from "./line/Chord";
 import {SimilarElement} from "./point/SimilarElement";
 import {ProportionElement} from "./point/ProportionElement";
+import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
 import {SphereElement} from "./sphere/SphereElement";
@@ -1198,12 +1199,24 @@ export class SimilarPolygonConstruction extends Construction {
     }
 }
 
-// TBD
 // polygon
 // application
 // polygon A points B, C, D
 // the parallelogram equal to the given polygon A with one side BC and one angle BCD
+// (Java: Application.java — parallelogram with area = P.area(), side BC, angle DCB)
+export class ApplicationPolygonConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.application;
+    signature: ConstructionTypes[] = [ct.PolygonElement, ct.PointElement, ct.PointElement, ct.PointElement];
 
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const P = params[0] as PolygonElement;
+        const A = params[1] as PointElement;
+        const B = params[2] as PointElement;
+        const C = params[3] as PointElement;
+        const g = new ApplicationElement(P, A, B, C);
+        return [[g], g];
+    }
+}
 
 // TBD
 // polygon
@@ -1446,6 +1459,7 @@ export const constructions : Construction[] = [
     new ParallelogramPolygonConstruction(),
     new QuadrilateralPolygonConstruction(),
     new SimilarPolygonConstruction(),
+    new ApplicationPolygonConstruction(),
     new VertexConstruction(),
     new PerpendicularPlaneConstruction(),
     new SphereRadiusConstruction()
