@@ -96,7 +96,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `triangle` | IMPL | `PolygonElement.java` | `Point A, B, C` | Triangle with vertices A, B, C | ~55 | I.1 |
 | `quadrilateral` | IMPL | `Slate.java` (polygon case 2) | `Point A, B, C, D` | Quadrilateral ABCD | ~11 | I.43 |
 | `parallelogram` | IMPL | `Slate.java` (case 6, reuses `Layoff`) | `Point A, B, C` | Parallelogram ABCD where D = A+(C−B) | ~18 | I.34 |
-| `square` | **TBD** | `PolygonElement.java` | `Point A, B, C, D` | Square ABCD | ~10 | I.46 |
+| `square` | IMPL | `RegularPolygon.java` (n=4) | `Point A, B` | Square on side AB | ~10 | I.46 |
 | `equilateralTriangle` | **TBD** | `PolygonElement.java` | `Point A, B, C` | Equilateral triangle (alias for triangle with equal sides) | ~6 | I.2 |
 | `similar` | **TBD** | `Similar.java` | `Point A, B, C, D, E, F` | Similar polygon construction | ~5 | III.24 |
 | `application` | **TBD** | `Application.java` | Various | Application of area (parallelogram equal to triangle) | ~3 | I.44 |
@@ -160,7 +160,7 @@ Implementing higher-priority constructions unlocks the most propositions.
 | 4 | `sector;arc` | 20 | I.4, I.16, I.29, II.5–II.8, III.2, III.23–III.25, III.30 |
 | ~~5~~ | ~~`line;chord`~~ — IMPL 2026-04-11 | 17 | I.12, III.1, III.5, III.6, III.8–III.9, III.10, III.12, III.15, III.17, III.36, III.37 |
 | ~~6~~ | ~~`polygon;quadrilateral`~~ — IMPL 2026-04-12 | 11 | I.43–I.45, II.2, II.4–II.6, II.8–II.9, II.14 |
-| 7 | `polygon;square` | 10 | I.46, I.47, II.2–II.4, II.5–II.8, II.11 |
+| ~~7~~ | ~~`polygon;square`~~ — IMPL 2026-04-12 | 10 | I.46, I.47, II.1–II.8, II.11 |
 | ~~8~~ | ~~`point;similar`~~ — IMPL 2026-04-12 | 15 | I.42, III.33, III.34 (actual point;similar); I.23, I.24, I.26, I.31, III.14 were polygon/line;similar (corrected) |
 | 9 | `polygon;equilateralTriangle` | 6 | I.2, I.9, I.10, I.11, III.10, III.24 |
 | ~~10~~ | ~~`line;parallel`~~ — IMPL 2026-04-11 | 9 | I.22, I.27, I.37–I.40, II.8–II.9, II.11 |

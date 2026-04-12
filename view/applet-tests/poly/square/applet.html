@@ -1,0 +1,20 @@
+<HTML><HEAD><TITLE>polygon;square — applet form of view/test/poly/square.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/poly/square.html -->
+<!-- ORIGINAL: view/applet-tests/poly/square/original.html (propI46) -->
+<!--
+  Full propI46 variant 1: square ABED on side AB, with slider C on side AD
+  and line CD. Canvas 400x400 (original is 220x220).
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=400 height=400>
+<param name=background value="35,19,100">
+<param name=title value="I.46 — polygon;square">
+<param name=e[1] value="A;point;free;50,190">
+<param name=e[2] value="B;point;free;170,190">
+<param name=e[3] value="ABED;polygon;square;A,B;0;0;0,0,0;random">
+<param name=e[4] value="E;point;vertex;ABED,3">
+<param name=e[5] value="D;point;vertex;ABED,4">
+<param name=e[6] value="C;point;lineSlider;A,D,30,30">
+<param name=e[7] value="CD;line;connect;C,D">
+</applet>
+</BODY></HTML>

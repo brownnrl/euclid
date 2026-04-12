@@ -322,8 +322,18 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/poly/parallelogram/{original,applet}.html](../view/applet-tests/poly/parallelogram/)
   - Used in: I.34–I.36, I.41, II.1–II.11
 
-- [ ] **`square`** — TBD
-  - Java source: `PolygonElement.java`
+- [x] **`square`** — `src/elements/Constructions.ts` (`SquarePolygonConstruction`)
+  - Reuses `RegularPolygonElement` with n=4. Same pattern as
+    `EquilateralTriangleConstruction` (n=3). No new element class.
+  - Also completed the `RegularPolygonElement.ts` port by adding the
+    optional `d` (density) parameter from `RegularPolygon.java`'s second
+    constructor, per the "full Java class conversion" rule. This lays
+    groundwork for `polygon;starPolygon` in a future session.
+  - Java source: `Slate.java` polygon case 0 → `new RegularPolygon(A, B, screen, 4)`.
+  - Mocha test (1): 4-vertex correctness from propI46 coords, all-sides-equal check.
+  - [x] test view: [view/test/poly/square.html](../view/test/poly/square.html) — propI46
+  - [x] applet-tests pair:
+    [view/applet-tests/poly/square/{original,applet}.html](../view/applet-tests/poly/square/)
   - Used in: I.46–I.47, II.2–II.8, II.11
 
 - [x] **`equilateralTriangle`** — `src/elements/polygon/RegularPolygonElement.ts` (via `EquilateralTriangleConstruction`)

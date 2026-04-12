@@ -25,10 +25,10 @@ export class RegularPolygonElement extends PolygonElement {
     private _sin: number;
     private _P: PlaneElement;
 
-    constructor(A: PointElement, B: PointElement, plane: PlaneElement, n: number) {
+    constructor(A: PointElement, B: PointElement, plane: PlaneElement, n: number, d: number = 1) {
         super();
         this._P = plane;
-        const theta = Math.PI * (n - 2) / n;
+        const theta = Math.PI * d * (n - 2) / n;
         this._cos = Math.cos(theta);
         this._sin = Math.sin(theta);
         this.V = new Array(n);

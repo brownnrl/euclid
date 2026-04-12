@@ -112,6 +112,27 @@ Things to note:
 - Parent element method calls (e.g. `toCircumcenter`, `normalize`, `unitVector`) →
   check if these exist on `PointElement` in `src/elements/point/PointElement.ts`
 
+### Full Java class conversion rule
+
+When porting a Java source file, convert **all constructor signatures and
+functionality** in one pass — not just the variant needed for the current
+construction. If the Java class has multiple constructors (e.g.
+`RegularPolygon.java` has a regular-polygon constructor and a star-polygon
+constructor with a density parameter), port them all as a single TypeScript
+class with optional parameters (defaulting to the simpler variant's
+behavior).
+
+The goal is to develop internally consistent tests at conversion time and
+lay groundwork for future constructions that share the same Java class. When
+a later session picks one of those constructions (e.g. `polygon;starPolygon`
+after `polygon;square`), it should find the element class already complete
+and only need to wire the `Construction` dispatcher and write the test/view
+pages.
+
+The inverse — porting only the needed constructor and deferring the rest —
+creates hidden tech debt and forces a context-switch back to the element
+layer in a future session that should be focused on the construction.
+
 ---
 
 ## Step 3 — Find an example in `view/euclid-html`

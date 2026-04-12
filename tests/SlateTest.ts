@@ -565,6 +565,37 @@ describe("slate", ()=> {
     //   A=(50,200), B=(150,200)
     //   C = rotate B around A by π/2 then scale by 0.5 → (50, 250)
 
+    // polygon;square — RegularPolygonElement with n=4
+    // propI46: A=(50,190), B=(170,190), side=120
+    //   V[2] = A rotated 90° around B: dx=50-170=-120, dy=0
+    //     x = 170 + 0*(-120) - 1*0 = 170
+    //     y = 190 + 1*(-120) + 0*0 = 70    → V[2] = (170, 70)
+    //   V[3] = B rotated 90° around V[2]: dx=170-170=0, dy=190-70=120
+    //     x = 170 + 0*0 - 1*120 = 50
+    //     y = 70 + 1*0 + 0*120 = 70         → V[3] = (50, 70)
+    it("should compute a square with 4 vertices at right angles", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [50, 190] },
+            { name: "B", construction: E.Point.free, params: [170, 190] },
+            { name: "ABED", construction: E.Polygon.square, params: ["A", "B"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let sq = slate.lookupElement("ABED") as PolygonElement;
+        assert.equal(sq.V.length, 4);
+        almostEqual(sq.V[0].x,  50, 0.01); almostEqual(sq.V[0].y, 190, 0.01);
+        almostEqual(sq.V[1].x, 170, 0.01); almostEqual(sq.V[1].y, 190, 0.01);
+        almostEqual(sq.V[2].x, 170, 0.01); almostEqual(sq.V[2].y,  70, 0.01);
+        almostEqual(sq.V[3].x,  50, 0.01); almostEqual(sq.V[3].y,  70, 0.01);
+        // All sides equal (120)
+        let side = sq.V[0].distance(sq.V[1]);
+        almostEqual(side, 120, 0.01);
+        almostEqual(sq.V[1].distance(sq.V[2]), side, 0.01);
+        almostEqual(sq.V[2].distance(sq.V[3]), side, 0.01);
+        almostEqual(sq.V[3].distance(sq.V[0]), side, 0.01);
+    });
+
     // polygon;quadrilateral — 4 free vertices passed through to PolygonElement
     it("should create a quadrilateral with 4 vertices", () => {
         let data : IConstructionInfo[] = [
