@@ -1,0 +1,38 @@
+<HTML><HEAD><TITLE>line;foot — applet form of view/test/line/foot.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/line/foot.html -->
+<!-- ORIGINAL: view/applet-tests/line/foot/original.html (propI47) -->
+<!--
+  Full propI47 (Pythagoras' theorem): right triangle ABC with squares on
+  each side, perpendicular AL from A to DE (line;foot), and auxiliary
+  lines AD, CF, BK, AE. Drag A on the semicircle to change the triangle;
+  the three squares and the perpendicular should track.
+  Canvas 400x400 (original is 320x380).
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=400 height=400>
+<param name=background value="35,19,100">
+<param name=title value="I.47 — Pythagoras">
+<param name=e[1] value="B;point;free;100,200">
+<param name=e[2] value="C;point;free;230,200">
+<param name=e[3] value="O;point;midpoint;B,C;none;none">
+<param name=e[4] value="OABC;circle;radius;O,B;none;none;none;none">
+<param name=e[5] value="A;point;circleSlider;OABC,140,100">
+<param name=e[6] value="ABC;polygon;triangle;A,B,C;none;none;black;random">
+<param name=e[7] value="A2;polygon;square;C,B;none;none;black">
+<param name=e[8] value="B2;polygon;square;B,A;none;none;black">
+<param name=e[9] value="C2;polygon;square;A,C;none;none;black">
+<param name=e[10] value="G;point;vertex;B2,3">
+<param name=e[11] value="F;point;vertex;B2,4">
+<param name=e[12] value="K;point;vertex;C2,3">
+<param name=e[13] value="H;point;vertex;C2,4">
+<param name=e[14] value="D;point;vertex;A2,3">
+<param name=e[15] value="E;point;vertex;A2,4">
+<param name=e[16] value="AL;line;foot;A,D,E">
+<param name=e[17] value="L;point;last;AL">
+<param name=e[18] value="J;point;intersection;B,C,A,L;0;green">
+<param name=e[19] value="AD;line;connect;A,D">
+<param name=e[20] value="CF;line;connect;C,F">
+<param name=e[21] value="BK;line;connect;B,K">
+<param name=e[22] value="AE;line;connect;A,E">
+</applet>
+</BODY></HTML>

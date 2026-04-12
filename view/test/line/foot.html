@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Test View - Line.foot (I.47 — Pythagoras)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.47 — Pythagoras' theorem",
+        canvasid: "canvasId",
+        elements: [
+            // <param name=e[1] value="B;point;free;100,200">
+            { name: "B", construction: E.Point.free, params: [100, 200] },
+            // <param name=e[2] value="C;point;free;230,200">
+            { name: "C", construction: E.Point.free, params: [230, 200] },
+            // <param name=e[3] value="O;point;midpoint;B,C">
+            { name: "O", construction: E.Point.midpoint, params: ["B", "C"] },
+            // <param name=e[4] value="OABC;circle;radius;O,B">
+            { name: "OABC", construction: E.Circle.radius, params: ["O", "B"] },
+            // <param name=e[5] value="A;point;circleSlider;OABC,140,100">
+            { name: "A", construction: E.Point.circleSlider, params: ["OABC", 140, 100] },
+            // <param name=e[6] value="ABC;polygon;triangle;A,B,C">
+            { name: "ABC", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
+            // Three squares on the sides
+            // <param name=e[7] value="A2;polygon;square;C,B">
+            { name: "A2", construction: E.Polygon.square, params: ["C", "B"] },
+            // <param name=e[8] value="B2;polygon;square;B,A">
+            { name: "B2", construction: E.Polygon.square, params: ["B", "A"] },
+            // <param name=e[9] value="C2;polygon;square;A,C">
+            { name: "C2", construction: E.Polygon.square, params: ["A", "C"] },
+            // Extract vertices of the squares
+            // <param name=e[10] value="G;point;vertex;B2,3">
+            { name: "G", construction: E.Point.vertex, params: ["B2", 3] },
+            // <param name=e[11] value="F;point;vertex;B2,4">
+            { name: "F", construction: E.Point.vertex, params: ["B2", 4] },
+            // <param name=e[12] value="K;point;vertex;C2,3">
+            { name: "K", construction: E.Point.vertex, params: ["C2", 3] },
+            // <param name=e[13] value="H;point;vertex;C2,4">
+            { name: "H", construction: E.Point.vertex, params: ["C2", 4] },
+            // <param name=e[14] value="D;point;vertex;A2,3">
+            { name: "D", construction: E.Point.vertex, params: ["A2", 3] },
+            // <param name=e[15] value="E;point;vertex;A2,4">
+            { name: "E", construction: E.Point.vertex, params: ["A2", 4] },
+            // The perpendicular from A to DE — target construction
+            // <param name=e[16] value="AL;line;foot;A,D,E">  ← target
+            { name: "AL", construction: E.Line.foot, params: ["A", "D", "E"] },
+            // <param name=e[17] value="L;point;last;AL">
+            { name: "L", construction: E.Point.last, params: ["AL"] },
+            // <param name=e[18] value="J;point;intersection;B,C,A,L">
+            { name: "J", construction: E.Point.intersection, params: ["B", "C", "A", "L"] },
+            // Auxiliary lines
+            // <param name=e[19] value="AD;line;connect;A,D">
+            { name: "AD", construction: E.Line.connect, params: ["A", "D"] },
+            // <param name=e[20] value="CF;line;connect;C,F">
+            { name: "CF", construction: E.Line.connect, params: ["C", "F"] },
+            // <param name=e[21] value="BK;line;connect;B,K">
+            { name: "BK", construction: E.Line.connect, params: ["B", "K"] },
+            // <param name=e[22] value="AE;line;connect;A,E">
+            { name: "AE", construction: E.Line.connect, params: ["A", "E"] },
+        ]
+    });
+</script>
+</body>
+</html>
