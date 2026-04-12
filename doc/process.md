@@ -347,11 +347,106 @@ image alongside the proposition HTML in `view/euclid-html/`.
 
 ---
 
-## Step 8 — Update the tracker and journal
+## Step 8 — Update the tracker and journal, then draft the PR body
 
 1. Mark the construction as **IMPL** in [constructions-reference.md](constructions-reference.md)
 2. Check off any newly-renderable propositions in [proposition-tracker.md](proposition-tracker.md)
-3. Append a dated entry to [journal.md](journal.md)
+3. Mark the construction as **IMPL** in [construction-tracker.md](construction-tracker.md) and link the
+   test view + applet-tests pair, the same way the existing IMPL entries do
+4. Append a dated entry to [journal.md](journal.md) following the
+   `Completed / Discovered / Next session` template at the top of that file
+5. Commit the four doc updates as `{type}-{construction}: step 8 — tracker + journal updates`
+6. **Draft the pull request body** (see below). The agent generates the
+   markdown; the human pushes the branch and opens the PR on GitHub.
+   Do NOT use `git push` or `gh pr create` from the agent — pushing a branch
+   and opening a PR are shared-state actions that the human owns.
+
+### Pull request body template
+
+After the step 8 commit lands, the agent should output a single fenced
+markdown block — ready for the human to copy directly into GitHub's PR
+description field. The block should be a self-contained summary of what
+the branch ships, structured as follows:
+
+````markdown
+## Summary
+
+One sentence naming the construction ported, the verifying proposition,
+and the headline impact (e.g. "Adds `line;chord` (port of `Chord.java`),
+verified end-to-end against propI12; unlocks 12 new renderable
+propositions across Books I and III.").
+
+## What's in this branch
+
+A bulleted list of the per-step commits, each in the form
+`<short-sha> <commit subject>` so a reviewer can scan the history at a
+glance. Include any out-of-band commits (e.g. a platform hardening
+commit landed mid-port) and call out *why* they're in this branch
+rather than a separate one.
+
+## Construction details
+
+- **Element class**: `src/elements/{type}/{Name}Element.ts` (or the file
+  the port lives in if it's not a standalone class) — one sentence on
+  what it extends and what its `update()` does.
+- **Construction class**: `{Name}Construction` in
+  `src/elements/Constructions.ts` — note the post-`LineElement`-expansion
+  signature and any 2D/3D variant ordering hazard.
+- **Java source**: `geom_applet/source/{Name}.java` (line count, fidelity
+  of port — line-for-line vs. structural rewrite vs. anything else).
+
+## Tests
+
+- Mocha test count delta (e.g. "17 → 21 passing") and a one-line
+  description of each new test.
+- Note any test cases that exercise NaN sentinels, degenerate cases,
+  or `translate`/`rotate` isolation.
+
+## Verification
+
+Tick boxes the human can check off when reviewing:
+
+- [ ] `npm run build` clean
+- [ ] `npm test` passes (N/N)
+- [ ] `npx webpack` rebuilds `dist/bundle.js`
+- [ ] Three-way harness (`./run_euclid_applet.sh` → pick `{type};{construction}`)
+      shows windows 2 and 3 visually identical at rest
+- [ ] Drag interactions on key free points behave as expected
+      (call out the specific drags that exercise the construction)
+
+## Newly renderable propositions
+
+A flat list (or short table) of every proposition flipped from `[ ]` to
+`[~]` in `doc/proposition-tracker.md` by this PR, plus the updated
+Book-by-Book summary counts so a reviewer can sanity-check the deltas.
+
+## Discovered / out of scope
+
+Anything found while doing the port that *isn't* fixed in this branch:
+proposition-tracker NEEDS-line drift, platform bugs, follow-up
+opportunities, etc. Each item should say what was found and why it's
+deferred. Mirrors the journal entry's `Discovered` section but trimmed
+to the parts a reviewer needs to know about.
+````
+
+Style notes for the agent:
+
+- Keep the body under ~200 lines. Long PRs are fine; a long *PR body* just
+  duplicates the journal entry. The journal is the canonical record;
+  the PR body is the reviewer's index into it.
+- Always wrap the whole block in a fenced ` ```markdown ` tag so the human
+  can lift it cleanly. Don't include any prose outside the fence.
+- Reference commits by short SHA (`git log --oneline master..HEAD`),
+  files by repo-relative path. Skip the `Co-Authored-By:` trailer — same
+  rule as commits on this repo.
+- If the harness check was not performed (e.g. Docker/X11 unavailable
+  in the agent's environment), mark its checkbox as `[ ]` and add a
+  one-line note explaining what fallback was used (e.g. compared
+  against the `.gif` snapshot in `view/euclid-html/{book}/`).
+
+After the agent prints the PR body block, it should stop. The human runs
+`git push -u origin feature/{type}-{construction}` and creates the PR
+themselves on GitHub, pasting the body block into the description.
 
 ---
 
