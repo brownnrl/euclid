@@ -20,6 +20,47 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented polygon;application — 99/99 BOOKS I–III COMPLETE
+
+**Completed:**
+- Ported `polygon;application` as `src/elements/polygon/ApplicationElement.ts`
+  — a port of `Application.java` (43 lines). Extends `PolygonElement`.
+  Creates a parallelogram ABEF with side AB, angle CAB, whose area equals
+  the input polygon P's area. `update()` computes
+  `factor = |P.area()| / (2 * area(A, B, C))`, scales along AC to get
+  V[3], then closes the parallelogram at V[2] = B + V[3] - A. Overrides
+  `update()`, `translate()`, `rotate()`.
+- Added `area()` method to `PolygonElement.ts` (fan triangulation from
+  V[0]) to support this construction — per the full Java class conversion
+  rule.
+- **Fixed pre-existing bug in `PointElement.length2()`**: `this._z + this._z`
+  was addition instead of multiplication (`* this._z`). This made
+  `length2()` return `x² + y² + 2z` instead of `x² + y² + z²`, breaking
+  `PointElement.area()` via `cross().length()`. The bug was latent because
+  most geometry code uses `distance2()` (correct), not `length2()`.
+  ApplicationElement is the first construction to call `P.area()`.
+- One Mocha test: parallelogram area = input triangle area (4000),
+  computed vertices verified. 34 → **35 passing**.
+- **ALL 99 PROPOSITIONS IN BOOKS I–III ARE NOW RENDERABLE.**
+  - Book I: 48/48 (100%)
+  - Book II: 14/14 (100%)
+  - Book III: 37/37 (100%)
+  - **I–III total: 99/99 (100%)**
+
+**Discovered:**
+- `PointElement.length2()` had a typo from the original TS port: `+` instead
+  of `*` for the z component. This is a one-character fix with large
+  potential impact on any 3D geometry that uses `length()` or `area()`.
+  All existing 2D constructions were unaffected because z=0, and most
+  code paths use `distance2()` (which was correct).
+
+**Phase 1 complete.** Per AGENTS.md, the project transitions to Phase 2:
+proposition HTML conversion (converting all 566 proposition HTMLs in
+`view/euclid-html/` from Java `<param>` format to TypeScript
+`geomlib.init()` calls in a new `view/books/` folder).
+
+---
+
 ## 2026-04-12 — Implemented point;proportion + drift fix — 96/99
 
 **Completed:**
