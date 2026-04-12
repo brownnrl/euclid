@@ -813,11 +813,23 @@ export class LineConnectConstruction extends Construction {
 // points A, B, C [plane D] integer n
 // the line AE with E on BC so that BAE is the nth part of the angle BAC in plane D
 
-// TBD
 // line
-// foot	
+// foot (2D variant)
 // 3 points A, B, C
-// the line AD drawn perpendicular to BC in the screen plane
+// the line AD from A to the foot of the perpendicular from A to line BC
+// (Java: Slate.java case 3, choice 0 — Foot(A,B,C) + LineElement(A,foot).
+// Foot class already IMPL at src/elements/point/Foot.ts.)
+export class LineFootConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.foot;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let fo = new Foot(ps[0], ps[1], ps[2]);
+        let g = new LineElement({A: ps[0], B: fo});
+        return [[fo, g], g];
+    }
+}
 
 // TBD
 // *Solid Geometry Only*
@@ -1380,6 +1392,7 @@ export const constructions : Construction[] = [
     new BichordConstruction(),
     new ChordConstruction(),
     new LineParallelConstruction(),
+    new LineFootConstruction(),
     new TrianglePolygonConstruction(),
     new SquarePolygonConstruction(),
     new EquilateralTriangleConstruction(),

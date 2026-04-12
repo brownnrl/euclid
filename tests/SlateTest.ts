@@ -565,6 +565,35 @@ describe("slate", ()=> {
     //   A=(50,200), B=(150,200)
     //   C = rotate B around A by π/2 then scale by 0.5 → (50, 250)
 
+    // line;foot (2D) — line from A to the foot of the perpendicular from A to line BC
+    // A=(100,50), B=(50,200), C=(250,200) — BC is horizontal at y=200
+    // Foot of perp from A to BC = (100, 200)
+    // Line goes from A=(100,50) to foot=(100,200)
+    it("should compute a line from A to the foot of the perpendicular on BC", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [100, 50] },
+            { name: "B", construction: E.Point.free, params: [50, 200] },
+            { name: "C", construction: E.Point.free, params: [250, 200] },
+            { name: "AL", construction: E.Line.foot, params: ["A", "B", "C"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("AL") as LineElement;
+        // Line starts at A
+        almostEqual(line.A.x, 100, 0.01);
+        almostEqual(line.A.y,  50, 0.01);
+        // Line ends at foot = (100, 200)
+        almostEqual(line.B.x, 100, 0.01);
+        almostEqual(line.B.y, 200, 0.01);
+        // Line should be perpendicular to BC (dot product of directions = 0)
+        let dx_line = line.B.x - line.A.x;  // 0
+        let dy_line = line.B.y - line.A.y;  // 150
+        let dx_bc = 250 - 50;               // 200
+        let dy_bc = 0;                       // 0
+        almostEqual(dx_line * dx_bc + dy_line * dy_bc, 0, 0.01);
+    });
+
     // polygon;square — RegularPolygonElement with n=4
     // propI46: A=(50,190), B=(170,190), side=120
     //   V[2] = A rotated 90° around B: dx=50-170=-120, dy=0

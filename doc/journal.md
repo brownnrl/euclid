@@ -20,6 +20,40 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented line;foot (2D) — Pythagoras unlocked
+
+**Completed:**
+- Ported `line;foot` (2D variant) as `LineFootConstruction` in
+  `src/elements/Constructions.ts`. **No new element class** — reuses
+  existing `Foot` class + base `LineElement` wrapper. Same dispatch-trick
+  pattern as `line;parallel`, `line;extend`, and `line;chord`.
+  `construct()` creates `Foot(A, B, C)` then `LineElement(A, foot)`.
+  Total new code: ~10 lines.
+- One Mocha test: foot-of-perpendicular coords + dot-product-zero
+  perpendicularity check. 29 → **30 passing**.
+- Test page + applet companion using the full propI47 — **Pythagoras'
+  theorem**: right triangle ABC on a semicircle, three squares on the
+  sides, the perpendicular AL from A to DE (the target `line;foot`),
+  and auxiliary lines AD, CF, BK, AE. 22 elements.
+- Book I renderable count: 27 → **28** (+I.47). I–III total: 71 → **72**.
+
+**Discovered:**
+- The solid-geometry variant (`PlaneFoot.java`, `line;foot` with point +
+  plane params) remains TBD. Only the 2D variant (3 points, dispatched
+  via `Slate.java` case 3 choice 0) was ported in this session.
+
+**Next session:**
+- High-impact: 3-point `circle;radius` variant (unlocks III.24,
+  III.26–III.29 = +5 Book III props).
+- Or: `polygon;similar` + `line;similar` (unlocks I.23, I.24, I.26, I.31,
+  III.14 = +5 mixed).
+- Also consider checking the proposition-tracker drift noted in
+  earlier journal entries for I.28, I.30, I.32, I.35, I.36, I.41 —
+  these listed `point;parallelogram` as their sole blocker but
+  `point;parallelogram` has been IMPL since 2026-04-10.
+
+---
+
 ## 2026-04-12 — Implemented polygon;square — MASSIVE Book II unlock
 
 **Completed:**

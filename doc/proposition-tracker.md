@@ -14,10 +14,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 
 | Scope | Total | Renderable (`[~]`) | Complete (`[x]`) |
 |-------|-------|--------------------|------------------|
-| Book I | 48 | 27 | 0 |
+| Book I | 48 | 28 | 0 |
 | Book II | 14 | 13 | 0 |
 | Book III | 37 | 31 | 0 |
-| **I–III total** | **99** | **71** | **0** |
+| **I–III total** | **99** | **72** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -72,7 +72,7 @@ Update the summary table after each session.
 - [ ] I.44 — To a given straight line in a given rectilinear angle, to apply a parallelogram equal to a given triangle. NEEDS: `point;parallelogram`, `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
 - [ ] I.45 — To construct a parallelogram equal to a given rectilinear figure in a given rectilinear angle. NEEDS: `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
 - [~] I.46 — To describe a square on a given straight line. (`polygon;quadrilateral`, `polygon;square`, `point;vertex` all landed by 2026-04-12.)
-- [ ] I.47 — In right-angled triangles the square on the side opposite the right angle equals the sum of the squares on the sides containing the right angle. NEEDS: `line;foot` 2D variant (propI47 e[16] uses `line;foot;A,D,E` — a Foot+LineElement dispatch, not the solid-geometry PlaneFoot; `polygon;square`, `point;vertex` already landed)
+- [~] I.47 — In right-angled triangles the square on the side opposite the right angle equals the sum of the squares on the sides containing the right angle. (Pythagoras' theorem. `line;foot` 2D variant landed 2026-04-12; `polygon;square`, `point;vertex` already landed.)
 - [~] I.48 — If in a triangle the square on one of the sides equals the sum of the squares on the remaining two sides of the triangle, then the angle contained by the remaining two sides of the triangle is right.
 
 ---
