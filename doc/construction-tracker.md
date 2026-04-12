@@ -261,8 +261,17 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: `AngleDivider.java`
   - No Books I–III uses
 
-- [ ] **`foot`** (line-to-plane, solid geometry) — TBD
-  - Java source: `PlaneFoot.java`
+- [x] **`foot`** (2D variant) — `src/elements/Constructions.ts` (`LineFootConstruction`)
+  - No dedicated element class — reuses existing `Foot` + base `LineElement`.
+    `construct()` creates `Foot(A, B, C)` (foot of perpendicular from A to
+    line BC) then `new LineElement({A, B: foot})`.
+  - Java source: `Slate.java` line case 3, choice 0. The solid-geometry
+    variant (choice > 0, using `PlaneFoot`) remains TBD.
+  - Mocha test (1): perpendicularity check (dot product = 0), foot coords.
+  - [x] test view: [view/test/line/foot.html](../view/test/line/foot.html) — full propI47 (Pythagoras)
+  - [x] applet-tests pair:
+    [view/applet-tests/line/foot/{original,applet}.html](../view/applet-tests/line/foot/)
+  - Used in: I.47 (Pythagoras' theorem)
 
 - [ ] **`similar`** — TBD
   - Java source: `Similar.java`
