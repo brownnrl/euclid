@@ -169,9 +169,16 @@ These affect the library as a whole, independent of individual constructions.
   - Used in (actual `point;similar`): I.42, III.33, III.34, plus
     III.26–III.29 (but those are blocked by 3-point `circle;radius` TBD)
 
-- [ ] **`proportion`** — TBD
-  - Java source: `Proportion.java`
-  - Used in: I.16, I.29
+- [x] **`proportion`** — `src/elements/point/ProportionElement.ts`
+  - Extends `PointElement`; constructor takes 8 PointElements (S0,S1,T0,T1,
+    U0,U1,V0,V1) defining four line segments. `update()` computes the point
+    V' on V0V1 such that |S|:|T| = |U|:|V0V'|.
+  - Java source: `Proportion.java` — 26 lines, line-for-line port.
+  - Mocha test (1): fourth-proportional at expected position.
+  - [x] test view: [view/test/point/proportion.html](../view/test/point/proportion.html) — standalone
+  - [x] applet-tests pair:
+    [view/applet-tests/point/proportion/{original,applet}.html](../view/applet-tests/point/proportion/)
+  - Used in: I.16, I.29 (secondary applet variants)
 
 - [ ] **`angleBisector`** — TBD
   - Java source: `AngleDivider.java`

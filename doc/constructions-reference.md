@@ -49,7 +49,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `parallelogram` | **TBD** | `Geometry.java` | `Point A, Point B, Point C` | 4th vertex D of parallelogram ABCD (D = A+C−B) | ~48 | I.28 |
 | `vertex` | **TBD** | `PolygonElement.java` | `Polygon P, int i` | i-th vertex of polygon P | ~59 | I.2 |
 | `similar` | IMPL | `Similar.java` | `Point A, B, D, E, F [, Plane]` | Point H so △ABH ~ △DEF (2D) | ~15 | III.33 |
-| `proportion` | **TBD** | `Proportion.java` | `Point A, B, C, D, E, F, G, H` | Point on GH s.t. AB:CD = EF:GI | ~4 | I.16 |
+| `proportion` | IMPL | `Proportion.java` | `Point S0,S1,T0,T1,U0,U1,V0,V1` | Point V' on V0V1 s.t. \|S\|:\|T\| = \|U\|:\|V0V'\| | ~4 | I.16 |
 | `invert` | **TBD** | `InvertPoint.java` | `Point A, Circle B` | Inversion of A in circle B | 0 | — |
 | `meanProportional` | **TBD** | `MeanProportional.java` | `Point A, B, C, D, E, F` | Point G on EF s.t. AB:CD = CD:EG | 0 | — |
 | `planeSlider` | **TBD** | `PlaneSlider.java` | `Plane A, int x, int y, int z` | Point draggable on plane A | solid geometry | — |

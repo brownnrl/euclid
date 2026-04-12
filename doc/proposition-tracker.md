@@ -14,10 +14,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 
 | Scope | Total | Renderable (`[~]`) | Complete (`[x]`) |
 |-------|-------|--------------------|------------------|
-| Book I | 48 | 39 | 0 |
+| Book I | 48 | **46** | 0 |
 | Book II | 14 | 13 | 0 |
 | Book III | 37 | **37** | 0 |
-| **I–III total** | **99** | **89** | **0** |
+| **I–III total** | **99** | **96** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -27,21 +27,21 @@ Update the summary table after each session.
 ## Book I
 
 - [~] I.1 — To construct an equilateral triangle on a given finite straight line.
-- [ ] I.2 — To place a straight line equal to a given straight line with one end at a given point. NEEDS: `polygon;equilateralTriangle`, `point;vertex`
+- [~] I.2 — To place a straight line equal to a given straight line with one end at a given point. (`polygon;equilateralTriangle`, `point;vertex` landed 2026-04-10; tracker drift fixed 2026-04-12.)
 - [~] I.3 — To cut off from the greater of two given unequal straight lines a straight line equal to the less.
-- [ ] I.4 — If two triangles have two sides equal to two sides respectively… (SAS congruence). NEEDS: `circle;radius` 3-point variant (`A,B,C` for "circle at A with radius |BC|" — TBD, distinct from the 2-point IMPL variant). Note: the only remaining arc-only blocker since `sector;arc` landed; this proposition still cannot render until the 3-point circle-radius variant is implemented.
+- [~] I.4 — If two triangles have two sides equal to two sides respectively… (SAS congruence). (3-point `circle;radius` landed 2026-04-12; `sector;arc` landed 2026-04-11; tracker drift fixed 2026-04-12.)
 - [~] I.5 — In isosceles triangles the angles at the base equal one another.
 - [~] I.6 — If in a triangle two angles equal one another, then the sides opposite the equal angles also equal one another.
 - [~] I.7 — Given two straight lines constructed from the ends of a straight line and meeting in a point…
 - [~] I.8 — If two triangles have the two sides equal to two sides respectively, and also have the base equal to the base… (SSS congruence).
-- [ ] I.9 — To bisect a given rectilinear angle. NEEDS: `polygon;equilateralTriangle`, `point;vertex`
-- [ ] I.10 — To bisect a given finite straight line. NEEDS: `polygon;equilateralTriangle`, `point;vertex`
-- [ ] I.11 — To draw a straight line at right angles to a given straight line from a given point on it. NEEDS: `polygon;equilateralTriangle`, `point;vertex`
+- [~] I.9 — To bisect a given rectilinear angle. (`polygon;equilateralTriangle`, `point;vertex` landed 2026-04-10; tracker drift fixed 2026-04-12.)
+- [~] I.10 — To bisect a given finite straight line. (`polygon;equilateralTriangle`, `point;vertex` landed 2026-04-10; tracker drift fixed 2026-04-12.)
+- [~] I.11 — To draw a straight line at right angles to a given straight line from a given point on it. (`polygon;equilateralTriangle`, `point;vertex` landed 2026-04-10; tracker drift fixed 2026-04-12.)
 - [~] I.12 — To draw a straight line perpendicular to a given infinite straight line from a given point not on it. (`line;chord` landed 2026-04-11; test page at view/test/line/chord.html uses these exact params.)
 - [~] I.13 — If a straight line stands on a straight line, then it makes either two right angles or angles whose sum equals two right angles.
 - [~] I.14 — If with any straight line, and at a point on it, two straight lines not lying on the same side make the sum of the adjacent angles equal to two right angles, then the two straight lines are in a straight line with one another.
 - [~] I.15 — If two straight lines cut one another, then they make the vertical angles equal to one another.
-- [ ] I.16 — In any triangle, if one of the sides is produced, then the exterior angle is greater than either of the interior and opposite angles. NEEDS: `point;proportion`  (`sector;arc` landed 2026-04-11)
+- [~] I.16 — In any triangle, if one of the sides is produced, then the exterior angle is greater than either of the interior and opposite angles. (`point;proportion` landed 2026-04-12; `sector;arc` landed 2026-04-11. Note: the primary applet variant doesn't use point;proportion; only the secondary elliptic-geometry variant does.)
 - [~] I.17 — In any triangle the sum of any two angles is less than two right angles.
 - [~] I.18 — In any triangle the angle opposite the greater side is greater.
 - [~] I.19 — In any triangle the side opposite the greater angle is greater.
@@ -54,7 +54,7 @@ Update the summary table after each session.
 - [~] I.26 — If two triangles have two angles equal to two angles respectively, and one side equal to one side… (AAS/ASA congruence). (`polygon;similar` landed 2026-04-12.)
 - [~] I.27 — If a straight line falling on two straight lines makes the alternate angles equal to one another, then the straight lines are parallel. (`line;parallel` landed 2026-04-11.)
 - [~] I.28 — If a straight line falling on two straight lines makes the exterior angle equal to the interior and opposite angle on the same side… (`point;parallelogram` landed 2026-04-10; tracker drift fixed 2026-04-12.)
-- [ ] I.29 — A straight line falling on parallel straight lines makes the alternate angles equal to one another… NEEDS: `point;parallelogram`, `point;proportion`
+- [~] I.29 — A straight line falling on parallel straight lines makes the alternate angles equal to one another… (`point;parallelogram` landed 2026-04-10; `point;proportion` landed 2026-04-12. Primary applet variant doesn't use point;proportion.)
 - [~] I.30 — Straight lines parallel to the same straight line are also parallel to one another. (`point;parallelogram` landed 2026-04-10; tracker drift fixed 2026-04-12.)
 - [~] I.31 — To draw a straight line through a given point parallel to a given straight line. (`line;similar` landed 2026-04-12.)
 - [~] I.32 — In any triangle, if one of the sides is produced, then the exterior angle equals the sum of the two interior and opposite angles… (`point;parallelogram` landed 2026-04-10; tracker drift fixed 2026-04-12.)
