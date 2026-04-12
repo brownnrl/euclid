@@ -17,8 +17,9 @@ Tracks the port status of all propositions across Euclid's Elements.
 | Book I | 48 | **48** | 0 |
 | Book II | 14 | **14** | 0 |
 | Book III | 37 | **37** | 0 |
-| **I–III total** | **99** | **99** | **0** |
-| Books IV–XIII | ~365 | — | — |
+| Book IV | 16 | 10 | 0 |
+| **I–IV total** | **115** | **109** | **0** |
+| Books V–XIII | ~349 | — | — |
 
 Update the summary table after each session.
 
@@ -138,13 +139,35 @@ Update the summary table after each session.
 
 ---
 
-## Books IV–XIII (future scope)
+## Book IV
 
-These books will be converted once all construction types are fully implemented.
+- [~] IV.1 — To inscribe in a given circle a triangle equiangular with a given triangle.
+- [~] IV.2 — To inscribe in a given circle a triangle equiangular with a given triangle (circumcircle variant).
+- [~] IV.3 — To circumscribe about a given circle a triangle equiangular with a given triangle.
+- [ ] IV.4 — To inscribe a circle in a given triangle. NEEDS: `line;angleBisector`
+- [~] IV.5 — To circumscribe a circle about a given triangle.
+- [~] IV.6 — To inscribe a square in a given circle.
+- [~] IV.7 — To circumscribe a square about a given circle.
+- [~] IV.8 — To inscribe a circle in a given square.
+- [~] IV.9 — To circumscribe a circle about a given square.
+- [~] IV.10 — To construct an isosceles triangle having each of the base angles double the remaining one.
+- [ ] IV.11 — To inscribe an equilateral and equiangular pentagon in a given circle. NEEDS: `polygon;regularPolygon`
+- [ ] IV.12 — To circumscribe an equilateral and equiangular pentagon about a given circle. NEEDS: `polygon;regularPolygon`
+- [ ] IV.13 — To inscribe a circle in a given equilateral and equiangular pentagon. NEEDS: `line;angleBisector`, `polygon;regularPolygon`
+- [ ] IV.14 — To circumscribe a circle about a given equilateral and equiangular pentagon. NEEDS: `polygon;regularPolygon`
+- [ ] IV.15 — To inscribe an equilateral and equiangular hexagon in a given circle. NEEDS: `polygon;hexagon`
+- [ ] IV.16 — To inscribe a fifteen-angled equilateral and equiangular figure in a given circle. NEEDS: `line;angleBisector`, `polygon;regularPolygon`
+
+---
+
+## Books V–XIII (future scope)
+
+Coverage will be extended one book at a time. Each book's propositions are
+analyzed against the construction and Java file trackers to determine which
+constructions must be ported before the book is renderable.
 
 | Book | Propositions | Topic |
 |------|-------------|-------|
-| IV | 16 | Inscribed and circumscribed figures |
 | V | 25 | Theory of proportion (Eudoxus) |
 | VI | 33 | Similar figures |
 | VII | 39 | Number theory — divisibility |

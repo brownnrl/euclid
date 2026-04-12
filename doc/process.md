@@ -471,10 +471,35 @@ themselves on GitHub, pasting the body block into the description.
 
 ---
 
-## Long-term goal
+## Project phases
 
-Once all construction types are implemented:
-- Convert all 566 HTML files in `view/euclid-html/` (Books I–XIII) from Java `<param>` format
-  to TypeScript `geomlib.init()` calls in a new `view/books/` folder
-- Each book becomes a browsable set of interactive TypeScript diagrams
-- The Java applet and Docker environment can then be retired
+### Phase 1 — Port all Java constructions (current)
+
+Port every construction type used across **all thirteen books**, driven
+book-by-book. Extend the proposition tracker one book at a time; compare
+against the construction and [Java port tracker](java-port-tracker.md) to
+identify which TBD constructions each book needs; port them using the
+8-step workflow above. Phase 1 continues until every proposition in every
+book is renderable.
+
+### Phase 2 — Presentation bug fixes
+
+Fix visual divergences between the Java applet and the TypeScript port:
+- Colors: parseColor bug, numeric-0 handling, HSB format, default faceColor
+- Label placement: per-element align, heuristic `drawName` positioning
+- Any behavioral differences discovered during book-by-book harness
+  verification in Phase 1
+
+The goal is visual parity with Joyce's original applets at rest.
+
+### Phase 3 — Proposition HTML conversion
+
+Convert all 566 HTML files in `view/euclid-html/` (Books I–XIII) from Java
+`<param>` format to TypeScript `geomlib.init()` calls in a new `view/books/`
+folder. Each book becomes a browsable set of interactive TypeScript diagrams.
+
+### Phase 4 — Retire the Java toolchain
+
+`run_euclid_applet.sh` and both `Containerfile*` files go away;
+`view/euclid-html/` and `Geometry.zip` can be archived or deleted; the
+`geom_applet/source/*.java` reference tree becomes read-only history.

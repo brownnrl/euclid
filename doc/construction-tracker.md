@@ -182,11 +182,11 @@ These affect the library as a whole, independent of individual constructions.
 
 - [ ] **`angleBisector`** — TBD
   - Java source: `AngleDivider.java`
-  - No Books I–III uses
+  - No Books I–IV uses for the point variant (line variant used in IV.4, IV.13, IV.16)
 
 - [ ] **`angleDivider`** — TBD
   - Java source: `AngleDivider.java`
-  - No Books I–III uses
+  - No Books I–IV uses found
 
 - [ ] **`invert`** — TBD
   - Java source: `InvertPoint.java`
@@ -262,11 +262,11 @@ These affect the library as a whole, independent of individual constructions.
 
 - [ ] **`angleBisector`** — TBD
   - Java source: `AngleDivider.java`
-  - No Books I–III uses
+  - Used in: Book IV (IV.4, IV.13, IV.16 — blocks 3 propositions directly + IV.14 indirectly)
 
 - [ ] **`angleDivider`** — TBD
   - Java source: `AngleDivider.java`
-  - No Books I–III uses
+  - No Books I–IV uses found
 
 - [x] **`foot`** (2D variant) — `src/elements/Constructions.ts` (`LineFootConstruction`)
   - No dedicated element class — reuses existing `Foot` + base `LineElement`.
@@ -394,20 +394,25 @@ These affect the library as a whole, independent of individual constructions.
   - Used in: I.44, I.45, II.14 — **the final 3 propositions for 100% I–III**
 
 - [ ] **`regularPolygon`** — TBD
-  - Java source: `RegularPolygon.java`
-  - No Books I–III uses
+  - Java source: `RegularPolygon.java` — **element class already ported** as
+    `RegularPolygonElement.ts` (used by equilateralTriangle n=3 and square n=4).
+    Only the Construction dispatcher with variable-n signature
+    `[PointElement, PointElement, Integer]` is needed.
+  - Used in: Book IV (IV.11, IV.12, IV.13, IV.14, IV.16 — **blocks 5 propositions**)
 
 - [ ] **`starPolygon`** — TBD
-  - Java source: `RegularPolygon.java`
-  - No Books I–III uses
+  - Java source: `RegularPolygon.java` — element class ported with density
+    param `d` (added 2026-04-12). Only the Construction dispatcher with
+    `[PointElement, PointElement, Integer, Integer]` signature is needed.
+  - No Books I–IV uses found
 
 - [ ] **`pentagon`** — TBD
-  - Java source: `PolygonElement.java`
-  - No Books I–III uses
+  - Java source: `PolygonElement.java` (5 free vertices, pass-through)
+  - No Books I–IV uses found (IV.11 uses `regularPolygon;A,B,5` instead)
 
 - [ ] **`hexagon`** — TBD
-  - Java source: `PolygonElement.java`
-  - No Books I–III uses
+  - Java source: `PolygonElement.java` (6 free vertices, pass-through)
+  - Used in: Book IV (IV.15 — blocks 1 proposition)
 
 - [ ] **`octagon`** — TBD
   - Java source: `PolygonElement.java`
