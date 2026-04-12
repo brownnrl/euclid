@@ -83,7 +83,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 
 | Name | Status | Java source | Post-expansion signature | Description | I–III uses | Example |
 |------|--------|-------------|--------------------------|-------------|------------|---------|
-| `radius` | IMPL | — | `Point center, Point edge` | Circle with given center and radius point | ~60 | I.1 |
+| `radius` | IMPL | — | `Point center, Point edge [, Point C]` | Circle with center and radius; 2-point (radius=\|center-edge\|) and 3-point (radius=\|edge-C\|) variants | ~60 | I.1 |
 | `circumcircle` | IMPL | `Circumcircle.java` | `Point A, B, C [, Plane]` | Circle through three points (2D and 3D) | ~6 | III.25 |
 | `invert` | **TBD** | `InvertCircle.java` | `Circle A, Circle B` | Inversion of circle A in circle B | 0 | — |
 

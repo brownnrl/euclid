@@ -16,8 +16,8 @@ Tracks the port status of all propositions across Euclid's Elements.
 |-------|-------|--------------------|------------------|
 | Book I | 48 | 28 | 0 |
 | Book II | 14 | 13 | 0 |
-| Book III | 37 | 31 | 0 |
-| **I–III total** | **99** | **72** | **0** |
+| Book III | 37 | 36 | 0 |
+| **I–III total** | **99** | **77** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -121,12 +121,12 @@ Update the summary table after each session.
 - [~] III.21 — In a circle the angles in the same segment equal one another.
 - [~] III.22 — The sum of the opposite angles of quadrilaterals in circles equals two right angles.
 - [~] III.23 — On the same straight line there cannot be constructed two similar and unequal segments of circles on the same side. (sector;arc landed 2026-04-11.)
-- [ ] III.24 — Similar segments of circles on equal straight lines equal one another. NEEDS: `point;similar`  (`polygon;equilateralTriangle`, `point;vertex`, `sector;arc` already landed)
+- [~] III.24 — Similar segments of circles on equal straight lines equal one another. (3-point `circle;radius`, `point;similar`, `polygon;equilateralTriangle`, `point;vertex`, `sector;arc` all landed by 2026-04-12.)
 - [~] III.25 — Given a segment of a circle, to describe the complete circle of which it is a segment. (sector;arc landed 2026-04-11.)
-- [ ] III.26 — In equal circles equal angles stand on equal circumferences whether they stand at the centers or at the circumferences. NEEDS: `circle;radius` 3-point variant (`point;similar` landed 2026-04-12 but e[7] uses 3-point circle;radius which is TBD)
-- [ ] III.27 — In equal circles angles standing on equal circumferences equal one another whether they stand at the centers or at the circumferences. NEEDS: `circle;radius` 3-point variant (same blocker as III.26)
-- [ ] III.28 — In equal circles equal straight lines cut off equal circumferences, the greater circumference equals the greater and the less equals the less. NEEDS: `circle;radius` 3-point variant (same blocker as III.26)
-- [ ] III.29 — In equal circles straight lines that cut off equal circumferences are equal. NEEDS: `circle;radius` 3-point variant (same blocker as III.26)
+- [~] III.26 — In equal circles equal angles stand on equal circumferences whether they stand at the centers or at the circumferences. (3-point `circle;radius` + `point;similar` both landed 2026-04-12.)
+- [~] III.27 — In equal circles angles standing on equal circumferences equal one another whether they stand at the centers or at the circumferences. (3-point `circle;radius` + `point;similar` both landed 2026-04-12.)
+- [~] III.28 — In equal circles equal straight lines cut off equal circumferences, the greater circumference equals the greater and the less equals the less. (3-point `circle;radius` + `point;similar` both landed 2026-04-12.)
+- [~] III.29 — In equal circles straight lines that cut off equal circumferences are equal. (3-point `circle;radius` + `point;similar` both landed 2026-04-12.)
 - [~] III.30 — To bisect a given circumference. (sector;arc landed 2026-04-11.)
 - [~] III.31 — In a circle the angle in the semicircle is right, that in a greater segment less than a right angle, and that in a less segment greater than a right angle…
 - [~] III.32 — If a straight line touches a circle, and from the point of contact there is drawn across, in the circle, a straight line cutting the circle, then the angles which it makes with the tangent equal the angles in the alternate segments of the circle.

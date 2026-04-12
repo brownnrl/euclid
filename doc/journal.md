@@ -20,6 +20,45 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented 3-point circle;radius variant
+
+**Completed:**
+- Added `CircleRadius3PointConstruction` to `src/elements/Constructions.ts`
+  — a new signature variant `[PointElement × 3]` for the existing
+  `circle;radius` construction. The 3-point form creates a circle at
+  center=P[0] with radius=|P[1]−P[2]| (distance between two arbitrary
+  points, not from center to edge). Registered BEFORE the 2-point variant
+  per the signature-ordering rule (longer signature first).
+- Updated `CircleElement.ts` to support an optional `A` parameter in the
+  constructor interface, per the "full Java class conversion" rule: when
+  `A` is provided, `radius = A.distance(B)` (3-point form); when omitted,
+  `A = Center` (2-point form, backward-compatible).
+- One Mocha test: propIII26 coords (center H=(340,115), radius-defining
+  points G=(120,115) and A=(75,30), expected radius ≈ 96.177). 30 → **31
+  passing**.
+- Test page + applet companion using the full propIII26 — two equal circles
+  (left = 2-point, right = 3-point form), inscribed triangles, sectors,
+  and the similar-point construction for vertex F.
+- Book III renderable count: 31 → **36** (+III.24, III.26, III.27, III.28,
+  III.29). I–III total: 72 → **77**.
+
+**Discovered:**
+- propIII24's `circle;radius;C,AB` param has `AB` as a LineElement, which
+  expands to 2 PointElements — making it a 3-point circle;radius call
+  (center C, radius=|A−B|). The LineElement expansion rule from AGENTS.md
+  applies here too.
+- The 3D variants (2-point with explicit PlaneElement, 3-point with
+  explicit PlaneElement) remain TBD — deferred per 2D-first policy.
+
+**Next session:**
+- `polygon;similar` + `line;similar` (unlocks I.23, I.24, I.26, I.31,
+  III.14 = +5). Share `Similar.java` with `point;similar`.
+- Tracker drift fix for I.28, I.30, I.32, I.35, I.36, I.41 (should be
+  renderable since `point;parallelogram` has been IMPL since 2026-04-10).
+- `point;proportion` (4 I–III uses, unlocks I.16, I.29).
+
+---
+
 ## 2026-04-12 — Implemented line;foot (2D) — Pythagoras unlocked
 
 **Completed:**
