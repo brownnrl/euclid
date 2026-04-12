@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Test View - Circle.radius 3-point (III.26)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:430px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "III.26 — In equal circles equal angles stand on equal circumferences",
+        canvasid: "canvasId",
+        elements: [
+            // Left circle: center G, edge point A (2-point form)
+            // <param name=e[1] value="G;point;free;120,115">
+            { name: "G", construction: E.Point.free, params: [120, 115] },
+            // <param name=e[2] value="A;point;free;75,30">
+            { name: "A", construction: E.Point.free, params: [75, 30] },
+            // <param name=e[3] value="ABC;circle;radius;G,A">
+            { name: "ABC", construction: E.Circle.radius, params: ["G", "A"] },
+            // <param name=e[4] value="B;point;circleSlider;ABC,60,190">
+            { name: "B", construction: E.Point.circleSlider, params: ["ABC", 60, 190] },
+            // <param name=e[5] value="C;point;circleSlider;ABC,180,190">
+            { name: "C", construction: E.Point.circleSlider, params: ["ABC", 180, 190] },
+
+            // Right circle: center H, radius = |GA| (3-point form) ← target
+            // <param name=e[6] value="H;point;free;340,115">
+            { name: "H", construction: E.Point.free, params: [340, 115] },
+            // <param name=e[7] value="DEF;circle;radius;H,G,A">  ← 3-point circle;radius
+            { name: "DEF", construction: E.Circle.radius, params: ["H", "G", "A"] },
+            // <param name=e[8] value="D;point;circleSlider;DEF,380,100">
+            { name: "D", construction: E.Point.circleSlider, params: ["DEF", 380, 100] },
+            // <param name=e[9] value="E;point;circleSlider;DEF,280,190">
+            { name: "E", construction: E.Point.circleSlider, params: ["DEF", 280, 190] },
+            // <param name=e[10] value="F;point;similar;H,E,G,B,C">
+            { name: "F", construction: E.Point.similar, params: ["H", "E", "G", "B", "C"] },
+
+            // Triangles and sectors
+            { name: "triABC", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
+            { name: "triDEF", construction: E.Polygon.triangle, params: ["D", "E", "F"] },
+            { name: "GBC", construction: E.Sector.sector, params: ["G", "B", "C"] },
+            { name: "HEF", construction: E.Sector.sector, params: ["H", "E", "F"] },
+            // Radii lines
+            { name: "GB", construction: E.Line.connect, params: ["G", "B"] },
+            { name: "GC", construction: E.Line.connect, params: ["G", "C"] },
+            { name: "HE", construction: E.Line.connect, params: ["H", "E"] },
+            { name: "HF", construction: E.Line.connect, params: ["H", "F"] },
+        ]
+    });
+</script>
+</body>
+</html>

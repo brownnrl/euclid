@@ -23,7 +23,10 @@ import {SlateCanvas} from "../../Slate";
 
 export interface ICircleElementConstruction {
     C : PointElement; // center of the circle
-    B : PointElement; // point on the circle
+    B : PointElement; // point defining one end of the radius segment
+    A? : PointElement; // point defining the other end of the radius segment
+                       // (defaults to C — so radius = C.distance(B) in the 2-point form,
+                       // or A.distance(B) in the 3-point form where A ≠ C)
     AP : PlaneElement;
 }
 
@@ -39,7 +42,7 @@ export class CircleElement extends GeomElement {
         this.dimension = 2;
         if(ice == null) return;
         this.Center = ice.C;
-        this.A = this.Center;
+        this.A = ice.A != null ? ice.A : this.Center;
         this.B = ice.B;
         this.AP = ice.AP;
     }
