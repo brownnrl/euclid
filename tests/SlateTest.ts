@@ -755,6 +755,28 @@ describe("slate", ()=> {
         almostEqual(sq.V[3].distance(sq.V[0]), side, 0.01);
     });
 
+    // polygon;regularPolygon — variable-n regular polygon via RegularPolygonElement
+    // n=5 (pentagon): A=(100,50), B=(200,50), side=100
+    // All sides should be equal and there should be 5 vertices
+    it("should create a regular pentagon with 5 equal sides", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [100, 50] },
+            { name: "B", construction: E.Point.free, params: [200, 50] },
+            { name: "ABCDE", construction: E.Polygon.regularPolygon, params: ["A", "B", 5] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let poly = slate.lookupElement("ABCDE") as PolygonElement;
+        assert.equal(poly.V.length, 5);
+        // All 5 sides should be equal to side AB = 100
+        let side = poly.V[0].distance(poly.V[1]);
+        almostEqual(side, 100, 0.01);
+        for (let i = 1; i < 5; i++) {
+            almostEqual(poly.V[i].distance(poly.V[(i+1) % 5]), side, 0.01);
+        }
+    });
+
     // polygon;quadrilateral — 4 free vertices passed through to PolygonElement
     it("should create a quadrilateral with 4 vertices", () => {
         let data : IConstructionInfo[] = [
