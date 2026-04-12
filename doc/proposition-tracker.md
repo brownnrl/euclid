@@ -14,10 +14,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 
 | Scope | Total | Renderable (`[~]`) | Complete (`[x]`) |
 |-------|-------|--------------------|------------------|
-| Book I | 48 | 23 | 0 |
+| Book I | 48 | 24 | 0 |
 | Book II | 14 | 2 | 0 |
 | Book III | 37 | 29 | 0 |
-| **I–III total** | **99** | **54** | **0** |
+| **I–III total** | **99** | **55** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -59,7 +59,7 @@ Update the summary table after each session.
 - [ ] I.31 — To draw a straight line through a given point parallel to a given straight line. NEEDS: `point;similar`
 - [ ] I.32 — In any triangle, if one of the sides is produced, then the exterior angle equals the sum of the two interior and opposite angles… NEEDS: `point;parallelogram`
 - [ ] I.33 — Straight lines which join the ends of equal and parallel straight lines in the same directions are themselves equal and parallel. NEEDS: `point;parallelogram`, `point;vertex`
-- [ ] I.34 — In parallelogrammic areas the opposite sides and angles equal one another, and the diameter bisects the areas. NEEDS: `point;parallelogram`, `point;vertex`, `polygon;parallelogram`
+- [~] I.34 — In parallelogrammic areas the opposite sides and angles equal one another, and the diameter bisects the areas. (`point;parallelogram`, `point;vertex`, `polygon;parallelogram` all landed by 2026-04-11.)
 - [ ] I.35 — Parallelograms which are on the same base and in the same parallels equal one another. NEEDS: `point;parallelogram`
 - [ ] I.36 — Parallelograms which are on equal bases and in the same parallels equal one another. NEEDS: `point;parallelogram`, `point;vertex`
 - [~] I.37 — Triangles which are on the same base and in the same parallels equal one another. (`line;parallel`, `point;parallelogram` both landed 2026-04-11.)

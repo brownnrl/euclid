@@ -283,8 +283,18 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: `PolygonElement.java`
   - Used in: I.43–I.46, II.2, II.4–II.6, II.8–II.9, II.14
 
-- [ ] **`parallelogram`** — TBD
-  - Java source: `PolygonElement.java`
+- [x] **`parallelogram`** — `src/elements/Constructions.ts` (`ParallelogramPolygonConstruction`)
+  - No dedicated element class — reuses existing `Layoff` + base `PolygonElement`.
+    `construct()` creates `Layoff(A, B, C, B, C)` → D = A + (C−B), then
+    `new PolygonElement([A, B, C, D])`. Same Layoff dispatch trick as
+    `Slate.java` case 6 (not `PolygonElement.java` — the Java class is just
+    the polygon renderer, not the parallelogram-specific logic).
+  - Mocha tests (2): 4th vertex correctness from propI34 coords
+    (D = (210,175)), vertex extraction via `point;vertex;CABD,4`, and
+    opposite-side-length equality.
+  - [x] test view: [view/test/poly/parallelogram.html](../view/test/poly/parallelogram.html) — propI34
+  - [x] applet-tests pair:
+    [view/applet-tests/poly/parallelogram/{original,applet}.html](../view/applet-tests/poly/parallelogram/)
   - Used in: I.34–I.36, I.41, II.1–II.11
 
 - [ ] **`square`** — TBD
