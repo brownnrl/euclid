@@ -1,0 +1,34 @@
+<HTML><HEAD><TITLE>circle;radius 3-point — applet form of view/test/circle/radius3pt.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/circle/radius3pt.html -->
+<!-- ORIGINAL: view/applet-tests/circle/radius3pt/original.html (propIII26) -->
+<!--
+  PropIII26: two "equal circles" (same radius, different centers). The left
+  circle ABC has center G and edge point A (2-point form). The right circle
+  DEF has center H and radius |GA| (3-point form — the target construction).
+  Point F is computed via point;similar so △DEF ∼ △(inscribed angle).
+  Canvas 430x400 (original is 430x230).
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=430 height=400>
+<param name=background value="35,19,100">
+<param name=title value="III.26 — circle;radius 3-point">
+<param name=e[1] value="G;point;free;120,115">
+<param name=e[2] value="A;point;free;75,30">
+<param name=e[3] value="ABC;circle;radius;G,A">
+<param name=e[4] value="B;point;circleSlider;ABC,60,190">
+<param name=e[5] value="C;point;circleSlider;ABC,180,190">
+<param name=e[6] value="H;point;free;340,115">
+<param name=e[7] value="DEF;circle;radius;H,G,A">
+<param name=e[8] value="D;point;circleSlider;DEF,380,100">
+<param name=e[9] value="E;point;circleSlider;DEF,280,190">
+<param name=e[10] value="F;point;similar;H,E,G,B,C">
+<param name=e[11] value="triABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[12] value="triDEF;polygon;triangle;D,E,F;0;0;black;random">
+<param name=e[13] value="GBC;sector;sector;G,B,C;0;0;0;random">
+<param name=e[14] value="HEF;sector;sector;H,E,F;0;0;0;random">
+<param name=e[15] value="GB;line;connect;G,B">
+<param name=e[16] value="GC;line;connect;G,C">
+<param name=e[17] value="HE;line;connect;H,E">
+<param name=e[18] value="HF;line;connect;H,F">
+</applet>
+</BODY></HTML>
