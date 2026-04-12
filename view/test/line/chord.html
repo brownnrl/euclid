@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>Test View - Line.chord (I.12)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let Color = geomlib.Color;
+    let Align = geomlib.Align;
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.12 — To draw a perpendicular to a given infinite straight line from a given point not on it",
+        canvasid: "canvasId",
+        elements: [
+            // <param name=e[1] value="A;point;free;30,180">
+            { name: "A", construction: E.Point.free, params: [30, 180] },
+            // <param name=e[2] value="B;point;free;290,180">
+            { name: "B", construction: E.Point.free, params: [290, 180] },
+            // <param name=e[3] value="AB;line;connect;A,B">
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+            // <param name=e[4] value="C;point;free;160,130">
+            { name: "C", construction: E.Point.free, params: [160, 130] },
+            // <param name=e[5] value="D;point;free;180,220">
+            { name: "D", construction: E.Point.free, params: [180, 220] },
+            // <param name=e[6] value="EFG;circle;radius;C,D">
+            { name: "EFG", construction: E.Circle.radius, params: ["C", "D"] },
+            // <param name=e[7] value="EG;line;chord;AB,EFG;0;0;0">  ← target construction (1st use)
+            { name: "EG", construction: E.Line.chord, params: ["AB", "EFG"] },
+            // <param name=e[8] value="E;point;first;EG">
+            { name: "E", construction: E.Point.first, params: ["EG"] },
+            // <param name=e[9] value="G;point;last;EG">
+            { name: "G", construction: E.Point.last, params: ["EG"] },
+            // <param name=e[10] value="H;point;midpoint;EG;black;green">
+            { name: "H", construction: E.Point.midpoint, params: ["EG"] },
+            // <param name=e[11] value="CG;line;connect;C,G">
+            { name: "CG", construction: E.Line.connect, params: ["C", "G"] },
+            // <param name=e[12] value="CH;line;connect;C,H">
+            { name: "CH", construction: E.Line.connect, params: ["C", "H"] },
+            // <param name=e[13] value="CE;line;connect;C,E">
+            { name: "CE", construction: E.Line.connect, params: ["C", "E"] },
+            // <param name=e[14] value="FF';line;chord;CH,EFG">  ← target construction (2nd use)
+            { name: "FF'", construction: E.Line.chord, params: ["CH", "EFG"] },
+            // <param name=e[15] value="F;point;first;FF'">
+            { name: "F", construction: E.Point.first, params: ["FF'"] },
+        ]
+    });
+</script>
+</body>
+</html>

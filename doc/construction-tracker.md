@@ -202,9 +202,27 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: `ParallelP.java`
   - Used in: I.22, I.27, I.37–I.40, II.8–II.9, II.11
 
-- [ ] **`chord`** — TBD
-  - Java source: `Chord.java`
-  - Used in: I.12, II.5, II.14, III.1, III.5–III.6, III.8–III.9, III.12, III.15, III.17, III.34, III.36–III.37
+- [x] **`chord`** — `src/elements/line/Chord.ts`
+  - Extends `LineElement`; constructor takes `(D, E, C)` where D/E are the two
+    `PointElement` endpoints of the input line (post-`LineElement` expansion)
+    and C is the `CircleElement`. Allocates internal `_A`/`_B` PointElements
+    sharing `C.AP` as the chord's own endpoints.
+  - Java source: `Chord.java` — 23 lines, line-for-line port. `update()`:
+    project center to line (foot of ⊥), compute half-chord length
+    `s = √(r² − d²)`, derive `A` from D via vector formula, then
+    `B := 2·foot − A` (reflection trick). NaN-sentinels both endpoints
+    when `d² > r²` (line misses circle).
+  - 2D variant only per the 2D-first policy; `Chord.java` has only one
+    signature so there is no 3D variant to defer.
+  - Mocha tests (4): `update()` against propI12 hand-computed expectations
+    (chord.A ≈ (82.540, 180), chord.B ≈ (237.460, 180), both on the circle),
+    `d² > r²` NaN-path, `translate()` isolation, `rotate()` isolation —
+    all in `tests/SlateTest.ts`.
+  - [x] test view: [view/test/line/chord.html](../view/test/line/chord.html) — full propI12
+  - [x] applet-tests pair:
+    [view/applet-tests/line/chord/{original,applet}.html](../view/applet-tests/line/chord/)
+  - Used in: I.12, II.5, II.14, III.1, III.5–III.6, III.8–III.9, III.10
+    (no longer blocked), III.12, III.15, III.17, III.34, III.36–III.37
 
 - [ ] **`angleBisector`** — TBD
   - Java source: `AngleDivider.java`

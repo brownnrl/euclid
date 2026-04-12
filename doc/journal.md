@@ -20,6 +20,117 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-11 — Implemented line;chord + tsconfig noEmit hardening
+
+**Completed:**
+- Ported `line;chord` as `src/elements/line/Chord.ts` — a 2D port of
+  `geom_applet/source/Chord.java` (23-line file). Extends `LineElement`;
+  constructor takes `(D, E, C)` where D/E are the two `PointElement`
+  endpoints of the input line (post-`LineElement` expansion) and C is the
+  `CircleElement`. Allocates internal `_A`/`_B` PointElements sharing
+  `C.AP` as the chord's own endpoints. Ported every method Java overrides
+  (`update`, `translate`, `rotate`) per the no-half-done-ports rule. The
+  Java→TS adjustment for `C.radius2()` → `this.C.radius2` (TS getter).
+- `update()` ports the seven-line Java algorithm verbatim: project center
+  to line via `_B.toLine(D, E, false)`, half-chord length `s = √(r² − d²)`,
+  derive `_A` from D via `_A.to(D).minus(_B).times(factor).plus(_B)`, then
+  `_B := 2·foot − _A` (the reflection trick that gives the second
+  intersection). NaN-sentinels both endpoints when `d² > r²` (line misses
+  circle). Fallback to E when D coincides with the foot (factor explodes
+  past 1e10).
+- Wired `ChordConstruction` into `src/elements/Constructions.ts` with the
+  post-expansion signature `[PointElement, PointElement, CircleElement]`,
+  dispatching to the existing `LineConstructions.chord = 105` enum value.
+  Registered next to `BichordConstruction` in the `constructions` array.
+- Four Mocha tests in `tests/SlateTest.ts`: `update()` against propI12
+  hand-computed expectations (chord.A ≈ (82.540, 180), chord.B ≈
+  (237.460, 180), both endpoints on the circle within 0.001), `d² > r²`
+  NaN-path (shifted C far above the line), `translate()` isolation
+  (chord endpoints shift, inputs untouched), `rotate()` isolation
+  (90° CCW around input A). 17/17 → **21/21 passing**.
+- Three-way harness pair:
+  `view/applet-tests/line/chord/{original,applet}.html` +
+  `view/test/line/chord.html`, all using full propI12 (15 elements:
+  free A/B/C/D, line AB, circle EFG, chord EG, midpoint H, perpendicular
+  CH, chord FF' along CH, F apex). The test page exercises `line;chord`
+  twice — once with line AB cutting circle EFG, once with line CH cutting
+  the same circle — providing a built-in cross-check.
+- **Platform fix** — added `"noEmit": true` to `tsconfig.json`'s
+  `compilerOptions` as a hardening measure. The 2026-04-11 sector-arc
+  fix had relied on `npm run build` passing `--noEmit` and on
+  `.mocharc.json` forcing ts-node, but neither stops VS Code's TypeScript
+  language server from running its own background `tsc` and emitting
+  sourceMap-enabled `.js` siblings into `src/` and `tests/`. Those
+  shadow the `.ts` files via Node's require resolution and silently
+  break mocha runs. Discovered the recurrence while running step 6 of
+  this port: 56 stale `.js` files dated 19:34 (before this session
+  began) blocked all four new chord tests with "Construction not found"
+  — ts-node never saw the updated `Constructions.ts` because Node's
+  require found `Constructions.js` first. Deleting the 56 files unblocked
+  the run; setting `noEmit: true` at the tsconfig level prevents any
+  `tsc` invocation (CLI, VS Code TS server, anything that reads
+  `tsconfig.json`) from re-emitting them. Webpack's ts-loader is
+  unaffected (it emits to `dist/bundle.js` via its own pipeline), and
+  ts-node compiles in-memory and is unaffected. This is a strictly
+  stronger fix than the 2026-04-11 mitigation, which it supersedes.
+- Book I renderable count: 16 → **17** (+I.12). Book III renderable
+  count: 18 → **29** (+III.1, III.5, III.6, III.8, III.9, III.10,
+  III.12, III.15, III.17, III.36, III.37). I–III total: 36 → **48**.
+
+**Discovered:**
+- **Proposition-tracker NEEDS-line bug for `point;similar`**: during the
+  startup-protocol top-5 menu computation, I cross-checked the tracker's
+  "I.23/I.24/I.26/I.31 NEEDS `point;similar`" lines against the actual
+  HTML param lists. propI23.html uses `polygon;similar` (e[12]) and
+  propI31.html uses `line;similar` (e[7]) — neither is the `point;similar`
+  variant. Same class of error as the I.4 correction in the prior
+  2026-04-11 entry: the tracker's NEEDS lines drifted from what the
+  actual proposition HTMLs reference. Out of scope for this branch
+  (see federated-splashing-adleman.md plan), but worth fixing in the
+  next session that touches the proposition tracker, especially since
+  it materially affects whether `point;similar` is the right "next port"
+  pick (no clean Book I–III verifier exists for it as written).
+- **Stale `.js` shadow recurs without tsconfig-level prevention**:
+  the previous session's `npm run build` → `tsc --noEmit` change and
+  `.mocharc.json` ts-node registration are necessary but not sufficient.
+  Anything that reads `tsconfig.json` and runs `tsc` (notably the VS
+  Code TS language server) will keep emitting `.js` siblings unless
+  the *config itself* says noEmit. Now that the config is hardened, the
+  manual cleanup step from the 2026-04-11 sector-arc session shouldn't
+  be needed again.
+- Chord.java's `factor < 1e10` fallback branch handles the degenerate
+  case where the input line endpoint D coincides with the perpendicular
+  foot of the circle's center — `D.distance(B) ≈ 0` makes `factor`
+  blow up, so the code reaches for E instead. Worth knowing but
+  unlikely to bite in practice; left as a verbatim port.
+- The `B := 2·foot − A` reflection trick at the end of `update()` is
+  the cleanest way to get the second chord endpoint without recomputing
+  the foot or running the vector formula twice. Bichord doesn't need
+  this trick because it computes both intersections symmetrically by
+  rotating around the circle center; chord computes one endpoint and
+  reflects.
+
+**Next session:**
+- Top priority: `polygon;parallelogram` (18 I–III uses, sole-TBD verifier
+  in I.34, reuses the D=A+C−B formula from `point;parallelogram` already
+  landed via Layoff). Expected to be a wrap-the-formula-in-a-4-vertex-
+  polygon job, not a fresh algorithmic port.
+- Alternative: `polygon;square` (10 uses, I.47 viable since e[1]–e[6]
+  are all IMPL even though full-prop rendering still needs `line;foot`
+  later). Pattern matches `equilateralTriangle`'s `RegularPolygonElement`
+  with n=4.
+- Alternative: `line;parallel` (9 uses, I.22 clean verifier with all
+  preceding elements IMPL). New `ParallelP.java` port to a new
+  `src/elements/line/ParallelLine.ts`.
+- Deferred / not recommended yet: `point;similar` (15 uses but no clean
+  Book I–III verifier — the prop-tracker NEEDS lines are incorrect, see
+  Discovered above). Either fix the prop-tracker first, or build a
+  standalone test page rather than relying on a verifying proposition.
+- Also worth correcting in a future tracker-touching session: the
+  I.31 NEEDS line should say `line;similar`, not `point;similar`.
+
+---
+
 ## 2026-04-11 — Implemented sector;arc + per-step review workflow + test infra fix
 
 **Completed:**
