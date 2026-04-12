@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Test View - Point.similar (III.Def.11)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:420px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    let Align = geomlib.Align;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "III.Def.11 — Similar segments of circles",
+        canvasid: "canvasId",
+        elements: [
+            // Left circle: center A, point B on circumference, slider C
+            // <param name=e[1] value="A;point;free;120,120">
+            { name: "A", construction: E.Point.free, params: [120, 120] },
+            // <param name=e[2] value="B;point;free;120,50">
+            { name: "B", construction: E.Point.free, params: [120, 50] },
+            // <param name=e[3] value="Acirc;circle;radius;A,B">
+            { name: "Acirc", construction: E.Circle.radius, params: ["A", "B"] },
+            // <param name=e[4] value="C;point;circleSlider;Acirc,50,180">
+            { name: "C", construction: E.Point.circleSlider, params: ["Acirc", 50, 180] },
+            // <param name=e[5] value="BCsect;sector;sector;A,B,C">
+            { name: "BCsect", construction: E.Sector.sector, params: ["A", "B", "C"] },
+            // <param name=e[6] value="Atri;polygon;triangle;A,B,C">
+            { name: "Atri", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
+            // <param name=e[7] value="BC;line;connect;B,C">
+            { name: "BC", construction: E.Line.connect, params: ["B", "C"] },
+
+            // Right circle: center D, point E on circumference
+            // <param name=e[8] value="D;point;free;300,120">
+            { name: "D", construction: E.Point.free, params: [300, 120] },
+            // <param name=e[9] value="E;point;free;380,120">
+            { name: "E", construction: E.Point.free, params: [380, 120] },
+            // <param name=e[10] value="Dcirc;circle;radius;D,E">
+            { name: "Dcirc", construction: E.Circle.radius, params: ["D", "E"] },
+
+            // F is the similar point: △DEF ∼ △ABC  ← target construction
+            // <param name=e[11] value="F;point;similar;E,D,B,A,C">
+            { name: "F", construction: E.Point.similar, params: ["E", "D", "B", "A", "C"] },
+            // <param name=e[12] value="EFsect;sector;sector;D,E,F">
+            { name: "EFsect", construction: E.Sector.sector, params: ["D", "E", "F"] },
+            // <param name=e[13] value="Dtri;polygon;triangle;D,E,F">
+            { name: "Dtri", construction: E.Polygon.triangle, params: ["D", "E", "F"] },
+            // <param name=e[14] value="EF;line;connect;E,F">
+            { name: "EF", construction: E.Line.connect, params: ["E", "F"] },
+        ]
+    });
+</script>
+</body>
+</html>
