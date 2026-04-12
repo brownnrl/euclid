@@ -565,6 +565,25 @@ describe("slate", ()=> {
     //   A=(50,200), B=(150,200)
     //   C = rotate B around A by π/2 then scale by 0.5 → (50, 250)
 
+    // polygon;quadrilateral — 4 free vertices passed through to PolygonElement
+    it("should create a quadrilateral with 4 vertices", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [80, 40] },
+            { name: "B", construction: E.Point.free, params: [40, 210] },
+            { name: "C", construction: E.Point.free, params: [210, 210] },
+            { name: "D", construction: E.Point.free, params: [250, 40] },
+            { name: "ABCD", construction: E.Polygon.quadrilateral, params: ["A", "B", "C", "D"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        let poly = slate.lookupElement("ABCD") as PolygonElement;
+        assert.equal(poly.V.length, 4);
+        almostEqual(poly.V[0].x,  80, 0.01); almostEqual(poly.V[0].y,  40, 0.01);
+        almostEqual(poly.V[1].x,  40, 0.01); almostEqual(poly.V[1].y, 210, 0.01);
+        almostEqual(poly.V[2].x, 210, 0.01); almostEqual(poly.V[2].y, 210, 0.01);
+        almostEqual(poly.V[3].x, 250, 0.01); almostEqual(poly.V[3].y,  40, 0.01);
+    });
+
     it("should compute a similar point with factor=1 (isosceles right triangle)", () => {
         let data : IConstructionInfo[] = [
             { name: "A", construction: E.Point.free, params: [50, 200] },
