@@ -1025,11 +1025,21 @@ abstract class PolyConstruction extends Construction {
     }
 }
 
-// TBD
 // polygon
-// square	
-// points A, B [plane C
-// the square on a side AB in plane C
+// square
+// points A, B [plane C]
+// the square on a side AB in plane C (2D variant: plane defaults to screen)
+// (Java: RegularPolygon.java with n=4 — same class as equilateralTriangle)
+export class SquarePolygonConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.square;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const [a, b] = params as [PointElement, PointElement];
+        const g = new RegularPolygonElement(a, b, screen, 4);
+        return [[g], g];
+    }
+}
 
 // polygon
 // triangle	
@@ -1371,6 +1381,7 @@ export const constructions : Construction[] = [
     new ChordConstruction(),
     new LineParallelConstruction(),
     new TrianglePolygonConstruction(),
+    new SquarePolygonConstruction(),
     new EquilateralTriangleConstruction(),
     new ParallelogramPolygonConstruction(),
     new QuadrilateralPolygonConstruction(),
