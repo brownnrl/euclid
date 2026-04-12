@@ -12,6 +12,7 @@ import {CircumcircleElement} from "../src/elements/circle/CircumcircleElement";
 import {SphereElement} from "../src/elements/sphere/SphereElement";
 import {ArcElement} from "../src/elements/sector/ArcElement";
 import {Chord} from "../src/elements/line/Chord";
+import {PolygonElement} from "../src/elements/polygon/PolygonElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -504,6 +505,51 @@ describe("slate", ()=> {
         { name: "C",  construction: E.Point.free,     params: [200, 200] },
         { name: "AD", construction: E.Line.parallel,  params: ["A", "B", "C"] },
     ];
+
+    // polygon;parallelogram — parallelogram CABD given 3 vertices C, A, B
+    // Slate.java case 6: Layoff(C, A, B, A, B) → D = C + (B-A), then
+    // PolygonElement([C, A, B, D])
+    //
+    // propI34: C=(50,175), A=(90,50), B=(250,50)
+    //   D = C + (B-A) = (50+160, 175+0) = (210, 175)
+    //   polygon vertices: [(50,175), (90,50), (250,50), (210,175)]
+    let pgram_propI34_data : IConstructionInfo[] = [
+        { name: "A",    construction: E.Point.free,              params: [90, 50] },
+        { name: "B",    construction: E.Point.free,              params: [250, 50] },
+        { name: "C",    construction: E.Point.free,              params: [50, 175] },
+        { name: "CABD", construction: E.Polygon.parallelogram,   params: ["C", "A", "B"] },
+        { name: "D",    construction: E.Point.vertex,            params: ["CABD", 4] },
+    ];
+
+    it("should compute a parallelogram with the 4th vertex via Layoff", () => {
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, pgram_propI34_data);
+        slate.elements.forEach(e => e.update());
+        let poly = slate.lookupElement("CABD") as PolygonElement;
+        // 4 vertices
+        assert.equal(poly.V.length, 4);
+        // V[0]=C, V[1]=A, V[2]=B, V[3]=D
+        almostEqual(poly.V[0].x,  50, 0.01); almostEqual(poly.V[0].y, 175, 0.01);
+        almostEqual(poly.V[1].x,  90, 0.01); almostEqual(poly.V[1].y,  50, 0.01);
+        almostEqual(poly.V[2].x, 250, 0.01); almostEqual(poly.V[2].y,  50, 0.01);
+        almostEqual(poly.V[3].x, 210, 0.01); almostEqual(poly.V[3].y, 175, 0.01);
+        // Opposite sides should be equal length (parallelogram property)
+        let CA = poly.V[0].distance(poly.V[1]);
+        let BD = poly.V[2].distance(poly.V[3]);
+        almostEqual(CA, BD, 0.001);
+        let AB = poly.V[1].distance(poly.V[2]);
+        let CD = poly.V[0].distance(poly.V[3]);
+        almostEqual(AB, CD, 0.001);
+    });
+
+    it("should extract the 4th vertex via point;vertex", () => {
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, pgram_propI34_data);
+        slate.elements.forEach(e => e.update());
+        let D = slate.lookupElement("D") as PointElement;
+        almostEqual(D.x, 210, 0.01);
+        almostEqual(D.y, 175, 0.01);
+    });
 
     it("should compute a line through A parallel and equal to BC", () => {
         let slate = new Slate(createCanvas(400, 400));

@@ -20,6 +20,47 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-11 — Implemented polygon;parallelogram (3rd warm-cache port)
+
+**Completed:**
+- Ported `polygon;parallelogram` as `ParallelogramPolygonConstruction` in
+  `src/elements/Constructions.ts`. **No new element class** — `Slate.java`
+  case 6 dispatches the construction as a `Layoff` trick:
+  `Layoff(A, B, C, B, C)` → D = A + (C−B), then
+  `new PolygonElement([A, B, C, D])`. Same pattern as `line;parallel` and
+  `point;parallelogram`. Total new code: 12 lines of Construction class.
+- Two Mocha tests: 4th vertex correctness from propI34 coords
+  (C=(50,175), A=(90,50), B=(250,50) → D=(210,175)), vertex extraction
+  via `point;vertex;CABD,4`, and opposite-side-length equality. 23 → **25
+  passing** (cumulative).
+- Three-way harness pair using the full propI34 figure (6 elements:
+  3 free vertices + polygon;parallelogram + vertex + diagonal BC).
+- Book I renderable count: 23 → **24** (+I.34). I–III total: 54 → **55**.
+
+**Discovered:**
+- **Proposition-tracker drift for `point;parallelogram`-era props**:
+  I.28, I.30, I.32, I.35, I.36, I.41 all list `point;parallelogram`
+  as their sole remaining blocker, but `point;parallelogram` has been
+  IMPL since 2026-04-10. These should have been flipped to `[~]` when
+  that construction landed. Did not fix in this branch to keep scope
+  tight; should be verified against actual HTML params and corrected
+  in a future tracker-touching session (same class of tracker-drift
+  bug that's recurred several times now).
+- **`polygon;quadrilateral` now has a viable verifier**: with
+  `polygon;parallelogram` landed, I.43 (which uses both) now has
+  `polygon;quadrilateral` as its sole remaining TBD. This makes it a
+  clean pick for a near-future session.
+
+**Next session:**
+- Top priority: `polygon;square` (10 I–III uses, I.47 viable verifier,
+  `RegularPolygonElement` n=4 mirrors `equilateralTriangle`. 2D-first.)
+- Alternative: `polygon;quadrilateral` (11 uses, now has I.43 as a
+  viable verifier since polygon;parallelogram just landed).
+- Deferred: `point;similar` (15 uses, no clean verifier — see
+  line;chord journal entry).
+
+---
+
 ## 2026-04-11 — Implemented line;parallel (warm-cache session)
 
 **Completed:**
