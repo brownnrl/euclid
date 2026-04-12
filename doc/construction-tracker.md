@@ -192,11 +192,16 @@ These affect the library as a whole, independent of individual constructions.
 
 - [ ] **`invert`** — TBD
   - Java source: `InvertPoint.java`
-  - No Books I–III uses
+  - No Books I–X uses found
 
-- [ ] **`meanProportional`** — TBD
-  - Java source: `MeanProportional.java`
-  - No Books I–III uses
+- [x] **`meanProportional`** — `src/elements/point/MeanProportionalElement.ts`
+  - Extends `PointElement`. Geometric mean: |U'| = sqrt(|S|*|T|).
+  - Java source: `MeanProportional.java` — 23 lines, line-for-line port.
+  - Mocha test (1): geometric mean, proportion S:U'=U':T verified.
+  - [x] test view: [view/test/point/meanProportional.html](../view/test/point/meanProportional.html)
+  - [x] applet-tests pair:
+    [view/applet-tests/point/meanProportional/{original,applet}.html](../view/applet-tests/point/meanProportional/)
+  - Used in: VIII.20, VIII.26, X (33 props), XIII.2 — **35 props unblocked**
 
 - [ ] **`planeSlider`** — TBD (solid geometry)
   - Java source: `PlaneSlider.java`
@@ -303,9 +308,10 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: `Proportion.java`
   - No Books I–III uses
 
-- [ ] **`meanProportional`** — TBD
-  - Java source: `MeanProportional.java`
-  - No Books I–III uses
+- [x] **`meanProportional`** — `src/elements/Constructions.ts` (`MeanProportionalLineConstruction`)
+  - Reuses `MeanProportionalElement` + `LineElement` wrapper.
+  - Java source: `Slate.java` line case 12.
+  - No standalone test view (covered by point variant test page).
 
 ---
 

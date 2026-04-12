@@ -21,14 +21,14 @@ Tracks the port status of all propositions across Euclid's Elements.
 | Book V | 25 | **25** | 0 |
 | Book VI | 33 | **33** | 0 |
 | Book VII | 39 | **39** | 0 |
-| Book VIII | 27 | 25 | 0 |
+| Book VIII | 27 | **27** | 0 |
 | Book IX | 36 | **36** | 0 |
-| Book X | 115 | 82 | 0 |
-| **I–X total** | **390** | **355** | **0** |
+| Book X | 115 | **115** | 0 |
+| **I–X total** | **390** | **390** | **0** |
 | Book XI | 39 | 20 | 0 |
 | Book XII | 18 | 6 | 0 |
-| Book XIII | 18 | 10 | 0 |
-| **I–XIII total** | **465** | **391** | **0** |
+| Book XIII | 18 | 13 | 0 |
+| **I–XIII total** | **465** | **429** | **0** |
 
 Update the summary table after each session.
 
@@ -208,11 +208,7 @@ uses only basic constructions. No new constructions needed.
 
 25 of 27 propositions are renderable. 2 blocked by `point;meanProportional`.
 
-- [~] VIII.1 through VIII.19 — all renderable (verified 2026-04-12)
-- [ ] VIII.20 — NEEDS: `point;meanProportional`
-- [~] VIII.21 through VIII.25 — all renderable
-- [ ] VIII.26 — NEEDS: `point;meanProportional`
-- [~] VIII.27 — renderable
+- [~] VIII.1 through VIII.27 — all renderable (`point;meanProportional` landed 2026-04-12)
 
 ---
 
@@ -231,16 +227,7 @@ only basic constructions. No new constructions needed.
 Book X is the largest single book (incommensurable magnitudes). Porting
 `MeanProportional.java` would unblock all 33 at once.
 
-- [~] X.1 through X.9 — renderable
-- [ ] X.10 — NEEDS: `point;meanProportional`
-- [~] X.11 through X.26 — renderable
-- [ ] X.27 through X.32 — NEEDS: `point;meanProportional` (6 props)
-- [~] X.33 through X.47 — renderable
-- [ ] X.48 through X.59 — NEEDS: `point;meanProportional` (12 props)
-- [~] X.60 through X.84 — renderable
-- [ ] X.85 through X.96 — NEEDS: `point;meanProportional` (12 props)
-- [~] X.97 through X.113 — renderable
-- [ ] X.114, X.115 — NEEDS: `point;meanProportional` (2 props)
+- [~] X.1 through X.115 — all renderable (`point;meanProportional` landed 2026-04-12)
 
 ---
 

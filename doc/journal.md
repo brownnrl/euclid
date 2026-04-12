@@ -20,6 +20,34 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented point;meanProportional — Books I–X COMPLETE
+
+**Completed:**
+- Ported `MeanProportional.java` as `src/elements/point/MeanProportionalElement.ts`
+  (23 lines, line-for-line port). Computes the geometric mean: given
+  segments S, T, U, finds the point U' on U where |U'| = sqrt(|S|*|T|)
+  so that S:U' = U':T.
+- Both point and line variants wired (`MeanProportionalPointConstruction`,
+  `MeanProportionalLineConstruction`). Full Java class conversion.
+- One Mocha test: geometric mean (sqrt(100*25)=50), proportion verified.
+  38 → **39 passing**.
+- **35 propositions unblocked** across Books VIII (2), X (33), XIII (via
+  XIII.2). This is the single highest-impact construction port in the
+  entire project.
+- **Books I through X are now 100% renderable: 390/390.**
+- Overall: 429 of 465 propositions renderable (**92%**). Only 36 remain
+  blocked, all in Books XI–XIII (solid geometry constructions).
+
+**Next session:**
+- The remaining 36 blocked propositions all need solid-geometry
+  constructions: `plane;3points` (the key blocker), `point;planeSlider`,
+  `point;sphereSlider`, `polygon;face`, `polygon;octagon`,
+  `circle;intersection`. These are the Phase 1 frontier.
+- `plane;3points` is likely the highest-impact next port — it blocks
+  propositions across all three remaining books.
+
+---
+
 ## 2026-04-12 — Books V–X analysis — 391/465 renderable (84%), zero new code
 
 **Completed:**
