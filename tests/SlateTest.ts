@@ -566,6 +566,32 @@ describe("slate", ()=> {
     //   A=(50,200), B=(150,200)
     //   C = rotate B around A by π/2 then scale by 0.5 → (50, 250)
 
+    // point;proportion — point V' on V0V1 so that |S|:|T| = |U|:|V'|
+    // S=(0,0)→(100,0) len=100; T=(0,0)→(50,0) len=50;
+    // U=(0,0)→(80,0) len=80;  V=(0,0)→(200,0) len=200
+    // factor = sqrt(50²*80² / (100²*200²)) = 4000/20000 = 0.2
+    // result = (0,0) + 0.2 * (200,0) = (40, 0)
+    // Check: S:T = 100:50 = 2:1; U:V' = 80:40 = 2:1 ✓
+    it("should compute a fourth proportional point", () => {
+        let data : IConstructionInfo[] = [
+            { name: "S0", construction: E.Point.free, params: [0, 0] },
+            { name: "S1", construction: E.Point.free, params: [100, 0] },
+            { name: "T0", construction: E.Point.free, params: [0, 0] },
+            { name: "T1", construction: E.Point.free, params: [50, 0] },
+            { name: "U0", construction: E.Point.free, params: [0, 0] },
+            { name: "U1", construction: E.Point.free, params: [80, 0] },
+            { name: "V0", construction: E.Point.free, params: [0, 0] },
+            { name: "V1", construction: E.Point.free, params: [200, 0] },
+            { name: "P",  construction: E.Point.proportion, params: ["S0","S1","T0","T1","U0","U1","V0","V1"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let P = slate.lookupElement("P") as PointElement;
+        almostEqual(P.x, 40, 0.01);
+        almostEqual(P.y,  0, 0.01);
+    });
+
     // polygon;similar — triangle ABH where H is the similar point so △ABH ∼ △DEF
     // propI23: A=(40,180), G=(cutoff result), C=(190,80), E=(270,180), D=(260,40)
     // Simpler standalone: A=(50,200), B=(150,200), D=(0,0), E=(100,0), F=(0,100)
