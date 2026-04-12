@@ -74,28 +74,40 @@ and **do not start implementing** until the user has picked a construction:
 ### Project phase
 
 As of this writing the project is in **Phase 1: porting remaining Java
-constructions to TypeScript.** This phase continues until
-[doc/construction-tracker.md](doc/construction-tracker.md) shows every
-construction as IMPL. ~24 of ~65 Java constructions were ported before this
-protocol was formalized; the remaining ~40 are tracked one-per-session.
-**Until Phase 1 completes, the session startup protocol above is the
-default onboarding for every fresh session.**
+constructions to TypeScript.** This phase covers **all books (I–XIII)**,
+not just Books I–III. Progress is driven book-by-book: each new book's
+propositions are analyzed against the construction and
+[Java port tracker](doc/java-port-tracker.md) to discover which TBD
+constructions it needs, then those constructions are ported one-per-session
+using the 8-step workflow. Phase 1 continues until every proposition in
+every book is renderable. **Until Phase 1 completes, the session startup
+protocol above is the default onboarding for every fresh session.**
+
+Books I–III reached 99/99 renderable on 2026-04-12. Book IV analysis is
+underway. Books V–XIII will be analyzed and expanded into the proposition
+tracker one book at a time as Phase 1 progresses.
 
 After Phase 1 completes the project transitions to:
 
-- **Phase 2 — proposition HTML conversion.** Convert all 566 proposition
+- **Phase 2 — presentation bug fixes.** Fix visual divergences between
+  the Java applet and the TypeScript port: colors (parseColor bug,
+  numeric-0 handling, HSB format, default faceColor), label placement,
+  and any behavioral differences discovered during the book-by-book
+  harness verification in Phase 1. The goal is pixel-level visual parity
+  with Joyce's original applets at rest.
+- **Phase 3 — proposition HTML conversion.** Convert all 566 proposition
   HTMLs in `view/euclid-html/` from Java `<param>` format to TypeScript
   `geomlib.init()` calls in a new `view/books/` folder. The working unit
   becomes "one proposition" instead of "one construction" but the
   per-step-commit + feature-branch + human-review workflow is unchanged.
-- **Phase 3 — retire the Java toolchain.** `run_euclid_applet.sh` and both
+- **Phase 4 — retire the Java toolchain.** `run_euclid_applet.sh` and both
   `Containerfile*` files go away; `view/euclid-html/` and `Geometry.zip`
   can be archived or deleted; the `geom_applet/source/*.java` reference
   tree becomes read-only history.
 
-If the startup protocol finds Phase 1 complete (zero TBDs in the tracker),
-**flag this to the user first** so they can confirm the transition rather
-than quietly changing cadence.
+If the startup protocol finds Phase 1 complete (every proposition in every
+book renderable), **flag this to the user first** so they can confirm the
+transition to Phase 2 rather than quietly changing cadence.
 
 ## Key files
 
