@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>Test View - Line.parallel (I.22 excerpt)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    let Align = geomlib.Align;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.22 — line;parallel (excerpt: the three parallel reference lines)",
+        canvasid: "canvasId",
+        elements: [
+            // Two anchor points defining the base direction (horizontal line at y=50)
+            // <param name=e[1] value="A0;point;free;40,50">
+            { name: "A0", construction: E.Point.free, params: [40, 50] },
+            // <param name=e[2] value="A3;point;free;360,50">
+            { name: "A3", construction: E.Point.free, params: [360, 50] },
+            // <param name=e[3] value="A0A3;line;connect;A0,A3">
+            { name: "A0A3", construction: E.Line.connect, params: ["A0", "A3"] },
+
+            // 1st use of line;parallel: line through B0 parallel to A0A3
+            // <param name=e[4] value="B0;point;free;40,120">
+            { name: "B0", construction: E.Point.free, params: [40, 120] },
+            // <param name=e[5] value="B0B3;line;parallel;B0,A0,A3">  ← target (1st use)
+            { name: "B0B3", construction: E.Line.parallel, params: ["B0", "A0", "A3"] },
+            // <param name=e[6] value="B3;point;last;B0B3">
+            { name: "B3", construction: E.Point.last, params: ["B0B3"] },
+
+            // 2nd use of line;parallel: line through C0 parallel to A0A3
+            // <param name=e[7] value="C0;point;free;40,200">
+            { name: "C0", construction: E.Point.free, params: [40, 200] },
+            // <param name=e[8] value="C0C3;line;parallel;C0,A0,A3">  ← target (2nd use)
+            { name: "C0C3", construction: E.Line.parallel, params: ["C0", "A0", "A3"] },
+            // <param name=e[9] value="C3;point;last;C0C3">
+            { name: "C3", construction: E.Point.last, params: ["C0C3"] },
+
+            // Diagonal reference: line through D0 parallel to a non-horizontal line
+            // to confirm direction is preserved for non-trivial angles
+            // <param name=e[10] value="P;point;free;80,280">
+            { name: "P", construction: E.Point.free, params: [80, 280] },
+            // <param name=e[11] value="Q;point;free;280,320">
+            { name: "Q", construction: E.Point.free, params: [280, 320] },
+            // <param name=e[12] value="PQ;line;connect;P,Q">
+            { name: "PQ", construction: E.Line.connect, params: ["P", "Q"] },
+            // <param name=e[13] value="R;point;free;120,350">
+            { name: "R", construction: E.Point.free, params: [120, 350] },
+            // <param name=e[14] value="RS;line;parallel;R,P,Q">  ← target (3rd use, diagonal)
+            { name: "RS", construction: E.Line.parallel, params: ["R", "P", "Q"] },
+        ]
+    });
+</script>
+</body>
+</html>
