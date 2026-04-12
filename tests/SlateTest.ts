@@ -608,6 +608,34 @@ describe("slate", ()=> {
         almostEqual(app.area(), 4000, 1);
     });
 
+    // point;meanProportional — point U' on U0U1 so that S:U' = U':T (geometric mean)
+    // S=(0,0)→(100,0) len=100; T=(0,0)→(25,0) len=25; U=(0,0)→(200,0) len=200
+    // |U'| = sqrt(|S|*|T|) = sqrt(100*25) = 50
+    // factor = 50/200 = 0.25; result = (0,0) + 0.25*(200,0) = (50, 0)
+    // Check: S:U' = 100:50 = 2:1; U':T = 50:25 = 2:1 ✓
+    it("should compute a mean proportional point (geometric mean)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "S0", construction: E.Point.free, params: [0, 0] },
+            { name: "S1", construction: E.Point.free, params: [100, 0] },
+            { name: "T0", construction: E.Point.free, params: [0, 0] },
+            { name: "T1", construction: E.Point.free, params: [25, 0] },
+            { name: "U0", construction: E.Point.free, params: [0, 0] },
+            { name: "U1", construction: E.Point.free, params: [200, 0] },
+            { name: "P",  construction: E.Point.meanProportional, params: ["S0","S1","T0","T1","U0","U1"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let P = slate.lookupElement("P") as PointElement;
+        almostEqual(P.x, 50, 0.01);
+        almostEqual(P.y,  0, 0.01);
+        // Verify the proportion: S:U' should equal U':T
+        let S = Math.sqrt(100*100);  // 100
+        let T = Math.sqrt(25*25);    // 25
+        let Up = P.distance(slate.lookupElement("U0") as PointElement); // 50
+        almostEqual(S / Up, Up / T, 0.001);
+    });
+
     it("should compute a fourth proportional point", () => {
         let data : IConstructionInfo[] = [
             { name: "S0", construction: E.Point.free, params: [0, 0] },
