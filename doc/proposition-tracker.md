@@ -14,10 +14,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 
 | Scope | Total | Renderable (`[~]`) | Complete (`[x]`) |
 |-------|-------|--------------------|------------------|
-| Book I | 48 | 28 | 0 |
+| Book I | 48 | 39 | 0 |
 | Book II | 14 | 13 | 0 |
-| Book III | 37 | 36 | 0 |
-| **I–III total** | **99** | **77** | **0** |
+| Book III | 37 | **37** | 0 |
+| **I–III total** | **99** | **89** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -48,25 +48,25 @@ Update the summary table after each session.
 - [~] I.20 — In any triangle the sum of any two sides is greater than the remaining one.
 - [~] I.21 — If from the ends of one of the sides of a triangle two straight lines are constructed meeting within the triangle…
 - [~] I.22 — To construct a triangle out of three straight lines which equal three given straight lines. (`line;parallel` landed 2026-04-11.)
-- [ ] I.23 — To construct a rectilinear angle equal to a given rectilinear angle on a given straight line and at a point on it. NEEDS: `polygon;similar` (NOT point;similar — corrected 2026-04-12; propI23 e[12] uses polygon;similar)
-- [ ] I.24 — If two triangles have two sides equal to two sides respectively, but have one of the angles contained by the equal straight lines greater than the other… NEEDS: `polygon;similar` (NOT point;similar — corrected 2026-04-12; propI24 e[11] uses polygon;similar)
+- [~] I.23 — To construct a rectilinear angle equal to a given rectilinear angle on a given straight line and at a point on it. (`polygon;similar` landed 2026-04-12.)
+- [~] I.24 — If two triangles have two sides equal to two sides respectively, but have one of the angles contained by the equal straight lines greater than the other… (`polygon;similar` landed 2026-04-12.)
 - [~] I.25 — If two triangles have two sides equal to two sides respectively, but have the base greater than the base…
-- [ ] I.26 — If two triangles have two angles equal to two angles respectively, and one side equal to one side… (AAS/ASA congruence). NEEDS: `polygon;similar` (NOT point;similar — corrected 2026-04-12; propI26 e[8] uses polygon;similar)
+- [~] I.26 — If two triangles have two angles equal to two angles respectively, and one side equal to one side… (AAS/ASA congruence). (`polygon;similar` landed 2026-04-12.)
 - [~] I.27 — If a straight line falling on two straight lines makes the alternate angles equal to one another, then the straight lines are parallel. (`line;parallel` landed 2026-04-11.)
-- [ ] I.28 — If a straight line falling on two straight lines makes the exterior angle equal to the interior and opposite angle on the same side… NEEDS: `point;parallelogram`
+- [~] I.28 — If a straight line falling on two straight lines makes the exterior angle equal to the interior and opposite angle on the same side… (`point;parallelogram` landed 2026-04-10; tracker drift fixed 2026-04-12.)
 - [ ] I.29 — A straight line falling on parallel straight lines makes the alternate angles equal to one another… NEEDS: `point;parallelogram`, `point;proportion`
-- [ ] I.30 — Straight lines parallel to the same straight line are also parallel to one another. NEEDS: `point;parallelogram`
-- [ ] I.31 — To draw a straight line through a given point parallel to a given straight line. NEEDS: `line;similar` (NOT point;similar — corrected 2026-04-12; propI31 e[7] uses line;similar)
-- [ ] I.32 — In any triangle, if one of the sides is produced, then the exterior angle equals the sum of the two interior and opposite angles… NEEDS: `point;parallelogram`
-- [ ] I.33 — Straight lines which join the ends of equal and parallel straight lines in the same directions are themselves equal and parallel. NEEDS: `point;parallelogram`, `point;vertex`
+- [~] I.30 — Straight lines parallel to the same straight line are also parallel to one another. (`point;parallelogram` landed 2026-04-10; tracker drift fixed 2026-04-12.)
+- [~] I.31 — To draw a straight line through a given point parallel to a given straight line. (`line;similar` landed 2026-04-12.)
+- [~] I.32 — In any triangle, if one of the sides is produced, then the exterior angle equals the sum of the two interior and opposite angles… (`point;parallelogram` landed 2026-04-10; tracker drift fixed 2026-04-12.)
+- [~] I.33 — Straight lines which join the ends of equal and parallel straight lines in the same directions are themselves equal and parallel. (`point;parallelogram`, `point;vertex` landed 2026-04-10; tracker drift fixed 2026-04-12.)
 - [~] I.34 — In parallelogrammic areas the opposite sides and angles equal one another, and the diameter bisects the areas. (`point;parallelogram`, `point;vertex`, `polygon;parallelogram` all landed by 2026-04-11.)
-- [ ] I.35 — Parallelograms which are on the same base and in the same parallels equal one another. NEEDS: `point;parallelogram`
-- [ ] I.36 — Parallelograms which are on equal bases and in the same parallels equal one another. NEEDS: `point;parallelogram`, `point;vertex`
+- [~] I.35 — Parallelograms which are on the same base and in the same parallels equal one another. (`point;parallelogram` landed 2026-04-10; tracker drift fixed 2026-04-12.)
+- [~] I.36 — Parallelograms which are on equal bases and in the same parallels equal one another. (`point;parallelogram`, `point;vertex` landed 2026-04-10; tracker drift fixed 2026-04-12.)
 - [~] I.37 — Triangles which are on the same base and in the same parallels equal one another. (`line;parallel`, `point;parallelogram` both landed 2026-04-11.)
 - [~] I.38 — Triangles which are on equal bases and in the same parallels equal one another. (`line;parallel`, `point;parallelogram` both landed 2026-04-11.)
 - [~] I.39 — Equal triangles which are on the same base and on the same side are also in the same parallels. (`line;parallel` landed 2026-04-11.)
 - [~] I.40 — Equal triangles which are on equal bases and on the same side are also in the same parallels. (`line;parallel` landed 2026-04-11.)
-- [ ] I.41 — If a parallelogram has the same base with a triangle and is in the same parallels, then the parallelogram is double the triangle. NEEDS: `point;parallelogram`, `point;vertex`
+- [~] I.41 — If a parallelogram has the same base with a triangle and is in the same parallels, then the parallelogram is double the triangle. (`point;parallelogram`, `point;vertex` landed 2026-04-10; tracker drift fixed 2026-04-12.)
 - [~] I.42 — To construct a parallelogram equal to a given triangle in a given rectilinear angle. (`point;parallelogram`, `point;similar` both landed by 2026-04-12.)
 - [~] I.43 — In any parallelogram the complements of the parallelograms about the diameter equal one another. (`point;parallelogram`, `polygon;quadrilateral`, `point;vertex` all landed by 2026-04-12.)
 - [ ] I.44 — To a given straight line in a given rectilinear angle, to apply a parallelogram equal to a given triangle. NEEDS: `point;parallelogram`, `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
@@ -111,7 +111,7 @@ Update the summary table after each session.
 - [~] III.11 — If two circles touch one another internally, and their centers are taken, then the straight line joining their centers, being produced, falls on the point of contact of the circles.
 - [~] III.12 — If two circles touch one another externally, then the straight line joining their centers passes through the point of contact. (`line;chord` landed 2026-04-11.)
 - [~] III.13 — A circle does not touch another circle at more than one point whether it touches it internally or externally.
-- [ ] III.14 — Equal straight lines in a circle are equally distant from the center, and those which are equally distant from the center equal one another. NEEDS: `polygon;similar` (NOT point;similar — corrected 2026-04-12; propIII14 e[7] uses polygon;similar)
+- [~] III.14 — Equal straight lines in a circle are equally distant from the center, and those which are equally distant from the center equal one another. (`polygon;similar` landed 2026-04-12.)
 - [~] III.15 — Of straight lines in a circle the diameter is greatest, and of the rest the nearer to the center is always greater than the more remote. (`line;chord` landed 2026-04-11.)
 - [~] III.16 — The straight line drawn at right angles to the diameter of a circle from its end will fall outside the circle…
 - [~] III.17 — From a given point to draw a straight line touching a given circle. (`line;chord` landed 2026-04-11.)

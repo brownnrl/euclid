@@ -273,9 +273,16 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/line/foot/{original,applet}.html](../view/applet-tests/line/foot/)
   - Used in: I.47 (Pythagoras' theorem)
 
-- [ ] **`similar`** — TBD
-  - Java source: `Similar.java`
-  - No Books I–III uses
+- [x] **`similar`** — `src/elements/Constructions.ts` (`SimilarLineConstruction`)
+  - No new element class — reuses `SimilarElement` (from `point;similar`) +
+    `LineElement` wrapper. `construct()` creates `SimilarElement(A,B,screen,D,E,F,screen)`
+    then `LineElement(A, sim)`.
+  - Java source: `Slate.java` line case 10.
+  - Mocha test (1): line endpoint at the similar point.
+  - [x] test view: [view/test/line/similar.html](../view/test/line/similar.html) — propI31
+  - [x] applet-tests pair:
+    [view/applet-tests/line/similar/{original,applet}.html](../view/applet-tests/line/similar/)
+  - Used in: I.31
 
 - [ ] **`proportion`** — TBD
   - Java source: `Proportion.java`
@@ -352,9 +359,16 @@ These affect the library as a whole, independent of individual constructions.
   - [x] test view: [view/test/poly/equilateralTriangle.html](../view/test/poly/equilateralTriangle.html) — mirrors propI10 params
   - Used in: I.2, I.9–I.11, III.10, III.24
 
-- [ ] **`similar`** — TBD
-  - Java source: `Similar.java`
-  - Used in: III.23–III.24, III.26–III.29
+- [x] **`similar`** — `src/elements/Constructions.ts` (`SimilarPolygonConstruction`)
+  - No new element class — reuses `SimilarElement` (from `point;similar`) +
+    `PolygonElement` wrapper. `construct()` creates `SimilarElement(A,B,screen,D,E,F,screen)`
+    then `PolygonElement([A, B, sim])`.
+  - Java source: `Slate.java` polygon case 9.
+  - Mocha test (1): triangle vertices at expected similar-point location.
+  - [x] test view: [view/test/poly/similar.html](../view/test/poly/similar.html) — propI23
+  - [x] applet-tests pair:
+    [view/applet-tests/poly/similar/{original,applet}.html](../view/applet-tests/poly/similar/)
+  - Used in: I.23, I.24, I.26, III.14
 
 - [ ] **`application`** — TBD
   - Java source: `Application.java`

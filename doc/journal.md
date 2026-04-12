@@ -20,6 +20,46 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented polygon;similar + line;similar — BOOK III COMPLETE
+
+**Completed:**
+- Ported `polygon;similar` as `SimilarPolygonConstruction` and
+  `line;similar` as `SimilarLineConstruction` in
+  `src/elements/Constructions.ts`. Both reuse the existing `SimilarElement`
+  (from the `point;similar` session) as an intermediate, wrapping it in a
+  `PolygonElement([A, B, sim])` or `LineElement(A, sim)` respectively. Same
+  dispatch-trick pattern. No new element class for either.
+- Two Mocha tests: polygon;similar creates a 3-vertex triangle,
+  line;similar creates a line from A to the similar point. 31 → **33
+  passing**.
+- Test pages + applet companions for both: propI23 (polygon;similar) and
+  propI31 (line;similar).
+- **Tracker drift fix**: verified HTML param lists for I.28, I.30, I.32,
+  I.33, I.35, I.36, I.41 — all had been renderable since `point;parallelogram`
+  landed on 2026-04-10 but were never flipped. Fixed all 7.
+- **BOOK III IS 100% RENDERABLE**: III.14 was the last remaining `[ ]`
+  entry; it uses `polygon;similar` which just landed. 37/37 propositions
+  now at `[~]`.
+- Book I: 28 → **39** (+4 similar + 7 drift fix + I.31). Book III: 36 →
+  **37** (COMPLETE). I–III total: 77 → **89** (90%).
+
+**Discovered:**
+- I.33 was another drift candidate not in the original list — both its
+  blockers (`point;parallelogram`, `point;vertex`) were IMPL since
+  2026-04-10. Fixed alongside the other 6.
+- The `Similar.java` port is now fully complete across all three type
+  variants: point (session 4), line (this session), polygon (this session).
+  All share the same `SimilarElement` intermediate.
+
+**Next session:**
+- Remaining Book I blockers: `point;proportion` (I.16, I.29),
+  `polygon;application` (I.44, I.45, II.14), `line;foot` 3D variant
+  (no I–III uses).
+- Consider a sweep to audit every remaining `[ ]` entry in Book I against
+  actual HTML params — the drift fix pattern suggests more may be hiding.
+
+---
+
 ## 2026-04-12 — Implemented 3-point circle;radius variant
 
 **Completed:**
