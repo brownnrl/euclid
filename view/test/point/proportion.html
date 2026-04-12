@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Test View - Point.proportion (standalone)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Point.proportion — fourth proportional",
+        canvasid: "canvasId",
+        elements: [
+            // Segment S: length 100
+            { name: "S0", construction: E.Point.free, params: [30, 50] },
+            { name: "S1", construction: E.Point.free, params: [130, 50] },
+            { name: "S",  construction: E.Line.connect, params: ["S0", "S1"] },
+            // Segment T: length 50
+            { name: "T0", construction: E.Point.free, params: [30, 100] },
+            { name: "T1", construction: E.Point.free, params: [80, 100] },
+            { name: "T",  construction: E.Line.connect, params: ["T0", "T1"] },
+            // Segment U: length 80
+            { name: "U0", construction: E.Point.free, params: [30, 150] },
+            { name: "U1", construction: E.Point.free, params: [110, 150] },
+            { name: "U",  construction: E.Line.connect, params: ["U0", "U1"] },
+            // Segment V: length 200
+            { name: "V0", construction: E.Point.free, params: [30, 250] },
+            { name: "V1", construction: E.Point.free, params: [230, 250] },
+            { name: "V",  construction: E.Line.connect, params: ["V0", "V1"] },
+            // Fourth proportional P on V so that S:T = U:V0P
+            // factor = (T*U)/(S*V) = (50*80)/(100*200) = 0.2
+            // P = V0 + 0.2*(V1-V0) = (30,250) + 0.2*(200,0) = (70,250)
+            { name: "P",  construction: E.Point.proportion, params: ["S0","S1","T0","T1","U0","U1","V0","V1"] },
+            { name: "VP", construction: E.Line.connect, params: ["V0", "P"] },
+        ]
+    });
+</script>
+</body>
+</html>

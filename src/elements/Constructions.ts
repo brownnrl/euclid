@@ -37,6 +37,7 @@ import {PlanePerpendicularLine} from "./line/PlanePerpendicularLine";
 import {Bichord} from "./line/Bichord";
 import {Chord} from "./line/Chord";
 import {SimilarElement} from "./point/SimilarElement";
+import {ProportionElement} from "./point/ProportionElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
 import {SphereElement} from "./sphere/SphereElement";
@@ -684,11 +685,21 @@ export class PointPerpendicular5Construction extends PointPerpendicularConstruct
 }
 
 
-// TBD
 // point
 // proportion
-// 8 points A, B, C, D, E, F, G, H
-// the point I on GH so that AB:CD = EF:GI
+// 8 points S0, S1, T0, T1, U0, U1, V0, V1
+// the point V' on V0V1 so that |S0S1|:|T0T1| = |U0U1|:|V0V'|
+// (Java: Proportion.java — 26 lines, line-for-line port)
+export class ProportionPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.proportion;
+    signature: ConstructionTypes[] = (new Array(8)).fill(ct.PointElement);
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new ProportionElement(ps[0], ps[1], ps[2], ps[3], ps[4], ps[5], ps[6], ps[7]);
+        return [[g], g];
+    }
+}
 
 // TBD
 // point
@@ -1399,6 +1410,7 @@ export const constructions : Construction[] = [
     new CutoffConstruction(),
     new ParallelogramConstruction(),
     new SimilarPointConstruction(),
+    new ProportionPointConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),

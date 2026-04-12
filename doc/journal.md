@@ -20,6 +20,37 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented point;proportion + drift fix — 96/99
+
+**Completed:**
+- Ported `point;proportion` as `src/elements/point/ProportionElement.ts` —
+  a port of `Proportion.java` (26 lines). Takes 8 PointElements defining
+  four line segments S, T, U, V and computes the point V' on V0V1 such
+  that |S|:|T| = |U|:|V0V'|. `update()` body is 4 lines: compute factor
+  from distance² ratios, apply to the V direction vector.
+- `ProportionPointConstruction` wired with signature `[PointElement × 8]`.
+  One Mocha test with clean collinear coords (factor=0.2, result at (40,0)).
+  33 → **34 passing**.
+- **Drift fix for 5 more propositions**: I.2, I.4, I.9, I.10, I.11 —
+  all had blockers that were already IMPL from earlier sessions (I.2/I.9/
+  I.10/I.11 needed polygon;equilateralTriangle + point;vertex, both IMPL
+  since 2026-04-10; I.4 needed 3-point circle;radius, IMPL since earlier
+  today). Verified all against actual HTML params.
+- Book I: 39 → **46** (+2 proportion + 5 drift). I–III total: 89 → **96**.
+- **Only 3 propositions remain blocked**: I.44, I.45, II.14 — all need
+  `polygon;application`.
+
+**Discovered:**
+- propI16 and propI29 each have dual applet variants. Their primary
+  variants were already renderable (no point;proportion needed). Only the
+  secondary "elliptic geometry" variants use point;proportion.
+
+**Next session:**
+- `polygon;application` — the FINAL construction. Landing it would make
+  I.44, I.45, II.14 renderable, reaching **99/99 = 100%** for Books I–III.
+
+---
+
 ## 2026-04-12 — Implemented polygon;similar + line;similar — BOOK III COMPLETE
 
 **Completed:**
