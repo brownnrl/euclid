@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Test View - Polygon.parallelogram (I.34)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    let Align = geomlib.Align;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.34 — In parallelogrammic areas the opposite sides and angles equal one another",
+        canvasid: "canvasId",
+        elements: [
+            // <param name=e[1] value="A;point;free;90,50">
+            { name: "A", construction: E.Point.free, params: [90, 50] },
+            // <param name=e[2] value="B;point;free;250,50">
+            { name: "B", construction: E.Point.free, params: [250, 50] },
+            // <param name=e[3] value="C;point;free;50,175">
+            { name: "C", construction: E.Point.free, params: [50, 175] },
+            // <param name=e[4] value="CABD;polygon;parallelogram;C,A,B;0;0;0,0,0;random">  ← target
+            { name: "CABD", construction: E.Polygon.parallelogram, params: ["C", "A", "B"] },
+            // <param name=e[5] value="D;point;vertex;CABD,4">
+            { name: "D", construction: E.Point.vertex, params: ["CABD", 4] },
+            // <param name=e[6] value="BC;line;connect;B,C">  (the diameter that bisects the area)
+            { name: "BC", construction: E.Line.connect, params: ["B", "C"] },
+        ]
+    });
+</script>
+</body>
+</html>
