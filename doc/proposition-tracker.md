@@ -14,10 +14,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 
 | Scope | Total | Renderable (`[~]`) | Complete (`[x]`) |
 |-------|-------|--------------------|------------------|
-| Book I | 48 | 17 | 0 |
+| Book I | 48 | 23 | 0 |
 | Book II | 14 | 2 | 0 |
 | Book III | 37 | 29 | 0 |
-| **I–III total** | **99** | **48** | **0** |
+| **I–III total** | **99** | **54** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -47,12 +47,12 @@ Update the summary table after each session.
 - [~] I.19 — In any triangle the side opposite the greater angle is greater.
 - [~] I.20 — In any triangle the sum of any two sides is greater than the remaining one.
 - [~] I.21 — If from the ends of one of the sides of a triangle two straight lines are constructed meeting within the triangle…
-- [ ] I.22 — To construct a triangle out of three straight lines which equal three given straight lines. NEEDS: `line;parallel`
+- [~] I.22 — To construct a triangle out of three straight lines which equal three given straight lines. (`line;parallel` landed 2026-04-11.)
 - [ ] I.23 — To construct a rectilinear angle equal to a given rectilinear angle on a given straight line and at a point on it. NEEDS: `point;similar`, `point;vertex`
 - [ ] I.24 — If two triangles have two sides equal to two sides respectively, but have one of the angles contained by the equal straight lines greater than the other… NEEDS: `point;similar`, `point;vertex`
 - [~] I.25 — If two triangles have two sides equal to two sides respectively, but have the base greater than the base…
 - [ ] I.26 — If two triangles have two angles equal to two angles respectively, and one side equal to one side… (AAS/ASA congruence). NEEDS: `point;similar`, `point;vertex`
-- [ ] I.27 — If a straight line falling on two straight lines makes the alternate angles equal to one another, then the straight lines are parallel. NEEDS: `line;parallel`
+- [~] I.27 — If a straight line falling on two straight lines makes the alternate angles equal to one another, then the straight lines are parallel. (`line;parallel` landed 2026-04-11.)
 - [ ] I.28 — If a straight line falling on two straight lines makes the exterior angle equal to the interior and opposite angle on the same side… NEEDS: `point;parallelogram`
 - [ ] I.29 — A straight line falling on parallel straight lines makes the alternate angles equal to one another… NEEDS: `point;parallelogram`, `point;proportion`
 - [ ] I.30 — Straight lines parallel to the same straight line are also parallel to one another. NEEDS: `point;parallelogram`
@@ -62,10 +62,10 @@ Update the summary table after each session.
 - [ ] I.34 — In parallelogrammic areas the opposite sides and angles equal one another, and the diameter bisects the areas. NEEDS: `point;parallelogram`, `point;vertex`, `polygon;parallelogram`
 - [ ] I.35 — Parallelograms which are on the same base and in the same parallels equal one another. NEEDS: `point;parallelogram`
 - [ ] I.36 — Parallelograms which are on equal bases and in the same parallels equal one another. NEEDS: `point;parallelogram`, `point;vertex`
-- [ ] I.37 — Triangles which are on the same base and in the same parallels equal one another. NEEDS: `line;parallel`, `point;parallelogram`
-- [ ] I.38 — Triangles which are on equal bases and in the same parallels equal one another. NEEDS: `line;parallel`, `point;parallelogram`
-- [ ] I.39 — Equal triangles which are on the same base and on the same side are also in the same parallels. NEEDS: `line;parallel`
-- [ ] I.40 — Equal triangles which are on equal bases and on the same side are also in the same parallels. NEEDS: `line;parallel`
+- [~] I.37 — Triangles which are on the same base and in the same parallels equal one another. (`line;parallel`, `point;parallelogram` both landed 2026-04-11.)
+- [~] I.38 — Triangles which are on equal bases and in the same parallels equal one another. (`line;parallel`, `point;parallelogram` both landed 2026-04-11.)
+- [~] I.39 — Equal triangles which are on the same base and on the same side are also in the same parallels. (`line;parallel` landed 2026-04-11.)
+- [~] I.40 — Equal triangles which are on equal bases and on the same side are also in the same parallels. (`line;parallel` landed 2026-04-11.)
 - [ ] I.41 — If a parallelogram has the same base with a triangle and is in the same parallels, then the parallelogram is double the triangle. NEEDS: `point;parallelogram`, `point;vertex`
 - [ ] I.42 — To construct a parallelogram equal to a given triangle in a given rectilinear angle. NEEDS: `point;parallelogram`, `point;similar`
 - [ ] I.43 — In any parallelogram the complements of the parallelograms about the diameter equal one another. NEEDS: `point;parallelogram`, `polygon;quadrilateral`, `point;vertex`
@@ -86,12 +86,12 @@ Update the summary table after each session.
 - [ ] II.5 — If a straight line is cut into equal and unequal segments, then the rectangle contained by the unequal segments of the whole together with the square on the straight line between the points of section equals the square on the half. NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc`, `line;chord` already landed)
 - [ ] II.6 — If a straight line is bisected and a straight line is added to it in a straight line… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
 - [ ] II.7 — If a straight line is cut at random, then the sum of the square on the whole and that on one of the segments… NEEDS: `polygon;parallelogram`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
-- [ ] II.8 — If a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment… NEEDS: `line;parallel`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
-- [ ] II.9 — If a straight line is cut into equal and unequal segments, then the sum of the squares on the unequal segments of the whole is double… NEEDS: `line;parallel`, `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`
+- [ ] II.8 — If a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc`, `line;parallel` already landed)
+- [ ] II.9 — If a straight line is cut into equal and unequal segments, then the sum of the squares on the unequal segments of the whole is double… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral` (`line;parallel`, `point;parallelogram` already landed)
 - [ ] II.10 — If a straight line is bisected, and a straight line is added to it in a straight line… NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;square` (wait — II.10 uses triangle, not square… needs `point;parallelogram`, `point;vertex`)
 - [~] II.12 — In obtuse-angled triangles the square on the side opposite the obtuse angle is greater than the sum of the squares on the sides containing the obtuse angle…
 - [~] II.13 — In acute-angled triangles the square on the side opposite the acute angle is less than the sum of the squares on the sides containing the acute angle…
-- [ ] II.11 — To cut a given straight line so that the rectangle contained by the whole and one of the segments equals the square on the remaining segment. NEEDS: `line;parallel`, `point;parallelogram`, `polygon;parallelogram`, `polygon;square`, `point;vertex`
+- [ ] II.11 — To cut a given straight line so that the rectangle contained by the whole and one of the segments equals the square on the remaining segment. NEEDS: `polygon;parallelogram`, `polygon;square` (`line;parallel`, `point;parallelogram`, `point;vertex` already landed)
 - [ ] II.14 — To construct a square equal to a given rectilinear figure. NEEDS: `polygon;application`, `polygon;quadrilateral`, `polygon;square` (wait — let me verify) (`point;vertex`, `line;chord` already landed)
 
 ---

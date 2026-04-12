@@ -68,7 +68,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `extend` | IMPL | `Layoff.java` | `Point A, B, C, D` | Line extending AB by length CD | ~62 | I.1 |
 | `perpendicular` | IMPL | `Perpendicular.java` | Various (5 signature variants) | Line perpendicular to another | ~16 | I.11 |
 | `bichord` | IMPL | `Bichord.java` | `Circle A, Circle B` | Line connecting two circle intersections | ~19 | I.1 |
-| `parallel` | **TBD** | `ParallelP.java` | `Point A, Point B, Point C` | Line through C parallel to line AB | ~14 | I.22 |
+| `parallel` | IMPL | `Slate.java` (case 9, reuses `Layoff`) | `Point A, Point B, Point C` | Line through A parallel and equal to line BC | ~14 | I.22 |
 | `chord` | IMPL | `Chord.java` | `Point B, Point C, Circle A` | Chord of circle A cut by line BC | ~17 | I.12 |
 | `angleBisector` | **TBD** | `AngleDivider.java` | `Point A, B, C [, Plane]` | Bisector of angle ∠ABC | 0 | — |
 | `angleDivider` | **TBD** | `AngleDivider.java` | `Point A, B, C [, Plane], int n` | 1/n division of ∠ABC as a line | 0 | — |
@@ -163,7 +163,7 @@ Implementing higher-priority constructions unlocks the most propositions.
 | 7 | `polygon;square` | 10 | I.46, I.47, II.2–II.4, II.5–II.8, II.11 |
 | 8 | `point;similar` | 15 | I.23, I.24, I.26, I.31, I.42, I.44, I.45, III.14, III.24–III.29, III.33–III.34 |
 | 9 | `polygon;equilateralTriangle` | 6 | I.2, I.9, I.10, I.11, III.10, III.24 |
-| 10 | `line;parallel` | 9 | I.22, I.27, I.37–I.40, II.8–II.9, II.11 |
+| ~~10~~ | ~~`line;parallel`~~ — IMPL 2026-04-11 | 9 | I.22, I.27, I.37–I.40, II.8–II.9, II.11 |
 | 11 | `polygon;similar` | 5 | III.23, III.24, III.26–III.29 |
 | 12 | `point;proportion` | 4 | I.16, I.29 |
 | 13 | `polygon;application` | 3 | I.44, I.45, II.14 |

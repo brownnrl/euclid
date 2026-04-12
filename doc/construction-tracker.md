@@ -198,8 +198,19 @@ These affect the library as a whole, independent of individual constructions.
 - [x] **`bichord`** — `src/elements/line/Bichord.ts`
   - [x] test view: [view/test/line/bichord.html](../view/test/line/bichord.html)
 
-- [ ] **`parallel`** — TBD
-  - Java source: `ParallelP.java`
+- [x] **`parallel`** — `src/elements/Constructions.ts` (`LineParallelConstruction`)
+  - No dedicated element class — reuses existing `Layoff` + base `LineElement`,
+    mirroring the dispatch trick from `Slate.java` case 9. `construct()` creates
+    `Layoff(A, B, C, B, C)` → D = A + (C−B), then `new LineElement({A, B: D})`.
+    Same pattern as `LineExtendConstruction`.
+  - **Not** `ParallelP.java` — that file is `PlaneElement.parallel` (solid geometry).
+    The line construction has no dedicated Java class; it's dispatched inline in
+    Slate.java.
+  - Mocha tests (2): update correctness (D = A + (C−B), direction and length
+    equality verified), recompute after moving input point C.
+  - [x] test view: [view/test/line/parallel.html](../view/test/line/parallel.html) — exercises the construction 3 times (2 horizontal + 1 diagonal)
+  - [x] applet-tests pair:
+    [view/applet-tests/line/parallel/{original,applet}.html](../view/applet-tests/line/parallel/)
   - Used in: I.22, I.27, I.37–I.40, II.8–II.9, II.11
 
 - [x] **`chord`** — `src/elements/line/Chord.ts`
