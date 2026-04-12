@@ -297,8 +297,15 @@ These affect the library as a whole, independent of individual constructions.
 - [x] **`triangle`** — `src/elements/polygon/PolygonElement.ts` (via `TrianglePolygonConstruction`)
   - [~] test view: [view/test/poly/triangle.html](../view/test/poly/triangle.html) — tests triangle among other elements; no standalone triangle page
 
-- [ ] **`quadrilateral`** — TBD
-  - Java source: `PolygonElement.java`
+- [x] **`quadrilateral`** — `src/elements/Constructions.ts` (`QuadrilateralPolygonConstruction`)
+  - One-line subclass of `PolyConstruction` with 4-point signature.
+    No new element class — `construct()` is inherited from `PolyConstruction`
+    and passes all 4 points through to `new PolygonElement(ps)`.
+  - Java source: `Slate.java` polygon case 2 → `new PolygonElement(P[0],P[1],P[2],P[3])`.
+  - Mocha test (1): 4-vertex correctness from propI43-style coords.
+  - [x] test view: [view/test/poly/quadrilateral.html](../view/test/poly/quadrilateral.html) — full propI43
+  - [x] applet-tests pair:
+    [view/applet-tests/poly/quadrilateral/{original,applet}.html](../view/applet-tests/poly/quadrilateral/)
   - Used in: I.43–I.46, II.2, II.4–II.6, II.8–II.9, II.14
 
 - [x] **`parallelogram`** — `src/elements/Constructions.ts` (`ParallelogramPolygonConstruction`)

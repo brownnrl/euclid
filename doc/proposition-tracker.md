@@ -14,10 +14,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 
 | Scope | Total | Renderable (`[~]`) | Complete (`[x]`) |
 |-------|-------|--------------------|------------------|
-| Book I | 48 | 25 | 0 |
-| Book II | 14 | 2 | 0 |
+| Book I | 48 | 26 | 0 |
+| Book II | 14 | 3 | 0 |
 | Book III | 37 | 31 | 0 |
-| **I–III total** | **99** | **58** | **0** |
+| **I–III total** | **99** | **60** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -68,7 +68,7 @@ Update the summary table after each session.
 - [~] I.40 — Equal triangles which are on equal bases and on the same side are also in the same parallels. (`line;parallel` landed 2026-04-11.)
 - [ ] I.41 — If a parallelogram has the same base with a triangle and is in the same parallels, then the parallelogram is double the triangle. NEEDS: `point;parallelogram`, `point;vertex`
 - [~] I.42 — To construct a parallelogram equal to a given triangle in a given rectilinear angle. (`point;parallelogram`, `point;similar` both landed by 2026-04-12.)
-- [ ] I.43 — In any parallelogram the complements of the parallelograms about the diameter equal one another. NEEDS: `point;parallelogram`, `polygon;quadrilateral`, `point;vertex`
+- [~] I.43 — In any parallelogram the complements of the parallelograms about the diameter equal one another. (`point;parallelogram`, `polygon;quadrilateral`, `point;vertex` all landed by 2026-04-12.)
 - [ ] I.44 — To a given straight line in a given rectilinear angle, to apply a parallelogram equal to a given triangle. NEEDS: `point;parallelogram`, `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
 - [ ] I.45 — To construct a parallelogram equal to a given rectilinear figure in a given rectilinear angle. NEEDS: `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
 - [ ] I.46 — To describe a square on a given straight line. NEEDS: `polygon;quadrilateral`, `polygon;square`, `point;vertex`
@@ -87,7 +87,7 @@ Update the summary table after each session.
 - [ ] II.6 — If a straight line is bisected and a straight line is added to it in a straight line… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
 - [ ] II.7 — If a straight line is cut at random, then the sum of the square on the whole and that on one of the segments… NEEDS: `polygon;parallelogram`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
 - [ ] II.8 — If a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc`, `line;parallel` already landed)
-- [ ] II.9 — If a straight line is cut into equal and unequal segments, then the sum of the squares on the unequal segments of the whole is double… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral` (`line;parallel`, `point;parallelogram` already landed)
+- [~] II.9 — If a straight line is cut into equal and unequal segments, then the sum of the squares on the unequal segments of the whole is double… (`polygon;parallelogram`, `polygon;quadrilateral`, `line;parallel`, `point;parallelogram` all landed by 2026-04-12.)
 - [ ] II.10 — If a straight line is bisected, and a straight line is added to it in a straight line… NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;square` (wait — II.10 uses triangle, not square… needs `point;parallelogram`, `point;vertex`)
 - [~] II.12 — In obtuse-angled triangles the square on the side opposite the obtuse angle is greater than the sum of the squares on the sides containing the obtuse angle…
 - [~] II.13 — In acute-angled triangles the square on the side opposite the acute angle is less than the sum of the squares on the sides containing the acute angle…

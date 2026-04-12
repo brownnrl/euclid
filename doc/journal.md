@@ -20,6 +20,45 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented polygon;quadrilateral
+
+**Completed:**
+- Ported `polygon;quadrilateral` as `QuadrilateralPolygonConstruction` in
+  `src/elements/Constructions.ts`. **One-line subclass** of
+  `PolyConstruction` — identical pattern to `TrianglePolygonConstruction`
+  but with a 4-point signature. No new element class; the inherited
+  `construct()` body (`new PolygonElement(ps)`) handles everything. Total
+  new code: 4 lines.
+- One Mocha test: 4-vertex correctness. 27 → **28 passing** (cumulative).
+- Test page + applet companion using the full propI43 (15 elements:
+  parallelogram ABCD, diagonal slider K, two complement quadrilaterals
+  HDFK and EBGK). Exercises `polygon;quadrilateral` twice.
+- Book I renderable count: 25 → **26** (+I.43). Book II: 2 → **3**
+  (+II.9 — both polygon;parallelogram and polygon;quadrilateral now landed,
+  verified against actual propII9 HTML params). I–III total: 58 → **60**.
+
+**Discovered:**
+- PropII.9 has two applet variants. The first doesn't use
+  `polygon;quadrilateral` at all (it was already renderable from earlier
+  ports). The second uses it at e[8]/e[23]/e[24] and is now fully
+  renderable.
+- This was the fastest construction port yet: ~4 lines of code, no new
+  file, step 4 collapsed entirely. The "dispatch trick in Slate.java"
+  pattern first seen with `line;parallel` and `polygon;parallelogram`
+  reduces even further here to a pure pass-through.
+
+**Next session:**
+- Top priority: `polygon;square` (10 I–III uses, I.47 viable verifier,
+  `RegularPolygonElement` n=4 mirrors `equilateralTriangle`). Landing it
+  would unblock a large cluster of Book II propositions (II.1–II.8, II.11,
+  II.14 all need polygon;square).
+- High-impact alternative: 3-point `circle;radius` variant (would unblock
+  III.24, III.26–III.29 = 5 Book III props).
+- Also valuable: `polygon;similar` + `line;similar` (share `Similar.java`
+  source, would unblock I.23, I.24, I.26, I.31, III.14).
+
+---
+
 ## 2026-04-12 — Implemented point;similar + major tracker NEEDS-line corrections
 
 **Completed:**
