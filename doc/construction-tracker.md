@@ -377,9 +377,21 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/poly/similar/{original,applet}.html](../view/applet-tests/poly/similar/)
   - Used in: I.23, I.24, I.26, III.14
 
-- [ ] **`application`** — TBD
-  - Java source: `Application.java`
-  - Used in: I.44–I.45, II.14
+- [x] **`application`** — `src/elements/polygon/ApplicationElement.ts`
+  - Extends `PolygonElement`; constructor takes `(P polygon, A point, B point,
+    C point)`. Creates a parallelogram ABEF with side AB, angle CAB, and
+    area = P.area(). `update()` computes factor from area ratio then scales
+    along AC to get V[3], with V[2] closing the parallelogram.
+  - Java source: `Application.java` — 43 lines, line-for-line port.
+  - Also added `area()` method to `PolygonElement.ts` (fan triangulation
+    from V[0]) and fixed a pre-existing bug in `PointElement.length2()`
+    (`this._z + this._z` → `this._z * this._z`).
+  - Overrides `update()`, `translate()`, `rotate()`.
+  - Mocha test (1): parallelogram area = input triangle area (4000).
+  - [x] test view: [view/test/poly/application.html](../view/test/poly/application.html) — propI44
+  - [x] applet-tests pair:
+    [view/applet-tests/poly/application/{original,applet}.html](../view/applet-tests/poly/application/)
+  - Used in: I.44, I.45, II.14 — **the final 3 propositions for 100% I–III**
 
 - [ ] **`regularPolygon`** — TBD
   - Java source: `RegularPolygon.java`

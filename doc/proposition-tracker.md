@@ -14,10 +14,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 
 | Scope | Total | Renderable (`[~]`) | Complete (`[x]`) |
 |-------|-------|--------------------|------------------|
-| Book I | 48 | **46** | 0 |
-| Book II | 14 | 13 | 0 |
+| Book I | 48 | **48** | 0 |
+| Book II | 14 | **14** | 0 |
 | Book III | 37 | **37** | 0 |
-| **I–III total** | **99** | **96** | **0** |
+| **I–III total** | **99** | **99** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -69,8 +69,8 @@ Update the summary table after each session.
 - [~] I.41 — If a parallelogram has the same base with a triangle and is in the same parallels, then the parallelogram is double the triangle. (`point;parallelogram`, `point;vertex` landed 2026-04-10; tracker drift fixed 2026-04-12.)
 - [~] I.42 — To construct a parallelogram equal to a given triangle in a given rectilinear angle. (`point;parallelogram`, `point;similar` both landed by 2026-04-12.)
 - [~] I.43 — In any parallelogram the complements of the parallelograms about the diameter equal one another. (`point;parallelogram`, `polygon;quadrilateral`, `point;vertex` all landed by 2026-04-12.)
-- [ ] I.44 — To a given straight line in a given rectilinear angle, to apply a parallelogram equal to a given triangle. NEEDS: `point;parallelogram`, `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
-- [ ] I.45 — To construct a parallelogram equal to a given rectilinear figure in a given rectilinear angle. NEEDS: `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
+- [~] I.44 — To a given straight line in a given rectilinear angle, to apply a parallelogram equal to a given triangle. (All blockers landed by 2026-04-12: `polygon;application` was the final one.)
+- [~] I.45 — To construct a parallelogram equal to a given rectilinear figure in a given rectilinear angle. (All blockers landed by 2026-04-12.)
 - [~] I.46 — To describe a square on a given straight line. (`polygon;quadrilateral`, `polygon;square`, `point;vertex` all landed by 2026-04-12.)
 - [~] I.47 — In right-angled triangles the square on the side opposite the right angle equals the sum of the squares on the sides containing the right angle. (Pythagoras' theorem. `line;foot` 2D variant landed 2026-04-12; `polygon;square`, `point;vertex` already landed.)
 - [~] I.48 — If in a triangle the square on one of the sides equals the sum of the squares on the remaining two sides of the triangle, then the angle contained by the remaining two sides of the triangle is right.
@@ -92,7 +92,7 @@ Update the summary table after each session.
 - [~] II.12 — In obtuse-angled triangles the square on the side opposite the obtuse angle is greater than the sum of the squares on the sides containing the obtuse angle…
 - [~] II.13 — In acute-angled triangles the square on the side opposite the acute angle is less than the sum of the squares on the sides containing the acute angle…
 - [~] II.11 — To cut a given straight line so that the rectangle contained by the whole and one of the segments equals the square on the remaining segment. (All blockers landed by 2026-04-12. Verified: uses polygon;parallelogram, polygon;square, line;parallel, line;perpendicular, line;bichord, circle;radius.)
-- [ ] II.14 — To construct a square equal to a given rectilinear figure. NEEDS: `polygon;application`, `polygon;quadrilateral`, `polygon;square` (wait — let me verify) (`point;vertex`, `line;chord` already landed)
+- [~] II.14 — To construct a square equal to a given rectilinear figure. (All blockers landed by 2026-04-12: `polygon;application` was the final one.)
 
 ---
 

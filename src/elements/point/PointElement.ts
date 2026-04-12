@@ -89,7 +89,7 @@ export class PointElement extends GeomElement {
     }
 
     public length2() : number {
-        return this._x * this._x + this._y * this._y + this._z + this._z;
+        return this._x * this._x + this._y * this._y + this._z * this._z;
     }
 
     public length() : number {

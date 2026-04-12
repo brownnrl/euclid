@@ -99,7 +99,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `square` | IMPL | `RegularPolygon.java` (n=4) | `Point A, B` | Square on side AB | ~10 | I.46 |
 | `equilateralTriangle` | **TBD** | `PolygonElement.java` | `Point A, B, C` | Equilateral triangle (alias for triangle with equal sides) | ~6 | I.2 |
 | `similar` | IMPL | `Similar.java` | `Point A, B, D, E, F` | Triangle ABH where △ABH ∼ △DEF (2D) | ~5 | I.23 |
-| `application` | **TBD** | `Application.java` | Various | Application of area (parallelogram equal to triangle) | ~3 | I.44 |
+| `application` | IMPL | `Application.java` | `Polygon P, Point A, B, C` | Parallelogram with side AB, angle CAB, area = P.area() | ~3 | I.44 |
 | `regularPolygon` | **TBD** | `RegularPolygon.java` | `Point A, B, int n` | Regular n-gon on edge AB | 0 | — |
 | `starPolygon` | **TBD** | `RegularPolygon.java` | `Point A, B, int n, int k` | Star polygon {n/k} | 0 | — |
 | `pentagon` | **TBD** | `PolygonElement.java` | `Point A, B, C, D, E` | Pentagon | 0 | — |

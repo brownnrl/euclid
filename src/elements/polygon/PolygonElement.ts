@@ -34,6 +34,17 @@ export class PolygonElement extends GeomElement {
         this.V = ps;
     }
 
+    public area() : number {
+        // Ported from PolygonElement.java area() — 2026-04-12
+        // Compute the area of this polygon (assuming it's planar & convex).
+        // Uses fan triangulation from V[0].
+        let sum = 0.0;
+        for (let i = 0; i < this.V.length - 2; ++i) {
+            sum += PointElement.area(this.V[0], this.V[i + 1], this.V[i + 2]);
+        }
+        return sum;
+    }
+
     public drawEdge(c: HTMLCanvasElement, color?: string): void {
         if (color == null) {
             if (this.shouldHighlight) {
