@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Test View - Polygon.quadrilateral (I.43)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.43 — In any parallelogram the complements about the diameter equal one another",
+        canvasid: "canvasId",
+        elements: [
+            // <param name=e[1] value="A;point;free;80,40">
+            { name: "A", construction: E.Point.free, params: [80, 40] },
+            // <param name=e[2] value="B;point;free;40,210">
+            { name: "B", construction: E.Point.free, params: [40, 210] },
+            // <param name=e[3] value="C;point;free;210,210">
+            { name: "C", construction: E.Point.free, params: [210, 210] },
+            // <param name=e[4] value="ABCD;polygon;parallelogram;A,B,C">
+            { name: "ABCD", construction: E.Polygon.parallelogram, params: ["A", "B", "C"] },
+            // <param name=e[5] value="D;point;vertex;ABCD,4">
+            { name: "D", construction: E.Point.vertex, params: ["ABCD", 4] },
+            // <param name=e[6] value="AC;line;connect;A,C">
+            { name: "AC", construction: E.Line.connect, params: ["A", "C"] },
+            // <param name=e[7] value="K;point;lineSlider;AC,110,90">
+            { name: "K", construction: E.Point.lineSlider, params: ["AC", 110, 90] },
+            // <param name=e[8] value="E';point;parallelogram;K,A,D">
+            { name: "E'", construction: E.Point.parallelogram, params: ["K", "A", "D"] },
+            // <param name=e[9] value="E;point;intersection;A,B,K,E'">
+            { name: "E", construction: E.Point.intersection, params: ["A", "B", "K", "E'"] },
+            // <param name=e[10] value="F;point;intersection;C,D,K,E">
+            { name: "F", construction: E.Point.intersection, params: ["C", "D", "K", "E"] },
+            // <param name=e[11] value="G';point;parallelogram;K,A,B">
+            { name: "G'", construction: E.Point.parallelogram, params: ["K", "A", "B"] },
+            // <param name=e[12] value="G;point;intersection;B,C,K,G'">
+            { name: "G", construction: E.Point.intersection, params: ["B", "C", "K", "G'"] },
+            // <param name=e[13] value="H;point;intersection;A,D,K,G'">
+            { name: "H", construction: E.Point.intersection, params: ["A", "D", "K", "G'"] },
+            // <param name=e[14] value="HDFK;polygon;quadrilateral;H,D,F,K">  ← target (1st use)
+            { name: "HDFK", construction: E.Polygon.quadrilateral, params: ["H", "D", "F", "K"] },
+            // <param name=e[15] value="EBGK;polygon;quadrilateral;E,B,G,K">  ← target (2nd use)
+            { name: "EBGK", construction: E.Polygon.quadrilateral, params: ["E", "B", "G", "K"] },
+        ]
+    });
+</script>
+</body>
+</html>
