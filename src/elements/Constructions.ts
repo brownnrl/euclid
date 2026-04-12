@@ -961,11 +961,22 @@ export class LineParallelConstruction extends Construction {
     }
 }
 
-// TBD
 // line
-// similar
-// points A, B, D, E, F [planes C, G]
-// the line AH so that triangle ABH in plane C is similar to triangle DEF in plane G
+// similar (2D variant)
+// points A, B, D, E, F
+// the line AH so that triangle ABH is similar to triangle DEF (screen plane)
+// (Java: Slate.java line case 10 — Similar(A,B,screen,D,E,F,screen) + LineElement(A,H))
+export class SimilarLineConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.similar;
+    signature: ConstructionTypes[] = (new Array(5)).fill(ct.PointElement);
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let sim = new SimilarElement(ps[0], ps[1], screen, ps[2], ps[3], ps[4], screen);
+        let g = new LineElement({A: ps[0], B: sim});
+        return [[sim, g], g];
+    }
+}
 
 // TBD
 // line
@@ -1159,12 +1170,22 @@ export class ParallelogramPolygonConstruction extends Construction {
 // the star polygon on a side AB given the number of vertices n and the density d
 
 
-// TBD
 // polygon
-// similar
-// points A, B, D, E, F [planes C, G]
-// the triangle ABH in plane C is similar to triangle DEF in plane G
+// similar (2D variant)
+// points A, B, D, E, F
+// the triangle ABH where H is the similar point so △ABH ∼ △DEF (screen plane)
+// (Java: Slate.java polygon case 9 — Similar(A,B,screen,D,E,F,screen) + PolygonElement(A,B,H))
+export class SimilarPolygonConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.similar;
+    signature: ConstructionTypes[] = (new Array(5)).fill(ct.PointElement);
 
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let sim = new SimilarElement(ps[0], ps[1], screen, ps[2], ps[3], ps[4], screen);
+        let g = new PolygonElement([ps[0], ps[1], sim]);
+        return [[sim, g], g];
+    }
+}
 
 // TBD
 // polygon
@@ -1406,11 +1427,13 @@ export const constructions : Construction[] = [
     new ChordConstruction(),
     new LineParallelConstruction(),
     new LineFootConstruction(),
+    new SimilarLineConstruction(),
     new TrianglePolygonConstruction(),
     new SquarePolygonConstruction(),
     new EquilateralTriangleConstruction(),
     new ParallelogramPolygonConstruction(),
     new QuadrilateralPolygonConstruction(),
+    new SimilarPolygonConstruction(),
     new VertexConstruction(),
     new PerpendicularPlaneConstruction(),
     new SphereRadiusConstruction()

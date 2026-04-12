@@ -566,6 +566,50 @@ describe("slate", ()=> {
     //   A=(50,200), B=(150,200)
     //   C = rotate B around A by π/2 then scale by 0.5 → (50, 250)
 
+    // polygon;similar — triangle ABH where H is the similar point so △ABH ∼ △DEF
+    // propI23: A=(40,180), G=(cutoff result), C=(190,80), E=(270,180), D=(260,40)
+    // Simpler standalone: A=(50,200), B=(150,200), D=(0,0), E=(100,0), F=(0,100)
+    //   → H = (50,300) (same as point;similar test with factor=1)
+    //   → polygon vertices = [A, B, H] = [(50,200), (150,200), (50,300)]
+    it("should create a similar triangle polygon", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [50, 200] },
+            { name: "B", construction: E.Point.free, params: [150, 200] },
+            { name: "D", construction: E.Point.free, params: [0, 0] },
+            { name: "E", construction: E.Point.free, params: [100, 0] },
+            { name: "F", construction: E.Point.free, params: [0, 100] },
+            { name: "ABH", construction: E.Polygon.similar, params: ["A", "B", "D", "E", "F"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let poly = slate.lookupElement("ABH") as PolygonElement;
+        assert.equal(poly.V.length, 3);
+        almostEqual(poly.V[0].x,  50, 0.01); almostEqual(poly.V[0].y, 200, 0.01);
+        almostEqual(poly.V[1].x, 150, 0.01); almostEqual(poly.V[1].y, 200, 0.01);
+        almostEqual(poly.V[2].x,  50, 0.01); almostEqual(poly.V[2].y, 300, 0.01);
+    });
+
+    // line;similar — line AH where H is the similar point
+    it("should create a similar line", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [50, 200] },
+            { name: "B", construction: E.Point.free, params: [150, 200] },
+            { name: "D", construction: E.Point.free, params: [0, 0] },
+            { name: "E", construction: E.Point.free, params: [100, 0] },
+            { name: "F", construction: E.Point.free, params: [0, 100] },
+            { name: "AH", construction: E.Line.similar, params: ["A", "B", "D", "E", "F"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("AH") as LineElement;
+        // Line starts at A
+        almostEqual(line.A.x,  50, 0.01); almostEqual(line.A.y, 200, 0.01);
+        // Line ends at H = similar point = (50, 300)
+        almostEqual(line.B.x,  50, 0.01); almostEqual(line.B.y, 300, 0.01);
+    });
+
     // circle;radius 3-point — circle at Center with radius = |A-B| (not |Center-B|)
     // propIII26: center H=(340,115), radius-points G=(120,115), A=(75,30)
     //   radius = |GA| = sqrt(45^2 + 85^2) = sqrt(2025+7225) = sqrt(9250) ≈ 96.177

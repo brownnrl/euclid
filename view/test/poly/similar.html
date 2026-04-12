@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>Test View - Polygon.similar (I.23)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.23 — To construct a rectilinear angle equal to a given rectilinear angle",
+        canvasid: "canvasId",
+        elements: [
+            // Reference angle CDE
+            { name: "D", construction: E.Point.free, params: [260, 40] },
+            { name: "C", construction: E.Point.free, params: [190, 80] },
+            { name: "Ep", construction: E.Point.free, params: [270, 180] },
+            { name: "CDE", construction: E.Polygon.triangle, params: ["C", "D", "Ep"] },
+            // Base line AB
+            { name: "A", construction: E.Point.free, params: [40, 180] },
+            { name: "B", construction: E.Point.free, params: [200, 180] },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+            // Cutoff G on AB equal to CE
+            { name: "G", construction: E.Point.cutoff, params: ["A", "B", "C", "Ep"] },
+            // Similar triangle AGF where △AGF ∼ △CED  ← target
+            // <param name=e[12] value="AGF;polygon;similar;A,G,C,E,D">
+            { name: "AGF", construction: E.Polygon.similar, params: ["A", "G", "C", "Ep", "D"] },
+            { name: "F", construction: E.Point.vertex, params: ["AGF", 3] },
+        ]
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Test View - Line.similar (I.31)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.31 — To draw a straight line through a given point parallel to a given straight line",
+        canvasid: "canvasId",
+        elements: [
+            // <param name=e[1] value="A;point;free;130,40">
+            { name: "A", construction: E.Point.free, params: [130, 40] },
+            // <param name=e[2] value="B;point;free;40,120">
+            { name: "B", construction: E.Point.free, params: [40, 120] },
+            // <param name=e[3] value="C;point;free;180,120">
+            { name: "C", construction: E.Point.free, params: [180, 120] },
+            // <param name=e[4] value="D;point;lineSlider;B,C,100,120">
+            { name: "D", construction: E.Point.lineSlider, params: ["B", "C", 100, 120] },
+            // <param name=e[5] value="BC;line;connect;B,C">
+            { name: "BC", construction: E.Line.connect, params: ["B", "C"] },
+            // <param name=e[6] value="AD;line;connect;A,D">
+            { name: "AD", construction: E.Line.connect, params: ["A", "D"] },
+            // <param name=e[7] value="AE;line;similar;A,D,D,A,C">  ← target
+            { name: "AE", construction: E.Line.similar, params: ["A", "D", "D", "A", "C"] },
+            // <param name=e[8] value="E;point;last;AE">
+            { name: "Ep", construction: E.Point.last, params: ["AE"] },
+            // <param name=e[9] value="AF;line;extend;E,A,B,D">
+            { name: "AF", construction: E.Line.extend, params: ["Ep", "A", "B", "D"] },
+            // <param name=e[10] value="F;point;last;AF">
+            { name: "F", construction: E.Point.last, params: ["AF"] },
+        ]
+    });
+</script>
+</body>
+</html>
