@@ -787,6 +787,77 @@ describe("slate", ()=> {
     // Right angle at B=(0,0), rays to A=(0,100) and C=(100,0)
     // Bisector of 90° at B → 45° ray hits AC (line from (0,100) to (100,0), x+y=100)
     // at (50, 50)
+    // plane;3points — plane through 3 non-collinear points
+    it("should create a plane through 3 points with computed S,T,U frame", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "B", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "P", construction: E.Plane.threePoints, params: ["A", "B", "C"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let plane = slate.lookupElement("P") as PlaneElement;
+        // S should be unit vector in direction A→B = (1,0,0)
+        almostEqual(plane.S.x, 1, 0.01);
+        almostEqual(plane.S.y, 0, 0.01);
+        almostEqual(plane.S.z, 0, 0.01);
+        // T should be unit vector perpendicular to S in the plane = (0,1,0)
+        almostEqual(plane.T.x, 0, 0.01);
+        almostEqual(plane.T.y, 1, 0.01);
+        almostEqual(plane.T.z, 0, 0.01);
+        // U should be normal = (0,0,1)
+        almostEqual(plane.U.x, 0, 0.01);
+        almostEqual(plane.U.y, 0, 0.01);
+        almostEqual(plane.U.z, 1, 0.01);
+    });
+
+    // polygon;octagon — 8 free vertices pass-through
+    it("should create an octagon with 8 vertices", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [100, 50] },
+            { name: "B", construction: E.Point.free, params: [150, 50] },
+            { name: "C", construction: E.Point.free, params: [175, 100] },
+            { name: "D", construction: E.Point.free, params: [150, 150] },
+            { name: "E", construction: E.Point.free, params: [100, 150] },
+            { name: "F", construction: E.Point.free, params: [75, 100] },
+            { name: "G", construction: E.Point.free, params: [85, 70] },
+            { name: "H", construction: E.Point.free, params: [115, 70] },
+            { name: "OCT", construction: E.Polygon.octagon, params: ["A","B","C","D","E","F","G","H"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        let poly = slate.lookupElement("OCT") as PolygonElement;
+        assert.equal(poly.V.length, 8);
+        almostEqual(poly.V[0].x, 100, 0.01);
+        almostEqual(poly.V[7].x, 115, 0.01);
+    });
+
+    // line;cutoff — line AE equal to CD along line AB
+    // A=(50,100), B=(200,100), C=(0,0), D=(60,0) → |CD|=60
+    // Layoff(A,A,B,C,D): E on ray AB from A with |AE|=60 → E=(110,100)
+    // Line from A=(50,100) to E=(110,100)
+    it("should create a line cutoff equal to a given length", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [50, 100] },
+            { name: "B", construction: E.Point.free, params: [200, 100] },
+            { name: "C", construction: E.Point.free, params: [0, 0] },
+            { name: "D", construction: E.Point.free, params: [60, 0] },
+            { name: "AE", construction: E.Line.cutoff, params: ["A", "B", "C", "D"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("AE") as LineElement;
+        // Line starts at A
+        almostEqual(line.A.x, 50, 0.01);
+        almostEqual(line.A.y, 100, 0.01);
+        // Line ends at E = A + 60 along AB direction (horizontal)
+        almostEqual(line.B.x, 110, 0.01);
+        almostEqual(line.B.y, 100, 0.01);
+    });
+
     it("should bisect a right angle and intersect the opposite side", () => {
         let data : IConstructionInfo[] = [
             { name: "A", construction: E.Point.free, params: [0, 100] },
