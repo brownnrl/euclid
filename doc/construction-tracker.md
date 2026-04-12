@@ -293,6 +293,14 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/line/foot/{original,applet}.html](../view/applet-tests/line/foot/)
   - Used in: I.47 (Pythagoras' theorem)
 
+- [ ] **`cutoff`** — TBD
+  - Java source: `Slate.java` line case 7 — `Layoff(P[0],P[0],P[1],P[2],P[3])` +
+    `LineElement(P[0], layoff)`. Same dispatch-trick pattern as `line;extend`.
+  - Used in: compass geometry pages. No Books I–XIII proposition uses found,
+    but the enum `LineConstructions.cutoff = 108` exists and the TBD comment
+    stub is in Constructions.ts.
+  - Trivial port: same Layoff+LineElement pattern as line;extend/line;parallel.
+
 - [x] **`similar`** — `src/elements/Constructions.ts` (`SimilarLineConstruction`)
   - No new element class — reuses `SimilarElement` (from `point;similar`) +
     `LineElement` wrapper. `construct()` creates `SimilarElement(A,B,screen,D,E,F,screen)`
