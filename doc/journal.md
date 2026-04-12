@@ -20,6 +20,40 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented polygon;regularPolygon — first Book IV construction
+
+**Completed:**
+- Wired `RegularPolygonConstruction` in `src/elements/Constructions.ts` —
+  a 2D dispatcher with signature `[PointElement, PointElement, Integer]`
+  that creates `RegularPolygonElement(a, b, screen, n)` for variable n.
+  No new element class needed — `RegularPolygonElement.ts` was already
+  fully ported (including density parameter) during the polygon;square
+  session. Total new code: ~10 lines.
+- Registered BEFORE `SquarePolygonConstruction` and
+  `EquilateralTriangleConstruction` in the constructions array (3-param
+  signature first, per signature-ordering rule).
+- One Mocha test: regular pentagon (n=5), all-5-sides-equal check.
+  35 → **36 passing**.
+- Test page + applet companion using propIV11 variant 1 (inscribed
+  pentagon with circumcircle and diagonals).
+- Book IV renderable count: 10 → **13** (+IV.11, IV.12, IV.14).
+  I–IV total: 109 → **112**.
+
+**Discovered:**
+- IV.13 and IV.16 still need `line;angleBisector` in addition to
+  `polygon;regularPolygon` (which just landed).
+- propIV11 has 3 applet variants: variant 2 uses `point;angleBisector`
+  (TBD) and variant 3 uses `polygon;pentagon` (TBD) — but variant 1
+  renders fully with just `polygon;regularPolygon`.
+
+**Next session:**
+- `line;angleBisector` (`AngleDivider.java`) — unblocks IV.4, IV.13, IV.16
+  (3 remaining Book IV blockers). Real porting work.
+- Then `polygon;hexagon` — trivial pass-through, unblocks IV.15.
+- After those 2: Book IV complete (16/16). Analyze Book V next.
+
+---
+
 ## 2026-04-12 — Scope extension: all-books coverage + Java port tracker
 
 **Completed:**

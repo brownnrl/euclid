@@ -1168,18 +1168,31 @@ export class ParallelogramPolygonConstruction extends Construction {
     }
 }
 
+// polygon
+// regularPolygon (2D variant)
+// points A, B, integer n
+// the regular n-gon on side AB in the screen plane
+// (Java: Slate.java polygon case 7 — RegularPolygon(A, B, screen, n))
+export class RegularPolygonConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.regularPolygon;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const a = params[0] as PointElement;
+        const b = params[1] as PointElement;
+        const n = params[2] as number;
+        const g = new RegularPolygonElement(a, b, screen, n);
+        return [[g], g];
+    }
+}
+
 // TBD
 // polygon
-// regularPolygon
-// points A, B integer n
-// the regular polygon on a side AB given the number of vertices n
-
-
-// TBD
-// polygon
-// starPolygon
-// points A, B integers n, d
-// the star polygon on a side AB given the number of vertices n and the density d
+// starPolygon (2D variant)
+// points A, B, integers n, d
+// the star polygon {n/d} on side AB in the screen plane
+// (RegularPolygonElement already supports density param d — just needs dispatcher)
+// (Java: Slate.java polygon case 8 — RegularPolygon(A, B, screen, n, d))
 
 
 // polygon
@@ -1454,6 +1467,7 @@ export const constructions : Construction[] = [
     new LineFootConstruction(),
     new SimilarLineConstruction(),
     new TrianglePolygonConstruction(),
+    new RegularPolygonConstruction(),
     new SquarePolygonConstruction(),
     new EquilateralTriangleConstruction(),
     new ParallelogramPolygonConstruction(),

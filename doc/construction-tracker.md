@@ -393,12 +393,18 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/poly/application/{original,applet}.html](../view/applet-tests/poly/application/)
   - Used in: I.44, I.45, II.14 — **the final 3 propositions for 100% I–III**
 
-- [ ] **`regularPolygon`** — TBD
-  - Java source: `RegularPolygon.java` — **element class already ported** as
-    `RegularPolygonElement.ts` (used by equilateralTriangle n=3 and square n=4).
-    Only the Construction dispatcher with variable-n signature
-    `[PointElement, PointElement, Integer]` is needed.
-  - Used in: Book IV (IV.11, IV.12, IV.13, IV.14, IV.16 — **blocks 5 propositions**)
+- [x] **`regularPolygon`** — `src/elements/Constructions.ts` (`RegularPolygonConstruction`)
+  - Reuses `RegularPolygonElement.ts` with variable n. 2D variant (screen plane).
+    Signature `[PointElement, PointElement, Integer]`.
+  - Registered BEFORE `SquarePolygonConstruction` and
+    `EquilateralTriangleConstruction` in the constructions array (3-param
+    signature is longer than 2-param, per signature-ordering rule).
+  - Java source: `Slate.java` polygon case 7 → `new RegularPolygon(A, B, screen, n)`.
+  - Mocha test (1): regular pentagon (n=5), all-sides-equal check.
+  - [x] test view: [view/test/poly/regularPolygon.html](../view/test/poly/regularPolygon.html) — propIV11
+  - [x] applet-tests pair:
+    [view/applet-tests/poly/regularPolygon/{original,applet}.html](../view/applet-tests/poly/regularPolygon/)
+  - Used in: Book IV (IV.11, IV.12, IV.13, IV.14, IV.16)
 
 - [ ] **`starPolygon`** — TBD
   - Java source: `RegularPolygon.java` — element class ported with density
