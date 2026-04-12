@@ -20,6 +20,48 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Books V–X analysis — 391/465 renderable (84%), zero new code
+
+**Completed:**
+- Analyzed ALL remaining books (V through XIII) against the construction
+  tracker. Extended the proposition tracker with per-proposition entries
+  for Books V–X and summary-level analysis for Books XI–XIII.
+- **Books V, VI, VII, IX**: all 133 propositions are ALREADY RENDERABLE
+  using existing constructions. Zero new ports needed. These books cover
+  proportion theory, similar figures, and number theory — none introduce
+  constructions beyond what was ported for Books I–IV.
+- **Book VIII**: 25 of 27 renderable; 2 blocked by `point;meanProportional`.
+- **Book X**: 82 of 115 renderable; 33 blocked by `point;meanProportional`.
+  `MeanProportional.java` is a single construction that would unblock
+  **35 propositions** across Books VIII, X, and XIII at once.
+- **Books XI–XIII** (solid geometry): preliminary analysis shows they need
+  3D-specific constructions (`plane;3points`, `point;planeSlider`,
+  `point;sphereSlider`, `polygon;face`, `polygon;octagon`,
+  `circle;intersection`) that are the final frontier of Phase 1.
+- Overall: **391 of 465 propositions (84%) are renderable** without any
+  new code. Only 74 remain blocked.
+
+**Discovered:**
+- **`point;meanProportional` is the single highest-impact TBD construction
+  remaining**: it blocks 35 propositions (2 in VIII, 33 in X, plus some in
+  XIII). `MeanProportional.java` is 22 lines — a very quick port.
+- Books V through IX were a mass unlock: the proportion-era constructions
+  (`point;proportion`, `point;similar`, `point;parallelogram`) that were
+  ported for Books I–IV turned out to be sufficient for 133 out of 138
+  propositions in Books V–IX (96.4%).
+- The solid-geometry books (XI–XIII) are the real Phase 1 frontier. They
+  need `plane;3points` (the basic 3-point plane construction), slider
+  constructions for planes and spheres, and some polygon variants. These
+  will require actual 3D element classes.
+
+**Next session:**
+- **Top priority: `point;meanProportional`** — unblocks 35 propositions
+  across 3 books. `MeanProportional.java` is 22 lines. Highest
+  single-construction impact remaining in the entire project.
+- After that: the solid-geometry constructions for Books XI–XIII.
+
+---
+
 ## 2026-04-12 — AngleDivider + hexagon/pentagon — BOOK IV COMPLETE (16/16)
 
 **Completed:**
