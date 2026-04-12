@@ -14,6 +14,7 @@ import {ArcElement} from "../src/elements/sector/ArcElement";
 import {Chord} from "../src/elements/line/Chord";
 import {PolygonElement} from "../src/elements/polygon/PolygonElement";
 import {SimilarElement} from "../src/elements/point/SimilarElement";
+import {CircleElement} from "../src/elements/circle/CircleElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -564,6 +565,29 @@ describe("slate", ()=> {
     //   D=(0,0), E=(200,0), F=(0,100) → θ = π/2, factor = 100/200 = 0.5
     //   A=(50,200), B=(150,200)
     //   C = rotate B around A by π/2 then scale by 0.5 → (50, 250)
+
+    // circle;radius 3-point — circle at Center with radius = |A-B| (not |Center-B|)
+    // propIII26: center H=(340,115), radius-points G=(120,115), A=(75,30)
+    //   radius = |GA| = sqrt(45^2 + 85^2) = sqrt(2025+7225) = sqrt(9250) ≈ 96.177
+    it("should create a circle with center H and radius |GA| (3-point form)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "G",   construction: E.Point.free,    params: [120, 115] },
+            { name: "A",   construction: E.Point.free,    params: [75, 30] },
+            { name: "H",   construction: E.Point.free,    params: [340, 115] },
+            { name: "DEF", construction: E.Circle.radius, params: ["H", "G", "A"] },
+        ];
+        let slate = new Slate(createCanvas(500, 300));
+        toElements(slate, data);
+        let circle = slate.lookupElement("DEF") as CircleElement;
+        // Center should be H
+        almostEqual(circle.Center.x, 340, 0.01);
+        almostEqual(circle.Center.y, 115, 0.01);
+        // Radius should be |GA|, not |H-anything|
+        let expectedRadius = Math.sqrt(45*45 + 85*85); // sqrt(9250) ≈ 96.177
+        almostEqual(circle.radius, expectedRadius, 0.01);
+        // A should NOT be Center (that would be the 2-point form)
+        assert.notEqual(circle.A, circle.Center);
+    });
 
     // line;foot (2D) — line from A to the foot of the perpendicular from A to line BC
     // A=(100,50), B=(50,200), C=(250,200) — BC is horizontal at y=200
