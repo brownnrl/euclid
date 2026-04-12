@@ -11,6 +11,7 @@ import {LineElement} from "../src/elements/line/LineElement";
 import {CircumcircleElement} from "../src/elements/circle/CircumcircleElement";
 import {SphereElement} from "../src/elements/sphere/SphereElement";
 import {ArcElement} from "../src/elements/sector/ArcElement";
+import {Chord} from "../src/elements/line/Chord";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -375,6 +376,119 @@ describe("slate", ()=> {
         almostEqual(A.x, 50,  0.001); almostEqual(A.y, 130, 0.001);
         almostEqual(M.x, 70,  0.001); almostEqual(M.y, 210, 0.001);
         almostEqual(B.x, 120, 0.001); almostEqual(B.y, 200, 0.001);
+    });
+
+    // Book I, Prop 12 — chord of circle cut by a line
+    // <param name=e[1]  value="A;point;free;30,180">
+    // <param name=e[2]  value="B;point;free;290,180">
+    // <param name=e[3]  value="AB;line;connect;A,B">
+    // <param name=e[4]  value="C;point;free;160,130">
+    // <param name=e[5]  value="D;point;free;180,220">
+    // <param name=e[6]  value="EFG;circle;radius;C,D">
+    // <param name=e[7]  value="EG;line;chord;AB,EFG">
+    //
+    // Hand-computed expectations (see doc/journal.md entry for line;chord):
+    //   radius² = 20² + 90² = 8500
+    //   foot of ⊥ from C=(160,130) to line y=180 is (160,180)
+    //   d² = 50² = 2500
+    //   s  = √(8500-2500) = √6000 ≈ 77.460
+    //   factor = s / D.distance(foot) = 77.460 / 130 ≈ 0.59585
+    //   chord.A = (D-foot)*factor + foot = (82.540, 180)
+    //   chord.B = 2*foot - chord.A         = (237.460, 180)
+    let chord_propI12_data : IConstructionInfo[] = [
+        { name: "A",   construction: E.Point.free,     params: [30, 180] },
+        { name: "B",   construction: E.Point.free,     params: [290, 180] },
+        { name: "AB",  construction: E.Line.connect,   params: ["A", "B"] },
+        { name: "C",   construction: E.Point.free,     params: [160, 130] },
+        { name: "D",   construction: E.Point.free,     params: [180, 220] },
+        { name: "EFG", construction: E.Circle.radius,  params: ["C", "D"] },
+        { name: "EG",  construction: E.Line.chord,     params: ["AB", "EFG"] },
+    ];
+
+    it("should compute the chord of a circle cut by a line", () => {
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, chord_propI12_data);
+        slate.elements.forEach(e => e.update());
+        let chord = slate.lookupElement("EG") as Chord;
+        almostEqual(chord.A.x,  82.540, 0.01);
+        almostEqual(chord.A.y, 180.000, 0.01);
+        almostEqual(chord.B.x, 237.460, 0.01);
+        almostEqual(chord.B.y, 180.000, 0.01);
+        // Both endpoints must lie on the circle
+        let center = slate.lookupElement("C") as PointElement;
+        let r = Math.sqrt(8500);
+        almostEqual(chord.A.distance(center), r, 0.001);
+        almostEqual(chord.B.distance(center), r, 0.001);
+    });
+
+    it("should NaN the chord when the line misses the circle entirely", () => {
+        // Shift C far above the line so the circle can't reach it.
+        let miss_data : IConstructionInfo[] = [
+            { name: "A",   construction: E.Point.free,    params: [30, 180] },
+            { name: "B",   construction: E.Point.free,    params: [290, 180] },
+            { name: "AB",  construction: E.Line.connect,  params: ["A", "B"] },
+            { name: "C",   construction: E.Point.free,    params: [160, 10] },  // far above y=180
+            { name: "D",   construction: E.Point.free,    params: [165, 20] },  // tiny circle
+            { name: "EFG", construction: E.Circle.radius, params: ["C", "D"] },
+            { name: "EG",  construction: E.Line.chord,    params: ["AB", "EFG"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, miss_data);
+        slate.elements.forEach(e => e.update());
+        let chord = slate.lookupElement("EG") as Chord;
+        assert.ok(isNaN(chord.A.x) && isNaN(chord.A.y));
+        assert.ok(isNaN(chord.B.x) && isNaN(chord.B.y));
+    });
+
+    it("should translate only the chord endpoints, leaving inputs untouched", () => {
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, chord_propI12_data);
+        slate.elements.forEach(e => e.update());
+        let chord = slate.lookupElement("EG") as Chord;
+        let ax0 = chord.A.x, ay0 = chord.A.y;
+        let bx0 = chord.B.x, by0 = chord.B.y;
+        chord.translate(5, 7);
+        almostEqual(chord.A.x, ax0 + 5, 0.001);
+        almostEqual(chord.A.y, ay0 + 7, 0.001);
+        almostEqual(chord.B.x, bx0 + 5, 0.001);
+        almostEqual(chord.B.y, by0 + 7, 0.001);
+        // Input free points must be untouched
+        let A = slate.lookupElement("A") as PointElement;
+        let B = slate.lookupElement("B") as PointElement;
+        let C = slate.lookupElement("C") as PointElement;
+        let D = slate.lookupElement("D") as PointElement;
+        almostEqual(A.x,  30, 0.001); almostEqual(A.y, 180, 0.001);
+        almostEqual(B.x, 290, 0.001); almostEqual(B.y, 180, 0.001);
+        almostEqual(C.x, 160, 0.001); almostEqual(C.y, 130, 0.001);
+        almostEqual(D.x, 180, 0.001); almostEqual(D.y, 220, 0.001);
+    });
+
+    it("should rotate only the chord endpoints around a pivot", () => {
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, chord_propI12_data);
+        slate.elements.forEach(e => e.update());
+        let chord = slate.lookupElement("EG") as Chord;
+        let A = slate.lookupElement("A") as PointElement;
+        // 90° CCW rotation around A=(30,180): ac=cos(90°)=0, as=sin(90°)=1
+        // chord.A (82.540, 180) → dx=52.540, dy=0
+        //   new x = 30 + 0*52.540 - 1*0        = 30
+        //   new y = 180 + 1*52.540 + 0*0       = 232.540
+        // chord.B (237.460, 180) → dx=207.460, dy=0
+        //   new x = 30 + 0*207.460 - 1*0       = 30
+        //   new y = 180 + 1*207.460 + 0*0      = 387.460
+        chord.rotate(A, 0, 1);
+        almostEqual(chord.A.x,  30.000, 0.01);
+        almostEqual(chord.A.y, 232.540, 0.01);
+        almostEqual(chord.B.x,  30.000, 0.01);
+        almostEqual(chord.B.y, 387.460, 0.01);
+        // Input free points untouched (A is the pivot; B, C, D must not move)
+        let B = slate.lookupElement("B") as PointElement;
+        let C = slate.lookupElement("C") as PointElement;
+        let D = slate.lookupElement("D") as PointElement;
+        almostEqual(A.x,  30, 0.001); almostEqual(A.y, 180, 0.001);
+        almostEqual(B.x, 290, 0.001); almostEqual(B.y, 180, 0.001);
+        almostEqual(C.x, 160, 0.001); almostEqual(C.y, 130, 0.001);
+        almostEqual(D.x, 180, 0.001); almostEqual(D.y, 220, 0.001);
     });
 
     it("should be able to find the closest visible point within a tolerance", () =>{
