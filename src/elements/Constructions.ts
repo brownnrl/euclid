@@ -1000,15 +1000,27 @@ export class CircleRadiusCenterConstruction extends Construction {
 
 // TBD
 // circle
-// radius
-// points A, B [plane C=any]
+// radius (3D, 2-point)
+// points A, B, plane C
 // the circle with center A and radius AB in the plane C
 
-// TBD
 // circle
-// radius
-// points A, B, C [plane D]
-// the circle with center A and radius BC in the plane D
+// radius (2D, 3-point)
+// points A, B, C
+// the circle with center A and radius |BC| in the screen plane
+// (Java: CircleElement(A, B, C, screen) — A=center, radius=B.distance(C))
+// MUST be registered BEFORE the 2-point variant in the constructions array
+// (signature variant ordering rule: longer signature first)
+export class CircleRadius3PointConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.radius;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new CircleElement({C: ps[0], A: ps[1], B: ps[2], AP: screen});
+        return [[g], g];
+    }
+}
 
 
 // TBD
@@ -1378,6 +1390,7 @@ export const constructions : Construction[] = [
     new ArcConstruction(),
     new CircleSliderConstruction(),
     new CircleSliderConstruction2dPoint(),
+    new CircleRadius3PointConstruction(),
     new CircleRadiusCenterConstruction(),
     new PointPerpendicular1Construction(),
     new PointPerpendicular2Construction(),
