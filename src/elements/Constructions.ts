@@ -35,6 +35,7 @@ import {CircleSlider} from "./point/CircleSlider";
 import {Perpendicular} from "./line/Perpendicular";
 import {PlanePerpendicularLine} from "./line/PlanePerpendicularLine";
 import {Bichord} from "./line/Bichord";
+import {Chord} from "./line/Chord";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
 import {SphereElement} from "./sphere/SphereElement";
@@ -814,11 +815,23 @@ export class LineConnectConstruction extends Construction {
 // point A plane B
 // the line AD drawn perpendicular to plane B with the point D lying on B
 
-// TBD
 // line
 // chord
 // points A, B circle C
-// the intersection of the line AB in the circle C
+// the chord of circle C cut by the line AB
+// (post-LineElement-expansion: A, B are the two endpoints of the input line)
+export class ChordConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.chord;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.CircleElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const D = params[0] as PointElement;
+        const E = params[1] as PointElement;
+        const C = params[2] as CircleElement;
+        const g = new Chord({D, E, C});
+        return [[g], g];
+    }
+}
 
 // line
 // bichord
@@ -1315,6 +1328,7 @@ export const constructions : Construction[] = [
     new LinePerpendicular4Construction(),
     new LinePerpendicular5Construction(),
     new BichordConstruction(),
+    new ChordConstruction(),
     new TrianglePolygonConstruction(),
     new EquilateralTriangleConstruction(),
     new VertexConstruction(),
