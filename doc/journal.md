@@ -20,6 +20,75 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented point;similar + major tracker NEEDS-line corrections
+
+**Completed:**
+- Ported `point;similar` as `src/elements/point/SimilarElement.ts` — a port
+  of `Similar.java` (10 lines). Extends `PointElement`; constructor takes
+  `(A, B, AP, D, E, F, Q)` and `update()` calls `this.toSimilar(...)` which
+  was already ported on `PointElement`. The math computes the point C such
+  that △ABC ∼ △DEF by rotating B around A by the angle ∠EDF and scaling by
+  |DF|/|DE|.
+- `SimilarPointConstruction` wired into `Constructions.ts` with 2D signature
+  `[PointElement × 5]`, dispatching to `PointConstructions.similar = 15`.
+  Both planes default to `screen`. 3D variant (explicit PlaneElement params)
+  deferred per 2D-first policy; no signature-ordering hazard since 2D (5
+  params) and 3D (7 params) lengths differ.
+- Two Mocha tests: isosceles right triangle (θ=π/2, factor=1, C=(50,300))
+  and non-isosceles right triangle (θ=π/2, factor=0.5, C=(50,250)).
+  25 → **27 passing** (cumulative).
+- Test page + applet companion using defIII11 (similar circle segments):
+  two circles with sectors and triangles, where F on the right circle is
+  computed via point;similar to be the similar-triangle vertex.
+- **Major proposition-tracker corrections**: cross-checked every I–III
+  proposition that the tracker listed as needing `point;similar` against
+  the actual HTML param lists. Found 5 WRONG NEEDS lines:
+  - I.23: uses `polygon;similar` (e[12]), NOT `point;similar`
+  - I.24: uses `polygon;similar` (e[11]), NOT `point;similar`
+  - I.26: uses `polygon;similar` (e[8]), NOT `point;similar`
+  - I.31: uses `line;similar` (e[7]), NOT `point;similar`
+  - III.14: uses `polygon;similar` (e[7]), NOT `point;similar`
+  All five corrected in this branch. This is the systematic resolution
+  of the tracker-drift bug flagged in the line;chord journal entry.
+- Also corrected III.26–III.29: these DO use `point;similar` (now landed)
+  but are STILL blocked by the 3-point `circle;radius` variant (TBD) at
+  their respective e[7] elements.
+- Book I renderable count: 24 → **25** (+I.42). Book III: 29 → **31**
+  (+III.33, III.34). I–III total: 55 → **58**.
+
+**Discovered:**
+- **Clean verifiers DO exist for `point;similar`**: the "no clean verifier"
+  claim from the startup menu was wrong. defIII11 and propIII33 both have
+  `point;similar` with all preceding elements IMPL. The false claim arose
+  because the tracker pointed at I.23/I.31 (which use polygon/line;similar)
+  rather than at the actual point;similar propositions.
+- **3-point `circle;radius` is the next big blocker**: III.26–III.29 and
+  III.24 all use a 3-point `circle;radius` form (`circle at A with radius
+  |BC|`) that is TBD. This was first noted in the I.4 correction during
+  the sector;arc session (2026-04-11). Landing it would unblock 5 Book III
+  propositions at once.
+- **Proposition-tracker drift was worse than expected**: 5 of the ~15
+  propositions listed as needing `point;similar` didn't actually use it.
+  The `Similar.java` class handles point, line, AND polygon variants via
+  the same Java source, and the tracker naively assumed they all mapped to
+  `point;similar`. Future tracker entries should grep the actual HTML
+  `<param>` lines to confirm the `type;construction` pair, not just the
+  construction name.
+
+**Next session:**
+- Top priority: `polygon;quadrilateral` (11 I–III uses, I.43 sole-TBD
+  verifier, trivially easy — extends `PolyConstruction` with a 4-point
+  signature). Or `polygon;square` (10 uses, I.47 viable, RegularPolygon
+  n=4).
+- High-impact alternative: 3-point `circle;radius` variant (would unblock
+  III.24, III.26–III.29 = 5 Book III props at once; needs a new signature
+  variant on `CircleRadiusCenterConstruction`).
+- Also consider `polygon;similar` and `line;similar` which share the same
+  `Similar.java` source — porting them would unblock I.23, I.24, I.26,
+  I.31, III.14.
+
+---
+
 ## 2026-04-11 — Implemented polygon;parallelogram (3rd warm-cache port)
 
 **Completed:**

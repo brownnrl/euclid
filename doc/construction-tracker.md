@@ -147,9 +147,27 @@ These affect the library as a whole, independent of individual constructions.
   - [x] test view: [view/test/point/vertex.html](../view/test/point/vertex.html)
   - Used in: I.2, I.9–I.11, I.23–I.24, I.26, I.33–I.34, I.36, I.41–I.47, Book II, III.14, III.24–III.25
 
-- [ ] **`similar`** — TBD
-  - Java source: `Similar.java`
-  - Used in: I.23–I.24, I.26, I.31, I.42, I.44–I.45, III.14, III.24–III.29, III.33–III.34
+- [x] **`similar`** — `src/elements/point/SimilarElement.ts`
+  - Extends `PointElement`; constructor takes `(A, B, AP, D, E, F, Q)` where
+    A/B are the first two vertices of the output triangle, D/E/F define the
+    reference triangle, and AP/Q are the ambient planes (both default to
+    screen in the 2D variant). `update()` calls `this.toSimilar(...)` which
+    already exists on `PointElement`.
+  - Java source: `Similar.java` — 10 lines, line-for-line port. The math
+    lives in `PointElement.toSimilar()` which was ported in a prior session.
+  - 2D variant only per the 2D-first policy; the 3D variant (with explicit
+    PlaneElement params) remains TBD. No signature-ordering hazard since the
+    2D (5 params) and 3D (7 params) lengths differ.
+  - Mocha tests (2): isosceles right triangle (factor=1, C=(50,300)),
+    non-isosceles right triangle (factor=0.5, C=(50,250)).
+  - [x] test view: [view/test/point/similar.html](../view/test/point/similar.html) — defIII11
+  - [x] applet-tests pair:
+    [view/applet-tests/point/similar/{original,applet}.html](../view/applet-tests/point/similar/)
+  - **Tracker correction**: the proposition-tracker had I.23, I.24, I.26,
+    I.31, III.14 listed as needing `point;similar` — they actually use
+    `polygon;similar` or `line;similar`. Corrected in this branch.
+  - Used in (actual `point;similar`): I.42, III.33, III.34, plus
+    III.26–III.29 (but those are blocked by 3-point `circle;radius` TBD)
 
 - [ ] **`proportion`** — TBD
   - Java source: `Proportion.java`

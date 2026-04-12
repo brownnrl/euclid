@@ -1,0 +1,34 @@
+<HTML><HEAD><TITLE>point;similar — applet form of view/test/point/similar.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/point/similar.html -->
+<!-- ORIGINAL: view/applet-tests/point/similar/original.html (defIII11) -->
+<!--
+  Trimmed version of III.Def.11 focusing on the two similar circle
+  segments. The left circle (Acirc) has sector BAC and triangle ABC;
+  the right circle (Dcirc) has similar triangle DEF where F is computed
+  via point;similar so that △DEF ∼ △BAC. Drag C on the left circle
+  to change the inscribed angle; F should track to maintain similarity.
+
+  Omits the second pair of sliders G/H from the full defIII11 to keep
+  the construction focused on point;similar.
+  Canvas is 420x400 to match the TS test page.
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=420 height=400>
+<param name=background value="35,19,100">
+<param name=title value="III.Def.11 — point;similar">
+<param name=e[1] value="A;point;free;120,120">
+<param name=e[2] value="B;point;free;120,50">
+<param name=e[3] value="Acirc;circle;radius;A,B;0;0;black;yellow">
+<param name=e[4] value="C;point;circleSlider;Acirc,50,180">
+<param name=e[5] value="BCsect;sector;sector;A,B,C;0;0;0;random">
+<param name=e[6] value="Atri;polygon;triangle;A,B,C;0;0;yellow;yellow">
+<param name=e[7] value="BC;line;connect;B,C">
+<param name=e[8] value="D;point;free;300,120">
+<param name=e[9] value="E;point;free;380,120">
+<param name=e[10] value="Dcirc;circle;radius;D,E;0;0;black;pink">
+<param name=e[11] value="F;point;similar;E,D,B,A,C">
+<param name=e[12] value="EFsect;sector;sector;D,E,F;0;0;0;random">
+<param name=e[13] value="Dtri;polygon;triangle;D,E,F;0;0;pink;pink">
+<param name=e[14] value="EF;line;connect;E,F">
+</applet>
+</BODY></HTML>

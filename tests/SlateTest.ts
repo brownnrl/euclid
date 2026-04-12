@@ -13,6 +13,7 @@ import {SphereElement} from "../src/elements/sphere/SphereElement";
 import {ArcElement} from "../src/elements/sector/ArcElement";
 import {Chord} from "../src/elements/line/Chord";
 import {PolygonElement} from "../src/elements/polygon/PolygonElement";
+import {SimilarElement} from "../src/elements/point/SimilarElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -549,6 +550,61 @@ describe("slate", ()=> {
         let D = slate.lookupElement("D") as PointElement;
         almostEqual(D.x, 210, 0.01);
         almostEqual(D.y, 175, 0.01);
+    });
+
+    // point;similar — point C such that △ABC ∼ △DEF
+    // Similar.java: this.toSimilar(A, B, screen, D, E, F, screen)
+    //
+    // Test 1: isosceles right triangle DEF, factor=1
+    //   D=(0,0), E=(100,0), F=(0,100) → θ = π/2, factor = 100/100 = 1
+    //   A=(50,200), B=(150,200)
+    //   C = rotate B around A by π/2 then scale by 1 → (50, 300)
+    //
+    // Test 2: non-isosceles right triangle, factor=0.5
+    //   D=(0,0), E=(200,0), F=(0,100) → θ = π/2, factor = 100/200 = 0.5
+    //   A=(50,200), B=(150,200)
+    //   C = rotate B around A by π/2 then scale by 0.5 → (50, 250)
+
+    it("should compute a similar point with factor=1 (isosceles right triangle)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [50, 200] },
+            { name: "B", construction: E.Point.free, params: [150, 200] },
+            { name: "D", construction: E.Point.free, params: [0, 0] },
+            { name: "E", construction: E.Point.free, params: [100, 0] },
+            { name: "F", construction: E.Point.free, params: [0, 100] },
+            { name: "C", construction: E.Point.similar, params: ["A", "B", "D", "E", "F"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let C = slate.lookupElement("C") as SimilarElement;
+        almostEqual(C.x, 50, 0.01);
+        almostEqual(C.y, 300, 0.01);
+        // Verify similarity: |AC|/|AB| should equal |DF|/|DE| = 1.0
+        let A = slate.lookupElement("A") as PointElement;
+        let B = slate.lookupElement("B") as PointElement;
+        almostEqual(A.distance(C) / A.distance(B), 1.0, 0.001);
+    });
+
+    it("should compute a similar point with factor=0.5 (non-isosceles right triangle)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [50, 200] },
+            { name: "B", construction: E.Point.free, params: [150, 200] },
+            { name: "D", construction: E.Point.free, params: [0, 0] },
+            { name: "E", construction: E.Point.free, params: [200, 0] },
+            { name: "F", construction: E.Point.free, params: [0, 100] },
+            { name: "C", construction: E.Point.similar, params: ["A", "B", "D", "E", "F"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let C = slate.lookupElement("C") as SimilarElement;
+        almostEqual(C.x, 50, 0.01);
+        almostEqual(C.y, 250, 0.01);
+        // Verify similarity: |AC|/|AB| should equal |DF|/|DE| = 0.5
+        let A = slate.lookupElement("A") as PointElement;
+        let B = slate.lookupElement("B") as PointElement;
+        almostEqual(A.distance(C) / A.distance(B), 0.5, 0.001);
     });
 
     it("should compute a line through A parallel and equal to BC", () => {
