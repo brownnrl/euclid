@@ -293,13 +293,10 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/line/foot/{original,applet}.html](../view/applet-tests/line/foot/)
   - Used in: I.47 (Pythagoras' theorem)
 
-- [ ] **`cutoff`** — TBD
-  - Java source: `Slate.java` line case 7 — `Layoff(P[0],P[0],P[1],P[2],P[3])` +
-    `LineElement(P[0], layoff)`. Same dispatch-trick pattern as `line;extend`.
-  - Used in: compass geometry pages. No Books I–XIII proposition uses found,
-    but the enum `LineConstructions.cutoff = 108` exists and the TBD comment
-    stub is in Constructions.ts.
-  - Trivial port: same Layoff+LineElement pattern as line;extend/line;parallel.
+- [x] **`cutoff`** — `src/elements/Constructions.ts` (`LineCutoffConstruction`)
+  - Layoff+LineElement dispatch trick, same pattern as `line;extend`.
+  - Mocha test (1): cutoff length verification.
+  - Used in: compass geometry pages. No Books I–XIII proposition uses.
 
 - [x] **`similar`** — `src/elements/Constructions.ts` (`SimilarLineConstruction`)
   - No new element class — reuses `SimilarElement` (from `point;similar`) +
@@ -446,10 +443,10 @@ These affect the library as a whole, independent of individual constructions.
   - 6-point pass-through `PolyConstruction`. Same pattern as quadrilateral.
   - Used in: IV.15
 
-- [ ] **`octagon`** — TBD
-  - Java source: `PolygonElement.java` (8 free vertices, pass-through)
-  - Used in: Book XII (XII.2, XII.10, XII.11, XII.12 — blocks 4 propositions)
-  - Trivial port: same pattern as pentagon/hexagon (PolyConstruction subclass)
+- [x] **`octagon`** — `src/elements/Constructions.ts` (`OctagonPolygonConstruction`)
+  - 8-point pass-through `PolyConstruction`. Same pattern as pentagon/hexagon.
+  - Mocha test (1): 8-vertex correctness.
+  - Used in: Book XII (XII.2, XII.10 sole-blocker; XII.11, XII.12 also need polyhedron)
 
 - [ ] **`face`** — TBD
   - Returns the N-th face (a PolygonElement) of a PolyhedronElement.
@@ -494,11 +491,11 @@ These affect the library as a whole, independent of individual constructions.
 - [x] **`perpendicular`** — `src/elements/plane/PerpendicularPlane.ts`
   - no dedicated test page
 
-- [ ] **`3points`** — TBD
-  - Java source: `PlaneElement.java` — **element class already ported** as
-    `PlaneElement.ts` with `{A, B, C}` constructor + `update()` that computes
-    S, T, U frame. Only the Construction dispatcher is needed (trivial).
-  - Blocks **22 propositions** across Books XI–XIII (highest-impact TBD remaining)
+- [x] **`3points`** — `src/elements/Constructions.ts` (`Plane3PointsConstruction`)
+  - No new element class — `PlaneElement.ts` already has the full constructor
+    + `update()`. The dispatcher just creates `PlaneElement({A, B, C})`.
+  - Mocha test (1): S/T/U frame verification for xy-plane.
+  - Used in: Books XI–XIII (prerequisite for 22 propositions; 2 sole-blocker: XI.29, XI.38)
 
 - [ ] **`parallel`** — TBD
   - Java source: `ParallelP.java` (26 lines) — parallel plane through a point
