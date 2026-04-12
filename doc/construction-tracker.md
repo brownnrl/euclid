@@ -211,7 +211,7 @@ These affect the library as a whole, independent of individual constructions.
 
 - [ ] **`harmonic`** — TBD
   - Java source: `Harmonic.java`
-  - No Books I–III uses
+  - No Books I–XIII uses found in applet HTML
 
 ---
 
@@ -293,6 +293,14 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/line/foot/{original,applet}.html](../view/applet-tests/line/foot/)
   - Used in: I.47 (Pythagoras' theorem)
 
+- [ ] **`cutoff`** — TBD
+  - Java source: `Slate.java` line case 7 — `Layoff(P[0],P[0],P[1],P[2],P[3])` +
+    `LineElement(P[0], layoff)`. Same dispatch-trick pattern as `line;extend`.
+  - Used in: compass geometry pages. No Books I–XIII proposition uses found,
+    but the enum `LineConstructions.cutoff = 108` exists and the TBD comment
+    stub is in Constructions.ts.
+  - Trivial port: same Layoff+LineElement pattern as line;extend/line;parallel.
+
 - [x] **`similar`** — `src/elements/Constructions.ts` (`SimilarLineConstruction`)
   - No new element class — reuses `SimilarElement` (from `point;similar`) +
     `LineElement` wrapper. `construct()` creates `SimilarElement(A,B,screen,D,E,F,screen)`
@@ -306,7 +314,7 @@ These affect the library as a whole, independent of individual constructions.
 
 - [ ] **`proportion`** — TBD
   - Java source: `Proportion.java`
-  - No Books I–III uses
+  - No Books I–XIII uses found in applet HTML (the line variant is unused)
 
 - [x] **`meanProportional`** — `src/elements/Constructions.ts` (`MeanProportionalLineConstruction`)
   - Reuses `MeanProportionalElement` + `LineElement` wrapper.
@@ -325,7 +333,11 @@ These affect the library as a whole, independent of individual constructions.
 
 - [ ] **`invert`** — TBD
   - Java source: `InvertCircle.java`
-  - No Books I–III uses
+  - No Books I–XIII uses found in applet HTML
+
+- [ ] **`intersection`** — TBD
+  - Java source: `IntersectionSS.java` (41 lines) — intersection of two spheres → circle
+  - Blocks 2 propositions (XIII.15, XIII.17)
 
 ---
 
@@ -435,8 +447,16 @@ These affect the library as a whole, independent of individual constructions.
   - Used in: IV.15
 
 - [ ] **`octagon`** — TBD
-  - Java source: `PolygonElement.java`
-  - No Books I–III uses
+  - Java source: `PolygonElement.java` (8 free vertices, pass-through)
+  - Used in: Book XII (XII.2, XII.10, XII.11, XII.12 — blocks 4 propositions)
+  - Trivial port: same pattern as pentagon/hexagon (PolyConstruction subclass)
+
+- [ ] **`face`** — TBD
+  - Returns the N-th face (a PolygonElement) of a PolyhedronElement.
+    Same pattern as `point;vertex` (returns the N-th vertex of a polygon).
+  - Needs `PolyhedronElement` base class ported first.
+  - Java dispatch: `Slate.java` polygon case 12 → `((PolyhedronElement)E[0]).P[N[0]-1]`
+  - Blocks 1 proposition (XII.7)
 
 ---
 
@@ -475,11 +495,17 @@ These affect the library as a whole, independent of individual constructions.
   - no dedicated test page
 
 - [ ] **`3points`** — TBD
-  - Java source: `PlaneElement.java`
+  - Java source: `PlaneElement.java` — **element class already ported** as
+    `PlaneElement.ts` with `{A, B, C}` constructor + `update()` that computes
+    S, T, U frame. Only the Construction dispatcher is needed (trivial).
+  - Blocks **22 propositions** across Books XI–XIII (highest-impact TBD remaining)
 
 - [ ] **`parallel`** — TBD
+  - Java source: `ParallelP.java` (26 lines) — parallel plane through a point
+  - Blocks 3 propositions (XI.11, XI.26, XI.39)
 
 - [ ] **`ambient`** — TBD (the default screen plane)
+  - No Books I–XIII uses found in applet HTML
 
 ---
 
@@ -493,9 +519,17 @@ These affect the library as a whole, independent of individual constructions.
 ## Polyhedra constructions (solid geometry)
 
 - [ ] **`tetrahedron`** — TBD
+  - Needs `PolyhedronElement.java` base class (78 lines) ported first
+  - Blocks 7 propositions (XII.3–XII.5, XII.8–XII.9, XIII.13, XIII.15)
 - [ ] **`parallelepiped`** — TBD
-- [ ] **`prism`** — TBD (Java source: `Prism.java`)
-- [ ] **`pyramid`** — TBD (Java source: `Pyramid.java`)
+  - Needs `PolyhedronElement.java` base class ported first
+  - Blocks 6 propositions (XI.37, XII.5, XII.9, XII.11, XII.12, XIII.15)
+- [ ] **`prism`** — TBD (Java source: `Prism.java`, 41 lines)
+  - Needs `PolyhedronElement.java` base class ported first
+  - Blocks 3 propositions (XI.39, XII.7, XIII.14)
+- [ ] **`pyramid`** — TBD (Java source: `Pyramid.java`, 11 lines)
+  - Needs `PolyhedronElement.java` base class ported first
+  - Blocks 3 propositions (XI.23, XII.6, XIII.14)
 
 ---
 

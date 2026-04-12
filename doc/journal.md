@@ -20,6 +20,47 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Books XI–XIII deep analysis — 30 blocked props, 11 TBD constructions
+
+**Completed:**
+- Per-proposition verification of all 75 propositions in Books XI–XIII
+  against actual HTML param lists. Corrected the renderable count from
+  the earlier preliminary estimate (revised upward: XI was 20→26, XIII
+  was 10→13).
+- Compiled the full impact ranking for the 11 remaining TBD constructions:
+
+  | Priority | Construction | Props blocked | Difficulty | Notes |
+  |----------|-------------|---------------|------------|-------|
+  | 1 | `plane;3points` | 22 | **Trivial** | PlaneElement.ts already has the constructor + update(). Just needs a dispatcher. |
+  | 2 | `point;planeSlider` | 19 | Easy | PlaneSlider.java is 36 lines. PlaneSlider.ts exists for screen plane; needs non-screen variant. |
+  | 3 | `polyhedron;tetrahedron` | 7 | Medium | Needs PolyhedronElement base class (78 lines) + Pyramid.java (11 lines). |
+  | 4 | `point;sphereSlider` | 6 | Easy | SphereSlider.java is 43 lines. |
+  | 5 | `polyhedron;parallelepiped` | 6 | Medium | Needs PolyhedronElement base class. |
+  | 6 | `polygon;octagon` | 4 | **Trivial** | 8-point PolyConstruction pass-through, same as pentagon/hexagon. |
+  | 7 | `polyhedron;prism` | 3 | Medium | Prism.java is 41 lines. Needs PolyhedronElement. |
+  | 8 | `polyhedron;pyramid` | 3 | Easy | Pyramid.java is 11 lines. Needs PolyhedronElement. |
+  | 9 | `plane;parallel` | 3 | Easy | ParallelP.java is 26 lines. Already identified in java-port-tracker. |
+  | 10 | `circle;intersection` | 2 | Medium | IntersectionSS.java is 41 lines. Sphere–sphere intersection → circle. |
+  | 11 | `polygon;face` | 1 | Trivial (needs PolyhedronElement) | Returns the N-th face of a polyhedron, like `point;vertex` returns the N-th vertex. |
+
+- Key insight: `plane;3points` and `polygon;octagon` are **trivial**
+  (element classes already exist, just need dispatchers). Landing them
+  unblocks XI.29, XI.38 (plane;3points sole blocker) and XII.2, XII.10
+  (polygon;octagon sole blocker) immediately.
+- The polyhedron constructions (tetrahedron, parallelepiped, prism, pyramid)
+  all depend on porting `PolyhedronElement.java` (78 lines) as a base class
+  first. This is the key dependency chain for the deepest Book XII/XIII props.
+
+**Next session:**
+- Quick wins: `plane;3points` (dispatcher only) + `polygon;octagon`
+  (8-point pass-through). Together they unblock 4 props immediately.
+- Then: `point;planeSlider` + `plane;parallel` — with plane;3points,
+  these three together unblock most of Book XI.
+- After those: `PolyhedronElement` base class, then tetrahedron/prism/
+  pyramid/parallelepiped to finish the remaining Book XII/XIII props.
+
+---
+
 ## 2026-04-12 — Implemented point;meanProportional — Books I–X COMPLETE
 
 **Completed:**
