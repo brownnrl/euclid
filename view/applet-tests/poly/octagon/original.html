@@ -1,0 +1,39 @@
+<HTML><HEAD><TITLE>XII.2 — polygon;octagon (original)</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<applet code=Geometry codebase=../../.. archive=Geometry.zip height=300 width=400>
+<param name=background value="35,19,100">
+<param name=title value="XII.2">
+<param name=e[1] value="X0;point;free;-10000,145;0;0">
+<param name=e[2] value="X1;point;free;10000,145;0;0">
+<param name=e[3] value="B;point;lineSlider;X0,X1,35,0">
+<param name=e[4] value="D;point;lineSlider;X0,X1,150,0">
+<param name=e[5] value="F;point;lineSlider;X0,X1,190,0">
+<param name=e[6] value="H;point;lineSlider;X0,X1,320,0">
+<param name=e[7] value="BD;line;connect;B,D">
+<param name=e[8] value="FH;line;connect;F,H">
+<param name=e[9] value="BDcenter;point;midpoint;BD;0;0">
+<param name=e[10] value="ABCD;circle;radius;BDcenter,B;0;0;black;random">
+<param name=e[11] value="FHcenter;point;midpoint;FH;0;0">
+<param name=e[12] value="EFGH;circle;radius;FHcenter,F;0;0;black;random">
+<param name=e[13] value="A;point;perpendicular;BDcenter,D">
+<param name=e[14] value="C;point;extend;A,BDcenter,A,BDcenter">
+<param name=e[15] value="E;point;perpendicular;FHcenter,H">
+<param name=e[16] value="G;point;extend;E,FHcenter,E,FHcenter">
+<param name=e[17] value="S0;point;lineSlider;X0,X1,355,125;0">
+<param name=e[18] value="S1;point;cutoff;S0,X1,FHcenter,F;0;0">
+<param name=e[19] value="S2;point;perpendicular;S1,S0;0;0">
+<param name=e[20] value="S3;point;parallelogram;S2,S1,S0;0;0">
+<param name=e[21] value="S4;point;extend;S3,S0,F,H;0;0">
+<param name=e[22] value="S;polygon;parallelogram;S2,S3,S4;black;0;black;random">
+<param name=e[23] value="EFGHsquare;polygon;quadrilateral;E,F,G,H;0;0;black;random">
+<param name=e[24] value="K';point;midpoint;E,F;0;0">
+<param name=e[25] value="K;point;cutoff;FHcenter,K',FHcenter,F">
+<param name=e[26] value="L';point;midpoint;F,G;0;0">
+<param name=e[27] value="L;point;cutoff;FHcenter,L',FHcenter,F">
+<param name=e[28] value="M';point;midpoint;G,H;0;0">
+<param name=e[29] value="M;point;cutoff;FHcenter,M',FHcenter,F">
+<param name=e[30] value="N';point;midpoint;H,E;0;0">
+<param name=e[31] value="N;point;cutoff;FHcenter,N',FHcenter,F">
+<param name=e[32] value="EKFLGMHN;polygon;octagon;E,K,F,L,G,M,H,N;0;0;black;0">
+</applet>
+</BODY></HTML>

@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Test View - Line.cutoff (standalone)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Line.cutoff — cut off a length from a line",
+        canvasid: "canvasId",
+        elements: [
+            // Line AB
+            { name: "A", construction: E.Point.free, params: [50, 150] },
+            { name: "B", construction: E.Point.free, params: [300, 150] },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+            // Reference segment CD (length to cut off)
+            { name: "C", construction: E.Point.free, params: [50, 250] },
+            { name: "D", construction: E.Point.free, params: [130, 250] },
+            { name: "CD", construction: E.Line.connect, params: ["C", "D"] },
+            // line;cutoff: line AE along AB with |AE| = |CD|
+            { name: "AE", construction: E.Line.cutoff, params: ["A", "B", "C", "D"] },
+        ]
+    });
+</script>
+</body>
+</html>

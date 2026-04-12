@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Test View - Polygon.octagon (XII.2 excerpt)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "XII.2 — Circles are to one another as the squares on their diameters",
+        canvasid: "canvasId",
+        elements: [
+            // Right circle EFGH with inscribed octagon
+            { name: "X0", construction: E.Point.free, params: [-10000, 145] },
+            { name: "X1", construction: E.Point.free, params: [10000, 145] },
+            { name: "F", construction: E.Point.lineSlider, params: ["X0", "X1", 120, 145] },
+            { name: "H", construction: E.Point.lineSlider, params: ["X0", "X1", 280, 145] },
+            { name: "FH", construction: E.Line.connect, params: ["F", "H"] },
+            { name: "FHcenter", construction: E.Point.midpoint, params: ["FH"] },
+            { name: "EFGH", construction: E.Circle.radius, params: ["FHcenter", "F"] },
+            { name: "E", construction: E.Point.perpendicular, params: ["FHcenter", "H"] },
+            { name: "G", construction: E.Point.extend, params: ["E", "FHcenter", "E", "FHcenter"] },
+            // Compute octagon midpoints on the circle
+            { name: "K'", construction: E.Point.midpoint, params: ["E", "F"] },
+            { name: "K", construction: E.Point.cutoff, params: ["FHcenter", "K'", "FHcenter", "F"] },
+            { name: "L'", construction: E.Point.midpoint, params: ["F", "G"] },
+            { name: "L", construction: E.Point.cutoff, params: ["FHcenter", "L'", "FHcenter", "F"] },
+            { name: "M'", construction: E.Point.midpoint, params: ["G", "H"] },
+            { name: "M", construction: E.Point.cutoff, params: ["FHcenter", "M'", "FHcenter", "F"] },
+            { name: "N'", construction: E.Point.midpoint, params: ["H", "E"] },
+            { name: "N", construction: E.Point.cutoff, params: ["FHcenter", "N'", "FHcenter", "F"] },
+            // The octagon ← target construction
+            { name: "EKFLGMHN", construction: E.Polygon.octagon, params: ["E","K","F","L","G","M","H","N"] },
+        ]
+    });
+</script>
+</body>
+</html>
