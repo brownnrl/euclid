@@ -20,6 +20,55 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Scope extension: all-books coverage + Java port tracker
+
+**Completed:**
+- Corrected project phase descriptions in AGENTS.md and doc/process.md.
+  Phase 1 now explicitly covers **all books (I–XIII)**, not just I–III.
+  Books I–III reaching 99/99 was a milestone, not the end of Phase 1.
+  Inserted a new Phase 2 (presentation bug fixes) between construction
+  porting and HTML conversion. Phase numbering is now:
+  1. Port all Java constructions (book-by-book, I through XIII)
+  2. Fix presentation bugs (colors, labels, behavioral parity)
+  3. HTML conversions (566 files from Java params to TS init calls)
+  4. Retire the Java toolchain
+- Created `doc/java-port-tracker.md` — maps all 44 `.java` files in
+  `geom_applet/source/` to their TypeScript implementation status (PORTED,
+  PARTIAL, TBD, N/A), with TS file locations, deviation notes, and
+  remaining work per file. 27 fully ported, 3 partial, 9 TBD, 3 N/A,
+  2 TBD base classes.
+- Extended `doc/proposition-tracker.md` with Book IV (16 propositions).
+  10 already renderable using existing constructions; 6 blocked by 3 TBD
+  constructions: `polygon;regularPolygon` (5 props), `line;angleBisector`
+  (3 props + 1 indirect), `polygon;hexagon` (1 prop).
+- Updated `doc/construction-tracker.md` with Book IV blocker analysis:
+  noted which TBD constructions each Book IV proposition needs and how
+  many props each would unblock.
+
+**Discovered:**
+- `polygon;regularPolygon` is the highest-priority Book IV blocker (5
+  propositions), and the element class `RegularPolygonElement.ts` is
+  **already fully ported** (including the star-polygon density parameter
+  from the polygon;square session). Only the Construction dispatcher
+  with variable-n signature `[PointElement, PointElement, Integer]` is
+  needed — trivial to wire.
+- `polygon;pentagon` (5 free vertices) is NOT needed for Book IV — propIV11
+  uses `polygon;regularPolygon;A,B,5` (computed regular pentagon), not
+  `polygon;pentagon;A,B,C,D,E` (5 free vertices).
+- `polygon;hexagon` (6 free vertices) IS needed for IV.15 as a pass-through
+  PolyConstruction, same trivial pattern as quadrilateral.
+
+**Next session:**
+- Top priority: `polygon;regularPolygon` — unblocks 5 Book IV props,
+  element class already ported, just needs a Construction dispatcher.
+  Trivially easy.
+- Then: `line;angleBisector` (`AngleDivider.java`) — unblocks 4 Book IV
+  props. Real porting work.
+- Then: `polygon;hexagon` — trivial pass-through, unblocks IV.15.
+- After Book IV is fully covered: analyze Book V and continue the cycle.
+
+---
+
 ## 2026-04-12 — Implemented polygon;application — 99/99 BOOKS I–III COMPLETE
 
 **Completed:**
