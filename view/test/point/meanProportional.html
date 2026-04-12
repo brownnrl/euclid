@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Test View - Point.meanProportional (standalone)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Point.meanProportional — geometric mean",
+        canvasid: "canvasId",
+        elements: [
+            // Segment S: length 100
+            { name: "S0", construction: E.Point.free, params: [30, 50] },
+            { name: "S1", construction: E.Point.free, params: [130, 50] },
+            { name: "S",  construction: E.Line.connect, params: ["S0", "S1"] },
+            // Segment T: length 25
+            { name: "T0", construction: E.Point.free, params: [30, 100] },
+            { name: "T1", construction: E.Point.free, params: [55, 100] },
+            { name: "T",  construction: E.Line.connect, params: ["T0", "T1"] },
+            // Segment U: length 200
+            { name: "U0", construction: E.Point.free, params: [30, 200] },
+            { name: "U1", construction: E.Point.free, params: [230, 200] },
+            { name: "U",  construction: E.Line.connect, params: ["U0", "U1"] },
+            // Mean proportional P on U so that S:U0P = U0P:T
+            // |U0P| = sqrt(|S|*|T|) = sqrt(100*25) = 50
+            { name: "P",  construction: E.Point.meanProportional, params: ["S0","S1","T0","T1","U0","U1"] },
+            { name: "UP", construction: E.Line.connect, params: ["U0", "P"] },
+        ]
+    });
+</script>
+</body>
+</html>

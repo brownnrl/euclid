@@ -39,6 +39,7 @@ import {Chord} from "./line/Chord";
 import {SimilarElement} from "./point/SimilarElement";
 import {ProportionElement} from "./point/ProportionElement";
 import {AngleDividerElement} from "./point/AngleDividerElement";
+import {MeanProportionalElement} from "./point/MeanProportionalElement";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -709,11 +710,21 @@ export class ProportionPointConstruction extends Construction {
 // point A circle B
 // the image of a point A inverted in the circle B
 
-// TBD
 // point
 // meanProportional
-// 6 points A, B, C, D, E, F
-// the point G on EF so that AB:CD = CD:EG
+// 6 points S0, S1, T0, T1, U0, U1
+// the point U' on U0U1 so that S:U' = U':T (geometric mean)
+// (Java: MeanProportional.java — 23 lines, line-for-line port)
+export class MeanProportionalPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.meanProportional;
+    signature: ConstructionTypes[] = (new Array(6)).fill(ct.PointElement);
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new MeanProportionalElement(ps[0], ps[1], ps[2], ps[3], ps[4], ps[5]);
+        return [[g], g];
+    }
+}
 
 // TBD
 // point
@@ -1041,11 +1052,22 @@ export class SimilarLineConstruction extends Construction {
 // 8 points A, B, C, D, E, F, G, H
 // the line GI along GH so that AB:CD = EF:GI
 
-// TBD
 // line
 // meanProportional
-// 6 points A, B, C, D, E, F
-// the line EG along EF so that AB:CD = CD:EG
+// 6 points S0, S1, T0, T1, U0, U1
+// the line U0U' along U0U1 so that S:U' = U':T
+// (Java: Slate.java line case 12 — MeanProportional + LineElement(U0, result))
+export class MeanProportionalLineConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.meanProportional;
+    signature: ConstructionTypes[] = (new Array(6)).fill(ct.PointElement);
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let mp = new MeanProportionalElement(ps[0], ps[1], ps[2], ps[3], ps[4], ps[5]);
+        let g = new LineElement({A: ps[4], B: mp});
+        return [[mp, g], g];
+    }
+}
 
 /************************
  * Element Class Circle *
@@ -1490,6 +1512,7 @@ export const constructions : Construction[] = [
     new ProportionPointConstruction(),
     new AngleBisectorPointConstruction(),
     new AngleDividerPointConstruction(),
+    new MeanProportionalPointConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),
@@ -1521,6 +1544,7 @@ export const constructions : Construction[] = [
     new SimilarLineConstruction(),
     new AngleBisectorLineConstruction(),
     new AngleDividerLineConstruction(),
+    new MeanProportionalLineConstruction(),
     new TrianglePolygonConstruction(),
     new RegularPolygonConstruction(),
     new SquarePolygonConstruction(),
