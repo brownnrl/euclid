@@ -18,8 +18,17 @@ Tracks the port status of all propositions across Euclid's Elements.
 | Book II | 14 | **14** | 0 |
 | Book III | 37 | **37** | 0 |
 | Book IV | 16 | **16** | 0 |
-| **I–IV total** | **115** | **115** | **0** |
-| Books V–XIII | ~349 | — | — |
+| Book V | 25 | **25** | 0 |
+| Book VI | 33 | **33** | 0 |
+| Book VII | 39 | **39** | 0 |
+| Book VIII | 27 | 25 | 0 |
+| Book IX | 36 | **36** | 0 |
+| Book X | 115 | 82 | 0 |
+| **I–X total** | **390** | **355** | **0** |
+| Book XI | 39 | 20 | 0 |
+| Book XII | 18 | 6 | 0 |
+| Book XIII | 18 | 10 | 0 |
+| **I–XIII total** | **465** | **391** | **0** |
 
 Update the summary table after each session.
 
@@ -160,22 +169,90 @@ Update the summary table after each session.
 
 ---
 
-## Books V–XIII (future scope)
+## Book V
 
-Coverage will be extended one book at a time. Each book's propositions are
-analyzed against the construction and Java file trackers to determine which
-constructions must be ported before the book is renderable.
+All 25 propositions are renderable — Book V (theory of proportion) uses
+only basic constructions: `point;free`, `point;lineSlider`, `point;cutoff`,
+`point;extend`, `point;parallelogram`, `point;proportion`, `line;connect`.
+No new constructions were needed.
 
-| Book | Propositions | Topic |
-|------|-------------|-------|
-| V | 25 | Theory of proportion (Eudoxus) |
-| VI | 33 | Similar figures |
-| VII | 39 | Number theory — divisibility |
-| VIII | 27 | Geometric sequences |
-| IX | 36 | More number theory |
-| X | 115 | Incommensurable magnitudes |
-| XI | 39 | Solid geometry — planes, parallelepipeds |
-| XII | 18 | Measurement of figures (method of exhaustion) |
-| XIII | 18 | Regular solids (Platonic solids) |
+- [~] V.1 through V.25 — all renderable (verified 2026-04-12 against actual HTML param lists)
+
+---
+
+## Book VI
+
+All 33 propositions are renderable — Book VI (similar figures) uses
+constructions all ported during Books I–IV work: `circle;radius`,
+`circle;circumcircle`, `line;angleBisector`, `line;chord`, `line;connect`,
+`line;parallel`, `point;similar`, `point;proportion`, `point;vertex`,
+`polygon;application`, `polygon;parallelogram`, `polygon;pentagon`,
+`polygon;quadrilateral`, `polygon;square`, `polygon;triangle`,
+`sector;sector`, plus the usual point constructions.
+No new constructions were needed.
+
+- [~] VI.1 through VI.33 — all renderable (verified 2026-04-12 against actual HTML param lists)
+
+---
+
+## Book VII
+
+All 39 propositions are renderable — Book VII (number theory / divisibility)
+uses only basic constructions. No new constructions needed.
+
+- [~] VII.1 through VII.39 — all renderable (verified 2026-04-12)
+
+---
+
+## Book VIII
+
+25 of 27 propositions are renderable. 2 blocked by `point;meanProportional`.
+
+- [~] VIII.1 through VIII.19 — all renderable (verified 2026-04-12)
+- [ ] VIII.20 — NEEDS: `point;meanProportional`
+- [~] VIII.21 through VIII.25 — all renderable
+- [ ] VIII.26 — NEEDS: `point;meanProportional`
+- [~] VIII.27 — renderable
+
+---
+
+## Book IX
+
+All 36 propositions are renderable — Book IX (more number theory) uses
+only basic constructions. No new constructions needed.
+
+- [~] IX.1 through IX.36 — all renderable (verified 2026-04-12)
+
+---
+
+## Book X
+
+82 of 115 propositions are renderable. 33 blocked by `point;meanProportional`.
+Book X is the largest single book (incommensurable magnitudes). Porting
+`MeanProportional.java` would unblock all 33 at once.
+
+- [~] X.1 through X.9 — renderable
+- [ ] X.10 — NEEDS: `point;meanProportional`
+- [~] X.11 through X.26 — renderable
+- [ ] X.27 through X.32 — NEEDS: `point;meanProportional` (6 props)
+- [~] X.33 through X.47 — renderable
+- [ ] X.48 through X.59 — NEEDS: `point;meanProportional` (12 props)
+- [~] X.60 through X.84 — renderable
+- [ ] X.85 through X.96 — NEEDS: `point;meanProportional` (12 props)
+- [~] X.97 through X.113 — renderable
+- [ ] X.114, X.115 — NEEDS: `point;meanProportional` (2 props)
+
+---
+
+## Books XI–XIII (preliminary analysis)
+
+These books introduce solid geometry constructions. Detailed per-proposition
+tracking will be added when work on each book begins.
+
+| Book | Total | Renderable | Blocked | Key TBD blockers |
+|------|-------|------------|---------|------------------|
+| XI | 39 | 20 | 19 | `plane;3points`, `point;planeSlider`, `point;sphereSlider`, `plane;parallel` |
+| XII | 18 | 6 | 12 | `plane;3points`, `point;planeSlider`, `polygon;face`, `polygon;octagon` |
+| XIII | 18 | 10 | 8 | `plane;3points`, `point;planeSlider`, `point;sphereSlider`, `point;meanProportional`, `circle;intersection` |
 
 Source HTML: `view/euclid-html/bookiv/` through `view/euclid-html/bookxiii/`
