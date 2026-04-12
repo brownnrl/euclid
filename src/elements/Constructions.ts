@@ -1057,11 +1057,14 @@ export class VertexConstruction extends Construction {
     }
 }
 
-// TBD
 // polygon
 // quadrilateral
 // points A, B, C, D
 // the quadrilateral ABCD given 4 vertices A, B, C, and D
+export class QuadrilateralPolygonConstruction extends PolyConstruction {
+    constructionMethod: AllConstructions = PolygonConstructions.quadrilateral;
+    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
+}
 
 // TBD
 // polygon
@@ -1370,6 +1373,7 @@ export const constructions : Construction[] = [
     new TrianglePolygonConstruction(),
     new EquilateralTriangleConstruction(),
     new ParallelogramPolygonConstruction(),
+    new QuadrilateralPolygonConstruction(),
     new VertexConstruction(),
     new PerpendicularPlaneConstruction(),
     new SphereRadiusConstruction()
