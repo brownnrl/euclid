@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Test View - Polygon.application (I.44)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.44 — To apply a parallelogram equal to a given triangle in a given angle",
+        canvasid: "canvasId",
+        elements: [
+            // Base line infrastructure
+            { name: "A0", construction: E.Point.free, params: [-1000, 230] },
+            { name: "A3", construction: E.Point.free, params: [1000, 230] },
+            { name: "A", construction: E.Point.lineSlider, params: ["A0", "A3", 70, 230] },
+            { name: "B", construction: E.Point.lineSlider, params: ["A0", "A3", 140, 230] },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+            // Given triangle C
+            { name: "C1", construction: E.Point.free, params: [130, 40] },
+            { name: "C2", construction: E.Point.free, params: [20, 40] },
+            { name: "C3", construction: E.Point.free, params: [50, 130] },
+            { name: "C", construction: E.Polygon.triangle, params: ["C1", "C2", "C3"] },
+            // Given angle D
+            { name: "D1", construction: E.Point.free, params: [150, 90] },
+            { name: "D2", construction: E.Point.free, params: [210, 90] },
+            { name: "D3", construction: E.Point.free, params: [230, 30] },
+            { name: "D1D2", construction: E.Line.connect, params: ["D1", "D2"] },
+            { name: "D2D3", construction: E.Line.connect, params: ["D2", "D3"] },
+            { name: "D", construction: E.Polygon.triangle, params: ["D1", "D2", "D3"] },
+            // Construction
+            { name: "E", construction: E.Point.lineSlider, params: ["A0", "A3", 240, 230] },
+            { name: "G'", construction: E.Point.similar, params: ["E", "B", "D1", "D2", "D3"] },
+            // Target: polygon;application  ← THE FINAL CONSTRUCTION
+            { name: "BEFG", construction: E.Polygon.application, params: ["C", "B", "E", "G'"] },
+            { name: "G", construction: E.Point.vertex, params: ["BEFG", 4] },
+            { name: "F", construction: E.Point.vertex, params: ["BEFG", 3] },
+        ]
+    });
+</script>
+</body>
+</html>
