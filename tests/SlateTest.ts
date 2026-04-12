@@ -13,6 +13,7 @@ import {SphereElement} from "../src/elements/sphere/SphereElement";
 import {ArcElement} from "../src/elements/sector/ArcElement";
 import {Chord} from "../src/elements/line/Chord";
 import {PolygonElement} from "../src/elements/polygon/PolygonElement";
+import {ApplicationElement} from "../src/elements/polygon/ApplicationElement";
 import {SimilarElement} from "../src/elements/point/SimilarElement";
 import {CircleElement} from "../src/elements/circle/CircleElement";
 import {createCanvas} from "canvas";
@@ -572,6 +573,41 @@ describe("slate", ()=> {
     // factor = sqrt(50²*80² / (100²*200²)) = 4000/20000 = 0.2
     // result = (0,0) + 0.2 * (200,0) = (40, 0)
     // Check: S:T = 100:50 = 2:1; U:V' = 80:40 = 2:1 ✓
+    // polygon;application — parallelogram with area = input polygon's area
+    // Input triangle P: (0,0),(100,0),(0,80) → area = 100*80/2 = 4000
+    // Side AB: A=(50,200), B=(150,200) → |AB| = 100
+    // Direction C: (50,100) → angle CAB points upward
+    // area(A,B,C) = area of triangle (50,200),(150,200),(50,100) = 100*100/2 = 5000
+    // factor = |P.area()| / (2 * |area(A,B,C)|) = 4000 / (2*5000) = 0.4
+    // V[3] = A + 0.4*(C-A) = (50,200) + 0.4*(0,-100) = (50, 160)
+    // V[2] = B + V[3] - A = (150,200) + (50,160) - (50,200) = (150, 160)
+    it("should create a parallelogram with the same area as the input polygon", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.free, params: [0, 0] },
+            { name: "P2", construction: E.Point.free, params: [100, 0] },
+            { name: "P3", construction: E.Point.free, params: [0, 80] },
+            { name: "P",  construction: E.Polygon.triangle, params: ["P1", "P2", "P3"] },
+            { name: "A",  construction: E.Point.free, params: [50, 200] },
+            { name: "B",  construction: E.Point.free, params: [150, 200] },
+            { name: "C",  construction: E.Point.free, params: [50, 100] },
+            { name: "ABEF", construction: E.Polygon.application, params: ["P", "A", "B", "C"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let app = slate.lookupElement("ABEF") as ApplicationElement;
+        assert.equal(app.V.length, 4);
+        // V[0]=A, V[1]=B
+        almostEqual(app.V[0].x,  50, 0.01); almostEqual(app.V[0].y, 200, 0.01);
+        almostEqual(app.V[1].x, 150, 0.01); almostEqual(app.V[1].y, 200, 0.01);
+        // V[3] = A + factor*(C-A) = (50, 160)
+        almostEqual(app.V[3].x,  50, 0.01); almostEqual(app.V[3].y, 160, 0.01);
+        // V[2] = B + V[3] - A = (150, 160)
+        almostEqual(app.V[2].x, 150, 0.01); almostEqual(app.V[2].y, 160, 0.01);
+        // The resulting parallelogram area should equal the input triangle area (4000)
+        almostEqual(app.area(), 4000, 1);
+    });
+
     it("should compute a fourth proportional point", () => {
         let data : IConstructionInfo[] = [
             { name: "S0", construction: E.Point.free, params: [0, 0] },
