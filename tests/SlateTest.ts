@@ -491,6 +491,60 @@ describe("slate", ()=> {
         almostEqual(D.x, 180, 0.001); almostEqual(D.y, 220, 0.001);
     });
 
+    // line;parallel — line through A parallel and equal to BC
+    // Slate.java case 9: Layoff(A, B, C, B, C) → D = A + (C-B), then LineElement(A, D)
+    //
+    // Test fixture: A=(50,100), B=(100,100), C=(200,200)
+    //   direction BC = (100, 100)
+    //   D = A + (C-B) = (50,100) + (100,100) = (150, 200)
+    //   resulting line: (50,100) → (150,200), parallel to BC, same length
+    let parallel_data : IConstructionInfo[] = [
+        { name: "A",  construction: E.Point.free,     params: [50, 100] },
+        { name: "B",  construction: E.Point.free,     params: [100, 100] },
+        { name: "C",  construction: E.Point.free,     params: [200, 200] },
+        { name: "AD", construction: E.Line.parallel,  params: ["A", "B", "C"] },
+    ];
+
+    it("should compute a line through A parallel and equal to BC", () => {
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, parallel_data);
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("AD") as LineElement;
+        // Line starts at A
+        almostEqual(line.A.x,  50, 0.01);
+        almostEqual(line.A.y, 100, 0.01);
+        // Line ends at D = A + (C-B) = (150, 200)
+        almostEqual(line.B.x, 150, 0.01);
+        almostEqual(line.B.y, 200, 0.01);
+        // Direction AD should equal direction BC
+        let adx = line.B.x - line.A.x;  // 100
+        let ady = line.B.y - line.A.y;  // 100
+        let bcx = 200 - 100;             // 100
+        let bcy = 200 - 100;             // 100
+        almostEqual(adx, bcx, 0.01);
+        almostEqual(ady, bcy, 0.01);
+        // Lengths should match
+        let lenAD = Math.sqrt(adx*adx + ady*ady);
+        let lenBC = Math.sqrt(bcx*bcx + bcy*bcy);
+        almostEqual(lenAD, lenBC, 0.001);
+    });
+
+    it("should recompute the parallel line when an input point moves", () => {
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, parallel_data);
+        slate.elements.forEach(e => e.update());
+        // Move C from (200,200) to (250,150)
+        let C = slate.lookupElement("C") as PointElement;
+        C.x = 250; C.y = 150;
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("AD") as LineElement;
+        // D = A + (C'-B) = (50,100) + (150,50) = (200, 150)
+        almostEqual(line.A.x,  50, 0.01);
+        almostEqual(line.A.y, 100, 0.01);
+        almostEqual(line.B.x, 200, 0.01);
+        almostEqual(line.B.y, 150, 0.01);
+    });
+
     it("should be able to find the closest visible point within a tolerance", () =>{
         let slate : Slate = new Slate(createCanvas(200,200));
         let elms = toElements(slate, connected_line_data);
