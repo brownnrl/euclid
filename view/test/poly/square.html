@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Test View - Polygon.square (I.46)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "I.46 — To describe a square on a given straight line",
+        canvasid: "canvasId",
+        elements: [
+            // <param name=e[1] value="A;point;free;50,190">
+            { name: "A", construction: E.Point.free, params: [50, 190] },
+            // <param name=e[2] value="B;point;free;170,190">
+            { name: "B", construction: E.Point.free, params: [170, 190] },
+            // <param name=e[3] value="ABED;polygon;square;A,B">  ← target
+            { name: "ABED", construction: E.Polygon.square, params: ["A", "B"] },
+            // <param name=e[4] value="E;point;vertex;ABED,3">
+            { name: "E", construction: E.Point.vertex, params: ["ABED", 3] },
+            // <param name=e[5] value="D;point;vertex;ABED,4">
+            { name: "D", construction: E.Point.vertex, params: ["ABED", 4] },
+            // <param name=e[6] value="C;point;lineSlider;A,D,30,30">
+            { name: "C", construction: E.Point.lineSlider, params: ["A", "D", 30, 30] },
+            // <param name=e[7] value="CD;line;connect;C,D">
+            { name: "CD", construction: E.Line.connect, params: ["C", "D"] },
+        ]
+    });
+</script>
+</body>
+</html>
