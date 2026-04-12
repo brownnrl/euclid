@@ -14,10 +14,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 
 | Scope | Total | Renderable (`[~]`) | Complete (`[x]`) |
 |-------|-------|--------------------|------------------|
-| Book I | 48 | 26 | 0 |
-| Book II | 14 | 3 | 0 |
+| Book I | 48 | 27 | 0 |
+| Book II | 14 | 13 | 0 |
 | Book III | 37 | 31 | 0 |
-| **I–III total** | **99** | **60** | **0** |
+| **I–III total** | **99** | **71** | **0** |
 | Books IV–XIII | ~365 | — | — |
 
 Update the summary table after each session.
@@ -71,27 +71,27 @@ Update the summary table after each session.
 - [~] I.43 — In any parallelogram the complements of the parallelograms about the diameter equal one another. (`point;parallelogram`, `polygon;quadrilateral`, `point;vertex` all landed by 2026-04-12.)
 - [ ] I.44 — To a given straight line in a given rectilinear angle, to apply a parallelogram equal to a given triangle. NEEDS: `point;parallelogram`, `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
 - [ ] I.45 — To construct a parallelogram equal to a given rectilinear figure in a given rectilinear angle. NEEDS: `polygon;quadrilateral`, `point;similar`, `point;vertex`, `polygon;application`
-- [ ] I.46 — To describe a square on a given straight line. NEEDS: `polygon;quadrilateral`, `polygon;square`, `point;vertex`
-- [ ] I.47 — In right-angled triangles the square on the side opposite the right angle equals the sum of the squares on the sides containing the right angle. NEEDS: `polygon;square`, `point;vertex`
+- [~] I.46 — To describe a square on a given straight line. (`polygon;quadrilateral`, `polygon;square`, `point;vertex` all landed by 2026-04-12.)
+- [ ] I.47 — In right-angled triangles the square on the side opposite the right angle equals the sum of the squares on the sides containing the right angle. NEEDS: `line;foot` 2D variant (propI47 e[16] uses `line;foot;A,D,E` — a Foot+LineElement dispatch, not the solid-geometry PlaneFoot; `polygon;square`, `point;vertex` already landed)
 - [~] I.48 — If in a triangle the square on one of the sides equals the sum of the squares on the remaining two sides of the triangle, then the angle contained by the remaining two sides of the triangle is right.
 
 ---
 
 ## Book II
 
-- [ ] II.1 — If there are two straight lines, and one of them is cut into any number of segments whatever, then the rectangle contained by the two straight lines equals the sum of the rectangles contained by the uncut straight line and each of the segments. NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;square`, `point;vertex`
-- [ ] II.2 — If a straight line is cut at random, then the sum of the rectangles contained by the whole and each of the segments equals the square on the whole. NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`, `point;vertex`
-- [ ] II.3 — If a straight line is cut at random, then the rectangle contained by the whole and one of the segments equals the sum of the rectangle contained by the segments and the square on the aforesaid segment. NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;square`, `point;vertex`
-- [ ] II.4 — If a straight line is cut at random, then the square on the whole equals the sum of the squares on the segments plus twice the rectangle contained by the segments. NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`, `point;vertex`
-- [ ] II.5 — If a straight line is cut into equal and unequal segments, then the rectangle contained by the unequal segments of the whole together with the square on the straight line between the points of section equals the square on the half. NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc`, `line;chord` already landed)
-- [ ] II.6 — If a straight line is bisected and a straight line is added to it in a straight line… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
-- [ ] II.7 — If a straight line is cut at random, then the sum of the square on the whole and that on one of the segments… NEEDS: `polygon;parallelogram`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc` already landed)
-- [ ] II.8 — If a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment… NEEDS: `polygon;parallelogram`, `polygon;quadrilateral`, `polygon;square`  (`point;parallelogram`, `point;vertex`, `sector;arc`, `line;parallel` already landed)
+- [~] II.1 — If there are two straight lines, and one of them is cut into any number of segments whatever, then the rectangle contained by the two straight lines equals the sum of the rectangles contained by the uncut straight line and each of the segments. (All blockers landed by 2026-04-12. Verified against HTML: uses polygon;parallelogram, point;parallelogram, point;vertex, cutoff, perpendicular.)
+- [~] II.2 — If a straight line is cut at random, then the sum of the rectangles contained by the whole and each of the segments equals the square on the whole. (All blockers landed by 2026-04-12. Verified: uses polygon;square, polygon;quadrilateral, point;parallelogram, point;vertex.)
+- [~] II.3 — If a straight line is cut at random, then the rectangle contained by the whole and one of the segments equals the sum of the rectangle contained by the segments and the square on the aforesaid segment. (All blockers landed by 2026-04-12. Verified: uses polygon;parallelogram, polygon;square, point;vertex.)
+- [~] II.4 — If a straight line is cut at random, then the square on the whole equals the sum of the squares on the segments plus twice the rectangle contained by the segments. (All blockers landed by 2026-04-12. Verified: uses polygon;parallelogram, polygon;quadrilateral, polygon;square, point;parallelogram, point;vertex, intersection.)
+- [~] II.5 — If a straight line is cut into equal and unequal segments, then the rectangle contained by the unequal segments of the whole together with the square on the straight line between the points of section equals the square on the half. (All blockers landed by 2026-04-12. Verified: uses polygon;square, polygon;quadrilateral, point;parallelogram, sector;arc.)
+- [~] II.6 — If a straight line is bisected and a straight line is added to it in a straight line… (All blockers landed by 2026-04-12. Verified: uses polygon;square, polygon;quadrilateral, point;parallelogram, sector;arc.)
+- [~] II.7 — If a straight line is cut at random, then the sum of the square on the whole and that on one of the segments… (All blockers landed by 2026-04-12. Verified: uses polygon;square, polygon;parallelogram, point;parallelogram, sector;arc.)
+- [~] II.8 — If a straight line is cut at random, then four times the rectangle contained by the whole and one of the segments plus the square on the remaining segment… (All blockers landed by 2026-04-12. Verified: uses polygon;square, polygon;quadrilateral, line;parallel, point;parallelogram, point;vertex.)
 - [~] II.9 — If a straight line is cut into equal and unequal segments, then the sum of the squares on the unequal segments of the whole is double… (`polygon;parallelogram`, `polygon;quadrilateral`, `line;parallel`, `point;parallelogram` all landed by 2026-04-12.)
-- [ ] II.10 — If a straight line is bisected, and a straight line is added to it in a straight line… NEEDS: `point;parallelogram`, `polygon;parallelogram`, `polygon;square` (wait — II.10 uses triangle, not square… needs `point;parallelogram`, `point;vertex`)
+- [~] II.10 — If a straight line is bisected, and a straight line is added to it in a straight line… (All blockers landed by 2026-04-12. Verified: uses polygon;parallelogram, circle;radius, line;bichord, line;perpendicular — no polygon;square needed.)
 - [~] II.12 — In obtuse-angled triangles the square on the side opposite the obtuse angle is greater than the sum of the squares on the sides containing the obtuse angle…
 - [~] II.13 — In acute-angled triangles the square on the side opposite the acute angle is less than the sum of the squares on the sides containing the acute angle…
-- [ ] II.11 — To cut a given straight line so that the rectangle contained by the whole and one of the segments equals the square on the remaining segment. NEEDS: `polygon;parallelogram`, `polygon;square` (`line;parallel`, `point;parallelogram`, `point;vertex` already landed)
+- [~] II.11 — To cut a given straight line so that the rectangle contained by the whole and one of the segments equals the square on the remaining segment. (All blockers landed by 2026-04-12. Verified: uses polygon;parallelogram, polygon;square, line;parallel, line;perpendicular, line;bichord, circle;radius.)
 - [ ] II.14 — To construct a square equal to a given rectilinear figure. NEEDS: `polygon;application`, `polygon;quadrilateral`, `polygon;square` (wait — let me verify) (`point;vertex`, `line;chord` already landed)
 
 ---

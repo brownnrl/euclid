@@ -20,6 +20,59 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented polygon;square — MASSIVE Book II unlock
+
+**Completed:**
+- Ported `polygon;square` as `SquarePolygonConstruction` in
+  `src/elements/Constructions.ts`. Reuses `RegularPolygonElement` with
+  n=4, same pattern as `EquilateralTriangleConstruction` (n=3). 2D variant
+  only (screen plane); 3D variant deferred per 2D-first policy.
+- Also completed the `RegularPolygonElement.ts` port by adding the optional
+  `d` (density) parameter from `RegularPolygon.java`'s second constructor,
+  per the newly codified "full Java class conversion" rule (added to
+  `doc/process.md` step 2 in this branch). The density parameter defaults
+  to 1, so existing `equilateralTriangle` tests pass unchanged. This lays
+  groundwork for `polygon;starPolygon` in a future session — when that
+  construction is picked, the element class is already complete.
+- One Mocha test: 4-vertex square correctness from propI46 coords
+  (A=(50,190), B=(170,190) → E=(170,70), D=(50,70), side=120, all-sides-
+  equal check). 28 → **29 passing** (cumulative).
+- **Massive proposition unlock**: verified ALL remaining Book II
+  propositions against their actual HTML param lists. Every one of
+  II.1–II.11 now has all its construction blockers resolved. Only
+  II.14 remains blocked (needs `polygon;application`).
+  - Book I: 26 → **27** (+I.46).
+  - Book II: 3 → **13** (+II.1, II.2, II.3, II.4, II.5, II.6, II.7,
+    II.8, II.10, II.11). Only II.14 remains blocked.
+  - Book III: 31 (unchanged).
+  - I–III total: 60 → **71** (+11). **Largest single-session jump.**
+
+**Discovered:**
+- **I.47 needs `line;foot` (2D variant), not just polygon;square**: the
+  tracker was missing this blocker. propI47 e[16] uses `line;foot;A,D,E`
+  which dispatches to `Foot(A,D,E) + LineElement(A,foot)` in Java —
+  a 2D variant, not the solid-geometry `PlaneFoot`. The existing `Foot`
+  class is already IMPL; only the `LineFootConstruction` wrapper (same
+  Layoff+LineElement dispatch pattern) is needed. Corrected the tracker.
+- **II.10 doesn't need polygon;square at all**: the tracker listed it
+  as needing polygon;square, but the actual HTML uses polygon;parallelogram
+  (no square). Corrected.
+- **"Full Java class conversion" rule codified**: added to `doc/process.md`
+  step 2. When porting a Java source file, convert ALL constructor
+  signatures in one pass (e.g. the density parameter for star polygons)
+  rather than deferring unused variants.
+- I.46 was a cleaner verifier than I.47 (which needs `line;foot`).
+  Used I.46 for the test page and applet pair instead.
+
+**Next session:**
+- High-impact: `line;foot` 2D variant (would unblock I.47 — Pythagoras!
+  A 2-line dispatch: Foot+LineElement, same pattern as line;parallel).
+- Or: 3-point `circle;radius` variant (unlocks III.24, III.26–III.29).
+- Or: `polygon;similar` + `line;similar` (unlocks I.23, I.24, I.26, I.31,
+  III.14).
+
+---
+
 ## 2026-04-12 — Implemented polygon;quadrilateral
 
 **Completed:**
