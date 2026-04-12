@@ -3,6 +3,7 @@
     "module": "commonjs",
     "target": "es2017",
     "sourceMap": true,
+    "noEmit": true,
     "noImplicitAny": true,
     "strictNullChecks": false,
     "removeComments": false,
