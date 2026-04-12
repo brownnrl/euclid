@@ -180,12 +180,14 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/point/proportion/{original,applet}.html](../view/applet-tests/point/proportion/)
   - Used in: I.16, I.29 (secondary applet variants)
 
-- [ ] **`angleBisector`** — TBD
-  - Java source: `AngleDivider.java`
+- [x] **`angleBisector`** — `src/elements/Constructions.ts` (`AngleBisectorPointConstruction`)
+  - Reuses `AngleDividerElement` with n=2. 2D variant (screen plane).
+  - Java source: `AngleDivider.java` — full class port 2026-04-12.
   - No Books I–IV uses for the point variant (line variant used in IV.4, IV.13, IV.16)
 
-- [ ] **`angleDivider`** — TBD
-  - Java source: `AngleDivider.java`
+- [x] **`angleDivider`** — `src/elements/Constructions.ts` (`AngleDividerPointConstruction`)
+  - Reuses `AngleDividerElement` with variable n. 2D variant.
+  - Java source: `AngleDivider.java`.
   - No Books I–IV uses found
 
 - [ ] **`invert`** — TBD
@@ -260,12 +262,18 @@ These affect the library as a whole, independent of individual constructions.
   - Used in: I.12, II.5, II.14, III.1, III.5–III.6, III.8–III.9, III.10
     (no longer blocked), III.12, III.15, III.17, III.34, III.36–III.37
 
-- [ ] **`angleBisector`** — TBD
-  - Java source: `AngleDivider.java`
-  - Used in: Book IV (IV.4, IV.13, IV.16 — blocks 3 propositions directly + IV.14 indirectly)
+- [x] **`angleBisector`** — `src/elements/Constructions.ts` (`AngleBisectorLineConstruction`)
+  - Reuses `AngleDividerElement` (n=2) + `LineElement` wrapper. 2D variant.
+  - Java source: `AngleDivider.java` — full class port 2026-04-12.
+  - Mocha test (1): right-angle bisector at (50,50).
+  - [x] test view: [view/test/line/angleBisector.html](../view/test/line/angleBisector.html) — propIV4
+  - [x] applet-tests pair:
+    [view/applet-tests/line/angleBisector/{original,applet}.html](../view/applet-tests/line/angleBisector/)
+  - Used in: Book IV (IV.4, IV.13, IV.16)
 
-- [ ] **`angleDivider`** — TBD
-  - Java source: `AngleDivider.java`
+- [x] **`angleDivider`** — `src/elements/Constructions.ts` (`AngleDividerLineConstruction`)
+  - Reuses `AngleDividerElement` (variable n) + `LineElement` wrapper. 2D variant.
+  - Java source: `AngleDivider.java`.
   - No Books I–IV uses found
 
 - [x] **`foot`** (2D variant) — `src/elements/Constructions.ts` (`LineFootConstruction`)
@@ -412,13 +420,13 @@ These affect the library as a whole, independent of individual constructions.
     `[PointElement, PointElement, Integer, Integer]` signature is needed.
   - No Books I–IV uses found
 
-- [ ] **`pentagon`** — TBD
-  - Java source: `PolygonElement.java` (5 free vertices, pass-through)
-  - No Books I–IV uses found (IV.11 uses `regularPolygon;A,B,5` instead)
+- [x] **`pentagon`** — `src/elements/Constructions.ts` (`PentagonPolygonConstruction`)
+  - 5-point pass-through `PolyConstruction`. Same pattern as quadrilateral.
+  - Used in: propIV11 variant 3 (star pentagon figure)
 
-- [ ] **`hexagon`** — TBD
-  - Java source: `PolygonElement.java` (6 free vertices, pass-through)
-  - Used in: Book IV (IV.15 — blocks 1 proposition)
+- [x] **`hexagon`** — `src/elements/Constructions.ts` (`HexagonPolygonConstruction`)
+  - 6-point pass-through `PolyConstruction`. Same pattern as quadrilateral.
+  - Used in: IV.15
 
 - [ ] **`octagon`** — TBD
   - Java source: `PolygonElement.java`
