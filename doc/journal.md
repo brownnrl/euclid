@@ -20,6 +20,70 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-11 — Implemented line;parallel (warm-cache session)
+
+**Completed:**
+- Ported `line;parallel` as `LineParallelConstruction` in
+  `src/elements/Constructions.ts`. **No new element class** — the Java
+  applet has no dedicated `ParallelLine.java`; `Slate.java` case 9
+  dispatches `line;parallel` as a `Layoff` trick:
+  `Layoff(A, B, C, B, C)` → D = A + (C−B), then `new LineElement(A, D)`.
+  The TS port mirrors this exactly, creating a `Layoff` intermediate
+  (pushed into `elementsForUpdate` so it recomputes each frame) and a
+  `LineElement({A: ps[0], B: lo})`. Same pattern as the existing
+  `LineExtendConstruction`. Total new code: 12 lines of Construction class
+  + 2 lines in the `constructions` array.
+- Two Mocha tests: `update()` correctness (D = A + (C−B), direction and
+  length equality to BC), recompute after mutating input point C. 21 → **23
+  passing** (cumulative from line;chord in the same session).
+- Three-way harness pair: the TS test page exercises `line;parallel` three
+  times (two horizontal parallels B0B3/C0C3 to A0A3, one diagonal parallel
+  RS to PQ) to confirm both trivial and non-trivial direction cases.
+  propI22's `original.html` carries the full 32-element proposition for
+  context.
+- Book I renderable count: 17 → **23** (+I.22, I.27, I.37, I.38, I.39,
+  I.40). I–III total: 48 → **54**.
+
+**Discovered:**
+- **`ParallelP.java` is a plane construction, not a line construction.**
+  The constructions-reference table listed `ParallelP.java` as the Java
+  source for `line;parallel`. This is wrong: `ParallelP.java`
+  `extends PlaneElement` and implements `plane;parallel` (solid geometry).
+  `line;parallel` has no dedicated Java class — it's a dispatch trick
+  at `Slate.java:574-577` (case 9) that reuses `Layoff` and wraps in a
+  `LineElement`. Both the Java source citation and the param-order
+  description in `doc/constructions-reference.md` have been corrected in
+  this branch.
+- **Same-session warm-cache speedup**: this was the second construction
+  ported in a single chat session (the first being `line;chord`). The
+  startup protocol ran off cached context: zero file re-reads, two git
+  commands, straight to the top-5 menu. Step 2 (read Java source) was
+  the only "real" work in the exploration phase, and it immediately
+  revealed the `ParallelP.java` mislabeling — catching it before any
+  code was committed, not at step 4. Total wall time from "user picks
+  construction" to "step 8 committed" was significantly shorter than
+  the cold-start line;chord port.
+- **Step 4 collapse precedent**: when the Java applet implements a
+  construction as an inline dispatch trick in `Slate.java` rather than a
+  dedicated class, step 4 of the process (write element class) produces no
+  commit. The construction class in step 5 absorbs the entire code
+  change. This happened previously with `point;parallelogram` (which also
+  reuses Layoff via inline dispatch) and now with `line;parallel`. Future
+  sessions hitting the same pattern can collapse steps 4 and 5 without
+  ceremony.
+
+**Next session:**
+- Top priority: `polygon;parallelogram` (18 I–III uses, sole-TBD verifier
+  in I.34, reuses D=A+C−B from `Layoff` — wraps the formula in a
+  4-vertex polygon class modeled on `TrianglePolygonConstruction`).
+- Alternative: `polygon;square` (10 uses, I.47 viable,
+  `RegularPolygonElement` n=4 mirrors `equilateralTriangle`). 2D-first.
+- Deferred: `point;similar` (15 uses but no clean Book I–III verifier —
+  the tracker's NEEDS lines are inaccurate, see the line;chord journal
+  entry's Discovered section for details).
+
+---
+
 ## 2026-04-11 — Implemented line;chord + tsconfig noEmit hardening
 
 **Completed:**

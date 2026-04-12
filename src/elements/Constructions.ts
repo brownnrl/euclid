@@ -919,11 +919,24 @@ export class LineExtendConstruction extends Construction {
     }
 }
 
-// TBD
 // line
 // parallel
 // points A, B, C
-// the line AD parallel and equal to BC
+// the line AD through A parallel and equal to BC, so D = A + (C - B)
+// (no dedicated Java class — Slate.java case 9 dispatches to a Layoff
+// trick: Layoff(A, B, C, B, C) gives D = A + (C-B), then wraps a fresh
+// LineElement(A, D). Same pattern as LineExtendConstruction above.)
+export class LineParallelConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.parallel;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let lo = new Layoff(ps[0], ps[1], ps[2], ps[1], ps[2]);
+        let g = new LineElement({A: ps[0], B: lo});
+        return [[lo, g], g];
+    }
+}
 
 // TBD
 // line
@@ -1329,6 +1342,7 @@ export const constructions : Construction[] = [
     new LinePerpendicular5Construction(),
     new BichordConstruction(),
     new ChordConstruction(),
+    new LineParallelConstruction(),
     new TrianglePolygonConstruction(),
     new EquilateralTriangleConstruction(),
     new VertexConstruction(),

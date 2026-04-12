@@ -1,0 +1,31 @@
+<HTML><HEAD><TITLE>line;parallel — applet form of view/test/line/parallel.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/line/parallel.html -->
+<!-- ORIGINAL: view/applet-tests/line/parallel/original.html (propI22) -->
+<!--
+  Trimmed applet form exercising line;parallel three times: two horizontal
+  parallels (B0B3, C0C3 parallel to A0A3) and one diagonal parallel (RS
+  parallel to PQ). This is simpler than the full propI22 original which
+  goes on to construct a triangle from three given line segments.
+
+  Canvas is 400x400 to match the TS test page.
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=400 height=400>
+<param name=background value="35,19,100">
+<param name=title value="I.22 — line;parallel (excerpt)">
+<param name=e[1] value="A0;point;free;40,50">
+<param name=e[2] value="A3;point;free;360,50">
+<param name=e[3] value="A0A3;line;connect;A0,A3">
+<param name=e[4] value="B0;point;free;40,120">
+<param name=e[5] value="B0B3;line;parallel;B0,A0,A3">
+<param name=e[6] value="B3;point;last;B0B3">
+<param name=e[7] value="C0;point;free;40,200">
+<param name=e[8] value="C0C3;line;parallel;C0,A0,A3">
+<param name=e[9] value="C3;point;last;C0C3">
+<param name=e[10] value="P;point;free;80,280">
+<param name=e[11] value="Q;point;free;280,320">
+<param name=e[12] value="PQ;line;connect;P,Q">
+<param name=e[13] value="R;point;free;120,350">
+<param name=e[14] value="RS;line;parallel;R,P,Q">
+</applet>
+</BODY></HTML>
