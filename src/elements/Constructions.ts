@@ -36,6 +36,7 @@ import {Perpendicular} from "./line/Perpendicular";
 import {PlanePerpendicularLine} from "./line/PlanePerpendicularLine";
 import {Bichord} from "./line/Bichord";
 import {Chord} from "./line/Chord";
+import {SimilarElement} from "./point/SimilarElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
 import {SphereElement} from "./sphere/SphereElement";
@@ -573,11 +574,21 @@ export class ParallelogramConstruction extends Construction {
     }
 }
 
-// TBD
 // point
 // similar	points A, B, D, E, F [planes C, G]
 // the point H so that triangle ABH in plane C is similar to triangle DEF in plane G
+// 2D variant: 5 PointElements, both planes default to screen
+// (Java: Similar.java — extends PointElement, calls this.toSimilar(...) in update())
+export class SimilarPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.similar;
+    signature: ConstructionTypes[] = (new Array(5)).fill(ct.PointElement);
 
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new SimilarElement(ps[0], ps[1], screen, ps[2], ps[3], ps[4], screen);
+        return [[g], g];
+    }
+}
 
 // point perpendicular constructions
 abstract class PointPerpendicularConstruction extends Construction {
@@ -1329,6 +1340,7 @@ export const constructions : Construction[] = [
     new ExtendConstruction(),
     new CutoffConstruction(),
     new ParallelogramConstruction(),
+    new SimilarPointConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),
