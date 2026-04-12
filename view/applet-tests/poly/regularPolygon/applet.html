@@ -1,0 +1,25 @@
+<HTML><HEAD><TITLE>polygon;regularPolygon — applet form of view/test/poly/regularPolygon.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/poly/regularPolygon.html -->
+<!-- ORIGINAL: view/applet-tests/poly/regularPolygon/original.html (propIV11) -->
+<!--
+  PropIV11 variant 1: regular pentagon ABCDE inscribed in a circumcircle.
+  Exercises polygon;regularPolygon with n=5. Drag A or B to resize/rotate.
+  Canvas 400x400 (original is 320x250).
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=400 height=400>
+<param name=background value="35,19,100">
+<param name=title value="IV.11 — polygon;regularPolygon">
+<param name=e[1] value="A;point;free;98,30">
+<param name=e[2] value="B;point;free;30,80">
+<param name=e[3] value="ABCDE;polygon;regularPolygon;A,B,5;0;0;black;0">
+<param name=e[4] value="C;point;vertex;ABCDE,3">
+<param name=e[5] value="D;point;vertex;ABCDE,4">
+<param name=e[6] value="E;point;vertex;ABCDE,5">
+<param name=e[7] value="circ;circle;circumcircle;A,B,C;0;0;black;random">
+<param name=e[8] value="AC;line;connect;A,C">
+<param name=e[9] value="AD;line;connect;A,D">
+<param name=e[10] value="BD;line;connect;B,D">
+<param name=e[11] value="CE;line;connect;C,E">
+</applet>
+</BODY></HTML>
