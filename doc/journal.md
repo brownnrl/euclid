@@ -20,6 +20,43 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — AngleDivider + hexagon/pentagon — BOOK IV COMPLETE (16/16)
+
+**Completed:**
+- Ported `AngleDivider.java` as `src/elements/point/AngleDividerElement.ts`
+  (24 lines, line-for-line port). The class n-sects angle BAC by rotating
+  ray BA by θ/n around vertex A, then intersecting the rotated ray with
+  line BC via `toIntersection()`. Both `angle()` and `toIntersection()`
+  already existed on `PointElement`.
+- Wired all four AngleDivider construction variants (full Java class
+  conversion):
+  - `AngleBisectorPointConstruction` (n=2, 3 points)
+  - `AngleDividerPointConstruction` (variable n, 3 points + integer)
+  - `AngleBisectorLineConstruction` (n=2, wraps in LineElement)
+  - `AngleDividerLineConstruction` (variable n, wraps in LineElement)
+- Wired `PentagonPolygonConstruction` (5-point pass-through) and
+  `HexagonPolygonConstruction` (6-point pass-through), completing the
+  polygon free-vertex series (triangle, quadrilateral, pentagon, hexagon).
+- Two Mocha tests: line;angleBisector (right-angle bisector at (50,50)),
+  point;angleBisector (same fixture, point-only). 36 → **38 passing**.
+- **BOOK IV IS 100% RENDERABLE** (16/16). I–IV total: 112 → **115/115**.
+
+**Discovered:**
+- AngleDivider.java's constructor takes params in the order (B, A, C, AP, n)
+  — the vertex A is the SECOND param, not the first. The Slate.java
+  dispatch passes (P[0], P[1], P[2], screen, 2) where P[1] is the vertex.
+  The `LineElement` wraps `(P[1], result)` — line from vertex to bisector
+  point.
+
+**Next session:**
+- Analyze Book V and expand the proposition tracker. Book V covers the
+  theory of proportion (Eudoxus) — 25 propositions. Since these are about
+  ratio and proportion, they may use constructions we already have
+  (`point;proportion`, `point;similar`) or may introduce new ones.
+- Continue the book-by-book Phase 1 expansion toward Books VI–XIII.
+
+---
+
 ## 2026-04-12 — Implemented polygon;regularPolygon — first Book IV construction
 
 **Completed:**

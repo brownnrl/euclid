@@ -755,6 +755,45 @@ describe("slate", ()=> {
         almostEqual(sq.V[3].distance(sq.V[0]), side, 0.01);
     });
 
+    // line;angleBisector — bisect angle BAC, line from vertex A to bisector point on BC
+    // Right angle at B=(0,0), rays to A=(0,100) and C=(100,0)
+    // Bisector of 90° at B → 45° ray hits AC (line from (0,100) to (100,0), x+y=100)
+    // at (50, 50)
+    it("should bisect a right angle and intersect the opposite side", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [0, 100] },
+            { name: "B", construction: E.Point.free, params: [0, 0] },
+            { name: "C", construction: E.Point.free, params: [100, 0] },
+            { name: "Bbis", construction: E.Line.angleBisector, params: ["A", "B", "C"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("Bbis") as LineElement;
+        // Line starts at vertex B
+        almostEqual(line.A.x, 0, 0.01);
+        almostEqual(line.A.y, 0, 0.01);
+        // Line ends at bisector point on AC = (50, 50)
+        almostEqual(line.B.x, 50, 0.01);
+        almostEqual(line.B.y, 50, 0.01);
+    });
+
+    // point;angleBisector — just the bisector point, no line
+    it("should compute the angle bisector point", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [0, 100] },
+            { name: "B", construction: E.Point.free, params: [0, 0] },
+            { name: "C", construction: E.Point.free, params: [100, 0] },
+            { name: "D", construction: E.Point.angleBisector, params: ["A", "B", "C"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let D = slate.lookupElement("D") as PointElement;
+        almostEqual(D.x, 50, 0.01);
+        almostEqual(D.y, 50, 0.01);
+    });
+
     // polygon;regularPolygon — variable-n regular polygon via RegularPolygonElement
     // n=5 (pentagon): A=(100,50), B=(200,50), side=100
     // All sides should be equal and there should be 5 vertices

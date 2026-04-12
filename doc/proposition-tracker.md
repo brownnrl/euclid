@@ -17,8 +17,8 @@ Tracks the port status of all propositions across Euclid's Elements.
 | Book I | 48 | **48** | 0 |
 | Book II | 14 | **14** | 0 |
 | Book III | 37 | **37** | 0 |
-| Book IV | 16 | 13 | 0 |
-| **I–IV total** | **115** | **112** | **0** |
+| Book IV | 16 | **16** | 0 |
+| **I–IV total** | **115** | **115** | **0** |
 | Books V–XIII | ~349 | — | — |
 
 Update the summary table after each session.
@@ -144,7 +144,7 @@ Update the summary table after each session.
 - [~] IV.1 — To inscribe in a given circle a triangle equiangular with a given triangle.
 - [~] IV.2 — To inscribe in a given circle a triangle equiangular with a given triangle (circumcircle variant).
 - [~] IV.3 — To circumscribe about a given circle a triangle equiangular with a given triangle.
-- [ ] IV.4 — To inscribe a circle in a given triangle. NEEDS: `line;angleBisector`
+- [~] IV.4 — To inscribe a circle in a given triangle. (`line;angleBisector` landed 2026-04-12.)
 - [~] IV.5 — To circumscribe a circle about a given triangle.
 - [~] IV.6 — To inscribe a square in a given circle.
 - [~] IV.7 — To circumscribe a square about a given circle.
@@ -153,10 +153,10 @@ Update the summary table after each session.
 - [~] IV.10 — To construct an isosceles triangle having each of the base angles double the remaining one.
 - [~] IV.11 — To inscribe an equilateral and equiangular pentagon in a given circle. (`polygon;regularPolygon` landed 2026-04-12.)
 - [~] IV.12 — To circumscribe an equilateral and equiangular pentagon about a given circle. (`polygon;regularPolygon` landed 2026-04-12.)
-- [ ] IV.13 — To inscribe a circle in a given equilateral and equiangular pentagon. NEEDS: `line;angleBisector` (`polygon;regularPolygon` landed 2026-04-12)
+- [~] IV.13 — To inscribe a circle in a given equilateral and equiangular pentagon. (`line;angleBisector`, `polygon;regularPolygon` both landed 2026-04-12.)
 - [~] IV.14 — To circumscribe a circle about a given equilateral and equiangular pentagon. (`polygon;regularPolygon` landed 2026-04-12.)
-- [ ] IV.15 — To inscribe an equilateral and equiangular hexagon in a given circle. NEEDS: `polygon;hexagon`
-- [ ] IV.16 — To inscribe a fifteen-angled equilateral and equiangular figure in a given circle. NEEDS: `line;angleBisector` (`polygon;regularPolygon` landed 2026-04-12)
+- [~] IV.15 — To inscribe an equilateral and equiangular hexagon in a given circle. (`polygon;hexagon` landed 2026-04-12.)
+- [~] IV.16 — To inscribe a fifteen-angled equilateral and equiangular figure in a given circle. (`line;angleBisector`, `polygon;regularPolygon` both landed 2026-04-12.)
 
 ---
 
