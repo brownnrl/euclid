@@ -38,6 +38,7 @@ import {Bichord} from "./line/Bichord";
 import {Chord} from "./line/Chord";
 import {SimilarElement} from "./point/SimilarElement";
 import {ProportionElement} from "./point/ProportionElement";
+import {AngleDividerElement} from "./point/AngleDividerElement";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -726,17 +727,38 @@ export class ProportionPointConstruction extends Construction {
 // sphere A integers x, y, z
 // a point that slides on the sphere A with initial coordinates (x,y,z)
 
-// TBD
 // point
-// angleBisector	
-// points A, B, C [plane D]
-// The point at the intersection of the angle bisector of angle BAC and the line BC in plane D
+// angleBisector (2D variant)
+// points B, A, C
+// bisect angle BAC — the point on BC where the bisector from A meets BC
+// (Java: AngleDivider.java with n=2, Slate.java point case 21)
+export class AngleBisectorPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.angleBisector;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
 
-// TBD
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new AngleDividerElement(ps[0], ps[1], ps[2], screen, 2);
+        return [[g], g];
+    }
+}
+
 // point
-// angleDivider
-// points A, B, C [plane D] integer n
-// The point E on the line BC so that angle BAE is the nth part of the angle BAC in plane D
+// angleDivider (2D variant)
+// points B, A, C, integer n
+// n-sect angle BAC — the point on BC where the 1/n ray from A meets BC
+// (Java: AngleDivider.java with variable n, Slate.java point case 22)
+export class AngleDividerPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.angleDivider;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.Integer];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let n : number = params[3];
+        let g = new AngleDividerElement(ps[0], ps[1], ps[2], screen, n);
+        return [[g], g];
+    }
+}
 
 // point
 // fixed
@@ -813,17 +835,40 @@ export class LineConnectConstruction extends Construction {
     }
 }
 
-// TBD
 // line
-// angleBisector
-// points A, B, C [plane D]
-// the line AE bisecting angle BAC with E on BC in plane D
+// angleBisector (2D variant)
+// points B, A, C
+// line from A to the bisector point of angle BAC on line BC
+// (Java: Slate.java line case 1 — AngleDivider(B,A,C,screen,2) + LineElement(A,result))
+export class AngleBisectorLineConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.angleBisector;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
 
-// TBD
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let ad = new AngleDividerElement(ps[0], ps[1], ps[2], screen, 2);
+        let g = new LineElement({A: ps[1], B: ad});
+        return [[ad, g], g];
+    }
+}
+
 // line
-// angleDivider
-// points A, B, C [plane D] integer n
-// the line AE with E on BC so that BAE is the nth part of the angle BAC in plane D
+// angleDivider (2D variant)
+// points B, A, C, integer n
+// line from A to the n-th division point of angle BAC on line BC
+// (Java: Slate.java line case 2 — AngleDivider(B,A,C,screen,n) + LineElement(A,result))
+export class AngleDividerLineConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.angleDivider;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.Integer];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let n : number = params[3];
+        let ad = new AngleDividerElement(ps[0], ps[1], ps[2], screen, n);
+        let g = new LineElement({A: ps[1], B: ad});
+        return [[ad, g], g];
+    }
+}
 
 // line
 // foot (2D variant)
@@ -1123,17 +1168,23 @@ export class QuadrilateralPolygonConstruction extends PolyConstruction {
     signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
 }
 
-// TBD
 // polygon
-// pentagon	
+// pentagon
 // points A, B, C, D, E
-// the pentagon given 5 vertices
+// the pentagon given 5 vertices (free points, not a regular pentagon)
+export class PentagonPolygonConstruction extends PolyConstruction {
+    constructionMethod: AllConstructions = PolygonConstructions.pentagon;
+    signature: ConstructionTypes[] = (new Array(5)).fill(ct.PointElement);
+}
 
-// TBD
 // polygon
 // hexagon
 // points A, B, C, D, E, F
-// the hexagon given 6 vertices
+// the hexagon given 6 vertices (free points)
+export class HexagonPolygonConstruction extends PolyConstruction {
+    constructionMethod: AllConstructions = PolygonConstructions.hexagon;
+    signature: ConstructionTypes[] = (new Array(6)).fill(ct.PointElement);
+}
 
 // polygon
 // equilateralTriangle
@@ -1437,6 +1488,8 @@ export const constructions : Construction[] = [
     new ParallelogramConstruction(),
     new SimilarPointConstruction(),
     new ProportionPointConstruction(),
+    new AngleBisectorPointConstruction(),
+    new AngleDividerPointConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),
@@ -1466,12 +1519,16 @@ export const constructions : Construction[] = [
     new LineParallelConstruction(),
     new LineFootConstruction(),
     new SimilarLineConstruction(),
+    new AngleBisectorLineConstruction(),
+    new AngleDividerLineConstruction(),
     new TrianglePolygonConstruction(),
     new RegularPolygonConstruction(),
     new SquarePolygonConstruction(),
     new EquilateralTriangleConstruction(),
     new ParallelogramPolygonConstruction(),
     new QuadrilateralPolygonConstruction(),
+    new PentagonPolygonConstruction(),
+    new HexagonPolygonConstruction(),
     new SimilarPolygonConstruction(),
     new ApplicationPolygonConstruction(),
     new VertexConstruction(),
