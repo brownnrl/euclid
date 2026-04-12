@@ -1079,11 +1079,23 @@ export class EquilateralTriangleConstruction extends Construction {
     }
 }
 
-// TBD
 // polygon
 // parallelogram
 // points A, B, C
-// the parallelogram ABCD given A, B, and C
+// the parallelogram ABCD given A, B, and C, where D = A + (C - B)
+// (no dedicated Java class — Slate.java case 6 dispatches to a Layoff
+// trick identical to the point;parallelogram and line;parallel patterns)
+export class ParallelogramPolygonConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.parallelogram;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let lo = new Layoff(ps[0], ps[1], ps[2], ps[1], ps[2]);
+        let g = new PolygonElement([ps[0], ps[1], ps[2], lo]);
+        return [[lo, g], g];
+    }
+}
 
 // TBD
 // polygon
@@ -1345,6 +1357,7 @@ export const constructions : Construction[] = [
     new LineParallelConstruction(),
     new TrianglePolygonConstruction(),
     new EquilateralTriangleConstruction(),
+    new ParallelogramPolygonConstruction(),
     new VertexConstruction(),
     new PerpendicularPlaneConstruction(),
     new SphereRadiusConstruction()
