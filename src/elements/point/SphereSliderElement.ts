@@ -39,17 +39,17 @@ export class SphereSliderElement extends PointElement {
     this._x = this._initx;
     this._y = this._inity;
     this._z = this._initz;
-    this.toSphere(this._S.Center, this._S.radius);
+    this.toSphere(this._S.Center, this._S.radius());
   }
 
   public update() {
-    this.toSphere(this._S.Center, this._S.radius);
+    this.toSphere(this._S.Center, this._S.radius());
   }
 
   public drag(tox: number, toy: number): boolean {
     let dist2 = (this._S.Center.x - tox) * (this._S.Center.x - tox)
               + (this._S.Center.y - toy) * (this._S.Center.y - toy);
-    let r2 = this._S.radius2;
+    let r2 = this._S.radius2();
     if (dist2 <= r2) {
       this._x = tox;
       this._y = toy;

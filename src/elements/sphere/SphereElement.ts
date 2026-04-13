@@ -32,6 +32,8 @@ export class SphereElement extends GeomElement {
     protected _A : PointElement; // radius is AB
     protected _B : PointElement;
 
+    get Center() : PointElement { return this._Center; }
+
     constructor(ip? : ISphereElementConstruction) {
         super();
         this.dimension = 2;
