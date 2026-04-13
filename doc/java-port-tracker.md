@@ -71,7 +71,7 @@ implementation status. Updated as constructions are ported.
 |---|---|---|---|
 | `Circumcircle.java` | PORTED | `src/elements/circle/CircumcircleElement.ts` | 2D + 3D variants. |
 | `InvertCircle.java` | TBD | — | Circle inversion in another circle. No Books I–IV uses found. |
-| `IntersectionSS.java` | TBD | — | Intersection of two spheres (yields a circle). Solid geometry (Books XI–XIII). |
+| `IntersectionSS.java` | PORTED | `src/elements/circle/SphereIntersectionElement.ts` | Intersection of two spheres → circle. Renamed for clarity. Ported 2026-04-12. |
 
 ---
 
@@ -125,9 +125,9 @@ implementation status. Updated as constructions are ported.
 
 | Status | Count | Files |
 |--------|-------|-------|
-| PORTED | 36 | Core element classes + all ported constructions (incl. Prism ported 2026-04-12) |
+| PORTED | 37 | Core element classes + all ported constructions (incl. SphereIntersection ported 2026-04-12) |
 | PARTIAL | 3 | IntersectionPL, PerpendicularPL, Slate |
-| TBD | 2 | InvertCircle, PlaneFoot |
-| TBD (plane/circle) | 2 | ParallelP (plane;parallel), IntersectionSS (circle;intersection) |
+| TBD | 1 | InvertCircle |
+| TBD (circle) | 1 | InvertCircle (no proposition uses) |
 | N/A | 3 | Geometry, ClientFrame, Remote |
 | **Total** | **44** | |

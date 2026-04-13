@@ -47,6 +47,7 @@ import {ParallelPlane} from "./plane/ParallelPlane";
 import {PolyhedronElement} from "./polyhedron/PolyhedronElement";
 import {PyramidElement} from "./polyhedron/PyramidElement";
 import {PrismElement} from "./polyhedron/PrismElement";
+import {SphereIntersectionElement} from "./circle/SphereIntersectionElement";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -1196,11 +1197,22 @@ export class CircleRadius3PointConstruction extends Construction {
 
 
 // TBD
-// *Solid Geometry Only*
 // circle
 // intersection
-// spheres A, B	
-// the intersection of spheres A and B
+// spheres A, B
+// the circle at the intersection of spheres A and B
+// (Java: IntersectionSS.java — TS: SphereIntersectionElement.ts)
+export class SphereIntersectionConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.intersection;
+    signature: ConstructionTypes[] = [ct.SphereElement, ct.SphereElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const S = params[0] as SphereElement;
+        const T = params[1] as SphereElement;
+        const g = new SphereIntersectionElement(S, T);
+        return [[g], g];
+    }
+}
 
 /*************************
  * Element Class Polygon *
@@ -1675,6 +1687,7 @@ export const constructions : Construction[] = [
     new CircleSliderConstruction2dPoint(),
     new CircleRadius3PointConstruction(),
     new CircleRadiusCenterConstruction(),
+    new SphereIntersectionConstruction(),
     new PointPerpendicular1Construction(),
     new PointPerpendicular2Construction(),
     new PointPerpendicular3Construction(),

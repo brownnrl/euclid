@@ -1,0 +1,24 @@
+<html>
+<head><title>Test View - Circle.intersection (sphere intersection)</title></head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Circle.intersection — intersection of two spheres",
+        canvasid: "canvasId",
+        elements: [
+            { name: "O1", construction: E.Point.fixed, params: [100, 150, 0] },
+            { name: "R1", construction: E.Point.fixed, params: [200, 150, 0] },
+            { name: "S", construction: E.Sphere.radius, params: ["O1", "R1"] },
+            { name: "O2", construction: E.Point.fixed, params: [200, 150, 0] },
+            { name: "R2", construction: E.Point.fixed, params: [300, 150, 0] },
+            { name: "T", construction: E.Sphere.radius, params: ["O2", "R2"] },
+            { name: "C", construction: E.Circle.intersection, params: ["S", "T"] },
+        ]
+    });
+</script>
+</body>
+</html>
