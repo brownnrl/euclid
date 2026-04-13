@@ -25,10 +25,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 | Book IX | 36 | **36** | 0 |
 | Book X | 115 | **115** | 0 |
 | **I–X total** | **390** | **390** | **0** |
-| Book XI | 39 | 28 | 0 |
-| Book XII | 18 | 8 | 0 |
+| Book XI | 39 | 33 | 0 |
+| Book XII | 18 | 9 | 0 |
 | Book XIII | 18 | 13 | 0 |
-| **I–XIII total** | **465** | **439** | **0** |
+| **I–XIII total** | **465** | **445** | **0** |
 
 Update the summary table after each session.
 
@@ -237,7 +237,7 @@ Book X is the largest single book (incommensurable magnitudes). Porting
 Verified per-proposition against actual HTML param lists 2026-04-12.
 
 - [~] XI.1 through XI.3 — renderable
-- [ ] XI.4 — NEEDS: `plane;3points`, `point;planeSlider`
+- [~] XI.4 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
 - [~] XI.5 through XI.10 — renderable
 - [ ] XI.11 — NEEDS: `plane;3points`, `plane;parallel`, `point;planeSlider`
 - [~] XI.12 through XI.22 — renderable
@@ -246,11 +246,11 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 - [ ] XI.26 — NEEDS: `plane;3points`, `plane;parallel`, `point;planeSlider`
 - [~] XI.27, XI.28 — renderable
 - [~] XI.29 — (`plane;3points` landed 2026-04-12.)
-- [ ] XI.30 — NEEDS: `plane;3points`, `point;planeSlider`
-- [ ] XI.31 — NEEDS: `plane;3points`, `point;planeSlider`
-- [ ] XI.32 — NEEDS: `plane;3points`, `point;planeSlider`
+- [~] XI.30 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
+- [~] XI.31 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
+- [~] XI.32 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
 - [~] XI.33 — renderable
-- [ ] XI.34 — NEEDS: `plane;3points`, `point;planeSlider`
+- [~] XI.34 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
 - [ ] XI.35 — NEEDS: `plane;3points`, `point;planeSlider`, `point;sphereSlider`
 - [~] XI.36 — renderable
 - [ ] XI.37 — NEEDS: `plane;3points`, `point;planeSlider`, `polyhedron;parallelepiped`
@@ -276,7 +276,7 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 - [ ] XII.11 — NEEDS: `polygon;octagon`, `polyhedron;parallelepiped`
 - [ ] XII.12 — NEEDS: `polygon;octagon`, `polyhedron;parallelepiped`
 - [~] XII.13 through XII.16 — renderable
-- [ ] XII.17 — NEEDS: `plane;3points`, `point;planeSlider`
+- [~] XII.17 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
 - [~] XII.18 — renderable
 
 ---

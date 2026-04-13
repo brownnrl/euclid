@@ -787,6 +787,27 @@ describe("slate", ()=> {
     // Right angle at B=(0,0), rays to A=(0,100) and C=(100,0)
     // Bisector of 90° at B → 45° ray hits AC (line from (0,100) to (100,0), x+y=100)
     // at (50, 50)
+    // point;planeSlider — draggable point constrained to a non-screen plane
+    it("should create a planeSlider point on a 3-point plane", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.planeSlider, params: ["plane", 50, 50, 99] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let A = slate.lookupElement("A") as PointElement;
+        // The plane is the xy-plane (z=0), so the point should project to z=0
+        almostEqual(A.x, 50, 0.01);
+        almostEqual(A.y, 50, 0.01);
+        almostEqual(A.z, 0, 0.01);
+        // Should be draggable
+        assert.ok((A as any).draggable);
+    });
+
     // plane;3points — plane through 3 non-collinear points
     it("should create a plane through 3 points with computed S,T,U frame", () => {
         let data : IConstructionInfo[] = [

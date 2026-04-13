@@ -20,6 +20,32 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented point;planeSlider — Book XI unlocking
+
+**Completed:**
+- Wired `PlaneSliderConstruction` in `src/elements/Constructions.ts` —
+  dispatcher-only, no new element class. `PlaneSlider.ts` was already
+  fully ported (used for `point;free` on the screen plane). The new
+  dispatcher creates a `PlaneSlider` on a non-screen `PlaneElement` with
+  signature `[PlaneElement, Integer, Integer, Integer]`.
+- One Mocha test: point at (50,50,99) on the xy-plane projects to (50,50,0).
+  42 → **43 passing**.
+- Test page + applet companion using propXI4 (3 planeSlider points on a
+  base plane, with a perpendicular line EF).
+- **6 propositions unblocked**: XI.4, XI.30, XI.31, XI.32, XI.34, XII.17.
+  Combined with `plane;3points` from the previous session, these are
+  the first solid-geometry propositions to become renderable.
+- Book XI: 28 → **33**. Book XII: 8 → **9**. I–XIII total: 439 → **445**.
+
+**Next session:**
+- `plane;parallel` — unblocks XI.11, XI.26 (with planeSlider already
+  landed). XI.39 also needs polyhedron;prism.
+- `point;sphereSlider` — unblocks XIII.16 (sole blocker).
+- Then the PolyhedronElement base class + tetrahedron/prism/pyramid/
+  parallelepiped to finish the remaining Book XII/XIII props.
+
+---
+
 ## 2026-04-12 — Trivial dispatchers: plane;3points + polygon;octagon + line;cutoff
 
 **Completed:**

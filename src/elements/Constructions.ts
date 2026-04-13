@@ -726,11 +726,25 @@ export class MeanProportionalPointConstruction extends Construction {
     }
 }
 
-// TBD
 // point
-// planeSlider	
+// planeSlider
 // plane A integers x, y, z
 // a point that slides on the plane A with initial coordinates (x,y,z)
+// (Java: Slate.java point case 19 — new PlaneSlider((PlaneElement)E[0], N[0], N[1], N[2]).
+// PlaneSlider.ts already has the full constructor + update() + drag().)
+export class PlaneSliderConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.planeSlider;
+    signature: ConstructionTypes[] = [ct.PlaneElement, ct.Integer, ct.Integer, ct.Integer];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const plane = params[0] as PlaneElement;
+        const x = params[1] as number;
+        const y = params[2] as number;
+        const z = params[3] as number;
+        const g = new PlaneSlider(plane, x, y, z);
+        return [[g], g];
+    }
+}
 
 // TBD
 // point
@@ -1534,6 +1548,7 @@ export const constructions : Construction[] = [
     new AngleBisectorPointConstruction(),
     new AngleDividerPointConstruction(),
     new MeanProportionalPointConstruction(),
+    new PlaneSliderConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),

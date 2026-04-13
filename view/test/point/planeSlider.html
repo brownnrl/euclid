@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Test View - Point.planeSlider (XI.4)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "XI.4 — If a straight line is set up at right angles to two straight lines which cut one another at their common point of section, then it is also at right angles to the plane passing through them",
+        canvasid: "canvasId",
+        elements: [
+            { name: "P1", construction: E.Point.fixed, params: [30, 210, 100] },
+            { name: "P2", construction: E.Point.fixed, params: [250, 210, 100] },
+            { name: "P3", construction: E.Point.fixed, params: [70, 60, 0] },
+            { name: "baseplane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            // Three planeSliders — target construction
+            { name: "A", construction: E.Point.planeSlider, params: ["baseplane", 90, 50, 80] },
+            { name: "Ep", construction: E.Point.planeSlider, params: ["baseplane", 160, 150, 0] },
+            { name: "B", construction: E.Point.extend, params: ["A", "Ep", "A", "Ep"] },
+            { name: "C", construction: E.Point.planeSlider, params: ["baseplane", 250, 30, 90] },
+            { name: "D", construction: E.Point.extend, params: ["C", "Ep", "C", "Ep"] },
+            { name: "Z", construction: E.Point.fixed, params: [100, 100000, 0] },
+            { name: "F", construction: E.Point.lineSlider, params: ["Ep", "Z", 160, 40, 0] },
+            { name: "EF", construction: E.Line.connect, params: ["Ep", "F"] },
+            { name: "ABCD", construction: E.Polygon.quadrilateral, params: ["A", "B", "C", "D"] },
+            { name: "AF", construction: E.Line.connect, params: ["A", "F"] },
+            { name: "BF", construction: E.Line.connect, params: ["B", "F"] },
+            { name: "CF", construction: E.Line.connect, params: ["C", "F"] },
+            { name: "DF", construction: E.Line.connect, params: ["D", "F"] },
+        ]
+    });
+</script>
+</body>
+</html>
