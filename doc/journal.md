@@ -20,6 +20,34 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Trivial dispatchers: plane;3points + polygon;octagon + line;cutoff
+
+**Completed:**
+- Wired 3 trivial Construction dispatchers in one session (no new element
+  classes — all reuse existing TS classes):
+  - `Plane3PointsConstruction`: creates `PlaneElement({A, B, C})`. The
+    element class was already fully ported with `update()` that computes
+    the orthonormal S/T/U frame. This is the **#1 prerequisite** for
+    Books XI–XIII solid geometry (22 props depend on it).
+  - `OctagonPolygonConstruction`: 8-point `PolyConstruction` pass-through.
+    Same one-line pattern as pentagon/hexagon/quadrilateral.
+  - `LineCutoffConstruction`: `Layoff(A,A,B,C,D)` + `LineElement(A,lo)`.
+    Same dispatch trick as `line;extend`/`line;parallel`.
+- 3 Mocha tests: plane S/T/U frame, octagon 8-vertex check, cutoff
+  length verification. 39 → **42 passing**.
+- **4 propositions unblocked**: XI.29, XI.38 (plane;3points sole blocker),
+  XII.2, XII.10 (polygon;octagon sole blocker).
+- I–XIII total: 435 → **439** renderable (94.4%).
+
+**Next session:**
+- `point;planeSlider` — with `plane;3points` now landed, this is the key
+  that unlocks most of Book XI: XI.4, XI.30–XI.32, XI.34, XII.17 would
+  all become renderable with just planeSlider.
+- Then `plane;parallel` to finish the remaining XI props.
+- Then `point;sphereSlider` for Book XIII.
+
+---
+
 ## 2026-04-12 — Books XI–XIII deep analysis — 30 blocked props, 11 TBD constructions
 
 **Completed:**

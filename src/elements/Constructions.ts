@@ -987,13 +987,23 @@ export class LinePerpendicular5Construction extends PointPerpendicular5Construct
     }
 }
 
-// TBD
 // line
 // cutoff
 // points A, B, C, D
 // the line AE equal to CD along the line AB
+// (Java: Slate.java line case 7 — Layoff(A,A,B,C,D) + LineElement(A,layoff))
+export class LineCutoffConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.cutoff;
+    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
 
-// TBD
+    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let lo = new Layoff(ps[0], ps[0], ps[1], ps[2], ps[3]);
+        let g = new LineElement({A: ps[0], B: lo});
+        return [[lo, g], g];
+    }
+}
+
 // line
 // extend
 // points A, B, C, D
@@ -1304,12 +1314,14 @@ export class ApplicationPolygonConstruction extends Construction {
     }
 }
 
-// TBD
 // polygon
-// octagon	
+// octagon
 // 8 points A, B, C, D, E, F, G, H
-// the octagon given 8 vertices
-
+// the octagon given 8 vertices (free points, pass-through)
+export class OctagonPolygonConstruction extends PolyConstruction {
+    constructionMethod: AllConstructions = PolygonConstructions.octagon;
+    signature: ConstructionTypes[] = (new Array(8)).fill(ct.PointElement);
+}
 
 // TBD
 // *Solid Geometry Only*
@@ -1378,13 +1390,22 @@ export class ArcConstruction extends Construction {
  * Element Class Plane *
  ***********************/
 
-// TBD
-// *Solid Geometry Only*
 // plane
 // 3points
 // points A, B, C
 // the plane passing through points A, B, and C
+// (Java: Slate.java plane case 0 — new PlaneElement(A, B, C).
+// PlaneElement.ts already has the full constructor + update() that computes S, T, U.)
+export class Plane3PointsConstruction extends Construction {
+    constructionMethod: AllConstructions = PlaneConstructions.threePoints;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
 
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new PlaneElement({A: ps[0], B: ps[1], C: ps[2]});
+        return [[g], g];
+    }
+}
 
 // *Solid Geometry Only*
 // plane
@@ -1540,6 +1561,7 @@ export const constructions : Construction[] = [
     new BichordConstruction(),
     new ChordConstruction(),
     new LineParallelConstruction(),
+    new LineCutoffConstruction(),
     new LineFootConstruction(),
     new SimilarLineConstruction(),
     new AngleBisectorLineConstruction(),
@@ -1551,11 +1573,13 @@ export const constructions : Construction[] = [
     new EquilateralTriangleConstruction(),
     new ParallelogramPolygonConstruction(),
     new QuadrilateralPolygonConstruction(),
+    new OctagonPolygonConstruction(),
     new PentagonPolygonConstruction(),
     new HexagonPolygonConstruction(),
     new SimilarPolygonConstruction(),
     new ApplicationPolygonConstruction(),
     new VertexConstruction(),
+    new Plane3PointsConstruction(),
     new PerpendicularPlaneConstruction(),
     new SphereRadiusConstruction()
 ];
