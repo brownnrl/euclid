@@ -787,6 +787,29 @@ describe("slate", ()=> {
     // Right angle at B=(0,0), rays to A=(0,100) and C=(100,0)
     // Bisector of 90° at B → 45° ray hits AC (line from (0,100) to (100,0), x+y=100)
     // at (50, 50)
+    // point;harmonic — harmonic conjugate of B with respect to C and D
+    // Collinear case: C=(0,0), D=(100,0), B=(25,0)
+    // Complex formula: A = (C(B-D) + D(B-C)) / ((B-D) + (B-C))
+    // E=B-C=(25,0), F=B-D=(-75,0)
+    // CF=C*F=(0,0), DE=D*E=(2500,0)
+    // numx = (CF+DE)*(F+E) = 2500*(-50) = -125000
+    // den = (-50)^2 = 2500
+    // A = (-50, 0)
+    it("should compute the harmonic conjugate (2D collinear case)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "B", construction: E.Point.free, params: [25, 0] },
+            { name: "C", construction: E.Point.free, params: [0, 0] },
+            { name: "D", construction: E.Point.free, params: [100, 0] },
+            { name: "A", construction: E.Point.harmonic, params: ["B", "C", "D"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let A = slate.lookupElement("A") as PointElement;
+        almostEqual(A.x, -50, 0.01);
+        almostEqual(A.y,   0, 0.01);
+    });
+
     // point;planeSlider — draggable point constrained to a non-screen plane
     it("should create a planeSlider point on a 3-point plane", () => {
         let data : IConstructionInfo[] = [
