@@ -1,0 +1,31 @@
+<HTML><HEAD><TITLE>point;planeSlider — applet form of view/test/point/planeSlider.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/point/planeSlider.html -->
+<!-- ORIGINAL: view/applet-tests/point/planeSlider/original.html (propXI4) -->
+<!--
+  PropXI4: three planeSlider points A, E, C on a base plane, with line
+  EF perpendicular to the plane. Exercises point;planeSlider 3 times.
+  Canvas 400x400 (original is 300x250).
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=400 height=400>
+<param name=background value="35,19,100">
+<param name=title value="XI.4 — point;planeSlider">
+<param name=e[1] value="P1;point;fixed;30,210,100;0;0">
+<param name=e[2] value="P2;point;fixed;250,210,100;0;0">
+<param name=e[3] value="P3;point;fixed;70,60,0;0;0">
+<param name=e[4] value="baseplane;plane;3points;P1,P2,P3;0;0;lightGray;brighter">
+<param name=e[5] value="A;point;planeSlider;baseplane,90,50,80">
+<param name=e[6] value="E;point;planeSlider;baseplane,160,150,0">
+<param name=e[7] value="B;point;extend;A,E,A,E">
+<param name=e[8] value="C;point;planeSlider;baseplane,250,30,90">
+<param name=e[9] value="D;point;extend;C,E,C,E">
+<param name=e[10] value="Z;point;fixed;100,100000,0">
+<param name=e[11] value="F;point;lineSlider;E,Z,160,40,0">
+<param name=e[12] value="EF;line;connect;E,F">
+<param name=e[13] value="ABCD;polygon;quadrilateral;A,B,C,D;0;0;black;random">
+<param name=e[14] value="AF;line;connect;A,F">
+<param name=e[15] value="BF;line;connect;B,F">
+<param name=e[16] value="CF;line;connect;C,F">
+<param name=e[17] value="DF;line;connect;D,F">
+</applet>
+</BODY></HTML>
