@@ -354,9 +354,11 @@ These affect the library as a whole, independent of individual constructions.
 - [x] **`circumcircle`** (2D + 3D) — `src/elements/circle/CircumcircleElement.ts`
   - [x] test view: [view/test/circle/circumcircle.html](../view/test/circle/circumcircle.html)
 
-- [ ] **`invert`** — TBD
-  - Java source: `InvertCircle.java`
-  - No Books I–XIII uses found in applet HTML
+- [x] **`invert`** — `src/elements/circle/InvertCircleElement.ts`
+  - Extends `CircleElement`. Inverts circle C in circle D.
+  - Java source: `InvertCircle.java` — 37 lines, line-for-line port.
+  - Mocha test (1): inverted circle is defined with valid center + radius.
+  - No Books I–XIII proposition uses; documented in tables.html.
 
 - [x] **`intersection`** — `src/elements/circle/SphereIntersectionElement.ts`
   - Extends `CircleElement`. Computes the circle at the intersection of

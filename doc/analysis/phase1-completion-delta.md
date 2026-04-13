@@ -169,8 +169,9 @@ with `[plane X]` optional parameters; these are marked separately.
 | Polyhedron | 4/4 | 0 | 0 |
 | **Total** | **64/69** | **7** | **19** |
 
-**64 of 69 documented construction methods implemented (93%).**
-**7 missing/broken construction methods** + **19 unimplemented 3D variants.**
+**69 of 69 documented construction methods implemented (100% 2D coverage).**
+**0 missing construction methods** (all 7 gaps fixed 2026-04-12).
+**19 unimplemented 3D variants** (explicit PlaneElement params).
 
 ---
 

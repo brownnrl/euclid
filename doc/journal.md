@@ -20,6 +20,36 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — All 7 missing constructions implemented — 69/69 (100% 2D)
+
+**Completed:**
+- Implemented all 7 construction methods that were missing or broken
+  per the Phase 1 true-port gap analysis against Joyce's tables.html:
+  1. **PlaneIntersection** (was IntersectionPL — REWRITTEN from broken
+     copy of Intersection.ts, renamed for clarity)
+  2. **SphereCenterConstruction** — returns `sphere.Center`
+  3. **StarPolygonConstruction** — `[Point×2, Integer×2]`, uses
+     RegularPolygonElement with density param
+  4. **AmbientPlanePointConstruction** — returns `point._AP`
+  5. **AmbientPlaneCircleConstruction** — returns `circle.AP`
+  6. **SphereRadius3PointConstruction** — sphere at A with radius |BC|
+  7. **ProportionLineConstruction** — ProportionElement + LineElement
+  8. **InvertCircleConstruction** — port of InvertCircle.java (37 lines)
+- 7 Mocha tests added. 51 → **58 passing**.
+- **69/69 documented construction methods now implemented (100% 2D coverage).**
+  Only 19 3D variants (explicit PlaneElement params) remain for full parity.
+- **0 TBD Java files remaining** — InvertCircle was the last one. All
+  44 Java source files are now PORTED (38), PARTIAL (2 — PerpendicularPL
+  split, Slate dispatch), or N/A (3 — Java infrastructure).
+
+**Phase 1 remaining work:**
+- 19 3D variants with explicit PlaneElement params
+- 12 platform bugs/features (parseColor, HSB, gray, faceColor, font,
+  fontsize, align, title, pivot rotation, keyboard reset, labels,
+  console.log)
+
+---
+
 ## 2026-04-12 — circle;intersection — ALL 465 PROPOSITIONS RENDERABLE
 
 **Completed:**
