@@ -546,18 +546,24 @@ These affect the library as a whole, independent of individual constructions.
 
 ## Polyhedra constructions (solid geometry)
 
-- [ ] **`tetrahedron`** — TBD
-  - Needs `PolyhedronElement.java` base class (78 lines) ported first
-  - Blocks 7 propositions (XII.3–XII.5, XII.8–XII.9, XIII.13, XIII.15)
+- [x] **`tetrahedron`** — `src/elements/Constructions.ts` (`TetrahedronConstruction`)
+  - Creates a triangle base `PolygonElement([A,B,C])` then `PyramidElement(base, D)`.
+  - Java source: `Slate.java` polyhedron case 0 — dispatch trick on Pyramid.
+  - Mocha test (1): tetrahedron has 4 faces.
+  - Blocks 7 propositions (XII.3–XII.5, XII.8–XII.9, XIII.13, XIII.15 — also need prism/parallelepiped)
 - [ ] **`parallelepiped`** — TBD
   - Needs `PolyhedronElement.java` base class ported first
   - Blocks 6 propositions (XI.37, XII.5, XII.9, XII.11, XII.12, XIII.15)
 - [ ] **`prism`** — TBD (Java source: `Prism.java`, 41 lines)
   - Needs `PolyhedronElement.java` base class ported first
   - Blocks 3 propositions (XI.39, XII.7, XIII.14)
-- [ ] **`pyramid`** — TBD (Java source: `Pyramid.java`, 11 lines)
-  - Needs `PolyhedronElement.java` base class ported first
-  - Blocks 3 propositions (XI.23, XII.6, XIII.14)
+- [x] **`pyramid`** — `src/elements/polyhedron/PyramidElement.ts`
+  - Extends `PolyhedronElement`. Creates n triangular side faces from apex
+    to each base edge. Java source: `Pyramid.java` — 11 lines.
+  - [x] test view: [view/test/polyhedron/pyramid.html](../view/test/polyhedron/pyramid.html)
+  - [x] applet-tests pair:
+    [view/applet-tests/polyhedron/pyramid/{original,applet}.html](../view/applet-tests/polyhedron/pyramid/)
+  - Used in: XI.23 (sole blocker, now renderable), XII.6, XIII.14
 
 ---
 
