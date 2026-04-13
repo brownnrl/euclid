@@ -105,7 +105,7 @@ implementation status. Updated as constructions are ported.
 
 | Java File | Status | TS Location | Notes |
 |---|---|---|---|
-| `Prism.java` | TBD | — | Prism construction. Needed for Books XI–XIII. |
+| `Prism.java` | PORTED | `src/elements/polyhedron/PrismElement.ts` | Prism construction. 41 lines. Ported 2026-04-12. |
 | `Pyramid.java` | PORTED | `src/elements/polyhedron/PyramidElement.ts` | Pyramid construction. 11 lines. Ported 2026-04-12. |
 
 ---
@@ -125,9 +125,9 @@ implementation status. Updated as constructions are ported.
 
 | Status | Count | Files |
 |--------|-------|-------|
-| PORTED | 35 | Core element classes + all ported constructions (incl. PolyhedronElement, Pyramid ported 2026-04-12) |
+| PORTED | 36 | Core element classes + all ported constructions (incl. Prism ported 2026-04-12) |
 | PARTIAL | 3 | IntersectionPL, PerpendicularPL, Slate |
-| TBD | 3 | InvertCircle, PlaneFoot, Prism |
+| TBD | 2 | InvertCircle, PlaneFoot |
 | TBD (plane/circle) | 2 | ParallelP (plane;parallel), IntersectionSS (circle;intersection) |
 | N/A | 3 | Geometry, ClientFrame, Remote |
 | **Total** | **44** | |
