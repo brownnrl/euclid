@@ -1,0 +1,182 @@
+<HTML><HEAD><TITLE>Round Triangles: circumcenters</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h2>Circumcenters of round triangles</h2></center>
+
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round4a.gif alt="Circumcenters">
+<param name=background value="0,0,100">
+<param name=title value="Circumcenters">
+<param name=e[1] value="A;point;free;220,60">
+<param name=e[2] value="B;point;free;120,150">
+<param name=e[3] value="C;point;free;200,170">
+<param name=e[4] value="A*;point;free;130,200">
+<param name=e[5] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[6] value="B*;point;circleSlider;210,250,AB">
+<param name=e[7] value="CA;circle;circumcircle;C,A,A*;0;0;black;0">
+<param name=e[8] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[9] value="BCcenter;point;center;BC;0;0">
+<param name=e[10] value="CAcenter;point;center;CA;0;0">
+<param name=e[11] value="Cfoot;point;foot;C,CAcenter,BCcenter;0;0">
+<param name=e[12] value="C*;point;extend;C,Cfoot,C,Cfoot">
+
+<param name=e[13] value="AB*C*;circle;circumcircle;A,B*,C*;0;0;0;0">
+<param name=e[14] value="BC*A*;circle;circumcircle;B,C*,A*;0;0;0;0">
+<param name=e[15] value="CA*B*;circle;circumcircle;C,A*,B*;0;0;0;0">
+<param name=e[16] value="A1A2;line;bichord;BC*A*,CA*B*;0;0;0">
+<param name=e[17] value="B1B2;line;bichord;CA*B*,AB*C*;0;0;0">
+<param name=e[18] value="C1C2;line;bichord;AB*C*,BC*A*;0;0;0">
+
+<param name=e[19] value="AA1A2;circle;circumcircle;A,A1A2;0;0;green;0">
+<param name=e[20] value="BB1B2;circle;circumcircle;B,B1B2;0;0;green;0">
+<param name=e[21] value="CC1C2;circle;circumcircle;C,C1C2;0;0;green;0">
+<param name=e[22] value="GG*;line;bichord;AA1A2,BB1B2;0;0;0">
+<param name=e[23] value="G;point;first;GG*;black;blue">
+<param name=e[24] value="G*;point;last;GG*;black;blue">
+<param name=pivot value="G">
+
+<param name=e[25] value="A1'A2';line;bichord;BC,AA1A2;0;magenta;0;0">
+<param name=e[26] value="B1'B2';line;bichord;CA,BB1B2;0;magenta;0;0">
+<param name=e[27] value="C1'C2';line;bichord;AB,CC1C2;0;magenta;0;0">
+
+<param name=e[28] value="AM;point;midpoint;A1'A2';0;0">
+<param name=e[29] value="AI;point;invert;AM,BC;0;0">
+<param name=e[30] value="A1';point;first;A1'A2';0;0">
+<param name=e[31] value="Aalt;circle;radius;AI,A1';0;0;magenta;0">
+<param name=e[32] value="BM;point;midpoint;B1'B2';0;0">
+<param name=e[33] value="BI;point;invert;BM,CA;0;0">
+<param name=e[34] value="B1';point;first;B1'B2';0;0">
+<param name=e[35] value="Balt;circle;radius;BI,B1';0;0;magenta;0">
+<param name=e[36] value="CM;point;midpoint;C1'C2';0;0">
+<param name=e[37] value="CI;point;invert;CM,AB;0;0">
+<param name=e[38] value="C1';point;first;C1'C2';0;0">
+<param name=e[39] value="Calt;circle;radius;CI,C1';0;0;magenta;0">
+<param name=e[40] value="OO*;line;bichord;Aalt,Balt;0;0;0;0">
+<param name=e[41] value="O;point;first;OO*;black;cyan">
+<param name=e[42] value="O*;point;last;OO*;black;cyan">
+</applet>
+</center><p>
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<param name=background value="0,0,100">
+<img src=round4b.gif alt="Circumcenters of a Hyperbolic Triangle">
+<param name=title value="Circumcenters of a Hyperbolic Triangle">
+<param name=e[1] value="O;point;fixed;200,150;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+<param name=e[4] value="A;point;free;250,190">
+<param name=e[5] value="B;point;free;300,190">
+<param name=e[6] value="C;point;free;275,150">
+<param name=e[7] value="A*;point;invert;A,disk">
+<param name=e[8] value="B*;point;invert;B,disk">
+<param name=e[9] value="C*;point;invert;C,disk">
+<param name=e[10] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[11] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[12] value="CA;circle;circumcircle;C,A,C*;0;0;black;0">
+
+<param name=e[13] value="AB*C*;circle;circumcircle;A,B*,C*;0;0;0;0">
+<param name=e[14] value="BC*A*;circle;circumcircle;B,C*,A*;0;0;0;0">
+<param name=e[15] value="CA*B*;circle;circumcircle;C,A*,B*;0;0;0;0">
+<param name=e[16] value="A1A2;line;bichord;BC*A*,CA*B*;0;0;0">
+<param name=e[17] value="B1B2;line;bichord;CA*B*,AB*C*;0;0;0">
+<param name=e[18] value="C1C2;line;bichord;AB*C*,BC*A*;0;0;0">
+
+<param name=e[19] value="AA1A2;circle;circumcircle;A,A1A2;0;0;green;0">
+<param name=e[20] value="BB1B2;circle;circumcircle;B,B1B2;0;0;green;0">
+<param name=e[21] value="CC1C2;circle;circumcircle;C,C1C2;0;0;green;0">
+<param name=e[22] value="GG*;line;bichord;AA1A2,BB1B2;0;0;0">
+<param name=e[23] value="G;point;first;GG*;black;blue">
+<param name=e[24] value="G*;point;last;GG*;black;blue">
+
+<param name=e[25] value="A1'A2';line;bichord;BC,AA1A2;0;magenta;0;0">
+<param name=e[26] value="B1'B2';line;bichord;CA,BB1B2;0;magenta;0;0">
+<param name=e[27] value="C1'C2';line;bichord;AB,CC1C2;0;magenta;0;0">
+
+<param name=e[28] value="AM;point;midpoint;A1'A2';0;0">
+<param name=e[29] value="AI;point;invert;AM,BC;0;0">
+<param name=e[30] value="A1';point;first;A1'A2';0;0">
+<param name=e[31] value="Aalt;circle;radius;AI,A1';0;0;magenta;0">
+<param name=e[32] value="BM;point;midpoint;B1'B2';0;0">
+<param name=e[33] value="BI;point;invert;BM,CA;0;0">
+<param name=e[34] value="B1';point;first;B1'B2';0;0">
+<param name=e[35] value="Balt;circle;radius;BI,B1';0;0;magenta;0">
+<param name=e[36] value="CM;point;midpoint;C1'C2';0;0">
+<param name=e[37] value="CI;point;invert;CM,AB;0;0">
+<param name=e[38] value="C1';point;first;C1'C2';0;0">
+<param name=e[39] value="Calt;circle;radius;CI,C1';0;0;magenta;0">
+<param name=e[40] value="OO*;line;bichord;Aalt,Balt;0;0;0;0">
+<param name=e[41] value="O;point;first;OO*;black;cyan">
+<param name=e[42] value="O*;point;last;OO*;black;cyan">
+</applet></center><p>
+
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round4c.gif alt="Circumcenters of an Elliptic Triangle">
+<param name=background value="0,0,100">
+<param name=title value="Circumcenters of an Elliptic Triangle">
+<param name=e[1] value="O;point;fixed;200,150;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+<param name=e[4] value="A;point;free;70,140">
+<param name=e[5] value="B;point;free;150,170">
+<param name=e[6] value="C;point;free;125,90">
+<param name=e[7] value="A#;point;invert;A,disk;0;0">
+<param name=e[8] value="A*;point;extend;A,O,O,A#">
+<param name=e[9] value="B#;point;invert;B,disk;0;0">
+<param name=e[10] value="B*;point;extend;B,O,O,B#">
+<param name=e[11] value="C#;point;invert;C,disk;0;0">
+<param name=e[12] value="C*;point;extend;C,O,O,C#">
+<param name=e[13] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[14] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[15] value="CA;circle;circumcircle;C,A,C*;0;0;black;0">
+
+<param name=e[16] value="AB*C*;circle;circumcircle;A,B*,C*;0;0;0;0">
+<param name=e[17] value="BC*A*;circle;circumcircle;B,C*,A*;0;0;0;0">
+<param name=e[18] value="CA*B*;circle;circumcircle;C,A*,B*;0;0;0;0">
+<param name=e[19] value="A1A2;line;bichord;BC*A*,CA*B*;0;0;0">
+<param name=e[20] value="B1B2;line;bichord;CA*B*,AB*C*;0;0;0">
+<param name=e[21] value="C1C2;line;bichord;AB*C*,BC*A*;0;0;0">
+
+<param name=e[22] value="AA1A2;circle;circumcircle;A,A1A2;0;0;green;0">
+<param name=e[23] value="BB1B2;circle;circumcircle;B,B1B2;0;0;green;0">
+<param name=e[24] value="CC1C2;circle;circumcircle;C,C1C2;0;0;green;0">
+<param name=e[25] value="GG*;line;bichord;AA1A2,BB1B2;0;0;0">
+<param name=e[26] value="G;point;first;GG*;black;blue">
+<param name=e[27] value="G*;point;last;GG*;black;blue">
+
+<param name=e[28] value="A1'A2';line;bichord;BC,AA1A2;0;magenta;0;0">
+<param name=e[29] value="B1'B2';line;bichord;CA,BB1B2;0;magenta;0;0">
+<param name=e[30] value="C1'C2';line;bichord;AB,CC1C2;0;magenta;0;0">
+
+<param name=e[31] value="AM;point;midpoint;A1'A2';0;0">
+<param name=e[32] value="AI;point;invert;AM,BC;0;0">
+<param name=e[33] value="A1';point;first;A1'A2';0;0">
+<param name=e[34] value="Aalt;circle;radius;AI,A1';0;0;magenta;0">
+<param name=e[35] value="BM;point;midpoint;B1'B2';0;0">
+<param name=e[36] value="BI;point;invert;BM,CA;0;0">
+<param name=e[37] value="B1';point;first;B1'B2';0;0">
+<param name=e[38] value="Balt;circle;radius;BI,B1';0;0;magenta;0">
+<param name=e[39] value="CM;point;midpoint;C1'C2';0;0">
+<param name=e[40] value="CI;point;invert;CM,AB;0;0">
+<param name=e[41] value="C1';point;first;C1'C2';0;0">
+<param name=e[42] value="Calt;circle;radius;CI,C1';0;0;magenta;0">
+<param name=e[43] value="OO*;line;bichord;Aalt,Balt;0;0;0;0">
+<param name=e[44] value="O;point;first;OO*;black;cyan">
+<param name=e[45] value="O*;point;last;OO*;black;cyan">
+</applet></center><p>
+
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<p>Email: <A HREF="mailto:djoyce@clarku.edu">djoyce@clarku.edu</a>
+<br>
+<a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+</BODY>
+</HTML>

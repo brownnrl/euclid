@@ -1,0 +1,46 @@
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round2a.gif alt="Medians and Centroids">
+<param name=background value="0,0,100">
+<param name=title value="Medians and Centroids">
+<param name=e[1] value="A;point;free;220,60">
+<param name=e[2] value="B;point;free;120,150">
+<param name=e[3] value="C;point;free;200,170">
+<param name=e[4] value="A*;point;free;130,200;0">
+<param name=e[5] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[6] value="B*;point;circleSlider;210,250,AB;0">
+<param name=e[7] value="CA;circle;circumcircle;C,A,A*;0;0;black;0">
+<param name=e[8] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[9] value="BCcenter;point;center;BC;0;0">
+<param name=e[10] value="CAcenter;point;center;CA;0;0">
+<param name=e[11] value="Cfoot;point;foot;C,CAcenter,BCcenter;0;0">
+<param name=e[12] value="C*;point;extend;C,Cfoot,C,Cfoot;0">
+
+<param name=e[13] value="A';point;harmonic;A*,B,C;0">
+<param name=e[14] value="B';point;harmonic;B*,C,A;0">
+<param name=e[15] value="C';point;harmonic;C*,A,B;0">
+<param name=e[16] value="Amed;circle;circumcircle;A,A*,A';0;0;magenta;0">
+<param name=e[17] value="Bmed;circle;circumcircle;B,B*,B';0;0;magenta;0">
+<param name=e[18] value="Cmed;circle;circumcircle;C,C*,C';0;0;magenta;0">
+<param name=e[19] value="GG*;line;bichord;Amed,Bmed;0;blue;0">
+
+<param name=e[20] value="A'';point;invert;A',BC;0;0">
+<param name=e[21] value="AA'';circle;circumcircle;A*,A',A'';0;0;cyan;0">
+<param name=e[22] value="B'';point;invert;B',CA;0;0">
+<param name=e[23] value="BB'';circle;circumcircle;B*,B',B'';0;0;cyan;0">
+<param name=e[24] value="C'';point;invert;C',AB;0;0">
+<param name=e[25] value="CC'';circle;circumcircle;C*,C',C'';0;0;cyan;0">
+<param name=e[26] value="OO*;line;bichord;AA'',BB'';0;green;0;0">
+
+<param name=e[27] value="D;point;invert;A,BC;0;0">
+<param name=e[28] value="AD;circle;circumcircle;A,A*,D;0;0;orange;0">
+<param name=e[29] value="E;point;invert;B,CA;0;0">
+<param name=e[30] value="BE;circle;circumcircle;B,B*,E;0;0;orange;0">
+<param name=e[31] value="F;point;invert;C,AB;0;0">
+<param name=e[32] value="CF;circle;circumcircle;C,C*,F;0;0;orange;0">
+<param name=e[33] value="HH*;line;bichord;AD,BE;0;magenta;0">
+
+<param name=e[34] value="H;point;first;HH*;0;0">
+<param name=e[35] value="euler;circle;circumcircle;H,GG*;0;0;red;0">
+</applet>
+</center><p>

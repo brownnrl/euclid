@@ -1,0 +1,232 @@
+<HTML><HEAD><TITLE>Configuration of six circles and eight points</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h1>The configuration of six circles and eight points</h1></center>
+
+The figure below shows six circles, named <i>U, V, W, X, Y,</i> and <i>Z,</i> which meet in groups of three at eight points labelled here from <i>A</i> through <i>H.</i>  Each circle passes through four of those points
+<pre>
+     circles     point                circle  points<i>
+     U  W  Y       A                    U     A B C D
+     U  X  Y       B                    V     E F G H
+     U  W  Z       C                    W     A C E G
+     U  X  Z       D                    X     B D F H
+     V  W  Y       E                    Y     A B E F
+     V  X  Y       F                    Z     C D E H
+     V  W  Z       G
+     V  X  Z       H</i>
+</pre>
+To see the correspondence, you label the faces of a cube by the letters <i>U, V,</i> and <i>W</i> with the opposite faces labelled <i>X, Y,</i> and <i>Z,</i> respectively.  Then the eight vertices of a cube can be labelled from <i>A</i> through <i>H</i> according to the table.
+
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=320 width=400>
+<img src=sixeight1.gif alt="Six circles meeting at eight points in the plane">
+<param name=background value="0,0,100">
+<param name=title value="Six circles meeting at eight points in the plane">
+<param name=e[1] value="A;point;free;270,80">
+<param name=e[2] value="B;point;free;120,80">
+<param name=e[3] value="C;point;free;220,100">
+<param name=e[4] value="U;circle;circumcircle;A,B,C;0;0;black;0">
+<param name=e[5] value="D;point;circleSlider;160,100,U">
+<param name=e[6] value="E;point;free;300,200">
+<param name=e[7] value="Y;circle;circumcircle;A,B,E;0;0;green;0">
+<param name=e[8] value="W;circle;circumcircle;A,C,E;0;0;red;0">
+<param name=e[9] value="F;point;circleSlider;100,180,Y">
+<param name=e[10] value="G;point;circleSlider;210,170,W">
+<param name=e[11] value="X;circle;circumcircle;B,D,F;0;0;red;0">
+<param name=e[12] value="Z;circle;circumcircle;C,D,G;0;0;green;0">
+<param name=e[13] value="V;circle;circumcircle;E,F,G;0;0;black;0">
+</applet></center><p>
+
+In this diagram you may freely move points <I>A, B, C,</I> and <I>E,</I> while you may slide points 
+<i>D, F</I> and <I>G</I> on the circles determined by <I>U, Y,</I> and <I>W.</I>
+
+<p>The proposition is that if six circles meet in groups of three in seven points (<I>A</I> through 
+<I>G</I> in the diagram), then the remaining three circles meet at a point (<i>V, X,</i> and <i>Z</i> meet at point <I>H</I>).
+
+<h4>It's a proposition about circles on a sphere</h4>
+
+The configuration of six circles and eight points in a plane can be projected to a sphere by means of the stereographic projection.  And then the proposition holds for six circles on the sphere.
+ 
+
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=360 width=360>
+<img src=sixeight2.gif alt="Six circles meeting at eight points on the sphere">
+<param name=background value="0,0,100">
+<param name=title value="Six circles meeting at eight points on the sphere">
+<param name=e[1] value="x0;point;fixed;-100,180,180;0,0">
+<param name=e[2] value="x1;point;fixed;1100,180,180;0,0">
+<param name=e[3] value="O;point;lineSlider;x0,x1,180,180">
+<param name=e[4] value="Edge;point;lineSlider;x0,x1,20,180;0">
+<param name=e[5] value="Sphere;sphere;radius;O,Edge;0;0;black;random">
+<param name=e[6] value="A;point;sphereSlider;Sphere,270,60,0">
+<param name=e[7] value="B;point;sphereSlider;Sphere,90,60,0">
+<param name=e[8] value="C;point;sphereSlider;Sphere,220,100,0">
+
+<param name=e[9] value="Uplane;plane;3points;A,B,C;0;0;0;0">
+<param name=e[10] value="U;circle;circumcircle;A,B,C,Uplane;0;0;black;0">
+<param name=e[11] value="D;point;circleSlider;160,100,U">
+
+<param name=e[12] value="E;point;sphereSlider;Sphere,300,250,0">
+<param name=e[13] value="Yplane;plane;3points;A,B,E;0;0;0;0">
+<param name=e[14] value="Y;circle;circumcircle;A,B,E,Yplane;0;0;green;0">
+
+<param name=e[15] value="Wplane;plane;3points;A,C,E;0;0;0;0">
+<param name=e[16] value="W;circle;circumcircle;A,C,E,Wplane;0;0;red;0">
+<param name=e[17] value="F;point;circleSlider;100,220,Y">
+<param name=e[18] value="G;point;circleSlider;210,210,W">
+
+<param name=e[19] value="Xplane;plane;3points;B,D,F;0;0;0;0">
+<param name=e[20] value="X;circle;circumcircle;B,D,F,Xplane;0;0;red;0">
+<param name=e[21] value="Zplane;plane;3points;C,D,G;0;0;0;0">
+<param name=e[22] value="Z;circle;circumcircle;C,D,G,Zplane;0;0;green;0">
+<param name=e[23] value="Vplane;plane;3points;E,F,G;0;0;0;0">
+<param name=e[24] value="V;circle;circumcircle;E,F,G,Vplane;0;0;black;0">
+</applet></center><p>
+
+Each of the circles in the plane figure corresponds to a circle on the sphere.  The
+point <i>O</i> in the diagram is the center of the sphere.
+
+<h4>A proposition about hexahedra</h4>
+
+The above proposition of inversive geometry can be translated to a statement about hexahedra.  A cube is a six-faced polyhedron where each face is a square, and three squares meet at each vertex.  Call any six-faced polyhedron where each face is a quadrilateral and three quadrilaterals meet at each vertex a <i>hexahedron.</i>  A cube is a regular hexahedron, but there are plenty of irregular hexahedra.  
+
+
+<p>Each of the six circles on the sphere determines a plane, and the six planes determine the six faces of a hexahedron.  The hexahedron so determined doesn't have to be a convex hexadron, but it could have intersecting faces.  The proposition can now be stated in terms of hexahedra as follows: if seven of the eight vertices of a hexahedron lie on a sphere, then so does the eighth.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=360 width=360>
+<img src=sixeight2a.gif alt="A hexahedron in the sphere">
+<param name=background value="0,0,100">
+<param name=title value="A hexahedron in the sphere">
+<param name=e[1] value="x0;point;fixed;-100,180,180;0,0">
+<param name=e[2] value="x1;point;fixed;1100,180,180;0,0">
+<param name=e[3] value="O;point;lineSlider;x0,x1,180,180">
+<param name=e[4] value="Edge;point;lineSlider;x0,x1,20,180;0">
+<param name=e[5] value="Sphere;sphere;radius;O,Edge;0;0;black;random">
+<param name=e[6] value="A;point;sphereSlider;Sphere,270,60,0">
+<param name=e[7] value="B;point;sphereSlider;Sphere,90,60,0">
+<param name=e[8] value="C;point;sphereSlider;Sphere,220,100,0">
+
+<param name=e[9] value="Uplane;plane;3points;A,B,C;0;0;0;0">
+<param name=e[10] value="U;circle;circumcircle;A,B,C,Uplane;0;0;black;0">
+<param name=e[11] value="D;point;circleSlider;160,100,U">
+
+<param name=e[12] value="E;point;sphereSlider;Sphere,300,250,0">
+<param name=e[13] value="Yplane;plane;3points;A,B,E;0;0;0;0">
+<param name=e[14] value="Y;circle;circumcircle;A,B,E,Yplane;0;0;green;0">
+
+<param name=e[15] value="Wplane;plane;3points;A,C,E;0;0;0;0">
+<param name=e[16] value="W;circle;circumcircle;A,C,E,Wplane;0;0;red;0">
+<param name=e[17] value="F;point;circleSlider;100,220,Y">
+<param name=e[18] value="G;point;circleSlider;210,210,W">
+
+<param name=e[19] value="Xplane;plane;3points;B,D,F;0;0;0;0">
+<param name=e[20] value="X;circle;circumcircle;B,D,F,Xplane;0;0;red;0">
+<param name=e[21] value="Zplane;plane;3points;C,D,G;0;0;0;0">
+<param name=e[22] value="Z;circle;circumcircle;C,D,G,Zplane;0;0;green;0">
+<param name=e[23] value="Vplane;plane;3points;E,F,G;0;0;0;0">
+<param name=e[24] value="V;circle;circumcircle;E,F,G,Vplane;0;0;black;0">
+
+<param name=e[25] value="ABFE;polygon;quadrilateral;A,B,F,E;0;0;black;random">
+<param name=e[26] value="ABDC;polygon;quadrilateral;A,B,D,C;0;0;black;random">
+<param name=e[27] value="ACGE;polygon;quadrilateral;A,C,G,E;0;0;black;random">
+</applet></center><p>
+
+In the diagram, three faces of the hexahedron are drawn, namely, <i>ABFE, ABDC,</i>
+and <i>ACGE.</i>  The three faces that include the vertex <i>H,</i> namely, <i>DBFH,
+DCGH,</i> and <i>FEGH,</i> aren't drawn.
+
+<h4>Special case in Euclidean geometry</h4>
+
+We'll prove the 6-8 proposition for a sphere by using a stereographic projection from one of the vertices.
+
+<p>Project the 6-8 configuration from the intersection point <i>A,</i> so that <i>A</i> itself will correspond to the point at infinity.  The resulting configuration on the plane looks quite different.  The circle <i>U</i> becomes the line <i>BC,</i> the circle <i>W</i> becomes the line <i>CE,</i> and the circle <i>Y</i> becomes the line <i>BE.</i>  Thus, these three circles, which have become lines, form the triangle <i>BCE.</i>
+
+<p>The next three points, <i>D, F,</i> and <i>G,</i> may be freely chosen on the three sides of this triangle. (They can lie on the sides extended; they don't actually have to be on the boundary of the triangle.) The next three circles <i>V, X,</i> and <i>Z</i> each pass through three of the points as before.  Then the proposition states that these three circles all pass through the same point <i>H.</i>
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=sixeight3.gif alt="Three circles meet">
+<param name=background value="0,0,100">
+<param name=title value="Three circles meet">
+<param name=e[1] value="0x;point;fixed;0,0;0;0">
+<param name=e[2] value="1x;point;fixed;1000,0;0;0">
+<param name=e[3] value="B;point;free;50,250">
+<param name=e[4] value="C;point;free;220,50">
+<param name=e[5] value="BC*;point;extend;C,B,0x,1x;0;0">
+<param name=e[6] value="CB*;point;extend;B,C,0x,1x;0;0">
+<param name=e[7] value="U;line;connect;BC*,CB*;0;0;blue">
+<param name=e[8] value="D;point;lineSlider;160,100,U">
+<param name=e[9] value="E;point;free;350,250">
+<param name=e[10] value="BE*;point;extend;E,B,0x,1x;0;0">
+<param name=e[11] value="EB*;point;extend;B,E,0x,1x;0;0">
+<param name=e[12] value="Y;line;connect;BE*,EB*;0;0;green">
+<param name=e[13] value="CE*;point;extend;E,C,0x,1x;0;0">
+<param name=e[14] value="EC*;point;extend;C,E,0x,1x;0;0">
+<param name=e[15] value="W;line;connect;CE*,EC*;0;0;red;0">
+<param name=e[16] value="F;point;lineSlider;200,180,Y">
+<param name=e[17] value="G;point;lineSlider;210,220,W">
+<param name=e[18] value="X;circle;circumcircle;B,D,F;0;0;red;0">
+<param name=e[19] value="Z;circle;circumcircle;C,D,G;0;0;green;0">
+<param name=e[20] value="V;circle;circumcircle;E,F,G;0;0;blue;0">
+</applet></center><p>
+
+That this is true is fairly easy to see.  It follows from the proposition that a quadrilateral <i>KLMN</i> is cyclic (that is, can be inscribed in a circle) if and only if the opposite angles are supplementary (that is, angle <i>K</i> plus angle <i>M</i> equals a straight angle).  
+
+<p>In the diagram above, remove the circle <i>EFG,</i> and let <i>H</i> be the intersection of the two circles <i>BDF</i> and <i>CDG</i> (that is, the intersection that is not <i>D</i>).  Draw lines to <i>H</i> from <i>D, F,</i> and <i>G.</i> Three quadrilaterals are formed, <i>BDHF, CDHG,</i> and <i>EFHG.</i>  Since the first two of these quadrilaterals are cyclic, therefore angles <i>BDH</i> and <i>BFH</i> are supplementary, and angles <i>CDH</i> and <i>CGH</i> are supplementary.  But we also have three more pairs of supplementary angles&#151;<i>EFH</i> and <i>BFH</i>; <i>BDH</i> and <i>CDH</i>; and <i>CGH</i> and <i>EGH.</i> Therefore, the angles <i>EFH</i> and <i>EGH</i> are also supplementary.  Therefore the quadrilateral <i>EFHG</i> is cyclic.  That is to say, the three circles, <i>BDF, CDG,</i> and <i>EFG,</i> are concurrent at the point <i>H.</I>
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=sixeight4.gif alt="Three cyclic quadrilaterals">
+<param name=title value="Three cyclic quadrilaterals">
+<param name=background value="0,0,100">
+<param name=e[1] value="0x;point;fixed;0,0;0;0">
+<param name=e[2] value="1x;point;fixed;1000,0;0;0">
+<param name=e[3] value="B;point;free;50,250">
+<param name=e[4] value="C;point;free;220,50">
+<param name=e[5] value="BC*;point;extend;C,B,0x,1x;0;0">
+<param name=e[6] value="CB*;point;extend;B,C,0x,1x;0;0">
+<param name=e[7] value="U;line;connect;BC*,CB*">
+<param name=e[8] value="D;point;lineSlider;160,100,U">
+<param name=e[9] value="E;point;free;350,250">
+<param name=e[10] value="BE*;point;extend;E,B,0x,1x;0;0">
+<param name=e[11] value="EB*;point;extend;B,E,0x,1x;0;0">
+<param name=e[12] value="Y;line;connect;BE*,EB*;0;0">
+<param name=e[13] value="CE*;point;extend;E,C,0x,1x;0;0">
+<param name=e[14] value="EC*;point;extend;C,E,0x,1x;0;0">
+<param name=e[15] value="W;line;connect;CE*,EC*">
+<param name=e[16] value="F;point;lineSlider;200,180,Y">
+<param name=e[17] value="G;point;lineSlider;210,220,W">
+<param name=e[18] value="X;circle;circumcircle;B,D,F;0;0;red;0">
+<param name=e[19] value="Z;circle;circumcircle;C,D,G;0;0;green;0">
+<param name=e[20] value="DH;line;bichord;X,Z">
+<param name=e[21] value="M;point;midpoint;DH;0;0">
+<param name=e[22] value="H;point;extend;D,M,D,M">
+<param name=e[23] value="GH;line;connect;G,H">
+<param name=e[24] value="FH;line;connect;F,H">
+</applet></center><p>
+
+Actually, this proof is only valid when <i>H</i> lies inside the triangle <i>BCE.</i>  The proof
+requires that certain angles be opposite angles of a quadrilateral, but that doesn't happen if <i>H</i> lies outside the triangle.  The argument has to be modified when that happens.
+
+<h4>Back to the sphere, hexahedra, and octahedra</h4>
+
+Since the 6-8 proposition is valid when the point <i>A</i> is at infinity, it follows that it's valid on the sphere (by means of a stereographic projection). Therefore, the statement about hexahedra is valid: if seven of the eight vertices of a hexahedron lie on a sphere, then so does the eighth.
+
+<p>There is a dual statement about octahedra.  Here, by an "octahedron" is meant a configuration of eight points, twelve lines, and six triangular faces, but not necessarily a regular octahedron.  The dual statement says that if seven of the eight faces are tangent to a sphere, so is the eighth.
+
+<p>The correspondence is as follows.  Consider a 6-8 configuration of circles on a sphere.  Each of the six circles corresponds to a point outside the sphere, where the cone of tangent lines to the sphere touches the sphere at the circle.  The point on the sphere where three circles meet gives a plane tangent to the sphere passing through the three points corresponding to the three circles.  Conversely, if three points lie on a plane tangent to a sphere, then the three circles corresponding to them pass through the point of tangency.
+
+<p>So, if seven of the faces of an octahedron are tangent to the sphere, then the six circles corresponding to the vertices of the octahedron meet in seven points, and, therefore, three of them meet at an eighth point on the sphere, which implies that the eighth face is tangent to the sphere.
+
+<p><hr width=50%><p>
+
+<small>1998; Mar 2002; Oct 2005.
+<br><a href="http://aleph0.clarku.edu/~djoyce/">David E. Joyce</a>
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br><a href="http://www.clarku.edu">Clark University</a>
+</small>
+</BODY>
+</HTML>

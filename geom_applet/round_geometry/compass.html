@@ -1,0 +1,244 @@
+<HTML><HEAD><TITLE>Construction by Compasses Alone</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h2>Compass Geometry</h2></center>
+
+With compasses alone, all the points that can be constructed with straightedges and compasses can be
+ constructed.  That means that straightedges are only necessary for the actual drawing of lines.  One
+ would not want to dispense with straightedges, however, since the constructions with compasses alone
+ are much more complicated.
+
+<p>The geometry of compasses was developed independently by G. Mohr in Denmark in 1672, and by L.
+ Mascheroni in Italy in 1797.  The easiest way, however, to show that compasses are sufficient depends
+ on circle inversion which wasn't invented until 1828 by Jacob Steiner.
+
+<p><small>References: R. Courant and H.E. Robbins, <i>What is Mathematics?</i> Oxford Univ. Pr., New
+ York, 1953.
+<br>H.S.M. Coxeter, <i>Introduction to Geometry</i>, Wiley, New York, 1961.
+<br>D. Pedoe, <i>Circles</i>, Dover, New York, 1957.</small>
+
+<p>There are three methods to construct points in Euclidean geometry.
+<ul>
+<br><b>CC</b>: construct the intersections of two circles given their centers and a point on each
+ circumference
+<br><b>LC</b>: construct the intersections of a line given by two points and a circle given its center
+ and a point on its circumference
+<br><b>LL</b>: construct the intersection of two lines, each given by two points
+</ul>
+
+<p>It is evident that the first construction is possible by compasses alone; just draw the two
+ circles.  The other two constructions will be possible if we can show that we can invert points in
+ circles with compasses alone, and find centers of circles.  Those are the constructions
+<ul>
+<br><b>PC</b>: constuct the inverse <i>P'</i> of a point <i>P</i> in a circle given its center and
+ point on its circumference
+<br><b>C</b>: construct the center of a circle given three points on its circumference
+</ul>
+For then we can just choose an arbitrary circle outside the figure, apply <b>PC</b> to invert in that
+ circle the points in the figure (so that all the circles and lines of data in <b>LC</b> and <b>LL</b>
+ become circles), apply <b>CC</b> to find the intersections, and apply <b>PC</b> to find the
+ corresponding intersections for the original figure.  Along the way, we'll have to use construction
+ <b>C</b> to find the centers of the inverted circles since centers of circles aren't preserved under
+ inversion.
+
+<h4>Construction <b>PC</b> to invert a point in a circle</h4>
+
+When <i>A</i> is any geometric figure (point, line, circle, etc.) and <i>C</i> is a circle, we'll use
+ the notation <i>A</i><img src=thru.gif alt=">"><i>C</i> for the result of inverting <i>A</i> in the
+ circle <i>C</i>.
+
+<p>Let there be  given a circle <i>C</i> with center <i>O</i> and point <i>A</i> on its circumference,
+ and a point <i>P</i> either outside the circle <i>C</i> or inside but more than half the radius away
+ from <i>O</i>.  Here is a construction to invert <i>P</i> in the circle to get <i>P'</i> =
+ <i>P</i><img src=thru.gif alt=">"><i>C</i>.  Draw the circle with center <i>P</i> and radius
+ <i>PO</i>.  Then this new circle meets the circle <i>C</i> at two points, <i>Q</i> and <i>Q'</i>. 
+ Draw the two circles with centers <i>Q</i> and <i>Q'</i> and radii <i>QO</i> and <i>QO'</i>,
+ respectively.  Besides <i>O</i>, they will meet at another point <i>P'</i>. 
+
+<p>Then the two triangles <i>QOP</i> and <i>P'OQ</i> are each isosceles, and they have the same base
+ angles, so they're similar.  Therefore <i>OP</i>:<i>OQ</i> = <i>OQ</i>:<i>OP'</i>.  Thus, <i>P'</i>
+ is the inverse of <i>P</i> in the original circle <i>C</i>.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=250 width=400>
+<img src=compass1.gif alt="Invert P in a circle">
+<param name=background value="0,0,100">
+<param name=title value="Invert P in a circle">
+<param name=e[1] value="O;point;free;100,125">
+<param name=e[2] value="A;point;free;100,220">
+<param name=e[3] value="P;point;free;170,125">
+<param name=e[4] value="Ocirc;circle;radius;O,A;0;0;black;random">
+<param name=e[5] value="Pcirc;circle;radius;P,O;0;0;black;0">
+<param name=e[6] value="QQ';line;bichord;Ocirc,Pcirc;0;0;0">
+<param name=e[7] value="Q;point;first;QQ'">
+<param name=e[8] value="Q';point;last;QQ'">
+<param name=e[9] value="Qcirc;circle;radius;Q,O;0;0;black;0">
+<param name=e[10] value="Q'circ;circle;radius;Q',O;0;0;black;0">
+<param name=e[11] value="OP';line;bichord;Qcirc,Q'circ;0;0;0">
+<param name=e[12] value="OPmid;point;midpoint;OP';0;0">
+<param name=e[13] value="P';point;extend;O,OPmid,O,OPmid">
+</applet></center><p>
+
+Now, this construction doesn't work if <i>P</i> is within half the radius of <i>O</i> since the two
+ circles won't intersect to produce the points <i>Q</i> and <i>Q'</i>, so some other construction is
+ needed to invert such <i>P</i>.  If <i>P</i> is at least a quarter of the radius away from <i>O</i>,
+ then we can easily find the point <i>R</i> twice as far from <i>O</i> as <i>P</i> is, then invert
+ <i>R</i> in the circle <i>C</i> to get <i>R'</i> = <i>R</i><img src=thru.gif alt=">"><i>C</i> by the
+ method described above, and then <i>P'</i> will be the point twice as far from <i>O</i> as <i>R'</i>
+ is.  The doubling construction
+
+<ul>
+<br><b>2OP</b>: given two points <i>O</i> and <i>P</i>, constuct the point <i>R</i> on the line
+ <i>OP</i> twice as far from <i>O</i> as <i>P</i> is
+</ul>
+
+can be effected as follows.  Draw the circles with centers <i>O</i> and <i>P</i> and radius <i>OP</i>.
+  Let them intersect at <i>Q</i> and <i>Q'</i>.  Draw the circle with center <i>Q</i> and radius
+ <i>QQ'</i>.  It will intersect the circle with center <i>P</i> at the points <i>Q'</i> and <i>R</i>.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=250 width=300>
+<img src=compass2.gif alt="Double OP">
+<param name=background value="0,0,100">
+<param name=title value="Double OP">
+<param name=e[1] value="O;point;free;40,125">
+<param name=e[2] value="P;point;free;120,125">
+<param name=e[3] value="Ocirc;circle;radius;O,P;0;0;black;random">
+<param name=e[4] value="Pcirc;circle;radius;P,O;0;0;black;0">
+<param name=e[5] value="QQ';line;bichord;Ocirc,Pcirc;0;0;0">
+<param name=e[6] value="Q;point;first;QQ'">
+<param name=e[7] value="Q';point;last;QQ'">
+<param name=e[8] value="Qcirc;circle;radius;Q,Q';0;0;black;0">
+<param name=e[9] value="Q'R;line;bichord;Qcirc,Pcirc;0;0;0">
+<param name=e[10] value="Q'Rmid;point;midpoint;Q'R;0;0">
+<param name=e[11] value="R;point;extend;Q',Q'Rmid,Q',Q'Rmid">
+</applet></center><p>
+
+Now we can invert a point <i>P</i> in a circle at least a quarter of a radius away from the center.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=250 width=400>
+<img src=compass3.gif alt="Invert P in a circle">
+<param name=background value="0,0,100">
+<param name=title value="Invert P in a circle">
+<param name=e[1] value="O;point;free;100,125">
+<param name=e[2] value="A;point;free;100,210">
+<param name=e[3] value="P;point;free;130,125">
+<param name=e[4] value="R;point;extend;O,P,O,P">
+<param name=e[5] value="Ocirc;circle;radius;O,A;0;0;black;random">
+<param name=e[6] value="Rcirc;circle;radius;R,O;0;0;black;0">
+<param name=e[7] value="QQ';line;bichord;Ocirc,Rcirc;0;0;0">
+<param name=e[8] value="Q;point;first;QQ'">
+<param name=e[9] value="Q';point;last;QQ'">
+<param name=e[10] value="Qcirc;circle;radius;Q,O;0;0;black;0">
+<param name=e[11] value="Q'circ;circle;radius;Q',O;0;0;black;0">
+<param name=e[12] value="OR';line;bichord;Qcirc,Q'circ;0;0;0">
+<param name=e[13] value="OR'mid;point;midpoint;OR';0;0">
+<param name=e[14] value="R';point;extend;O,OR'mid,O,OR'mid">
+<param name=e[15] value="P';point;extend;O,R',O,R'">
+</applet></center><p>
+
+When <i>P</i> is very close to <i>O</i>, all we have to do is repeatedly double the distance from
+ <i>O</i> until we've got a point at least half the radius from <i>O</i>, invert that point, and
+ double the resulting distance the same number of times to get <i>P'</i>.
+
+<h4>Bisecting and multisecting lines</h4>
+
+Before going on, we can use inversion in circles to effect a construction to bisect a line segment, or
+ more generally, cut off one <i>n</i>-th of a line segment.  To bisect a line segment <i>OP</i>, use
+ construction <b>2OP</b> to double it to <i>OR</i>, then construction <b>PC</b> to invert <i>R</i> in
+ the circle with center <i>O</i> and radius <i>OP</i> to get the midpoint <i>M</i> of <i>OP</i>.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=250 width=400>
+<img src=compass4.gif alt="A midpoint construction">
+<param name=background value="0,0,100">
+<param name=title value="A midpoint construction">
+<param name=e[1] value="O;point;free;100,125">
+<param name=e[2] value="P;point;free;180,125">
+<param name=e[3] value="R;point;extend;O,P,O,P">
+<param name=e[4] value="Ocirc;circle;radius;O,P;0;0;black;random">
+<param name=e[5] value="Rcirc;circle;radius;R,O;0;0;black;0">
+<param name=e[6] value="QQ';line;bichord;Ocirc,Rcirc;0;0;0">
+<param name=e[7] value="Q;point;first;QQ'">
+<param name=e[8] value="Q';point;last;QQ'">
+<param name=e[9] value="Qcirc;circle;radius;Q,O;0;0;black;0">
+<param name=e[10] value="Q'circ;circle;radius;Q',O;0;0;black;0">
+<param name=e[11] value="OM;line;bichord;Qcirc,Q'circ;0;0;0">
+<param name=e[12] value="OMmid;point;midpoint;OM;0;0">
+<param name=e[13] value="M;point;extend;O,OMmid,O,OMmid">
+</applet></center><p>
+
+We can trisect <i>OP</i> by doubling <i>OP</i> to <i>OR</i> then doubling <i>PR</i> to <i>PS</i>, so
+ that <i>OS</i> is triple <i>OP</i>, then inverting <i>S</i> in the circle with center <i>O</i> and
+ radius <i>OP</i> to get <i>S'</i>.  Then <i>OS'</i> will be one-third of <i>OP</i>
+
+<p>More generally, we can cut off an <i>n</i>-th of <i>OP</i> by first extending <i>OP</i> by a factor
+ of <i>n</i>, then inverting in that same circle.
+
+<h4>Construction <b>C</b> to find the center of a circle given three points on its circumference</h4>
+
+We're not done yet in showing that compasses alone are sufficient to construct all the constructable
+ points in Euclidean geometry.  The problem is that all the circle constructions depend on knowing the
+ centers of the circles, and when we invert one circle <i>C</i> in another <i>D</i> to get a circle
+ <i>E</i> = <i>C</i><img src=thru.gif alt=">"><i>D</i>, then the center of <i>E</i> is not the inverse
+ of the center of <i>C</i> inverted in <i>D</i>.  The center of <i>E</i> is determined, however, by
+ three of the points on <i>E</i>, which can by found by taking any three points on <i>C</i> and
+ inverting them in <i>D</i>.  Thus, we'll need the construction <b>C</b> to find the center of a
+ circle given three points on its circumference.
+
+<p>Let <i>P</i>, <i>Q</i>, and <i>R</i> be three given points.  We are to construct the center
+ <i>O</i> of the circle passing through them.  We'll find <i>O</i> by inverting everything in the
+ circle <i>C</i> with center <i>P</i> and radius <i>PQ</i>.
+
+<p>First, invert the point <i>R</i> in <i>C</i> to get the point <i>R'</i> = <i>R</i><img src=thru.gif
+ alt=">"><i>C</i>. 
+Next draw two circles, one with center <i>Q</i> and radius <i>QP</i>, the other with center <i>R'</i>
+ and radius <i>R'P</i>.  Besides at <i>P</i>, these two circles will intersect at another point
+ <i>O'</i>.  This point <i>O'</i> is the reflection of <i>P</i> in the line <i>QR'</i>, that is,
+ <i>O'</i> = <i>P</i><img src=thru.gif alt=">"><i>QR'</i>.  Finally, invert <i>O'</i> in <i>C</i> to
+ get <i>O</i>. 
+
+<p>Now when the desired circle <i>PQR</i> is inverted in the circle <i>C</i>, then the result is the
+ straight line <i>QR'</i>, since <i>P</i> will be sent to the point at infinity, <img src=infinity.gif
+ alt="infinity ">.  Algebraically, <i>PQR</i><img src=thru.gif alt=">"><i>C</i> = <i>QR'</i>.   We can
+ now show that <i>O</i> is the center of the circle <i>PQR</i>, that is, <i>O</i> = 
+<img src=infinity.gif alt="infinity "><img src=thru.gif alt="> "><i>PQR</i>.
+<p><center><img src=infinity.gif alt="infinity "><img src=thru.gif alt="> "><i>PQR</i> = 
+(<i>P</i><img src=thru.gif alt=">"><i>C</i>) <img src=thru.gif alt="> "> (<i>QR'</i><img src=thru.gif
+ alt=">"><i>C</i>) =
+(<i>P</i><img src=thru.gif alt=">"><i>QR'</i>)<img src=thru.gif alt=">"><i>C</i> =
+<i>O'</i><img src=thru.gif alt=">"><i>C</i> = <i>O</i>.
+</center><p>
+Thus, we have constructed <i>O</i>, the center of the circle passing through the three points
+ <i>P</i>, <i>Q</i>, and <i>R</i>.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=compass5.gif alt="Circumcenter construction">
+<param name=background value="0,0,100">
+<param name=title value="Circumcenter construction">
+<param name=e[1] value="P;point;free;120,120">
+<param name=e[2] value="Q;point;free;200,50">
+<param name=e[3] value="R;point;free;250,190">
+<param name=e[4] value="Pcirc;circle;radius;P,Q;0;0;black;random">
+<param name=e[5] value="R';point;invert;R,Pcirc">
+<param name=e[6] value="Qcirc;circle;radius;Q,P;0;0;gray;0">
+<param name=e[7] value="R'circ;circle;radius;R',P;0;0;gray;0">
+<param name=e[8] value="PO';line;bichord;Qcirc,R'circ;0;0;0">
+<param name=e[9] value="PO'mid;point;midpoint;PO';0;0">
+<param name=e[10] value="O';point;extend;P,PO'mid,P,PO'mid">
+<param name=e[11] value="O;point;invert;O',Pcirc">
+</applet></center><p>
+
+<p><small>April, 1998
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<br><img src="http://aleph0.clarku.edu/~djoyce/dj.gif">
+<br>
+My <a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+</small>
+</BODY>
+</HTML>

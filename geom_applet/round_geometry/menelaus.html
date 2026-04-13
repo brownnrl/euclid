@@ -1,0 +1,45 @@
+Menelaus' theorem.
+<p>
+Spherical version
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=400 width=450>
+<param name=background value="60,0,100">
+<param name=e[1] value="O;point;fixed;225,200,100;0;0">
+<param name=pivot value="O">
+<param name=e[2] value="A;point;free;225,50">
+<param name=e[3] value="sphere;sphere;radius;O,A;0;0;lightGray;random">
+<param name=e[4] value="B;point;sphereSlider;sphere,50,350,0">
+<param name=e[5] value="C;point;sphereSlider;sphere,400,350,0">
+<param name=e[6] value="A';point;extend;A,O,A,O;0;0">
+<param name=e[7] value="ABplane;plane;3points;A,B,O;0;0;0;0">
+<param name=e[8] value="ABcirc;circle;circumcircle;A,B,A',ABplane;0;0;black;0">
+<param name=e[9] value="ACplane;plane;3points;A,C,O;0;0;0;0">
+<param name=e[10] value="ACcirc;circle;circumcircle;A,C,A',ACplane;0;0;black;0">
+<param name=e[11] value="D;point;circleSlider;ABcirc,100,200,0">
+<param name=e[12] value="E;point;circleSlider;ACcirc,350,200,0">
+<param name=e[13] value="C';point;extend;C,O,C,O;0;0">
+<param name=e[14] value="CDplane;plane;3points;C,D,O;0;0;0;0">
+<param name=e[15] value="CDcirc;circle;circumcircle;C,D,C',CDplane;0;0;black;0">
+<param name=e[16] value="B';point;extend;B,O,B,O;0;0">
+<param name=e[17] value="BEplane;plane;3points;B,E,O;0;0;0;0">
+<param name=e[18] value="BEcirc;circle;circumcircle;B,E,B',BEplane;0;0;black;0">
+
+</applet>
+</center><p>
+
+Plane version
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=400 width=450>
+<param name=background value="60,0,100">
+<param name=e[1] value="A;point;free;225,50">
+<param name=e[2] value="B;point;free;50,350">
+<param name=e[3] value="C;point;free;400,350">
+<param name=e[4] value="AB;line;connect;A,B">
+<param name=e[5] value="AC;line;connect;A,C">
+<param name=e[6] value="D;point;lineSlider;AB,100,200">
+<param name=e[7] value="E;point;lineSlider;AC,350,200">
+<param name=e[8] value="CD;line;connect;C,D">
+<param name=e[9] value="BE;line;connect;B,E">
+
+</applet>
+</center><p>

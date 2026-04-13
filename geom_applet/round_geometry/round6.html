@@ -1,0 +1,41 @@
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round6a.gif alt="Angle Bisectors and Incircles">
+<param name=background value="0,0,100">
+<param name=title value="Angle Bisectors and Incircles">
+<param name=e[1] value="A;point;free;220,60">
+<param name=e[2] value="B;point;free;120,150">
+<param name=e[3] value="C;point;free;200,170">
+<param name=e[4] value="A*;point;free;130,200">
+<param name=e[5] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[6] value="B*;point;circleSlider;210,250,AB">
+<param name=e[7] value="CA;circle;circumcircle;C,A,A*;0;0;black;0">
+<param name=e[8] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[9] value="BCcenter;point;center;BC;0;0">
+<param name=e[10] value="CAcenter;point;center;CA;0;0">
+<param name=e[11] value="Cfoot;point;foot;C,CAcenter,BCcenter;0;0">
+<param name=e[12] value="C*;point;extend;C,Cfoot,C,Cfoot">
+<param name=e[13] value="ABcenter;point;center;AB;0;0">
+
+<param name=e[14] value="MAX;point;angleBisector;CAcenter,A,ABcenter;0;0">
+<param name=e[15] value="AX;point;perpendicular;A,MAX;0;0">
+<param name=e[16] value="MA;point;intersection;A,AX,CAcenter,ABcenter;0;0">
+<param name=e[17] value="AIbis;circle;radius;MA,A;0;0;green;0">
+<param name=e[18] value="AXbis;circle;radius;MAX,A;0;0;green;0">
+<param name=e[19] value="MBX;point;angleBisector;ABcenter,B,BCcenter;0;0">
+<param name=e[20] value="BX;point;perpendicular;B,MBX;0;0">
+<param name=e[21] value="MB;point;intersection;B,BX,ABcenter,BCcenter;0;0">
+<param name=e[22] value="BIbis;circle;radius;MB,B;0;0;green;0">
+<param name=e[23] value="BXbis;circle;radius;MBX,B;0;0;green;0">
+<param name=e[24] value="MCX;point;angleBisector;BCcenter,C,CAcenter;0;0">
+<param name=e[25] value="CX;point;perpendicular;C,MCX;0;0">
+<param name=e[26] value="MC;point;intersection;C,CX,BCcenter,CAcenter;0;0">
+<param name=e[27] value="CIbis;circle;radius;MC,C;0;0;green;0">
+<param name=e[28] value="CXbis;circle;radius;MCX,C;0;0;green;0">
+
+<param name=e[29] value="II*;line;bichord;AIbis,CIbis;0;magenta;0">
+<param name=e[30] value="II*2;line;bichord;AXbis,CIbis;0;magenta;0">
+<param name=e[31] value="II*3;line;bichord;AXbis,BIbis;0;magenta;0">
+<param name=e[32] value="II*4;line;bichord;AIbis,CXbis;0;magenta;0">
+</applet>
+</center><p>
