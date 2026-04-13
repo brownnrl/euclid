@@ -44,6 +44,8 @@ import {HarmonicElement} from "./point/HarmonicElement";
 import {InvertPointElement} from "./point/InvertPointElement";
 import {SphereSliderElement} from "./point/SphereSliderElement";
 import {ParallelPlane} from "./plane/ParallelPlane";
+import {PolyhedronElement} from "./polyhedron/PolyhedronElement";
+import {PyramidElement} from "./polyhedron/PyramidElement";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -55,7 +57,8 @@ export enum ConstructionTypes {
     CircleElement,
     PlaneElement,
     SphereElement,
-    PolygonElement
+    PolygonElement,
+    PolyhedronElement
 }
 
 export enum PointConstructions {
@@ -234,6 +237,11 @@ export abstract class Construction {
                     break;
                 case ConstructionTypes.PolygonElement:
                     if (!(param instanceof PolygonElement)) {
+                        return false;
+                    }
+                    break;
+                case ConstructionTypes.PolyhedronElement:
+                    if (!(param instanceof PolyhedronElement)) {
                         return false;
                     }
                     break;
@@ -1546,13 +1554,22 @@ export class SphereRadiusConstruction extends Construction {
  * Element Class Polyhedron *
  ****************************/
 
-// TBD
-// *Solid Geometry Only*
 // polyhedron
 // tetrahedron
 // points A, B, C, D
-// the tetrahedron given four vertices
+// the tetrahedron given four vertices (creates a triangle base + Pyramid)
+// (Java: Slate.java polyhedron case 0 — PolygonElement(A,B,C) + Pyramid(base,D))
+export class TetrahedronConstruction extends Construction {
+    constructionMethod: AllConstructions = PolyhedraConstructions.tetrahedron;
+    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
 
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let base = new PolygonElement([ps[0], ps[1], ps[2]]);
+        let g = new PyramidElement(base, ps[3]);
+        return [[base, g], g];
+    }
+}
 
 // TBD
 // *Solid Geometry Only*
@@ -1570,12 +1587,22 @@ export class SphereRadiusConstruction extends Construction {
 // the prism with base A and side edges parallel and equal to BC
 
 
-// TBD
-// *Solid Geometry Only*
 // polyhedron
 // pyramid
 // polygon A point B
 // the pyramid with base A and apex B
+// (Java: Pyramid.java — 11 lines, line-for-line port)
+export class PyramidConstruction extends Construction {
+    constructionMethod: AllConstructions = PolyhedraConstructions.pyramid;
+    signature: ConstructionTypes[] = [ct.PolygonElement, ct.PointElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const base = params[0] as PolygonElement;
+        const apex = params[1] as PointElement;
+        const g = new PyramidElement(base, apex);
+        return [[g], g];
+    }
+}
 
 
 export const constructions : Construction[] = [
@@ -1651,5 +1678,7 @@ export const constructions : Construction[] = [
     new Plane3PointsConstruction(),
     new PerpendicularPlaneConstruction(),
     new PlaneParallelConstruction(),
-    new SphereRadiusConstruction()
+    new SphereRadiusConstruction(),
+    new TetrahedronConstruction(),
+    new PyramidConstruction(),
 ];
