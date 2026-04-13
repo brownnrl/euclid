@@ -46,6 +46,7 @@ import {SphereSliderElement} from "./point/SphereSliderElement";
 import {ParallelPlane} from "./plane/ParallelPlane";
 import {PolyhedronElement} from "./polyhedron/PolyhedronElement";
 import {PyramidElement} from "./polyhedron/PyramidElement";
+import {PrismElement} from "./polyhedron/PrismElement";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -1387,13 +1388,23 @@ export class OctagonPolygonConstruction extends PolyConstruction {
     signature: ConstructionTypes[] = (new Array(8)).fill(ct.PointElement);
 }
 
-// TBD
-// *Solid Geometry Only*
 // polygon
-// face	
+// face
 // polyhedron A integer n
-// the nth face of polyhedron A
+// the nth face (1-based) of polyhedron A
+// (Java: Slate.java polygon case 12 — ((PolyhedronElement)E[0]).P[N[0]-1])
+// Same pattern as point;vertex (returns polygon from polyhedron, not point from polygon)
+export class FacePolygonConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.face;
+    signature: ConstructionTypes[] = [ct.PolyhedronElement, ct.Integer];
 
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const polyhedron = params[0] as PolyhedronElement;
+        const n = params[1] as number;
+        const face = polyhedron.P[n - 1];
+        return [[face], face];
+    }
+}
 
 /************************
  * Element Class Sector *
@@ -1571,21 +1582,41 @@ export class TetrahedronConstruction extends Construction {
     }
 }
 
-// TBD
-// *Solid Geometry Only*
 // polyhedron
 // parallelepiped
 // points A, B, C, D
 // the parallelepiped with three edges AB, AC, and AD
+// (Java: Slate.java polyhedron case 1 — Layoff(B,A,C,A,C) + PolygonElement(B,A,C,fourth) + Prism(base,A,D))
+export class ParallelepipedConstruction extends Construction {
+    constructionMethod: AllConstructions = PolyhedraConstructions.parallelepiped;
+    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
 
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let fourth = new Layoff(ps[1], ps[0], ps[2], ps[0], ps[2]);
+        let base = new PolygonElement([ps[1], ps[0], ps[2], fourth]);
+        let g = new PrismElement(base, ps[0], ps[3]);
+        return [[fourth, base, g], g];
+    }
+}
 
-// TBD
-// *Solid Geometry Only*
 // polyhedron
 // prism
 // polygon A points B, C
 // the prism with base A and side edges parallel and equal to BC
+// (Java: Prism.java — 41 lines, line-for-line port)
+export class PrismConstruction extends Construction {
+    constructionMethod: AllConstructions = PolyhedraConstructions.prism;
+    signature: ConstructionTypes[] = [ct.PolygonElement, ct.PointElement, ct.PointElement];
 
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const base = params[0] as PolygonElement;
+        const C = params[1] as PointElement;
+        const D = params[2] as PointElement;
+        const g = new PrismElement(base, C, D);
+        return [[g], g];
+    }
+}
 
 // polyhedron
 // pyramid
@@ -1680,5 +1711,8 @@ export const constructions : Construction[] = [
     new PlaneParallelConstruction(),
     new SphereRadiusConstruction(),
     new TetrahedronConstruction(),
+    new ParallelepipedConstruction(),
+    new PrismConstruction(),
     new PyramidConstruction(),
+    new FacePolygonConstruction(),
 ];
