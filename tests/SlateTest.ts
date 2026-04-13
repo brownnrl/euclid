@@ -894,6 +894,36 @@ describe("slate", ()=> {
         assert.equal((pp as any).P.length, 6);
     });
 
+    // circle;intersection — intersection of two spheres
+    // Sphere S: center (0,0,0), radius 100 (edge at (100,0,0))
+    // Sphere T: center (100,0,0), radius 100 (edge at (200,0,0))
+    // Both radii = 100, centers 100 apart → intersection circle at x=50
+    // factor = 0.5 + (100²-100²)/(2*100²) = 0.5
+    // Center = S.Center + factor*(T.Center - S.Center)... wait, the formula is:
+    //   Center.to(S.Center).minus(T.Center).times(factor).plus(T.Center)
+    //   = (0-100)*0.5 + 100 = 50
+    // radius = sqrt(T.radius² - Center.distance²(T.Center)) = sqrt(10000 - 2500) = sqrt(7500) ≈ 86.6
+    it("should compute the intersection circle of two spheres", () => {
+        let data : IConstructionInfo[] = [
+            { name: "O1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "R1", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "S", construction: E.Sphere.radius, params: ["O1", "R1"] },
+            { name: "O2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "R2", construction: E.Point.fixed, params: [200, 0, 0] },
+            { name: "T", construction: E.Sphere.radius, params: ["O2", "R2"] },
+            { name: "C", construction: E.Circle.intersection, params: ["S", "T"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let circle = slate.lookupElement("C") as CircleElement;
+        // Center of intersection circle should be at (50, 0, 0)
+        almostEqual(circle.Center.x, 50, 0.1);
+        almostEqual(circle.Center.y, 0, 0.1);
+        // Radius should be sqrt(10000 - 2500) = sqrt(7500) ≈ 86.6
+        almostEqual(circle.radius, Math.sqrt(7500), 0.1);
+    });
+
     // point;invert — inversion of a point in a circle
     // Circle center (100,100), radius point (200,100) → radius=100
     // Point A at (150,100) → distance from center = 50
