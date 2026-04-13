@@ -25,10 +25,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 | Book IX | 36 | **36** | 0 |
 | Book X | 115 | **115** | 0 |
 | **I–X total** | **390** | **390** | **0** |
-| Book XI | 39 | 33 | 0 |
+| Book XI | 39 | 35 | 0 |
 | Book XII | 18 | 9 | 0 |
-| Book XIII | 18 | 13 | 0 |
-| **I–XIII total** | **465** | **445** | **0** |
+| Book XIII | 18 | 14 | 0 |
+| **I–XIII total** | **465** | **448** | **0** |
 
 Update the summary table after each session.
 
@@ -239,11 +239,11 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 - [~] XI.1 through XI.3 — renderable
 - [~] XI.4 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
 - [~] XI.5 through XI.10 — renderable
-- [ ] XI.11 — NEEDS: `plane;3points`, `plane;parallel`, `point;planeSlider`
+- [~] XI.11 — (`plane;3points`, `plane;parallel`, `point;planeSlider` all landed 2026-04-12.)
 - [~] XI.12 through XI.22 — renderable
 - [ ] XI.23 — NEEDS: `polyhedron;pyramid`
 - [~] XI.24, XI.25 — renderable
-- [ ] XI.26 — NEEDS: `plane;3points`, `plane;parallel`, `point;planeSlider`
+- [~] XI.26 — (`plane;3points`, `plane;parallel`, `point;planeSlider` all landed 2026-04-12.)
 - [~] XI.27, XI.28 — renderable
 - [~] XI.29 — (`plane;3points` landed 2026-04-12.)
 - [~] XI.30 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
@@ -289,7 +289,7 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 - [ ] XIII.13 — NEEDS: `point;sphereSlider`, `polyhedron;tetrahedron`
 - [ ] XIII.14 — NEEDS: `plane;3points`, `point;sphereSlider`, `polyhedron;prism`, `polyhedron;pyramid`
 - [ ] XIII.15 — NEEDS: `circle;intersection`, `point;sphereSlider`, `polyhedron;parallelepiped`, `polyhedron;tetrahedron`
-- [ ] XIII.16 — NEEDS: `point;sphereSlider`
+- [~] XIII.16 — (`point;sphereSlider` landed 2026-04-12.)
 - [ ] XIII.17 — NEEDS: `circle;intersection`, `plane;3points`, `point;planeSlider`, `point;sphereSlider`
 - [~] XIII.18 — renderable
 
