@@ -787,6 +787,72 @@ describe("slate", ()=> {
     // Right angle at B=(0,0), rays to A=(0,100) and C=(100,0)
     // Bisector of 90° at B → 45° ray hits AC (line from (0,100) to (100,0), x+y=100)
     // at (50, 50)
+    // point;sphereSlider — point constrained to sphere surface
+    // Sphere center (100,100,0), radius point (200,100,0) → radius=100
+    // Point starts at (150,100,50), should project onto sphere surface
+    // Distance from center = sqrt(50²+0²+50²) = sqrt(5000) ≈ 70.71
+    // factor = 100/70.71 ≈ 1.414
+    // Projected: center + factor*(P-center) = (100+1.414*50, 100, 0+1.414*50) ≈ (170.71, 100, 70.71)
+    it("should project a sphereSlider point onto the sphere surface", () => {
+        let data : IConstructionInfo[] = [
+            { name: "O", construction: E.Point.fixed, params: [100, 100, 0] },
+            { name: "R", construction: E.Point.fixed, params: [200, 100, 0] },
+            { name: "S", construction: E.Sphere.radius, params: ["O", "R"] },
+            { name: "A", construction: E.Point.sphereSlider, params: ["S", 150, 100, 50] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let A = slate.lookupElement("A") as PointElement;
+        // Distance from center should equal radius (100)
+        let O = slate.lookupElement("O") as PointElement;
+        let dist = Math.sqrt((A.x-O.x)*(A.x-O.x) + (A.y-O.y)*(A.y-O.y) + (A.z-O.z)*(A.z-O.z));
+        almostEqual(dist, 100, 0.1);
+        // Should be draggable
+        assert.ok((A as any).draggable);
+    });
+
+    // plane;parallel — plane through point A parallel to plane P
+    it("should create a parallel plane through a point", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "P", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 50, 100] },
+            { name: "Q", construction: E.Plane.parallel, params: ["P", "A"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let Q = slate.lookupElement("Q") as PlaneElement;
+        // Parallel plane should pass through A
+        almostEqual(Q.A.x, 50, 0.01);
+        almostEqual(Q.A.y, 50, 0.01);
+        almostEqual(Q.A.z, 100, 0.01);
+    });
+
+    // point;invert — inversion of a point in a circle
+    // Circle center (100,100), radius point (200,100) → radius=100
+    // Point A at (150,100) → distance from center = 50
+    // Inverted: factor = r²/d² = 10000/2500 = 4
+    // Result = center + 4*(A-center) = (100,100) + 4*(50,0) = (300,100)
+    it("should compute the inversion of a point in a circle", () => {
+        let data : IConstructionInfo[] = [
+            { name: "O", construction: E.Point.free, params: [100, 100] },
+            { name: "R", construction: E.Point.free, params: [200, 100] },
+            { name: "C", construction: E.Circle.radius, params: ["O", "R"] },
+            { name: "A", construction: E.Point.free, params: [150, 100] },
+            { name: "B", construction: E.Point.invert, params: ["A", "C"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let B = slate.lookupElement("B") as PointElement;
+        almostEqual(B.x, 300, 0.01);
+        almostEqual(B.y, 100, 0.01);
+    });
+
     // point;harmonic — harmonic conjugate of B with respect to C and D
     // Collinear case: C=(0,0), D=(100,0), B=(25,0)
     // Complex formula: A = (C(B-D) + D(B-C)) / ((B-D) + (B-C))
