@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Test View - Point.harmonic (Harmonic Conjugates)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Harmonic Conjugates",
+        canvasid: "canvasId",
+        elements: [
+            // Four points and their harmonic conjugates
+            { name: "A", construction: E.Point.free, params: [320, 30] },
+            { name: "B", construction: E.Point.free, params: [220, 110] },
+            { name: "C", construction: E.Point.free, params: [290, 130] },
+            { name: "Ep", construction: E.Point.free, params: [150, 90] },
+            { name: "F", construction: E.Point.free, params: [250, 210] },
+            // Circumcircle through A, B, C
+            { name: "ABC", construction: E.Circle.circumcircle, params: ["A", "B", "C"] },
+            // D = harmonic conjugate of C w.r.t. A, B
+            { name: "D", construction: E.Point.harmonic, params: ["C", "A", "B"] },
+            // Harmonic conjugates of A, B, C, D w.r.t. E, F
+            { name: "EAF", construction: E.Circle.circumcircle, params: ["Ep", "A", "F"] },
+            { name: "A'", construction: E.Point.harmonic, params: ["A", "Ep", "F"] },
+            { name: "EBF", construction: E.Circle.circumcircle, params: ["Ep", "B", "F"] },
+            { name: "B'", construction: E.Point.harmonic, params: ["B", "Ep", "F"] },
+            { name: "ECF", construction: E.Circle.circumcircle, params: ["Ep", "C", "F"] },
+            { name: "C'", construction: E.Point.harmonic, params: ["C", "Ep", "F"] },
+            { name: "EDF", construction: E.Circle.circumcircle, params: ["Ep", "D", "F"] },
+            { name: "D'", construction: E.Point.harmonic, params: ["D", "Ep", "F"] },
+            // Circumcircle through A', B', C' — should be concyclic
+            { name: "A'B'C'", construction: E.Circle.circumcircle, params: ["A'", "B'", "C'"] },
+        ]
+    });
+</script>
+</body>
+</html>
