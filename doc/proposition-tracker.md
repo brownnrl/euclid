@@ -27,8 +27,8 @@ Tracks the port status of all propositions across Euclid's Elements.
 | **I–X total** | **390** | **390** | **0** |
 | Book XI | 39 | **39** | 0 |
 | Book XII | 18 | **18** | 0 |
-| Book XIII | 18 | 16 | 0 |
-| **I–XIII total** | **465** | **463** | **0** |
+| Book XIII | 18 | **18** | 0 |
+| **I–XIII total** | **465** | **465** | **0** |
 
 Update the summary table after each session.
 
@@ -288,9 +288,9 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 - [~] XIII.1 through XIII.12 — renderable
 - [~] XIII.13 — (All blockers landed by 2026-04-12.)
 - [~] XIII.14 — (All blockers landed by 2026-04-12.)
-- [ ] XIII.15 — NEEDS: `circle;intersection`, `point;sphereSlider`, `polyhedron;parallelepiped`, `polyhedron;tetrahedron`
+- [~] XIII.15 — (All blockers landed by 2026-04-12. `circle;intersection` was the final one.)
 - [~] XIII.16 — (`point;sphereSlider` landed 2026-04-12.)
-- [ ] XIII.17 — NEEDS: `circle;intersection`, `plane;3points`, `point;planeSlider`, `point;sphereSlider`
+- [~] XIII.17 — (All blockers landed by 2026-04-12. `circle;intersection` was the final one.)
 - [~] XIII.18 — renderable
 
 Source HTML: `view/euclid-html/bookiv/` through `view/euclid-html/bookxiii/`

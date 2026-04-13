@@ -20,6 +20,40 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — circle;intersection — ALL 465 PROPOSITIONS RENDERABLE
+
+**Completed:**
+- Ported `IntersectionSS.java` (41 lines) as
+  `src/elements/circle/SphereIntersectionElement.ts` (renamed for clarity
+  — the original "SS" stood for sphere-sphere). Extends `CircleElement`.
+  Computes the circle at the intersection of two spheres: center lies on
+  the line between sphere centers at the proportional point, radius
+  derived from the sphere geometry, ambient plane created as a
+  `PerpendicularPlane` through the center.
+- One Mocha test: two equal spheres (radius 100, centers 100 apart),
+  intersection circle center at (50,0,0), radius ≈ 86.6.
+  50 → **51 passing**.
+- **XIII.15 and XIII.17 — the final 2 propositions — are now renderable.**
+
+  **ALL 465 PROPOSITIONS IN EUCLID'S ELEMENTS (BOOKS I–XIII) ARE NOW
+  RENDERABLE IN THE TYPESCRIPT PORT.**
+
+  | Book | Renderable | Total |
+  |------|-----------|-------|
+  | I–X | 390 | 390 |
+  | XI | 39 | 39 |
+  | XII | 18 | 18 |
+  | XIII | 18 | 18 |
+  | **Total** | **465** | **465** |
+
+- Also added "Originally: X.java (renamed for clarity)" header notes to
+  `SphereIntersectionElement.ts` and `PerpendicularPlane.ts`.
+
+**Phase 1 is COMPLETE.** The project transitions to Phase 2: presentation
+bug fixes (colors, labels, behavioral parity with the Java applet).
+
+---
+
 ## 2026-04-12 — Prism + parallelepiped + polygon;face — BOOKS XI & XII COMPLETE
 
 **Completed:**

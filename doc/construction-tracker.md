@@ -358,9 +358,18 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: `InvertCircle.java`
   - No Books I–XIII uses found in applet HTML
 
-- [ ] **`intersection`** — TBD
-  - Java source: `IntersectionSS.java` (41 lines) — intersection of two spheres → circle
-  - Blocks 2 propositions (XIII.15, XIII.17)
+- [x] **`intersection`** — `src/elements/circle/SphereIntersectionElement.ts`
+  - Extends `CircleElement`. Computes the circle at the intersection of
+    two spheres. Center lies on the line between sphere centers, radius
+    derived from sphere radii and center distance. Creates a
+    `PerpendicularPlane` as the ambient plane.
+  - Java source: `IntersectionSS.java` (renamed to SphereIntersectionElement
+    for clarity) — 41 lines, line-for-line port.
+  - Mocha test (1): intersection of equal spheres, center and radius verified.
+  - [x] test view: [view/test/circle/intersection.html](../view/test/circle/intersection.html)
+  - [x] applet-tests pair:
+    [view/applet-tests/circle/intersection/{original,applet}.html](../view/applet-tests/circle/intersection/)
+  - Used in: XIII.15, XIII.17 — **the final 2 propositions**
 
 ---
 
