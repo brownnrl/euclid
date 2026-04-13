@@ -58,13 +58,13 @@ export class SphereElement extends GeomElement {
         ctx.save();
         ctx.strokeStyle = this.edgeColor;
         let r = this.radius();
-        let d = Math.round(2*r);
         ctx.beginPath();
+        // ellipse() takes (centerX, centerY, radiusX, radiusY, ...)
         ctx.ellipse(
-            this._Center.x-r,
-            this._Center.y-r,
-            d,
-            d,
+            this._Center.x,
+            this._Center.y,
+            r,
+            r,
             0,
             0,
             2*Math.PI);
@@ -78,13 +78,12 @@ export class SphereElement extends GeomElement {
         ctx.save();
         ctx.fillStyle = this.faceColor;
         let r = this.radius();
-        let d = Math.round(2*r);
         ctx.beginPath();
         ctx.ellipse(
-            this._Center.x-r,
-            this._Center.y-r,
-            d,
-            d,
+            this._Center.x,
+            this._Center.y,
+            r,
+            r,
             0,
             0,
             2*Math.PI);
