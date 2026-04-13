@@ -38,7 +38,7 @@ implementation status. Updated as constructions are ported.
 | `FixedPoint.java` | PORTED | `src/elements/point/FixedPoint.ts` | 2D + 3D variants. |
 | `Foot.java` | PORTED | `src/elements/point/Foot.ts` | Perpendicular foot from point to line. Also used by `LineFootConstruction` (2D line;foot dispatch). |
 | `Intersection.java` | PORTED | `src/elements/point/Intersection.ts` | Line–line intersection, 2D + 3D. |
-| `IntersectionPL.java` | PARTIAL | `src/elements/point/IntersectionPL.ts` | **File exists but is a copy of Intersection.ts** — documented as a known platform bug in construction-tracker.md. Should implement plane–line intersection via `toIntersectionPL()` (which does exist on PointElement). |
+| `IntersectionPL.java` | PORTED | `src/elements/point/PlaneIntersection.ts` | Plane–line intersection via `toIntersectionPL()`. Renamed from IntersectionPL for clarity. **Rewritten 2026-04-12** — was previously a broken copy of Intersection.ts. |
 | `Layoff.java` | PORTED | `src/elements/point/Layoff.ts` | Core utility for `extend`, `cutoff`, `parallelogram`, `line;parallel`, `line;extend`. |
 | `LineSlider.java` | PORTED | `src/elements/point/LineSlider.ts` | 2D, 3D, and segment variants. |
 | `Midpoint.java` | PORTED | `src/elements/point/Midpoint.ts` | |
@@ -70,7 +70,7 @@ implementation status. Updated as constructions are ported.
 | Java File | Status | TS Location | Notes |
 |---|---|---|---|
 | `Circumcircle.java` | PORTED | `src/elements/circle/CircumcircleElement.ts` | 2D + 3D variants. |
-| `InvertCircle.java` | TBD | — | Circle inversion in another circle. No Books I–IV uses found. |
+| `InvertCircle.java` | PORTED | `src/elements/circle/InvertCircleElement.ts` | Circle inversion. Ported 2026-04-12. |
 | `IntersectionSS.java` | PORTED | `src/elements/circle/SphereIntersectionElement.ts` | Intersection of two spheres → circle. Renamed for clarity. Ported 2026-04-12. |
 
 ---
@@ -125,9 +125,9 @@ implementation status. Updated as constructions are ported.
 
 | Status | Count | Files |
 |--------|-------|-------|
-| PORTED | 37 | Core element classes + all ported constructions (incl. SphereIntersection ported 2026-04-12) |
-| PARTIAL | 3 | IntersectionPL, PerpendicularPL, Slate |
-| TBD | 1 | InvertCircle |
-| TBD (circle) | 1 | InvertCircle (no proposition uses) |
+| PORTED | 38 | Core element classes + all ported constructions (incl. InvertCircle ported 2026-04-12) |
+| PARTIAL | 2 | PerpendicularPL (split across 2 TS files), Slate (dispatch ported, rendering replaced) |
+| TBD | 0 | — |
+| TBD | 0 | All Java files ported or partially ported |
 | N/A | 3 | Geometry, ClientFrame, Remote |
 | **Total** | **44** | |

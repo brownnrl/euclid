@@ -48,6 +48,8 @@ import {PolyhedronElement} from "./polyhedron/PolyhedronElement";
 import {PyramidElement} from "./polyhedron/PyramidElement";
 import {PrismElement} from "./polyhedron/PrismElement";
 import {SphereIntersectionElement} from "./circle/SphereIntersectionElement";
+import {InvertCircleElement} from "./circle/InvertCircleElement";
+import {PlaneIntersection} from "./point/PlaneIntersection";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -334,11 +336,23 @@ export class IntersectionConstructionScreen extends IntersectionConstruction {
     }
 }
 
-// TBD
 // point
-// intersection 
-// points B, C plane A
+// intersection (plane-line variant)
+// plane A, points B, C
 // the intersection of the plane A and the line BC
+// (Java: IntersectionPL.java — TS: PlaneIntersection.ts, renamed for clarity)
+export class PlaneIntersectionConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.intersection;
+    signature: ConstructionTypes[] = [ct.PlaneElement, ct.PointElement, ct.PointElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const P = params[0] as PlaneElement;
+        const A = params[1] as PointElement;
+        const B = params[2] as PointElement;
+        const g = new PlaneIntersection(P, A, B);
+        return [[g], g];
+    }
+}
 
 // point
 // first
@@ -377,11 +391,17 @@ export class CircleCenterConstruction extends Construction {
     }
 }
 
-// TBD
 // point
-// center
+// center (sphere variant)
 // sphere A
 // the center of the sphere A
+export class SphereCenterConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.center;
+    signature: ConstructionTypes[] = [ct.SphereElement];
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        return [[], (params[0] as SphereElement).Center as PointElement];
+    }
+}
 
 // point
 // lineSlider
@@ -1122,11 +1142,22 @@ export class SimilarLineConstruction extends Construction {
     }
 }
 
-// TBD
 // line
 // proportion
 // 8 points A, B, C, D, E, F, G, H
 // the line GI along GH so that AB:CD = EF:GI
+// (Java: Slate.java line case 11 — Proportion + LineElement(G, result))
+export class ProportionLineConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.proportion;
+    signature: ConstructionTypes[] = (new Array(8)).fill(ct.PointElement);
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let prop = new ProportionElement(ps[0], ps[1], ps[2], ps[3], ps[4], ps[5], ps[6], ps[7]);
+        let g = new LineElement({A: ps[6], B: prop});
+        return [[prop, g], g];
+    }
+}
 
 // line
 // meanProportional
@@ -1189,14 +1220,23 @@ export class CircleRadius3PointConstruction extends Construction {
 }
 
 
-// TBD
 // circle
 // invert
-// circles A, B	
+// circles A, B
 // the image of circle A inverted in circle B
+// (Java: InvertCircle.java — TS: InvertCircleElement.ts)
+export class InvertCircleConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.invert;
+    signature: ConstructionTypes[] = [ct.CircleElement, ct.CircleElement];
 
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const C = params[0] as CircleElement;
+        const D = params[1] as CircleElement;
+        const g = new InvertCircleElement(C, D);
+        return [[g], g];
+    }
+}
 
-// TBD
 // circle
 // intersection
 // spheres A, B
@@ -1346,13 +1386,24 @@ export class RegularPolygonConstruction extends Construction {
     }
 }
 
-// TBD
 // polygon
 // starPolygon (2D variant)
 // points A, B, integers n, d
 // the star polygon {n/d} on side AB in the screen plane
-// (RegularPolygonElement already supports density param d — just needs dispatcher)
-// (Java: Slate.java polygon case 8 — RegularPolygon(A, B, screen, n, d))
+// (RegularPolygonElement already supports density param d)
+export class StarPolygonConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.starPolygon;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const a = params[0] as PointElement;
+        const b = params[1] as PointElement;
+        const n = params[2] as number;
+        const d = params[3] as number;
+        const g = new RegularPolygonElement(a, b, screen, n, d);
+        return [[g], g];
+    }
+}
 
 
 // polygon
@@ -1528,21 +1579,35 @@ export class PlaneParallelConstruction extends Construction {
     }
 }
 
-// TBD
-// *Solid Geometry Only*
 // plane
-// ambient
+// ambient (point variant)
 // point A
 // the ambient plane of point A
+// (Java: Slate.java plane case 3, choice 0 — returns P[0].AP)
+export class AmbientPlanePointConstruction extends Construction {
+    constructionMethod: AllConstructions = PlaneConstructions.ambient;
+    signature: ConstructionTypes[] = [ct.PointElement];
 
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const p = params[0] as PointElement;
+        return [[p._AP], p._AP];
+    }
+}
 
-// TBD
-// *Solid Geometry Only*
 // plane
-// ambient
+// ambient (circle variant)
 // circle A
 // the ambient plane of circle A
+// (Java: Slate.java plane case 3, choice 1 — returns ((CircleElement)E[0]).AP)
+export class AmbientPlaneCircleConstruction extends Construction {
+    constructionMethod: AllConstructions = PlaneConstructions.ambient;
+    signature: ConstructionTypes[] = [ct.CircleElement];
 
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const c = params[0] as CircleElement;
+        return [[c.AP], c.AP];
+    }
+}
 
 /************************
  * Element Class Sphere *
@@ -1566,12 +1631,21 @@ export class SphereRadiusConstruction extends Construction {
 
 
 
-// TBD
-// *Solid Geometry Only*
 // sphere
-// radius
+// radius (3-point variant)
 // points A, B, C
 // the sphere with center A and radius BC
+// (Same pattern as CircleRadius3PointConstruction)
+export class SphereRadius3PointConstruction extends Construction {
+    constructionMethod: AllConstructions = SphereConstructions.radius;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new SphereElement({Center: ps[0], A: ps[1], B: ps[2]});
+        return [[g], g];
+    }
+}
 
 /****************************
  * Element Class Polyhedron *
@@ -1673,6 +1747,8 @@ export const constructions : Construction[] = [
     new SphereSliderConstruction(),
     new HarmonicPointConstruction(),
     new InvertPointConstruction(),
+    new PlaneIntersectionConstruction(),
+    new SphereCenterConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),
@@ -1687,6 +1763,7 @@ export const constructions : Construction[] = [
     new CircleSliderConstruction2dPoint(),
     new CircleRadius3PointConstruction(),
     new CircleRadiusCenterConstruction(),
+    new InvertCircleConstruction(),
     new SphereIntersectionConstruction(),
     new PointPerpendicular1Construction(),
     new PointPerpendicular2Construction(),
@@ -1704,10 +1781,12 @@ export const constructions : Construction[] = [
     new LineCutoffConstruction(),
     new LineFootConstruction(),
     new SimilarLineConstruction(),
+    new ProportionLineConstruction(),
     new AngleBisectorLineConstruction(),
     new AngleDividerLineConstruction(),
     new MeanProportionalLineConstruction(),
     new TrianglePolygonConstruction(),
+    new StarPolygonConstruction(),
     new RegularPolygonConstruction(),
     new SquarePolygonConstruction(),
     new EquilateralTriangleConstruction(),
@@ -1722,6 +1801,9 @@ export const constructions : Construction[] = [
     new Plane3PointsConstruction(),
     new PerpendicularPlaneConstruction(),
     new PlaneParallelConstruction(),
+    new AmbientPlanePointConstruction(),
+    new AmbientPlaneCircleConstruction(),
+    new SphereRadius3PointConstruction(),
     new SphereRadiusConstruction(),
     new TetrahedronConstruction(),
     new ParallelepipedConstruction(),
