@@ -1,5 +1,6 @@
 /*----------------------------------------------------------------------+
 |    Title:	SphereIntersectionElement.ts                                |
+|    Originally: IntersectionSS.java (renamed for clarity)             |
 |    A port of the software Geometry Applet by                          |
 |    Author:    David E. Joyce                                          |
 |        Department of Mathematics and Computer Science                 |
