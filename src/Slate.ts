@@ -264,13 +264,19 @@ export class Slate {
     }
 
     closestVisiblePoint(elements : GeomElement[], p : PointElement, tolerance : number = 30) : PointElement {
+        // Use 2D screen distance (x,y only, ignoring z) for picking,
+        // matching the Java applet's movePick() at Slate.java:887-889.
+        // The canvas is a 2D projection; a 3D point at (x,y,z) renders
+        // at screen position (x,y) regardless of z.
+        let screenDist2 = (a: PointElement, b: PointElement) =>
+            (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
         let sortedDistanceElements = elements
             .filter(e => e instanceof PointElement)
             .map(e => e as PointElement)
             .filter(e => e.vertexColor != null)
             .sort((a,b) => {
-                let adcp = a.distance2(p);
-                let bdcp = b.distance2(p);
+                let adcp = screenDist2(a, p);
+                let bdcp = screenDist2(b, p);
                 if(adcp < bdcp) {
                     return -1;
                 } else if (bdcp < adcp) {
@@ -280,7 +286,7 @@ export class Slate {
             });
         if (sortedDistanceElements.length == 0) return null;
         let bestDistPoint = sortedDistanceElements[0];
-        if(bestDistPoint.distance(p) > tolerance) return null;
+        if(Math.sqrt(screenDist2(bestDistPoint, p)) > tolerance) return null;
         return bestDistPoint;
     }
 
