@@ -924,6 +924,156 @@ describe("slate", ()=> {
         almostEqual(circle.radius, Math.sqrt(7500), 0.1);
     });
 
+    // --- Tests for the 7 previously missing constructions ---
+
+    // point;intersection (plane-line) — PlaneIntersection
+    // Plane z=0 (xy-plane), line from (50,50,100) to (50,50,-100) → intersects at (50,50,0)
+    it("should compute plane-line intersection", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "P", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 50, 100] },
+            { name: "B", construction: E.Point.fixed, params: [50, 50, -100] },
+            { name: "X", construction: E.Point.intersection, params: ["P", "A", "B"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let X = slate.lookupElement("X") as PointElement;
+        almostEqual(X.x, 50, 0.1);
+        almostEqual(X.y, 50, 0.1);
+        almostEqual(X.z, 0, 0.1);
+    });
+
+    // point;center (sphere) — returns sphere center
+    it("should return the center of a sphere", () => {
+        let data : IConstructionInfo[] = [
+            { name: "O", construction: E.Point.fixed, params: [150, 150, 50] },
+            { name: "R", construction: E.Point.fixed, params: [250, 150, 50] },
+            { name: "S", construction: E.Sphere.radius, params: ["O", "R"] },
+            { name: "C", construction: E.Point.center, params: ["S"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        let C = slate.lookupElement("C") as PointElement;
+        almostEqual(C.x, 150, 0.01);
+        almostEqual(C.y, 150, 0.01);
+        almostEqual(C.z, 50, 0.01);
+    });
+
+    // polygon;starPolygon — star polygon with density d
+    // {5/2} pentagram: 5 vertices, density 2
+    it("should create a star polygon (pentagram) with 5 vertices", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.free, params: [100, 50] },
+            { name: "B", construction: E.Point.free, params: [200, 50] },
+            { name: "S", construction: E.Polygon.starPolygon, params: ["A", "B", 5, 2] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let poly = slate.lookupElement("S") as PolygonElement;
+        assert.equal(poly.V.length, 5);
+        // V[0]=A and V[1]=B are the given edge
+        almostEqual(poly.V[0].x, 100, 0.01);
+        almostEqual(poly.V[1].x, 200, 0.01);
+        // V[2] should exist and not be NaN
+        assert.ok(!isNaN(poly.V[2].x));
+        assert.ok(!isNaN(poly.V[2].y));
+    });
+
+    // sphere;radius 3-point — sphere at A with radius |BC|
+    it("should create a 3-point sphere with radius |BC|", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.fixed, params: [100, 100, 0] },
+            { name: "B", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [60, 80, 0] },
+            { name: "S", construction: E.Sphere.radius, params: ["A", "B", "C"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        let sphere = slate.lookupElement("S") as SphereElement;
+        // radius should be |BC| = sqrt(60²+80²) = 100
+        almostEqual(sphere.radius(), 100, 0.01);
+    });
+
+    // circle;invert — inversion of circle in another circle
+    // Circle C: center (100,100), radius 30 (edge at (130,100))
+    // Circle D: center (200,100), radius 50 (edge at (250,100))
+    // The inverted circle should have a computable center and radius
+    it("should compute the inversion of a circle in another circle", () => {
+        let data : IConstructionInfo[] = [
+            { name: "O1", construction: E.Point.free, params: [100, 100] },
+            { name: "R1", construction: E.Point.free, params: [130, 100] },
+            { name: "C", construction: E.Circle.radius, params: ["O1", "R1"] },
+            { name: "O2", construction: E.Point.free, params: [200, 100] },
+            { name: "R2", construction: E.Point.free, params: [250, 100] },
+            { name: "D", construction: E.Circle.radius, params: ["O2", "R2"] },
+            { name: "E", construction: E.Circle.invert, params: ["C", "D"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let inverted = slate.lookupElement("E") as CircleElement;
+        // The inverted circle should be defined (not NaN)
+        assert.ok(!isNaN(inverted.Center.x));
+        assert.ok(!isNaN(inverted.Center.y));
+        assert.ok(inverted.radius > 0);
+    });
+
+    // plane;ambient (point variant) — returns the ambient plane of a point
+    // Note: ambient returns the SAME object (name gets overwritten, like point;vertex)
+    it("should return the ambient plane of a point", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "P", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.planeSlider, params: ["P", 50, 50, 0] },
+            { name: "AP", construction: E.Plane.ambient, params: ["A"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let ambient = slate.lookupElement("AP") as PlaneElement;
+        // The ambient plane should be a valid PlaneElement with S,T,U frame
+        assert.ok(ambient != null);
+        assert.ok(ambient instanceof PlaneElement);
+        // S should be unit vector in direction P1→P2
+        almostEqual(ambient.S.x, 1, 0.01);
+        almostEqual(ambient.S.y, 0, 0.01);
+    });
+
+    // line;proportion — line GI along GH so that AB:CD = EF:GI
+    // Using same values as point;proportion test: S=100, T=50, U=80, V=200
+    // factor = (50*80)/(100*200) = 0.2, result at V0 + 0.2*(V1-V0)
+    // Line from V0=(0,200) to result=(40,200)
+    it("should compute a proportion line", () => {
+        let data : IConstructionInfo[] = [
+            { name: "S0", construction: E.Point.free, params: [0, 0] },
+            { name: "S1", construction: E.Point.free, params: [100, 0] },
+            { name: "T0", construction: E.Point.free, params: [0, 0] },
+            { name: "T1", construction: E.Point.free, params: [50, 0] },
+            { name: "U0", construction: E.Point.free, params: [0, 0] },
+            { name: "U1", construction: E.Point.free, params: [80, 0] },
+            { name: "V0", construction: E.Point.free, params: [0, 200] },
+            { name: "V1", construction: E.Point.free, params: [200, 200] },
+            { name: "L",  construction: E.Line.proportion, params: ["S0","S1","T0","T1","U0","U1","V0","V1"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("L") as LineElement;
+        // Line starts at V0 = (0, 200)
+        almostEqual(line.A.x, 0, 0.01);
+        almostEqual(line.A.y, 200, 0.01);
+        // Line ends at proportional point = (40, 200)
+        almostEqual(line.B.x, 40, 0.01);
+        almostEqual(line.B.y, 200, 0.01);
+    });
+
     // point;invert — inversion of a point in a circle
     // Circle center (100,100), radius point (200,100) → radius=100
     // Point A at (150,100) → distance from center = 50
