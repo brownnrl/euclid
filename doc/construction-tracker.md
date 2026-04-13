@@ -190,9 +190,14 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: `AngleDivider.java`.
   - No Books I–IV uses found
 
-- [ ] **`invert`** — TBD
-  - Java source: `InvertPoint.java`
-  - No Books I–X uses found
+- [x] **`invert`** — `src/elements/point/InvertPointElement.ts`
+  - Extends `PointElement`. Inverts point A in circle C via `toInvertPoint()`.
+  - Java source: `InvertPoint.java` — 16 lines, line-for-line port.
+  - Mocha test (1): inversion of (150,100) in circle center (100,100) radius 100 → (300,100).
+  - [x] test view: [view/test/point/invert.html](../view/test/point/invert.html)
+  - [x] applet-tests pair:
+    [view/applet-tests/point/invert/{original,applet}.html](../view/applet-tests/point/invert/)
+  - Used in: compass + round geometry pages. No Books I–XIII proposition uses.
 
 - [x] **`meanProportional`** — `src/elements/point/MeanProportionalElement.ts`
   - Extends `PointElement`. Geometric mean: |U'| = sqrt(|S|*|T|).
@@ -214,8 +219,14 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/point/planeSlider/{original,applet}.html](../view/applet-tests/point/planeSlider/)
   - Used in: Books XI–XIII (19 props depend on it; 6 sole-blocker with plane;3points)
 
-- [ ] **`sphereSlider`** — TBD (solid geometry)
-  - Java source: `SphereSlider.java`
+- [x] **`sphereSlider`** — `src/elements/point/SphereSliderElement.ts`
+  - Extends `PointElement`. Draggable point constrained to sphere surface.
+  - Java source: `SphereSlider.java` — 43 lines, line-for-line port.
+  - Mocha test (1): point projects to sphere surface (distance = radius).
+  - [x] test view: [view/test/point/sphereSlider.html](../view/test/point/sphereSlider.html)
+  - [x] applet-tests pair:
+    [view/applet-tests/point/sphereSlider/{original,applet}.html](../view/applet-tests/point/sphereSlider/)
+  - Used in: XI.35, XIII.13–XVII, compass + round geometry pages
 
 - [x] **`harmonic`** — `src/elements/point/HarmonicElement.ts`
   - Extends `PointElement`. Computes the harmonic conjugate of B w.r.t. C
@@ -512,9 +523,14 @@ These affect the library as a whole, independent of individual constructions.
   - Mocha test (1): S/T/U frame verification for xy-plane.
   - Used in: Books XI–XIII (prerequisite for 22 propositions; 2 sole-blocker: XI.29, XI.38)
 
-- [ ] **`parallel`** — TBD
-  - Java source: `ParallelP.java` (26 lines) — parallel plane through a point
-  - Blocks 3 propositions (XI.11, XI.26, XI.39)
+- [x] **`parallel`** — `src/elements/plane/ParallelPlane.ts`
+  - Extends `PlaneElement`. Creates a plane parallel to P through point A.
+  - Java source: `ParallelP.java` — 26 lines, line-for-line port.
+  - Mocha test (1): parallel plane passes through point A.
+  - [x] test view: [view/test/plane/parallel.html](../view/test/plane/parallel.html) — propXI11
+  - [x] applet-tests pair:
+    [view/applet-tests/plane/parallel/{original,applet}.html](../view/applet-tests/plane/parallel/)
+  - Used in: XI.11, XI.26, XI.39 (XI.39 also needs polyhedron;prism)
 
 - [ ] **`ambient`** — TBD (the default screen plane)
   - No Books I–XIII uses found in applet HTML

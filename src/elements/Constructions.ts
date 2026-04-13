@@ -41,6 +41,9 @@ import {ProportionElement} from "./point/ProportionElement";
 import {AngleDividerElement} from "./point/AngleDividerElement";
 import {MeanProportionalElement} from "./point/MeanProportionalElement";
 import {HarmonicElement} from "./point/HarmonicElement";
+import {InvertPointElement} from "./point/InvertPointElement";
+import {SphereSliderElement} from "./point/SphereSliderElement";
+import {ParallelPlane} from "./plane/ParallelPlane";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -225,7 +228,9 @@ export abstract class Construction {
                     }
                     break;
                 case ConstructionTypes.SphereElement:
-                    // TODO:
+                    if (!(param instanceof SphereElement)) {
+                        return false;
+                    }
                     break;
                 case ConstructionTypes.PolygonElement:
                     if (!(param instanceof PolygonElement)) {
@@ -706,11 +711,22 @@ export class ProportionPointConstruction extends Construction {
     }
 }
 
-// TBD
 // point
 // invert
 // point A circle B
 // the image of a point A inverted in the circle B
+// (Java: InvertPoint.java — 16 lines, calls toInvertPoint(A, C))
+export class InvertPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.invert;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.CircleElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const A = params[0] as PointElement;
+        const C = params[1] as CircleElement;
+        const g = new InvertPointElement(A, C);
+        return [[g], g];
+    }
+}
 
 // point
 // meanProportional
@@ -748,11 +764,24 @@ export class PlaneSliderConstruction extends Construction {
     }
 }
 
-// TBD
 // point
 // sphereSlider
 // sphere A integers x, y, z
 // a point that slides on the sphere A with initial coordinates (x,y,z)
+// (Java: SphereSlider.java — 43 lines, line-for-line port)
+export class SphereSliderConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.sphereSlider;
+    signature: ConstructionTypes[] = [ct.SphereElement, ct.Integer, ct.Integer, ct.Integer];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const S = params[0] as SphereElement;
+        const x = params[1] as number;
+        const y = params[2] as number;
+        const z = params[3] as number;
+        const g = new SphereSliderElement(S, x, y, z);
+        return [[g], g];
+    }
+}
 
 // point
 // angleBisector (2D variant)
@@ -1451,13 +1480,22 @@ export class PerpendicularPlaneConstruction extends Construction {
 
 
 
-// TBD
-// *Solid Geometry Only*
 // plane
-// parallel	
-// plane A point B
-// the plane passing through point A and parallel to plane B
+// parallel
+// plane P, point A
+// the plane passing through point A and parallel to plane P
+// (Java: ParallelP.java — 26 lines, line-for-line port)
+export class PlaneParallelConstruction extends Construction {
+    constructionMethod: AllConstructions = PlaneConstructions.parallel;
+    signature: ConstructionTypes[] = [ct.PlaneElement, ct.PointElement];
 
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const P = params[0] as PlaneElement;
+        const A = params[1] as PointElement;
+        const g = new ParallelPlane(P, A);
+        return [[g], g];
+    }
+}
 
 // TBD
 // *Solid Geometry Only*
@@ -1562,7 +1600,9 @@ export const constructions : Construction[] = [
     new AngleDividerPointConstruction(),
     new MeanProportionalPointConstruction(),
     new PlaneSliderConstruction(),
+    new SphereSliderConstruction(),
     new HarmonicPointConstruction(),
+    new InvertPointConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),
@@ -1610,5 +1650,6 @@ export const constructions : Construction[] = [
     new VertexConstruction(),
     new Plane3PointsConstruction(),
     new PerpendicularPlaneConstruction(),
+    new PlaneParallelConstruction(),
     new SphereRadiusConstruction()
 ];

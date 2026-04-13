@@ -20,6 +20,35 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Bundle: plane;parallel + point;sphereSlider + point;invert
+
+**Completed:**
+- Ported 3 constructions in one session:
+  - `ParallelPlane.ts` (26 lines) — plane parallel to P through point A.
+    Overrides `update()`, `translate()`, `rotate()`.
+  - `SphereSliderElement.ts` (43 lines) — draggable point on sphere
+    surface via `toSphere()`. Full `drag()` implementation handles both
+    inside and outside the sphere's screen shadow.
+  - `InvertPointElement.ts` (16 lines) — point inversion in a circle
+    via `toInvertPoint()`.
+- Also: added `Center` getter to `SphereElement.ts` (was protected-only),
+  fixed `SphereElement` `validateSignature` stub (was TODO no-op),
+  fixed `radius()`/`radius2()` call syntax.
+- 3 Mocha tests: parallel plane passes through A, sphere slider projects
+  to surface (distance = radius), point inversion (factor = r²/d²).
+  44 → **47 passing**.
+- **3 propositions unblocked**: XI.11, XI.26 (plane;parallel completes
+  the set with plane;3points + planeSlider), XIII.16 (sphereSlider sole
+  blocker).
+- I–XIII total: 445 → **448** renderable (96.3%).
+
+**Next session:**
+- `PolyhedronElement` base class (78 lines) — the prerequisite for the
+  final 17 blocked propositions. Then tetrahedron, prism, pyramid,
+  parallelepiped, polygon;face, circle;intersection.
+
+---
+
 ## 2026-04-12 — Implemented point;harmonic + archived round geometry pages
 
 **Completed:**

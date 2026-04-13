@@ -1,0 +1,23 @@
+<html>
+<head><title>Test View - Point.sphereSlider (standalone)</title></head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Point.sphereSlider — point on sphere surface",
+        canvasid: "canvasId",
+        elements: [
+            { name: "O", construction: E.Point.fixed, params: [150, 150, 0] },
+            { name: "R", construction: E.Point.fixed, params: [250, 150, 0] },
+            { name: "S", construction: E.Sphere.radius, params: ["O", "R"] },
+            { name: "A", construction: E.Point.sphereSlider, params: ["S", 200, 100, 50] },
+            { name: "B", construction: E.Point.sphereSlider, params: ["S", 100, 200, 50] },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+        ]
+    });
+</script>
+</body>
+</html>

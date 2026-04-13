@@ -43,14 +43,14 @@ implementation status. Updated as constructions are ported.
 | `LineSlider.java` | PORTED | `src/elements/point/LineSlider.ts` | 2D, 3D, and segment variants. |
 | `Midpoint.java` | PORTED | `src/elements/point/Midpoint.ts` | |
 | `Perpendicular.java` | PORTED | `src/elements/point/Perpendicular*.ts` + `src/elements/line/Perpendicular.ts` | 5 signature variants across point and line constructions. |
-| `PlaneSlider.java` | PARTIAL | `src/elements/point/PlaneSlider.ts` | Used for `point;free` (draggable screen-plane points). The `point;planeSlider` construction for non-screen planes is TBD — blocks 19 propositions in Books XI–XIII. |
+| `PlaneSlider.java` | PORTED | `src/elements/point/PlaneSlider.ts` | Used for `point;free` (screen plane) and `point;planeSlider` (non-screen planes, wired 2026-04-12). |
 | `Proportion.java` | PORTED | `src/elements/point/ProportionElement.ts` | Fourth proportional. Ported 2026-04-12. |
 | `Similar.java` | PORTED | `src/elements/point/SimilarElement.ts` | All three type variants ported: `SimilarPointConstruction`, `SimilarLineConstruction`, `SimilarPolygonConstruction` (all in Constructions.ts). Ported 2026-04-12. |
 | `AngleDivider.java` | PORTED | `src/elements/point/AngleDividerElement.ts` | All four variants ported 2026-04-12: point/line × bisector/divider. Used in Book IV (IV.4, IV.13, IV.16). |
 | `Harmonic.java` | PORTED | `src/elements/point/HarmonicElement.ts` | Harmonic conjugate. 2D (complex arithmetic) + 3D (midpoint reflection) cases. Ported 2026-04-12. Used in round geometry pages. |
-| `InvertPoint.java` | TBD | — | Point inversion in circle. No Books I–X uses found; may appear in later analysis. |
+| `InvertPoint.java` | PORTED | `src/elements/point/InvertPointElement.ts` | Point inversion in circle. Ported 2026-04-12. Used in compass + round geometry pages. |
 | `MeanProportional.java` | PORTED | `src/elements/point/MeanProportionalElement.ts` | Geometric mean. Both point and line variants wired. Ported 2026-04-12. Unblocked 35 propositions (VIII, X, XIII). |
-| `SphereSlider.java` | TBD | — | Point slider on sphere surface. Blocks XIII.13, XIII.14, XIII.15, XIII.16, XIII.17 + XI.35. |
+| `SphereSlider.java` | PORTED | `src/elements/point/SphereSliderElement.ts` | Point slider on sphere surface. Ported 2026-04-12. |
 
 ---
 
@@ -97,7 +97,7 @@ implementation status. Updated as constructions are ported.
 | Java File | Status | TS Location | Notes |
 |---|---|---|---|
 | `PlanePerpendicular.java` | PORTED | `src/elements/plane/PerpendicularPlane.ts` | |
-| `ParallelP.java` | TBD | — | Parallel plane construction (solid geometry). NOT `line;parallel` — that uses Layoff dispatch. |
+| `ParallelP.java` | PORTED | `src/elements/plane/ParallelPlane.ts` | Parallel plane through a point. Ported 2026-04-12. NOT `line;parallel` — that uses Layoff dispatch. |
 
 ---
 
@@ -125,9 +125,9 @@ implementation status. Updated as constructions are ported.
 
 | Status | Count | Files |
 |--------|-------|-------|
-| PORTED | 30 | Core element classes + all ported constructions (incl. Harmonic ported 2026-04-12) |
-| PARTIAL | 4 | IntersectionPL, PerpendicularPL, PlaneSlider (screen-only), Slate |
-| TBD | 6 | InvertPoint, InvertCircle, SphereSlider, PlaneFoot, Prism, Pyramid |
+| PORTED | 33 | Core element classes + all ported constructions (incl. ParallelP, SphereSlider, InvertPoint ported 2026-04-12) |
+| PARTIAL | 3 | IntersectionPL, PerpendicularPL, Slate |
+| TBD | 4 | InvertCircle, PlaneFoot, Prism, Pyramid |
 | TBD (base) | 1 | PolyhedronElement |
 | TBD (plane/circle) | 2 | ParallelP (plane;parallel), IntersectionSS (circle;intersection) |
 | N/A | 3 | Geometry, ClientFrame, Remote |
