@@ -1,0 +1,522 @@
+<HTML><HEAD><TITLE>Element classes and construction methods for the Geometry Applet</TITLE></HEAD>
+<BODY bgcolor=631700 text=ffffff link=40ffff vlink=80ff80>
+
+<center><h2>Element classes and construction methods</h2>
+<h4>for <a href=Geometry.html>The Geometry Applet</a>
+<br>version 2.2</h4></center>
+
+There are eight different element classes: point, line, circle, polygon, sector, plane, sphere, and
+ polyhedron.  Only the first five classes are used in plane geometry.  All can be used in solid
+ geometry.  
+
+<p>Each class has several construction methods.  The eight tables below briefly explain these
+ construction methods.  
+
+<h4>Special notes</h4> 
+
+1. Any time two points are needed in a construction, one line may be given instead.  For instance, if
+ <i>AB</i> has already been defined as a line that connects points <i>A</i> and <i>B</i>, then the
+ triangle <i>ABC</i> can be defined by either of these:<pre>
+	param="ABC;polygon;triangle;A,B,C"
+	param="ABC;polygon;triangle;AB,C"
+</pre>
+
+<p>2. Those constructions that can <i>only</i> be used in solid geometry are indicated with a dark
+ blue background color.
+
+<p>3.  Optional data elements are indicated in the tables by square brackets.  In particular,
+ [<i>z</i>] indicates <i>z</i> is an optional integer, and [plane <i>A</i>] indicates <i>A</i> is an
+ optional plane.  The optional data elements are only used in solid geometry; they should always be
+ omitted in plane geometry.
+
+<ul>
+<p>3a.  When an optional third coordinate [<i>z</i>] is not specified, it is taken to be 0 so that the
+ point lies in the <i>xy</i>-plane, that is, the plane of the screen.
+
+<p>3b.  When an optional plane such as [plane <i>A</i>] is not specified, it is assumed to be the
+ <i>xy</i>-plane.
+</ul>
+
+<p>4. Data elements come in three kinds: (1) integers, (2) points, and (3) other elements.  These are
+ indicated in separate lines in the tables.
+As long as the elements of each kind come in the right order, they will be interpreted properly. 
+ Elements of different kinds
+may be listed as you like.
+
+
+<p><hr width=50%><p>
+
+<h4>Index of tables</h4>
+<dl>
+<p><dt>Table 1: <a href=#point>Element class point</a>
+<dd>Constructions: free, midpoint, intersection, first, last, center, lineSlider, circleSlider,
+ circumcenter, vertex, foot, cutoff, extend, parallelogram, similar, perpendicular, proportion,
+ invert, meanProportional, planeSlider, sphereSlider, angleBisector, angleDivider, fixed,
+ lineSegmentSlider
+
+<p><dt>Table 2: <a href=#line>Element class line</a>
+<dd>Constructions: connect, angleBisector, angleDivider, foot, chord, bichord, perpendicular, cutoff,
+ extend, parallel, similar, proportion, meanProportional
+
+<p><dt>Table 3: <a href=#circle>Element class circle</a>
+<dd>Constructions: radius, circumcircle, invert, intersection
+
+<p><dt>Table 4: <a href=#polygon>Element class polygon</a>
+<dd>Constructions:  square, triangle, quadrilateral, pentagon, hexagon, equilateralTriangle,
+ parallelogram, regularPolygon, starPolygon, similar, application, octagon, face
+
+<p><dt>Table 5: <a href=#sector>Element class sector</a>
+<dd>Constructions: sector, arc
+      
+<p><dt>Table 6: <a href=#plane>Element class plane</a>
+<dd>Constructions: 3points, perpendicular, parallel, ambient
+      
+<p><dt>Table 7: <a href=#sphere>Element class sphere</a>
+<dd>Construction: radius
+        
+<p><dt>Table 8: <a href=#polyhedron>Element class polyhedron</a>
+<dd>Constructions: tetrahedron, parallelepiped, prism, pyramid
+</dl>
+
+<p><hr width=50%><p>
+
+<a name=point>
+<center><h3>Element class point</h3></center></a>
+
+<table border=5 cellpadding=5>
+<tr><th><big>Construction method</big></th>
+<th><big>Construction data</big></th>
+<th><big>Description</big></th></tr>
+<tr><th>free</th>
+<td>integers <i>x, y</i></td>
+<td>a freely dragable point in the screen plane with initial coordinates (<i>x,y,</i>0)</td></tr>
+
+<tr><th>midpoint</th>
+<td>points <i>A, B</i></td>
+<td>the midpoint of a line <i>AB</i></td></tr>
+
+<tr><th rowspan=2>intersection</th>
+<td>points <i>A, B, C, D</i>
+ <br>[plane <i>E</i>]</td>
+<td>the intersection of two lines <i>AB</i> and <i>CD</i> in the plane <i>E</i></td></tr>
+<tr bgcolor=000066><td>points <i>B, C</i>
+ <br>plane <i>A</i></td>
+<td>the intersection of the plane <i>A</i> and the line <i>BC</i></td></tr>
+
+<tr><th>first</th>
+<td>points <i>A, B</i></td>
+<td>the first end <i>A</i> of the line <i>AB</i></td></tr>
+
+<tr><th>last</th>
+<td>points <i>A, B</i></td>
+<td>the last end <i>B</i> of the line <i>AB</i></td></tr>
+
+<tr><th rowspan=2>center</th>
+<td>circle <i>A</i></td>
+<td>the center of the circle <i>A</i></td></tr>
+<tr bgcolor=000066><td>sphere <i>A</i></td>
+<td>the center of the sphere <i>A</i></td></tr>
+
+<tr><th>lineSlider</th>
+<td>points <i>A, B</i>
+ <br>integers <i>x, y,</i>[<i>z</i>]</td>
+<td>a point that slides along a line <i>AB</i> with initial coordinates (<i>x,y,z</i>)</td></tr>
+
+<tr><th>circleSlider</th>
+<td>circle <i>A</i>
+ <br>integers <i>x, y,</i>[<i>z</i>]</td>
+<td>a point that slides along a circle <i>A</i> with given initial coordinates
+ (<i>x,y,z</i>)</td></tr>
+
+<tr><th>circumcenter</th>
+<td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]</td>
+<td>the center of a circle <i>ABC</i> passing through 3 points <i>A</i>, <i>B</i>, and <i>C</i> in the
+ plane <i>D</i></td></tr>
+
+<tr><th>vertex</th>
+<td>polygon <i>A</i>
+ <br>integer <i>i</i></td>
+<td>a vertex <i>A<sub>i</sub></i> of the polygon
+ <i>A</i><sub>1</sub><i>A</i><sub>2</sub>...<i>A<sub>n</sub></i> with index <i>i</i></td></tr>
+
+<tr><th rowspan=2>foot</th>
+<td>points <i>A, B, C</i></td>
+<td>the foot of a perpendicular drawn from <i>A</i> to a line <i>BC</i></td></tr>
+<tr bgcolor=000066><td>point <i>A</i>
+ <br>plane <i>B</i></td>
+<td>the foot of a perpendicular drawn from <i>A</i> to a plane <i>B</i></td></tr>
+
+<tr><th>cutoff</th>
+<td>points <i>A, B, C, D</i></td>
+<td>the point <i>E</i> on a line <i>AB</i> so that <i>AE</i> = <i>CD</i></td></tr>
+
+<tr><th>extend</th>
+<td>points <i>A, B, C, D</i></td>
+<td>the point <i>E</i> on a line <i>AB</i> so that <i>BE</i> = <i>CD</i></td></tr>
+
+<tr><th>parallelogram</th>
+<td>points <i>A, B, C</i></td>
+<td>the 4th vertex <i>D</i> of a parallelogram <i>ABCD</i> given 3 vertices <i>A</i>, <i>B</i>, and
+ <i>C</i></td></tr>
+
+<tr><th>similar</th>
+<td>points <i>A, B, D, E, F</i>
+ <br>[planes <i>C, G</i>]</td>
+<td>the point <i>H</i> so that triangle <i>ABH</i> in plane <i>C</i> is similar to triangle <i>DEF</i>
+ in plane <i>G</i></td></tr>
+
+<tr><th rowspan=3>perpendicular</th>
+<td>points <i>A, B,</i>
+ <br>[plane <i>C</i>]</td>
+<td>the point <i>D</i> so that <i>AD</i> is equal and perpendicular to <i>AB</i> in plane
+ <i>C</i></td></tr>
+<tr><td>points <i>A, B, D, E</i>
+ <br>[plane <i>C</i>]</td>
+<td>the point <i>F</i> so that <i>AF</i> is perpendicular to <i>AB</i> in plane <i>C</i> and equals
+ <i>DE</i></td></tr>
+<tr bgcolor=000066><td>points <i>A, C, D</i>
+ <br>plane <i>B</i></td>
+<td>the point <i>E</i> on the line perpendicular to plane <i>B</i> passing through <i>A</i> so that
+ the distance from <i>E</i> to <i>B</i> equals <i>CD</i></td></tr>
+
+<tr><th>proportion</th>
+<td>8 points <i>A, B, C, D, E, F, G, H</i></td>
+<td>the point <i>I</i> on <i>GH</i> so that <i>AB</i>:<i>CD</i> = <i>EF</i>:<i>GI</i></td></tr>
+
+<tr><th>invert</th>
+<td>point <i>A</i>
+ <br>circle <i>B</i></td>
+<td>the image of a point <i>A</i> inverted in the circle <i>B</i></td></tr>
+
+<tr><th>meanProportional</th>
+<td>6 points <i>A, B, C, D, E, F</i></td>
+<td>the point <i>G</i> on <i>EF</i> so that <i>AB</i>:<i>CD</i> = <i>CD</i>:<i>EG</i></td></tr>
+
+<tr bgcolor=000066><th>planeSlider</th>
+<td>plane <i>A</i>
+ <br>integers <i>x, y, z</i></td>
+<td>a point that slides on the plane <i>A</i> with initial coordinates (<i>x,y,z</i>)</td></tr>
+
+<tr bgcolor=000066><th>sphereSlider</th>
+<td>sphere <i>A</i>
+ <br>integers <i>x, y, z</i></td>
+<td>a point that slides on the sphere <i>A</i> with initial coordinates (<i>x,y,z</i>)</td></tr>
+
+<tr><th>angleBisector</th>
+<td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]</td>
+<td>The point at the intersection of the angle bisector of angle <i>BAC</i> and the line <i>BC</i> in
+ plane <i>D</i></td></tr>
+
+<tr><th>angleDivider</th>
+<td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]
+ <br>integer <i>n</i></td>
+<td>The point <i>E</i> on the line <i>BC</i> so that angle <i>BAE</i> is the <i>n</i><sup>th</sup>
+ part of the angle <i>BAC</i> in  plane <i>D</i></td></tr>
+
+<tr><th>fixed</th>
+<td>integers <i>x, y,</i>[<i>z</i>]</td>
+<td>the fixed point with coordinates (<i>x, y, z</i>)</td></tr>
+
+<tr><th>lineSegmentSlider</th>
+<td>points <i>A, B</i>
+ <br>integers <i>x, y,</i>[<i>z</i>]</td>
+<td>a point that slides along within the line segment <i>AB</i> with initial coordinates
+ (<i>x,y,z</i>)</td></tr>
+
+<tr><th>harmonic</th>
+<td>points <i>B, C, D</i></td>
+<td>the harmonic conjugate of <i>B</i> with respect to <i>C</i> and <i>D</i></td></tr>
+</table>
+
+<a name=line>
+<center><h3>Element class line</h3></center></a>
+
+<table border=5 cellpadding=5>
+<tr><th><big>Construction method</big></th>
+<th><big>Construction data</big></th>
+<th><big>Description</big></th></tr>
+
+<tr><th>connect</th>
+<td>points <i>A, B</i></td>
+<td>the line <i>AB</i> connecting two points <i>A</i> and <i>B</i></td></tr>
+
+<tr><th>angleBisector</th>
+<td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]</td>
+<td>the line <i>AE</i> bisecting angle <i>BAC</i> with <i>E</i> on <i>BC</i> in plane
+ <i>D</i></td></tr>
+
+<tr><th>angleDivider</th>
+<td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]
+ <br>integer <i>n</i></td>
+<td>the line <i>AE</i> with <i>E</i> on <i>BC</i> so that <i>BAE</i> is the <i>n</i><sup>th</sup> part
+ of the angle <i>BAC</i> in plane <i>D</i></td></tr>
+
+<tr><th rowspan=2>foot</th>
+<td>3 points <i>A, B, C</i></td>
+<td>the line <i>AD</i> drawn perpendicular to <i>BC</i> in the screen plane</td></tr>
+<tr bgcolor=000066><td>point <i>A</i>
+ <br>plane <i>B</i></td>
+<td>the line <i>AD</i> drawn perpendicular to plane <i>B</i> with the point <i>D</i> lying on
+ <i>B</i></td></tr>
+
+<tr><th>chord</th>
+<td>points <i>A, B</i>
+ <br>circle <i>C</i></td>
+<td>the intersection of the line <i>AB</i> in the circle <i>C</i></td></tr>
+
+<tr><th>bichord</th>
+<td>circles <i>A, B</i></td>
+<td>the common chord connecting the two intersection points of the circles <i>A</i> and
+ <i>B</i></td></tr>
+
+<tr><th rowspan=3>perpendicular</th>
+<td>points <i>A, B</i>
+ <br>[plane <i>C</i>]</td>
+<td>the line <i>AD</i> equal and perpendicular to <i>AB</i> in plane <i>C</i></td></tr>
+<tr><td>points <i>A, B, D, E</i>
+ <br>[plane <i>C</i>]</td>
+<td>the line <i>AF</i> perpendicular to <i>AB</i> in plane <i>C</i> equal to <i>DE</i></td></tr>
+<tr bgcolor=000066><td>point <i>A, C, D</i>
+ <br>plane <i>B</i></td>
+<td>the line <i>EF</i> perpendicular to plane <i>B</i> passing through <i>A</i> equal to <i>CD</i>
+ with <i>E</i> lying on <i>B</i> </td></tr>
+
+<tr><th>cutoff</th>
+<td>points <i>A, B, C, D</i></td>
+<td>the line <i>AE</i> equal to <i>CD</i> along the line <i>AB</i></td></tr>
+
+<tr><th>extend</th>
+<td>points <i>A, B, C, D</i></td>
+<td>the line <i>BE</i> equal to <i>CD</i> so that <i>A</i>, <i>B</i>, and <i>C</i> are collinear with
+ <i>B</i> between <i>A</i> and <i>C</i></td></tr>
+
+<tr><th>parallel</th>
+<td>points <i>A, B, C</i></td>
+<td>the line <i>AD</i> parallel and equal to <i>BC</i></td></tr>
+
+<tr><th>similar</th>
+<td>points <i>A, B, D, E, F</i> 
+ <br>[planes <i>C, G</i>]</td>
+<td>the line <i>AH</i> so that triangle <i>ABH</i> in plane <i>C</i> is similar to triangle <i>DEF</i>
+ in plane <i>G</i></td></tr>
+
+<tr><th>proportion</th>
+<td>8 points <i>A, B, C, D, E, F, G, H</i></td>
+<td>the line <i>GI</i> along <i>GH</i> so that <i>AB</i>:<i>CD</i> = <i>EF</i>:<i>GI</i></td></tr>
+
+<tr><th>meanProportional</th>
+<td>6 points <i>A, B, C, D, E, F</i></td>
+<td>the line <i>EG</i> along <i>EF</i> so that <i>AB</i>:<i>CD</i> = <i>CD</i>:<i>EG</i></td></tr>
+</table>
+
+<a name=circle>
+<center><h3>Element class circle</h3></center></a>
+
+<table border=5 cellpadding=5>
+<tr><th><big>Construction method</big></th>
+<th><big>Construction data</big></th>
+<th><big>Description</big></th></tr>
+
+<tr><th rowspan=2>radius</th>
+<td>points <i>A, B</i>
+ <br>[plane <i>C</i>]</td>
+<td>the circle with center <i>A</i> and radius <i>AB</i> in the plane <i>C</i></td></tr>
+<tr><td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]</td>
+<td>the circle with center <i>A</i> and radius <i>BC</i> in the plane <i>D</i></td></tr>
+
+<tr><th>circumcircle</th>
+<td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]</td>
+<td>the circle passing through 3 points <i>A</i>, <i>B</i>, and <i>C</i> in the plane
+ <i>D</i></td></tr>
+
+<tr><th>invert</th>
+<td>circles <i>A, B</i></td>
+<td>the image of circle <i>A</i> inverted in circle <i>B</i></td></tr>
+
+<tr bgcolor=000066><th>intersection</th>
+<td>spheres <i>A, B</i></td>
+<td>the intersection of spheres <i>A</i> and <i>B</i></td></tr>
+</table>
+
+<a name=polygon>
+<center><h3>Element class polygon</h3></center></a>
+
+<table border=5 cellpadding=5>
+<tr><th><big>Construction method</big></th>
+<th><big>Construction data</big></th>
+<th><big>Description</big></th></tr>
+
+<tr><th>square</th>
+<td>points <i>A, B</i>
+ <br>[plane <i>C</i>]</td>
+<td>the square on a side <i>AB</i> in plane <i>C</i></td></tr>
+
+<tr><th>triangle</th>
+<td>points <i>A, B, C</i></td>
+<td>the triangle <i>ABC</i> given 3 vertices <i>A</i>, <i>B</i>, and <i>C</i></td></tr>
+
+<tr><th>quadrilateral</th>
+<td>points <i>A, B, C, D</i></td>
+<td>the quadrilateral <i>ABCD</i> given 4 vertices <i>A</i>, <i>B</i>,  <i>C</i>, and
+ <i>D</i></td></tr>
+
+<tr><th>pentagon</th>
+<td>points <i>A, B, C, D, E</i></td>
+<td>the pentagon given 5 vertices</td></tr>
+
+<tr><th>hexagon</th>
+<td>points <i>A, B, C, D, E, F</i></td>
+<td>the hexagon given 6 vertices</td></tr>
+
+<tr><th>equilateralTriangle</th>
+<td>points <i>A, B</i>
+ <br>[plane <i>C</i>]</td>
+<td>the equilateral triangle on a side <i>AB</i> in plane <i>C</i></td></tr>
+
+<tr><th>parallelogram</th>
+<td>points <i>A, B, C</i></td>
+<td>the parallelogram <i>ABCD</i> given <i>A</i>, <i>B</i>, and <i>C</i></td></tr>
+
+<tr><th>regularPolygon</th>
+<td>points <i>A, B</i>
+ <br>integer <i>n</i></td>
+<td>the regular polygon on a side <i>AB</i> given the number of vertices <i>n</i></td></tr>
+
+<tr><th>starPolygon</th>
+<td>points <i>A, B</i>
+ <br>integers <i>n, d</i></td>
+<td>the star polygon on a side <i>AB</i> given the number of vertices <i>n</i> and the density
+ <i>d</i></td></tr>
+
+<tr><th>similar</th>
+<td>points <i>A, B, D, E, F</i></i>
+ <br>[planes <i>C, G</i>]</td>
+<td>the triangle <i>ABH</i> in plane <i>C</i> is similar to triangle <i>DEF</i> in plane
+ <i>G</i></td></tr>
+
+<tr><th>application</th>
+<td>polygon <i>A</i>
+ <br>points <i>B, C, D</i></td>
+<td>the parallelogram equal to the given polygon <i>A</i> with one side <i>BC</i> and one angle
+ <i>BCD</i></td></tr>
+
+<tr><th>octagon</th>
+<td>8 points <i>A, B, C, D, E, F, G, H</i></td>
+<td>the octagon given 8 vertices</td></tr>
+
+<tr bgcolor=000066><th>face</th>
+<td>polyhedron <i>A</i>
+ <br>integer <i>n</i></td>
+<td>the <i>n</i><sup>th</sup> face of polyhedron <i>A</i></td></tr>
+</table>
+
+<a name=sector>
+<center><h3>Element class sector</h3></center></a>
+
+<table border=5 cellpadding=5>
+<tr><th><big>Construction method</big></th>
+<th><big>Construction data</big></th>
+<th><big>Description</big></th></tr>
+
+<tr><th>sector</th>
+<td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]</td>
+<td>the sector of a circle in plane <i>D</i> given the center <i>A</i> and two points <i>B</i> and
+ <i>C</i> on the circumference</td></tr>
+
+<tr><th>arc</th>
+<td>points <i>A, B, C</i>
+ <br>[plane <i>D</i>]</td>
+<td>the sector of a circle in plane <i>D</i> whose arc passes through the three points <i>A, B</i> and
+ <i>C</i></td></tr>
+</tr>
+</table>
+
+<a name=plane>
+<center><h3>Element class plane</h3></center></a>
+
+<table border=5 cellpadding=5 bgcolor=000066>
+<tr><th><big>Construction method</big></th>
+<th><big>Construction data</big></th>
+<th><big>Description</big></th></tr>
+
+<tr><th>3points</th>
+<td>points <i>A, B, C</i></td>
+<td>the plane passing through points <i>A, B,</i> and <i>C</i></td></tr>
+
+<tr><th>perpendicular</th>
+<td>points <i>A, B</i></td>
+<td>the plane passing through point <i>A</i> and perpendicular to line <i>AB</i></td></tr>
+
+<tr><th>parallel</th>
+<td>plane <i>A</i>
+ <br>point <i>B</i></td>
+<td>the plane passing through point <i>A</i> and parallel to plane <i>B</i></td></tr>
+
+<tr><th rowspan=2>ambient</th>
+<td>point <i>A</i></td>
+<td>the ambient plane of point <i>A</i></td></tr>
+<tr><td>circle <i>A</i></td>
+<td>the ambient plane of circle <i>A</i></td></tr>
+</table>
+
+<a name=sphere>
+<center><h3>Element class sphere</h3></center></a>
+
+<table border=5 cellpadding=5 bgcolor=000066>
+<tr><th><big>Construction method</big></th>
+<th><big>Construction data</big></th>
+<th><big>Description</big></th></tr>
+
+<tr><th rowspan=2>radius</th>
+<td>points <i>A, B</i></td>
+<td>the sphere with center <i>A</i> and radius <i>AB</i></td></tr>
+<tr><td>points <i>A, B, C</i></td>
+<td>the sphere with center <i>A</i> and radius <i>BC</i></td></tr>
+</table>
+     	
+<a name=polyhedron>
+<center><h3>Element class polyhedron</h3></center></a>
+
+<table border=5 cellpadding=5 bgcolor=000066>
+<tr><th><big>Construction method</big></th>
+<th><big>Construction data</big></th>
+<th><big>Description</big></th></tr>
+
+<tr><th>tetrahedron</th>
+<td>points <i>A, B, C, D</i></td>
+<td>the tetrahedron given four vertices</td></tr>
+
+<tr><th>parallelepiped</th>
+<td>points <i>A, B, C, D</i></td>
+<td>the parallelepiped with three edges <i>AB, AC,</i> and <i>AD</i></td></tr>
+
+<tr><th>prism</th>
+<td>polygon <i>A</i>
+ <br>points <i>B, C</i></td>
+<td>the prism with base <i>A</i> and side edges parallel and equal to <i>BC</i></td></tr>
+
+<tr><th>pyramid</th>
+<td>polygon <i>A</i>
+ <br>point <i>B</i></td>
+<td>the pyramid with base <i>A</i> and apex <i>B</i></td></tr>
+</table>
+
+<p><hr size=6><p>
+<small>
+David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<br><img src="http://aleph0.clarku.edu/~djoyce/dj.gif">
+
+<br><a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a></small>
+</BODY>
+</HTML>
