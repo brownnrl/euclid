@@ -25,10 +25,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 | Book IX | 36 | **36** | 0 |
 | Book X | 115 | **115** | 0 |
 | **I–X total** | **390** | **390** | **0** |
-| Book XI | 39 | 36 | 0 |
-| Book XII | 18 | 9 | 0 |
-| Book XIII | 18 | 14 | 0 |
-| **I–XIII total** | **465** | **449** | **0** |
+| Book XI | 39 | **39** | 0 |
+| Book XII | 18 | **18** | 0 |
+| Book XIII | 18 | 16 | 0 |
+| **I–XIII total** | **465** | **463** | **0** |
 
 Update the summary table after each session.
 
@@ -251,11 +251,11 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 - [~] XI.32 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
 - [~] XI.33 — renderable
 - [~] XI.34 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
-- [ ] XI.35 — NEEDS: `plane;3points`, `point;planeSlider`, `point;sphereSlider`
+- [~] XI.35 — (All blockers landed by 2026-04-12.)
 - [~] XI.36 — renderable
-- [ ] XI.37 — NEEDS: `plane;3points`, `point;planeSlider`, `polyhedron;parallelepiped`
+- [~] XI.37 — (All blockers landed by 2026-04-12.)
 - [~] XI.38 — (`plane;3points` landed 2026-04-12.)
-- [ ] XI.39 — NEEDS: `plane;3points`, `plane;parallel`, `point;planeSlider`, `polyhedron;prism`
+- [~] XI.39 — (All blockers landed by 2026-04-12.)
 
 ---
 
@@ -265,16 +265,16 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 
 - [~] XII.1 — renderable
 - [~] XII.2 — (`polygon;octagon` landed 2026-04-12.)
-- [ ] XII.3 — NEEDS: `plane;3points`, `point;planeSlider`, `polyhedron;tetrahedron`
-- [ ] XII.4 — NEEDS: `plane;3points`, `point;planeSlider`, `polyhedron;tetrahedron`
-- [ ] XII.5 — NEEDS: `plane;3points`, `point;planeSlider`, `polyhedron;parallelepiped`, `polyhedron;tetrahedron`
-- [ ] XII.6 — NEEDS: `plane;3points`, `point;planeSlider`, `polyhedron;pyramid`
-- [ ] XII.7 — NEEDS: `plane;3points`, `point;planeSlider`, `polygon;face`, `polyhedron;prism`
-- [ ] XII.8 — NEEDS: `plane;3points`, `point;planeSlider`, `polyhedron;tetrahedron`
-- [ ] XII.9 — NEEDS: `plane;3points`, `point;planeSlider`, `polyhedron;parallelepiped`, `polyhedron;tetrahedron`
+- [~] XII.3 — (All blockers landed by 2026-04-12.)
+- [~] XII.4 — (All blockers landed by 2026-04-12.)
+- [~] XII.5 — (All blockers landed by 2026-04-12.)
+- [~] XII.6 — (All blockers landed by 2026-04-12.)
+- [~] XII.7 — (All blockers landed by 2026-04-12.)
+- [~] XII.8 — (All blockers landed by 2026-04-12.)
+- [~] XII.9 — (All blockers landed by 2026-04-12.)
 - [~] XII.10 — (`polygon;octagon` landed 2026-04-12.)
-- [ ] XII.11 — NEEDS: `polygon;octagon`, `polyhedron;parallelepiped`
-- [ ] XII.12 — NEEDS: `polygon;octagon`, `polyhedron;parallelepiped`
+- [~] XII.11 — (All blockers landed by 2026-04-12.)
+- [~] XII.12 — (All blockers landed by 2026-04-12.)
 - [~] XII.13 through XII.16 — renderable
 - [~] XII.17 — (`plane;3points` + `point;planeSlider` both landed 2026-04-12.)
 - [~] XII.18 — renderable
@@ -286,8 +286,8 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 13 of 18 propositions are renderable. 5 blocked.
 
 - [~] XIII.1 through XIII.12 — renderable
-- [ ] XIII.13 — NEEDS: `point;sphereSlider`, `polyhedron;tetrahedron`
-- [ ] XIII.14 — NEEDS: `plane;3points`, `point;sphereSlider`, `polyhedron;prism`, `polyhedron;pyramid`
+- [~] XIII.13 — (All blockers landed by 2026-04-12.)
+- [~] XIII.14 — (All blockers landed by 2026-04-12.)
 - [ ] XIII.15 — NEEDS: `circle;intersection`, `point;sphereSlider`, `polyhedron;parallelepiped`, `polyhedron;tetrahedron`
 - [~] XIII.16 — (`point;sphereSlider` landed 2026-04-12.)
 - [ ] XIII.17 — NEEDS: `circle;intersection`, `plane;3points`, `point;planeSlider`, `point;sphereSlider`

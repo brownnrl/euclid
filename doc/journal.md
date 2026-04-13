@@ -20,6 +20,32 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Prism + parallelepiped + polygon;face — BOOKS XI & XII COMPLETE
+
+**Completed:**
+- Ported `Prism.java` (41 lines) as `src/elements/polyhedron/PrismElement.ts`.
+  Extends `PolyhedronElement`. Creates a prism with a base polygon and
+  side edges parallel to a given line segment CD. Top vertices are
+  base vertices translated by (D-C). `update()` recomputes top each frame.
+- Wired `PrismConstruction` (polygon + 2 points),
+  `ParallelepipedConstruction` (4 points → Layoff + parallelogram base +
+  Prism dispatch trick), and `FacePolygonConstruction` (returns N-th face
+  of a polyhedron, same pattern as `point;vertex`).
+- 2 Mocha tests: prism with 5 faces (triangle base), parallelepiped with
+  6 faces. 48 → **50 passing**.
+- **14 propositions unblocked**: XI.35, XI.37, XI.39, XII.3–XII.9,
+  XII.11–XII.12, XIII.13, XIII.14.
+- **Book XI: 39/39 COMPLETE! Book XII: 18/18 COMPLETE!**
+- I–XIII total: 449 → **463**. Only **2 propositions remain**: XIII.15
+  and XIII.17 (both need `circle;intersection`).
+
+**Next session:**
+- `circle;intersection` (`IntersectionSS.java`, 41 lines) — the **FINAL
+  construction**. Landing it makes XIII.15 and XIII.17 renderable,
+  reaching **465/465 = 100% for ALL of Euclid's Elements**.
+
+---
+
 ## 2026-04-12 — PolyhedronElement base class + pyramid + tetrahedron
 
 **Completed:**

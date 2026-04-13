@@ -474,12 +474,11 @@ These affect the library as a whole, independent of individual constructions.
   - Mocha test (1): 8-vertex correctness.
   - Used in: Book XII (XII.2, XII.10 sole-blocker; XII.11, XII.12 also need polyhedron)
 
-- [ ] **`face`** — TBD
-  - Returns the N-th face (a PolygonElement) of a PolyhedronElement.
-    Same pattern as `point;vertex` (returns the N-th vertex of a polygon).
-  - Needs `PolyhedronElement` base class ported first.
-  - Java dispatch: `Slate.java` polygon case 12 → `((PolyhedronElement)E[0]).P[N[0]-1]`
-  - Blocks 1 proposition (XII.7)
+- [x] **`face`** — `src/elements/Constructions.ts` (`FacePolygonConstruction`)
+  - Returns the N-th face (1-based) of a PolyhedronElement.
+    Same pattern as `point;vertex`.
+  - Java dispatch: `Slate.java` polygon case 12.
+  - Used in: XII.7
 
 ---
 
@@ -551,12 +550,18 @@ These affect the library as a whole, independent of individual constructions.
   - Java source: `Slate.java` polyhedron case 0 — dispatch trick on Pyramid.
   - Mocha test (1): tetrahedron has 4 faces.
   - Blocks 7 propositions (XII.3–XII.5, XII.8–XII.9, XIII.13, XIII.15 — also need prism/parallelepiped)
-- [ ] **`parallelepiped`** — TBD
-  - Needs `PolyhedronElement.java` base class ported first
-  - Blocks 6 propositions (XI.37, XII.5, XII.9, XII.11, XII.12, XIII.15)
-- [ ] **`prism`** — TBD (Java source: `Prism.java`, 41 lines)
-  - Needs `PolyhedronElement.java` base class ported first
-  - Blocks 3 propositions (XI.39, XII.7, XIII.14)
+- [x] **`parallelepiped`** — `src/elements/Constructions.ts` (`ParallelepipedConstruction`)
+  - Dispatch trick: Layoff(B,A,C,A,C) → parallelogram base → PrismElement.
+  - Used in: XI.37, XII.5, XII.9, XII.11, XII.12, XIII.15
+- [x] **`prism`** — `src/elements/polyhedron/PrismElement.ts`
+  - Extends `PolyhedronElement`. Base + top + side quads. Overrides
+    `update()`, `translate()`, `rotate()`.
+  - Java source: `Prism.java` — 41 lines, line-for-line port.
+  - Mocha test (1): triangular prism has 5 faces.
+  - [x] test view: [view/test/polyhedron/prism.html](../view/test/polyhedron/prism.html)
+  - [x] applet-tests pair:
+    [view/applet-tests/polyhedron/prism/{original,applet}.html](../view/applet-tests/polyhedron/prism/)
+  - Used in: XI.39, XII.7, XIII.14
 - [x] **`pyramid`** — `src/elements/polyhedron/PyramidElement.ts`
   - Extends `PolyhedronElement`. Creates n triangular side faces from apex
     to each base edge. Java source: `Pyramid.java` — 11 lines.
