@@ -1,0 +1,256 @@
+<HTML><HEAD><TITLE>Desargues' Theorem</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h2>Desargues' Theorem</h2></center>
+
+
+<h4>Desargues' theorem in Euclidean geometry.</h4>
+
+Desargues' theorem says that if two triangles are in perspective from a point, then
+they're also in perspective from a line.  In the diagram below, the red triangle
+<i>ABC</i> and the green triangle <i>DEF</i> are in perspective from the point <i>P.</i>
+That means pairs of corresponding points on the triangles are collinear with <i>P,</i>
+so that <i>ADP, BEP,</i> and <i>CFP</i> are three straight lines.  (They're drawn in
+black.)  Desargues discovered that the three corresponding sides of the two triangles
+meet at three collinear points.  Sides <i>AB</i> and <i>DE</i> meet at point <i>G,</i>
+Sides <i>BC</i> and <i>EF</i> meet at point <i>H,</i> and sides <i>CA</i> and <i>FD</i> 
+meet at point <i>K,</i> and these three points <i>GHK</i> lie on a line.  When the three
+corresponding sides of two triangles meet at collinear points, the triangle is said to
+be in perspective from a line.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=400 width=500>
+<img src=des1.gif alt="Desargues Theorem in Euclidean Geometry">
+<param name=background value="0,0,100">
+<param name=title value="Desargues Theorem in Euclidean Geometry">
+<param name=fontsize value=14>
+<param name=e[1] value="A;point;free;320,70">
+<param name=e[2] value="B;point;free;370,150">
+<param name=e[3] value="C;point;free;240,170">
+<param name=e[4] value="AB;line;connect;A,B;0;0;red">
+<param name=e[5] value="CA;line;connect;C,A;0;0;red">
+<param name=e[6] value="BC;line;connect;B,C;0;0;red">
+
+<param name=e[7] value="P;point;free;80,110">
+<param name=e[8] value="AP;line;connect;A,P;0;0;black">
+<param name=e[9] value="BP;line;connect;B,P;0;0;black">
+<param name=e[10] value="CP;line;connect;C,P;0;0;black">
+
+<param name=e[11] value="D;point;lineSlider;AP,200,160">
+<param name=e[12] value="E;point;lineSlider;BP,140,160">
+<param name=e[13] value="F;point;lineSlider;CP,190,100">
+<param name=e[14] value="DP;line;connect;D,P;0;0;black">
+<param name=e[15] value="EP;line;connect;E,P;0;0;black">
+<param name=e[16] value="FP;line;connect;F,P;0;0;black">
+
+<param name=e[17] value="DE;line;connect;D,E;0;0;green">
+<param name=e[18] value="FD;line;connect;F,D;0;0;green">
+<param name=e[19] value="EF;line;connect;E,F;0;0;green">
+
+<param name=e[20] value="G;point;intersection;AB,DE">
+<param name=e[21] value="H;point;intersection;BC,EF">
+<param name=e[22] value="K;point;intersection;CA,FD">
+<param name=e[23] value="AG;line;connect;G,A;0;0;red">
+<param name=e[24] value="CH;line;connect;C,H;0;0;red">
+<param name=e[25] value="CK;line;connect;C,K;0;0;red">
+<param name=e[26] value="DG;line;connect;G,D;0;0;green">
+<param name=e[27] value="FH;line;connect;F,H;0;0;green">
+<param name=e[28] value="FK;line;connect;F,K;0;0;green">
+
+<param name=e[29] value="GH;line;connect;G,H;0;0;blue">
+<param name=e[30] value="HK;line;connect;H,K;0;0;blue">
+</applet></center><p>
+
+The argument for the validity of Desargue's theorem is easy if <i>P</i> and the 
+two triangles <i>ABC</i> and <i>DEF</i> are not all in the same plane.  In that case,
+triangle <i>ABC</i> is in one plane, the red plane, while triangle <i>DEF</i> is in
+another plane, the green plane.  The red and green planes meet in a line, the blue
+line, and the points <i>G, H,</i> and <i>K</i> have to lie on this line since all
+three of them lie in both the red and green planes.  
+
+In order to prove the case where <i>P</i> and the two triangles do lie in the same
+plane, just lift the triangles into the spatial case, and the projection back to
+the original plane gives the result.
+
+<h4>Desargues' theorem in round geometry.</h4>
+
+Desargues' theorem holds in round geometry as well.  For that, <i>ABC</i> and <i>DEF</i>
+are each two round triangles with dual triangles <i>A*B*C*</i> and <i>D*E*F*,</i>
+respectively, and <i>P</i> a point on each of the circles <i>ADA*D*, BEB*E*,</i> and
+<i>CFC*F*.</i>  In other words, we can say the triangles are in perspective from the
+point <i>P.</i>  Then the two triangles are also in perspective from a line.  That is,
+sides <i>ABA*B*</i> and <i>DED*E*</i> meet at <i>G</i> and <i>G*,</i>
+sides <i>BCB*C*</i> and <i>EFE*F*</i> meet at <i>H</i> and <i>H*,</i>
+and sides <i>CAC*A*</i> and <i>FDF*D*</i> 
+meet at <i>K</i> and <i>K*,</i> and the points <i>GHKG*H*K*</i> lie on a circle. 
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=400 width=500>
+<img src=des2.gif alt="Desargues Theorem in Round Geometry">
+<param name=background value="0,0,100">
+<param name=title value="Desargues Theorem in Round Geometry">
+<param name=fontsize value=14>
+<param name=e[1] value="A;point;free;220,60">
+<param name=e[2] value="B;point;free;120,150">
+<param name=e[3] value="C;point;free;200,170">
+<param name=e[4] value="A*;point;free;130,230">
+<param name=e[5] value="AB;circle;circumcircle;A,B,A*;0;0;red;0">
+<param name=e[6] value="B*;point;circleSlider;210,220,AB">
+<param name=e[7] value="CA;circle;circumcircle;C,A,A*;0;0;red;0">
+<param name=e[8] value="BC;circle;circumcircle;B,C,B*;0;0;red;0">
+<param name=e[9] value="BCcenter;point;center;BC;0;0">
+<param name=e[10] value="CAcenter;point;center;CA;0;0">
+<param name=e[11] value="Cfoot;point;foot;C,CAcenter,BCcenter;0;0">
+<param name=e[12] value="C*;point;extend;C,Cfoot,C,Cfoot;0">
+
+<param name=e[13] value="P;point;free;80,110;black;green">
+<param name=pivot value="P">
+<param name=e[14] value="AP;circle;circumcircle;A,A*,P;0;0;black;0">
+<param name=e[15] value="BP;circle;circumcircle;B,B*,P;0;0;black;0">
+<param name=e[16] value="CP;circle;circumcircle;C,C*,P;0;0;black;0">
+<param name=e[17] value="PP*;line;bichord;AP,BP;0;0;0">
+<param name=e[18] value="PP*mid;point;midpoint;PP*;0;0">
+<param name=e[19] value="P*;point;extend;P,PP*mid,P,PP*mid;0">
+
+<param name=e[20] value="D;point;circleSlider;AP,200,160">
+<param name=e[21] value="E;point;circleSlider;BP,140,160">
+<param name=e[22] value="F;point;circleSlider;CP,170,100">
+
+<param name=e[23] value="BD;circle;circumcircle;B,D,B*;0;0;0;0">
+<param name=e[24] value="DD*;line;bichord;AP,BD;0;0;0">
+<param name=e[25] value="DD*mid;point;midpoint;DD*;0;0">
+<param name=e[26] value="D*;point;extend;D,DD*mid,D,DD*mid;0">
+<param name=e[27] value="DE;circle;circumcircle;D,E,D*;0;0;green;0">
+<param name=e[28] value="FD;circle;circumcircle;F,D,D*;0;0;green;0">
+<param name=e[29] value="EE*;line;bichord;BP,DE;0;0;0">
+<param name=e[30] value="EE*mid;point;midpoint;EE*;0;0">
+<param name=e[31] value="E*;point;extend;E,EE*mid,E,EE*mid;0">
+<param name=e[32] value="EF;circle;circumcircle;E,F,E*;0;0;green;0">
+
+<param name=e[33] value="GG*;line;bichord;AB,DE;0;0;0">
+<param name=e[34] value="HH*;line;bichord;BC,EF;0;0;0">
+<param name=e[35] value="KK*;line;bichord;CA,FD;0;0;0">
+<param name=e[36] value="G;point;last;GG*">
+<param name=e[37] value="H;point;last;HH*">
+<param name=e[38] value="K;point;first;KK*">
+
+<param name=e[39] value="GHK;circle;circumcircle;G,H,K;0;0;blue;0">
+</applet></center><p>
+
+<h4>Desargues' theorem in Hyperbolic Geometry</h4>
+
+The version of Desargue's theorem in Round Geometry specializes to one in hyperbolic
+geometry, and also one in Elliptic geometry.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=320 width=500>
+<param name=background value="0,0,100">
+<img src=des3.gif alt="Desargues Theorem in Hyperbolic Geometry">
+<param name=title value="Desargues Theorem in Hyperbolic Geometry">
+<param name=e[1] value="diskcenter;point;fixed;200,160;0;orange">
+<param name=pivot value=diskcenter>
+<param name=e[2] value="diskradius;point;free;355,150;0;orange">
+<param name=e[3] value="disk;circle;radius;diskcenter,diskradius;0;0;random;random">
+<param name=e[4] value="A;point;free;200,210">
+<param name=e[5] value="B;point;free;290,190">
+<param name=e[6] value="C;point;free;275,130">
+<param name=e[7] value="A*;point;invert;A,disk">
+<param name=e[8] value="B*;point;invert;B,disk">
+<param name=e[9] value="C*;point;invert;C,disk">
+<param name=e[10] value="AB;circle;circumcircle;A,B,A*;0;0;red;0">
+<param name=e[11] value="BC;circle;circumcircle;B,C,B*;0;0;red;0">
+<param name=e[12] value="CA;circle;circumcircle;C,A,C*;0;0;red;0">
+
+<param name=e[13] value="P;point;free;100,130">
+<param name=e[14] value="P*;point;invert;P,disk;0;0">
+<param name=e[15] value="AP;circle;circumcircle;A,A*,P;0;0;black;0">
+<param name=e[16] value="BP;circle;circumcircle;B,B*,P;0;0;black;0">
+<param name=e[17] value="CP;circle;circumcircle;C,C*,P;0;0;black;0">
+<param name=e[18] value="D;point;circleSlider;AP,200,160">
+<param name=e[19] value="D*;point;invert;D,disk;0;0">
+<param name=e[20] value="E;point;circleSlider;BP,140,160">
+<param name=e[21] value="E*;point;invert;E,disk;0;0">
+<param name=e[22] value="F;point;circleSlider;CP,170,160">
+<param name=e[23] value="F*;point;invert;F,disk;0;0">
+<param name=e[24] value="DE;circle;circumcircle;D,E,D*;0;0;green;0">
+<param name=e[25] value="EF;circle;circumcircle;E,F,E*;0;0;green;0">
+<param name=e[26] value="FD;circle;circumcircle;F,D,F*;0;0;green;0">
+
+<param name=e[27] value="GG*;line;bichord;AB,DE;0;0;0">
+<param name=e[28] value="HH*;line;bichord;BC,EF;0;0;0">
+<param name=e[29] value="KK*;line;bichord;CA,FD;0;0;0">
+<param name=e[30] value="G*;point;first;GG*">
+<param name=e[31] value="G;point;last;GG*">
+<param name=e[32] value="H*;point;first;HH*">
+<param name=e[33] value="H;point;last;HH*">
+<param name=e[34] value="K;point;first;KK*">
+<param name=e[35] value="K*;point;last;KK*">
+
+<param name=e[36] value="GHK;circle;circumcircle;G,H,K;0;0;blue;0">
+</applet></center><p>
+
+
+<h4>Desargues' theorem in Elliptic Geometry</h4>
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=320 width=500>
+<img src=des4.gif alt="Desargues Theorem in Elliptic Geometry">
+<param name=background value="0,0,100">
+<param name=title value="Desargues Theorem in Elliptic Geometry">
+<param name=e[1] value="diskcenter;point;fixed;200,160;0;orange">
+<param name=pivot value=diskcenter>
+<param name=e[2] value="diskradius;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;diskcenter,diskradius;0;0;random;random">
+<param name=e[4] value="A;point;free;70,140">
+<param name=e[5] value="B;point;free;150,170">
+<param name=e[6] value="C;point;free;125,90">
+<param name=e[7] value="A#;point;invert;A,disk;0;0">
+<param name=e[8] value="A*;point;extend;A,diskcenter,diskcenter,A#">
+<param name=e[9] value="B#;point;invert;B,disk;0;0">
+<param name=e[10] value="B*;point;extend;B,diskcenter,diskcenter,B#">
+<param name=e[11] value="C#;point;invert;C,disk;0;0">
+<param name=e[12] value="C*;point;extend;C,diskcenter,diskcenter,C#">
+<param name=e[13] value="AB;circle;circumcircle;A,B,A*;0;0;red;0">
+<param name=e[14] value="BC;circle;circumcircle;B,C,B*;0;0;red;0">
+<param name=e[15] value="CA;circle;circumcircle;C,A,C*;0;0;red;0">
+
+<param name=e[16] value="P;point;free;100,130">
+<param name=e[17] value="P#;point;invert;P,disk;0;0">
+<param name=e[18] value="P*;point;extend;P,diskcenter,diskcenter,P#">
+<param name=e[19] value="AP;circle;circumcircle;A,A*,P;0;0;black;0">
+<param name=e[20] value="BP;circle;circumcircle;B,B*,P;0;0;black;0">
+<param name=e[21] value="CP;circle;circumcircle;C,C*,P;0;0;black;0">
+<param name=e[22] value="D;point;circleSlider;AP,290,160">
+<param name=e[23] value="D#;point;invert;D,disk;0;0">
+<param name=e[24] value="D*;point;extend;D,diskcenter,diskcenter,D#">
+<param name=e[25] value="E;point;circleSlider;BP,240,160">
+<param name=e[26] value="E#;point;invert;E,disk;0;0">
+<param name=e[27] value="E*;point;extend;E,diskcenter,diskcenter,E#">
+<param name=e[28] value="F;point;circleSlider;CP,240,160">
+<param name=e[29] value="F#;point;invert;F,disk;0;0">
+<param name=e[30] value="F*;point;extend;F,diskcenter,diskcenter,F#">
+<param name=e[31] value="DE;circle;circumcircle;D,E,D*;0;0;green;0">
+<param name=e[32] value="EF;circle;circumcircle;E,F,E*;0;0;green;0">
+<param name=e[33] value="FD;circle;circumcircle;F,D,F*;0;0;green;0">
+
+<param name=e[34] value="GG*;line;bichord;AB,DE;0;0;0">
+<param name=e[35] value="HH*;line;bichord;BC,EF;0;0;0">
+<param name=e[36] value="KK*;line;bichord;CA,FD;0;0;0">
+<param name=e[37] value="G*;point;first;GG*">
+<param name=e[38] value="G;point;last;GG*">
+<param name=e[39] value="H*;point;first;HH*">
+<param name=e[40] value="H;point;last;HH*">
+<param name=e[41] value="K;point;first;KK*">
+<param name=e[42] value="K*;point;last;KK*">
+
+<param name=e[43] value="GHK;circle;circumcircle;G,H,K;0;0;blue;0">
+</applet></center><p>
+
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<br>
+<a href="http://aleph0.clarku.edu/~djoyce/">Homepage</a>
+</BODY>
+</HTML>

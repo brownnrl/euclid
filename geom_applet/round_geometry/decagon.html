@@ -1,0 +1,52 @@
+<HTML><HEAD><TITLE>decagon</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h3>Decagon</h3></center>
+
+<center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=400 width=450>
+<img src=decagon.gif alt="Decagon">
+<param name=background value="0,0,100">
+<param name=title value="16 points in 15 lines">
+<param name=e[1] value="A;point;free;100,350">
+<param name=e[2] value="C;point;free;300,350">
+<param name=e[3] value="ACEGI;polygon;regularPolygon;5,A,C;0;0;black;yellow">
+<param name=e[4] value="E;point;vertex;ACEGI,3">
+<param name=e[5] value="G;point;vertex;ACEGI,4">
+<param name=e[6] value="I;point;vertex;ACEGI,5">
+<param name=e[7] value="ACmid;point;midpoint;A,C;0;0">
+<param name=e[8] value="EGmid;point;midpoint;E,G;0;0">
+<param name=e[9] value="O;point;intersection;G,ACmid,A,EGmid;0;green">
+<param name=pivot value=O>
+<param name=e[10] value="B;point;extend;G,O,G,O">
+<param name=e[11] value="D;point;extend;I,O,G,O">
+<param name=e[12] value="F;point;extend;A,O,G,O">
+<param name=e[13] value="H;point;extend;C,O,G,O">
+<param name=e[14] value="J;point;extend;E,O,G,O">
+<param name=e[15] value="BDFHJ;polygon;pentagon;B,D,F,H,J;0;0;black;yellow">
+<param name=e[16] value="AEICG;polygon;pentagon;A,E,I,C,G;0;0;black;0">
+<param name=e[17] value="BFJDH;polygon;pentagon;B,F,J,D,H;0;0;black;0">
+<param name=e[18] value="AFBHCG;polygon;hexagon;A,F,B,H,C,G;0;0;black;0">
+<param name=e[19] value="JEID;polygon;quadrilateral;J,E,I,D;0;0;black;0">
+<param name=e[20] value="AE;line;connect;A,E">
+<param name=e[21] value="BG;line;connect;B,G">
+<param name=e[22] value="HD;line;connect;H,D">
+<param name=e[23] value="CI;line;connect;C,I">
+<param name=e[24] value="FJ;line;connect;F,J">
+</applet>
+</center><p>
+
+<p><hr><p>
+<small>
+This page:
+Sept. 29, 1998
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<br><img src="http://aleph0.clarku.edu/~djoyce/dj.gif">
+
+<br>
+<a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+</BODY>
+</HTML>

@@ -1,0 +1,76 @@
+<HTML><HEAD><TITLE>Configuration of seven circles and ten points</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h1>The configuration of seven circles and ten points</h1></center>
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=400 width=500>
+<img src=seventen.gif alt="Seven circles meeting at ten points">
+<param name=background value="0,0,100">
+<param name=title value="Seven circles meeting at ten points">
+<param name=e[1] value="A;point;free;180,200">
+<param name=e[2] value="B;point;free;200,150">
+<param name=e[3] value="C;point;free;300,160">
+<param name=e[4] value="ABCDE;circle;circumcircle;A,B,C;0;0;black;0">
+<param name=e[5] value="D;point;circleSlider;300,200,ABCDE">
+<param name=e[6] value="E;point;circleSlider;250,230,ABCDE">
+<param name=e[7] value="F;point;free;50,220">
+<param name=e[8] value="ABFG;circle;circumcircle;A,B,F;0;0;black;0">
+<param name=e[9] value="AEFL;circle;circumcircle;A,E,F;0;0;black;0">
+<param name=e[10] value="G;point;circleSlider;150,70,ABFG">
+<param name=e[11] value="L;point;circleSlider;260,320,AEFL">
+<param name=e[12] value="FGHKL;circle;circumcircle;F,G,L;0;0;black;0">
+<param name=e[13] value="BCGH;circle;circumcircle;B,C,G;0;0;black;0">
+<param name=e[14] value="DEKL;circle;circumcircle;D,E,L;0;0;black;0">
+<param name=e[15] value="GH;line;bichord;FGHKL,BCGH;0;0;0">
+<param name=e[16] value="GHmid;point;midpoint;GH;0;0">
+<param name=e[17] value="H;point;extend;G,GHmid,G,GHmid">
+<param name=e[18] value="LK;line;bichord;FGHKL,DEKL;0;0;0">
+<param name=e[19] value="LKmid;point;midpoint;LK;0;0">
+<param name=e[20] value="K;point;extend;L,LKmid,L,LKmid">
+<param name=e[21] value="CDHK;circle;circumcircle;C,D,H;0;0;red;0">
+</applet></center><p>
+
+<h4>A proposition about hexahedra</h4>
+
+The above proposition of inversive geometry can be translated to a statement about hexahedra.  A cube is a six-faced polyhedron where each face is a square, and three squares meet at each vertex.  Call any six-faced polyhedron where each face is a quadrilateral and three quadrilaterals meet at each vertex a <i>hexahedron</i>.  A cube is a regular hexahedron, but there are plenty of irregular hexahedra.  
+
+<p>The configuration of six circles and eight points in a plane can be projected to a sphere by means of the stereographic projection.  And then the proposition holds for six circles on the sphere.
+
+<p>Each of these circles determines a plane, and the six planes determine the six faces of a hexahedron.  The hexahedron so determined doesn't have to be a convex hexadron, but it could have intersecting faces.  The proposition can now be stated in terms of hexahedra as follows: if seven of the eight vertices of a hexahedron lie on a sphere, then so does the eighth.
+
+<h4>Special cases in Euclidean geometry</h4>
+
+The configuration of six circles and eight points looks quite different when one of the points, say the point 0, is the point at infinity.  Then three of the circles, <i>A, B</i>, and <i>C</i> are straight lines, and they form a triangle 123.  The next three points, 4, 5, and 6, may be freely chosen on the three sides of that triangle.  Let the next three circles <i>A', B',</i> and <i>C'</i> each pass through three of the points as before.  Then the proposition states that these three circles all pass through the same point 7.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=sixeighta.gif alt="Three circles meet">
+<param name=background value="0,0,100">
+<param name=title value="Six circles meeting at eight points">
+<param name=e[1] value="1 ;point;free;50,250">
+<param name=e[2] value="2 ;point;free;220,50">
+<param name=e[3] value="A;line;connect;1 ,2 ">
+<param name=e[4] value="3 ;point;lineSlider;160,100,A">
+<param name=e[5] value="4 ;point;free;350,250">
+<param name=e[6] value="C;line;connect;1 ,4 ;0;0;green">
+<param name=e[7] value="B;line;connect;2 ,4 ;0;0;red;0">
+<param name=e[8] value="5 ;point;lineSlider;200,180,C">
+<param name=e[9] value="6 ;point;lineSlider;210,170,B">
+<param name=e[10] value="B';circle;circumcircle;1 ,3 ,5 ;0;0;red;0">
+<param name=e[11] value="C';circle;circumcircle;2 ,3 ,6 ;0;0;green;0">
+<param name=e[12] value="A';circle;circumcircle;4 ,5 ,6 ;0;0;black;0">
+</applet></center><p>
+
+
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<p>Email: <A HREF="mailto:djoyce@clarku.edu">djoyce@clarku.edu</a>
+<br>
+My nonJava <a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+and my 
+<a href="http://aleph0.clarku.edu/~djoyce/java/javahome.html">Java homepage</a>
+</BODY>
+</HTML>

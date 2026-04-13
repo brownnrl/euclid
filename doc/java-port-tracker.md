@@ -47,7 +47,7 @@ implementation status. Updated as constructions are ported.
 | `Proportion.java` | PORTED | `src/elements/point/ProportionElement.ts` | Fourth proportional. Ported 2026-04-12. |
 | `Similar.java` | PORTED | `src/elements/point/SimilarElement.ts` | All three type variants ported: `SimilarPointConstruction`, `SimilarLineConstruction`, `SimilarPolygonConstruction` (all in Constructions.ts). Ported 2026-04-12. |
 | `AngleDivider.java` | PORTED | `src/elements/point/AngleDividerElement.ts` | All four variants ported 2026-04-12: point/line × bisector/divider. Used in Book IV (IV.4, IV.13, IV.16). |
-| `Harmonic.java` | TBD | — | Harmonic conjugate. No Books I–XIII uses found in applet HTML. |
+| `Harmonic.java` | PORTED | `src/elements/point/HarmonicElement.ts` | Harmonic conjugate. 2D (complex arithmetic) + 3D (midpoint reflection) cases. Ported 2026-04-12. Used in round geometry pages. |
 | `InvertPoint.java` | TBD | — | Point inversion in circle. No Books I–X uses found; may appear in later analysis. |
 | `MeanProportional.java` | PORTED | `src/elements/point/MeanProportionalElement.ts` | Geometric mean. Both point and line variants wired. Ported 2026-04-12. Unblocked 35 propositions (VIII, X, XIII). |
 | `SphereSlider.java` | TBD | — | Point slider on sphere surface. Blocks XIII.13, XIII.14, XIII.15, XIII.16, XIII.17 + XI.35. |
@@ -125,9 +125,9 @@ implementation status. Updated as constructions are ported.
 
 | Status | Count | Files |
 |--------|-------|-------|
-| PORTED | 29 | Core element classes + all ported constructions (incl. AngleDivider, MeanProportional ported 2026-04-12) |
+| PORTED | 30 | Core element classes + all ported constructions (incl. Harmonic ported 2026-04-12) |
 | PARTIAL | 4 | IntersectionPL, PerpendicularPL, PlaneSlider (screen-only), Slate |
-| TBD | 7 | Harmonic, InvertPoint, InvertCircle, SphereSlider, PlaneFoot, Prism, Pyramid |
+| TBD | 6 | InvertPoint, InvertCircle, SphereSlider, PlaneFoot, Prism, Pyramid |
 | TBD (base) | 1 | PolyhedronElement |
 | TBD (plane/circle) | 2 | ParallelP (plane;parallel), IntersectionSS (circle;intersection) |
 | N/A | 3 | Geometry, ClientFrame, Remote |

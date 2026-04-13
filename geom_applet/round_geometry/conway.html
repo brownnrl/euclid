@@ -1,0 +1,44 @@
+<HTML><HEAD><TITLE>Conway's circle</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h1>Conway's circle</h1></center>
+
+Let <i>ABC</i> be a triangle.  Extend the two sides <i>BA</i> and <i>CA</i> past the vertex <i>A</i>
+ by a distance equal to <i>BC</i>.  Similarly extend the sides past <i>B</i> and <i>C</i> by distances
+ equal to the opposite sides.  Then the six endpoints of the resulting sides all lie on a circle.  The
+ center of this circle is the incenter of the triangle.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=conway.gif alt="Conway's circle">
+<param name=background value="0,0,100">
+<param name=title value="Conway's circle">
+<param name=e[1] value="A;point;free;140,170">
+<param name=e[2] value="B;point;free;260,170">
+<param name=e[3] value="C;point;free;170,130">
+<param name=e[4] value="ABC;polygon;triangle;A,B,C;0;0;0;random">
+<param name=e[5] value="D;point;extend;B,A,B,C">
+<param name=e[6] value="E;point;extend;C,A,B,C">
+<param name=e[7] value="F;point;extend;A,B,A,C">
+<param name=e[8] value="G;point;extend;C,B,A,C">
+<param name=e[9] value="H;point;extend;A,C,B,A">
+<param name=e[10] value="K;point;extend;B,C,B,A">
+<param name=e[11] value="DF;line;connect;D,F">
+<param name=e[12] value="EH;line;connect;E,H">
+<param name=e[13] value="GK;line;connect;G,K">
+<param name=e[14] value="DFH;circle;circumcircle;D,F,H;0;0;black;0">
+</applet></center><p>
+
+
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<br><img src="http://aleph0.clarku.edu/~djoyce/dj.gif">
+
+<br>
+My nonJava <a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+and my 
+<a href="http://aleph0.clarku.edu/~djoyce/java/javahome.html">Java homepage</a>
+</BODY>
+</HTML>

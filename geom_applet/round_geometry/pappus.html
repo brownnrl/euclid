@@ -1,0 +1,262 @@
+<HTML><HEAD><TITLE>Pappus Configuration for Circles</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h1>Pappus Configuration for Circles</h1></center>
+
+
+Let <i>A, B, C, D, E,</i> and <i>F</i> be any six points in the inversive plane.  Draw the circles
+<i>ACE</i> and <i>BDF</i>.  Choose a point <i>A*</i> on the circle <i>ACE</i>.
+Draw the circle <i>ABA*</i> and let <i>B*</i> be the point besides <i>B</i> where 
+that circle intesects the circle <i>BDF</i>.
+Draw the circle <i>BCB*</i> and let <i>C*</i> be the other point where 
+it intesects  <i>ACE</i>.
+Draw the circle <i>CDC*</i> and let <i>D*</i> be the other point where 
+it intesects  <i>BDF</i>.
+Draw the circle <i>DED*</i> and let <i>E*</i> be the other point where 
+it intesects  <i>ACE</i>.
+Draw the circle <i>EFE*</i> and let <i>F*</i> be the other point where 
+it intesects  <i>BDF</i>.
+Draw the circle <i>FAF*</i>.  Then <i>A*</i> lies on <i>FAF*</i>.
+
+<p>Let <i>X</i> and <i>X*</i> be the points where the circles <i>ABA*B*</i> and <i>DED*E*</i> meet, if
+ they do,
+and <i>Y</i> and <i>Y*</i> where <i>BCB*C*</i> and <i>EFE*F*</i> meet, and <i>Z</i> and <i>Z*</i>
+ where
+<i>CDC*D*</i> and <i>DED*E*</i> meet.  Then <i>X, X*, Y, Y*, Z,</i> and <i>Z*</i> are concyclic.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=350 width=450>
+<img src=pappus.gif alt="Pappus configuration">
+<param name=background value="0,0,100">
+<param name=title value="Pappus configuration">
+<param name=e[1] value="A;point;free;100,85">
+<param name=e[2] value="B;point;free;175,270">
+<param name=e[3] value="C;point;free;250,90">
+<param name=e[4] value="D;point;free;95,260">
+<param name=e[5] value="E;point;free;175,80">
+<param name=e[6] value="F;point;free;250,265">
+<param name=e[7] value="ACE;circle;circumcircle;A,C,E;0;0;black;0">
+<param name=e[8] value="BDF;circle;circumcircle;B,D,F;0;0;black;0">
+
+<param name=e[9] value="A*;point;circleSlider;350,200,ACE">
+<param name=e[10] value="AB;circle;circumcircle;A,B,A*;0;0;145,100,100;0">
+<param name=e[11] value="BB*;line;bichord;AB,BDF;0;0;0">
+<param name=e[12] value="BmB*;point;midpoint;BB*;0;0">
+<param name=e[13] value="B*;point;extend;B,BmB*,B,BmB*">
+<param name=e[14] value="BC;circle;circumcircle;B,C,B*;0;0;cyan;0">
+<param name=e[15] value="CC*;line;bichord;BC,ACE;0;0;0">
+<param name=e[16] value="CmC*;point;midpoint;CC*;0;0">
+<param name=e[17] value="C*;point;extend;C,CmC*,C,CmC*">
+<param name=e[18] value="CD;circle;circumcircle;C,D,C*;0;0;90,100,100;0">
+<param name=e[19] value="DD*;line;bichord;CD,BDF;0;0;0">
+<param name=e[20] value="DmD*;point;midpoint;DD*;0;0">
+<param name=e[21] value="D*;point;extend;D,DmD*,D,DmD*">
+<param name=e[22] value="DE;circle;circumcircle;D,E,D*;0;0;145,100,100;0">
+<param name=e[23] value="EE*;line;bichord;DE,ACE;0;0;0">
+<param name=e[24] value="EmE*;point;midpoint;EE*;0;0">
+<param name=e[25] value="E*;point;extend;E,EmE*,E,EmE*">
+<param name=e[26] value="EF;circle;circumcircle;E,F,E*;0;0;cyan;0">
+<param name=e[27] value="FF*;line;bichord;EF,BDF;0;0;0">
+<param name=e[28] value="FmF*;point;midpoint;FF*;0;0">
+<param name=e[29] value="F*;point;extend;F,FmF*,F,FmF*">
+<param name=e[30] value="FA;circle;circumcircle;F,A,F*;0;0;90,100,100;0">
+
+<param name=e[31] value="XX*;line;bichord;AB,DE;0;0;0">
+<param name=e[32] value="X;point;first;XX*;0;blue">
+<param name=e[33] value="X*;point;last;XX*;0;blue">
+<param name=e[34] value="YY*;line;bichord;BC,EF;0;blue;0">
+<param name=e[35] value="Y;point;first;YY*;0;blue">
+<param name=e[36] value="Y*;point;last;YY*;0;blue">
+<param name=e[37] value="ZZ*;line;bichord;CD,FA;0;blue;0">
+<param name=e[38] value="Z;point;first;ZZ*;0;blue">
+<param name=e[39] value="Z*;point;last;ZZ*;0;blue">
+<param name=e[40] value="XYZ;circle;circumcircle;X,Y,Z;0;0;blue;0">
+
+</applet>
+</center><p>
+
+<h4>The Euclidean case</h4>
+
+When the six the starred points, <i>A*</i> through <i>F*</i> are all the same point, the point at
+ infinity, then all the circles are straight lines, and the
+configuration reduces to the standard Pappus configuration of Euclidean and projective geometry.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=350 width=450>
+<img src=pappuseu.gif alt="Pappus configuration">
+<param name=background value="0,0,100">
+<param name=title value="Pappus configuration">
+<param name=e[1] value="U0;point;free;0,-1000;0;0">
+<param name=e[2] value="U1;point;free;0,-500;0;0">
+<param name=e[3] value="U;line;connect;U0,U1;0;0;0">
+
+<param name=e[4] value="A;point;free;120,85">
+<param name=e[5] value="B;point;free;175,270">
+<param name=e[6] value="C;point;free;250,90">
+<param name=e[7] value="D;point;free;95,260">
+<param name=e[8] value="ACext;point;extend;C,A,U;0;0;0">
+<param name=e[9] value="CAext;point;extend;A,C,U;0;0;0">
+<param name=e[10] value="AC;line;connect;ACext,CAext;0;0">
+<param name=e[11] value="BDext;point;extend;D,B,U;0;0;0">
+<param name=e[12] value="DBext;point;extend;B,D,U;0;0;0">
+<param name=e[13] value="BD;line;connect;BDext,DBext;0;0">
+<param name=e[14] value="E;point;lineSlider;175,80,AC">
+<param name=e[15] value="F;point;lineSlider;250,265,BD">
+
+<param name=e[16] value="ABext;point;extend;A,B,U;0;0;0">
+<param name=e[17] value="BAext;point;extend;B,A,U;0;0;0">
+<param name=e[18] value="AB;line;connect;ABext,BAext">
+<param name=e[19] value="BCext;point;extend;B,C,U;0;0;0">
+<param name=e[20] value="CBext;point;extend;C,B,U;0;0;0">
+<param name=e[21] value="BC;line;connect;BCext,CBext">
+<param name=e[22] value="CDext;point;extend;C,D,U;0;0;0">
+<param name=e[23] value="DCext;point;extend;D,C,U;0;0;0">
+<param name=e[24] value="CD;line;connect;CDext,DCext">
+<param name=e[25] value="DEext;point;extend;D,E,U;0;0;0">
+<param name=e[26] value="EDext;point;extend;E,D,U;0;0;0">
+<param name=e[27] value="DE;line;connect;DEext,EDext">
+<param name=e[28] value="EFext;point;extend;E,F,U;0;0;0">
+<param name=e[29] value="FEext;point;extend;F,E,U;0;0;0">
+<param name=e[30] value="EF;line;connect;EFext,FEext">
+<param name=e[31] value="FAext;point;extend;F,A,U;0;0;0">
+<param name=e[32] value="AFext;point;extend;A,F,U;0;0;0">
+<param name=e[33] value="FA;line;connect;FAext,AFext">
+
+<param name=e[34] value="X;point;intersection;A,B,D,E;0;blue">
+<param name=e[35] value="Y;point;intersection;B,C,E,F;0;blue">
+<param name=e[36] value="Z;point;intersection;C,D,F,A;0;blue">
+<param name=e[37] value="XYext;point;extend;X,Y,U;0;0;0">
+<param name=e[38] value="YXext;point;extend;Y,X,U;0;0;0">
+<param name=e[39] value="XY;line;connect;XYext,YXext;0;0;blue">
+</applet>
+</center><p>
+
+<h4>The hyperbolic case</h4>
+
+If the two circles <i>ACE</i> and <i>BDF</i> are orthogonal to a given circle <i>G</i>, and the point
+ <i>A*</i> is the inversion of <i>A</i> in the circle <i>G</i>, then the remaining starred points will
+ be inversions of the unstarred points in <i>G</i>, and the cirlce <i>XYZ</i> will also be orthogonal
+ to <i>G</i>.  Thus, the hyperbolic version of Pappus configuration is a special case of the inversive
+ version.
+
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=350 width=450>
+<img src=pappush.gif alt="Hyperbolic Pappus configuration">
+<param name=background value="0,0,100">
+<param name=title value="Hyperbolic Pappus configuration">
+<param name=e[1] value="O;point;fixed;225,175;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;400,175;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+
+<param name=e[4] value="A;point;free;180,85">
+<param name=e[5] value="A*;point;invert;A,disk">
+<param name=e[6] value="B;point;free;255,210">
+<param name=e[7] value="B*;point;invert;B,disk">
+<param name=e[8] value="C;point;free;300,90">
+<param name=e[9] value="D;point;free;150,200">
+<param name=e[10] value="ACE;circle;circumcircle;A,C,A*;0;0;black;0">
+<param name=e[11] value="BDF;circle;circumcircle;B,D,B*;0;0;black;0">
+<param name=e[12] value="E;point;circleSlider;250,80,ACE">
+<param name=e[13] value="F;point;circleSlider;300,215,BDF">
+
+<param name=e[14] value="AB;circle;circumcircle;A,B,A*;0;0;145,100,100;0">
+<param name=e[15] value="BC;circle;circumcircle;B,C,B*;0;0;cyan;0">
+<param name=e[16] value="C*;point;invert;C,disk">
+<param name=e[17] value="CD;circle;circumcircle;C,D,C*;0;0;90,100,100;0">
+<param name=e[18] value="D*;point;invert;D,disk">
+<param name=e[19] value="DE;circle;circumcircle;D,E,D*;0;0;145,100,100;0">
+<param name=e[20] value="E*;point;invert;E,disk">
+<param name=e[21] value="EF;circle;circumcircle;E,F,E*;0;0;cyan;0">
+<param name=e[22] value="F*;point;invert;F,disk">
+<param name=e[23] value="FA;circle;circumcircle;F,A,F*;0;0;90,100,100;0">
+
+<param name=e[24] value="XX*;line;bichord;AB,DE;0;0;0">
+<param name=e[25] value="X;point;first;XX*;0;blue">
+<param name=e[26] value="X*;point;last;XX*;0;blue">
+<param name=e[27] value="YY*;line;bichord;BC,EF;0;blue;0">
+<param name=e[28] value="Y;point;first;YY*;0;blue">
+<param name=e[29] value="Y*;point;last;YY*;0;blue">
+<param name=e[30] value="ZZ*;line;bichord;CD,FA;0;blue;0">
+<param name=e[31] value="Z;point;first;ZZ*;0;blue">
+<param name=e[32] value="Z*;point;last;ZZ*;0;blue">
+<param name=e[33] value="XYZ;circle;circumcircle;X,Y,Z;0;0;blue;0">
+
+</applet>
+</center><p>
+
+
+<h4>The elliptic case</h4>
+
+If the two circles <i>ACE</i> and <i>BDF</i> each meet a given circle <i>G</i> at antipodal points,
+ and the point <i>A*</i> is the elliptic inversion of <i>A</i> in the circle <i>G</i>, then so will
+ the remaining starred points be elliptic inversions of the unstarred points in <i>G</i>, and the
+ cirlce <i>XYZ</i> will meet <i>G</i> at antipodal points.  Thus, the elliptic version of Pappus
+ configuration is also a special case of the inversive version.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=350 width=450>
+<img src=pappuse.gif alt="Elliptic Pappus configuration">
+<param name=background value="0,0,100">
+<param name=title value="Elliptic Pappus configuration">
+<param name=e[1] value="O;point;fixed;225,175;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;400,175;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+
+<param name=e[4] value="A;point;free;180,85">
+<param name=e[5] value="A#;point;invert;A,disk;0;0">
+<param name=e[6] value="A*;point;extend;A#,O,A#,O">
+<param name=e[7] value="B;point;free;255,210">
+<param name=e[8] value="B#;point;invert;B,disk;0;0">
+<param name=e[9] value="B*;point;extend;B#,O,B#,O">
+<param name=e[10] value="C;point;free;300,90">
+<param name=e[11] value="D;point;free;150,200">
+<param name=e[12] value="ACE;circle;circumcircle;A,C,A*;0;0;black;0">
+<param name=e[13] value="BDF;circle;circumcircle;B,D,B*;0;0;black;0">
+<param name=e[14] value="E;point;circleSlider;250,80,ACE">
+<param name=e[15] value="F;point;circleSlider;300,215,BDF">
+
+<param name=e[16] value="AB;circle;circumcircle;A,B,A*;0;0;145,100,100;0">
+<param name=e[17] value="BC;circle;circumcircle;B,C,B*;0;0;cyan;0">
+<param name=e[18] value="C#;point;invert;C,disk;0;0">
+<param name=e[19] value="C*;point;extend;C#,O,C#,O">
+<param name=e[20] value="CD;circle;circumcircle;C,D,C*;0;0;90,100,100;0">
+<param name=e[21] value="D#;point;invert;D,disk;0;0">
+<param name=e[22] value="D*;point;extend;D#,O,D#,O">
+<param name=e[23] value="DE;circle;circumcircle;D,E,D*;0;0;145,100,100;0">
+<param name=e[24] value="E#;point;invert;E,disk;0;0">
+<param name=e[25] value="E*;point;extend;E#,O,E#,O">
+<param name=e[26] value="EF;circle;circumcircle;E,F,E*;0;0;cyan;0">
+<param name=e[27] value="F#;point;invert;F,disk;0;0">
+<param name=e[28] value="F*;point;extend;F#,O,F#,O">
+<param name=e[29] value="FA;circle;circumcircle;F,A,F*;0;0;90,100,100;0">
+
+<param name=e[30] value="XX*;line;bichord;AB,DE;0;0;0">
+<param name=e[31] value="X;point;first;XX*;0;blue">
+<param name=e[32] value="X*;point;last;XX*;0;blue">
+<param name=e[33] value="YY*;line;bichord;BC,EF;0;blue;0">
+<param name=e[34] value="Y;point;first;YY*;0;blue">
+<param name=e[35] value="Y*;point;last;YY*;0;blue">
+<param name=e[36] value="ZZ*;line;bichord;CD,FA;0;blue;0">
+<param name=e[37] value="Z;point;first;ZZ*;0;blue">
+<param name=e[38] value="Z*;point;last;ZZ*;0;blue">
+<param name=e[39] value="XYZ;circle;circumcircle;X,Y,Z;0;0;blue;0">
+
+</applet>
+</center><p>
+
+<p align=right><small>
+1998
+<br>David E. Joyce
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<br><img src="http://aleph0.clarku.edu/~djoyce/dj.gif">
+<br>
+<a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+</p>
+</BODY>
+</HTML>
+

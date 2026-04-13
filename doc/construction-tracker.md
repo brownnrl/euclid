@@ -217,9 +217,16 @@ These affect the library as a whole, independent of individual constructions.
 - [ ] **`sphereSlider`** — TBD (solid geometry)
   - Java source: `SphereSlider.java`
 
-- [ ] **`harmonic`** — TBD
-  - Java source: `Harmonic.java`
-  - No Books I–XIII uses found in applet HTML
+- [x] **`harmonic`** — `src/elements/point/HarmonicElement.ts`
+  - Extends `PointElement`. Computes the harmonic conjugate of B w.r.t. C
+    and D. 2D case uses complex-number arithmetic; 3D case uses midpoint
+    reflection with length adjustment.
+  - Java source: `Harmonic.java` — 43 lines, line-for-line port.
+  - Mocha test (1): collinear 2D case.
+  - [x] test view: [view/test/point/harmonic.html](../view/test/point/harmonic.html) — round geometry
+  - [x] applet-tests pair:
+    [view/applet-tests/point/harmonic/{original,applet}.html](../view/applet-tests/point/harmonic/)
+  - Used in: round geometry pages (harmonic.html). No Books I–XIII proposition uses.
 
 ---
 

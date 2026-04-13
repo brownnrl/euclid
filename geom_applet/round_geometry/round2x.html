@@ -1,0 +1,186 @@
+<HTML><HEAD><TITLE>Round Triangles: medians</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h2>All the medians and centroids in round triangles</h2></center>
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=350 width=450>
+<img src=round2a.gif alt="Medians and Centroids">
+<param name=background value="0,0,100">
+<param name=title value="Medians and Centroids">
+<param name=e[1] value="A;point;free;220,60">
+<param name=e[2] value="B;point;free;120,150">
+<param name=e[3] value="C;point;free;200,170">
+<param name=e[4] value="A*;point;free;130,200">
+<param name=e[5] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[6] value="B*;point;circleSlider;210,250,AB">
+<param name=e[7] value="CA;circle;circumcircle;C,A,A*;0;0;black;0">
+<param name=e[8] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[9] value="BCcenter;point;center;BC;0;0">
+<param name=e[10] value="CAcenter;point;center;CA;0;0">
+<param name=e[11] value="Cfoot;point;foot;C,CAcenter,BCcenter;0;0">
+<param name=e[12] value="C*;point;extend;C,Cfoot,C,Cfoot">
+<param name=pivot value="C*">
+
+<param name=e[13] value="ABC;circle;circumcircle;A,B,C;0;0;cyan;0">
+<param name=e[14] value="ABC*;circle;circumcircle;A,B,C*;0;0;cyan;0">
+<param name=e[15] value="AB*C;circle;circumcircle;A,B*,C;0;0;cyan;0">
+<param name=e[16] value="AB*C*;circle;circumcircle;A,B*,C*;0;0;cyan;0">
+<param name=e[17] value="A*BC;circle;circumcircle;A*,B,C;0;0;cyan;0">
+<param name=e[18] value="A*BC*;circle;circumcircle;A*,B,C*;0;0;cyan;0">
+<param name=e[19] value="A*B*C;circle;circumcircle;A*,B*,C;0;0;cyan;0">
+<param name=e[20] value="A*B*C*;circle;circumcircle;A*,B*,C*;0;0;cyan;0">
+
+<param name=e[21] value="AxBC;line;bichord;ABC,AB*C*;0;0;0">
+<param name=e[22] value="AxB*C;line;bichord;AB*C,ABC*;0;0;0">
+<param name=e[23] value="BxAC;line;bichord;ABC,A*BC*;0;0;0">
+<param name=e[24] value="BxA*C;line;bichord;A*BC,ABC*;0;0;0">
+<param name=e[25] value="CxAB;line;bichord;ABC,A*B*C;0;0;0">
+<param name=e[26] value="CxA*B;line;bichord;A*BC,AB*C;0;0;0">
+<param name=e[27] value="C*xAB;line;bichord;ABC*,A*B*C*;0;0;0">
+<param name=e[28] value="C*xA*B;line;bichord;A*BC*,AB*C*;0;0;0">
+<param name=e[29] value="A*xBC;line;bichord;A*BC,A*B*C*;0;0;0">
+<param name=e[30] value="A*xB*C;line;bichord;A*B*C,A*BC*;0;0;0">
+<param name=e[31] value="B*xAC;line;bichord;AB*C,A*B*C*;0;0;0">
+<param name=e[32] value="B*xA*C;line;bichord;A*B*C,AB*C*;0;0;0">
+
+<param name=e[33] value="A1;circle;circumcircle;A,A*xBC;0;0;green;0">
+<param name=e[34] value="A2;circle;circumcircle;A,A*xB*C;0;0;green;0">
+<param name=e[35] value="B1;circle;circumcircle;B,B*xAC;0;0;green;0">
+<param name=e[36] value="B2;circle;circumcircle;B,B*xA*C;0;0;green;0">
+<param name=e[37] value="C1;circle;circumcircle;C,C*xAB;0;0;green;0">
+<param name=e[38] value="C2;circle;circumcircle;C,C*xA*B;0;0;green;0">
+
+<param name=e[39] value="G1;line;bichord;A1,B1;0;blue;0">
+<param name=e[40] value="G2;line;bichord;A1,B2;0;blue;0">
+<param name=e[41] value="G3;line;bichord;A2,B1;0;blue;0">
+<param name=e[42] value="G4;line;bichord;A2,B2;0;blue;0">
+</applet>
+</center><p>
+
+When the triangle is Euclidean, that is, when <i>A*</i>, <i>B*</i>, and <i>C*</i> coincide as a pole <i>P</i>, then one of the two centroids is the pole <i>P</i>, and the other is the expected centroid of the triangle.  The hyperbolic case is displayed below.  Note that the cyan circles aren't hyperbolic lines, but the green ones are.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<param name=background value="0,0,100">
+<img src=round2b.gif alt="Centroids of a Hyperbolic Triangle">
+<param name=title value="Centroids of a Hyperbolic Triangle">
+<param name=e[1] value="O;point;fixed;200,150;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+<param name=e[4] value="A;point;free;250,190">
+<param name=e[5] value="B;point;free;300,190">
+<param name=e[6] value="C;point;free;275,150">
+<param name=e[7] value="A*;point;invert;A,disk">
+<param name=e[8] value="B*;point;invert;B,disk">
+<param name=e[9] value="C*;point;invert;C,disk">
+<param name=e[10] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[11] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[12] value="CA;circle;circumcircle;C,A,C*;0;0;black;0">
+
+<param name=e[13] value="ABC;circle;circumcircle;A,B,C;0;0;cyan;0">
+<param name=e[14] value="ABC*;circle;circumcircle;A,B,C*;0;0;cyan;0">
+<param name=e[15] value="AB*C;circle;circumcircle;A,B*,C;0;0;cyan;0">
+<param name=e[16] value="AB*C*;circle;circumcircle;A,B*,C*;0;0;cyan;0">
+<param name=e[17] value="A*BC;circle;circumcircle;A*,B,C;0;0;cyan;0">
+<param name=e[18] value="A*BC*;circle;circumcircle;A*,B,C*;0;0;cyan;0">
+<param name=e[19] value="A*B*C;circle;circumcircle;A*,B*,C;0;0;cyan;0">
+<param name=e[20] value="A*B*C*;circle;circumcircle;A*,B*,C*;0;0;cyan;0">
+
+<param name=e[21] value="AxBC;line;bichord;ABC,AB*C*;0;0;0">
+<param name=e[22] value="AxB*C;line;bichord;AB*C,ABC*;0;0;0">
+<param name=e[23] value="BxAC;line;bichord;ABC,A*BC*;0;0;0">
+<param name=e[24] value="BxA*C;line;bichord;A*BC,ABC*;0;0;0">
+<param name=e[25] value="CxAB;line;bichord;ABC,A*B*C;0;0;0">
+<param name=e[26] value="CxA*B;line;bichord;A*BC,AB*C;0;0;0">
+<param name=e[27] value="C*xAB;line;bichord;ABC*,A*B*C*;0;0;0">
+<param name=e[28] value="C*xA*B;line;bichord;A*BC*,AB*C*;0;0;0">
+<param name=e[29] value="A*xBC;line;bichord;A*BC,A*B*C*;0;0;0">
+<param name=e[30] value="A*xB*C;line;bichord;A*B*C,A*BC*;0;0;0">
+<param name=e[31] value="B*xAC;line;bichord;AB*C,A*B*C*;0;0;0">
+<param name=e[32] value="B*xA*C;line;bichord;A*B*C,AB*C*;0;0;0">
+
+<param name=e[33] value="A1;circle;circumcircle;A,A*xBC;0;0;green;0">
+<param name=e[34] value="A2;circle;circumcircle;A,A*xB*C;0;0;green;0">
+<param name=e[35] value="B1;circle;circumcircle;B,B*xAC;0;0;green;0">
+<param name=e[36] value="B2;circle;circumcircle;B,B*xA*C;0;0;green;0">
+<param name=e[37] value="C1;circle;circumcircle;C,C*xAB;0;0;green;0">
+<param name=e[38] value="C2;circle;circumcircle;C,C*xA*B;0;0;green;0">
+
+<param name=e[39] value="G1;line;bichord;A1,B1;0;blue;0">
+<param name=e[40] value="G2;line;bichord;A1,B2;0;blue;0">
+<param name=e[41] value="G3;line;bichord;A2,B1;0;blue;0">
+<param name=e[42] value="G4;line;bichord;A2,B2;0;blue;0">
+</applet></center><p>
+
+Note that in this hyperbolic case, if the vertices are not all inside the bounding disk, or all outside the bounding disk, then the centroids are purely imaginary.
+
+<p>And here is the centroid for an elliptic triangle, again treated as a special case of an inversive triangle.  Note that the cyan circles aren't ellliptic lines, but the green ones are.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round2c.gif alt="Centroids of an Elliptic Triangle">
+<param name=background value="0,0,100">
+<param name=title value="Centroids of an Elliptic Triangle">
+<param name=e[1] value="O;point;fixed;200,150;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+<param name=e[4] value="A;point;free;70,140">
+<param name=e[5] value="B;point;free;150,170">
+<param name=e[6] value="C;point;free;125,90">
+<param name=e[7] value="A#;point;invert;A,disk;0;0">
+<param name=e[8] value="A*;point;extend;A,O,O,A#">
+<param name=e[9] value="B#;point;invert;B,disk;0;0">
+<param name=e[10] value="B*;point;extend;B,O,O,B#">
+<param name=e[11] value="C#;point;invert;C,disk;0;0">
+<param name=e[12] value="C*;point;extend;C,O,O,C#">
+<param name=e[13] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[14] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[15] value="CA;circle;circumcircle;C,A,C*;0;0;black;0">
+
+<param name=e[16] value="ABC;circle;circumcircle;A,B,C;0;0;cyan;0">
+<param name=e[17] value="ABC*;circle;circumcircle;A,B,C*;0;0;cyan;0">
+<param name=e[18] value="AB*C;circle;circumcircle;A,B*,C;0;0;cyan;0">
+<param name=e[19] value="AB*C*;circle;circumcircle;A,B*,C*;0;0;cyan;0">
+<param name=e[20] value="A*BC;circle;circumcircle;A*,B,C;0;0;cyan;0">
+<param name=e[21] value="A*BC*;circle;circumcircle;A*,B,C*;0;0;cyan;0">
+<param name=e[22] value="A*B*C;circle;circumcircle;A*,B*,C;0;0;cyan;0">
+<param name=e[23] value="A*B*C*;circle;circumcircle;A*,B*,C*;0;0;cyan;0">
+
+<param name=e[24] value="AxBC;line;bichord;ABC,AB*C*;0;0;0">
+<param name=e[25] value="AxB*C;line;bichord;AB*C,ABC*;0;0;0">
+<param name=e[26] value="BxAC;line;bichord;ABC,A*BC*;0;0;0">
+<param name=e[27] value="BxA*C;line;bichord;A*BC,ABC*;0;0;0">
+<param name=e[28] value="CxAB;line;bichord;ABC,A*B*C;0;0;0">
+<param name=e[29] value="CxA*B;line;bichord;A*BC,AB*C;0;0;0">
+<param name=e[30] value="C*xAB;line;bichord;ABC*,A*B*C*;0;0;0">
+<param name=e[31] value="C*xA*B;line;bichord;A*BC*,AB*C*;0;0;0">
+<param name=e[32] value="A*xBC;line;bichord;A*BC,A*B*C*;0;0;0">
+<param name=e[33] value="A*xB*C;line;bichord;A*B*C,A*BC*;0;0;0">
+<param name=e[34] value="B*xAC;line;bichord;AB*C,A*B*C*;0;0;0">
+<param name=e[35] value="B*xA*C;line;bichord;A*B*C,AB*C*;0;0;0">
+
+<param name=e[36] value="A1;circle;circumcircle;A,A*xBC;0;0;green;0">
+<param name=e[37] value="A2;circle;circumcircle;A,A*xB*C;0;0;green;0">
+<param name=e[38] value="B1;circle;circumcircle;B,B*xAC;0;0;green;0">
+<param name=e[39] value="B2;circle;circumcircle;B,B*xA*C;0;0;green;0">
+<param name=e[40] value="C1;circle;circumcircle;C,C*xAB;0;0;green;0">
+<param name=e[41] value="C2;circle;circumcircle;C,C*xA*B;0;0;green;0">
+
+<param name=e[42] value="G1;line;bichord;A1,B1;0;blue;0">
+<param name=e[43] value="G2;line;bichord;A1,B2;0;blue;0">
+<param name=e[44] value="G3;line;bichord;A2,B1;0;blue;0">
+<param name=e[45] value="G4;line;bichord;A2,B2;0;blue;0">
+</applet></center><p>
+
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<p>Email: <A HREF="mailto:djoyce@clarku.edu">djoyce@clarku.edu</a>
+<br>
+<a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+</BODY>
+</HTML>

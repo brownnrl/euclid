@@ -40,6 +40,7 @@ import {SimilarElement} from "./point/SimilarElement";
 import {ProportionElement} from "./point/ProportionElement";
 import {AngleDividerElement} from "./point/AngleDividerElement";
 import {MeanProportionalElement} from "./point/MeanProportionalElement";
+import {HarmonicElement} from "./point/HarmonicElement";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -79,7 +80,8 @@ export enum PointConstructions {
     angleBisector = 22,
     angleDivider = 23,
     fixed = 24,
-    lineSegmentSlider = 25
+    lineSegmentSlider = 25,
+    harmonic = 26
 }
 
 export enum LineConstructions {
@@ -832,11 +834,22 @@ export class LineSliderSegmentConstruction extends LineSliderConstruction {
 }
 
 
-// TBD
 // point
 // harmonic
 // points B, C, D
 // the harmonic conjugate of B with respect to C and D
+// (Java: Harmonic.java — 43 lines, line-for-line port.
+// Slate.java point case 25 — new Harmonic(P[0], P[1], P[2]))
+export class HarmonicPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.harmonic;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new HarmonicElement(ps[0], ps[1], ps[2]);
+        return [[g], g];
+    }
+}
 
 
 /**********************
@@ -1549,6 +1562,7 @@ export const constructions : Construction[] = [
     new AngleDividerPointConstruction(),
     new MeanProportionalPointConstruction(),
     new PlaneSliderConstruction(),
+    new HarmonicPointConstruction(),
     new CircumcircleConstruction(),
     new CircumcircleConstruction2d(),
     new LineSliderConstruction(),

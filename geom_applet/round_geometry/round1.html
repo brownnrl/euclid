@@ -1,0 +1,118 @@
+<HTML><HEAD><TITLE>Round Triangles</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h1>Round Triangles</h1></center>
+
+In inversive geometry, a triangle <i>ABC</i> is bounded by three arcs of circles: <i>AB</i>, <i>BC</i>, and <i>CA</i>.  We'll call such triangles <i>round triangles</i> for short.
+
+<p>Note that the arcs <i>AB</i> and <i>CA</i> are parts of circles that intersect at two points, one being <i>A</i>, and the other we'll denote <i>A*</i>.  Similarly, <i>B*</i> and <i>C*</i> are the other intersections of two other pairs of circles.  We'll call these the <i>dual vertices</i> of the triangle <i>ABC</i>.  By exchanging an unstarred point for a starred point other related round triangles are named including a dual triangle <i>A*B*C*</i>.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=../Geometry/Geometry.zip height=300 width=400>
+<img src=round1a.gif alt="A Round Triangle">
+<param name=background value="0,0,100">
+<param name=title value="A Round Triangle">
+<param name=e[1] value="A;point;free;220,60">
+<param name=e[2] value="B;point;free;120,150">
+<param name=e[3] value="C;point;free;200,170">
+<param name=e[4] value="A*;point;free;130,200">
+<param name=e[5] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[6] value="B*;point;circleSlider;210,250,AB">
+<param name=e[7] value="CA;circle;circumcircle;C,A,A*;0;0;black;0">
+<param name=e[8] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[9] value="BCcenter;point;center;BC;0;0">
+<param name=e[10] value="CAcenter;point;center;CA;0;0">
+<param name=e[11] value="Cfoot;point;foot;C,CAcenter,BCcenter;0;0">
+<param name=e[12] value="C*;point;extend;C,Cfoot,C,Cfoot">
+</applet></center><p>
+
+In this diagram you may freely move the points <i>A</i>, <i>B</i>, <i>C</i>, and <i>A*</i>, and you may slide the point <i>B*</i> around the circle <i>ABA*</i>.  The point <i>C</i> is determined by the rest of the points.  That gives you nine degrees of freedom to determine the three circles.
+
+<h3>Euclidean geometry modelled by inversive geometry</h3>
+
+It may be that the three circles bounding the round triangle <i>ABC</i> all pass through one point <i>P</i>.  In that case, the three dual vertices <i>A*</i>, <i>B*</i>, and <i>C*</i> all coincide at <i>P</i>, and we'll call <i>P</i> the <i>pole</i> of the triangle <i>ABC</i>.  When this point <i>P</i> happens to be the point at infinity of the inversive plane, then triangle <i>ABC</i> is a Euclidean triangle with straight lines as sides.  There are many very nice properties of Euclidean triangles, and these "polar triangles" in inversive geometry enjoy the same properties.  Furthermore, most of these properties can be generalized in some way to round triangles in general.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round1b.gif alt="A Polar Triangle">
+<param name=background value="0,0,100">
+<param name=title value="A Polar Triangle">
+<param name=e[1] value="A;point;free;80,130">
+<param name=e[2] value="B;point;free;120,230">
+<param name=e[3] value="C;point;free;200,180">
+<param name=e[4] value="P;point;free;380,170">
+<param name=e[5] value="AB;circle;circumcircle;A,B,P;0;0;0,0,0;0">
+<param name=e[6] value="BC;circle;circumcircle;B,C,P;0;0;0,0,0;0">
+<param name=e[7] value="CA;circle;circumcircle;C,A,P;0;0;0,0,0;0">
+</applet></center><p>
+
+In this diagram, the four points <i>A</i>, <i>B</i>, <i>C</i>, and <i>P</i> may be freely moved.  As <i>P</i> moves to infinity, the sides of the triangle <i>ABC</i> appear straighter.
+
+<h3>Hyperbolic geometry modelled by inversive geometry</h3>
+
+It may be that the three circles bounding a round triangle <i>ABC</i> are all orthogonal to some other circle.  In that case we may think of triangle <i>ABC</i> as a triangle in the hyperbolic plane modelled as the interior of that circle.  The dual vertices <i>A*</i>, <i>B*</i>, and <i>C*</i> may be found by inverting the original vertices in the bounding circle. Any properties of hyperbolic triangles are shared by round triangles of this kind.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip width=400 height=300>
+<img src=round1c.gif alt="Hyperbolic Triangle">
+<param name=background value="0,0,100">
+<param name=title value="Hyperbolic Triangle">
+<param name=e[1] value="O;point;fixed;200,150;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+<param name=e[4] value="A;point;free;250,190">
+<param name=e[5] value="B;point;free;300,190">
+<param name=e[6] value="C;point;free;275,150">
+<param name=e[7] value="A*;point;invert;A,disk">
+<param name=e[8] value="B*;point;invert;B,disk">
+<param name=e[9] value="C*;point;invert;C,disk">
+<param name=e[10] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[11] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[12] value="CA;circle;circumcircle;C,A,C*;0;0;black;0">
+</applet></center><p>
+
+You may freely move three vertices of the triangle <i>ABC</i>. (You can also change the size of this Poincar&eacute; disk model of the hyperbolic plane by moving the orange dots; one is the center of the disk and the other is on the circumference of the disk.)
+
+<h3>Elliptic geometry modelled by inversive geometry</h3>
+
+It may be that the three circles bounding a round triangle <i>ABC</i> each meet some circle at antipodal points on that circle.  In that case we may think of triangle <i>ABC</i> as a triangle in the elliptic plane modelled as the interior of that circle along with the points on its circumference where pairs of antipodal points are identified.  The dual vertices <i>A*</i>, <i>B*</i>, and <i>C*</i> may be found by inverting the original vertices in the bounding circle, and then reflecting those points through the center of the bounding circle. Any properties of elliptic triangles are shared by round triangles of this kind.
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip width=400 height=300>
+<img src=round1d.gif alt="Elliptic Triangle">
+<param name=background value="0,0,100">
+<param name=title value="Elliptic Triangle">
+<param name=e[1] value="O;point;fixed;200,150;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+<param name=e[4] value="A;point;free;70,140">
+<param name=e[5] value="B;point;free;150,170">
+<param name=e[6] value="C;point;free;125,90">
+<param name=e[7] value="A#;point;invert;A,disk;0;0">
+<param name=e[8] value="A*;point;extend;A,O,O,A#">
+<param name=e[9] value="B#;point;invert;B,disk;0;0">
+<param name=e[10] value="B*;point;extend;B,O,O,B#">
+<param name=e[11] value="C#;point;invert;C,disk;0;0">
+<param name=e[12] value="C*;point;extend;C,O,O,C#">
+<param name=e[13] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[14] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[15] value="CA;circle;circumcircle;C,A,C*;0;0;black;0">
+</applet></center><p>
+
+You may freely move three vertices of the triangle <i>ABC</i>. (You can also change the size of the disk by moving the orange dots; one is the center of the disk and the other is on the circumference of the disk.)
+
+Thus, we see that Euclidean, hyperbolic, and elliptic geometry all have triangles that are special cases of the round triangles of inversive geometry.
+
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<p>Email: <A HREF="mailto:djoyce@clarku.edu">djoyce@clarku.edu</a>
+<br>
+My nonJava <a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+and my 
+<a href="http://aleph0.clarku.edu/~djoyce/java/javahome.html">Java homepage</a>
+</BODY>
+</HTML>

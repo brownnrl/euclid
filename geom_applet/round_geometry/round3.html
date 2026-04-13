@@ -1,0 +1,114 @@
+<HTML><HEAD><TITLE>Round Triangles: medians</TITLE></HEAD>
+<BODY bgcolor=ffffff>
+
+<center><h2>Altitudes and orthocenters round triangles</h2></center>
+
+Next, we'll generalize the concept of altitude to round triangles.  
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round3a.gif alt="Altitudes and Orthocenters">
+<param name=background value="0,0,100">
+<param name=title value="Altitudes and Orthocenters">
+<param name=e[1] value="A;point;free;220,60">
+<param name=e[2] value="B;point;free;120,150">
+<param name=e[3] value="C;point;free;200,170">
+<param name=e[4] value="A*;point;free;130,200">
+<param name=e[5] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[6] value="B*;point;circleSlider;210,250,AB">
+<param name=e[7] value="CA;circle;circumcircle;C,A,A*;0;0;black;0">
+<param name=e[8] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[9] value="BCcenter;point;center;BC;0;0">
+<param name=e[10] value="CAcenter;point;center;CA;0;0">
+<param name=e[11] value="Cfoot;point;foot;C,CAcenter,BCcenter;0;0">
+<param name=e[12] value="C*;point;extend;C,Cfoot,C,Cfoot">
+
+<param name=e[13] value="A>BC;point;invert;A,BC;0;0">
+<param name=e[14] value="Aalt;circle;circumcircle;A,A*,A>BC;0;0;blue;0">
+<param name=e[15] value="B>CA;point;invert;B,CA;0;0">
+<param name=e[16] value="Balt;circle;circumcircle;B,B*,B>CA;0;0;blue;0">
+<param name=e[17] value="C>AB;point;invert;C,AB;0;0">
+<param name=e[18] value="Calt;circle;circumcircle;C,C*,C>AB;0;0;blue;0">
+<param name=e[19] value="HH*;line;bichord;Aalt,Balt;0;0;0">
+<param name=e[20] value="H;point;first;HH*;black;blue">
+<param name=e[21] value="H*;point;last;HH*;black;blue">
+<param name=pivot value=H>
+</applet>
+</center><p>
+
+The hyperbolic case is displayed below.  
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round3b.gif alt="Orthocenters of a Hyperbolic Triangle">
+<param name=background value="0,0,100">
+<param name=title value="Orthocenters of a Hyperbolic Triangle">
+<param name=e[1] value="O;point;fixed;200,150;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+<param name=e[4] value="A;point;free;250,190">
+<param name=e[5] value="B;point;free;300,190">
+<param name=e[6] value="C;point;free;275,150">
+<param name=e[7] value="A*;point;invert;A,disk">
+<param name=e[8] value="B*;point;invert;B,disk">
+<param name=e[9] value="C*;point;invert;C,disk">
+<param name=e[10] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[11] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[12] value="CA;circle;circumcircle;C,A,C*;0;0;black;0">
+
+<param name=e[13] value="A>BC;point;invert;A,BC;0;0">
+<param name=e[14] value="Aalt;circle;circumcircle;A,A*,A>BC;0;0;blue;0">
+<param name=e[15] value="B>CA;point;invert;B,CA;0;0">
+<param name=e[16] value="Balt;circle;circumcircle;B,B*,B>CA;0;0;blue;0">
+<param name=e[17] value="C>AB;point;invert;C,AB;0;0">
+<param name=e[18] value="Calt;circle;circumcircle;C,C*,C>AB;0;0;blue;0">
+<param name=e[19] value="HH*;line;bichord;Aalt,Balt;0;0;0">
+<param name=e[20] value="H;point;first;HH*;black;blue">
+<param name=e[21] value="H*;point;last;HH*;black;blue">
+</applet></center><p>
+
+And here is the orthocenter for an elliptic triangle, again treated as a special case of an inversive triangle.  
+
+<p><center>
+<applet code=Geometry codebase="../Geometry" archive=Geometry.zip height=300 width=400>
+<img src=round3c.gif alt="Orthocenters of an Elliptic Triangle">
+<param name=background value="0,0,100">
+<param name=title value="Orthocenters of an Elliptic Triangle">
+<param name=e[1] value="O;point;fixed;200,150;0;orange">
+<param name=pivot value=O>
+<param name=e[2] value="P;point;free;350,150;0;orange">
+<param name=e[3] value="disk;circle;radius;O,P;0;0;random;random">
+<param name=e[4] value="A;point;free;70,140">
+<param name=e[5] value="B;point;free;150,170">
+<param name=e[6] value="C;point;free;125,90">
+<param name=e[7] value="A#;point;invert;A,disk;0;0">
+<param name=e[8] value="A*;point;extend;A,O,O,A#">
+<param name=e[9] value="B#;point;invert;B,disk;0;0">
+<param name=e[10] value="B*;point;extend;B,O,O,B#">
+<param name=e[11] value="C#;point;invert;C,disk;0;0">
+<param name=e[12] value="C*;point;extend;C,O,O,C#">
+<param name=e[13] value="AB;circle;circumcircle;A,B,A*;0;0;black;0">
+<param name=e[14] value="BC;circle;circumcircle;B,C,B*;0;0;black;0">
+<param name=e[15] value="CA;circle;circumcircle;C,A,C*;0;0;black;0">
+
+<param name=e[16] value="A>BC;point;invert;A,BC;0;0">
+<param name=e[17] value="Aalt;circle;circumcircle;A,A*,A>BC;0;0;blue;0">
+<param name=e[18] value="B>CA;point;invert;B,CA;0;0">
+<param name=e[19] value="Balt;circle;circumcircle;B,B*,B>CA;0;0;blue;0">
+<param name=e[20] value="C>AB;point;invert;C,AB;0;0">
+<param name=e[21] value="Calt;circle;circumcircle;C,C*,C>AB;0;0;blue;0">
+<param name=e[22] value="HH*;line;bichord;Aalt,Balt;0;0;0">
+<param name=e[23] value="H;point;first;HH*;black;blue">
+<param name=e[24] value="H*;point;last;HH*;black;blue">
+</applet></center><p>
+
+<p>David E. Joyce  
+<br><a href="http://aleph0.clarku.edu/">Department of Mathematics and Computer Science</a>
+<br>Clark University
+<br>Worcester, MA 01610
+<p>Email: <A HREF="mailto:djoyce@clarku.edu">djoyce@clarku.edu</a>
+<br>
+<a href="http://aleph0.clarku.edu/~djoyce/home.html">Homepage</a>
+</BODY>
+</HTML>
