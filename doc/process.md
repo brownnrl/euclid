@@ -28,7 +28,7 @@ commit, then pause for a human to review the diff before moving on to the next s
   an AI agent authored the change. The human running the session is the author
   of record; the agent is a tool.
 - If a step's work has to be redone after review, amend or revert on the feature
-  branch — master never sees the in-progress commits.
+  branch — main never sees the in-progress commits.
 
 The point is to keep the review granularity small: one file or one logical unit
 per commit. A reviewer can catch "this update() has the wrong sign" or "this
@@ -73,15 +73,15 @@ If the same proposition naturally exercises both your target and an already-impl
 construction, prefer it — you can reuse the existing `inspiration.html` as a reference
 rather than creating a fresh one from scratch.
 
-### Create a feature branch off master
+### Create a feature branch off main
 
 Once the construction and verifying proposition are locked in, cut a fresh feature
-branch off `master` *before* touching any source files. One construction per branch
+branch off `main` *before* touching any source files. One construction per branch
 keeps the diff reviewable and makes it trivial to back out or rebase if the port
 turns out wrong.
 
 ```sh
-git checkout master
+git checkout main
 git pull --ff-only
 git checkout -b feature/{type}-{construction}
 ```
@@ -92,7 +92,7 @@ name lines up with the tracker entry and the harness menu label.
 
 Do this up front, not at commit time: all subsequent steps (new element class,
 Construction subclass, test, `view/test/` page, `applet-tests/` pair, tracker and
-journal updates) land on the feature branch, and master stays pristine until the
+journal updates) land on the feature branch, and main stays pristine until the
 port is merged.
 
 ---
@@ -457,7 +457,7 @@ Style notes for the agent:
   the PR body is the reviewer's index into it.
 - Always wrap the whole block in a fenced ` ```markdown ` tag so the human
   can lift it cleanly. Don't include any prose outside the fence.
-- Reference commits by short SHA (`git log --oneline master..HEAD`),
+- Reference commits by short SHA (`git log --oneline main..HEAD`),
   files by repo-relative path. Skip the `Co-Authored-By:` trailer — same
   rule as commits on this repo.
 - If the harness check was not performed (e.g. Docker/X11 unavailable

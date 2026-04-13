@@ -35,7 +35,7 @@ and **do not start implementing** until the user has picked a construction:
 4. Read the **top entry only** of [doc/journal.md](doc/journal.md). The most
    recent session's "Next session" block is the canonical handoff; you do
    not need to read older entries unless the top one explicitly points at them.
-5. Run `git status` and `git log --oneline master..HEAD` on whatever branch
+5. Run `git status` and `git log --oneline main..HEAD` on whatever branch
    the user is on. **If an in-flight `feature/*` branch exists, offer to
    resume it** rather than start a new one; unfinished work from a prior
    session should not be silently abandoned.
