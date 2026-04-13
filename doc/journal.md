@@ -20,6 +20,36 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — Implemented point;harmonic + archived round geometry pages
+
+**Completed:**
+- Downloaded 25 HTML files from Joyce's "round geometry" pages at
+  `http://mathcs.clarku.edu/~djoyce/java/round/` and saved to
+  `geom_applet/round_geometry/`. These cover harmonic conjugates,
+  Desargues' theorem, Pappus' theorem, Ptolemy's theorem, Menelaus'
+  theorem, Conway's circle, regular polygon constructions, etc.
+- Ported `Harmonic.java` as `src/elements/point/HarmonicElement.ts`
+  (43 lines, line-for-line port). Computes the harmonic conjugate of B
+  with respect to C and D using complex-number arithmetic (2D) or
+  midpoint reflection (3D). Added `harmonic = 26` to the
+  `PointConstructions` enum (was missing).
+- One Mocha test: collinear 2D case. 43 → **44 passing**.
+- Test page + applet companion using the round geometry harmonic.html
+  (5 uses of `point;harmonic`: D as harmonic conjugate of C w.r.t. A,B,
+  then A'/B'/C'/D' as conjugates w.r.t. E,F — demonstrating that the
+  image of a harmonic range under inversion is another harmonic range).
+- No Book I–XIII proposition uses, but the round geometry pages provide
+  rich test cases. The round pages also exercise `point;invert` and
+  `point;sphereSlider` (both still TBD).
+
+**Next session:**
+- `plane;parallel` — unblocks XI.11, XI.26 (with planeSlider).
+- `point;sphereSlider` — unblocks XIII.16.
+- `point;invert` — used by compass + round geometry pages.
+- Then `PolyhedronElement` base class for the remaining Book XII/XIII.
+
+---
+
 ## 2026-04-12 — Implemented point;planeSlider — Book XI unlocking
 
 **Completed:**
