@@ -20,6 +20,33 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-12 — PolyhedronElement base class + pyramid + tetrahedron
+
+**Completed:**
+- Ported `PolyhedronElement.java` (78 lines) as the base class for all
+  polyhedra at `src/elements/polyhedron/PolyhedronElement.ts`. Holds an
+  array of `PolygonElement` faces. Implements `drawEdge` (all face edges),
+  `drawFace` (all faces), `drawVertex` (all vertices), `drawName`
+  (centroid label), and `defined` (all faces defined).
+- Ported `Pyramid.java` (11 lines) as `src/elements/polyhedron/PyramidElement.ts`.
+  Extends `PolyhedronElement`. Creates n triangular side faces from apex
+  to each base edge.
+- Wired both `TetrahedronConstruction` (4 points → triangle base + Pyramid)
+  and `PyramidConstruction` (polygon + point). Added `PolyhedronElement` to
+  `ConstructionTypes` enum and `validateSignature` switch.
+- One Mocha test: tetrahedron has 4 faces. 47 → **48 passing**.
+- **1 proposition unblocked**: XI.23 (pyramid sole blocker).
+- I–XIII total: 448 → **449** renderable (96.6%).
+
+**Next session:**
+- `Prism.java` (41 lines) — needed for parallelepiped, prism, and
+  `polygon;face` constructions. Unblocks XI.37 (parallelepiped),
+  XI.39 (prism), XII.5–XII.9, XIII.14–XIII.15.
+- Then `circle;intersection` (IntersectionSS.java, 41 lines) for the
+  last 2 props (XIII.15, XIII.17).
+
+---
+
 ## 2026-04-12 — Bundle: plane;parallel + point;sphereSlider + point;invert
 
 **Completed:**

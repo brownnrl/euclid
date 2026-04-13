@@ -832,6 +832,24 @@ describe("slate", ()=> {
         almostEqual(Q.A.z, 100, 0.01);
     });
 
+    // polyhedron;tetrahedron — 4 points → triangle base + pyramid
+    it("should create a tetrahedron with 4 triangular faces", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "B", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [50, 87, 0] },
+            { name: "D", construction: E.Point.fixed, params: [50, 29, 82] },
+            { name: "T", construction: E.Polyhedra.tetrahedron, params: ["A", "B", "C", "D"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        // The tetrahedron should have 4 faces (1 base + 3 sides)
+        // Find it — it's the last PolyhedronElement in the elements list
+        let tetra = slate.lookupElement("T");
+        assert.ok(tetra != null);
+        assert.equal((tetra as any).P.length, 4);
+    });
+
     // point;invert — inversion of a point in a circle
     // Circle center (100,100), radius point (200,100) → radius=100
     // Point A at (150,100) → distance from center = 50

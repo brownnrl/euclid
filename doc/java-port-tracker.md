@@ -26,7 +26,7 @@ implementation status. Updated as constructions are ported.
 | `PolygonElement.java` | PORTED | `src/elements/polygon/PolygonElement.ts` | `area()` method added 2026-04-12. |
 | `SectorElement.java` | PORTED | `src/elements/sector/SectorElement.ts` | |
 | `SphereElement.java` | PORTED | `src/elements/sphere/SphereElement.ts` | |
-| `PolyhedronElement.java` | TBD | — | Base class for 3D polyhedra. Needed for Books XI–XIII. |
+| `PolyhedronElement.java` | PORTED | `src/elements/polyhedron/PolyhedronElement.ts` | Base class for 3D polyhedra. Ported 2026-04-12. |
 
 ---
 
@@ -106,7 +106,7 @@ implementation status. Updated as constructions are ported.
 | Java File | Status | TS Location | Notes |
 |---|---|---|---|
 | `Prism.java` | TBD | — | Prism construction. Needed for Books XI–XIII. |
-| `Pyramid.java` | TBD | — | Pyramid construction. Needed for Books XI–XIII. |
+| `Pyramid.java` | PORTED | `src/elements/polyhedron/PyramidElement.ts` | Pyramid construction. 11 lines. Ported 2026-04-12. |
 
 ---
 
@@ -125,10 +125,9 @@ implementation status. Updated as constructions are ported.
 
 | Status | Count | Files |
 |--------|-------|-------|
-| PORTED | 33 | Core element classes + all ported constructions (incl. ParallelP, SphereSlider, InvertPoint ported 2026-04-12) |
+| PORTED | 35 | Core element classes + all ported constructions (incl. PolyhedronElement, Pyramid ported 2026-04-12) |
 | PARTIAL | 3 | IntersectionPL, PerpendicularPL, Slate |
-| TBD | 4 | InvertCircle, PlaneFoot, Prism, Pyramid |
-| TBD (base) | 1 | PolyhedronElement |
+| TBD | 3 | InvertCircle, PlaneFoot, Prism |
 | TBD (plane/circle) | 2 | ParallelP (plane;parallel), IntersectionSS (circle;intersection) |
 | N/A | 3 | Geometry, ClientFrame, Remote |
 | **Total** | **44** | |

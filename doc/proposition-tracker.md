@@ -25,10 +25,10 @@ Tracks the port status of all propositions across Euclid's Elements.
 | Book IX | 36 | **36** | 0 |
 | Book X | 115 | **115** | 0 |
 | **I–X total** | **390** | **390** | **0** |
-| Book XI | 39 | 35 | 0 |
+| Book XI | 39 | 36 | 0 |
 | Book XII | 18 | 9 | 0 |
 | Book XIII | 18 | 14 | 0 |
-| **I–XIII total** | **465** | **448** | **0** |
+| **I–XIII total** | **465** | **449** | **0** |
 
 Update the summary table after each session.
 
@@ -241,7 +241,7 @@ Verified per-proposition against actual HTML param lists 2026-04-12.
 - [~] XI.5 through XI.10 — renderable
 - [~] XI.11 — (`plane;3points`, `plane;parallel`, `point;planeSlider` all landed 2026-04-12.)
 - [~] XI.12 through XI.22 — renderable
-- [ ] XI.23 — NEEDS: `polyhedron;pyramid`
+- [~] XI.23 — (`polyhedron;pyramid` landed 2026-04-12.)
 - [~] XI.24, XI.25 — renderable
 - [~] XI.26 — (`plane;3points`, `plane;parallel`, `point;planeSlider` all landed 2026-04-12.)
 - [~] XI.27, XI.28 — renderable
