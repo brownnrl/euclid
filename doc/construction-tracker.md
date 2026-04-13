@@ -203,8 +203,16 @@ These affect the library as a whole, independent of individual constructions.
     [view/applet-tests/point/meanProportional/{original,applet}.html](../view/applet-tests/point/meanProportional/)
   - Used in: VIII.20, VIII.26, X (33 props), XIII.2 — **35 props unblocked**
 
-- [ ] **`planeSlider`** — TBD (solid geometry)
-  - Java source: `PlaneSlider.java`
+- [x] **`planeSlider`** — `src/elements/Constructions.ts` (`PlaneSliderConstruction`)
+  - No new element class — `PlaneSlider.ts` already fully ported (used for
+    `point;free` on screen plane). The new dispatcher creates a `PlaneSlider`
+    on a non-screen `PlaneElement` with signature `[PlaneElement, Integer × 3]`.
+  - Java source: `Slate.java` point case 19.
+  - Mocha test (1): point projects to z=0 on the xy-plane.
+  - [x] test view: [view/test/point/planeSlider.html](../view/test/point/planeSlider.html) — propXI4
+  - [x] applet-tests pair:
+    [view/applet-tests/point/planeSlider/{original,applet}.html](../view/applet-tests/point/planeSlider/)
+  - Used in: Books XI–XIII (19 props depend on it; 6 sole-blocker with plane;3points)
 
 - [ ] **`sphereSlider`** — TBD (solid geometry)
   - Java source: `SphereSlider.java`
