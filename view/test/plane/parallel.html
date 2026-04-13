@@ -1,0 +1,31 @@
+<html>
+<head><title>Test View - Plane.parallel (XI.11)</title></head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "XI.11 — plane;parallel",
+        canvasid: "canvasId",
+        elements: [
+            { name: "origin", construction: E.Point.free, params: [120, 160] },
+            { name: "x", construction: E.Point.fixed, params: [280, 160, 100] },
+            { name: "yzplane", construction: E.Plane.perpendicular, params: ["origin", "x"] },
+            { name: "y", construction: E.Point.planeSlider, params: ["yzplane", -90, 260, 40] },
+            { name: "xyplane", construction: E.Plane.threePoints, params: ["origin", "x", "y"] },
+            { name: "z1", construction: E.Point.perpendicular, params: ["origin", "y", "yzplane"] },
+            { name: "z", construction: E.Point.lineSlider, params: ["origin", "z1", 50, 50, 100] },
+            { name: "ceiling", construction: E.Plane.parallel, params: ["xyplane", "z"] },
+            { name: "A", construction: E.Point.planeSlider, params: ["ceiling", 140, 100, 180] },
+            { name: "B", construction: E.Point.planeSlider, params: ["xyplane", 208, 270, 140] },
+            { name: "C", construction: E.Point.planeSlider, params: ["xyplane", 245, 190, 80] },
+            { name: "BC", construction: E.Line.connect, params: ["B", "C"] },
+            { name: "D", construction: E.Point.foot, params: ["A", "BC"] },
+            { name: "AD", construction: E.Line.connect, params: ["A", "D"] },
+        ]
+    });
+</script>
+</body>
+</html>

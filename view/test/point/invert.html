@@ -1,0 +1,25 @@
+<html>
+<head><title>Test View - Point.invert (standalone)</title></head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 400px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "Point.invert — inversion in a circle",
+        canvasid: "canvasId",
+        elements: [
+            { name: "O", construction: E.Point.free, params: [150, 150] },
+            { name: "R", construction: E.Point.free, params: [250, 150] },
+            { name: "C", construction: E.Circle.radius, params: ["O", "R"] },
+            { name: "A", construction: E.Point.free, params: [175, 150] },
+            { name: "A'", construction: E.Point.invert, params: ["A", "C"] },
+            { name: "B", construction: E.Point.circleSlider, params: ["C", 200, 100] },
+            { name: "B'", construction: E.Point.invert, params: ["B", "C"] },
+            { name: "OA", construction: E.Line.connect, params: ["O", "A"] },
+        ]
+    });
+</script>
+</body>
+</html>

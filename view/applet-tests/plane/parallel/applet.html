@@ -1,0 +1,23 @@
+<HTML><HEAD><TITLE>plane;parallel — applet form of view/test/plane/parallel.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/plane/parallel.html -->
+<!-- ORIGINAL: view/applet-tests/plane/parallel/original.html (propXI11) -->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=400 height=400>
+<param name=background value="35,19,100">
+<param name=title value="XI.11 — plane;parallel">
+<param name=e[1] value="origin;point;free;120,160;0;0,50,100">
+<param name=e[2] value="x;point;fixed;280,160,100;0;darkGray">
+<param name=e[3] value="yzplane;plane;perpendicular;origin,x;0;0;0;0">
+<param name=e[4] value="y;point;planeSlider;yzplane,-90,260,40;0;0,50,100">
+<param name=e[5] value="xyplane;plane;3points;origin,x,y;0;0;lightGray">
+<param name=e[6] value="z1;point;perpendicular;origin,y,yzplane;0;0">
+<param name=e[7] value="z;point;lineSlider;origin,z1,50,50,100;0">
+<param name=e[8] value="ceiling;plane;parallel;xyplane,z;0;0;0;0">
+<param name=e[9] value="A;point;planeSlider;ceiling,140,100,180">
+<param name=e[10] value="B;point;planeSlider;xyplane,208,270,140">
+<param name=e[11] value="C;point;planeSlider;xyplane,245,190,80">
+<param name=e[12] value="BC;line;connect;B,C">
+<param name=e[13] value="D;point;foot;A,BC">
+<param name=e[14] value="AD;line;connect;A,D">
+</applet>
+</BODY></HTML>
