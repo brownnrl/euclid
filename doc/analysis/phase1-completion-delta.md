@@ -157,13 +157,13 @@ with `[plane X]` optional parameters; these are marked separately.
 
 ## 2. Construction summary
 
-| Category | 2D impl | 2D missing | 3D variants TBD |
+| Category | 2D impl | 2D missing | 3D variants |
 |---|---|---|---|
-| Point | 26/26 | 2 (IntersectionPL broken, center-sphere) | 8 |
-| Line | 12/13 | 1 (proportion) | 4 |
-| Circle | 4/5 | 1 (invert) | 2 |
-| Polygon | 12/13 | 1 (starPolygon) | 4 |
-| Sector | 2/2 | 0 | 1 |
+| Point | 28/28 | 0 | 3 IMPL + 2 need PlaneFoot |
+| Line | 13/13 | 0 | 3 IMPL + 1 need PlaneFoot |
+| Circle | 5/5 | 0 | 2 IMPL |
+| Polygon | 13/13 | 0 | 4 IMPL |
+| Sector | 2/2 | 0 | 1 IMPL |
 | Plane | 3/4 | 1 (ambient) | 0 |
 | Sphere | 1/2 | 1 (3-point radius) | 0 |
 | Polyhedron | 4/4 | 0 | 0 |
