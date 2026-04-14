@@ -1,0 +1,117 @@
+<html>
+<head>
+    <title>Test View - Line.foot (plane variant, from XI.26)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:360px; height: 320px;"></canvas>
+<!-- Dependencies -->
+<script src="../../../../dist/bundle.js" type="text/javascript"></script>
+
+<!--applet code=Geometry codebase="../../Geometry" archive=Geometry.zip width=360 height=320>
+<img src="propXI26.gif" alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="XI.26 — line foot (plane)">
+<param name=e[1] value="origin;point;free;110,140;0;0,50,100">
+<param name=e[2] value="x;point;fixed;330,210,100;0;120,50,100">
+<param name=e[3] value="yzplane;plane;perpendicular;origin,x;0;0;0;0">
+<param name=e[4] value="y;point;planeSlider;yzplane,-90,202,90;0;0,50,100">
+<param name=e[5] value="xyplane;plane;3points;origin,x,y;0;0;lightGray">
+<param name=e[6] value="z1;point;perpendicular;origin,y,yzplane;0;0">
+<param name=e[7] value="z;point;lineSlider;origin,z1,40,40,100;0">
+<param name=e[8] value="Oz;line;connect;origin,z;0;0;lightGray">
+<param name=e[9] value="ceiling;plane;parallel;xyplane,z;0;0;0;0">
+<param name=e[10] value="F;point;planeSlider;ceiling,160,140,110">
+<param name=e[11] value="FG;line;foot;F,xyplane">
+</applet-->
+<script type="text/javascript">
+    let Color = geomlib.Color;
+    let Align = geomlib.Align;
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "XI.26 — line foot (plane)",
+        canvasid: "canvasId",
+        elements: [
+            {
+                name: "origin",
+                construction: E.Point.free,
+                params: [110, 140],
+                vertexColor: 0,
+                nameColor: "0,50,100"
+            },
+            {
+                name: "x",
+                construction: E.Point.fixed,
+                params: [330, 210, 100],
+                vertexColor: 0,
+                nameColor: "120,50,100"
+            },
+            {
+                name: "yzplane",
+                construction: E.Plane.perpendicular,
+                params: ["origin", "x"],
+                edgeColor: 0,
+                faceColor: 0,
+                vertexColor: 0,
+                nameColor: 0
+            },
+            {
+                name: "y",
+                construction: E.Point.planeSlider,
+                params: ["yzplane", -90, 202, 90],
+                vertexColor: 0,
+                nameColor: "0,50,100"
+            },
+            {
+                name: "xyplane",
+                construction: E.Plane.threePoints,
+                params: ["origin", "x", "y"],
+                edgeColor: 0,
+                faceColor: "lightGray",
+                vertexColor: 0
+            },
+            {
+                name: "z1",
+                construction: E.Point.perpendicular,
+                params: ["origin", "y", "yzplane"],
+                vertexColor: 0,
+                nameColor: 0
+            },
+            {
+                name: "z",
+                construction: E.Point.lineSlider,
+                params: ["origin", "z1", 40, 40, 100],
+                vertexColor: 0
+            },
+            {
+                name: "Oz",
+                construction: E.Line.connect,
+                params: ["origin", "z"],
+                edgeColor: 0,
+                faceColor: 0,
+                nameColor: "lightGray"
+            },
+            {
+                name: "ceiling",
+                construction: E.Plane.parallel,
+                params: ["xyplane", "z"],
+                edgeColor: 0,
+                faceColor: 0,
+                vertexColor: 0,
+                nameColor: 0
+            },
+            {
+                name: "F",
+                construction: E.Point.planeSlider,
+                params: ["ceiling", 160, 140, 110]
+            },
+            {
+                name: "FG",
+                construction: E.Line.foot,
+                params: ["F", "xyplane"]
+            }
+        ]
+    });
+</script>
+</body>
+</html>

@@ -60,7 +60,7 @@ implementation status. Updated as constructions are ported.
 |---|---|---|---|
 | `Bichord.java` | PORTED | `src/elements/line/Bichord.ts` | Common chord of two circles. |
 | `Chord.java` | PORTED | `src/elements/line/Chord.ts` | Chord of circle cut by a line. Ported 2026-04-11. |
-| `PlaneFoot.java` | TBD | — | Foot of perpendicular from point to plane (solid geometry). The 2D `line;foot` variant uses `Foot.ts` + LineElement dispatch instead. |
+| `PlaneFoot.java` | PORTED | `src/elements/point/PlaneFootElement.ts` | Foot of perpendicular from point to plane (solid geometry). Wired as `point;foot` and `line;foot` plane variants (2026-04-12). |
 | `PerpendicularPL.java` | PARTIAL | `src/elements/line/PlanePerpendicularLine.ts` + `src/elements/plane/PerpendicularPlane.ts` | Java class was split across two TS files for the plane-perpendicular construction. |
 
 ---

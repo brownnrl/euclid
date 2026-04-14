@@ -20,6 +20,56 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-13 — PlaneFoot.java ported + last 2 3D foot variants wired
+
+**Completed:**
+- Ported `PlaneFoot.java` → `src/elements/point/PlaneFootElement.ts` (35 lines).
+  Uses `toPlane()` projection. Constructor takes `(A: PointElement, P: PlaneElement)`.
+- Wired `PlaneFootPointConstruction` — `point;foot` with `[Point, Plane]` signature.
+- Wired `PlaneFootLineConstruction` — `line;foot` with `[Point, Plane]` signature.
+  Creates `PlaneFootElement(A, P)` + `LineElement(A, foot)`.
+- Both registered in constructions array (plane variants before 2D variants).
+- 2 Mocha tests: point foot on XY-plane, line foot endpoint coords. 71 → **73 passing**.
+- Test view pages: `view/test/point/planeFoot.html`, `view/test/line/planeFoot.html` (propXI26).
+- 3-way harness pages for both: `view/applet-tests/{point,line}/planeFoot/`.
+- Updated: construction-tracker, java-port-tracker, delta report.
+
+**Phase 1 remaining work:**
+- 12 platform bugs/features (parseColor, HSB, gray, faceColor, font,
+  fontsize, align, title, pivot rotation, keyboard reset, labels,
+  console.log)
+
+---
+
+## 2026-04-13 — 16 3D signature variants wired
+
+**Completed:**
+- Wired 16 3D construction variants — every construction that Joyce's
+  `tables.html` documents with `[plane X]` optional parameters now has an
+  explicit 3D signature variant. Each passes the PlaneElement from params
+  instead of defaulting to `screen`. All registered BEFORE their 2D
+  counterparts per the signature-ordering rule.
+  - Point (3): SimilarPoint3d, AngleBisectorPoint3d, AngleDividerPoint3d
+  - Line (3): AngleBisectorLine3d, AngleDividerLine3d, SimilarLine3d
+  - Circle (2): CircleRadius3d (2pt), CircleRadius3Point3d
+  - Polygon (4): SquarePolygon3d, EquilateralTriangle3d, RegularPolygon3d,
+    SimilarPolygon3d
+  - Sector (1): Arc3d
+- 13 Mocha tests for the 3D variants. 58 → **71 passing**.
+
+**Remaining 3D gaps:**
+- `point;foot` (point-to-plane), `line;foot` (point-to-plane),
+  `line;perpendicular` (plane variant) — these 3 need `PlaneFoot.java`
+  ported first.
+
+**Phase 1 remaining work:**
+- Port `PlaneFoot.java` for the last 3 3D variants
+- 12 platform bugs/features (parseColor, HSB, gray, faceColor, font,
+  fontsize, align, title, pivot rotation, keyboard reset, labels,
+  console.log)
+
+---
+
 ## 2026-04-12 — All 7 missing constructions implemented — 69/69 (100% 2D)
 
 **Completed:**

@@ -50,6 +50,7 @@ import {PrismElement} from "./polyhedron/PrismElement";
 import {SphereIntersectionElement} from "./circle/SphereIntersectionElement";
 import {InvertCircleElement} from "./circle/InvertCircleElement";
 import {PlaneIntersection} from "./point/PlaneIntersection";
+import {PlaneFootElement} from "./point/PlaneFootElement";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -558,11 +559,22 @@ export class FootPointConsturction extends Construction {
     }
 }
 
-// TBD
 // point
-// foot
+// foot (plane variant — solid geometry)
 // point A plane B
 // the foot of a perpendicular drawn from A to a plane B
+// (Java: PlaneFoot.java — TS: PlaneFootElement.ts, renamed for clarity)
+export class PlaneFootPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.foot;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const A = params[0] as PointElement;
+        const P = params[1] as PlaneElement;
+        const g = new PlaneFootElement(A, P);
+        return [[g], g];
+    }
+}
 
 // point
 // layoff used for extend and cutoff
@@ -627,6 +639,25 @@ export class SimilarPointConstruction extends Construction {
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let ps : PointElement[] = params;
         let g = new SimilarElement(ps[0], ps[1], screen, ps[2], ps[3], ps[4], screen);
+        return [[g], g];
+    }
+}
+
+// point
+// similar (3D variant)
+// points A, B, D, E, F, planes C, G
+// (Java: Similar with explicit PlaneElements instead of screen)
+export class SimilarPoint3dConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.similar;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement,
+        ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const A = params[0] as PointElement, B = params[1] as PointElement;
+        const C = params[2] as PlaneElement;
+        const D = params[3] as PointElement, E = params[4] as PointElement, F = params[5] as PointElement;
+        const G = params[6] as PlaneElement;
+        const g = new SimilarElement(A, B, C, D, E, F, G);
         return [[g], g];
     }
 }
@@ -846,6 +877,32 @@ export class AngleDividerPointConstruction extends Construction {
     }
 }
 
+// point — angleBisector (3D variant)
+// points B, A, C, plane D
+export class AngleBisectorPoint3dConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.angleBisector;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new AngleDividerElement(ps[0], ps[1], ps[2], params[3] as PlaneElement, 2);
+        return [[g], g];
+    }
+}
+
+// point — angleDivider (3D variant)
+// points B, A, C, plane D, integer n
+export class AngleDividerPoint3dConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.angleDivider;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement, ct.Integer];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new AngleDividerElement(ps[0], ps[1], ps[2], params[3] as PlaneElement, params[4] as number);
+        return [[g], g];
+    }
+}
+
 // point
 // fixed
 // integers x, y,[z=0]
@@ -967,6 +1024,34 @@ export class AngleDividerLineConstruction extends Construction {
     }
 }
 
+// line — angleBisector (3D variant)
+// points B, A, C, plane D
+export class AngleBisectorLine3dConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.angleBisector;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let ad = new AngleDividerElement(ps[0], ps[1], ps[2], params[3] as PlaneElement, 2);
+        let g = new LineElement({A: ps[1], B: ad});
+        return [[ad, g], g];
+    }
+}
+
+// line — angleDivider (3D variant)
+// points B, A, C, plane D, integer n
+export class AngleDividerLine3dConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.angleDivider;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement, ct.Integer];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let ad = new AngleDividerElement(ps[0], ps[1], ps[2], params[3] as PlaneElement, params[4] as number);
+        let g = new LineElement({A: ps[1], B: ad});
+        return [[ad, g], g];
+    }
+}
+
 // line
 // foot (2D variant)
 // 3 points A, B, C
@@ -985,12 +1070,24 @@ export class LineFootConstruction extends Construction {
     }
 }
 
-// TBD
 // *Solid Geometry Only*
 // line
 // foot
 // point A plane B
 // the line AD drawn perpendicular to plane B with the point D lying on B
+// (Java: PlaneFoot.java — TS: PlaneFootElement.ts, renamed for clarity)
+export class PlaneFootLineConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.foot;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const A = params[0] as PointElement;
+        const P = params[1] as PlaneElement;
+        const fo = new PlaneFootElement(A, P);
+        const g = new LineElement({A: A, B: fo});
+        return [[fo, g], g];
+    }
+}
 
 // line
 // chord
@@ -1142,6 +1239,24 @@ export class SimilarLineConstruction extends Construction {
     }
 }
 
+// line — similar (3D variant)
+// points A, B, planes C, D, E, F, G
+export class SimilarLine3dConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.similar;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement,
+        ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const A = params[0] as PointElement, B = params[1] as PointElement;
+        const C = params[2] as PlaneElement;
+        const D = params[3] as PointElement, E = params[4] as PointElement, F = params[5] as PointElement;
+        const G = params[6] as PlaneElement;
+        let sim = new SimilarElement(A, B, C, D, E, F, G);
+        let g = new LineElement({A: A, B: sim});
+        return [[sim, g], g];
+    }
+}
+
 // line
 // proportion
 // 8 points A, B, C, D, E, F, G, H
@@ -1195,14 +1310,34 @@ export class CircleRadiusCenterConstruction extends Construction {
     }
 }
 
-// TBD
-// circle
-// radius (3D, 2-point)
+// circle — radius (3D, 2-point)
 // points A, B, plane C
 // the circle with center A and radius AB in the plane C
+export class CircleRadius3dConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.radius;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
 
-// circle
-// radius (2D, 3-point)
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new CircleElement({C: ps[0], B: ps[1], AP: params[2] as PlaneElement});
+        return [[g], g];
+    }
+}
+
+// circle — radius (3D, 3-point)
+// points A, B, C, plane D
+export class CircleRadius3Point3dConstruction extends Construction {
+    constructionMethod: AllConstructions = CircleConstructions.radius;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new CircleElement({C: ps[0], A: ps[1], B: ps[2], AP: params[3] as PlaneElement});
+        return [[g], g];
+    }
+}
+
+// circle — radius (2D, 3-point)
 // points A, B, C
 // the circle with center A and radius |BC| in the screen plane
 // (Java: CircleElement(A, B, C, screen) — A=center, radius=B.distance(C))
@@ -1282,8 +1417,21 @@ export class SquarePolygonConstruction extends Construction {
     }
 }
 
+// polygon — square (3D variant)
+// points A, B, plane C
+export class SquarePolygon3dConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.square;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const [a, b] = params as [PointElement, PointElement];
+        const g = new RegularPolygonElement(a, b, params[2] as PlaneElement, 4);
+        return [[g], g];
+    }
+}
+
 // polygon
-// triangle	
+// triangle
 // points A, B, C
 // the triangle ABC given 3 vertices A, B, and C
 export class TrianglePolygonConstruction extends PolyConstruction {
@@ -1350,6 +1498,19 @@ export class EquilateralTriangleConstruction extends Construction {
     }
 }
 
+// polygon — equilateralTriangle (3D variant)
+// points A, B, plane C
+export class EquilateralTriangle3dConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.equilateralTriangle;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const [a, b] = params as [PointElement, PointElement];
+        const g = new RegularPolygonElement(a, b, params[2] as PlaneElement, 3);
+        return [[g], g];
+    }
+}
+
 // polygon
 // parallelogram
 // points A, B, C
@@ -1382,6 +1543,22 @@ export class RegularPolygonConstruction extends Construction {
         const b = params[1] as PointElement;
         const n = params[2] as number;
         const g = new RegularPolygonElement(a, b, screen, n);
+        return [[g], g];
+    }
+}
+
+// polygon — regularPolygon (3D variant)
+// points A, B, plane C, integer n
+export class RegularPolygon3dConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.regularPolygon;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement, ct.Integer];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const a = params[0] as PointElement;
+        const b = params[1] as PointElement;
+        const plane = params[2] as PlaneElement;
+        const n = params[3] as number;
+        const g = new RegularPolygonElement(a, b, plane, n);
         return [[g], g];
     }
 }
@@ -1419,6 +1596,24 @@ export class SimilarPolygonConstruction extends Construction {
         let ps : PointElement[] = params;
         let sim = new SimilarElement(ps[0], ps[1], screen, ps[2], ps[3], ps[4], screen);
         let g = new PolygonElement([ps[0], ps[1], sim]);
+        return [[sim, g], g];
+    }
+}
+
+// polygon — similar (3D variant)
+// points A, B, planes C, D, E, F, G
+export class SimilarPolygon3dConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructions.similar;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement,
+        ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const A = params[0] as PointElement, B = params[1] as PointElement;
+        const C = params[2] as PlaneElement;
+        const D = params[3] as PointElement, E = params[4] as PointElement, F = params[5] as PointElement;
+        const G = params[6] as PlaneElement;
+        let sim = new SimilarElement(A, B, C, D, E, F, G);
+        let g = new PolygonElement([A, B, sim]);
         return [[sim, g], g];
     }
 }
@@ -1520,6 +1715,19 @@ export class ArcConstruction extends Construction {
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let ps : PointElement[] = params;
         let g = new ArcElement(ps[0], ps[1], ps[2], screen);
+        return [[g], g];
+    }
+}
+
+// sector — arc (3D variant)
+// points A, M, B, plane D
+export class Arc3dConstruction extends Construction {
+    constructionMethod: AllConstructions = SectorConstructions.arc;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        let ps : PointElement[] = params;
+        let g = new ArcElement(ps[0], ps[1], ps[2], params[3] as PlaneElement);
         return [[g], g];
     }
 }
@@ -1735,12 +1943,16 @@ export const constructions : Construction[] = [
     new IntersectionConstruction(),
     new IntersectionConstructionScreen(),
     new FootPointConsturction(),
+    new PlaneFootPointConstruction(),
     new ExtendConstruction(),
     new CutoffConstruction(),
     new ParallelogramConstruction(),
+    new SimilarPoint3dConstruction(),
     new SimilarPointConstruction(),
     new ProportionPointConstruction(),
+    new AngleBisectorPoint3dConstruction(),
     new AngleBisectorPointConstruction(),
+    new AngleDividerPoint3dConstruction(),
     new AngleDividerPointConstruction(),
     new MeanProportionalPointConstruction(),
     new PlaneSliderConstruction(),
@@ -1758,9 +1970,12 @@ export const constructions : Construction[] = [
     new LineExtendConstruction(),
     new SectorConstruction(),
     new Sector2Construction(),
+    new Arc3dConstruction(),
     new ArcConstruction(),
     new CircleSliderConstruction(),
     new CircleSliderConstruction2dPoint(),
+    new CircleRadius3Point3dConstruction(),
+    new CircleRadius3dConstruction(),
     new CircleRadius3PointConstruction(),
     new CircleRadiusCenterConstruction(),
     new InvertCircleConstruction(),
@@ -1779,22 +1994,30 @@ export const constructions : Construction[] = [
     new ChordConstruction(),
     new LineParallelConstruction(),
     new LineCutoffConstruction(),
+    new PlaneFootLineConstruction(),
     new LineFootConstruction(),
+    new SimilarLine3dConstruction(),
     new SimilarLineConstruction(),
     new ProportionLineConstruction(),
+    new AngleBisectorLine3dConstruction(),
     new AngleBisectorLineConstruction(),
+    new AngleDividerLine3dConstruction(),
     new AngleDividerLineConstruction(),
     new MeanProportionalLineConstruction(),
     new TrianglePolygonConstruction(),
     new StarPolygonConstruction(),
+    new RegularPolygon3dConstruction(),
     new RegularPolygonConstruction(),
+    new SquarePolygon3dConstruction(),
     new SquarePolygonConstruction(),
+    new EquilateralTriangle3dConstruction(),
     new EquilateralTriangleConstruction(),
     new ParallelogramPolygonConstruction(),
     new QuadrilateralPolygonConstruction(),
     new OctagonPolygonConstruction(),
     new PentagonPolygonConstruction(),
     new HexagonPolygonConstruction(),
+    new SimilarPolygon3dConstruction(),
     new SimilarPolygonConstruction(),
     new ApplicationPolygonConstruction(),
     new VertexConstruction(),

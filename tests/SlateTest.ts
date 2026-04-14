@@ -963,6 +963,271 @@ describe("slate", ()=> {
         almostEqual(C.z, 50, 0.01);
     });
 
+    // --- 3D signature variant tests ---
+
+    // circle;radius 3D (2-point with explicit plane)
+    it("should create a circle with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 50, 0] },
+            { name: "B", construction: E.Point.fixed, params: [100, 50, 0] },
+            { name: "C", construction: E.Circle.radius, params: ["A", "B", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        let circle = slate.lookupElement("C") as CircleElement;
+        almostEqual(circle.radius, 50, 0.01);
+        // AP should be the explicit plane, not screen
+        assert.ok(circle.AP != null);
+    });
+
+    // polygon;equilateralTriangle 3D (with explicit plane)
+    it("should create an equilateral triangle with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 50, 0] },
+            { name: "B", construction: E.Point.fixed, params: [150, 50, 0] },
+            { name: "T", construction: E.Polygon.equilateralTriangle, params: ["A", "B", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let tri = slate.lookupElement("T") as PolygonElement;
+        assert.equal(tri.V.length, 3);
+        // All sides should be equal (100)
+        let side = tri.V[0].distance(tri.V[1]);
+        almostEqual(side, 100, 0.01);
+        almostEqual(tri.V[1].distance(tri.V[2]), side, 0.01);
+        almostEqual(tri.V[2].distance(tri.V[0]), side, 0.01);
+    });
+
+    // sector;arc 3D (with explicit plane)
+    it("should create an arc with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 130, 0] },
+            { name: "M", construction: E.Point.fixed, params: [70, 210, 0] },
+            { name: "B", construction: E.Point.fixed, params: [120, 200, 0] },
+            { name: "arc", construction: E.Sector.arc, params: ["A", "M", "B", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let arc = slate.lookupElement("arc");
+        assert.ok(arc != null);
+    });
+
+    // point;similar 3D (with explicit planes)
+    it("should compute a similar point with explicit planes (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 200, 0] },
+            { name: "B", construction: E.Point.fixed, params: [150, 200, 0] },
+            { name: "D", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "Ep", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "F", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "C", construction: E.Point.similar, params: ["A", "B", "plane", "D", "Ep", "F", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let C = slate.lookupElement("C") as PointElement;
+        assert.ok(!isNaN(C.x));
+        assert.ok(!isNaN(C.y));
+    });
+
+    // point;angleBisector 3D
+    it("should compute angle bisector with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "B", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "D", construction: E.Point.angleBisector, params: ["A", "B", "C", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let D = slate.lookupElement("D") as PointElement;
+        almostEqual(D.x, 50, 0.1);
+        almostEqual(D.y, 50, 0.1);
+    });
+
+    // point;angleDivider 3D
+    it("should compute angle divider with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "B", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "D", construction: E.Point.angleDivider, params: ["A", "B", "C", "plane", 3] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let D = slate.lookupElement("D") as PointElement;
+        assert.ok(!isNaN(D.x));
+        assert.ok(!isNaN(D.y));
+    });
+
+    // line;angleBisector 3D
+    it("should compute line angle bisector with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "B", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "L", construction: E.Line.angleBisector, params: ["A", "B", "C", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let L = slate.lookupElement("L") as LineElement;
+        almostEqual(L.A.x, 0, 0.1);
+        almostEqual(L.A.y, 0, 0.1);
+    });
+
+    // line;angleDivider 3D
+    it("should compute line angle divider with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "B", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "L", construction: E.Line.angleDivider, params: ["A", "B", "C", "plane", 3] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let L = slate.lookupElement("L") as LineElement;
+        assert.ok(L != null);
+        assert.ok(!isNaN(L.A.x));
+    });
+
+    // line;similar 3D
+    it("should compute a similar line with explicit planes (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 200, 0] },
+            { name: "B", construction: E.Point.fixed, params: [150, 200, 0] },
+            { name: "D", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "Ep", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "F", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "L", construction: E.Line.similar, params: ["A", "B", "plane", "D", "Ep", "F", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let L = slate.lookupElement("L") as LineElement;
+        almostEqual(L.A.x, 50, 0.1);
+        assert.ok(!isNaN(L.B.x));
+    });
+
+    // circle;radius 3D (3-point with explicit plane)
+    it("should create a 3-point circle with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 50, 0] },
+            { name: "B", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [60, 80, 0] },
+            { name: "circ", construction: E.Circle.radius, params: ["A", "B", "C", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        let circle = slate.lookupElement("circ") as CircleElement;
+        almostEqual(circle.radius, 100, 0.01);
+    });
+
+    // polygon;square 3D
+    it("should create a square with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 190, 0] },
+            { name: "B", construction: E.Point.fixed, params: [170, 190, 0] },
+            { name: "S", construction: E.Polygon.square, params: ["A", "B", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let sq = slate.lookupElement("S") as PolygonElement;
+        assert.equal(sq.V.length, 4);
+        let side = sq.V[0].distance(sq.V[1]);
+        almostEqual(side, 120, 0.01);
+    });
+
+    // polygon;regularPolygon 3D
+    it("should create a regular pentagon with explicit plane (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [100, 50, 0] },
+            { name: "B", construction: E.Point.fixed, params: [200, 50, 0] },
+            { name: "pent", construction: E.Polygon.regularPolygon, params: ["A", "B", "plane", 5] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let poly = slate.lookupElement("pent") as PolygonElement;
+        assert.equal(poly.V.length, 5);
+    });
+
+    // polygon;similar 3D
+    it("should create a similar polygon with explicit planes (3D variant)", () => {
+        let data : IConstructionInfo[] = [
+            { name: "P1", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "P2", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "P3", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "plane", construction: E.Plane.threePoints, params: ["P1", "P2", "P3"] },
+            { name: "A", construction: E.Point.fixed, params: [50, 200, 0] },
+            { name: "B", construction: E.Point.fixed, params: [150, 200, 0] },
+            { name: "D", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "Ep", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "F", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "T", construction: E.Polygon.similar, params: ["A", "B", "plane", "D", "Ep", "F", "plane"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let tri = slate.lookupElement("T") as PolygonElement;
+        assert.equal(tri.V.length, 3);
+        assert.ok(!isNaN(tri.V[2].x));
+    });
+
     // polygon;starPolygon — star polygon with density d
     // {5/2} pentagram: 5 vertices, density 2
     it("should create a star polygon (pentagram) with 5 vertices", () => {
@@ -1395,6 +1660,52 @@ describe("slate", ()=> {
         P = slate.closestVisiblePoint(slate.elements,
             new PointElement({x:91, y:100}), 10);
         assert(P.name == "B");
+    });
+
+    // point;foot (plane variant) — foot of perpendicular from D to plane P
+    // Plane P = XY-plane through A=(0,0,0), B=(100,0,0), C=(0,100,0)
+    // D=(50,50,100) — foot should be (50,50,0)
+    it("should compute the foot of a perpendicular from a point to a plane", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "B", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "P", construction: E.Plane.threePoints, params: ["A", "B", "C"] },
+            { name: "D", construction: E.Point.fixed, params: [50, 50, 100] },
+            { name: "F", construction: E.Point.foot, params: ["D", "P"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let foot = slate.lookupElement("F") as PointElement;
+        almostEqual(foot.x, 50, 0.01);
+        almostEqual(foot.y, 50, 0.01);
+        almostEqual(foot.z, 0, 0.01);
+    });
+
+    // line;foot (plane variant) — line from D to foot of perpendicular on plane P
+    // Same setup: foot at (50,50,0), line from D=(50,50,100) to foot
+    it("should compute a line from a point to the foot on a plane", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "B", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "P", construction: E.Plane.threePoints, params: ["A", "B", "C"] },
+            { name: "D", construction: E.Point.fixed, params: [50, 50, 100] },
+            { name: "DF", construction: E.Line.foot, params: ["D", "P"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("DF") as LineElement;
+        // Line starts at D
+        almostEqual(line.A.x, 50, 0.01);
+        almostEqual(line.A.y, 50, 0.01);
+        almostEqual(line.A.z, 100, 0.01);
+        // Line ends at foot = (50, 50, 0)
+        almostEqual(line.B.x, 50, 0.01);
+        almostEqual(line.B.y, 50, 0.01);
+        almostEqual(line.B.z, 0, 0.01);
     });
 
 });

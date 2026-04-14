@@ -1,0 +1,25 @@
+<HTML><HEAD><TITLE>line;foot (plane variant) — applet form of view/test/line/planeFoot.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS: view/test/line/planeFoot.html -->
+<!-- ORIGINAL: view/applet-tests/line/planeFoot/original.html (propXI26) -->
+<!--
+  Trimmed propXI26 to focus on line;foot (plane variant):
+  F is on a ceiling plane, FG = line;foot from F to xyplane.
+  The line goes from F down to its perpendicular foot on the plane.
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip width=360 height=320>
+<param name=background value="35,19,100">
+<param name=title value="XI.26 — line;foot (plane)">
+<param name=e[1] value="origin;point;free;110,140;0;0,50,100">
+<param name=e[2] value="x;point;fixed;330,210,100;0;120,50,100">
+<param name=e[3] value="yzplane;plane;perpendicular;origin,x;0;0;0;0">
+<param name=e[4] value="y;point;planeSlider;yzplane,-90,202,90;0;0,50,100">
+<param name=e[5] value="xyplane;plane;3points;origin,x,y;0;0;lightGray">
+<param name=e[6] value="z1;point;perpendicular;origin,y,yzplane;0;0">
+<param name=e[7] value="z;point;lineSlider;origin,z1,40,40,100;0">
+<param name=e[8] value="Oz;line;connect;origin,z;0;0;lightGray">
+<param name=e[9] value="ceiling;plane;parallel;xyplane,z;0;0;0;0">
+<param name=e[10] value="F;point;planeSlider;ceiling,160,140,110">
+<param name=e[11] value="FG;line;foot;F,xyplane">
+</applet>
+</BODY></HTML>
