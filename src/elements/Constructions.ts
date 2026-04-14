@@ -50,6 +50,7 @@ import {PrismElement} from "./polyhedron/PrismElement";
 import {SphereIntersectionElement} from "./circle/SphereIntersectionElement";
 import {InvertCircleElement} from "./circle/InvertCircleElement";
 import {PlaneIntersection} from "./point/PlaneIntersection";
+import {PlaneFootElement} from "./point/PlaneFootElement";
 import {ApplicationElement} from "./polygon/ApplicationElement";
 import {PolygonElement} from "./polygon/PolygonElement";
 import {RegularPolygonElement} from "./polygon/RegularPolygonElement";
@@ -558,11 +559,22 @@ export class FootPointConsturction extends Construction {
     }
 }
 
-// TBD
 // point
-// foot
+// foot (plane variant — solid geometry)
 // point A plane B
 // the foot of a perpendicular drawn from A to a plane B
+// (Java: PlaneFoot.java — TS: PlaneFootElement.ts, renamed for clarity)
+export class PlaneFootPointConstruction extends Construction {
+    constructionMethod: AllConstructions = PointConstructions.foot;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const A = params[0] as PointElement;
+        const P = params[1] as PlaneElement;
+        const g = new PlaneFootElement(A, P);
+        return [[g], g];
+    }
+}
 
 // point
 // layoff used for extend and cutoff
@@ -1058,12 +1070,24 @@ export class LineFootConstruction extends Construction {
     }
 }
 
-// TBD
 // *Solid Geometry Only*
 // line
 // foot
 // point A plane B
 // the line AD drawn perpendicular to plane B with the point D lying on B
+// (Java: PlaneFoot.java — TS: PlaneFootElement.ts, renamed for clarity)
+export class PlaneFootLineConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructions.foot;
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement];
+
+    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
+        const A = params[0] as PointElement;
+        const P = params[1] as PlaneElement;
+        const fo = new PlaneFootElement(A, P);
+        const g = new LineElement({A: A, B: fo});
+        return [[fo, g], g];
+    }
+}
 
 // line
 // chord
@@ -1919,6 +1943,7 @@ export const constructions : Construction[] = [
     new IntersectionConstruction(),
     new IntersectionConstructionScreen(),
     new FootPointConsturction(),
+    new PlaneFootPointConstruction(),
     new ExtendConstruction(),
     new CutoffConstruction(),
     new ParallelogramConstruction(),
@@ -1969,6 +1994,7 @@ export const constructions : Construction[] = [
     new ChordConstruction(),
     new LineParallelConstruction(),
     new LineCutoffConstruction(),
+    new PlaneFootLineConstruction(),
     new LineFootConstruction(),
     new SimilarLine3dConstruction(),
     new SimilarLineConstruction(),

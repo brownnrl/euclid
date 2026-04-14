@@ -20,6 +20,27 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-13 — PlaneFoot.java ported + last 2 3D foot variants wired
+
+**Completed:**
+- Ported `PlaneFoot.java` → `src/elements/point/PlaneFootElement.ts` (35 lines).
+  Uses `toPlane()` projection. Constructor takes `(A: PointElement, P: PlaneElement)`.
+- Wired `PlaneFootPointConstruction` — `point;foot` with `[Point, Plane]` signature.
+- Wired `PlaneFootLineConstruction` — `line;foot` with `[Point, Plane]` signature.
+  Creates `PlaneFootElement(A, P)` + `LineElement(A, foot)`.
+- Both registered in constructions array (plane variants before 2D variants).
+- 2 Mocha tests: point foot on XY-plane, line foot endpoint coords. 71 → **73 passing**.
+- Test view pages: `view/test/point/planeFoot.html`, `view/test/line/planeFoot.html` (propXI26).
+- 3-way harness pages for both: `view/applet-tests/{point,line}/planeFoot/`.
+- Updated: construction-tracker, java-port-tracker, delta report.
+
+**Phase 1 remaining work:**
+- 12 platform bugs/features (parseColor, HSB, gray, faceColor, font,
+  fontsize, align, title, pivot rotation, keyboard reset, labels,
+  console.log)
+
+---
+
 ## 2026-04-13 — 16 3D signature variants wired
 
 **Completed:**

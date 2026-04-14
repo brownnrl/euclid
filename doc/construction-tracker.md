@@ -111,8 +111,12 @@ These affect the library as a whole, independent of individual constructions.
 - [x] **`intersection`** — `src/elements/point/Intersection.ts`
   - [x] test view: [view/test/point/intersection.html](../view/test/point/intersection.html)
 
-- [x] **`foot`** — `src/elements/point/Foot.ts`
+- [x] **`foot`** — `src/elements/point/Foot.ts` (2D), `src/elements/point/PlaneFootElement.ts` (3D plane)
   - [x] test view: [view/test/point/foot.html](../view/test/point/foot.html) — adapted from Book X lemma
+  - [x] test view: [view/test/point/planeFoot.html](../view/test/point/planeFoot.html) — propXI26 (3D plane variant)
+  - [x] applet-tests pair:
+    [view/applet-tests/point/planeFoot/{original,applet}.html](../view/applet-tests/point/planeFoot/)
+  - Plane variant uses `PlaneFootElement(A, P)` → `toPlane()`. Used in Book XI (XI.26, etc.).
 
 - [x] **`extend`** — `src/elements/point/Layoff.ts` (shared with `cutoff`)
   - no dedicated test page
@@ -311,13 +315,21 @@ These affect the library as a whole, independent of individual constructions.
   - No dedicated element class — reuses existing `Foot` + base `LineElement`.
     `construct()` creates `Foot(A, B, C)` (foot of perpendicular from A to
     line BC) then `new LineElement({A, B: foot})`.
-  - Java source: `Slate.java` line case 3, choice 0. The solid-geometry
-    variant (choice > 0, using `PlaneFoot`) remains TBD.
+  - Java source: `Slate.java` line case 3, choice 0.
   - Mocha test (1): perpendicularity check (dot product = 0), foot coords.
   - [x] test view: [view/test/line/foot.html](../view/test/line/foot.html) — full propI47 (Pythagoras)
   - [x] applet-tests pair:
     [view/applet-tests/line/foot/{original,applet}.html](../view/applet-tests/line/foot/)
   - Used in: I.47 (Pythagoras' theorem)
+
+- [x] **`foot`** (3D plane variant) — `src/elements/Constructions.ts` (`PlaneFootLineConstruction`)
+  - Uses `PlaneFootElement(A, P)` + `LineElement(A, foot)`. Line from A perpendicular to plane P.
+  - Java source: `PlaneFoot.java` → `PlaneFootElement.ts`.
+  - Mocha test (1): line endpoint coords for XY-plane projection.
+  - [x] test view: [view/test/line/planeFoot.html](../view/test/line/planeFoot.html) — propXI26
+  - [x] applet-tests pair:
+    [view/applet-tests/line/planeFoot/{original,applet}.html](../view/applet-tests/line/planeFoot/)
+  - Used in: Book XI (XI.26, etc.)
 
 - [x] **`cutoff`** — `src/elements/Constructions.ts` (`LineCutoffConstruction`)
   - Layoff+LineElement dispatch trick, same pattern as `line;extend`.
@@ -590,11 +602,13 @@ These affect the library as a whole, independent of individual constructions.
 | `Point.free` | (used in all pages) | implicit |
 | `Point.intersection` | view/test/point/intersection.html | exists |
 | `Point.foot` | view/test/point/foot.html | exists |
+| `Point.foot` (plane) | view/test/point/planeFoot.html | exists |
 | `Point.vertex` | view/test/point/vertex.html | exists |
 | `Point.circumcenter` | view/test/circumcenter_lineperp.html | compound |
 | `Point.circleSlider` | view/test/sector/sector.html | compound |
 | `Point.perpendicular` | view/test/circumcenter_lineperp.html | compound |
 | `Line.connect` | (used in all pages) | implicit |
+| `Line.foot` (plane) | view/test/line/planeFoot.html | exists |
 | `Line.perpendicular` | view/test/line/perpendicular.html | exists |
 | `Line.bichord` | view/test/line/bichord.html | exists |
 | `Circle.radius` | view/test/circle/circle.html | exists |

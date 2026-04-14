@@ -1662,4 +1662,50 @@ describe("slate", ()=> {
         assert(P.name == "B");
     });
 
+    // point;foot (plane variant) — foot of perpendicular from D to plane P
+    // Plane P = XY-plane through A=(0,0,0), B=(100,0,0), C=(0,100,0)
+    // D=(50,50,100) — foot should be (50,50,0)
+    it("should compute the foot of a perpendicular from a point to a plane", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "B", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "P", construction: E.Plane.threePoints, params: ["A", "B", "C"] },
+            { name: "D", construction: E.Point.fixed, params: [50, 50, 100] },
+            { name: "F", construction: E.Point.foot, params: ["D", "P"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let foot = slate.lookupElement("F") as PointElement;
+        almostEqual(foot.x, 50, 0.01);
+        almostEqual(foot.y, 50, 0.01);
+        almostEqual(foot.z, 0, 0.01);
+    });
+
+    // line;foot (plane variant) — line from D to foot of perpendicular on plane P
+    // Same setup: foot at (50,50,0), line from D=(50,50,100) to foot
+    it("should compute a line from a point to the foot on a plane", () => {
+        let data : IConstructionInfo[] = [
+            { name: "A", construction: E.Point.fixed, params: [0, 0, 0] },
+            { name: "B", construction: E.Point.fixed, params: [100, 0, 0] },
+            { name: "C", construction: E.Point.fixed, params: [0, 100, 0] },
+            { name: "P", construction: E.Plane.threePoints, params: ["A", "B", "C"] },
+            { name: "D", construction: E.Point.fixed, params: [50, 50, 100] },
+            { name: "DF", construction: E.Line.foot, params: ["D", "P"] },
+        ];
+        let slate = new Slate(createCanvas(400, 400));
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        let line = slate.lookupElement("DF") as LineElement;
+        // Line starts at D
+        almostEqual(line.A.x, 50, 0.01);
+        almostEqual(line.A.y, 50, 0.01);
+        almostEqual(line.A.z, 100, 0.01);
+        // Line ends at foot = (50, 50, 0)
+        almostEqual(line.B.x, 50, 0.01);
+        almostEqual(line.B.y, 50, 0.01);
+        almostEqual(line.B.z, 0, 0.01);
+    });
+
 });

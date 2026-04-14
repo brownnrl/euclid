@@ -40,7 +40,7 @@ with `[plane X]` optional parameters; these are marked separately.
 | `circumcenter` | IMPL | IMPL | |
 | `vertex` | IMPL | n/a | |
 | `foot` (point-to-line) | IMPL | n/a | |
-| `foot` (point-to-plane) | n/a | **TBD** | `PlaneFoot.java` not ported |
+| `foot` (point-to-plane) | n/a | IMPL | `PlaneFootElement.ts` (2026-04-12) |
 | `cutoff` | IMPL | n/a | |
 | `extend` | IMPL | n/a | |
 | `parallelogram` | IMPL | n/a | |
@@ -67,7 +67,7 @@ with `[plane X]` optional parameters; these are marked separately.
 | `angleBisector` | IMPL | **TBD** | 2D only |
 | `angleDivider` | IMPL | **TBD** | 2D only |
 | `foot` (3 points) | IMPL | n/a | |
-| `foot` (point + plane) | n/a | **TBD** | `PlaneFoot.java` not ported |
+| `foot` (point + plane) | n/a | IMPL | `PlaneFootLineConstruction` (2026-04-12) |
 | `chord` | IMPL | n/a | |
 | `bichord` | IMPL | n/a | |
 | `perpendicular` (5 variants) | IMPL | partial | 5 of 6; plane-based variant TBD |
@@ -159,8 +159,8 @@ with `[plane X]` optional parameters; these are marked separately.
 
 | Category | 2D impl | 2D missing | 3D variants |
 |---|---|---|---|
-| Point | 28/28 | 0 | 3 IMPL + 2 need PlaneFoot |
-| Line | 13/13 | 0 | 3 IMPL + 1 need PlaneFoot |
+| Point | 28/28 | 0 | 5 IMPL (incl. planeFoot) |
+| Line | 13/13 | 0 | 4 IMPL (incl. planeFoot) |
 | Circle | 5/5 | 0 | 2 IMPL |
 | Polygon | 13/13 | 0 | 4 IMPL |
 | Sector | 2/2 | 0 | 1 IMPL |
@@ -180,7 +180,7 @@ with `[plane X]` optional parameters; these are marked separately.
 | Java File | Status | What's needed |
 |---|---|---|
 | `InvertCircle.java` | TBD | Documented construction, no proposition uses |
-| `PlaneFoot.java` | TBD | 3D `foot` variants for point and line |
+| `PlaneFoot.java` | PORTED | `PlaneFootElement.ts` — wired as point;foot and line;foot plane variants (2026-04-12) |
 | `IntersectionPL.ts` | **BROKEN** | File exists but is a copy of `Intersection.ts` — must be rewritten |
 
 ---
@@ -255,7 +255,7 @@ From `Geometry.html`'s parameter documentation:
 5. **Wire `plane;ambient`** — 2 variants: returns `.AP` field of a point or `.AP` field of a circle
 6. **Wire `line;proportion`** — documented, no uses but should exist for completeness
 7. **Port `InvertCircle.java`** — documented construction
-8. **Port `PlaneFoot.java`** — enables 3D `foot` variants for point and line
+8. ~~**Port `PlaneFoot.java`**~~ — DONE (2026-04-12): `PlaneFootElement.ts` + both construction variants wired
 
 ### Tier 3: Wire all 19 3D variants
 
