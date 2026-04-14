@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --noEmit",
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "c8 mocha",
+    "coverage:report": "c8 report --reporter=html"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.19.17",
+    "c8": "^11.0.0",
     "canvas": "^3.2.3",
     "css-loader": "^7.1.2",
     "file-loader": "^6.2.0",
