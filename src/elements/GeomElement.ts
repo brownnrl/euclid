@@ -32,9 +32,13 @@ export abstract class GeomElement {
     }
 
     protected _name: string;
-    private _nameColor: string = 'black';
-    protected _vertexColor : string = 'red';
-    private _edgeColor : string = 'black';
+    // All colors default to null (transparent) — matching Java's Element.java.
+    // Named elements get their colors assigned by init() in index.ts, which
+    // computes type-appropriate defaults. Internal/intermediate elements
+    // created inside constructions stay null (invisible) unless explicitly set.
+    private _nameColor: string = null;
+    protected _vertexColor : string = null;
+    private _edgeColor : string = null;
     private _faceColor : string = null;
 
     private _nameHighlightColor   : string = '#FF0000';
