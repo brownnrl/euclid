@@ -102,13 +102,13 @@ export abstract class GeomElement {
             }
             else 		// put name left
             {
-                ix -= w/2;
-                iy += h/2 + 6;
+                ix = ix - w - 6;
+                iy += h/2 - 4;
                 ctx.fillText(this._name, ix, iy);
             }
         }
         else {
-            if (dy >= -dx) {	// put name right {
+            if (dy >= -dx) {	// put name right
                     ix += 2;
                     iy += h/2 - 4;
                     ctx.fillText(this._name, ix, iy);

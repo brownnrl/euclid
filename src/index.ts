@@ -42,7 +42,9 @@ function resizeCanvasToDisplaySize(canvas: HTMLCanvasElement) : void {
 }
 
 export function init(i : IInitialization) {
-    let defaultAlign : align = align.ABOVE;
+    // Java defaults to CENTRAL (0) — dynamic placement based on
+    // position relative to canvas center. Override with align param.
+    let defaultAlign : align = i.align != null ? i.align : align.CENTRAL;
     let canvasid : string = i.canvasid;
     if(canvasid == null) canvasid = "canvasid";
 
