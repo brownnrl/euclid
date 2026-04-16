@@ -15,10 +15,10 @@ export interface IConstructionInfo {
     name: string;
     construction: IndexAllConstructions;
     params: any[];
-    nameColor?: string;
-    vertexColor?: string;
-    edgeColor?: string;
-    faceColor?: string;
+    nameColor?: string | number;
+    vertexColor?: string | number;
+    edgeColor?: string | number;
+    faceColor?: string | number;
 }
 
 interface IInitialization {
@@ -43,7 +43,6 @@ function resizeCanvasToDisplaySize(canvas: HTMLCanvasElement) : void {
 
 export function init(i : IInitialization) {
     let defaultAlign : align = align.ABOVE;
-    console.log(i);
     let canvasid : string = i.canvasid;
     if(canvasid == null) canvasid = "canvasid";
 

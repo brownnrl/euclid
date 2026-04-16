@@ -29,12 +29,12 @@
                 construction: E.Point.free,
                 params: [215, 130]
             },
-            // <param name=e[3] value="AB;line;connect;A,B">
+            // <param name=e[3] value="AB;line;connect;A,B;0">
             {
                 name: "AB",
                 construction: E.Line.connect,
                 params: ["A", "B"],
-                edgeColor: "none"
+                nameColor: 0
             },
             // <param name=e[4] value="Acirc;circle;radius;A,B">
             {
@@ -48,7 +48,7 @@
                 construction: E.Circle.radius,
                 params: ["B", "A"]
             },
-            // <param name=e[6] value="CD;line;bichord;Bcirc,Acirc;0;0;0">
+            // <param name=e[6] value="CD;line;bichord;Bcirc,Acirc">
             {
                 name: "CD",
                 construction: E.Line.bichord,

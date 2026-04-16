@@ -26,13 +26,13 @@
             { name: "A",   construction: E.Point.free,                  params: [40, 170] },
             { name: "B",   construction: E.Point.free,                  params: [200, 170] },
             { name: "ABC", construction: E.Polygon.equilateralTriangle,  params: ["A", "B"],
-              edgeColor: "black" },
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
             { name: "C",   construction: E.Point.vertex,                params: ["ABC", 3],
               nameColor: "black", vertexColor: "green" },
             { name: "D",   construction: E.Point.midpoint,              params: ["A", "B"],
               nameColor: "black", vertexColor: "green" },
             { name: "CD",  construction: E.Line.connect,                params: ["C", "D"],
-              edgeColor: "blue" },
+              nameColor: 0, vertexColor: 0, edgeColor: "blue" },
         ]
     });
 </script>
