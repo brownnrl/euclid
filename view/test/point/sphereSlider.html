@@ -10,8 +10,10 @@
         title: "Point.sphereSlider — point on sphere surface",
         canvasid: "canvasId",
         elements: [
-            { name: "O", construction: E.Point.fixed, params: [150, 150, 0] },
-            { name: "R", construction: E.Point.fixed, params: [250, 150, 0] },
+            { name: "O", construction: E.Point.fixed, params: [150, 150, 0],
+              nameColor: "black", vertexColor: "green" },
+            { name: "R", construction: E.Point.fixed, params: [250, 150, 0],
+              nameColor: 0, vertexColor: 0 },
             { name: "S", construction: E.Sphere.radius, params: ["O", "R"] },
             { name: "A", construction: E.Point.sphereSlider, params: ["S", 200, 100, 50] },
             { name: "B", construction: E.Point.sphereSlider, params: ["S", 100, 200, 50] },

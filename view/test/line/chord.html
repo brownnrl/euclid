@@ -27,13 +27,15 @@
             // <param name=e[6] value="EFG;circle;radius;C,D">
             { name: "EFG", construction: E.Circle.radius, params: ["C", "D"] },
             // <param name=e[7] value="EG;line;chord;AB,EFG;0;0;0">  ← target construction (1st use)
-            { name: "EG", construction: E.Line.chord, params: ["AB", "EFG"] },
+            { name: "EG", construction: E.Line.chord, params: ["AB", "EFG"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0 },
             // <param name=e[8] value="E;point;first;EG">
             { name: "E", construction: E.Point.first, params: ["EG"] },
             // <param name=e[9] value="G;point;last;EG">
             { name: "G", construction: E.Point.last, params: ["EG"] },
             // <param name=e[10] value="H;point;midpoint;EG;black;green">
-            { name: "H", construction: E.Point.midpoint, params: ["EG"] },
+            { name: "H", construction: E.Point.midpoint, params: ["EG"],
+              nameColor: "black", vertexColor: "green" },
             // <param name=e[11] value="CG;line;connect;C,G">
             { name: "CG", construction: E.Line.connect, params: ["C", "G"] },
             // <param name=e[12] value="CH;line;connect;C,H">

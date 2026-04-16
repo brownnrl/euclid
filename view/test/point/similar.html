@@ -19,13 +19,16 @@
             // <param name=e[2] value="B;point;free;120,50">
             { name: "B", construction: E.Point.free, params: [120, 50] },
             // <param name=e[3] value="Acirc;circle;radius;A,B">
-            { name: "Acirc", construction: E.Circle.radius, params: ["A", "B"] },
+            { name: "Acirc", construction: E.Circle.radius, params: ["A", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "yellow" },
             // <param name=e[4] value="C;point;circleSlider;Acirc,50,180">
             { name: "C", construction: E.Point.circleSlider, params: ["Acirc", 50, 180] },
             // <param name=e[5] value="BCsect;sector;sector;A,B,C">
-            { name: "BCsect", construction: E.Sector.sector, params: ["A", "B", "C"] },
+            { name: "BCsect", construction: E.Sector.sector, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: "random" },
             // <param name=e[6] value="Atri;polygon;triangle;A,B,C">
-            { name: "Atri", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
+            { name: "Atri", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "yellow", faceColor: "yellow" },
             // <param name=e[7] value="BC;line;connect;B,C">
             { name: "BC", construction: E.Line.connect, params: ["B", "C"] },
 
@@ -35,15 +38,18 @@
             // <param name=e[9] value="E;point;free;380,120">
             { name: "E", construction: E.Point.free, params: [380, 120] },
             // <param name=e[10] value="Dcirc;circle;radius;D,E">
-            { name: "Dcirc", construction: E.Circle.radius, params: ["D", "E"] },
+            { name: "Dcirc", construction: E.Circle.radius, params: ["D", "E"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "pink" },
 
             // F is the similar point: △DEF ∼ △ABC  ← target construction
             // <param name=e[11] value="F;point;similar;E,D,B,A,C">
             { name: "F", construction: E.Point.similar, params: ["E", "D", "B", "A", "C"] },
             // <param name=e[12] value="EFsect;sector;sector;D,E,F">
-            { name: "EFsect", construction: E.Sector.sector, params: ["D", "E", "F"] },
+            { name: "EFsect", construction: E.Sector.sector, params: ["D", "E", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: "random" },
             // <param name=e[13] value="Dtri;polygon;triangle;D,E,F">
-            { name: "Dtri", construction: E.Polygon.triangle, params: ["D", "E", "F"] },
+            { name: "Dtri", construction: E.Polygon.triangle, params: ["D", "E", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: "pink", faceColor: "pink" },
             // <param name=e[14] value="EF;line;connect;E,F">
             { name: "EF", construction: E.Line.connect, params: ["E", "F"] },
         ]
