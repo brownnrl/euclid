@@ -13,9 +13,12 @@
             { name: "A", construction: E.Point.fixed, params: [50, 250, 0] },
             { name: "B", construction: E.Point.fixed, params: [250, 250, 0] },
             { name: "C", construction: E.Point.fixed, params: [150, 250, 100] },
-            { name: "base", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
-            { name: "D", construction: E.Point.fixed, params: [150, 100, 50] },
-            { name: "pyr", construction: E.Polyhedra.pyramid, params: ["base", "D"] },
+            { name: "base", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
+            { name: "D", construction: E.Point.fixed, params: [150, 100, 50],
+              nameColor: "black", vertexColor: "green" },
+            { name: "pyr", construction: E.Polyhedra.pyramid, params: ["base", "D"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
         ]
     });
 </script>

@@ -13,10 +13,12 @@
             { name: "A", construction: E.Point.fixed, params: [50, 250, 0] },
             { name: "B", construction: E.Point.fixed, params: [200, 250, 0] },
             { name: "C", construction: E.Point.fixed, params: [125, 250, 100] },
-            { name: "base", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
+            { name: "base", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
             { name: "D", construction: E.Point.fixed, params: [50, 250, 0] },
             { name: "Ep", construction: E.Point.fixed, params: [80, 100, 50] },
-            { name: "prism", construction: E.Polyhedra.prism, params: ["base", "D", "Ep"] },
+            { name: "prism", construction: E.Polyhedra.prism, params: ["base", "D", "Ep"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
         ]
     });
 </script>
