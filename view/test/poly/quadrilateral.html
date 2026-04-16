@@ -27,21 +27,29 @@
             // <param name=e[7] value="K;point;lineSlider;AC,110,90">
             { name: "K", construction: E.Point.lineSlider, params: ["AC", 110, 90] },
             // <param name=e[8] value="E';point;parallelogram;K,A,D">
-            { name: "E'", construction: E.Point.parallelogram, params: ["K", "A", "D"] },
-            // <param name=e[9] value="E;point;intersection;A,B,K,E'">
-            { name: "E", construction: E.Point.intersection, params: ["A", "B", "K", "E'"] },
-            // <param name=e[10] value="F;point;intersection;C,D,K,E">
-            { name: "F", construction: E.Point.intersection, params: ["C", "D", "K", "E"] },
-            // <param name=e[11] value="G';point;parallelogram;K,A,B">
-            { name: "G'", construction: E.Point.parallelogram, params: ["K", "A", "B"] },
-            // <param name=e[12] value="G;point;intersection;B,C,K,G'">
-            { name: "G", construction: E.Point.intersection, params: ["B", "C", "K", "G'"] },
-            // <param name=e[13] value="H;point;intersection;A,D,K,G'">
-            { name: "H", construction: E.Point.intersection, params: ["A", "D", "K", "G'"] },
-            // <param name=e[14] value="HDFK;polygon;quadrilateral;H,D,F,K">  ← target (1st use)
-            { name: "HDFK", construction: E.Polygon.quadrilateral, params: ["H", "D", "F", "K"] },
-            // <param name=e[15] value="EBGK;polygon;quadrilateral;E,B,G,K">  ← target (2nd use)
-            { name: "EBGK", construction: E.Polygon.quadrilateral, params: ["E", "B", "G", "K"] },
+            { name: "E'", construction: E.Point.parallelogram, params: ["K", "A", "D"],
+              nameColor: 0, vertexColor: 0 },
+            // <param name=e[9] value="E;point;intersection;A,B,K,E';0,0,0;0">
+            { name: "E", construction: E.Point.intersection, params: ["A", "B", "K", "E'"],
+              nameColor: "0,0,0", vertexColor: 0 },
+            // <param name=e[10] value="F;point;intersection;C,D,K,E;0,0,0;0">
+            { name: "F", construction: E.Point.intersection, params: ["C", "D", "K", "E"],
+              nameColor: "0,0,0", vertexColor: 0 },
+            // <param name=e[11] value="G';point;parallelogram;K,A,B;0;0">
+            { name: "G'", construction: E.Point.parallelogram, params: ["K", "A", "B"],
+              nameColor: 0, vertexColor: 0 },
+            // <param name=e[12] value="G;point;intersection;B,C,K,G';0,0,0;0">
+            { name: "G", construction: E.Point.intersection, params: ["B", "C", "K", "G'"],
+              nameColor: "0,0,0", vertexColor: 0 },
+            // <param name=e[13] value="H;point;intersection;A,D,K,G';0,0,0;0">
+            { name: "H", construction: E.Point.intersection, params: ["A", "D", "K", "G'"],
+              nameColor: "0,0,0", vertexColor: 0 },
+            // <param name=e[14] value="HDFK;polygon;quadrilateral;H,D,F,K;0;0;0,0,0;random">
+            { name: "HDFK", construction: E.Polygon.quadrilateral, params: ["H", "D", "F", "K"],
+              nameColor: 0, vertexColor: 0, edgeColor: "0,0,0", faceColor: "random" },
+            // <param name=e[15] value="EBGK;polygon;quadrilateral;E,B,G,K;0;0;0,0,0;random">
+            { name: "EBGK", construction: E.Polygon.quadrilateral, params: ["E", "B", "G", "K"],
+              nameColor: 0, vertexColor: 0, edgeColor: "0,0,0", faceColor: "random" },
         ]
     });
 </script>

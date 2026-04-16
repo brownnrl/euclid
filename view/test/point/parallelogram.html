@@ -24,10 +24,13 @@
         elements: [
             { name: "A",  construction: E.Point.free,          params: [40, 80] },
             { name: "B",  construction: E.Point.free,          params: [190, 80] },
-            { name: "AB", construction: E.Line.connect,        params: ["A", "B"] },
             { name: "C",  construction: E.Point.free,          params: [40, 120] },
             { name: "D'", construction: E.Point.parallelogram, params: ["C", "A", "B"],
               nameColor: 0, vertexColor: 0 },
+            { name: "AB", construction: E.Line.connect,        params: ["A", "B"] },
+            { name: "AC", construction: E.Line.connect,        params: ["A", "C"] },
+            { name: "BD'",construction: E.Line.connect,        params: ["B", "D'"] },
+            { name: "CD'",construction: E.Line.connect,        params: ["C", "D'"] },
         ]
     });
 </script>

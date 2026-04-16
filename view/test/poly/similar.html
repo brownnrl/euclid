@@ -16,7 +16,8 @@
             { name: "D", construction: E.Point.free, params: [260, 40] },
             { name: "C", construction: E.Point.free, params: [190, 80] },
             { name: "Ep", construction: E.Point.free, params: [270, 180] },
-            { name: "CDE", construction: E.Polygon.triangle, params: ["C", "D", "Ep"] },
+            { name: "CDE", construction: E.Polygon.triangle, params: ["C", "D", "Ep"],
+              nameColor: 0, vertexColor: 0, edgeColor: "0,0,0", faceColor: "random" },
             // Base line AB
             { name: "A", construction: E.Point.free, params: [40, 180] },
             { name: "B", construction: E.Point.free, params: [200, 180] },
@@ -25,7 +26,8 @@
             { name: "G", construction: E.Point.cutoff, params: ["A", "B", "C", "Ep"] },
             // Similar triangle AGF where △AGF ∼ △CED  ← target
             // <param name=e[12] value="AGF;polygon;similar;A,G,C,E,D">
-            { name: "AGF", construction: E.Polygon.similar, params: ["A", "G", "C", "Ep", "D"] },
+            { name: "AGF", construction: E.Polygon.similar, params: ["A", "G", "C", "Ep", "D"],
+              nameColor: 0, vertexColor: 0, edgeColor: "0,0,0", faceColor: "random" },
             { name: "F", construction: E.Point.vertex, params: ["AGF", 3] },
         ]
     });

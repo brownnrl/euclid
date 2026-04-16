@@ -17,13 +17,15 @@
             // <param name=e[2] value="B;point;free;30,80">
             { name: "B", construction: E.Point.free, params: [30, 80] },
             // <param name=e[3] value="ABCDE;polygon;regularPolygon;A,B,5">  ← target
-            { name: "ABCDE", construction: E.Polygon.regularPolygon, params: ["A", "B", 5] },
+            { name: "ABCDE", construction: E.Polygon.regularPolygon, params: ["A", "B", 5],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: 0 },
             // Extract vertices
             { name: "C", construction: E.Point.vertex, params: ["ABCDE", 3] },
             { name: "D", construction: E.Point.vertex, params: ["ABCDE", 4] },
             { name: "E", construction: E.Point.vertex, params: ["ABCDE", 5] },
             // Circumcircle through A, B, C
-            { name: "circ", construction: E.Circle.circumcircle, params: ["A", "B", "C"] },
+            { name: "circ", construction: E.Circle.circumcircle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
             // Diagonals
             { name: "AC", construction: E.Line.connect, params: ["A", "C"] },
             { name: "AD", construction: E.Line.connect, params: ["A", "D"] },
