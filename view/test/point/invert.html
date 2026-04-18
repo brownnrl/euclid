@@ -12,7 +12,8 @@
         elements: [
             { name: "O", construction: E.Point.free, params: [150, 150] },
             { name: "R", construction: E.Point.free, params: [250, 150] },
-            { name: "C", construction: E.Circle.radius, params: ["O", "R"] },
+            { name: "C", construction: E.Circle.radius, params: ["O", "R"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: 0 },
             { name: "A", construction: E.Point.free, params: [175, 150] },
             { name: "A'", construction: E.Point.invert, params: ["A", "C"] },
             { name: "B", construction: E.Point.circleSlider, params: ["C", 200, 100] },

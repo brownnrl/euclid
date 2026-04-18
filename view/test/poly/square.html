@@ -17,7 +17,8 @@
             // <param name=e[2] value="B;point;free;170,190">
             { name: "B", construction: E.Point.free, params: [170, 190] },
             // <param name=e[3] value="ABED;polygon;square;A,B">  ← target
-            { name: "ABED", construction: E.Polygon.square, params: ["A", "B"] },
+            { name: "ABED", construction: E.Polygon.square, params: ["A", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "0,0,0", faceColor: "random" },
             // <param name=e[4] value="E;point;vertex;ABED,3">
             { name: "E", construction: E.Point.vertex, params: ["ABED", 3] },
             // <param name=e[5] value="D;point;vertex;ABED,4">

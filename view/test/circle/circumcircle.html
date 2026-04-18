@@ -25,8 +25,10 @@
         { construction: E.Point.free, name: "B", params: [150, 40]},
         { construction: E.Point.free, name: "F", params: [110, 100]},
         { construction: E.Point.free, name: "H", params: [190,100]},
-        { construction: E.Circle.circumcircle, name: "ABC", params: ["B","F","H"]},
-        { construction: E.Point.center, name: "P", params: ["ABC"]},
+        { construction: E.Circle.circumcircle, name: "ABC", params: ["B","F","H"],
+            nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random"},
+        { construction: E.Point.center, name: "P", params: ["ABC"],
+            nameColor: "black", vertexColor: "green"},
     ]
     geomlib.init({
         background: '#ffe9cd',

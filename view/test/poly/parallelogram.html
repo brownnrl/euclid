@@ -20,7 +20,8 @@
             // <param name=e[3] value="C;point;free;50,175">
             { name: "C", construction: E.Point.free, params: [50, 175] },
             // <param name=e[4] value="CABD;polygon;parallelogram;C,A,B;0;0;0,0,0;random">  ← target
-            { name: "CABD", construction: E.Polygon.parallelogram, params: ["C", "A", "B"] },
+            { name: "CABD", construction: E.Polygon.parallelogram, params: ["C", "A", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "0,0,0", faceColor: "random" },
             // <param name=e[5] value="D;point;vertex;CABD,4">
             { name: "D", construction: E.Point.vertex, params: ["CABD", 4] },
             // <param name=e[6] value="BC;line;connect;B,C">  (the diameter that bisects the area)

@@ -36,39 +36,39 @@
                 name: "origin",
                 construction: E.Point.free,
                 params: [110, 140],
-                vertexColor: 0,
-                nameColor: "0,50,100"
+                nameColor: 0,
+                vertexColor: "0,50,100"
             },
             {
                 name: "x",
                 construction: E.Point.fixed,
                 params: [330, 210, 100],
-                vertexColor: 0,
-                nameColor: "120,50,100"
+                nameColor: 0,
+                vertexColor: "120,50,100"
             },
             {
                 name: "yzplane",
                 construction: E.Plane.perpendicular,
                 params: ["origin", "x"],
-                edgeColor: 0,
-                faceColor: 0,
+                nameColor: 0,
                 vertexColor: 0,
-                nameColor: 0
+                edgeColor: 0,
+                faceColor: 0
             },
             {
                 name: "y",
                 construction: E.Point.planeSlider,
                 params: ["yzplane", -90, 202, 90],
-                vertexColor: 0,
-                nameColor: "0,50,100"
+                nameColor: 0,
+                vertexColor: "0,50,100"
             },
             {
                 name: "xyplane",
                 construction: E.Plane.threePoints,
                 params: ["origin", "x", "y"],
-                edgeColor: 0,
-                faceColor: "lightGray",
-                vertexColor: 0
+                nameColor: 0,
+                vertexColor: 0,
+                edgeColor: "lightGray"
             },
             {
                 name: "z1",
@@ -81,15 +81,15 @@
                 name: "z",
                 construction: E.Point.lineSlider,
                 params: ["origin", "z1", 40, 40, 100],
-                vertexColor: 0
+                nameColor: 0
             },
             {
                 name: "Oz",
                 construction: E.Line.connect,
                 params: ["origin", "z"],
-                edgeColor: 0,
-                faceColor: 0,
-                nameColor: "lightGray"
+                nameColor: 0,
+                vertexColor: 0,
+                edgeColor: "lightGray"
             },
             {
                 name: "ceiling",

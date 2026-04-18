@@ -19,20 +19,26 @@
             { name: "Ep", construction: E.Point.free, params: [150, 90] },
             { name: "F", construction: E.Point.free, params: [250, 210] },
             // Circumcircle through A, B, C
-            { name: "ABC", construction: E.Circle.circumcircle, params: ["A", "B", "C"] },
+            { name: "ABC", construction: E.Circle.circumcircle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "green", faceColor: 0 },
             // D = harmonic conjugate of C w.r.t. A, B
             { name: "D", construction: E.Point.harmonic, params: ["C", "A", "B"] },
             // Harmonic conjugates of A, B, C, D w.r.t. E, F
-            { name: "EAF", construction: E.Circle.circumcircle, params: ["Ep", "A", "F"] },
+            { name: "EAF", construction: E.Circle.circumcircle, params: ["Ep", "A", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: "gray", faceColor: 0 },
             { name: "A'", construction: E.Point.harmonic, params: ["A", "Ep", "F"] },
-            { name: "EBF", construction: E.Circle.circumcircle, params: ["Ep", "B", "F"] },
+            { name: "EBF", construction: E.Circle.circumcircle, params: ["Ep", "B", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: "gray", faceColor: 0 },
             { name: "B'", construction: E.Point.harmonic, params: ["B", "Ep", "F"] },
-            { name: "ECF", construction: E.Circle.circumcircle, params: ["Ep", "C", "F"] },
+            { name: "ECF", construction: E.Circle.circumcircle, params: ["Ep", "C", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: "gray", faceColor: 0 },
             { name: "C'", construction: E.Point.harmonic, params: ["C", "Ep", "F"] },
-            { name: "EDF", construction: E.Circle.circumcircle, params: ["Ep", "D", "F"] },
+            { name: "EDF", construction: E.Circle.circumcircle, params: ["Ep", "D", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: "gray", faceColor: 0 },
             { name: "D'", construction: E.Point.harmonic, params: ["D", "Ep", "F"] },
             // Circumcircle through A', B', C' — should be concyclic
-            { name: "A'B'C'", construction: E.Circle.circumcircle, params: ["A'", "B'", "C'"] },
+            { name: "A'B'C'", construction: E.Circle.circumcircle, params: ["A'", "B'", "C'"],
+              nameColor: 0, vertexColor: 0, edgeColor: "green" },
         ]
     });
 </script>

@@ -16,19 +16,26 @@
             { name: "B", construction: E.Point.free, params: [30, 190] },
             { name: "C", construction: E.Point.free, params: [240, 260] },
             // Two angle bisectors — their intersection is the incenter
-            { name: "Bbis", construction: E.Line.angleBisector, params: ["A", "B", "C"] },
-            { name: "Cbis", construction: E.Line.angleBisector, params: ["B", "C", "A"] },
-            { name: "D", construction: E.Point.intersection, params: ["Bbis", "Cbis"] },
+            { name: "Bbis", construction: E.Line.angleBisector, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0 },
+            { name: "Cbis", construction: E.Line.angleBisector, params: ["B", "C", "A"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0 },
+            { name: "D", construction: E.Point.intersection, params: ["Bbis", "Cbis"],
+              nameColor: "black", vertexColor: "green" },
             // Feet of perpendiculars from incenter to each side
             { name: "F", construction: E.Point.foot, params: ["D", "B", "C"] },
-            { name: "Ep", construction: E.Point.foot, params: ["D", "A", "B"] },
+            { name: "E", construction: E.Point.foot, params: ["D", "A", "B"] },
             { name: "G", construction: E.Point.foot, params: ["D", "C", "A"] },
-            // Incircle
-            { name: "incircle", construction: E.Circle.radius, params: ["D", "Ep"] },
             // Triangles showing the decomposition
-            { name: "ADB", construction: E.Polygon.triangle, params: ["A", "D", "B"] },
-            { name: "CDB", construction: E.Polygon.triangle, params: ["C", "D", "B"] },
-            { name: "CDA", construction: E.Polygon.triangle, params: ["C", "D", "A"] },
+            { name: "ADB", construction: E.Polygon.triangle, params: ["A", "D", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
+            { name: "CDB", construction: E.Polygon.triangle, params: ["C", "D", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
+            { name: "CDA", construction: E.Polygon.triangle, params: ["C", "D", "A"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
+            // Incircle
+            { name: "incircle", construction: E.Circle.radius, params: ["D", "E"],
+              nameColor: 0, vertexColor: 0, edgeColor: "lightGray", faceColor: 0 },
         ]
     });
 </script>

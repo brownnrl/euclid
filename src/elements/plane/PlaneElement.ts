@@ -60,16 +60,66 @@ export class PlaneElement extends GeomElement {
         }
     }
 
+    public defined(): boolean {
+        return this.A != null && this.B != null && this.C != null;
+    }
+
+    // A plane renders as a parallelogram with corners A, B, D, C
+    // where D = B + C - A (the 4th corner in the plane of A, B, C).
+
     public drawEdge(c: SlateCanvas): void {
+        if (this.edgeColor == null || !this.defined()) return;
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
+        ctx.save();
+        ctx.strokeStyle = this.edgeColor;
+        let dx = this.B.x + this.C.x - this.A.x;
+        let dy = this.B.y + this.C.y - this.A.y;
+        ctx.beginPath();
+        ctx.moveTo(this.A.x, this.A.y);
+        ctx.lineTo(this.B.x, this.B.y);
+        ctx.lineTo(dx, dy);
+        ctx.lineTo(this.C.x, this.C.y);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
     }
 
     public drawFace(c: SlateCanvas): void {
+        if (this.faceColor == null || !this.defined()) return;
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
+        ctx.save();
+        ctx.fillStyle = this.faceColor;
+        let dx = this.B.x + this.C.x - this.A.x;
+        let dy = this.B.y + this.C.y - this.A.y;
+        ctx.beginPath();
+        ctx.moveTo(this.A.x, this.A.y);
+        ctx.lineTo(this.B.x, this.B.y);
+        ctx.lineTo(dx, dy);
+        ctx.lineTo(this.C.x, this.C.y);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
     }
 
     public drawName(c: SlateCanvas): void {
+        if (this.nameColor == null || this.name == null || !this.defined()) return;
+        // Label placed at midpoint of BC, matching Java PlaneElement.drawName
+        let ix = Math.round((this.B.x + this.C.x) / 2.0);
+        let iy = Math.round((this.B.y + this.C.y) / 2.0);
+        this.drawString(ix, iy, c);
     }
 
     public drawVertex(c: SlateCanvas): void {
+        if (this.vertexColor == null || !this.defined()) return;
+        // Draw vertex at D = B + C - A (the 4th parallelogram corner).
+        // A, B, C are drawn by their own drawVertex calls in Slate.
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
+        let dx = this.B.x + this.C.x - this.A.x;
+        let dy = this.B.y + this.C.y - this.A.y;
+        ctx.beginPath();
+        ctx.fillStyle = this.vertexColor;
+        ctx.arc(dx, dy, 2, 0, 2*Math.PI, false);
+        ctx.fill();
     }
 
     public rotate(pivot: PointElement, ac: number, as: number): void {

@@ -34,13 +34,13 @@
             { name: "B", construction: E.Point.free, params: [50, 150] },
             { name: "C", construction: E.Point.free, params: [250, 150] },
             { name: "T", construction: E.Polygon.triangle, params: ["A", "B", "C"],
-              edgeColor: "black" },
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: 0 },
             { name: "V1", construction: E.Point.vertex, params: ["T", 1],
-              nameColor: "red", vertexColor: "red" },
+              nameColor: "black" },
             { name: "V2", construction: E.Point.vertex, params: ["T", 2],
-              nameColor: "blue", vertexColor: "blue" },
+              nameColor: "black" },
             { name: "V3", construction: E.Point.vertex, params: ["T", 3],
-              nameColor: "green", vertexColor: "green" },
+              nameColor: "black" },
         ]
     });
 </script>

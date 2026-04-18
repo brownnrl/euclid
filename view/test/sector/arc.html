@@ -30,14 +30,15 @@
         elements: [
             { name: "A",   construction: E.Point.free,       params: [50, 130] },
             { name: "B",   construction: E.Point.free,       params: [120, 200] },
-            { name: "C",   construction: E.Point.free,       params: [200, 50] },
+            { name: "C",   construction: E.Point.free,       params: [200, 50],
+              nameColor: "black", vertexColor: 0 },
             { name: "ABC", construction: E.Circle.circumcircle, params: ["A", "B", "C"],
-              edgeColor: "black", faceColor: "random" },
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
             { name: "D",   construction: E.Point.center,     params: ["ABC"],
               vertexColor: "green", nameColor: "black" },
             { name: "E",   construction: E.Point.free,       params: [70, 210] },
             { name: "AEB", construction: E.Sector.arc,       params: ["A", "E", "B"],
-              edgeColor: "black" },
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: 0 },
             { name: "DE",  construction: E.Line.connect,     params: ["D", "E"] },
             { name: "F",   construction: E.Point.cutoff,     params: ["D", "E", "D", "A"] },
         ]

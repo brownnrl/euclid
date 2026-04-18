@@ -86,7 +86,7 @@ export class CircleElement extends GeomElement {
             return;
         }
         let h : number = r/Math.sqrt(amp2);
-        // determine major and minor radius vectors
+        // determine major and minor radius vectors (a,b) and (c,d)
         let rcos :number = h*this.AP.T.z;
         let rsin :number = -h*this.AP.S.z;
         let majorx :number = rcos*this.AP.S.x + rsin*this.AP.T.x;
@@ -94,15 +94,27 @@ export class CircleElement extends GeomElement {
         let factor :number = (amp2 < 1.0)? Math.sqrt(1.0-amp2) : 0.0;
         let minorx :number = -factor*majory;
         let minory :number = factor*majorx;
-        let zeroPoint : PointElement = new PointElement({x:0,y:0})
-        let majorR : number = (new PointElement({x:majorx, y:majory})).distance(zeroPoint);
-        let minorR : number = (new PointElement({x:minorx, y:minory})).distance(zeroPoint);
+        let majorR : number = Math.sqrt(majorx*majorx + majory*majory);
+        let minorR : number = Math.sqrt(minorx*minorx + minory*minory);
+        // Degenerate case: ellipse is so thin it looks like a line
+        if (minorR < 0.5) {
+            ctx.moveTo(this.Center.x - majorx, this.Center.y - majory);
+            ctx.lineTo(this.Center.x + majorx, this.Center.y + majory);
+            return;
+        }
+        if (majorR < 0.5) {
+            ctx.moveTo(this.Center.x - minorx, this.Center.y - minory);
+            ctx.lineTo(this.Center.x + minorx, this.Center.y + minory);
+            return;
+        }
+        // Rotation angle of the major axis
+        let rotation : number = Math.atan2(majory, majorx);
         ctx.ellipse(
             this.Center.x,
             this.Center.y,
             majorR,
             minorR,
-            0,
+            rotation,
             0,
             2*Math.PI);
     }

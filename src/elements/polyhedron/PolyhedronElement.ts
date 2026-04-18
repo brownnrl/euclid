@@ -83,7 +83,12 @@ export class PolyhedronElement extends GeomElement {
     public drawFace(c: SlateCanvas): void {
         if (this.faceColor != null && this.defined()) {
             for (let j = 0; j < this.P.length; ++j) {
+                // Pass the polyhedron's faceColor to each face polygon,
+                // matching Java's P[j].drawFace(g, faceColor)
+                let savedColor = this.P[j].faceColor;
+                this.P[j].faceColor = this.faceColor;
                 this.P[j].drawFace(c);
+                this.P[j].faceColor = savedColor;
             }
         }
     }

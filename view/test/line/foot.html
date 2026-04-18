@@ -17,20 +17,26 @@
             // <param name=e[2] value="C;point;free;230,200">
             { name: "C", construction: E.Point.free, params: [230, 200] },
             // <param name=e[3] value="O;point;midpoint;B,C">
-            { name: "O", construction: E.Point.midpoint, params: ["B", "C"] },
-            // <param name=e[4] value="OABC;circle;radius;O,B">
-            { name: "OABC", construction: E.Circle.radius, params: ["O", "B"] },
+            { name: "O", construction: E.Point.midpoint, params: ["B", "C"],
+              nameColor: 0, vertexColor: 0 },
+            // <param name=e[4] value="OABC;circle;radius;O,B;none;none;none;none">
+            { name: "OABC", construction: E.Circle.radius, params: ["O", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: 0 },
             // <param name=e[5] value="A;point;circleSlider;OABC,140,100">
             { name: "A", construction: E.Point.circleSlider, params: ["OABC", 140, 100] },
             // <param name=e[6] value="ABC;polygon;triangle;A,B,C">
-            { name: "ABC", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
+            { name: "ABC", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
             // Three squares on the sides
-            // <param name=e[7] value="A2;polygon;square;C,B">
-            { name: "A2", construction: E.Polygon.square, params: ["C", "B"] },
-            // <param name=e[8] value="B2;polygon;square;B,A">
-            { name: "B2", construction: E.Polygon.square, params: ["B", "A"] },
-            // <param name=e[9] value="C2;polygon;square;A,C">
-            { name: "C2", construction: E.Polygon.square, params: ["A", "C"] },
+            // <param name=e[7] value="A2;polygon;square;C,B;none;none;black">
+            { name: "A2", construction: E.Polygon.square, params: ["C", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            // <param name=e[8] value="B2;polygon;square;B,A;none;none;black">
+            { name: "B2", construction: E.Polygon.square, params: ["B", "A"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            // <param name=e[9] value="C2;polygon;square;A,C;none;none;black">
+            { name: "C2", construction: E.Polygon.square, params: ["A", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black" },
             // Extract vertices of the squares
             // <param name=e[10] value="G;point;vertex;B2,3">
             { name: "G", construction: E.Point.vertex, params: ["B2", 3] },
@@ -50,7 +56,8 @@
             // <param name=e[17] value="L;point;last;AL">
             { name: "L", construction: E.Point.last, params: ["AL"] },
             // <param name=e[18] value="J;point;intersection;B,C,A,L">
-            { name: "J", construction: E.Point.intersection, params: ["B", "C", "A", "L"] },
+            { name: "J", construction: E.Point.intersection, params: ["B", "C", "A", "L"],
+              nameColor: 0, vertexColor: "green" },
             // Auxiliary lines
             // <param name=e[19] value="AD;line;connect;A,D">
             { name: "AD", construction: E.Line.connect, params: ["A", "D"] },
