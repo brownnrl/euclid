@@ -534,13 +534,6 @@ export class CircumcenterConstruction2d extends CircumcenterConstruction {
     }
 }
 
-// TBD
-/* point
- * vertex
- * polygon A integer i
- * a vertex Ai of the polygon A1A2...An with index i
- */
-
 /* point
  * foot
  * points A, B, C
@@ -1128,12 +1121,11 @@ export class BichordConstruction extends Construction {
 // points A, B, [plane C], D, E 
 // the line AF perpendicular to AB in plane C equal to DE
 
-// TBD
-// *Solid Geometry Only*
 // line
 // perpendicular
-// point A, plane B point C, D 
-// the line EF perpendicular to plane B passing through A equal to CD with E lying on B
+// points A, B [plane C (screen)]
+// the line from A to the point D so that AD is equal and perpendicular to AB in plane C
+// (Java: Slate.java line case 6 — Perpendicular(A,B,screen,A,B) + LineElement(A,result))
 export class LinePerpendicular1Construction extends PointPerpendicular1Construction {
     constructionMethod : AllConstructions = LineConstructions.perpendicular;
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
@@ -1141,6 +1133,8 @@ export class LinePerpendicular1Construction extends PointPerpendicular1Construct
         return [es[0], es[0][0]];
     }
 }
+// line — perpendicular variant 2: points A, B, plane C
+// (Java: Slate.java line case 6 — Perpendicular(A,B,C,A,B) + LineElement(A,result))
 export class LinePerpendicular2Construction extends PointPerpendicular2Construction {
     constructionMethod : AllConstructions = LineConstructions.perpendicular;
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
@@ -1148,6 +1142,8 @@ export class LinePerpendicular2Construction extends PointPerpendicular2Construct
         return [es[0], es[0][0]];
     }
 }
+// line — perpendicular variant 3: points A, B, D, E [plane C (screen)]
+// (Java: Slate.java line case 6 — Perpendicular(A,B,screen,D,E) + LineElement(A,result))
 export class LinePerpendicular3Construction extends PointPerpendicular3Construction {
     constructionMethod : AllConstructions = LineConstructions.perpendicular;
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
@@ -1155,6 +1151,8 @@ export class LinePerpendicular3Construction extends PointPerpendicular3Construct
         return [es[0], es[0][0]];
     }
 }
+// line — perpendicular variant 4: points A, B, plane C, points D, E
+// (Java: Slate.java line case 6 — Perpendicular(A,B,C,D,E) + LineElement(A,result))
 export class LinePerpendicular4Construction extends PointPerpendicular4Construction {
     constructionMethod : AllConstructions = LineConstructions.perpendicular;
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
@@ -1162,6 +1160,8 @@ export class LinePerpendicular4Construction extends PointPerpendicular4Construct
         return [es[0], es[0][0]];
     }
 }
+// line — perpendicular variant 5: point A, plane B, points C, D
+// (Java: Slate.java line case 6 — PlanePerpendicularLine(A,B,C,D) + LineElement(A,result))
 export class LinePerpendicular5Construction extends PointPerpendicular5Construction {
     constructionMethod : AllConstructions = LineConstructions.perpendicular;
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
@@ -1707,7 +1707,9 @@ export class Sector2Construction extends Construction {
 // points A, M, B
 // the arc of the circle through points A, M, B in the screen plane
 // (M is the "through" point between the two endpoints A and B)
-// 2D variant; the 3D variant [Point, Point, Point, Plane] is TBD per 2D-first policy.
+// 2D variant: arc passes through A, M, B in the screen plane.
+// M is the "through" point between endpoints A and B.
+// (Java: Slate.java sector case 1 — new ArcElement(A, M, B, screen))
 export class ArcConstruction extends Construction {
     constructionMethod: AllConstructions = SectorConstructions.arc;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
@@ -1821,12 +1823,11 @@ export class AmbientPlaneCircleConstruction extends Construction {
  * Element Class Sphere *
  ************************/
 
-// TBD
-// *Solid Geometry Only*
 // sphere
 // radius
 // points A, B
 // the sphere with center A and radius AB
+// (Java: Slate.java sphere case 0 — new SphereElement(A, A, B))
 export class SphereRadiusConstruction extends Construction {
     constructionMethod: AllConstructions = SphereConstructions.radius;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement]
