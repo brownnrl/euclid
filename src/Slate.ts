@@ -10,7 +10,6 @@ export type SlateCanvas = HTMLCanvasElement | Canvas;
 
 export class Slate {
 
-    protected _originalElements : GeomElement[];
     protected _elements : GeomElement[];
     protected _elementsForUpdate : GeomElement[];
     protected _screen : PlaneElement;
@@ -59,7 +58,6 @@ export class Slate {
             e.faceHighlightColor = null;
             this._elements.push(e);
         }
-        this._originalElements = [...this._elements];
         this._elementsForUpdate = [...this._elements];
 
         let slate = this;
@@ -221,7 +219,10 @@ export class Slate {
     }
 
     reset() : void {
-        this._elements = [...this._originalElements];
+        for (let element of this._elements) {
+            element.reset();
+        }
+        this.update();
     }
 
     update() : void {

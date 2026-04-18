@@ -41,6 +41,13 @@ export class PlaneSlider extends PointElement {
         this.toPlane(this._AP);
     }
 
+    public reset() : void {
+        this._x = this._initx;
+        this._y = this._inity;
+        this._z = this._initz;
+        this.toPlane(this._AP);
+    }
+
     public drag(tox : number, toy : number) : boolean {
         this._x = tox;
         this._y = toy;
