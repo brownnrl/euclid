@@ -206,14 +206,14 @@ export abstract class Construction {
     public abstract constructionMethod : AllConstructions;
     public abstract signature: ConstructionTypes[];
     public abstract construct(screen: PlaneElement, params: any[]) : [GeomElementsForUpdate, GeomElement];
-    // TODO: Optional values (such as null z coordinates) should be allowed
+    // Optional z coordinates are handled by separate 2D/3D construction classes
+    // with different signatures (e.g., LineSliderConstruction vs LineSlider2dConstruction).
     public validateSignature(cm : AllConstructions, params: any[]) : boolean {
         if (cm != this.constructionMethod) return false;
         const sigCopy : ConstructionTypes[] = [...this.signature].reverse();
         if (sigCopy.length != params.length) return false;
         for(let param of params) {
             let sigItem = sigCopy.pop();
-            // TODO: resume here
             switch(sigItem) {
                 case ConstructionTypes.Integer:
                     if (!(typeof(param) == "number")) {
@@ -1144,59 +1144,49 @@ export class BichordConstruction extends Construction {
     }
 }
 
-// TODO: maybe find some common / better mixin pattern for perpendiculars
-// line
-// perpendicular
-// points A, B, [plane C], D, E 
-// the line AF perpendicular to AB in plane C equal to DE
+// Line perpendicular constructions — all 5 variants share the same
+// construct() pattern: call the parent point-perpendicular construct(),
+// then return the Perpendicular LineElement (first in elementsForUpdate).
+// (Java: Slate.java line case 6 — all choices dispatch to a Perpendicular
+// or PlanePerpendicular, then return the LineElement directly.)
+function wrapPointAsLine(es: [GeomElementsForUpdate, GeomElement]): [GeomElementsForUpdate, GeomElement] {
+    return [es[0], es[0][0]];
+}
 
-// line
-// perpendicular
-// points A, B [plane C (screen)]
+// line — perpendicular variant 1: points A, B [plane C (screen)]
 // the line from A to the point D so that AD is equal and perpendicular to AB in plane C
-// (Java: Slate.java line case 6 — Perpendicular(A,B,screen,A,B) + LineElement(A,result))
+// (Java: Slate.java line case 6, choice 0 — Perpendicular(A,B,screen,A,B))
 export class LinePerpendicular1Construction extends PointPerpendicular1Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
+    constructionMethod: AllConstructions = LineConstructions.perpendicular;
+    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
 }
+
 // line — perpendicular variant 2: points A, B, plane C
-// (Java: Slate.java line case 6 — Perpendicular(A,B,C,A,B) + LineElement(A,result))
+// (Java: Slate.java line case 6, choice 1 — Perpendicular(A,B,C,A,B))
 export class LinePerpendicular2Construction extends PointPerpendicular2Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
+    constructionMethod: AllConstructions = LineConstructions.perpendicular;
+    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
 }
+
 // line — perpendicular variant 3: points A, B, D, E [plane C (screen)]
-// (Java: Slate.java line case 6 — Perpendicular(A,B,screen,D,E) + LineElement(A,result))
+// (Java: Slate.java line case 6, choice 2 — Perpendicular(A,B,screen,D,E))
 export class LinePerpendicular3Construction extends PointPerpendicular3Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
+    constructionMethod: AllConstructions = LineConstructions.perpendicular;
+    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
 }
+
 // line — perpendicular variant 4: points A, B, plane C, points D, E
-// (Java: Slate.java line case 6 — Perpendicular(A,B,C,D,E) + LineElement(A,result))
+// (Java: Slate.java line case 6, choice 3 — Perpendicular(A,B,C,D,E))
 export class LinePerpendicular4Construction extends PointPerpendicular4Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
+    constructionMethod: AllConstructions = LineConstructions.perpendicular;
+    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
 }
+
 // line — perpendicular variant 5: point A, plane B, points C, D
-// (Java: Slate.java line case 6 — PlanePerpendicularLine(A,B,C,D) + LineElement(A,result))
+// (Java: Slate.java line case 6, choice 4 — PlanePerpendicularLine(A,B,C,D))
 export class LinePerpendicular5Construction extends PointPerpendicular5Construction {
-    constructionMethod : AllConstructions = LineConstructions.perpendicular;
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let es = super.construct(screen, params);
-        return [es[0], es[0][0]];
-    }
+    constructionMethod: AllConstructions = LineConstructions.perpendicular;
+    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
 }
 
 // line
