@@ -287,7 +287,7 @@ import {FreePointConstruction, MidPointConstruction, IntersectionConstruction,
     AngleBisectorPoint3dConstruction, AngleDividerPoint3dConstruction,
     FixedPoint2dConstruction, FixedPoint3dConstruction,
     LineSliderSegmentConstruction, HarmonicPointConstruction,
-    VertexConstruction} from "./point/constructions";
+    VertexConstruction} from "./point/PointConstructions";
 
 
 
