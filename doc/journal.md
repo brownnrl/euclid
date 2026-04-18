@@ -20,6 +20,89 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-18 — Constructions.ts refactored + parseParam API
+
+**Completed:**
+- **Constructions.ts refactored**: 2036 → 262 lines. All 102 construction
+  classes extracted to 8 per-type files in their element packages:
+  - `point/PointConstructions.ts` (43 classes + circumcircle pair)
+  - `line/LineConstructions.ts` (21 classes)
+  - `circle/CircleConstructions.ts` (6 classes)
+  - `polygon/PolygonConstructions.ts` (18 classes)
+  - `sector/SectorConstructions.ts` (4 classes)
+  - `plane/PlaneConstructions.ts` (5 classes)
+  - `sphere/SphereConstructions.ts` (2 classes)
+  - `polyhedron/PolyhedronConstructions.ts` (4 classes)
+  Each file exports a pre-built `Construction[]` array. Constructions.ts
+  now contains only enums, abstract base class, and spread-concatenation.
+- **Java references**: all 102 construction classes now have Java source
+  comments mapping to `Slate.java` case numbers or dedicated Java files.
+- **Stale comments removed**: 4 TBD comments for already-implemented
+  constructions, 2 validateSignature TODOs (resolved by design).
+- **Perpendicular mixin**: `wrapPointAsLine()` helper reduces 5
+  LinePerpendicular variants from 5 lines each to 2 lines each.
+- **Typo fix**: `FootPointConsturction` → `FootPointConstruction`.
+- **parseParam() API**: new function converts Java applet param strings
+  directly to `IConstructionInfo`. `init()` now accepts mixed arrays of
+  objects and strings: `elements: ["A;point;free;60,100", ...]`.
+  18 new tests (98 → 116 passing).
+
+---
+
+## 2026-04-15 — parseColor rewrite + appearance fixes
+
+**Completed:**
+- **Colors.ts rewritten**: fixed truthiness bug (`val == "none" || 0`),
+  added hex color parsing, HSB comma-triple parsing, missing named colors
+  ("gray", "red"), numeric 0 handling, brighter/darker matching Java's
+  `Color.brighter()`/`Color.darker()` exactly (factor 0.7). 25 new tests.
+  Colors.ts coverage: 23% → 93%.
+- **PlaneElement rendering**: `drawEdge`/`drawFace`/`drawName`/`drawVertex`
+  were empty stubs + `defined()` returned false. Ported Java's
+  parallelogram rendering (corners A, B, B+C−A, C).
+- **CircleElement ellipse rotation**: was hardcoded to 0 — tilted 3D
+  circles rendered wrong. Now computes `atan2` from major axis vector +
+  handles degenerate line cases.
+- **Dynamic CENTRAL label placement**: default changed from ABOVE to
+  CENTRAL, matching Java. Fixed copy-paste bug in LEFT quadrant.
+- **PolyhedronElement face colors**: `drawFace` now passes parent faceColor
+  to child polygons, matching Java's `P[j].drawFace(g, faceColor)`.
+- **GeomElement default colors**: changed from 'red'/'black' to null
+  (matching Java). Internal elements no longer render as phantom red dots.
+- **Test page color alignment**: systematic audit of all 40 test pages —
+  25+ fixed to match Java applet 1:1 (swapped fields, missing colors,
+  hidden helper elements).
+- **console.log removed** from `init()`.
+- **IConstructionInfo** color fields accept `string | number`.
+
+---
+
+## 2026-04-18 — Diagram UI controls
+
+**Completed:**
+- **SlateControls.ts**: three canvas-drawn icon buttons at top-right of
+  each diagram — reset (circular arrow), maximize (expand/compress
+  arrows), new window (box-with-arrow). Semi-transparent, hover states.
+- **Keyboard shortcuts** (canvas must be focused): `r`/`space` → reset,
+  `u`/`return` → new window, `m` → maximize/minimize.
+- **Slate.reset() fixed**: was replacing element array (destroying
+  diagram). Now iterates all elements calling `elem.reset()`.
+- **PlaneSlider.reset() added**: was the only slider missing it.
+- **New window opens maximized** (100vw/100vh).
+- **Code coverage**: c8 added (`npm run coverage`). Baseline: 80%
+  statements, 93% branches, 65% functions.
+
+**Phase 2 remaining work:**
+- font/fontsize params (hardcoded)
+- Per-element align
+- title rendering
+- pivot rotation for 3D scenes
+- Label placement heuristics
+- PerpendicularPlane division-by-zero guard
+- Background HSB parsing in init() (bgcolor passed raw to ctx.fillStyle)
+
+---
+
 ## 2026-04-13 — PlaneFoot.java ported + last 2 3D foot variants wired
 
 **Completed:**

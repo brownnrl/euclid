@@ -9,85 +9,37 @@ Update this file after each session.
 
 These affect the library as a whole, independent of individual constructions.
 
-- [ ] **`parseColor` bug** (`src/Colors.ts` line 31) — The condition
-  `val == "none" || 0 || "0" || ""` always evaluates to `true` because the literal
-  `"0"` is truthy. This means any color that isn't a named color, `null`, `"random"`,
-  `"darker"`, `"brighter"`, or `"background"` silently returns `null` (transparent).
-  Hex strings like `"#ff0000"` passed as element colors are silently dropped.
-  Fix: change to `val == "none" || val == "0" || val === 0 || val == ""`
+**Resolved (2026-04-15):**
+- [x] `parseColor` truthiness bug — rewritten to match Java exactly
+- [x] Numeric `0` color handling — `IConstructionInfo` accepts `string | number`
+- [x] Missing `"gray"` and `"red"` colors — added to color table
+- [x] HSB color format — comma-triple parsing implemented
+- [x] `console.log(i)` in production — removed
+- [x] `IntersectionPL.ts` broken — rewritten as `PlaneIntersection.ts`
+- [x] `validateSignature` incomplete — all 7 ConstructionTypes handled,
+  TODOs removed
+- [x] Default faceColor divergence — `brighter()` now matches Java's
+  `Color.brighter()` exactly (factor 0.7)
+- [x] Default CENTRAL label placement — matches Java's quadrant-based
+  dynamic placement
+- [x] PlaneElement rendering — `drawEdge`/`drawFace`/`drawName`/`drawVertex`
+  implemented (was empty stubs)
+- [x] GeomElement default colors — changed to null (matching Java)
 
-- [ ] **Numeric `0` color not handled in `init()`** (`src/index.ts`) — The Java applet
-  uses integer `0` to mean transparent. `IConstructionInfo` types colors as `string?`
-  but the Java convention passes the number `0`. The `parseColor` function takes a
-  string; passing a number bypasses the null-check path and hits the buggy else-if.
-  Fix: accept `string | number | null` in `IConstructionInfo` and normalize to `null`
-  before calling `parseColor`.
-
-- [ ] **`title` not rendered** (`src/index.ts` / `src/Slate.ts`) — `IInitialization`
-  accepts a `title` field but `Slate.drawElements()` never draws it. The title appears
-  in the original Java applet in a header region above the canvas.
-
-- [ ] **Per-element `align` not settable via init()** (`src/index.ts`) — `IConstructionInfo`
-  has no `align` field; all elements get the same `defaultAlign`. The Java applet supports
-  per-element label placement.
-
-- [ ] **Labels all use the same default orientation** (`src/elements/GeomElement.ts`) —
-  In the TypeScript port every label is drawn at the same position relative to its vertex
-  (currently below/at the default align direction). In the Java applet labels adapt to the
-  geometry: a vertex at the top of a figure gets its label *above* the dot, a bottom vertex
-  gets its label *below*, etc. Example: in the equilateral triangle test (propI10), the apex
-  label "C" should sit above the vertex point, but in the port it sits below, making it harder
-  to read and obscuring the vertex dot. Fix requires either: (a) a per-element `align` field in
-  `IConstructionInfo` so callers can override placement, or (b) a heuristic in `drawName` that
-  infers placement from the element's position relative to other elements.
-
-- [ ] **Highlight colors not settable via init()** — `GeomElement` has
-  `nameHighlightColor`, `vertexHighlightColor`, `edgeHighlightColor`, `faceHighlightColor`
-  properties but `IConstructionInfo` exposes no way to set them. Currently only settable
-  programmatically after `init()`.
-
-- [ ] **`IntersectionPL.ts` is a copy of `Intersection.ts`** (`src/elements/point/IntersectionPL.ts`) —
-  The file header says "Intersection.ts" and it exports a class named `Intersection` that does
-  line–line intersection. Java `IntersectionPL.java` does **plane–line intersection** via
-  `toIntersectionPL()` (which does exist on PointElement). File needs to be rewritten.
-
-- [ ] **Missing `"gray"` color** (`src/Colors.ts`) — Java's color table includes `"gray"`;
-  TypeScript has `"darkGray"` and `"lightGray"` but not `"gray"`. Propositions using `"gray"` for
-  element colors will silently get the default color instead.
-
-- [ ] **HSB color format not supported** (`src/Colors.ts`) — Java interprets `"h,s,b"` comma-
-  separated triples as HSB (hue 0–360, sat/bri 0–100). TypeScript has `HSVtoRGB()` but
-  `parseColor` does not detect this format. The original `view/euclid-html/` background params
-  use this format (e.g. `"35,19,100"`).
-
-- [ ] **`validateSignature` incomplete** (`src/elements/Constructions.ts` ~line 194) —
-  Has a `// TODO: resume here` comment inside the switch statement, and
-  `case ConstructionTypes.SphereElement: // TODO: break` is a stub. Signature
-  validation may silently pass for mismatched sphere parameters.
-
-- [ ] **`console.log(i)` in production** (`src/index.ts` line 46) — Debug logging
-  left in `init()`. Remove before any public release.
-
-- [ ] **`PerpendicularPlane` potential division by zero** (`src/elements/plane/PerpendicularPlane.ts`
-  ~line 56) — Marked `// TODO: Check division by 0?` in the normalization step.
-
-- [ ] **Default `faceColor` for `dimension == 2` elements diverges from Java applet**
-  (`src/index.ts` line 73) — `init()` applies a default `faceColor = lighten(bgcolor)` to
-  any element whose `dimension == 2`, so `SectorElement` / `ArcElement` / polygons / filled
-  circles all pick up a pale-fill auto-face when the caller does not set `faceColor`
-  explicitly. The Java applet leaves face-color unset unless the param string specifies
-  one, so Joyce's propositions that wanted an open arc wrote `;0;0;…;0` to explicitly
-  suppress the (Java-side?) default. We can currently work around it in `IConstructionInfo`
-  only by passing a non-null string that `parseColor` interprets as transparent — but the
-  numeric-0 → null path is itself blocked by the `parseColor` bug at line 31 and by
-  `IConstructionInfo` not accepting `number | null` for color fields. Full fix needs all
-  three platform TODOs (this one + parseColor + numeric-0 handling in `init()`) resolved
-  together so a caller can write `faceColor: 0` or `faceColor: null` and get an open face.
-  - **First observed instance**: `sector;arc` in `view/test/sector/arc.html` renders a
-    pale-cream pie slice from `_Center → A → B → _Center` where Java's
-    [view/applet-tests/sector/arc/applet.html](../view/applet-tests/sector/arc/applet.html)
-    shows just the open arc curve. Geometry is identical; only the default fill differs.
-    Documented in the three-way harness comparison on 2026-04-11.
+**Still open:**
+- [ ] **`title` not rendered** — `IInitialization` accepts `title` but it's
+  never drawn on the canvas
+- [ ] **Per-element `align`** — `IConstructionInfo` has no `align` field;
+  all elements share `defaultAlign`
+- [ ] **Highlight colors not settable** — `GeomElement` has highlight color
+  properties but `IConstructionInfo` doesn't expose them
+- [ ] **`PerpendicularPlane` division by zero** — `// TODO` in normalization
+  step (~line 56)
+- [ ] **`font` / `fontsize` params** — hardcoded, not configurable
+- [ ] **`pivot` rotation** — parsed but not fully implemented for 3D scenes
+- [ ] **Background HSB in init()** — `slate.bgcolor` receives raw HSB string
+  like `"35,19,100"` which is invalid as `ctx.fillStyle`. Should be parsed
+  through `parseColor` before assignment
 
 ---
 
