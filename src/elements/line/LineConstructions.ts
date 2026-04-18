@@ -4,7 +4,7 @@
 |    a construct() method that creates the geometry element.             |
 +----------------------------------------------------------------------*/
 
-import {Construction, ConstructionTypes, AllConstructions, LineConstructions as LineConstructionsEnum,
+import {Construction, ConstructionSignature, SortedParams, AllConstructions, LineConstructions as LineConstructionsEnum,
         GeomElementsForUpdate} from "../Constructions";
 import {PointPerpendicular1Construction, PointPerpendicular2Construction,
         PointPerpendicular3Construction, PointPerpendicular4Construction,
@@ -26,8 +26,6 @@ import {ProportionElement} from "../point/ProportionElement";
 import {AngleDividerElement} from "../point/AngleDividerElement";
 import {MeanProportionalElement} from "../point/MeanProportionalElement";
 
-let ct = ConstructionTypes;
-
 /**********************
  * Element Class Line *
  **********************/
@@ -39,78 +37,54 @@ let ct = ConstructionTypes;
 // (Java: Slate.java line case 0 — new LineElement(A,B))
 export class LineConnectConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.connect;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let a : PointElement = params[0];
-        let b : PointElement = params[1];
-
-        let g = new LineElement({A:a, B: b});
+    signature = { points: 2, elements: 0, integers: 0 };
+    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let g = new LineElement({A:P[0], B: P[1]});
 
         return [[g], g];
     }
 }
 
 // line
-// angleBisector (2D variant)
-// points B, A, C
+// angleBisector — points B, A, C [, plane D = screen]
 // line from A to the bisector point of angle BAC on line BC
-// (Java: Slate.java line case 1 — AngleDivider(B,A,C,screen,2) + LineElement(A,result))
+// 2D: 3 points, 0 elements — uses screen plane
+// 3D: 3 points, 1 PlaneElement — uses explicit plane
+// (Java: Slate.java line case 1 — AngleDivider(B,A,C,plane,2) + LineElement(A,result))
 export class AngleBisectorLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.angleBisector;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
-
-    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let ad = new AngleDividerElement(ps[0], ps[1], ps[2], screen, 2);
-        let g = new LineElement({A: ps[1], B: ad});
+    signature: ConstructionSignature = { points: 3, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 0
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        let ad = new AngleDividerElement(P[0], P[1], P[2], plane, 2);
+        let g = new LineElement({A: P[1], B: ad});
         return [[ad, g], g];
     }
 }
 
 // line
-// angleDivider (2D variant)
-// points B, A, C, integer n
+// angleDivider — points B, A, C, integer n [, plane D = screen]
 // line from A to the n-th division point of angle BAC on line BC
-// (Java: Slate.java line case 2 — AngleDivider(B,A,C,screen,n) + LineElement(A,result))
+// 2D: 3 points, 0 elements, 1 integer — uses screen plane
+// 3D: 3 points, 1 PlaneElement, 1 integer — uses explicit plane
+// (Java: Slate.java line case 2 — AngleDivider(B,A,C,plane,n) + LineElement(A,result))
 export class AngleDividerLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.angleDivider;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.Integer];
-
-    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let n : number = params[3];
-        let ad = new AngleDividerElement(ps[0], ps[1], ps[2], screen, n);
-        let g = new LineElement({A: ps[1], B: ad});
-        return [[ad, g], g];
+    signature: ConstructionSignature = { points: 3, elements: 0, integers: 1 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 1
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
     }
-}
-
-// line — angleBisector (3D variant)
-// points B, A, C, plane D
-// (Java: Slate.java line case 1, choice 1 — AngleDivider(B,A,C,D,2) + LineElement(A,result))
-export class AngleBisectorLine3dConstruction extends Construction {
-    constructionMethod: AllConstructions = LineConstructionsEnum.angleBisector;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
-
-    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let ad = new AngleDividerElement(ps[0], ps[1], ps[2], params[3] as PlaneElement, 2);
-        let g = new LineElement({A: ps[1], B: ad});
-        return [[ad, g], g];
-    }
-}
-
-// line — angleDivider (3D variant)
-// points B, A, C, plane D, integer n
-// (Java: Slate.java line case 2, choice 1 — AngleDivider(B,A,C,D,n) + LineElement(A,result))
-export class AngleDividerLine3dConstruction extends Construction {
-    constructionMethod: AllConstructions = LineConstructionsEnum.angleDivider;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement, ct.Integer];
-
-    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let ad = new AngleDividerElement(ps[0], ps[1], ps[2], params[3] as PlaneElement, params[4] as number);
-        let g = new LineElement({A: ps[1], B: ad});
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        let ad = new AngleDividerElement(P[0], P[1], P[2], plane, N[0]);
+        let g = new LineElement({A: P[1], B: ad});
         return [[ad, g], g];
     }
 }
@@ -123,12 +97,11 @@ export class AngleDividerLine3dConstruction extends Construction {
 // Foot class already IMPL at src/elements/point/Foot.ts.)
 export class LineFootConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.foot;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+    signature = { points: 3, elements: 0, integers: 0 };
 
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let fo = new Foot(ps[0], ps[1], ps[2]);
-        let g = new LineElement({A: ps[0], B: fo});
+    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let fo = new Foot(P[0], P[1], P[2]);
+        let g = new LineElement({A: P[0], B: fo});
         return [[fo, g], g];
     }
 }
@@ -141,13 +114,11 @@ export class LineFootConstruction extends Construction {
 // (Java: PlaneFoot.java — TS: PlaneFootElement.ts, renamed for clarity)
 export class PlaneFootLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.foot;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement];
+    signature = { points: 1, elements: 1, integers: 0, elementTypes: [PlaneElement] };
 
-    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        const A = params[0] as PointElement;
-        const P = params[1] as PlaneElement;
-        const fo = new PlaneFootElement(A, P);
-        const g = new LineElement({A: A, B: fo});
+    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const fo = new PlaneFootElement(P[0], E[0] as PlaneElement);
+        const g = new LineElement({A: P[0], B: fo});
         return [[fo, g], g];
     }
 }
@@ -160,13 +131,10 @@ export class PlaneFootLineConstruction extends Construction {
 // (Java: Slate.java line case 4 — new Chord(A,B,C). Java: Chord.java)
 export class ChordConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.chord;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.CircleElement];
+    signature = { points: 2, elements: 1, integers: 0, elementTypes: [CircleElement] };
 
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        const D = params[0] as PointElement;
-        const E = params[1] as PointElement;
-        const C = params[2] as CircleElement;
-        const g = new Chord({D, E, C});
+    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const g = new Chord({D: P[0], E: P[1], C: E[0] as CircleElement});
         return [[g], g];
     }
 }
@@ -178,11 +146,10 @@ export class ChordConstruction extends Construction {
 // (Java: Slate.java line case 5 — new Bichord(A,B). Java: Bichord.java)
 export class BichordConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.bichord;
-    signature: ConstructionTypes[] = [ct.CircleElement, ct.CircleElement];
+    signature = { points: 0, elements: 2, integers: 0, elementTypes: [CircleElement, CircleElement] };
 
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : CircleElement[] = params;
-        let g = new Bichord({C:ps[0], D:ps[1]});
+    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let g = new Bichord({C: E[0] as CircleElement, D: E[1] as CircleElement});
         return [[g], g];
     }
 }
@@ -201,35 +168,35 @@ function wrapPointAsLine(es: [GeomElementsForUpdate, GeomElement]): [GeomElement
 // (Java: Slate.java line case 6, choice 0 — Perpendicular(A,B,screen,A,B))
 export class LinePerpendicular1Construction extends PointPerpendicular1Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.perpendicular;
-    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]) { return wrapPointAsLine(super.construct(screen, P, E, N)); }
 }
 
 // line — perpendicular variant 2: points A, B, plane C
 // (Java: Slate.java line case 6, choice 1 — Perpendicular(A,B,C,A,B))
 export class LinePerpendicular2Construction extends PointPerpendicular2Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.perpendicular;
-    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]) { return wrapPointAsLine(super.construct(screen, P, E, N)); }
 }
 
 // line — perpendicular variant 3: points A, B, D, E [plane C (screen)]
 // (Java: Slate.java line case 6, choice 2 — Perpendicular(A,B,screen,D,E))
 export class LinePerpendicular3Construction extends PointPerpendicular3Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.perpendicular;
-    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]) { return wrapPointAsLine(super.construct(screen, P, E, N)); }
 }
 
 // line — perpendicular variant 4: points A, B, plane C, points D, E
 // (Java: Slate.java line case 6, choice 3 — Perpendicular(A,B,C,D,E))
 export class LinePerpendicular4Construction extends PointPerpendicular4Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.perpendicular;
-    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]) { return wrapPointAsLine(super.construct(screen, P, E, N)); }
 }
 
 // line — perpendicular variant 5: point A, plane B, points C, D
 // (Java: Slate.java line case 6, choice 4 — PlanePerpendicularLine(A,B,C,D))
 export class LinePerpendicular5Construction extends PointPerpendicular5Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.perpendicular;
-    construct(screen: PlaneElement, params: any[]) { return wrapPointAsLine(super.construct(screen, params)); }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]) { return wrapPointAsLine(super.construct(screen, P, E, N)); }
 }
 
 // line
@@ -239,12 +206,11 @@ export class LinePerpendicular5Construction extends PointPerpendicular5Construct
 // (Java: Slate.java line case 7 — Layoff(A,A,B,C,D) + LineElement(A,layoff))
 export class LineCutoffConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.cutoff;
-    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
+    signature = { points: 4, elements: 0, integers: 0 };
 
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let lo = new Layoff(ps[0], ps[0], ps[1], ps[2], ps[3]);
-        let g = new LineElement({A: ps[0], B: lo});
+    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let lo = new Layoff(P[0], P[0], P[1], P[2], P[3]);
+        let g = new LineElement({A: P[0], B: lo});
         return [[lo, g], g];
     }
 }
@@ -256,12 +222,11 @@ export class LineCutoffConstruction extends Construction {
 // (Java: Slate.java line case 8 — Layoff(B,A,B,C,D) + LineElement(B,layoff))
 export class LineExtendConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.extend;
-    signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
+    signature = { points: 4, elements: 0, integers: 0 };
 
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let lo = new Layoff(ps[1], ps[0], ps[1], ps[2], ps[3]);
-        let g = new LineElement({A: ps[1], B: lo});
+    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let lo = new Layoff(P[1], P[0], P[1], P[2], P[3]);
+        let g = new LineElement({A: P[1], B: lo});
         return [[lo, g], g];
     }
 }
@@ -275,48 +240,34 @@ export class LineExtendConstruction extends Construction {
 // LineElement(A, D). Same pattern as LineExtendConstruction above.)
 export class LineParallelConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.parallel;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
+    signature = { points: 3, elements: 0, integers: 0 };
 
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let lo = new Layoff(ps[0], ps[1], ps[2], ps[1], ps[2]);
-        let g = new LineElement({A: ps[0], B: lo});
+    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let lo = new Layoff(P[0], P[1], P[2], P[1], P[2]);
+        let g = new LineElement({A: P[0], B: lo});
         return [[lo, g], g];
     }
 }
 
 // line
-// similar (2D variant)
-// points A, B, D, E, F
-// the line AH so that triangle ABH is similar to triangle DEF (screen plane)
-// (Java: Slate.java line case 10 — Similar(A,B,screen,D,E,F,screen) + LineElement(A,H))
+// similar — points A, B, D, E, F [, planes C, G = screen]
+// the line AH so that triangle ABH is similar to triangle DEF
+// 2D: 5 points, 0 elements — uses screen plane for both
+// 3D: 5 points, 2 PlaneElements — uses explicit planes
+// (Java: Slate.java line case 10 — Similar(A,B,C,D,E,F,G) + LineElement(A,H))
 export class SimilarLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.similar;
-    signature: ConstructionTypes[] = (new Array(5)).fill(ct.PointElement);
-
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let sim = new SimilarElement(ps[0], ps[1], screen, ps[2], ps[3], ps[4], screen);
-        let g = new LineElement({A: ps[0], B: sim});
-        return [[sim, g], g];
+    signature: ConstructionSignature = { points: 5, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 5 && sp.N.length === 0
+            && (sp.E.length === 0 || sp.E.length === 2);
     }
-}
-
-// line — similar (3D variant)
-// points A, B, plane C, points D, E, F, plane G
-// (Java: Slate.java line case 10, choice 1 — Similar(A,B,C,D,E,F,G) + LineElement(A,H))
-export class SimilarLine3dConstruction extends Construction {
-    constructionMethod: AllConstructions = LineConstructionsEnum.similar;
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement,
-        ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
-
-    construct(_screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        const A = params[0] as PointElement, B = params[1] as PointElement;
-        const C = params[2] as PlaneElement;
-        const D = params[3] as PointElement, E = params[4] as PointElement, F = params[5] as PointElement;
-        const G = params[6] as PlaneElement;
-        let sim = new SimilarElement(A, B, C, D, E, F, G);
-        let g = new LineElement({A: A, B: sim});
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let c = E.length > 0 ? E[0] as PlaneElement : screen;
+        let g2 = E.length > 1 ? E[1] as PlaneElement : screen;
+        let sim = new SimilarElement(P[0], P[1], c, P[2], P[3], P[4], g2);
+        let g = new LineElement({A: P[0], B: sim});
         return [[sim, g], g];
     }
 }
@@ -328,12 +279,11 @@ export class SimilarLine3dConstruction extends Construction {
 // (Java: Slate.java line case 11 — Proportion + LineElement(G, result))
 export class ProportionLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.proportion;
-    signature: ConstructionTypes[] = (new Array(8)).fill(ct.PointElement);
+    signature = { points: 8, elements: 0, integers: 0 };
 
-    construct(screen: PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let prop = new ProportionElement(ps[0], ps[1], ps[2], ps[3], ps[4], ps[5], ps[6], ps[7]);
-        let g = new LineElement({A: ps[6], B: prop});
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let prop = new ProportionElement(P[0], P[1], P[2], P[3], P[4], P[5], P[6], P[7]);
+        let g = new LineElement({A: P[6], B: prop});
         return [[prop, g], g];
     }
 }
@@ -345,12 +295,11 @@ export class ProportionLineConstruction extends Construction {
 // (Java: Slate.java line case 12 — MeanProportional + LineElement(U0, result))
 export class MeanProportionalLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.meanProportional;
-    signature: ConstructionTypes[] = (new Array(6)).fill(ct.PointElement);
+    signature = { points: 6, elements: 0, integers: 0 };
 
-    construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
-        let ps : PointElement[] = params;
-        let mp = new MeanProportionalElement(ps[0], ps[1], ps[2], ps[3], ps[4], ps[5]);
-        let g = new LineElement({A: ps[4], B: mp});
+    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let mp = new MeanProportionalElement(P[0], P[1], P[2], P[3], P[4], P[5]);
+        let g = new LineElement({A: P[4], B: mp});
         return [[mp, g], g];
     }
 }
@@ -369,12 +318,9 @@ export const lineConstructions: Construction[] = [
     new LineCutoffConstruction(),
     new PlaneFootLineConstruction(),
     new LineFootConstruction(),
-    new SimilarLine3dConstruction(),
     new SimilarLineConstruction(),
     new ProportionLineConstruction(),
-    new AngleBisectorLine3dConstruction(),
     new AngleBisectorLineConstruction(),
-    new AngleDividerLine3dConstruction(),
     new AngleDividerLineConstruction(),
     new MeanProportionalLineConstruction(),
 ];

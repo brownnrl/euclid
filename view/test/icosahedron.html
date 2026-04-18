@@ -12,7 +12,8 @@
   David Joyce's Geometry Applet documentation page. Constructs an
   icosahedron using spheres, planes, regular polygons, and 3D geometry.
 
-  Original applet params reproduced below using the parseParam() string API.
+  Uses parseParam() string format with ORIGINAL Java param order —
+  no manual reordering needed thanks to type-counted dispatch.
 -->
 
 <script type="text/javascript">
@@ -49,7 +50,7 @@
             "LEcirc;circle;radius;L,W,Z,Vplane;0;0;0;0",
             "FE;line;bichord;Vcirc,LEcirc;0;0;0",
             "E;point;last;FE;0;0",
-            "dec;polygon;regularPolygon;L,E,Vplane,10;0;0;0;0",
+            "dec;polygon;regularPolygon;L,E,10,Vplane;0;0;0;0",
             "P;point;vertex;dec,3",
             "K;point;vertex;dec,4;0;0",
             "O;point;vertex;dec,5",

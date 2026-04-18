@@ -15,12 +15,8 @@
 |                           https://www.nelsonbrown.net/                |
 +----------------------------------------------------------------------*/
 import {GeomElement} from "./GeomElement";
-import {CircleElement} from "./circle/CircleElement";
 import {PlaneElement} from "./plane/PlaneElement";
 import {PointElement} from "./point/PointElement";
-import {PolygonElement} from "./polygon/PolygonElement";
-import {PolyhedronElement} from "./polyhedron/PolyhedronElement";
-import {SphereElement} from "./sphere/SphereElement";
 
 export enum ConstructionTypes {
     Integer,
@@ -168,56 +164,45 @@ export type AllConstructions =
 
 export type GeomElementsForUpdate = GeomElement[];
 
+// Type-sorted parameter arrays, matching Java's P[]/E[]/N[] dispatch.
+// P = PointElements (including LineElement endpoint expansions)
+// E = all other elements (Circle, Plane, Sphere, Polygon, Polyhedron)
+// N = integers (numbers)
+export interface SortedParams {
+    P: PointElement[];
+    E: GeomElement[];
+    N: number[];
+}
+
+export interface ConstructionSignature {
+    points: number;
+    elements: number;
+    integers: number;
+    elementTypes?: Function[];
+}
+
 export abstract class Construction {
     public abstract constructionMethod : AllConstructions;
-    public abstract signature: ConstructionTypes[];
-    public abstract construct(screen: PlaneElement, params: any[]) : [GeomElementsForUpdate, GeomElement];
-    // Optional z coordinates are handled by separate 2D/3D construction classes
-    // with different signatures (e.g., LineSliderConstruction vs LineSlider2dConstruction).
-    public validateSignature(cm : AllConstructions, params: any[]) : boolean {
+    // Signature: type counts + element subtype list for E[] entries.
+    // e.g. { points: 2, elements: 1, integers: 0, elementTypes: [PlaneElement] }
+    public abstract signature: ConstructionSignature;
+
+    public abstract construct(screen: PlaneElement, P: PointElement[],
+                              E: GeomElement[], N: number[]) : [GeomElementsForUpdate, GeomElement];
+
+    // Match by counting types (matching Java's selectDataChoice).
+    // Position-independent: "E,Vplane,D,B" and "E,D,B,Vplane" both match
+    // { points: 3, elements: 1, elementTypes: [PlaneElement] }.
+    public validateSignature(cm: AllConstructions, sp: SortedParams) : boolean {
         if (cm != this.constructionMethod) return false;
-        const sigCopy : ConstructionTypes[] = [...this.signature].reverse();
-        if (sigCopy.length != params.length) return false;
-        for(let param of params) {
-            let sigItem = sigCopy.pop();
-            switch(sigItem) {
-                case ConstructionTypes.Integer:
-                    if (!(typeof(param) == "number")) {
-                        return false;
-                    }
-                    break;
-                case ConstructionTypes.CircleElement:
-                    if (!(param instanceof CircleElement)) {
-                        return false;
-                    }
-                    break;
-                case ConstructionTypes.PlaneElement:
-                    if (!(param instanceof PlaneElement)) {
-                        return false;
-                    }
-                    break;
-                case ConstructionTypes.PointElement:
-                    if (!(param instanceof PointElement)) {
-                        return false;
-                    }
-                    break;
-                case ConstructionTypes.SphereElement:
-                    if (!(param instanceof SphereElement)) {
-                        return false;
-                    }
-                    break;
-                case ConstructionTypes.PolygonElement:
-                    if (!(param instanceof PolygonElement)) {
-                        return false;
-                    }
-                    break;
-                case ConstructionTypes.PolyhedronElement:
-                    if (!(param instanceof PolyhedronElement)) {
-                        return false;
-                    }
-                    break;
-                default:
-                    return false;
+        let sig = this.signature;
+        if (sig.points !== sp.P.length) return false;
+        if (sig.elements !== sp.E.length) return false;
+        if (sig.integers !== sp.N.length) return false;
+        // Check element subtypes if specified
+        if (sig.elementTypes) {
+            for (let i = 0; i < sig.elementTypes.length; i++) {
+                if (!(sp.E[i] instanceof sig.elementTypes[i])) return false;
             }
         }
         return true;
