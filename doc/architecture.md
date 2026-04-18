@@ -5,19 +5,21 @@
 ```
 euclid/
 ├── src/
-│   ├── index.ts                  # Public API: init(), E enum, Align, Color
+│   ├── index.ts                  # Public API: init(), parseParam(), E enum, Align
 │   ├── Slate.ts                  # Canvas manager, element orchestration, mouse events
-│   ├── GeomElement.ts            # Abstract base class for all geometry
-│   ├── Colors.ts                 # Color parsing utilities
+│   ├── SlateControls.ts          # UI overlay: reset, maximize, new window buttons
+│   ├── Colors.ts                 # Color parsing: parseColor(), brighter(), darker()
 │   └── elements/
-│       ├── Constructions.ts      # All Construction classes + registration array
-│       ├── point/                # PointElement subclasses (free, midpoint, foot, …)
-│       ├── line/                 # LineElement subclasses (perpendicular, bichord, …)
-│       ├── circle/               # CircleElement subclasses (circumcircle, …)
-│       ├── polygon/              # PolygonElement subclasses (triangle, …)
-│       ├── sector/               # SectorElement subclasses (sector)
-│       ├── plane/                # PlaneElement subclasses (perpendicular plane)
-│       └── sphere/               # SphereElement
+│       ├── GeomElement.ts        # Abstract base class for all geometry
+│       ├── Constructions.ts      # Enums, abstract Construction, registration array (262 lines)
+│       ├── point/                # PointElement subclasses + PointConstructions.ts
+│       ├── line/                 # LineElement subclasses + LineConstructions.ts
+│       ├── circle/               # CircleElement subclasses + CircleConstructions.ts
+│       ├── polygon/              # PolygonElement subclasses + PolygonConstructions.ts
+│       ├── sector/               # SectorElement subclasses + SectorConstructions.ts
+│       ├── plane/                # PlaneElement subclasses + PlaneConstructions.ts
+│       ├── sphere/               # SphereElement + SphereConstructions.ts
+│       └── polyhedron/           # PolyhedronElement, Prism, Pyramid + PolyhedronConstructions.ts
 ├── tests/
 │   └── SlateTest.ts              # Mocha test suite
 ├── geom_applet/
@@ -81,7 +83,10 @@ explicit plane from the construction parameters.
 ## Construction dispatch: the `constructions` array
 
 `Slate.findConstruction(cm, params)` iterates the exported `constructions` array
-(`Constructions.ts` bottom) and calls `validateSignature(cm, params)` on each entry.
+(`Constructions.ts`) and calls `validateSignature(cm, params)` on each entry.
+The array is a spread-concatenation of 8 per-type arrays, each exported from
+its `{Type}Constructions.ts` file (e.g., `pointConstructions` from
+`point/PointConstructions.ts`).
 
 `validateSignature` checks two things:
 1. `construction.constructionMethod === cm` (the enum value matches)
@@ -97,31 +102,46 @@ must come before shorter (2D) ones to avoid greedy prefix matching.
 ## Element class hierarchy
 
 ```
-GeomElement (abstract — src/GeomElement.ts)
+GeomElement (abstract — src/elements/GeomElement.ts)
   ├─ PointElement      (src/elements/point/PointElement.ts)
-  │    ├─ PlaneSlider      (free draggable point)
-  │    ├─ FixedPoint        (non-draggable; 2D and 3D variants)
+  │    ├─ PlaneSlider           (free draggable point)
+  │    ├─ FixedPoint            (non-draggable; 2D and 3D variants)
   │    ├─ Midpoint
-  │    ├─ LineSlider        (constrained to a line; 2D, 3D, segment variants)
-  │    ├─ CircleSlider      (constrained to a circle)
-  │    ├─ Intersection      (line-line intersection; 2D and 3D variants)
-  │    ├─ Foot              (perpendicular foot from point to line)
-  │    ├─ Layoff            (extend/cutoff — geometric layoff)
-  │    ├─ CircleCenter      (center of a circle)
-  │    ├─ Circumcenter      (circumcenter of three points; 2D and 3D variants)
-  │    └─ Perpendicular{1..5}  (point at end of perpendicular — 5 variant signatures)
+  │    ├─ LineSlider            (constrained to a line; 2D, 3D, segment)
+  │    ├─ CircleSlider          (constrained to a circle)
+  │    ├─ SphereSliderElement   (constrained to a sphere)
+  │    ├─ Intersection          (line-line intersection; 2D and 3D)
+  │    ├─ PlaneIntersection     (plane-line intersection)
+  │    ├─ Foot                  (perpendicular foot from point to line)
+  │    ├─ PlaneFootElement      (perpendicular foot from point to plane)
+  │    ├─ Layoff                (extend/cutoff — geometric layoff)
+  │    ├─ SimilarElement        (similar triangle point)
+  │    ├─ ProportionElement     (fourth proportional)
+  │    ├─ MeanProportionalElement (geometric mean)
+  │    ├─ AngleDividerElement   (angle bisector/divider)
+  │    ├─ HarmonicElement       (harmonic conjugate)
+  │    └─ InvertPointElement    (inversion in a circle)
   ├─ LineElement        (src/elements/line/LineElement.ts)
+  │    ├─ Perpendicular         (5 signature variants)
   │    ├─ PlanePerpendicularLine
-  │    ├─ Bichord
-  │    └─ (connect uses LineElement directly via LineConnectConstruction)
+  │    ├─ Bichord               (common chord of two circles)
+  │    └─ Chord                 (chord cut by a line)
   ├─ CircleElement      (src/elements/circle/CircleElement.ts)
-  │    └─ CircumcircleElement
+  │    ├─ CircumcircleElement
+  │    ├─ InvertCircleElement   (circle inversion)
+  │    └─ SphereIntersectionElement (intersection of two spheres)
   ├─ PolygonElement     (src/elements/polygon/PolygonElement.ts)
-  │    └─ TriangleElement
+  │    ├─ RegularPolygonElement (square, equilateral triangle, regular n-gon, star)
+  │    └─ ApplicationElement    (area-preserving parallelogram)
   ├─ SectorElement      (src/elements/sector/SectorElement.ts)
+  │    └─ ArcElement
   ├─ PlaneElement       (src/elements/plane/PlaneElement.ts)
-  │    └─ PerpendicularPlane
-  └─ SphereElement      (src/elements/sphere/SphereElement.ts)
+  │    ├─ PerpendicularPlane
+  │    └─ ParallelPlane
+  ├─ SphereElement      (src/elements/sphere/SphereElement.ts)
+  └─ PolyhedronElement  (src/elements/polyhedron/PolyhedronElement.ts)
+       ├─ PyramidElement
+       └─ PrismElement
 ```
 
 ---
@@ -175,13 +195,13 @@ the post-expansion types, not the raw HTML param count.
 ## Adding a new construction — the four-file checklist
 
 1. **Element class**: `src/elements/{type}/FooElement.ts`
-2. **Construction class**: new subclass in `Constructions.ts`, registered in array
+2. **Construction class**: new subclass in `src/elements/{type}/{Type}Constructions.ts`,
+   add to the per-type `{type}Constructions` array at the bottom of the same file
 3. **Test**: new `it(...)` block in `tests/SlateTest.ts`
 4. **Demo page**: `view/test/{super_type}/{sub_type}.html`
 
 The enum entry for the construction (e.g. `PointConstructions.foo = N`) already exists
-for most unimplemented constructions — check the enum definitions near the top of
-`Constructions.ts` before adding new enum values.
+for all documented constructions — check the enum definitions in `Constructions.ts`.
 
 ---
 
@@ -202,25 +222,34 @@ Null color for a draw layer means `draw{Edge,Face,Vertex,Name}` is skipped entir
 ## Public API (`src/index.ts`)
 
 ```typescript
+// Object form (structured)
 geomlib.init({
-    canvasid: "myCanvas",         // id of an existing <canvas> element
-    background: "#ffe9cd",        // background color
-    title: "Proposition I.1",     // optional title drawn on canvas
-    align: Align.ABOVE,           // default label placement
+    canvasid: "myCanvas",
+    background: "#ffe9cd",
+    title: "Proposition I.1",
     elements: [
-        {
-            name: "A",
-            construction: E.Point.free,
-            params: [125, 130],
-            nameColor: "black",    // optional — overrides element defaults
-            vertexColor: "green",
-            edgeColor: 0,
-            faceColor: 0
-        },
-        // ...
+        { name: "A", construction: E.Point.free, params: [125, 130] },
+        { name: "B", construction: E.Point.free, params: [215, 130] },
+        { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+    ]
+})
+
+// String form (Java param format — can be mixed with object form)
+geomlib.init({
+    background: "35,19,100",
+    title: "I.1",
+    canvasid: "myCanvas",
+    elements: [
+        "A;point;free;125,130",
+        "B;point;free;215,130",
+        "AB;line;connect;A,B",
     ]
 })
 ```
 
 `E` is the construction enum accessor: `E.Point.free`, `E.Line.connect`, `E.Circle.radius`, etc.
 `Align` is `{ ABOVE, BELOW, LEFT, RIGHT, CENTRAL }`.
+`parseParam(s)` converts a Java param string to `IConstructionInfo`.
+
+UI controls (reset, maximize, new window) are injected automatically by `init()`.
+Keyboard shortcuts when canvas is focused: `r`/`space` = reset, `u`/`return` = new window, `m` = maximize.
