@@ -73,51 +73,68 @@ and **do not start implementing** until the user has picked a construction:
 
 ### Project phase
 
-As of this writing the project is in **Phase 1: porting remaining Java
-constructions to TypeScript.** This phase covers **all books (I–XIII)**,
-not just Books I–III. Progress is driven book-by-book: each new book's
-propositions are analyzed against the construction and
-[Java port tracker](doc/java-port-tracker.md) to discover which TBD
-constructions it needs, then those constructions are ported one-per-session
-using the 8-step workflow. Phase 1 continues until every proposition in
-every book is renderable. **Until Phase 1 completes, the session startup
-protocol above is the default onboarding for every fresh session.**
+**Phase 1 (construction porting) is COMPLETE** as of 2026-04-12. All
+69 documented construction methods are implemented, all 19 3D signature
+variants are wired, all 44 Java files are ported, and all 465
+propositions across Books I–XIII are renderable. The session startup
+protocol above is no longer the default — the project has transitioned
+to Phase 2.
 
-Books I–III reached 99/99 renderable on 2026-04-12. Book IV analysis is
-underway. Books V–XIII will be analyzed and expanded into the proposition
-tracker one book at a time as Phase 1 progresses.
+**Phase 2 (presentation bug fixes) is IN PROGRESS.** Major fixes
+already landed: parseColor rewrite (HSB, hex, brighter/darker matching
+Java exactly), PlaneElement rendering, ellipse rotation, dynamic CENTRAL
+label placement, null color defaults, and polyhedron face colors. See
+[doc/construction-tracker.md](doc/construction-tracker.md) for remaining
+platform TODOs (font/fontsize, per-element align, title rendering,
+pivot rotation, background HSB parsing in init).
 
-After Phase 1 completes the project transitions to:
+**Architecture refactoring COMPLETE** (2026-04-18): Constructions.ts
+refactored from 2036 → 262 lines. All 102 construction classes extracted
+to 8 per-type files (`{type}/{Type}Constructions.ts`). Each file exports
+a pre-built `Construction[]` array. All classes have Java source
+reference comments.
 
-- **Phase 2 — presentation bug fixes.** Fix visual divergences between
-  the Java applet and the TypeScript port: colors (parseColor bug,
-  numeric-0 handling, HSB format, default faceColor), label placement,
-  and any behavioral differences discovered during the book-by-book
-  harness verification in Phase 1. The goal is pixel-level visual parity
-  with Joyce's original applets at rest.
+**New API** (2026-04-18): `parseParam()` converts Java applet param
+strings directly to `IConstructionInfo`. `init()` accepts mixed arrays:
+```typescript
+elements: [
+    "A;point;free;125,130",
+    "B;point;free;215,130",
+    { name: "C", construction: E.Point.midpoint, params: ["A","B"] },
+]
+```
+
+**UI controls** (2026-04-18): SlateControls.ts adds reset/maximize/new
+window buttons + keyboard shortcuts (r/space, u/return, m) to every
+diagram. PlaneSlider.reset() and Slate.reset() fixed.
+
+Upcoming phases:
 - **Phase 3 — proposition HTML conversion.** Convert all 566 proposition
   HTMLs in `view/euclid-html/` from Java `<param>` format to TypeScript
-  `geomlib.init()` calls in a new `view/books/` folder. The working unit
-  becomes "one proposition" instead of "one construction" but the
-  per-step-commit + feature-branch + human-review workflow is unchanged.
+  `geomlib.init()` calls in a new `view/books/` folder. The `parseParam()`
+  API makes this largely a copy-paste operation. The working unit becomes
+  "one proposition" instead of "one construction."
 - **Phase 4 — retire the Java toolchain.** `run_euclid_applet.sh` and both
   `Containerfile*` files go away; `view/euclid-html/` and `Geometry.zip`
   can be archived or deleted; the `geom_applet/source/*.java` reference
   tree becomes read-only history.
 
-If the startup protocol finds Phase 1 complete (every proposition in every
-book renderable), **flag this to the user first** so they can confirm the
+If the startup protocol finds Phase 2 complete, **flag this to the user
+first** so they can confirm the
 transition to Phase 2 rather than quietly changing cadence.
 
 ## Key files
 
 | File | Role |
 |------|------|
-| `src/elements/Constructions.ts` | All construction classes + the `constructions` registration array |
+| `src/elements/Constructions.ts` | Enums, abstract `Construction` base, registration array (262 lines) |
+| `src/elements/{type}/{Type}Constructions.ts` | Per-type construction classes (8 files, ~100 classes total) |
 | `src/Slate.ts` | Canvas manager — `convertParams`, `findConstruction`, `createElement`, `update` |
+| `src/SlateControls.ts` | UI overlay — reset, maximize, new window buttons + keyboard shortcuts |
 | `src/elements/GeomElement.ts` | Abstract base class for all geometry |
-| `src/index.ts` | Public API — `init()`, `E` enum accessor, `Align`, `Color` |
-| `tests/SlateTest.ts` | Mocha test suite (patterns to follow) |
+| `src/index.ts` | Public API — `init()`, `parseParam()`, `E` enum accessor, `Align`, `Color` |
+| `src/Colors.ts` | Color parsing — `parseColor()`, `brighter()`, `darker()`, HSB/hex/named |
+| `tests/SlateTest.ts` | Mocha test suite (116 tests — patterns to follow) |
 | `geom_applet/source/` | **Original Java source files** — primary reference for porting |
 | `view/euclid-html/booki/` … `bookxiii/` | Original Java applet HTML (Books I–XIII) |
 | `view/test/{type}/{subtype}.html` | TypeScript test/demo pages, one per construction |
@@ -126,7 +143,8 @@ transition to Phase 2 rather than quietly changing cadence.
 
 ```sh
 npm run build           # compile TypeScript
-npm test                # run Mocha tests (tests/SlateTest.ts)
+npm test                # run Mocha tests (116 tests in tests/SlateTest.ts)
+npm run coverage        # run tests with c8 code coverage (text + HTML report)
 npx webpack             # bundle to dist/bundle.js
 python3 -m http.server  # then open http://localhost:PORT/view/test/...
 ```
