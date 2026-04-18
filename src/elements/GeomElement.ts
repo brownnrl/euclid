@@ -51,7 +51,12 @@ export abstract class GeomElement {
     private _edgeHighlightColor   : string = '#FFFFFF';
     private _faceHighlightColor   : string = '#00FFFF';
 
-    protected static _font : string = "italic 10pt Times New Roman";
+    // Default matches Java: Font("TimesRoman", Font.ITALIC, 18)
+    protected static _font : string = "italic 18px Times New Roman";
+
+    static setFont(fontName: string, fontSize: number): void {
+        GeomElement._font = `italic ${fontSize}px ${fontName}`;
+    }
 
     private _draggable : boolean;
     private _dimension : number;
