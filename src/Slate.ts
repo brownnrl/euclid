@@ -1,7 +1,7 @@
 import {GeomElement} from "./elements/GeomElement";
 import {PlaneElement} from "./elements/plane/PlaneElement";
 import {FixedPoint} from "./elements/point/FixedPoint";
-import {AllConstructions, Construction, constructions, getConstructionName} from "./elements/Constructions";
+import {AllConstructions, Construction, SortedParams, constructions, getConstructionName} from "./elements/Constructions";
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas} from "canvas";
 import {LineElement} from "./elements/line/LineElement";
@@ -158,36 +158,42 @@ export class Slate {
         return null;
     }
 
-    convertParams(params: any[]) : any[] {
-        let converted_params : any[] = [];
+    // Sort params into P[] (points), E[] (other elements), N[] (integers),
+    // matching Java's selectDataChoice (Slate.java lines 344-393).
+    // LineElements are expanded into their two endpoint PointElements.
+    convertParams(params: any[]) : SortedParams {
+        let P: PointElement[] = [];
+        let E: GeomElement[] = [];
+        let N: number[] = [];
         for(let param of params) {
             switch(typeof(param)) {
                 case "string":
                     let g : GeomElement = this.lookupElement(param);
                     if ( g == null )
                         throw new TypeError(`Element with name ${param} not found.`);
-                    if (g instanceof LineElement) {
-                        // We push the two point elements of the line on top
-                        converted_params.push(g.A);
-                        converted_params.push(g.B);
-
+                    if (g instanceof PointElement) {
+                        P.push(g);
+                    } else if (g instanceof LineElement) {
+                        // LineElement expands to two PointElements (matching Java)
+                        P.push(g.A);
+                        P.push(g.B);
                     } else {
-                        converted_params.push(g);
+                        E.push(g);
                     }
                     break;
                 case "number":
-                    converted_params.push(param);
+                    N.push(param);
                     break;
                 default:
                     throw new TypeError("Expecting only named elements (strings) or numbers.");
             }
         }
-        return converted_params;
+        return {P, E, N};
     }
 
-    findConstruction(cm : AllConstructions, params: any[]) : Construction {
+    findConstruction(cm : AllConstructions, sp: SortedParams) : Construction {
         for(let c of constructions) {
-            if(c.validateSignature(cm, params)) {
+            if(c.validateSignature(cm, sp)) {
                 return c;
             }
         }
@@ -195,16 +201,16 @@ export class Slate {
     }
 
     createElement(cm : AllConstructions, params: any[], name?: string) : GeomElement {
-        params = this.convertParams(params);
-        let c : Construction = this.findConstruction(cm, params);
+        let sp : SortedParams = this.convertParams(params);
+        let c : Construction = this.findConstruction(cm, sp);
         if(c == null) {
             let cName : String = getConstructionName(cm);
             if (name == null) {
                 name = "";
             }
-            throw new TypeError(`Construction not found for "${name}" ${cName} with params ${params}`);
+            throw new TypeError(`Construction not found for "${name}" ${cName} with params P=[${sp.P}] E=[${sp.E}] N=[${sp.N}]`);
         }
-        let [gs, g] = c.construct(this._screen, params);
+        let [gs, g] = c.construct(this._screen, sp.P, sp.E, sp.N);
         if(name != null)
             g.name = name;
         for (let elem of gs) {
