@@ -28,6 +28,8 @@ export interface IInitialization {
     align? : align;
     canvasid? : string;
     pivot?: string;
+    font?: string;
+    fontsize?: number;
     elements: (IConstructionInfo | string)[];
 }
 
@@ -103,6 +105,11 @@ export function init(i : IInitialization) {
     resizeCanvasToDisplaySize(canvas);
     let slate : Slate = new Slate(canvas);
     slates.push(slate);
+
+    // Set font — Java defaults: Font("TimesRoman", Font.ITALIC, 18)
+    let fontName = i.font != null ? i.font : "Times New Roman";
+    let fontSize = i.fontsize != null ? i.fontsize : 18;
+    GeomElement.setFont(fontName, fontSize);
     // Parse background through parseColor so HSB triples like "35,19,100"
     // are converted to valid CSS rgb() strings for ctx.fillStyle.
     slate.bgcolor = parseColor(i.background, "#ffffff", "#ffffff");

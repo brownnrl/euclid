@@ -35,7 +35,9 @@ These affect the library as a whole, independent of individual constructions.
   properties but `IConstructionInfo` doesn't expose them
 - [ ] **`PerpendicularPlane` division by zero** — `// TODO` in normalization
   step (~line 56)
-- [ ] **`font` / `fontsize` params** — hardcoded, not configurable
+- [x] **`font` / `fontsize` params** — FIXED (2026-04-18): `IInitialization`
+  accepts `font` and `fontsize`. Default matches Java: TimesRoman italic 18px.
+  `GeomElement.setFont()` updates the static font string used by all labels
 - [ ] **`preexists` tracking missing** — Java's `Slate.java` has a
   `preexists[]` boolean array that marks elements which are references
   to existing elements (e.g., `point;first` returns `P[0]`,

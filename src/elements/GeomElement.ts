@@ -51,7 +51,12 @@ export abstract class GeomElement {
     private _edgeHighlightColor   : string = '#FFFFFF';
     private _faceHighlightColor   : string = '#00FFFF';
 
-    protected static _font : string = "italic 10pt Times New Roman";
+    // Default matches Java: Font("TimesRoman", Font.ITALIC, 18)
+    protected static _font : string = "italic 18px Times New Roman";
+
+    static setFont(fontName: string, fontSize: number): void {
+        GeomElement._font = `italic ${fontSize}px ${fontName}`;
+    }
 
     private _draggable : boolean;
     private _dimension : number;
@@ -63,7 +68,10 @@ export abstract class GeomElement {
     protected _getTextMetrics(ctx: CanvasRenderingContext2D, txt: string) : [number, number] {
         let textMetrics = ctx.measureText(txt);
         let w = textMetrics.width;
-        let h = 16; // assuming 12 font
+        // Use actual font metrics for height; fall back to ascent-based estimate
+        let h = (textMetrics.actualBoundingBoxAscent != null)
+            ? textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent
+            : 16;
         return [w, h];
     }
 
@@ -87,7 +95,7 @@ export abstract class GeomElement {
                 return;
             case Align.ABOVE:
                 ix -= w/2;
-                iy += h/2 + 4;
+                iy += -h/2 + 4;
                 ctx.fillText(this._name, ix, iy);
                 return;
             case Align.BELOW:
