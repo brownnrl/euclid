@@ -28,7 +28,57 @@ export interface IInitialization {
     align? : align;
     canvasid? : string;
     pivot?: string;
-    elements: IConstructionInfo[];
+    elements: (IConstructionInfo | string)[];
+}
+
+// Map Java element class names to E object keys
+const typeMap: {[key: string]: string} = {
+    "point": "Point", "line": "Line", "circle": "Circle",
+    "polygon": "Polygon", "sector": "Sector", "plane": "Plane",
+    "sphere": "Sphere", "polyhedron": "Polyhedra"
+};
+
+// Parse a Java applet param value string into an IConstructionInfo.
+// Format: "name;type;construction;arg1,arg2,...[;nameColor[;vertexColor[;edgeColor[;faceColor]]]]"
+// Example: "M;point;midpoint;A,B;0;0" → { name: "M", construction: E.Point.midpoint, params: ["A","B"], nameColor: "0", vertexColor: "0" }
+export function parseParam(value: string): IConstructionInfo {
+    let fields = value.split(";");
+    if (fields.length < 4) {
+        throw new Error(`parseParam: expected at least 4 semicolon-separated fields, got ${fields.length}: "${value}"`);
+    }
+
+    let name = fields[0];
+    let type = fields[1];
+    let construction = fields[2];
+    let data = fields[3];
+
+    // Look up the construction enum value
+    let typeKey = typeMap[type];
+    if (typeKey == null) {
+        throw new Error(`parseParam: unknown element type "${type}" in "${value}"`);
+    }
+    let enumObj = (e as any)[typeKey];
+    // Handle Java names that differ from TS enum keys
+    let enumKey = construction === "3points" ? "threePoints" : construction;
+    let constructionEnum = enumObj[enumKey];
+    if (constructionEnum == null) {
+        throw new Error(`parseParam: unknown construction "${type};${construction}" in "${value}"`);
+    }
+
+    // Parse params: split on comma, convert numeric strings to numbers
+    let params: any[] = data.split(",").map(s => {
+        let n = Number(s);
+        return (s !== "" && !isNaN(n)) ? n : s;
+    });
+
+    // Parse optional color fields (positions 4-7)
+    let result: IConstructionInfo = { name, construction: constructionEnum, params };
+    if (fields.length > 4 && fields[4] !== undefined) result.nameColor = fields[4];
+    if (fields.length > 5 && fields[5] !== undefined) result.vertexColor = fields[5];
+    if (fields.length > 6 && fields[6] !== undefined) result.edgeColor = fields[6];
+    if (fields.length > 7 && fields[7] !== undefined) result.faceColor = fields[7];
+
+    return result;
 }
 
 // see https://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5
@@ -54,7 +104,8 @@ export function init(i : IInitialization) {
     let slate : Slate = new Slate(canvas);
     slates.push(slate);
     slate.bgcolor = i.background;
-    for(let param of i.elements) {
+    for(let raw of i.elements) {
+        let param: IConstructionInfo = typeof raw === "string" ? parseParam(raw) : raw;
         let element = slate.createElement(param.construction, param.params, param.name);
 
         element.align = defaultAlign;
