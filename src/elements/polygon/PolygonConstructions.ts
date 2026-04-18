@@ -4,7 +4,7 @@
 |    a construct() method that creates the geometry element.             |
 +----------------------------------------------------------------------*/
 
-import {Construction, AllConstructions,
+import {Construction, ConstructionSignature, SortedParams, AllConstructions,
         PolygonConstructions as PolygonConstructionsEnum,
         GeomElementsForUpdate} from "../Constructions";
 import {GeomElement} from "../GeomElement";
@@ -29,29 +29,22 @@ export abstract class PolyConstruction extends Construction {
 }
 
 // polygon
-// square
-// points A, B [plane C]
-// the square on a side AB in plane C (2D variant: plane defaults to screen)
+// square — points A, B [, plane C = screen]
+// the square on a side AB in plane C
+// 2D: 2 points, 0 elements — uses screen plane
+// 3D: 2 points, 1 PlaneElement — uses explicit plane
 // (Java: RegularPolygon.java with n=4 — same class as equilateralTriangle)
 export class SquarePolygonConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructionsEnum.square;
-    signature = { points: 2, elements: 0, integers: 0 };
-
-    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        const g = new RegularPolygonElement(P[0], P[1], screen, 4);
-        return [[g], g];
+    signature: ConstructionSignature = { points: 2, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 2 && sp.N.length === 0
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
     }
-}
-
-// polygon — square (3D variant)
-// points A, B, plane C
-// (Java: Slate.java polygon case 0, choice 1 — new RegularPolygon(A,B,C,4))
-export class SquarePolygon3dConstruction extends Construction {
-    constructionMethod: AllConstructions = PolygonConstructionsEnum.square;
-    signature = { points: 2, elements: 1, integers: 0, elementTypes: [PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        const g = new RegularPolygonElement(P[0], P[1], E[0] as PlaneElement, 4);
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        const g = new RegularPolygonElement(P[0], P[1], plane, 4);
         return [[g], g];
     }
 }
@@ -97,29 +90,22 @@ export class HexagonPolygonConstruction extends PolyConstruction {
 }
 
 // polygon
-// equilateralTriangle
-// points A, B [plane C = screen]
-// the equilateral triangle on side AB in the screen plane (2D variant)
-// (Java: Slate.java polygon case 5, choice 0 — new RegularPolygon(A,B,screen,3))
+// equilateralTriangle — points A, B [, plane C = screen]
+// the equilateral triangle on side AB in the plane C
+// 2D: 2 points, 0 elements — uses screen plane
+// 3D: 2 points, 1 PlaneElement — uses explicit plane
+// (Java: Slate.java polygon case 5 — new RegularPolygon(A,B,plane,3))
 export class EquilateralTriangleConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructionsEnum.equilateralTriangle;
-    signature = { points: 2, elements: 0, integers: 0 };
-
-    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        const g = new RegularPolygonElement(P[0], P[1], screen, 3);
-        return [[g], g];
+    signature: ConstructionSignature = { points: 2, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 2 && sp.N.length === 0
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
     }
-}
-
-// polygon — equilateralTriangle (3D variant)
-// points A, B, plane C
-// (Java: Slate.java polygon case 5, choice 1 — new RegularPolygon(A,B,C,3))
-export class EquilateralTriangle3dConstruction extends Construction {
-    constructionMethod: AllConstructions = PolygonConstructionsEnum.equilateralTriangle;
-    signature = { points: 2, elements: 1, integers: 0, elementTypes: [PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        const g = new RegularPolygonElement(P[0], P[1], E[0] as PlaneElement, 3);
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        const g = new RegularPolygonElement(P[0], P[1], plane, 3);
         return [[g], g];
     }
 }
@@ -142,29 +128,22 @@ export class ParallelogramPolygonConstruction extends Construction {
 }
 
 // polygon
-// regularPolygon (2D variant)
-// points A, B, integer n
-// the regular n-gon on side AB in the screen plane
-// (Java: Slate.java polygon case 7 — RegularPolygon(A, B, screen, n))
+// regularPolygon — points A, B, integer n [, plane C = screen]
+// the regular n-gon on side AB in the plane C
+// 2D: 2 points, 0 elements, 1 integer — uses screen plane
+// 3D: 2 points, 1 PlaneElement, 1 integer — uses explicit plane
+// (Java: Slate.java polygon case 7 — RegularPolygon(A,B,plane,n))
 export class RegularPolygonConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructionsEnum.regularPolygon;
-    signature = { points: 2, elements: 0, integers: 1 };
-
-    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        const g = new RegularPolygonElement(P[0], P[1], screen, N[0]);
-        return [[g], g];
+    signature: ConstructionSignature = { points: 2, elements: 0, integers: 1 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 2 && sp.N.length === 1
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
     }
-}
-
-// polygon — regularPolygon (3D variant)
-// points A, B, plane C, integer n
-// (Java: Slate.java polygon case 7, choice 1 — new RegularPolygon(A,B,C,n))
-export class RegularPolygon3dConstruction extends Construction {
-    constructionMethod: AllConstructions = PolygonConstructionsEnum.regularPolygon;
-    signature = { points: 2, elements: 1, integers: 1, elementTypes: [PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        const g = new RegularPolygonElement(P[0], P[1], E[0] as PlaneElement, N[0]);
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        const g = new RegularPolygonElement(P[0], P[1], plane, N[0]);
         return [[g], g];
     }
 }
@@ -186,30 +165,23 @@ export class StarPolygonConstruction extends Construction {
 
 
 // polygon
-// similar (2D variant)
-// points A, B, D, E, F
-// the triangle ABH where H is the similar point so △ABH ∼ △DEF (screen plane)
-// (Java: Slate.java polygon case 9 — Similar(A,B,screen,D,E,F,screen) + PolygonElement(A,B,H))
+// similar — points A, B, D, E, F [, planes C, G = screen]
+// the triangle ABH where H is the similar point so triangle ABH ~ triangle DEF
+// 2D: 5 points, 0 elements — uses screen plane for both
+// 3D: 5 points, 2 PlaneElements — uses explicit planes
+// (Java: Slate.java polygon case 9 — Similar(A,B,C,D,E,F,G) + PolygonElement(A,B,H))
 export class SimilarPolygonConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructionsEnum.similar;
-    signature = { points: 5, elements: 0, integers: 0 };
-
-    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let sim = new SimilarElement(P[0], P[1], screen, P[2], P[3], P[4], screen);
-        let g = new PolygonElement([P[0], P[1], sim]);
-        return [[sim, g], g];
+    signature: ConstructionSignature = { points: 5, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 5 && sp.N.length === 0
+            && (sp.E.length === 0 || sp.E.length === 2);
     }
-}
-
-// polygon — similar (3D variant)
-// points A, B, plane C, points D, E, F, plane G
-// (Java: Slate.java polygon case 9, choice 1 — Similar(A,B,C,D,E,F,G) + PolygonElement(A,B,H))
-export class SimilarPolygon3dConstruction extends Construction {
-    constructionMethod: AllConstructions = PolygonConstructionsEnum.similar;
-    signature = { points: 5, elements: 2, integers: 0, elementTypes: [PlaneElement, PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let sim = new SimilarElement(P[0], P[1], E[0] as PlaneElement, P[2], P[3], P[4], E[1] as PlaneElement);
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let c = E.length > 0 ? E[0] as PlaneElement : screen;
+        let g2 = E.length > 1 ? E[1] as PlaneElement : screen;
+        let sim = new SimilarElement(P[0], P[1], c, P[2], P[3], P[4], g2);
         let g = new PolygonElement([P[0], P[1], sim]);
         return [[sim, g], g];
     }
@@ -260,18 +232,14 @@ export class FacePolygonConstruction extends Construction {
 export const polygonConstructions: Construction[] = [
     new TrianglePolygonConstruction(),
     new StarPolygonConstruction(),
-    new RegularPolygon3dConstruction(),
     new RegularPolygonConstruction(),
-    new SquarePolygon3dConstruction(),
     new SquarePolygonConstruction(),
-    new EquilateralTriangle3dConstruction(),
     new EquilateralTriangleConstruction(),
     new ParallelogramPolygonConstruction(),
     new QuadrilateralPolygonConstruction(),
     new OctagonPolygonConstruction(),
     new PentagonPolygonConstruction(),
     new HexagonPolygonConstruction(),
-    new SimilarPolygon3dConstruction(),
     new SimilarPolygonConstruction(),
     new ApplicationPolygonConstruction(),
     new FacePolygonConstruction(),

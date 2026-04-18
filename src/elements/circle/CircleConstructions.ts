@@ -4,7 +4,7 @@
 |    because CircumcenterConstruction extends it directly.              |
 +----------------------------------------------------------------------*/
 
-import {Construction, AllConstructions,
+import {Construction, ConstructionSignature, SortedParams, AllConstructions,
         CircleConstructions as CircleConstructionsEnum,
         GeomElementsForUpdate} from "../Constructions";
 import {GeomElement} from "../GeomElement";
@@ -20,59 +20,44 @@ import {SphereElement} from "../sphere/SphereElement";
  ************************/
 
 // circle
-// radius
-// points A, B [plane C=screen]
+// radius — points A, B [, plane C = screen]
 // the circle with center A and radius AB in the plane C
-// (Java: Slate.java circle case 0, choice 0 — new CircleElement(A,B,screen))
+// 2D: 2 points, 0 elements — uses screen plane
+// 3D: 2 points, 1 PlaneElement — uses explicit plane
+// (Java: Slate.java circle case 0 — new CircleElement(A,B,plane))
 export class CircleRadiusCenterConstruction extends Construction {
     constructionMethod: AllConstructions = CircleConstructionsEnum.radius;
-    signature = { points: 2, elements: 0, integers: 0 };
-
-    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let g = new CircleElement({C:P[0], B:P[1], AP:screen});
+    signature: ConstructionSignature = { points: 2, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 2 && sp.N.length === 0
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        let g = new CircleElement({C:P[0], B:P[1], AP:plane});
         return [[g], g];
     }
 }
 
-// circle — radius (3D, 2-point)
-// points A, B, plane C
-// the circle with center A and radius AB in the plane C
-// (Java: Slate.java circle case 0, choice 2 — new CircleElement(A,B,C))
-export class CircleRadius3dConstruction extends Construction {
-    constructionMethod: AllConstructions = CircleConstructionsEnum.radius;
-    signature = { points: 2, elements: 1, integers: 0, elementTypes: [PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let g = new CircleElement({C: P[0], B: P[1], AP: E[0] as PlaneElement});
-        return [[g], g];
-    }
-}
-
-// circle — radius (3D, 3-point)
-// points A, B, C, plane D
-// (Java: Slate.java circle case 0, choice 3 — new CircleElement(A,B,C,D))
-export class CircleRadius3Point3dConstruction extends Construction {
-    constructionMethod: AllConstructions = CircleConstructionsEnum.radius;
-    signature = { points: 3, elements: 1, integers: 0, elementTypes: [PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let g = new CircleElement({C: P[0], A: P[1], B: P[2], AP: E[0] as PlaneElement});
-        return [[g], g];
-    }
-}
-
-// circle — radius (2D, 3-point)
-// points A, B, C
-// the circle with center A and radius |BC| in the screen plane
-// (Java: CircleElement(A, B, C, screen) — A=center, radius=B.distance(C))
+// circle — radius (3-point) — points A, B, C [, plane D = screen]
+// the circle with center A and radius |BC| in the plane D
+// 2D: 3 points, 0 elements — uses screen plane
+// 3D: 3 points, 1 PlaneElement — uses explicit plane
 // MUST be registered BEFORE the 2-point variant in the constructions array
 // (signature variant ordering rule: longer signature first)
+// (Java: Slate.java circle case 0 — new CircleElement(A,B,C,plane))
 export class CircleRadius3PointConstruction extends Construction {
     constructionMethod: AllConstructions = CircleConstructionsEnum.radius;
-    signature = { points: 3, elements: 0, integers: 0 };
-
-    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let g = new CircleElement({C: P[0], A: P[1], B: P[2], AP: screen});
+    signature: ConstructionSignature = { points: 3, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 0
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        let g = new CircleElement({C: P[0], A: P[1], B: P[2], AP: plane});
         return [[g], g];
     }
 }
@@ -109,8 +94,6 @@ export class SphereIntersectionConstruction extends Construction {
 }
 
 export const circleConstructions: Construction[] = [
-    new CircleRadius3Point3dConstruction(),
-    new CircleRadius3dConstruction(),
     new CircleRadius3PointConstruction(),
     new CircleRadiusCenterConstruction(),
     new InvertCircleConstruction(),

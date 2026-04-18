@@ -4,7 +4,7 @@
 |    a construct() method that creates the geometry element.             |
 +----------------------------------------------------------------------*/
 
-import {Construction, AllConstructions, LineConstructions as LineConstructionsEnum,
+import {Construction, ConstructionSignature, SortedParams, AllConstructions, LineConstructions as LineConstructionsEnum,
         GeomElementsForUpdate} from "../Constructions";
 import {PointPerpendicular1Construction, PointPerpendicular2Construction,
         PointPerpendicular3Construction, PointPerpendicular4Construction,
@@ -46,60 +46,44 @@ export class LineConnectConstruction extends Construction {
 }
 
 // line
-// angleBisector (2D variant)
-// points B, A, C
+// angleBisector — points B, A, C [, plane D = screen]
 // line from A to the bisector point of angle BAC on line BC
-// (Java: Slate.java line case 1 — AngleDivider(B,A,C,screen,2) + LineElement(A,result))
+// 2D: 3 points, 0 elements — uses screen plane
+// 3D: 3 points, 1 PlaneElement — uses explicit plane
+// (Java: Slate.java line case 1 — AngleDivider(B,A,C,plane,2) + LineElement(A,result))
 export class AngleBisectorLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.angleBisector;
-    signature = { points: 3, elements: 0, integers: 0 };
-
+    signature: ConstructionSignature = { points: 3, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 0
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
+    }
     construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let ad = new AngleDividerElement(P[0], P[1], P[2], screen, 2);
+        let plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        let ad = new AngleDividerElement(P[0], P[1], P[2], plane, 2);
         let g = new LineElement({A: P[1], B: ad});
         return [[ad, g], g];
     }
 }
 
 // line
-// angleDivider (2D variant)
-// points B, A, C, integer n
+// angleDivider — points B, A, C, integer n [, plane D = screen]
 // line from A to the n-th division point of angle BAC on line BC
-// (Java: Slate.java line case 2 — AngleDivider(B,A,C,screen,n) + LineElement(A,result))
+// 2D: 3 points, 0 elements, 1 integer — uses screen plane
+// 3D: 3 points, 1 PlaneElement, 1 integer — uses explicit plane
+// (Java: Slate.java line case 2 — AngleDivider(B,A,C,plane,n) + LineElement(A,result))
 export class AngleDividerLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.angleDivider;
-    signature = { points: 3, elements: 0, integers: 1 };
-
+    signature: ConstructionSignature = { points: 3, elements: 0, integers: 1 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 1
+            && (sp.E.length === 0 || (sp.E.length === 1 && sp.E[0] instanceof PlaneElement));
+    }
     construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let ad = new AngleDividerElement(P[0], P[1], P[2], screen, N[0]);
-        let g = new LineElement({A: P[1], B: ad});
-        return [[ad, g], g];
-    }
-}
-
-// line — angleBisector (3D variant)
-// points B, A, C, plane D
-// (Java: Slate.java line case 1, choice 1 — AngleDivider(B,A,C,D,2) + LineElement(A,result))
-export class AngleBisectorLine3dConstruction extends Construction {
-    constructionMethod: AllConstructions = LineConstructionsEnum.angleBisector;
-    signature = { points: 3, elements: 1, integers: 0, elementTypes: [PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let ad = new AngleDividerElement(P[0], P[1], P[2], E[0] as PlaneElement, 2);
-        let g = new LineElement({A: P[1], B: ad});
-        return [[ad, g], g];
-    }
-}
-
-// line — angleDivider (3D variant)
-// points B, A, C, plane D, integer n
-// (Java: Slate.java line case 2, choice 1 — AngleDivider(B,A,C,D,n) + LineElement(A,result))
-export class AngleDividerLine3dConstruction extends Construction {
-    constructionMethod: AllConstructions = LineConstructionsEnum.angleDivider;
-    signature = { points: 3, elements: 1, integers: 1, elementTypes: [PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let ad = new AngleDividerElement(P[0], P[1], P[2], E[0] as PlaneElement, N[0]);
+        let plane = E.length > 0 ? E[0] as PlaneElement : screen;
+        let ad = new AngleDividerElement(P[0], P[1], P[2], plane, N[0]);
         let g = new LineElement({A: P[1], B: ad});
         return [[ad, g], g];
     }
@@ -266,30 +250,23 @@ export class LineParallelConstruction extends Construction {
 }
 
 // line
-// similar (2D variant)
-// points A, B, D, E, F
-// the line AH so that triangle ABH is similar to triangle DEF (screen plane)
-// (Java: Slate.java line case 10 — Similar(A,B,screen,D,E,F,screen) + LineElement(A,H))
+// similar — points A, B, D, E, F [, planes C, G = screen]
+// the line AH so that triangle ABH is similar to triangle DEF
+// 2D: 5 points, 0 elements — uses screen plane for both
+// 3D: 5 points, 2 PlaneElements — uses explicit planes
+// (Java: Slate.java line case 10 — Similar(A,B,C,D,E,F,G) + LineElement(A,H))
 export class SimilarLineConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructionsEnum.similar;
-    signature = { points: 5, elements: 0, integers: 0 };
-
-    construct(screen : PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let sim = new SimilarElement(P[0], P[1], screen, P[2], P[3], P[4], screen);
-        let g = new LineElement({A: P[0], B: sim});
-        return [[sim, g], g];
+    signature: ConstructionSignature = { points: 5, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 5 && sp.N.length === 0
+            && (sp.E.length === 0 || sp.E.length === 2);
     }
-}
-
-// line — similar (3D variant)
-// points A, B, plane C, points D, E, F, plane G
-// (Java: Slate.java line case 10, choice 1 — Similar(A,B,C,D,E,F,G) + LineElement(A,H))
-export class SimilarLine3dConstruction extends Construction {
-    constructionMethod: AllConstructions = LineConstructionsEnum.similar;
-    signature = { points: 5, elements: 2, integers: 0, elementTypes: [PlaneElement, PlaneElement] };
-
-    construct(_screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        let sim = new SimilarElement(P[0], P[1], E[0] as PlaneElement, P[2], P[3], P[4], E[1] as PlaneElement);
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let c = E.length > 0 ? E[0] as PlaneElement : screen;
+        let g2 = E.length > 1 ? E[1] as PlaneElement : screen;
+        let sim = new SimilarElement(P[0], P[1], c, P[2], P[3], P[4], g2);
         let g = new LineElement({A: P[0], B: sim});
         return [[sim, g], g];
     }
@@ -341,12 +318,9 @@ export const lineConstructions: Construction[] = [
     new LineCutoffConstruction(),
     new PlaneFootLineConstruction(),
     new LineFootConstruction(),
-    new SimilarLine3dConstruction(),
     new SimilarLineConstruction(),
     new ProportionLineConstruction(),
-    new AngleBisectorLine3dConstruction(),
     new AngleBisectorLineConstruction(),
-    new AngleDividerLine3dConstruction(),
     new AngleDividerLineConstruction(),
     new MeanProportionalLineConstruction(),
 ];
