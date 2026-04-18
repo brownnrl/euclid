@@ -306,14 +306,29 @@ export class Slate {
         return this._pick;
     }
 
-    setPivot(name : string) : void {
-        let e : GeomElement = this.lookupElement(name);
-        if ( e == null || !(e instanceof PointElement) ) {
-            throw new TypeError("Pivot element must be a PointElement");
-        }
+    // Set the pivot point for scene rotation.
+    // Format: "pointName" or "pointName,planeName"
+    // Without a plane, the pivot is set on the screen plane.
+    // With a plane, the pivot is set on that plane (for 3D rotation).
+    // (Java: Slate.java setPivot, lines 787-801)
+    setPivot(param : string) : void {
+        let parts = param.split(",");
+        let pointName = parts[0].trim();
+        let e : GeomElement = this.lookupElement(pointName);
+        if (e == null || !(e instanceof PointElement)) return;
         let piv : PointElement = e as PointElement;
-        piv.AP = this._screen;
-        this._screen.pivot = piv;
+
+        if (parts.length > 1) {
+            // "A,xyplane" — set pivot on a specific plane
+            let planeName = parts[1].trim();
+            let p : GeomElement = this.lookupElement(planeName);
+            if (p == null || !(p instanceof PlaneElement)) return;
+            (p as PlaneElement).pivot = piv;
+        } else {
+            // "A" — set pivot on screen plane
+            piv._AP = this._screen;
+            this._screen.pivot = piv;
+        }
     }
 
     movePick(c: number, d: number) : void {
