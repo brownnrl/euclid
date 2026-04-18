@@ -4,6 +4,7 @@ import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
 import {colors, randomColor, lighten, darken, parseColor} from "./Colors";
+import {createControls} from "./SlateControls";
 
 export type IndexAllConstructions = AllConstructions;
 export {align  as Align};
@@ -21,7 +22,7 @@ export interface IConstructionInfo {
     faceColor?: string | number;
 }
 
-interface IInitialization {
+export interface IInitialization {
     background : string;
     title : string;
     align? : align;
@@ -82,5 +83,9 @@ export function init(i : IInitialization) {
     slate.update();
     slate.updateCoordinates(0);
 
+    // Add UI controls (reset, maximize, new window) if running in browser
+    if (canvas && canvas.parentElement) {
+        createControls(slate, canvas, i);
+    }
 }
 
