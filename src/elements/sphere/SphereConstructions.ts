@@ -50,3 +50,8 @@ export class SphereRadius3PointConstruction extends Construction {
         return [[g], g];
     }
 }
+
+export const sphereConstructions: Construction[] = [
+    new SphereRadius3PointConstruction(),
+    new SphereRadiusConstruction(),
+];

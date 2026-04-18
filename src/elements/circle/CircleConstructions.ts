@@ -117,3 +117,12 @@ export class SphereIntersectionConstruction extends Construction {
         return [[g], g];
     }
 }
+
+export const circleConstructions: Construction[] = [
+    new CircleRadius3Point3dConstruction(),
+    new CircleRadius3dConstruction(),
+    new CircleRadius3PointConstruction(),
+    new CircleRadiusCenterConstruction(),
+    new InvertCircleConstruction(),
+    new SphereIntersectionConstruction(),
+];

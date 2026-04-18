@@ -286,3 +286,23 @@ export class FacePolygonConstruction extends Construction {
         return [[face], face];
     }
 }
+
+export const polygonConstructions: Construction[] = [
+    new TrianglePolygonConstruction(),
+    new StarPolygonConstruction(),
+    new RegularPolygon3dConstruction(),
+    new RegularPolygonConstruction(),
+    new SquarePolygon3dConstruction(),
+    new SquarePolygonConstruction(),
+    new EquilateralTriangle3dConstruction(),
+    new EquilateralTriangleConstruction(),
+    new ParallelogramPolygonConstruction(),
+    new QuadrilateralPolygonConstruction(),
+    new OctagonPolygonConstruction(),
+    new PentagonPolygonConstruction(),
+    new HexagonPolygonConstruction(),
+    new SimilarPolygon3dConstruction(),
+    new SimilarPolygonConstruction(),
+    new ApplicationPolygonConstruction(),
+    new FacePolygonConstruction(),
+];

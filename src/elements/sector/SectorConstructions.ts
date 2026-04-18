@@ -86,3 +86,10 @@ export class Arc3dConstruction extends Construction {
         return [[g], g];
     }
 }
+
+export const sectorConstructions: Construction[] = [
+    new SectorConstruction(),
+    new Sector2Construction(),
+    new Arc3dConstruction(),
+    new ArcConstruction(),
+];

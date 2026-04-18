@@ -91,3 +91,10 @@ export class PyramidConstruction extends Construction {
         return [[g], g];
     }
 }
+
+export const polyhedronConstructions: Construction[] = [
+    new TetrahedronConstruction(),
+    new ParallelepipedConstruction(),
+    new PrismConstruction(),
+    new PyramidConstruction(),
+];

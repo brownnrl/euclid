@@ -354,3 +354,27 @@ export class MeanProportionalLineConstruction extends Construction {
         return [[mp, g], g];
     }
 }
+
+export const lineConstructions: Construction[] = [
+    new LineConnectConstruction(),
+    new LineExtendConstruction(),
+    new LinePerpendicular1Construction(),
+    new LinePerpendicular2Construction(),
+    new LinePerpendicular3Construction(),
+    new LinePerpendicular4Construction(),
+    new LinePerpendicular5Construction(),
+    new BichordConstruction(),
+    new ChordConstruction(),
+    new LineParallelConstruction(),
+    new LineCutoffConstruction(),
+    new PlaneFootLineConstruction(),
+    new LineFootConstruction(),
+    new SimilarLine3dConstruction(),
+    new SimilarLineConstruction(),
+    new ProportionLineConstruction(),
+    new AngleBisectorLine3dConstruction(),
+    new AngleBisectorLineConstruction(),
+    new AngleDividerLine3dConstruction(),
+    new AngleDividerLineConstruction(),
+    new MeanProportionalLineConstruction(),
+];

@@ -229,54 +229,14 @@ export abstract class Construction {
  * (see point/PointConstructions.ts for all point construction classes)
  ***********************/
 
-import {FreePointConstruction, MidPointConstruction, IntersectionConstruction,
-    IntersectionConstructionScreen, PlaneIntersectionConstruction,
-    FirstPointConstruction, LastPointConstruction,
-    CircleCenterConstruction, SphereCenterConstruction,
-    LineSliderConstruction, LineSlider2dConstruction,
-    CircleSliderConstruction, CircleSliderConstruction2dPoint,
-    CircumcircleConstruction, CircumcircleConstruction2d,
-    CircumcenterConstruction, CircumcenterConstruction2d,
-    FootPointConstruction, PlaneFootPointConstruction,
-    CutoffConstruction, ExtendConstruction,
-    ParallelogramConstruction,
-    SimilarPointConstruction, SimilarPoint3dConstruction,
-    PointPerpendicular1Construction, PointPerpendicular2Construction,
-    PointPerpendicular3Construction, PointPerpendicular4Construction,
-    PointPerpendicular5Construction,
-    ProportionPointConstruction, InvertPointConstruction,
-    MeanProportionalPointConstruction,
-    PlaneSliderConstruction, SphereSliderConstruction,
-    AngleBisectorPointConstruction, AngleDividerPointConstruction,
-    AngleBisectorPoint3dConstruction, AngleDividerPoint3dConstruction,
-    FixedPoint2dConstruction, FixedPoint3dConstruction,
-    LineSliderSegmentConstruction, HarmonicPointConstruction,
-    VertexConstruction} from "./point/PointConstructions";
-
-
-
-
+import {pointConstructions} from "./point/PointConstructions";
 
 /**********************
  * Element Class Line *
  * (see line/LineConstructions.ts for all line construction classes)
  **********************/
 
-import {LineConnectConstruction,
-    AngleBisectorLineConstruction, AngleDividerLineConstruction,
-    AngleBisectorLine3dConstruction, AngleDividerLine3dConstruction,
-    LineFootConstruction, PlaneFootLineConstruction,
-    ChordConstruction, BichordConstruction,
-    LinePerpendicular1Construction, LinePerpendicular2Construction,
-    LinePerpendicular3Construction, LinePerpendicular4Construction,
-    LinePerpendicular5Construction,
-    LineCutoffConstruction, LineExtendConstruction,
-    LineParallelConstruction,
-    SimilarLineConstruction, SimilarLine3dConstruction,
-    ProportionLineConstruction, MeanProportionalLineConstruction
-    } from "./line/LineConstructions";
-
-
+import {lineConstructions} from "./line/LineConstructions";
 
 /************************
  * Element Class Circle *
@@ -284,167 +244,51 @@ import {LineConnectConstruction,
  * (CircumcircleConstruction lives in point/PointConstructions.ts)
  ************************/
 
-import {CircleRadiusCenterConstruction, CircleRadius3dConstruction,
-    CircleRadius3Point3dConstruction, CircleRadius3PointConstruction,
-    InvertCircleConstruction, SphereIntersectionConstruction
-    } from "./circle/CircleConstructions";
-
+import {circleConstructions} from "./circle/CircleConstructions";
 
 /*************************
  * Element Class Polygon *
  * (see polygon/PolygonConstructions.ts for all polygon construction classes)
  *************************/
 
-import {SquarePolygonConstruction, SquarePolygon3dConstruction,
-    TrianglePolygonConstruction, QuadrilateralPolygonConstruction,
-    PentagonPolygonConstruction, HexagonPolygonConstruction,
-    EquilateralTriangleConstruction, EquilateralTriangle3dConstruction,
-    ParallelogramPolygonConstruction,
-    RegularPolygonConstruction, RegularPolygon3dConstruction,
-    StarPolygonConstruction,
-    SimilarPolygonConstruction, SimilarPolygon3dConstruction,
-    ApplicationPolygonConstruction,
-    OctagonPolygonConstruction, FacePolygonConstruction
-    } from "./polygon/PolygonConstructions";
+import {polygonConstructions} from "./polygon/PolygonConstructions";
 
 /************************
  * Element Class Sector *
  * (see sector/SectorConstructions.ts for all sector construction classes)
  ************************/
 
-import {SectorConstruction, Sector2Construction,
-    ArcConstruction, Arc3dConstruction
-    } from "./sector/SectorConstructions";
+import {sectorConstructions} from "./sector/SectorConstructions";
 
 /***********************
  * Element Class Plane *
  * (see plane/PlaneConstructions.ts for all plane construction classes)
  ***********************/
 
-import {Plane3PointsConstruction, PerpendicularPlaneConstruction,
-    PlaneParallelConstruction,
-    AmbientPlanePointConstruction, AmbientPlaneCircleConstruction
-    } from "./plane/PlaneConstructions";
+import {planeConstructions} from "./plane/PlaneConstructions";
 
 /************************
  * Element Class Sphere *
  * (see sphere/SphereConstructions.ts for all sphere construction classes)
  ************************/
 
-import {SphereRadiusConstruction, SphereRadius3PointConstruction
-    } from "./sphere/SphereConstructions";
+import {sphereConstructions} from "./sphere/SphereConstructions";
 
 /****************************
  * Element Class Polyhedron *
  * (see polyhedron/PolyhedronConstructions.ts for all polyhedron construction classes)
  ****************************/
 
-import {TetrahedronConstruction, ParallelepipedConstruction,
-    PrismConstruction, PyramidConstruction
-    } from "./polyhedron/PolyhedronConstructions";
+import {polyhedronConstructions} from "./polyhedron/PolyhedronConstructions";
 
 
-export const constructions : Construction[] = [
-    new FreePointConstruction(),
-    new FixedPoint2dConstruction(),
-    new FixedPoint3dConstruction(),
-    new FirstPointConstruction(),
-    new LastPointConstruction(),
-    new CircleCenterConstruction(),
-    new CircumcenterConstruction(),
-    new CircumcenterConstruction2d(),
-    new MidPointConstruction(),
-    new IntersectionConstruction(),
-    new IntersectionConstructionScreen(),
-    new FootPointConstruction(),
-    new PlaneFootPointConstruction(),
-    new ExtendConstruction(),
-    new CutoffConstruction(),
-    new ParallelogramConstruction(),
-    new SimilarPoint3dConstruction(),
-    new SimilarPointConstruction(),
-    new ProportionPointConstruction(),
-    new AngleBisectorPoint3dConstruction(),
-    new AngleBisectorPointConstruction(),
-    new AngleDividerPoint3dConstruction(),
-    new AngleDividerPointConstruction(),
-    new MeanProportionalPointConstruction(),
-    new PlaneSliderConstruction(),
-    new SphereSliderConstruction(),
-    new HarmonicPointConstruction(),
-    new InvertPointConstruction(),
-    new PlaneIntersectionConstruction(),
-    new SphereCenterConstruction(),
-    new CircumcircleConstruction(),
-    new CircumcircleConstruction2d(),
-    new LineSliderConstruction(),
-    new LineSlider2dConstruction(),
-    new LineSliderSegmentConstruction(),
-    new LineConnectConstruction(),
-    new LineExtendConstruction(),
-    new SectorConstruction(),
-    new Sector2Construction(),
-    new Arc3dConstruction(),
-    new ArcConstruction(),
-    new CircleSliderConstruction(),
-    new CircleSliderConstruction2dPoint(),
-    new CircleRadius3Point3dConstruction(),
-    new CircleRadius3dConstruction(),
-    new CircleRadius3PointConstruction(),
-    new CircleRadiusCenterConstruction(),
-    new InvertCircleConstruction(),
-    new SphereIntersectionConstruction(),
-    new PointPerpendicular1Construction(),
-    new PointPerpendicular2Construction(),
-    new PointPerpendicular3Construction(),
-    new PointPerpendicular4Construction(),
-    new PointPerpendicular5Construction(),
-    new LinePerpendicular1Construction(),
-    new LinePerpendicular2Construction(),
-    new LinePerpendicular3Construction(),
-    new LinePerpendicular4Construction(),
-    new LinePerpendicular5Construction(),
-    new BichordConstruction(),
-    new ChordConstruction(),
-    new LineParallelConstruction(),
-    new LineCutoffConstruction(),
-    new PlaneFootLineConstruction(),
-    new LineFootConstruction(),
-    new SimilarLine3dConstruction(),
-    new SimilarLineConstruction(),
-    new ProportionLineConstruction(),
-    new AngleBisectorLine3dConstruction(),
-    new AngleBisectorLineConstruction(),
-    new AngleDividerLine3dConstruction(),
-    new AngleDividerLineConstruction(),
-    new MeanProportionalLineConstruction(),
-    new TrianglePolygonConstruction(),
-    new StarPolygonConstruction(),
-    new RegularPolygon3dConstruction(),
-    new RegularPolygonConstruction(),
-    new SquarePolygon3dConstruction(),
-    new SquarePolygonConstruction(),
-    new EquilateralTriangle3dConstruction(),
-    new EquilateralTriangleConstruction(),
-    new ParallelogramPolygonConstruction(),
-    new QuadrilateralPolygonConstruction(),
-    new OctagonPolygonConstruction(),
-    new PentagonPolygonConstruction(),
-    new HexagonPolygonConstruction(),
-    new SimilarPolygon3dConstruction(),
-    new SimilarPolygonConstruction(),
-    new ApplicationPolygonConstruction(),
-    new VertexConstruction(),
-    new Plane3PointsConstruction(),
-    new PerpendicularPlaneConstruction(),
-    new PlaneParallelConstruction(),
-    new AmbientPlanePointConstruction(),
-    new AmbientPlaneCircleConstruction(),
-    new SphereRadius3PointConstruction(),
-    new SphereRadiusConstruction(),
-    new TetrahedronConstruction(),
-    new ParallelepipedConstruction(),
-    new PrismConstruction(),
-    new PyramidConstruction(),
-    new FacePolygonConstruction(),
+export const constructions: Construction[] = [
+    ...pointConstructions,
+    ...lineConstructions,
+    ...circleConstructions,
+    ...sectorConstructions,
+    ...polygonConstructions,
+    ...planeConstructions,
+    ...sphereConstructions,
+    ...polyhedronConstructions,
 ];

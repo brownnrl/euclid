@@ -100,3 +100,11 @@ export class AmbientPlaneCircleConstruction extends Construction {
         return [[c.AP], c.AP];
     }
 }
+
+export const planeConstructions: Construction[] = [
+    new Plane3PointsConstruction(),
+    new PerpendicularPlaneConstruction(),
+    new PlaneParallelConstruction(),
+    new AmbientPlanePointConstruction(),
+    new AmbientPlaneCircleConstruction(),
+];
