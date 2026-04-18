@@ -32,6 +32,11 @@ export abstract class GeomElement {
     }
 
     protected _name: string;
+    // True for elements that are references to existing elements (e.g.,
+    // point;first returns P[0], point;vertex returns polygon.V[n-1]).
+    // Preexisting elements are skipped during rotate/translate to avoid
+    // double-movement. Matches Java's preexists[] array in Slate.java.
+    public preexists: boolean = false;
     // All colors default to null (transparent) — matching Java's Element.java.
     // Named elements get their colors assigned by init() in index.ts, which
     // computes type-appropriate defaults. Internal/intermediate elements

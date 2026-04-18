@@ -211,6 +211,14 @@ export class Slate {
             throw new TypeError(`Construction not found for "${name}" ${cName} with params P=[${sp.P}] E=[${sp.E}] N=[${sp.N}]`);
         }
         let [gs, g] = c.construct(this._screen, sp.P, sp.E, sp.N);
+        // Mark as preexisting if this element was already in _elements
+        // before this construction (e.g., point;first returns an existing
+        // PointElement). Preexisting elements are skipped during
+        // rotate/translate to avoid double-movement.
+        // (Java: Slate.java preexists[] array)
+        if (this._elements.indexOf(g) !== -1) {
+            g.preexists = true;
+        }
         if(name != null)
             g.name = name;
         for (let elem of gs) {
@@ -253,19 +261,26 @@ export class Slate {
             element.drawName(this._canvas);
     }
 
+    // Update coordinates starting with element[i+1], matching Java's
+    // Slate.java updateCoordinates (lines 808-814). Only elements AFTER
+    // the picked element are recomputed — elements before it are left
+    // untouched to avoid reprojection artifacts after rotation.
     updateCoordinates(i : number) {
-        for(i; i < this.elements.length; i++) {
+        for(++i; i < this._elements.length; i++) {
             if(!this._elements[i].defined())
                 this._elements[i].reset();
-            //this._elements[i].update();
+            this._elements[i].update();
         }
-        this.update();
+        this.drawElements();
     }
 
     translateCoordinates(dx : number, dy: number) {
+        // translate all non-preexisting elements
+        // (Java: Slate.java line 819 — if (!preexists[i]) element[i].translate(...))
         for(let i = 0; i < this._elements.length; i++) {
             let elem = this._elements[i];
-            elem.translate(dx, dy);
+            if (!elem.preexists)
+                elem.translate(dx, dy);
         }
         this.update();
     }
@@ -382,9 +397,11 @@ export class Slate {
       den = olds*olds + oldt*oldt;
       let ac : number = (news*olds + newt*oldt)/den;
       let as : number = (newt*olds - news*oldt)/den;
-      // rotate all the elements  
+      // rotate all non-preexisting elements
+      // (Java: Slate.java line 844 — if (!preexists[i]) element[i].rotate(...))
       for (let elem of this._elementsForUpdate) {
-          elem.rotate(piv, ac, as);
+          if (!elem.preexists)
+              elem.rotate(piv, ac, as);
       }
 
     }
