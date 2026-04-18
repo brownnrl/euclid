@@ -147,52 +147,17 @@ if [[ ${#LABELS[@]} -eq 0 ]]; then
 fi
 
 # ----------------------------------------------------------------------
-# Picker
-# ----------------------------------------------------------------------
-
-echo ""
-echo "Euclid 3-way construction comparison"
-echo "====================================="
-echo "  1. ORIGINAL  — Joyce's full proposition in Java appletviewer"
-echo "  2. UP-TO     — same trimmed to focus on this construction (Java)"
-echo "  3. TS        — same in the TypeScript port (chromeless firefox)"
-echo ""
-PS3=$'\nSelect a construction (or Ctrl-C to quit): '
-COLUMNS=1
-
-select CHOICE in "${LABELS[@]}"; do
-  if [[ -z "$CHOICE" ]]; then
-    echo "Invalid selection."
-    continue
-  fi
-  break
-done
-
-APPLET_REL="${APPLET_PATH_REL[$CHOICE]}"
-ORIG_REL="${ORIGINAL_PATH_REL[$CHOICE]}"
-TS_REL="${TS_PATH_REL[$CHOICE]}"
-
-echo ""
-echo "Selected: $CHOICE"
-echo "  ORIGINAL: $APPLET_DIR_CONT/$ORIG_REL"
-echo "  UP-TO   : $APPLET_DIR_CONT/$APPLET_REL"
-echo "  TS      : $HTTP_BASE/$TS_REL"
-echo ""
-
-# ----------------------------------------------------------------------
-# Spawn the three windows
+# Shared helpers
 # ----------------------------------------------------------------------
 
 CONTAINERS=()
 
-cleanup() {
-  echo ""
-  echo "Cleaning up..."
+cleanup_containers() {
   for cid in "${CONTAINERS[@]}"; do
     docker stop "$cid" >/dev/null 2>&1 || true
   done
+  CONTAINERS=()
 }
-trap cleanup EXIT INT TERM
 
 run_appletviewer() {
   local name="$1"
@@ -207,36 +172,13 @@ run_appletviewer() {
     bash -c "appletviewer $VIEWER_FLAGS $container_path" >/dev/null
 }
 
-ORIG_CONTAINER="euclid-orig-$$"
-APPLET_CONTAINER="euclid-applet-$$"
-FIREFOX_CONTAINER="euclid-firefox-$$"
-
-echo "Starting ORIGINAL appletviewer..."
-run_appletviewer "$ORIG_CONTAINER" "$APPLET_DIR_CONT/$ORIG_REL"
-CONTAINERS+=("$ORIG_CONTAINER")
-
-echo "Starting UP-TO appletviewer..."
-run_appletviewer "$APPLET_CONTAINER" "$APPLET_DIR_CONT/$APPLET_REL"
-CONTAINERS+=("$APPLET_CONTAINER")
-
-# ----------------------------------------------------------------------
-# Firefox runs in its own euclid-firefox container so the user's regular
-# firefox instance is never disturbed (no "Close Firefox" dialog, no
-# profile collision, no MOZ_NO_REMOTE escape-hatch needed). The chromeless
-# profile is created on the host and bind-mounted into the container at
-# /profile so the userChrome.css customizations apply.
-# ----------------------------------------------------------------------
-
+# Firefox profile setup (shared across all iterations)
 FF_PROFILE_DIR_HOST="${XDG_CACHE_HOME:-$HOME/.cache}/euclid-harness/firefox-profile"
 FF_PROFILE_DIR_CONT=/profile
 
 if [[ ! -d "$FF_PROFILE_DIR_HOST" ]]; then
   mkdir -p "$FF_PROFILE_DIR_HOST/chrome"
   cat >"$FF_PROFILE_DIR_HOST/chrome/userChrome.css" <<'CSS_EOF'
-/* Hide tab bar, nav/url bar, bookmarks bar, and titlebar so the firefox
-   window content is just the rendered page — application-style view without
-   firefox requesting fullscreen (which tiling WMs honor by floating the
-   window on top of everything else). */
 #TabsToolbar,
 #nav-bar,
 #PersonalToolbar,
@@ -245,67 +187,151 @@ if [[ ! -d "$FF_PROFILE_DIR_HOST" ]]; then
 }
 CSS_EOF
   cat >"$FF_PROFILE_DIR_HOST/user.js" <<'PREFS_EOF'
-// Allow userChrome.css to take effect (Firefox 69+ requires this opt-in).
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-// Don't restore previous session — we always pass an explicit URL.
 user_pref("browser.sessionstore.resume_from_crash", false);
 user_pref("browser.startup.page", 0);
-// Suppress the "default browser" prompt and other first-run noise.
 user_pref("browser.shell.checkDefaultBrowser", false);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
 PREFS_EOF
 fi
 
-# Drop a stale lock file from a previous interrupted run.
-rm -f "$FF_PROFILE_DIR_HOST/.parentlock" "$FF_PROFILE_DIR_HOST/lock" 2>/dev/null
+launch_three_windows() {
+  local choice="$1"
+  local applet_rel="${APPLET_PATH_REL[$choice]}"
+  local orig_rel="${ORIGINAL_PATH_REL[$choice]}"
+  local ts_rel="${TS_PATH_REL[$choice]}"
 
-echo "Starting firefox in container (chromeless profile) for TS view..."
-echo "  profile: $FF_PROFILE_DIR_HOST"
+  local orig_cont="euclid-orig-$$"
+  local applet_cont="euclid-applet-$$"
+  local firefox_cont="euclid-firefox-$$"
 
-# --network host: lets the container reach the host's python http.server
-#                 on localhost:8000 directly (no need for host.docker.internal).
-# --user $UID:$GID: matches host uid so the bind-mounted profile dir has
-#                   compatible ownership and firefox can write to it.
-# HOME=/tmp: gives firefox a writable scratch dir without needing a real
-#            user account inside the container.
-docker run --rm -d \
-  --name "$FIREFOX_CONTAINER" \
-  --network host \
-  --user "$(id -u):$(id -g)" \
-  -e DISPLAY="$DISPLAY" \
-  -e HOME=/tmp \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v "$FF_PROFILE_DIR_HOST":"$FF_PROFILE_DIR_CONT" \
-  "$FIREFOX_IMAGE" \
-  firefox -profile "$FF_PROFILE_DIR_CONT" "$HTTP_BASE/$TS_REL" >/dev/null
+  rm -f "$FF_PROFILE_DIR_HOST/.parentlock" "$FF_PROFILE_DIR_HOST/lock" 2>/dev/null
 
-CONTAINERS+=("$FIREFOX_CONTAINER")
+  run_appletviewer "$orig_cont" "$APPLET_DIR_CONT/$orig_rel"
+  CONTAINERS+=("$orig_cont")
 
-# Give firefox a moment to either show a window or exit. If the container
-# died immediately, dump its logs so the user can see why.
-sleep 2
-if ! docker ps --format '{{.Names}}' | grep -qE "^${FIREFOX_CONTAINER}\$"; then
-  echo "" >&2
-  echo "ERROR: firefox container exited within 2s of launch. Logs were:" >&2
-  echo "----" >&2
-  docker logs "$FIREFOX_CONTAINER" 2>&1 || true
-  echo "----" >&2
-  echo "" >&2
-  echo "Common causes:" >&2
-  echo "  - Profile dir corrupted: rm -rf $FF_PROFILE_DIR_HOST and retry" >&2
-  echo "  - X11 not reachable from docker: check \`xhost\` output" >&2
-  exit 1
-fi
+  run_appletviewer "$applet_cont" "$APPLET_DIR_CONT/$applet_rel"
+  CONTAINERS+=("$applet_cont")
 
-echo ""
-echo "Three windows launched. Press Ctrl-C in this terminal to close them."
-echo ""
+  docker run --rm -d \
+    --name "$firefox_cont" \
+    --network host \
+    --user "$(id -u):$(id -g)" \
+    -e DISPLAY="$DISPLAY" \
+    -e HOME=/tmp \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v "$FF_PROFILE_DIR_HOST":"$FF_PROFILE_DIR_CONT" \
+    "$FIREFOX_IMAGE" \
+    firefox -profile "$FF_PROFILE_DIR_CONT" "$HTTP_BASE/$ts_rel" >/dev/null
+  CONTAINERS+=("$firefox_cont")
 
-# Wait until any of the three containers exits, then teardown via the trap.
-while true; do
-  running=$(docker ps --format '{{.Names}}' | grep -cE "^($ORIG_CONTAINER|$APPLET_CONTAINER|$FIREFOX_CONTAINER)\$" || true)
-  if [[ "$running" -lt 3 ]]; then
-    break
-  fi
   sleep 2
-done
+  if ! docker ps --format '{{.Names}}' | grep -qE "^${firefox_cont}\$"; then
+    echo "  WARN: firefox container exited early" >&2
+  fi
+}
+
+# ----------------------------------------------------------------------
+# Mode selection: single pick or loop-through-all
+# ----------------------------------------------------------------------
+
+echo ""
+echo "Euclid 3-way construction comparison"
+echo "====================================="
+echo "  1. ORIGINAL  — Joyce's full proposition in Java appletviewer"
+echo "  2. UP-TO     — same trimmed to focus on this construction (Java)"
+echo "  3. TS        — same in the TypeScript port (chromeless firefox)"
+echo ""
+echo "Modes:"
+echo "  s) Select a single construction (classic mode)"
+echo "  a) Loop through ALL constructions sequentially"
+echo ""
+read -rp "Mode [s/a]: " MODE
+
+case "$MODE" in
+  a|A)
+    # ------------------------------------------------------------------
+    # Loop mode: cycle through all constructions.
+    #   ENTER = OK, advance to next
+    #   B     = mark as bad, print name, advance to next
+    #   Q     = quit immediately
+    # ------------------------------------------------------------------
+    trap cleanup_containers EXIT INT TERM
+    BAD_LIST=()
+    TOTAL=${#LABELS[@]}
+
+    for i in "${!LABELS[@]}"; do
+      CHOICE="${LABELS[$i]}"
+      NUM=$((i + 1))
+      echo ""
+      echo "[$NUM/$TOTAL] $CHOICE"
+      launch_three_windows "$CHOICE"
+
+      read -rp "  ENTER=ok  B=bad  Q=quit: " ACTION
+      cleanup_containers
+
+      case "$ACTION" in
+        b|B)
+          BAD_LIST+=("$CHOICE")
+          echo "  >> MARKED BAD: $CHOICE"
+          ;;
+        q|Q)
+          echo ""
+          echo "Quitting early at [$NUM/$TOTAL]."
+          break
+          ;;
+        *)
+          # ENTER or anything else = OK, continue
+          ;;
+      esac
+    done
+
+    # Print summary
+    echo ""
+    echo "=============================="
+    echo "Review complete."
+    if [[ ${#BAD_LIST[@]} -eq 0 ]]; then
+      echo "All constructions passed!"
+    else
+      echo "BAD constructions (${#BAD_LIST[@]}):"
+      for bad in "${BAD_LIST[@]}"; do
+        echo "  - $bad"
+      done
+    fi
+    echo "=============================="
+    ;;
+
+  *)
+    # ------------------------------------------------------------------
+    # Single-pick mode (original behavior)
+    # ------------------------------------------------------------------
+    PS3=$'\nSelect a construction (or Ctrl-C to quit): '
+    COLUMNS=1
+
+    select CHOICE in "${LABELS[@]}"; do
+      if [[ -z "$CHOICE" ]]; then
+        echo "Invalid selection."
+        continue
+      fi
+      break
+    done
+
+    echo ""
+    echo "Selected: $CHOICE"
+
+    trap cleanup_containers EXIT INT TERM
+    launch_three_windows "$CHOICE"
+
+    echo ""
+    echo "Three windows launched. Press Ctrl-C to close them."
+    echo ""
+
+    while true; do
+      running=$(docker ps --format '{{.Names}}' | grep -cE "euclid-(orig|applet|firefox)-$$" || true)
+      if [[ "$running" -lt 3 ]]; then
+        break
+      fi
+      sleep 2
+    done
+    ;;
+esac

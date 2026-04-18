@@ -45,10 +45,13 @@ export function parseColor(val: string | number, dfault: string, bgcolor: string
     if (str === "darker") return darker(bgcolor);
     // Named color lookup
     if (str in colors) return colors[str];
-    // Hex integer (e.g. "ff0000" → rgb(255,0,0))
+    // Hex color (e.g. "ff0000" or "#ffe9cd" → rgb(...))
     // Java does: new Color(Integer.parseInt(str, 16))
-    if (/^[0-9a-fA-F]+$/.test(str)) {
-        let n = parseInt(str, 16);
+    // Also handle CSS #-prefixed hex which Java doesn't use but our
+    // test pages do (e.g. background: '#ffe9cd')
+    let hex = str.replace(/^#/, "");
+    if (/^[0-9a-fA-F]+$/.test(hex)) {
+        let n = parseInt(hex, 16);
         if (!isNaN(n)) {
             let r = (n >> 16) & 0xFF;
             let g = (n >> 8) & 0xFF;

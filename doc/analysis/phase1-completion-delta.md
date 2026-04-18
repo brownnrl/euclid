@@ -1,5 +1,15 @@
 # Phase 1 Completion Delta — True Port Gap Analysis
 
+> **STATUS (2026-04-18):** Phase 1 is COMPLETE. All construction gaps
+> listed in sections 1-3 have been resolved. The detail tables below
+> may still show TBD/BROKEN markers — these are historical and reflect
+> the state when this document was generated (2026-04-12). For current
+> status, see [construction-tracker.md](../construction-tracker.md) and
+> [java-port-tracker.md](../java-port-tracker.md). Sections 4-7
+> (parameters, interaction, colors, rendering) track Phase 2 work —
+> some items resolved (parseColor, PlaneElement, label placement),
+> some still open (font, title, pivot).
+
 The goal of Phase 1 is not just to render all 465 Euclid propositions, but
 to be a **true port of the Geometry Applet v2.2** as documented by David
 Joyce at:

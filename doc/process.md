@@ -473,22 +473,30 @@ themselves on GitHub, pasting the body block into the description.
 
 ## Project phases
 
-### Phase 1 — Port all Java constructions (current)
+### Phase 1 — Port all Java constructions (COMPLETE 2026-04-12)
 
-Port every construction type used across **all thirteen books**, driven
-book-by-book. Extend the proposition tracker one book at a time; compare
-against the construction and [Java port tracker](java-port-tracker.md) to
-identify which TBD constructions each book needs; port them using the
-8-step workflow above. Phase 1 continues until every proposition in every
-book is renderable.
+All 69 documented construction methods implemented (100% 2D coverage).
+All 19 3D signature variants wired. All 44 Java files ported. All 465
+propositions across Books I–XIII renderable. Constructions.ts refactored
+from 2036 → 262 lines with classes split into 8 per-type packages.
 
-### Phase 2 — Presentation bug fixes
+### Phase 2 — Presentation bug fixes (current)
 
-Fix visual divergences between the Java applet and the TypeScript port:
-- Colors: parseColor bug, numeric-0 handling, HSB format, default faceColor
-- Label placement: per-element align, heuristic `drawName` positioning
-- Any behavioral differences discovered during book-by-book harness
-  verification in Phase 1
+Fix visual divergences between the Java applet and the TypeScript port.
+
+**Already resolved (2026-04-15):**
+- parseColor rewrite (HSB, hex, brighter/darker matching Java exactly)
+- PlaneElement rendering (was empty stubs)
+- Ellipse rotation for tilted 3D circles
+- Dynamic CENTRAL label placement
+- Null default colors for internal elements
+- PolyhedronElement face color passthrough
+- Test page color alignment (all 40 pages)
+- SlateControls (reset/maximize/new window + keyboard shortcuts)
+
+**Still open:** font/fontsize params, per-element align, title rendering,
+pivot rotation, background HSB parsing in init(), PerpendicularPlane
+division-by-zero guard.
 
 The goal is visual parity with Joyce's original applets at rest.
 

@@ -1,0 +1,90 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test View - The Icosahedron (from Geometry.html)</title>
+</head>
+<body>
+<canvas id="canvasId" style="width:400px; height: 360px;"></canvas>
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+
+<!--
+  Source: geom_applet/source/Geometry.html — the showcase applet from
+  David Joyce's Geometry Applet documentation page. Constructs an
+  icosahedron using spheres, planes, regular polygons, and 3D geometry.
+
+  Original applet params reproduced below using the parseParam() string API.
+-->
+
+<script type="text/javascript">
+    geomlib.init({
+        background: "35,19,100",
+        title: "The icosahedron",
+        canvasid: "canvasId",
+        elements: [
+            "A0;point;free;25,-1000;0;0",
+            "A3;point;free;25,1000;0;0",
+            "A;point;lineSlider;A0,A3,0,40",
+            "B;point;lineSlider;A0,A3,0,320",
+            "AB;line;connect;A,B",
+            "ABmid;point;midpoint;A,B;0;0",
+            "ABcirc;circle;radius;ABmid,B;0;0;0;0",
+            "A1;point;perpendicular;A,B;0;0",
+            "A2;point;extend;A,A1,A,A1;0;0",
+            "A4;point;extend;A,A2,A,A2;0;0",
+            "B1;point;perpendicular;B,A;0;0",
+            "C;point;intersection;A,B,A4,B1;0;0",
+            "D';point;perpendicular;C,A;0;0",
+            "Dch;line;chord;C,D',ABcirc;0;0;0",
+            "D;point;last;Dch;0;0",
+            "a;point;free;220,180;0",
+            "sphere;sphere;radius;a,ABmid,A;0;0;0;0",
+            "X;point;sphereSlider;sphere,310,155,100",
+            "Z;point;extend;X,a,X,a",
+            "b;point;midpoint;B,D;0;0",
+            "V;point;cutoff;a,X,b,B;0;0",
+            "W;point;extend;V,a,V,a;0;0",
+            "Vplane;plane;perpendicular;V,a;0;0;0;0",
+            "Vcirc;circle;radius;V,D,B,Vplane;0;0;0;0",
+            "L;point;circleSlider;Vcirc,240,30,-20",
+            "LEcirc;circle;radius;L,W,Z,Vplane;0;0;0;0",
+            "FE;line;bichord;Vcirc,LEcirc;0;0;0",
+            "E;point;last;FE;0;0",
+            "dec;polygon;regularPolygon;L,E,Vplane,10;0;0;0;0",
+            "P;point;vertex;dec,3",
+            "K;point;vertex;dec,4;0;0",
+            "O;point;vertex;dec,5",
+            "H;point;vertex;dec,6;0;0",
+            "N;point;vertex;dec,7",
+            "G;point;vertex;dec,8;0;0",
+            "M;point;vertex;dec,9",
+            "F;point;vertex;dec,10;0;0",
+            "Q;point;perpendicular;E,Vplane,D,B",
+            "R;point;perpendicular;F,Vplane,D,B",
+            "S;point;perpendicular;G,Vplane,D,B",
+            "T;point;perpendicular;H,Vplane,D,B",
+            "U;point;perpendicular;K,Vplane,D,B",
+            "LQR;polygon;triangle;L,Q,R",
+            "MRS;polygon;triangle;M,R,S",
+            "NST;polygon;triangle;N,S,T",
+            "OUT;polygon;triangle;O,U,T",
+            "QUP;polygon;triangle;Q,U,P",
+            "LMR;polygon;triangle;L,M,R",
+            "MNS;polygon;triangle;M,N,S",
+            "NOT;polygon;triangle;N,O,T",
+            "POU;polygon;triangle;P,O,U",
+            "LPQ;polygon;triangle;L,P,Q",
+            "QRZ;polygon;triangle;Q,R,Z",
+            "RSZ;polygon;triangle;R,S,Z",
+            "STZ;polygon;triangle;S,T,Z",
+            "TUZ;polygon;triangle;T,U,Z",
+            "UQZ;polygon;triangle;U,Q,Z",
+            "LMX;polygon;triangle;L,M,X",
+            "MNX;polygon;triangle;M,N,X",
+            "NOX;polygon;triangle;N,O,X",
+            "OPX;polygon;triangle;O,P,X",
+            "PLX;polygon;triangle;P,L,X",
+        ]
+    });
+</script>
+</body>
+</html>
