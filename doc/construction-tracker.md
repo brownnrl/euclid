@@ -36,7 +36,9 @@ These affect the library as a whole, independent of individual constructions.
 - [ ] **`PerpendicularPlane` division by zero** — `// TODO` in normalization
   step (~line 56)
 - [ ] **`font` / `fontsize` params** — hardcoded, not configurable
-- [ ] **`pivot` rotation** — parsed but not fully implemented for 3D scenes
+- [x] **`pivot` rotation** — FIXED (2026-04-18): `setPivot` now handles
+  Java's `"point,plane"` two-part format. The rotation math was already
+  implemented in `Slate.rotateCoordinates` and `PointElement.rotate`
 - [x] **Background HSB in init()** — FIXED (2026-04-18): `slate.bgcolor` now
   parsed through `parseColor` before assignment, so HSB triples like
   `"35,19,100"` are converted to valid CSS `rgb()` strings
