@@ -226,7 +226,7 @@ export abstract class Construction {
 
 /***********************
  * Element Class Point *
- * (see point/constructions.ts for all point construction classes)
+ * (see point/PointConstructions.ts for all point construction classes)
  ***********************/
 
 import {FreePointConstruction, MidPointConstruction, IntersectionConstruction,
