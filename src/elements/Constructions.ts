@@ -265,9 +265,10 @@ let ct = ConstructionTypes;
  ***********************/
 
 /* point
- * free	
- * integers x, y	
+ * free
+ * integers x, y
  * a freely dragable point in the screen plane with initial coordinates (x,y,0)
+ * (Java: Slate.java point case 0 — new PlaneSlider(screen, x, y, 0))
  */
 export class FreePointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.free;
@@ -287,6 +288,7 @@ export class FreePointConstruction extends Construction {
 // midpoint
 // points A, B
 // the midpoint of a line AB
+// (Java: Slate.java point case 1 — new Midpoint(A, B))
 export class MidPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.midpoint;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -304,6 +306,7 @@ export class MidPointConstruction extends Construction {
 // intersection
 // points A, B, C, D, plane E
 // the intersection of two lines AB and CD in the plane E
+// (Java: Slate.java point case 2, choice 1 — new Intersection(A,B,C,D,E))
 export class IntersectionConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.intersection;
     signature: ConstructionTypes[] = [ct.PointElement, 
@@ -325,6 +328,7 @@ export class IntersectionConstruction extends Construction {
     }
 }
 
+// (Java: Slate.java point case 2, choice 0 — new Intersection(A,B,C,D,screen))
 export class IntersectionConstructionScreen extends IntersectionConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, 
                                       ct.PointElement,
@@ -359,6 +363,7 @@ export class PlaneIntersectionConstruction extends Construction {
 // first
 // points A, B
 // the first end A of the line AB
+// (Java: Slate.java point case 3 — returns P[0], preexists=true)
 export class FirstPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.first;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -372,6 +377,7 @@ export class FirstPointConstruction extends Construction {
 // last
 // points A, B
 // the last end B of the line AB
+// (Java: Slate.java point case 4 — returns P[1], preexists=true)
 export class LastPointConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.last;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -382,8 +388,9 @@ export class LastPointConstruction extends Construction {
 
 // point
 // center
-// circle A	
+// circle A
 // the center of the circle A
+// (Java: Slate.java point case 5, choice 0 — returns ((CircleElement)E[0]).Center)
 export class CircleCenterConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.center;
     signature: ConstructionTypes[] = [ct.CircleElement];
@@ -396,6 +403,7 @@ export class CircleCenterConstruction extends Construction {
 // center (sphere variant)
 // sphere A
 // the center of the sphere A
+// (Java: Slate.java point case 5, choice 1 — returns ((SphereElement)E[0]).Center)
 export class SphereCenterConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.center;
     signature: ConstructionTypes[] = [ct.SphereElement];
@@ -406,8 +414,9 @@ export class SphereCenterConstruction extends Construction {
 
 // point
 // lineSlider
-// points A, B integers x, y,[z] 
+// points A, B integers x, y,[z]
 // a point that slides along a line AB with initial coordinates (x,y,z)
+// (Java: Slate.java point case 6 — new LineSlider(A,B,x,y,z,false))
 export class LineSliderConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.lineSlider;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer, ct.Integer];
@@ -427,8 +436,8 @@ export class LineSliderConstruction extends Construction {
     }
 }
 
-// point
-// lineSlider (optional argument z excluded)
+// point — lineSlider (2D variant, z defaults to 0)
+// (Java: Slate.java point case 6, choice 0 — z set to 0)
 export class LineSlider2dConstruction extends LineSliderConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer];
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
@@ -444,7 +453,10 @@ export class LineSlider2dConstruction extends LineSliderConstruction {
 }
 
 // point
-// circleSlider	circle A integers x, y,[z]	a point that slides along a circle A with given initial coordinates (x,y,z)
+// circleSlider
+// circle A, integers x, y, [z]
+// a point that slides along a circle A with given initial coordinates (x,y,z)
+// (Java: Slate.java point case 7 — new CircleSlider(E[0], x, y, z))
 export class CircleSliderConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.circleSlider;
     signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer, ct.Integer];
@@ -457,8 +469,8 @@ export class CircleSliderConstruction extends Construction {
     }
 }
 
-// point
-// circleSlider (optional argument z excluded)
+// point — circleSlider (2D variant, z defaults to 0)
+// (Java: Slate.java point case 7, choice 0 — z set to 0)
 export class CircleSliderConstruction2dPoint extends CircleSliderConstruction {
     signature: ConstructionTypes[] = [ct.CircleElement, ct.Integer, ct.Integer];
 
@@ -473,9 +485,10 @@ export class CircleSliderConstruction2dPoint extends CircleSliderConstruction {
  *******************************************/
 
 // circle
-// circumcircle	
+// circumcircle
 // points A, B, C, plane D
 // the circle passing through 3 points A, B, and C in the plane D
+// (Java: Slate.java circle case 1, choice 1 — new Circumcircle(A,B,C,D))
 export class CircumcircleConstruction extends Construction {
     constructionMethod: AllConstructions = CircleConstructions.circumcircle;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -490,10 +503,8 @@ export class CircumcircleConstruction extends Construction {
     }
 }
 
-// circle
-// circumcircle	
-// points A, B, C [plane D=screen]
-// the circle passing through 3 points A, B, and C in the plane D
+// circle — circumcircle (2D variant, plane defaults to screen)
+// (Java: Slate.java circle case 1, choice 0 — E[0] = screen)
 export class CircumcircleConstruction2d extends CircumcircleConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
 
@@ -505,8 +516,9 @@ export class CircumcircleConstruction2d extends CircumcircleConstruction {
 
 // point
 // circumcenter
-// points A, B, C plane D	
+// points A, B, C, plane D
 // the center of a circle ABC passing through 3 points A, B, and C in the plane D
+// (Java: Slate.java point case 8 — new Circumcircle(A,B,C,D), returns circ.Center)
 export class CircumcenterConstruction extends CircumcircleConstruction {
     constructionMethod: AllConstructions = PointConstructions.circumcenter;
 
@@ -520,10 +532,8 @@ export class CircumcenterConstruction extends CircumcircleConstruction {
     }
 }
 
-// point
-// circumcenter
-// points A, B, C plane D	
-// the center of a circle ABC passing through 3 points A, B, and C in the plane D
+// point — circumcenter (2D variant, plane defaults to screen)
+// (Java: Slate.java point case 8, choice 0 — E[0] = screen)
 export class CircumcenterConstruction2d extends CircumcenterConstruction {
     constructionMethod: AllConstructions = PointConstructions.circumcenter;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
@@ -539,6 +549,7 @@ export class CircumcenterConstruction2d extends CircumcenterConstruction {
  * points A, B, C
  * the foot of a perpendicular drawn from A to a line BC
  */
+// (Java: Slate.java point case 10, choice 0 — new Foot(A,B,C))
 export class FootPointConsturction extends Construction {
     constructionMethod : AllConstructions = PointConstructions.foot;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
@@ -584,8 +595,9 @@ abstract class LayoffConstruction extends Construction {
 
 // point
 // cutoff
-// points A, B, C, 
+// points A, B, C, D
 // the point E on a line AB so that AE = CD
+// (Java: Slate.java point case 11 — new Layoff(A,A,B,C,D))
 export class CutoffConstruction extends LayoffConstruction {
     constructionMethod: AllConstructions = PointConstructions.cutoff;
     protected _createLayoff(ps: PointElement[]) : GeomElement {
@@ -597,6 +609,7 @@ export class CutoffConstruction extends LayoffConstruction {
 // extend
 // points A, B, C, D
 // the point E on a line AB so that BE = CD
+// (Java: Slate.java point case 12 — new Layoff(B,A,B,C,D))
 export class ExtendConstruction extends LayoffConstruction {
     constructionMethod: AllConstructions = PointConstructions.extend;
     protected _createLayoff(ps: PointElement[]) : GeomElement {
@@ -609,6 +622,7 @@ export class ExtendConstruction extends LayoffConstruction {
 // points C, A, B
 // the 4th vertex D' of the parallelogram C-A-B-D' given 3 vertices C, A, B
 // D' = C + (B - A)  [reuses Layoff with equal direction and length vectors]
+// (Java: Slate.java point case 13 — new Layoff(C,A,B,A,B))
 export class ParallelogramConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.parallelogram;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
@@ -664,6 +678,7 @@ abstract class PointPerpendicularConstruction extends Construction {
  * perpendicular
  * points A, B, [plane C (screen)]
  * the point D so that AD is equal and perpendicular to AB in plane C
+ * (Java: Slate.java point case 15, choice 0 — new Perpendicular(A,B,screen,A,B))
  */
 export class PointPerpendicular1Construction extends PointPerpendicularConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -680,6 +695,7 @@ export class PointPerpendicular1Construction extends PointPerpendicularConstruct
  * perpendicular
  * points A, B, plane C
  * the point D so that AD is equal and perpendicular to AB in plane C
+ * (Java: Slate.java point case 15, choice 1 — new Perpendicular(A,B,C,A,B))
  */
 export class PointPerpendicular2Construction extends PointPerpendicularConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -697,6 +713,7 @@ export class PointPerpendicular2Construction extends PointPerpendicularConstruct
  * perpendicular
  * points A, B, D, E [plane C (screen)]
  * the point F so that AF is perpendicular to AB in plane C and equals DE
+ * (Java: Slate.java point case 15, choice 2 — new Perpendicular(A,B,screen,D,E))
  */
 export class PointPerpendicular3Construction extends PointPerpendicularConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PointElement];
@@ -713,8 +730,9 @@ export class PointPerpendicular3Construction extends PointPerpendicularConstruct
 
 /* point
  * perpendicular
- * points A, B, D, E [plane C]
+ * points A, B, plane C, points D, E
  * the point F so that AF is perpendicular to AB in plane C and equals DE
+ * (Java: Slate.java point case 15, choice 3 — new Perpendicular(A,B,C,D,E))
  */
 export class PointPerpendicular4Construction extends PointPerpendicularConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
@@ -732,9 +750,10 @@ export class PointPerpendicular4Construction extends PointPerpendicularConstruct
 
 /* point
  * perpendicular
- * points A, C, D plane B 
- * the point E on the line perpendicular to plane B passing through 
+ * point A, plane B, points C, D
+ * the point E on the line perpendicular to plane B passing through
  * A so that the distance from E to B equals CD
+ * (Java: Slate.java point case 15, choice 4 — new PlanePerpendicular(A,B,C,D))
  */
 export class PointPerpendicular5Construction extends PointPerpendicularConstruction {
     signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
@@ -872,6 +891,7 @@ export class AngleDividerPointConstruction extends Construction {
 
 // point — angleBisector (3D variant)
 // points B, A, C, plane D
+// (Java: Slate.java point case 21, choice 1 — new AngleDivider(B,A,C,D,2))
 export class AngleBisectorPoint3dConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.angleBisector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -885,6 +905,7 @@ export class AngleBisectorPoint3dConstruction extends Construction {
 
 // point — angleDivider (3D variant)
 // points B, A, C, plane D, integer n
+// (Java: Slate.java point case 22, choice 1 — new AngleDivider(B,A,C,D,n))
 export class AngleDividerPoint3dConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.angleDivider;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement, ct.Integer];
@@ -898,8 +919,9 @@ export class AngleDividerPoint3dConstruction extends Construction {
 
 // point
 // fixed
-// integers x, y,[z=0]
-// the fixed point with coordinates (x, y, z)
+// integers x, y [z=0]
+// the fixed point with coordinates (x, y, 0)
+// (Java: Slate.java point case 23, choice 0 — new FixedPoint(x,y,0))
 export class FixedPoint2dConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.fixed;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer];
@@ -917,6 +939,7 @@ export class FixedPoint2dConstruction extends Construction {
 // fixed
 // integers x, y, z
 // the fixed point with coordinates (x, y, z)
+// (Java: Slate.java point case 23 — new FixedPoint(x,y,z))
 export class FixedPoint3dConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.fixed;
     signature: ConstructionTypes[] = [ct.Integer, ct.Integer, ct.Integer];
@@ -933,8 +956,9 @@ export class FixedPoint3dConstruction extends Construction {
 
 // point
 // lineSegmentSlider
-// points A, B integers x, y,[z]
+// points A, B, integers x, y, [z]
 // a point that slides along within the line segment AB with initial coordinates (x,y,z)
+// (Java: Slate.java point case 24 — new LineSlider(A,B,x,y,z,true))
 export class LineSliderSegmentConstruction extends LineSliderConstruction {
     constructionMethod: AllConstructions = PointConstructions.lineSegmentSlider;
     protected createSlider(a: PointElement, b: PointElement, x: number, y: number, z: number) {
@@ -969,6 +993,7 @@ export class HarmonicPointConstruction extends Construction {
 // connect
 // points A, B
 // the line AB connecting two points A and B
+// (Java: Slate.java line case 0 — new LineElement(A,B))
 export class LineConnectConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.connect;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -1019,6 +1044,7 @@ export class AngleDividerLineConstruction extends Construction {
 
 // line — angleBisector (3D variant)
 // points B, A, C, plane D
+// (Java: Slate.java line case 1, choice 1 — AngleDivider(B,A,C,D,2) + LineElement(A,result))
 export class AngleBisectorLine3dConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.angleBisector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -1033,6 +1059,7 @@ export class AngleBisectorLine3dConstruction extends Construction {
 
 // line — angleDivider (3D variant)
 // points B, A, C, plane D, integer n
+// (Java: Slate.java line case 2, choice 1 — AngleDivider(B,A,C,D,n) + LineElement(A,result))
 export class AngleDividerLine3dConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.angleDivider;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement, ct.Integer];
@@ -1084,9 +1111,10 @@ export class PlaneFootLineConstruction extends Construction {
 
 // line
 // chord
-// points A, B circle C
+// points A, B, circle C
 // the chord of circle C cut by the line AB
 // (post-LineElement-expansion: A, B are the two endpoints of the input line)
+// (Java: Slate.java line case 4 — new Chord(A,B,C). Java: Chord.java)
 export class ChordConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.chord;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.CircleElement];
@@ -1104,6 +1132,7 @@ export class ChordConstruction extends Construction {
 // bichord
 // circles A, B
 // the common chord connecting the two intersection points of the circles A and B
+// (Java: Slate.java line case 5 — new Bichord(A,B). Java: Bichord.java)
 export class BichordConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.bichord;
     signature: ConstructionTypes[] = [ct.CircleElement, ct.CircleElement];
@@ -1191,6 +1220,7 @@ export class LineCutoffConstruction extends Construction {
 // extend
 // points A, B, C, D
 // the line BE equal to CD so that A, B, and C are collinear with B between A and C
+// (Java: Slate.java line case 8 — Layoff(B,A,B,C,D) + LineElement(B,layoff))
 export class LineExtendConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.extend;
     signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
@@ -1240,7 +1270,8 @@ export class SimilarLineConstruction extends Construction {
 }
 
 // line — similar (3D variant)
-// points A, B, planes C, D, E, F, G
+// points A, B, plane C, points D, E, F, plane G
+// (Java: Slate.java line case 10, choice 1 — Similar(A,B,C,D,E,F,G) + LineElement(A,H))
 export class SimilarLine3dConstruction extends Construction {
     constructionMethod: AllConstructions = LineConstructions.similar;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement,
@@ -1299,6 +1330,7 @@ export class MeanProportionalLineConstruction extends Construction {
 // radius
 // points A, B [plane C=screen]
 // the circle with center A and radius AB in the plane C
+// (Java: Slate.java circle case 0, choice 0 — new CircleElement(A,B,screen))
 export class CircleRadiusCenterConstruction extends Construction {
     constructionMethod: AllConstructions = CircleConstructions.radius;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -1313,6 +1345,7 @@ export class CircleRadiusCenterConstruction extends Construction {
 // circle — radius (3D, 2-point)
 // points A, B, plane C
 // the circle with center A and radius AB in the plane C
+// (Java: Slate.java circle case 0, choice 2 — new CircleElement(A,B,C))
 export class CircleRadius3dConstruction extends Construction {
     constructionMethod: AllConstructions = CircleConstructions.radius;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -1326,6 +1359,7 @@ export class CircleRadius3dConstruction extends Construction {
 
 // circle — radius (3D, 3-point)
 // points A, B, C, plane D
+// (Java: Slate.java circle case 0, choice 3 — new CircleElement(A,B,C,D))
 export class CircleRadius3Point3dConstruction extends Construction {
     constructionMethod: AllConstructions = CircleConstructions.radius;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -1419,6 +1453,7 @@ export class SquarePolygonConstruction extends Construction {
 
 // polygon — square (3D variant)
 // points A, B, plane C
+// (Java: Slate.java polygon case 0, choice 1 — new RegularPolygon(A,B,C,4))
 export class SquarePolygon3dConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructions.square;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -1434,6 +1469,7 @@ export class SquarePolygon3dConstruction extends Construction {
 // triangle
 // points A, B, C
 // the triangle ABC given 3 vertices A, B, and C
+// (Java: Slate.java polygon case 1 — new PolygonElement(A,B,C))
 export class TrianglePolygonConstruction extends PolyConstruction {
     constructionMethod: AllConstructions = PolygonConstructions.triangle;
     signature: ConstructionTypes[] = (new Array(3)).fill(ct.PointElement);
@@ -1444,6 +1480,7 @@ export class TrianglePolygonConstruction extends PolyConstruction {
 // vertex
 // polygon A, integer n
 // the nth vertex (1-based) of polygon A
+// (Java: Slate.java point case 9 — returns ((PolygonElement)E[0]).V[n-1])
 export class VertexConstruction extends Construction {
     constructionMethod: AllConstructions = PointConstructions.vertex;
     signature: ConstructionTypes[] = [ct.PolygonElement, ct.Integer];
@@ -1460,6 +1497,7 @@ export class VertexConstruction extends Construction {
 // quadrilateral
 // points A, B, C, D
 // the quadrilateral ABCD given 4 vertices A, B, C, and D
+// (Java: Slate.java polygon case 2 — new PolygonElement(A,B,C,D))
 export class QuadrilateralPolygonConstruction extends PolyConstruction {
     constructionMethod: AllConstructions = PolygonConstructions.quadrilateral;
     signature: ConstructionTypes[] = (new Array(4)).fill(ct.PointElement);
@@ -1469,6 +1507,7 @@ export class QuadrilateralPolygonConstruction extends PolyConstruction {
 // pentagon
 // points A, B, C, D, E
 // the pentagon given 5 vertices (free points, not a regular pentagon)
+// (Java: Slate.java polygon case 3 — new PolygonElement(A,B,C,D,E))
 export class PentagonPolygonConstruction extends PolyConstruction {
     constructionMethod: AllConstructions = PolygonConstructions.pentagon;
     signature: ConstructionTypes[] = (new Array(5)).fill(ct.PointElement);
@@ -1478,6 +1517,7 @@ export class PentagonPolygonConstruction extends PolyConstruction {
 // hexagon
 // points A, B, C, D, E, F
 // the hexagon given 6 vertices (free points)
+// (Java: Slate.java polygon case 4 — new PolygonElement(A,B,C,D,E,F))
 export class HexagonPolygonConstruction extends PolyConstruction {
     constructionMethod: AllConstructions = PolygonConstructions.hexagon;
     signature: ConstructionTypes[] = (new Array(6)).fill(ct.PointElement);
@@ -1487,6 +1527,7 @@ export class HexagonPolygonConstruction extends PolyConstruction {
 // equilateralTriangle
 // points A, B [plane C = screen]
 // the equilateral triangle on side AB in the screen plane (2D variant)
+// (Java: Slate.java polygon case 5, choice 0 — new RegularPolygon(A,B,screen,3))
 export class EquilateralTriangleConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructions.equilateralTriangle;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement];
@@ -1500,6 +1541,7 @@ export class EquilateralTriangleConstruction extends Construction {
 
 // polygon — equilateralTriangle (3D variant)
 // points A, B, plane C
+// (Java: Slate.java polygon case 5, choice 1 — new RegularPolygon(A,B,C,3))
 export class EquilateralTriangle3dConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructions.equilateralTriangle;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -1549,6 +1591,7 @@ export class RegularPolygonConstruction extends Construction {
 
 // polygon — regularPolygon (3D variant)
 // points A, B, plane C, integer n
+// (Java: Slate.java polygon case 7, choice 1 — new RegularPolygon(A,B,C,n))
 export class RegularPolygon3dConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructions.regularPolygon;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement, ct.Integer];
@@ -1567,7 +1610,7 @@ export class RegularPolygon3dConstruction extends Construction {
 // starPolygon (2D variant)
 // points A, B, integers n, d
 // the star polygon {n/d} on side AB in the screen plane
-// (RegularPolygonElement already supports density param d)
+// (Java: Slate.java polygon case 8 — new RegularPolygon(A,B,screen,n,d))
 export class StarPolygonConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructions.starPolygon;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.Integer, ct.Integer];
@@ -1601,7 +1644,8 @@ export class SimilarPolygonConstruction extends Construction {
 }
 
 // polygon — similar (3D variant)
-// points A, B, planes C, D, E, F, G
+// points A, B, plane C, points D, E, F, plane G
+// (Java: Slate.java polygon case 9, choice 1 — Similar(A,B,C,D,E,F,G) + PolygonElement(A,B,H))
 export class SimilarPolygon3dConstruction extends Construction {
     constructionMethod: AllConstructions = PolygonConstructions.similar;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PlaneElement,
@@ -1641,6 +1685,7 @@ export class ApplicationPolygonConstruction extends Construction {
 // octagon
 // 8 points A, B, C, D, E, F, G, H
 // the octagon given 8 vertices (free points, pass-through)
+// (Java: Slate.java polygon case 11 — new PolygonElement(A,B,C,D,E,F,G,H))
 export class OctagonPolygonConstruction extends PolyConstruction {
     constructionMethod: AllConstructions = PolygonConstructions.octagon;
     signature: ConstructionTypes[] = (new Array(8)).fill(ct.PointElement);
@@ -1671,8 +1716,9 @@ export class FacePolygonConstruction extends Construction {
 
 // sector
 // sector
-// points A, B, C [plane D]
+// points A, B, C [plane D = screen]
 // the sector of a circle in plane D given the center A and two points B and C on the circumference
+// (Java: Slate.java sector case 0, choice 0 — new SectorElement(A,B,C,screen))
 export class SectorConstruction extends Construction {
     constructionMethod: AllConstructions = SectorConstructions.sector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
@@ -1684,10 +1730,10 @@ export class SectorConstruction extends Construction {
     }
 }
 
-// sector
-// sector
-// points A, B, C [plane D]
+// sector — sector (3D variant)
+// points A, B, C, plane D
 // the sector of a circle in plane D given the center A and two points B and C on the circumference
+// (Java: Slate.java sector case 0, choice 1 — new SectorElement(A,B,C,D))
 export class Sector2Construction extends Construction {
     constructionMethod: AllConstructions = SectorConstructions.sector;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -1723,6 +1769,7 @@ export class ArcConstruction extends Construction {
 
 // sector — arc (3D variant)
 // points A, M, B, plane D
+// (Java: Slate.java sector case 1, choice 1 — new ArcElement(A,M,B,D))
 export class Arc3dConstruction extends Construction {
     constructionMethod: AllConstructions = SectorConstructions.arc;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement, ct.PlaneElement];
@@ -1755,11 +1802,11 @@ export class Plane3PointsConstruction extends Construction {
     }
 }
 
-// *Solid Geometry Only*
 // plane
 // perpendicular
 // points A, B
 // the plane passing through point A and perpendicular to line AB
+// (Java: Slate.java plane case 1 — new PerpendicularPL(A,B). Java: PerpendicularPL.java)
 export class PerpendicularPlaneConstruction extends Construction {
     constructionMethod: AllConstructions = PlaneConstructions.perpendicular;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement]
@@ -1843,8 +1890,8 @@ export class SphereRadiusConstruction extends Construction {
 // sphere
 // radius (3-point variant)
 // points A, B, C
-// the sphere with center A and radius BC
-// (Same pattern as CircleRadius3PointConstruction)
+// the sphere with center A and radius |BC|
+// (Java: Slate.java sphere case 0, choice 1 — new SphereElement(A,B,C))
 export class SphereRadius3PointConstruction extends Construction {
     constructionMethod: AllConstructions = SphereConstructions.radius;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
