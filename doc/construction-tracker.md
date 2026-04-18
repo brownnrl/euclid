@@ -37,9 +37,9 @@ These affect the library as a whole, independent of individual constructions.
   step (~line 56)
 - [ ] **`font` / `fontsize` params** — hardcoded, not configurable
 - [ ] **`pivot` rotation** — parsed but not fully implemented for 3D scenes
-- [ ] **Background HSB in init()** — `slate.bgcolor` receives raw HSB string
-  like `"35,19,100"` which is invalid as `ctx.fillStyle`. Should be parsed
-  through `parseColor` before assignment
+- [x] **Background HSB in init()** — FIXED (2026-04-18): `slate.bgcolor` now
+  parsed through `parseColor` before assignment, so HSB triples like
+  `"35,19,100"` are converted to valid CSS `rgb()` strings
 
 ---
 

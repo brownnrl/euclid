@@ -103,7 +103,9 @@ export function init(i : IInitialization) {
     resizeCanvasToDisplaySize(canvas);
     let slate : Slate = new Slate(canvas);
     slates.push(slate);
-    slate.bgcolor = i.background;
+    // Parse background through parseColor so HSB triples like "35,19,100"
+    // are converted to valid CSS rgb() strings for ctx.fillStyle.
+    slate.bgcolor = parseColor(i.background, "#ffffff", "#ffffff");
     for(let raw of i.elements) {
         let param: IConstructionInfo = typeof raw === "string" ? parseParam(raw) : raw;
         let element = slate.createElement(param.construction, param.params, param.name);

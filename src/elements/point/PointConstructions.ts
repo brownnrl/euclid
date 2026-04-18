@@ -526,7 +526,7 @@ export class PointPerpendicular4Construction extends PointPerpendicularConstruct
  * (Java: Slate.java point case 15, choice 4 — new PlanePerpendicular(A,B,C,D))
  */
 export class PointPerpendicular5Construction extends PointPerpendicularConstruction {
-    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
+    signature: ConstructionTypes[] = [ct.PointElement, ct.PlaneElement, ct.PointElement, ct.PointElement];
     construct(screen : PlaneElement, params: any[]): [GeomElementsForUpdate, GeomElement] {
         let a : PointElement = params[0];
         let b : PlaneElement = params[1];
