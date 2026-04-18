@@ -550,7 +550,7 @@ export class CircumcenterConstruction2d extends CircumcenterConstruction {
  * the foot of a perpendicular drawn from A to a line BC
  */
 // (Java: Slate.java point case 10, choice 0 — new Foot(A,B,C))
-export class FootPointConsturction extends Construction {
+export class FootPointConstruction extends Construction {
     constructionMethod : AllConstructions = PointConstructions.foot;
     signature: ConstructionTypes[] = [ct.PointElement, ct.PointElement, ct.PointElement];
     construct(screen: PlaneElement, params: any[]) : [GeomElementsForUpdate, GeomElement] {
@@ -1980,7 +1980,7 @@ export const constructions : Construction[] = [
     new MidPointConstruction(),
     new IntersectionConstruction(),
     new IntersectionConstructionScreen(),
-    new FootPointConsturction(),
+    new FootPointConstruction(),
     new PlaneFootPointConstruction(),
     new ExtendConstruction(),
     new CutoffConstruction(),
