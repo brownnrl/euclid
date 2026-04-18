@@ -37,10 +37,14 @@
             { name: "F", construction: E.Point.similar, params: ["H", "E", "G", "B", "C"] },
 
             // Triangles and sectors
-            { name: "triABC", construction: E.Polygon.triangle, params: ["A", "B", "C"] },
-            { name: "triDEF", construction: E.Polygon.triangle, params: ["D", "E", "F"] },
-            { name: "GBC", construction: E.Sector.sector, params: ["G", "B", "C"] },
-            { name: "HEF", construction: E.Sector.sector, params: ["H", "E", "F"] },
+            { name: "triABC", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
+            { name: "triDEF", construction: E.Polygon.triangle, params: ["D", "E", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "random" },
+            { name: "GBC", construction: E.Sector.sector, params: ["G", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: "random" },
+            { name: "HEF", construction: E.Sector.sector, params: ["H", "E", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: "random" },
             // Radii lines
             { name: "GB", construction: E.Line.connect, params: ["G", "B"] },
             { name: "GC", construction: E.Line.connect, params: ["G", "C"] },
