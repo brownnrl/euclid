@@ -224,61 +224,29 @@ export abstract class Construction {
     }
 }
 
-/***********************
- * Element Class Point *
- * (see point/PointConstructions.ts for all point construction classes)
- ***********************/
+/***********************************************************************
+ * Construction classes — organized by element type.                   *
+ * Each type's constructions live in their own package file and export *
+ * a pre-built Construction[] array.                                   *
+ *                                                                     *
+ * Point      — point/PointConstructions.ts                            *
+ *              (also contains CircumcircleConstruction)                *
+ * Line       — line/LineConstructions.ts                              *
+ * Circle     — circle/CircleConstructions.ts                          *
+ * Polygon    — polygon/PolygonConstructions.ts                        *
+ * Sector     — sector/SectorConstructions.ts                          *
+ * Plane      — plane/PlaneConstructions.ts                            *
+ * Sphere     — sphere/SphereConstructions.ts                          *
+ * Polyhedron — polyhedron/PolyhedronConstructions.ts                  *
+ ***********************************************************************/
 
-import {pointConstructions} from "./point/PointConstructions";
-
-/**********************
- * Element Class Line *
- * (see line/LineConstructions.ts for all line construction classes)
- **********************/
-
-import {lineConstructions} from "./line/LineConstructions";
-
-/************************
- * Element Class Circle *
- * (see circle/CircleConstructions.ts for circle construction classes)
- * (CircumcircleConstruction lives in point/PointConstructions.ts)
- ************************/
-
-import {circleConstructions} from "./circle/CircleConstructions";
-
-/*************************
- * Element Class Polygon *
- * (see polygon/PolygonConstructions.ts for all polygon construction classes)
- *************************/
-
-import {polygonConstructions} from "./polygon/PolygonConstructions";
-
-/************************
- * Element Class Sector *
- * (see sector/SectorConstructions.ts for all sector construction classes)
- ************************/
-
-import {sectorConstructions} from "./sector/SectorConstructions";
-
-/***********************
- * Element Class Plane *
- * (see plane/PlaneConstructions.ts for all plane construction classes)
- ***********************/
-
-import {planeConstructions} from "./plane/PlaneConstructions";
-
-/************************
- * Element Class Sphere *
- * (see sphere/SphereConstructions.ts for all sphere construction classes)
- ************************/
-
-import {sphereConstructions} from "./sphere/SphereConstructions";
-
-/****************************
- * Element Class Polyhedron *
- * (see polyhedron/PolyhedronConstructions.ts for all polyhedron construction classes)
- ****************************/
-
+import {pointConstructions}     from "./point/PointConstructions";
+import {lineConstructions}      from "./line/LineConstructions";
+import {circleConstructions}    from "./circle/CircleConstructions";
+import {polygonConstructions}   from "./polygon/PolygonConstructions";
+import {sectorConstructions}    from "./sector/SectorConstructions";
+import {planeConstructions}     from "./plane/PlaneConstructions";
+import {sphereConstructions}    from "./sphere/SphereConstructions";
 import {polyhedronConstructions} from "./polyhedron/PolyhedronConstructions";
 
 
