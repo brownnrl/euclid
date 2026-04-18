@@ -36,6 +36,19 @@ These affect the library as a whole, independent of individual constructions.
 - [ ] **`PerpendicularPlane` division by zero** — `// TODO` in normalization
   step (~line 56)
 - [ ] **`font` / `fontsize` params** — hardcoded, not configurable
+- [ ] **`preexists` tracking missing** — Java's `Slate.java` has a
+  `preexists[]` boolean array that marks elements which are references
+  to existing elements (e.g., `point;first` returns `P[0]`,
+  `point;vertex` returns a polygon vertex, `point;center` returns a
+  circle's center). During `rotateCoordinates` and `translateCoordinates`,
+  Java skips `preexists` elements to avoid double-rotation/translation.
+  The TS port has no equivalent — all elements in `_elementsForUpdate`
+  are rotated/translated, causing double-movement of shared references.
+  **Visible symptom**: rotating a 3D scene via pivot causes the xyplane
+  parallelogram to grow progressively. Discovered on propXI26 pivot test.
+  **Fix**: add a `preexists` flag to `GeomElement` (or a separate set in
+  `Slate`), set it for elements returned by first/last/vertex/center
+  constructions, and skip flagged elements in rotate/translate loops.
 - [x] **`pivot` rotation** — FIXED (2026-04-18): `setPivot` now handles
   Java's `"point,plane"` two-part format. The rotation math was already
   implemented in `Slate.rotateCoordinates` and `PointElement.rotate`
