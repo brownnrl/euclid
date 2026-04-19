@@ -7,9 +7,9 @@
     "build": "tsc --noEmit",
     "test": "npm run test:snapshot && npm run test:unit",
     "test:snapshot": "mocha --reporter min tests/SnapshotTest.ts",
-    "test:unit": "mocha tests/SlateTest.ts",
-    "coverage": "c8 mocha --reporter min tests/SnapshotTest.ts tests/SlateTest.ts",
-    "coverage:unit": "c8 mocha --reporter min tests/SlateTest.ts",
+    "test:unit": "mocha tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
+    "coverage": "c8 mocha --reporter min tests/SnapshotTest.ts tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
+    "coverage:unit": "c8 mocha --reporter min tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
     "coverage:report": "c8 report --reporter=html",
     "snapshots:clean": "rm -rf tests/snapshots && mkdir -p tests/snapshots && touch tests/snapshots/.gitkeep"
   },
