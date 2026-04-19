@@ -382,6 +382,86 @@ describe("slate", ()=> {
         almostEqual(B.x, 120, 0.001); almostEqual(B.y, 200, 0.001);
     });
 
+    // propIV5a-style scene: triangle ABC with circumcenter F.
+    // Dragging a non-draggable point (midpoint D) exercises
+    // Slate.movePick's rotate branch (when a pivot is set) and its
+    // translate branch (when no pivot is set), and propagates
+    // rotate()/translate() onto every element type in the scene.
+    let pivotScene_data : IConstructionInfo[] = [
+        { name: "A",       construction: E.Point.free,         params: [140, 40] },
+        { name: "B",       construction: E.Point.free,         params: [50, 180] },
+        { name: "C",       construction: E.Point.free,         params: [200, 180] },
+        { name: "circABC", construction: E.Circle.circumcircle,params: ["A","B","C"] },
+        { name: "triABC",  construction: E.Polygon.triangle,   params: ["A","B","C"] },
+        { name: "D",       construction: E.Point.midpoint,     params: ["A","B"] },
+        { name: "F",       construction: E.Point.center,       params: ["circABC"] },
+        { name: "AF",      construction: E.Line.connect,       params: ["A","F"] },
+    ];
+
+    it("should rotate non-pivot elements around F when dragging a derived point", () => {
+        let slate = new Slate(createCanvas(250, 250));
+        toElements(slate, pivotScene_data);
+        // Picks use closestVisiblePoint which filters on vertexColor;
+        // buildScene sets this in the snapshot path — do it here too.
+        for (let e of slate.elements) {
+            if (e instanceof PointElement) e.vertexColor = "black";
+        }
+        slate.elements.forEach(e => e.update());
+        slate.setPivot("F");
+
+        let A = slate.lookupElement("A") as PointElement;
+        let D = slate.lookupElement("D") as PointElement;
+        let F = slate.lookupElement("F") as PointElement;
+        let fInitX = F.x, fInitY = F.y;
+        let aInitX = A.x, aInitY = A.y;
+
+        // Drag D (non-draggable midpoint) → movePick falls through to
+        // rotateCoordinates because screen.pivot == F and the pick != F.
+        let dx0 = Math.round(D.x), dy0 = Math.round(D.y);
+        slate._onMouseDown(dx0, dy0);
+        slate._onMouseDrag(dx0 + 20, dy0 + 15);
+        slate._onMouseUp(dx0 + 20, dy0 + 15);
+
+        // Pivot itself doesn't rotate.
+        almostEqual(F.x, fInitX, 0.001);
+        almostEqual(F.y, fInitY, 0.001);
+        // rotateCoordinates solves for (ac, as) so the dragged point lands
+        // exactly at the drag target.
+        almostEqual(D.x, dx0 + 20, 0.5);
+        almostEqual(D.y, dy0 + 15, 0.5);
+        // A rotated visibly (non-preexisting, gets rotated around F).
+        assert.ok(Math.hypot(A.x - aInitX, A.y - aInitY) > 1,
+            `A should have moved; went from (${aInitX},${aInitY}) to (${A.x},${A.y})`);
+    });
+
+    it("should translate every non-preexisting element when dragging with no pivot", () => {
+        let slate = new Slate(createCanvas(250, 250));
+        toElements(slate, pivotScene_data);
+        // Picks use closestVisiblePoint which filters on vertexColor;
+        // buildScene sets this in the snapshot path — do it here too.
+        for (let e of slate.elements) {
+            if (e instanceof PointElement) e.vertexColor = "black";
+        }
+        slate.elements.forEach(e => e.update());
+        // No setPivot call — the drag branch becomes translateCoordinates.
+
+        let A = slate.lookupElement("A") as PointElement;
+        let D = slate.lookupElement("D") as PointElement;
+        let aInitX = A.x, aInitY = A.y;
+        let dInitX = D.x, dInitY = D.y;
+
+        let dx0 = Math.round(D.x), dy0 = Math.round(D.y);
+        slate._onMouseDown(dx0, dy0);
+        slate._onMouseDrag(dx0 + 20, dy0 + 15);
+        slate._onMouseUp(dx0 + 20, dy0 + 15);
+
+        // Every non-preexisting element shifts by exactly the drag delta.
+        almostEqual(A.x, aInitX + 20, 0.001);
+        almostEqual(A.y, aInitY + 15, 0.001);
+        almostEqual(D.x, dInitX + 20, 0.001);
+        almostEqual(D.y, dInitY + 15, 0.001);
+    });
+
     // Book I, Prop 12 — chord of circle cut by a line
     // <param name=e[1]  value="A;point;free;30,180">
     // <param name=e[2]  value="B;point;free;290,180">
