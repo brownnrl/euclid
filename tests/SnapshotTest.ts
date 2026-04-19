@@ -13,7 +13,7 @@ import {discoverAllHtmlFiles, HtmlFileResult} from "./HtmlParamParser";
 import {
     buildScene, renderScene, findDraggablePoints, simulateDrag,
     drawVerificationImage, assertSnapshot, saveVerificationImage,
-    generateReport, ReportEntry
+    generateReport, ReportEntry, countDiffPixels, capturePixels
 } from "./SnapshotHelper";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -52,6 +52,7 @@ describe("snapshot verification", function() {
                     fileName: fileResult.fileName,
                     slateIndex: slateNum,
                     snapshotDir: snapshotDir,
+                    config: config,
                     beforeResult: {passed: false, isNew: false},
                     dragResults: [],
                 };
@@ -69,46 +70,80 @@ describe("snapshot verification", function() {
                     assert.ok(beforeResult.passed,
                         `Before snapshot failed: ${beforeResult.diffPercent?.toFixed(2)}% pixels differ`);
 
-                    // Find draggable points (up to 5)
-                    let draggables = findDraggablePoints(slate, 5);
+                    // Only drag on-canvas draggable points — off-canvas
+                    // anchors like the ±1000-x helpers in Book IX are either
+                    // invisible (unpickable) or just translate the frame.
+                    // Pool 10 candidates so we can keep trying when early
+                    // ones fail the visual-significance check below.
+                    let candidates = findDraggablePoints(slate, 10, config.width, config.height);
 
-                    // Drag each point and verify
-                    for (let i = 0; i < draggables.length; i++) {
-                        let point = draggables[i];
+                    // A drag is "worth recording" only if it visibly changes
+                    // the rendering by at least this much. Sliders that only
+                    // move their own endpoint, or that propagate to a distant
+                    // proportion-point shifting a handful of pixels, fall
+                    // below this floor — dragging them produces near-identical
+                    // thumbnails and is noise for this report. 2% is roughly
+                    // the visible threshold at 150-px thumbnail size.
+                    let totalPixels = config.width * config.height;
+                    let minDiffPixels = Math.max(200, Math.floor(totalPixels * 0.02));
+
+                    let priorBytes = capturePixels(canvas);  // snapshot initial pixels
+                    let recorded = 0;                         // count of meaningful drags
+
+                    // Cap at 2 meaningful drags so every drag is shown as a
+                    // complete (move, verify) pair in the report — total of
+                    // 5 images per slate (1 before + 2 pairs), always ending
+                    // on a verify image.
+                    for (let point of candidates) {
+                        if (recorded >= 2) break;
+
                         let fromX = Math.round(point.x);
                         let fromY = Math.round(point.y);
                         let toX = fromX + 50;
                         let toY = fromY + 30;
 
-                        // Clamp to canvas bounds
                         toX = Math.max(0, Math.min(toX, config.width));
                         toY = Math.max(0, Math.min(toY, config.height));
 
-                        // Simulate drag
-                        simulateDrag(slate, [fromX, fromY], [toX, toY]);
+                        let origX = point.x;
+                        let origY = point.y;
 
-                        // Render after drag
+                        simulateDrag(slate, [fromX, fromY], [toX, toY]);
                         let afterCanvas = renderScene(slate);
 
-                        // Save after snapshot
-                        let afterPath = path.join(fullSnapshotDir, `drag${i+1}-after.png`);
+                        if (countDiffPixels(priorBytes, afterCanvas) < minDiffPixels) {
+                            // Visually insignificant change — revert this
+                            // drag so subsequent candidates see the original
+                            // scene state, then move on.
+                            let nowX = Math.round(point.x);
+                            let nowY = Math.round(point.y);
+                            simulateDrag(slate, [nowX, nowY], [Math.round(origX), Math.round(origY)]);
+                            renderScene(slate);
+                            continue;
+                        }
+
+                        recorded++;
+                        let dragNum = recorded;
+
+                        let afterPath = path.join(fullSnapshotDir, `drag${dragNum}-after.png`);
                         let afterResult = assertSnapshot(afterCanvas, afterPath);
 
-                        // Generate verification image with arrow
                         let verifyCanvas = drawVerificationImage(
                             afterCanvas, [fromX, fromY], [toX, toY],
-                            point.name || `point${i+1}`
+                            point.name || `point${dragNum}`
                         );
-                        let verifyPath = path.join(fullSnapshotDir, `drag${i+1}-verify.png`);
+                        let verifyPath = path.join(fullSnapshotDir, `drag${dragNum}-verify.png`);
                         saveVerificationImage(verifyCanvas, verifyPath);
 
                         entry.dragResults.push({
-                            pointName: point.name || `point${i+1}`,
+                            pointName: point.name || `point${dragNum}`,
                             result: afterResult,
                         });
 
+                        priorBytes = capturePixels(afterCanvas);
+
                         assert.ok(afterResult.passed,
-                            `Drag ${i+1} (${point.name}) snapshot failed: ${afterResult.diffPercent?.toFixed(2)}% pixels differ`);
+                            `Drag ${dragNum} (${point.name}) snapshot failed: ${afterResult.diffPercent?.toFixed(2)}% pixels differ`);
                     }
                 } catch (e) {
                     entry.error = (e as Error).message;

@@ -101,17 +101,45 @@ export function renderScene(slate: Slate): Canvas {
 }
 
 // -----------------------------------------------------------------
-// Find draggable points (up to maxCount)
+// Find draggable points worth exercising in the snapshot report.
+//
+// We only pick points that can meaningfully change the proportions of
+// the drawing when dragged. In practice that means:
+//   - has a name and is marked draggable (PlaneSlider / LineSlider /
+//     CircleSlider / SphereSlider — free points become PlaneSliders)
+//   - is rendered inside the visible canvas bounds
+//
+// The second rule filters out "helper anchors" like the ±1000-x points
+// used in Book IX to define a number-line axis: dragging them either
+// hit-tests to nothing (off-canvas) or just translates the frame,
+// neither of which exercises the construction's geometry.
 // -----------------------------------------------------------------
-export function findDraggablePoints(slate: Slate, maxCount: number = 5): PointElement[] {
+export function findDraggablePoints(
+    slate: Slate,
+    maxCount: number = 5,
+    canvasWidth?: number,
+    canvasHeight?: number
+): PointElement[] {
     let draggables: PointElement[] = [];
     for (let elem of slate.elements) {
-        if (elem instanceof PointElement && elem.draggable && elem.name) {
-            draggables.push(elem);
-            if (draggables.length >= maxCount) break;
+        if (!(elem instanceof PointElement)) continue;
+        if (!elem.draggable || !elem.name) continue;
+        if (canvasWidth != null && canvasHeight != null) {
+            if (elem.x < 0 || elem.x > canvasWidth) continue;
+            if (elem.y < 0 || elem.y > canvasHeight) continue;
         }
+        draggables.push(elem);
+        if (draggables.length >= maxCount) break;
     }
     return draggables;
+}
+
+// Snapshot a canvas's raw pixel bytes so we can compare them later
+// without aliasing the live canvas buffer (renderScene mutates in place).
+export function capturePixels(canvas: Canvas): Buffer {
+    let ctx = canvas.getContext("2d");
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    return Buffer.from(imageData.data);
 }
 
 // -----------------------------------------------------------------
@@ -257,6 +285,24 @@ export function saveVerificationImage(canvas: Canvas, filePath: string): void {
     savePNG(canvasToPNG(canvas), filePath);
 }
 
+// Count differing pixels between two pre-captured pixel buffers.
+// Uses pixelmatch's perceptual threshold (same as assertSnapshot) so
+// antialiasing noise around a small shift doesn't swamp the count.
+export function countDiffPixels(
+    priorBytes: Buffer,
+    currentCanvas: Canvas
+): number {
+    let expectedLen = currentCanvas.width * currentCanvas.height * 4;
+    if (priorBytes.length !== expectedLen) return Infinity;
+    let currentBytes = capturePixels(currentCanvas);
+    let diffBuf = Buffer.alloc(expectedLen);
+    return pixelmatch(
+        priorBytes, currentBytes, diffBuf,
+        currentCanvas.width, currentCanvas.height,
+        {threshold: THRESHOLD}
+    );
+}
+
 // -----------------------------------------------------------------
 // HTML report generation
 // -----------------------------------------------------------------
@@ -265,6 +311,7 @@ export interface ReportEntry {
     fileName: string;
     slateIndex: number;
     snapshotDir: string;     // relative to SNAPSHOT_DIR
+    config: SlateConfig;     // used to rebuild a live slate in the browser
     beforeResult: SnapshotResult;
     dragResults: {
         pointName: string;
@@ -281,6 +328,14 @@ export function generateReport(entries: ReportEntry[]): void {
         categories[entry.category].push(entry);
     }
 
+    // Build a map of slateKey -> SlateConfig for in-browser instantiation.
+    // Key format matches the data-slate attribute we put on each image.
+    let configMap: {[key: string]: SlateConfig} = {};
+    for (let entry of entries) {
+        let key = `${entry.category}/${entry.fileName}/slate${entry.slateIndex}`;
+        configMap[key] = entry.config;
+    }
+
     let html = `<!DOCTYPE html>
 <html><head>
 <meta charset="UTF-8">
@@ -288,18 +343,94 @@ export function generateReport(entries: ReportEntry[]): void {
 <style>
 body { font-family: sans-serif; margin: 20px; background: #f5f5f5; }
 h1 { color: #333; }
-h2 { color: #555; cursor: pointer; }
+h2 { color: #555; cursor: pointer; display: inline; font-size: 1.2em; }
 h2:hover { text-decoration: underline; }
 table { border-collapse: collapse; margin: 10px 0 20px; }
 th, td { border: 1px solid #ccc; padding: 4px 8px; text-align: center; font-size: 13px; }
 th { background: #e8e8e8; }
 img { max-width: 150px; max-height: 120px; border: 1px solid #ddd; }
+.thumb { cursor: zoom-in; }
+.thumb:hover { outline: 2px solid #3a80c4; }
 .pass { background: #d4edda; }
 .fail { background: #f8d7da; }
 .new { background: #fff3cd; }
 .error { background: #f8d7da; color: #721c24; }
 .section { margin-bottom: 30px; }
 details { margin: 5px 0; }
+
+/* Modal backdrop */
+.modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 1000;
+    overflow: auto; padding: 20px;
+}
+.modal-backdrop.open { display: flex; }
+
+/* Modal window */
+.modal {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    max-width: 95vw;
+    padding: 16px 20px;
+    position: relative;
+}
+.modal-close {
+    position: absolute; top: 6px; right: 10px;
+    background: none; border: none;
+    font-size: 24px; line-height: 1;
+    cursor: pointer; color: #888;
+}
+.modal-close:hover { color: #222; }
+.modal-title { margin: 0 30px 12px 0; font-size: 16px; color: #333; }
+.modal-subtitle { margin: 0 0 12px; font-size: 12px; color: #666; font-family: monospace; }
+
+/* Image strip */
+.strip {
+    display: flex; gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+}
+.strip figure { margin: 0; text-align: center; flex-shrink: 0; }
+.strip img {
+    max-height: 180px; max-width: 240px;
+    border: 1px solid #bbb; cursor: zoom-in;
+    display: block;
+}
+.strip img:hover { outline: 2px solid #3a80c4; }
+.strip figcaption { font-size: 11px; color: #555; margin-top: 2px; }
+
+/* Live canvas area */
+.live-area { text-align: center; }
+.live-area canvas {
+    border: 1px solid #bbb;
+    background: #fff;
+    max-width: 100%;
+}
+.live-hint {
+    font-size: 11px; color: #666; margin: 8px 0 0;
+}
+
+/* Expanded image overlay (layer above modal) */
+.lightbox-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 2000;
+    cursor: zoom-out;
+    padding: 20px;
+}
+.lightbox-backdrop.open { display: flex; }
+.lightbox-backdrop img {
+    max-width: 98vw; max-height: 98vh;
+    border: 2px solid #fff;
+}
 </style>
 </head><body>
 <h1>Snapshot Verification Report</h1>
@@ -309,16 +440,25 @@ details { margin: 5px 0; }
    New baselines: ${entries.filter(e => e.beforeResult.isNew).length} |
    Failed: ${entries.filter(e => !e.error && !e.beforeResult.passed).length} |
    Errors: ${entries.filter(e => e.error).length}</p>
+<p style="color:#555;font-size:13px">Click any image to open a live slate + image sequence. Click a strip image again to enlarge.</p>
 `;
+
+    // Each drag is rendered as a (move, verify) pair — clean after-state
+    // plus the same state with the drag arrow overlaid for verification.
+    const MAX_DRAG_PAIRS = 2;
 
     for (let [cat, catEntries] of Object.entries(categories).sort()) {
         html += `<div class="section"><details open>
 <summary><h2>${cat} (${catEntries.length} slates)</h2></summary>
 <table>
 <tr><th>Name</th><th>Slate</th><th>Before</th>`;
-        // Add drag columns
-        for (let i = 1; i <= 5; i++) html += `<th>Drag ${i}</th>`;
+        for (let i = 1; i <= MAX_DRAG_PAIRS; i++) {
+            html += `<th>Drag ${i} Move</th><th>Drag ${i} Verify</th>`;
+        }
         html += `<th>Status</th></tr>\n`;
+
+        let dragColCount = MAX_DRAG_PAIRS * 2;
+        let errorColspan = dragColCount + 2;  // +before +status
 
         for (let entry of catEntries) {
             let statusClass = entry.error ? "error" :
@@ -329,22 +469,22 @@ details { margin: 5px 0; }
                 entry.beforeResult.passed ? "PASS" : "FAIL";
 
             let relDir = entry.snapshotDir;
+            let slateKey = `${entry.category}/${entry.fileName}/slate${entry.slateIndex}`;
             html += `<tr class="${statusClass}">`;
             html += `<td>${entry.fileName}</td>`;
             html += `<td>slate${entry.slateIndex}</td>`;
 
             if (entry.error) {
-                html += `<td colspan="7">${entry.error}</td>`;
+                html += `<td colspan="${errorColspan}">${entry.error}</td>`;
             } else {
-                // Before image
-                html += `<td><img src="${relDir}/before.png" loading="lazy"></td>`;
-                // Drag verify images
-                for (let i = 0; i < 5; i++) {
+                html += `<td><img class="thumb" data-slate="${slateKey}" src="${relDir}/before.png" loading="lazy" alt="before"></td>`;
+                for (let i = 0; i < MAX_DRAG_PAIRS; i++) {
                     if (i < entry.dragResults.length) {
                         let dr = entry.dragResults[i];
-                        html += `<td><img src="${relDir}/drag${i+1}-verify.png" loading="lazy" title="${dr.pointName}"></td>`;
+                        html += `<td><img class="thumb" data-slate="${slateKey}" src="${relDir}/drag${i+1}-after.png" loading="lazy" title="${dr.pointName} (move)" alt="drag${i+1} move"></td>`;
+                        html += `<td><img class="thumb" data-slate="${slateKey}" src="${relDir}/drag${i+1}-verify.png" loading="lazy" title="${dr.pointName} (verify)" alt="drag${i+1} verify"></td>`;
                     } else {
-                        html += `<td>—</td>`;
+                        html += `<td>—</td><td>—</td>`;
                     }
                 }
                 html += `<td>${statusText}</td>`;
@@ -355,7 +495,151 @@ details { margin: 5px 0; }
         html += `</table></details></div>\n`;
     }
 
-    html += `</body></html>`;
+    // Modal + lightbox markup
+    html += `
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" title="Close">&times;</button>
+    <h3 class="modal-title" id="modalTitle"></h3>
+    <p class="modal-subtitle" id="modalSubtitle"></p>
+    <div class="strip" id="modalStrip"></div>
+    <div class="live-area">
+      <canvas id="liveCanvas"></canvas>
+      <p class="live-hint">Drag any orange/red point to interact.</p>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox-backdrop" id="lightbox">
+  <img id="lightboxImg" alt="">
+</div>
+
+<script src="../../dist/bundle.js"></script>
+<script>
+const CONFIGS = ${JSON.stringify(configMap)};
+const ENTRIES = ${JSON.stringify(entries.map(e => ({
+    category: e.category,
+    fileName: e.fileName,
+    slateIndex: e.slateIndex,
+    snapshotDir: e.snapshotDir,
+    dragPoints: e.dragResults.map(d => d.pointName),
+})))};
+const ENTRY_BY_KEY = {};
+for (const e of ENTRIES) {
+    ENTRY_BY_KEY[e.category + "/" + e.fileName + "/slate" + e.slateIndex] = e;
+}
+
+const modal = document.getElementById("modal");
+const modalClose = document.getElementById("modalClose");
+const modalTitle = document.getElementById("modalTitle");
+const modalSubtitle = document.getElementById("modalSubtitle");
+const modalStrip = document.getElementById("modalStrip");
+const liveCanvas = document.getElementById("liveCanvas");
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+function openModal(slateKey) {
+    const config = CONFIGS[slateKey];
+    const entry = ENTRY_BY_KEY[slateKey];
+    if (!config || !entry) return;
+
+    modalTitle.textContent = entry.category + " / " + entry.fileName + " / slate" + entry.slateIndex;
+    modalSubtitle.textContent = config.title || "";
+
+    // Build image strip: before + for each drag, both the clean "move"
+    // image and the with-arrow "verify" image (= a complete pair).
+    modalStrip.innerHTML = "";
+    const relDir = entry.snapshotDir;
+    const images = [{src: relDir + "/before.png", label: "before"}];
+    for (let i = 0; i < entry.dragPoints.length; i++) {
+        const n = i + 1;
+        const name = entry.dragPoints[i];
+        images.push({
+            src: relDir + "/drag" + n + "-after.png",
+            label: "drag " + n + " move (" + name + ")"
+        });
+        images.push({
+            src: relDir + "/drag" + n + "-verify.png",
+            label: "drag " + n + " verify"
+        });
+    }
+    for (const im of images) {
+        const fig = document.createElement("figure");
+        const img = document.createElement("img");
+        img.src = im.src;
+        img.alt = im.label;
+        img.addEventListener("click", () => openLightbox(im.src, im.label));
+        const cap = document.createElement("figcaption");
+        cap.textContent = im.label;
+        fig.appendChild(img);
+        fig.appendChild(cap);
+        modalStrip.appendChild(fig);
+    }
+
+    // Rebuild the live canvas with a fresh id (so geomlib.init finds it).
+    // Replacing the node drops any old Slate's event listeners.
+    const fresh = document.createElement("canvas");
+    fresh.id = "liveCanvas";
+    fresh.width = config.width;
+    fresh.height = config.height;
+    fresh.style.width = config.width + "px";
+    fresh.style.height = config.height + "px";
+    liveCanvasContainer().replaceChild(fresh, document.getElementById("liveCanvas"));
+
+    modal.classList.add("open");
+
+    try {
+        geomlib.init({
+            canvasid: "liveCanvas",
+            background: config.background,
+            title: config.title || "",
+            pivot: config.pivot,
+            elements: config.elements,
+        });
+    } catch (err) {
+        console.error("Failed to instantiate live slate:", err);
+    }
+}
+
+function liveCanvasContainer() {
+    return document.querySelector(".live-area");
+}
+
+function closeModal() {
+    modal.classList.remove("open");
+}
+
+function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightbox.classList.add("open");
+}
+
+function closeLightbox() {
+    lightbox.classList.remove("open");
+    lightboxImg.src = "";
+}
+
+modalClose.addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+lightbox.addEventListener("click", closeLightbox);
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        if (lightbox.classList.contains("open")) closeLightbox();
+        else if (modal.classList.contains("open")) closeModal();
+    }
+});
+
+// Wire thumbnails in the report table
+document.querySelectorAll("img.thumb").forEach(img => {
+    img.addEventListener("click", () => {
+        const key = img.getAttribute("data-slate");
+        if (key) openModal(key);
+    });
+});
+</script>
+</body></html>`;
 
     let reportPath = path.join(SNAPSHOT_DIR, "report.html");
     fs.mkdirSync(path.dirname(reportPath), {recursive: true});
