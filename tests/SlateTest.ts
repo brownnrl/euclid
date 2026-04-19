@@ -16,6 +16,7 @@ import {PolygonElement} from "../src/elements/polygon/PolygonElement";
 import {ApplicationElement} from "../src/elements/polygon/ApplicationElement";
 import {SimilarElement} from "../src/elements/point/SimilarElement";
 import {CircleElement} from "../src/elements/circle/CircleElement";
+import {HarmonicElement} from "../src/elements/point/HarmonicElement";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -483,6 +484,10 @@ describe("slate", ()=> {
         { name: "C",       construction: E.Point.planeSlider,   params: ["xyplane", 245, 190, 80] },
         { name: "BC",      construction: E.Line.connect,        params: ["B","C"] },
         { name: "D",       construction: E.Point.foot,          params: ["A","BC"] },
+        // point;perpendicular variant 5: point A, plane P, points C, D
+        // constructs a PlanePerpendicularLine internally — the line
+        // perpendicular to xyplane through B, with length |BC|.
+        { name: "Pperp",   construction: E.Point.perpendicular, params: ["B","xyplane","B","C"] },
     ];
 
     function buildScene3d(): Slate {
@@ -582,13 +587,18 @@ describe("slate", ()=> {
         { name: "M",    construction: E.Point.midpoint,          params: ["A","B"] },  // pick target
     ];
 
-    it("should translate specialized elements (RegularPolygon, Application, InvertCircle, etc.)", () => {
+    function buildSpecializedScene(): Slate {
         let slate = new Slate(createCanvas(300, 300));
         toElements(slate, specialized_data);
         for (let e of slate.elements) {
             if (e instanceof PointElement) e.vertexColor = "black";
         }
         slate.elements.forEach(e => e.update());
+        return slate;
+    }
+
+    it("should translate specialized elements (RegularPolygon, Application, InvertCircle, etc.)", () => {
+        let slate = buildSpecializedScene();
 
         let A = slate.lookupElement("A") as PointElement;
         let M = slate.lookupElement("M") as PointElement;
@@ -610,6 +620,77 @@ describe("slate", ()=> {
 
         almostEqual(A.x, aInitX + deltaX, 0.001);
         almostEqual(A.y, aInitY + deltaY, 0.001);
+    });
+
+    it("should restore all slider initial positions when slate.reset() is called", () => {
+        let slate = buildSpecializedScene();
+
+        // Snapshot initial positions of each slider type.
+        let A    = slate.lookupElement("A") as PointElement;   // PlaneSlider
+        let P    = slate.lookupElement("P") as PointElement;   // CircleSlider
+        let Q    = slate.lookupElement("Q") as PointElement;   // SphereSlider
+        let inits = new Map<PointElement, [number,number,number]>();
+        for (let p of [A, P, Q]) inits.set(p, [p.x, p.y, p.z]);
+
+        // Translate everything, then reset — every slider's reset() runs.
+        let M = slate.lookupElement("M") as PointElement;
+        slate._onMouseDown(Math.round(M.x), Math.round(M.y));
+        slate._onMouseDrag(Math.round(M.x) + 25, Math.round(M.y) + 15);
+        slate._onMouseUp(Math.round(M.x) + 25, Math.round(M.y) + 15);
+
+        // Sanity: A actually moved.
+        let [ax, ay] = inits.get(A)!;
+        assert.ok(A.x !== ax || A.y !== ay, "A should have moved before reset");
+
+        slate.reset();
+
+        for (let [p, [x, y, z]] of inits) {
+            almostEqual(p.x, x, 0.01);
+            almostEqual(p.y, y, 0.01);
+            almostEqual(p.z, z, 0.01);
+        }
+    });
+
+    it("should compute the harmonic conjugate in the 3D branch when any z != 0", () => {
+        // The 2D branch is hit when B.z === C.z === D.z === 0; lines 46-59.
+        // Lines 61-72 are the 3D branch — exercised as soon as any point
+        // has a non-zero z. Picks three collinear points on z=5.
+        let B = new PointElement({x: 10, y: 10, z: 5});
+        let C = new PointElement({x: 30, y: 10, z: 5});
+        let D = new PointElement({x: 50, y: 10, z: 5});
+        let H = new HarmonicElement(B, C, D);
+        H.update();
+
+        // Harmonic conjugate of B w.r.t. collinear C,D satisfies
+        // cross-ratio (A,B;C,D) = -1 → A = (B*C + B*D - 2*C*D) / (2B - C - D)
+        // along the line. With B=10, C=30, D=50: A = (10*30 + 10*50 - 2*30*50) / (20 - 30 - 50)
+        //                                          = (300 + 500 - 3000) / -60
+        //                                          = -2200 / -60 = 36.667
+        // (Same line → same y, same z.)
+        almostEqual(H.x, 110 / 3, 0.01);
+        almostEqual(H.y, 10, 0.01);
+        almostEqual(H.z, 5, 0.01);
+    });
+
+    it("should also restore the FixedPoint from the 3D scene on reset", () => {
+        let slate = buildScene3d();
+        let x = slate.lookupElement("x") as PointElement;   // FixedPoint
+        let xInit: [number,number,number] = [x.x, x.y, x.z];
+
+        // Translate then reset.
+        let D = slate.lookupElement("D") as PointElement;
+        slate._onMouseDown(Math.round(D.x), Math.round(D.y));
+        slate._onMouseDrag(Math.round(D.x) + 15, Math.round(D.y) - 10);
+        slate._onMouseUp(Math.round(D.x) + 15, Math.round(D.y) - 10);
+
+        assert.ok(x.x !== xInit[0] || x.y !== xInit[1],
+            "FixedPoint should have translated before reset");
+
+        slate.reset();
+
+        almostEqual(x.x, xInit[0], 0.001);
+        almostEqual(x.y, xInit[1], 0.001);
+        almostEqual(x.z, xInit[2], 0.001);
     });
 
     // Exercises src/index.ts init() — the public entry point. Snapshot
