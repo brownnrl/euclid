@@ -47,10 +47,6 @@ export class CircleElement extends GeomElement {
         this.AP = ice.AP;
     }
 
-    public toString() : string {
-        return `[${this._name} (${this.Center}, ${this.A} ${this.B})]`;
-    }
-
     get radius() {
         return this.A.distance(this.B);
     }
@@ -96,15 +92,12 @@ export class CircleElement extends GeomElement {
         let minory :number = factor*majorx;
         let majorR : number = Math.sqrt(majorx*majorx + majory*majory);
         let minorR : number = Math.sqrt(minorx*minorx + minory*minory);
-        // Degenerate case: ellipse is so thin it looks like a line
+        // Degenerate case: ellipse is so thin it looks like a line.
+        // (minorR <= majorR always since minorR = factor * majorR with
+        // factor in [0,1], so we only need to check minorR.)
         if (minorR < 0.5) {
             ctx.moveTo(this.Center.x - majorx, this.Center.y - majory);
             ctx.lineTo(this.Center.x + majorx, this.Center.y + majory);
-            return;
-        }
-        if (majorR < 0.5) {
-            ctx.moveTo(this.Center.x - minorx, this.Center.y - minory);
-            ctx.lineTo(this.Center.x + minorx, this.Center.y + minory);
             return;
         }
         // Rotation angle of the major axis

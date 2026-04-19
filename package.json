@@ -9,6 +9,7 @@
     "test:snapshot": "mocha --reporter min tests/SnapshotTest.ts",
     "test:unit": "mocha tests/SlateTest.ts",
     "coverage": "c8 mocha --reporter min tests/SnapshotTest.ts tests/SlateTest.ts",
+    "coverage:unit": "c8 mocha --reporter min tests/SlateTest.ts",
     "coverage:report": "c8 report --reporter=html",
     "snapshots:clean": "rm -rf tests/snapshots && mkdir -p tests/snapshots && touch tests/snapshots/.gitkeep"
   },

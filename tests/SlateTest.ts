@@ -17,6 +17,7 @@ import {ApplicationElement} from "../src/elements/polygon/ApplicationElement";
 import {SimilarElement} from "../src/elements/point/SimilarElement";
 import {CircleElement} from "../src/elements/circle/CircleElement";
 import {HarmonicElement} from "../src/elements/point/HarmonicElement";
+import {parseColor, brighter, darker, darken} from "../src/Colors";
 import {createCanvas} from "canvas";
 import {create} from "domain";
 
@@ -573,6 +574,7 @@ describe("slate", ()=> {
         { name: "D",    construction: E.Point.free,              params: [50, 180] },
         { name: "c1",   construction: E.Circle.radius,           params: ["A","B"] },
         { name: "c2",   construction: E.Circle.radius,           params: ["B","A"] },
+        { name: "bich", construction: E.Line.bichord,            params: ["c1","c2"] },
         { name: "P",    construction: E.Point.circleSlider,      params: ["c1", 120, 30] },
         { name: "inv",  construction: E.Circle.invert,           params: ["c1","c2"] },
         { name: "s1",   construction: E.Sphere.radius,           params: ["A","B"] },
@@ -620,6 +622,32 @@ describe("slate", ()=> {
 
         almostEqual(A.x, aInitX + deltaX, 0.001);
         almostEqual(A.y, aInitY + deltaY, 0.001);
+    });
+
+    it("should rotate specialized elements around a pivot", () => {
+        let slate = buildSpecializedScene();
+        // Pivot on C → dragging M (midpoint of A,B) rotates every non-
+        // preexisting element, including the InvertCircle, Sector, Prism,
+        // and Parallelepiped's rotate() methods.
+        slate.setPivot("C");
+
+        let M = slate.lookupElement("M") as PointElement;
+        let A = slate.lookupElement("A") as PointElement;
+        let C = slate.lookupElement("C") as PointElement;
+        let aInitX = A.x, aInitY = A.y;
+        let cInitX = C.x, cInitY = C.y;
+
+        let dx0 = Math.round(M.x), dy0 = Math.round(M.y);
+        slate._onMouseDown(dx0, dy0);
+        slate._onMouseDrag(dx0 + 20, dy0 + 15);
+        slate._onMouseUp(dx0 + 20, dy0 + 15);
+
+        // Pivot unchanged.
+        almostEqual(C.x, cInitX, 0.001);
+        almostEqual(C.y, cInitY, 0.001);
+        // A rotated.
+        assert.ok(Math.hypot(A.x - aInitX, A.y - aInitY) > 0.5,
+            `A should have rotated; stayed at (${A.x},${A.y})`);
     });
 
     it("should restore all slider initial positions when slate.reset() is called", () => {
@@ -691,6 +719,99 @@ describe("slate", ()=> {
         almostEqual(x.x, xInit[0], 0.001);
         almostEqual(x.y, xInit[1], 0.001);
         almostEqual(x.z, xInit[2], 0.001);
+    });
+
+    // Slate.createElement error paths.
+    it("createElement should throw TypeError when a param is not a string or number", () => {
+        let slate = new Slate(createCanvas(100, 100));
+        slate.createElement(E.Point.free, [10, 10], "A");
+        // Mixed-in boolean hits convertParams' default case (line 188).
+        assert.throws(
+            () => slate.createElement(E.Point.midpoint, ["A", true as any], "X"),
+            TypeError);
+    });
+
+    it("createElement should throw a descriptive TypeError when no construction matches", () => {
+        let slate = new Slate(createCanvas(100, 100));
+        // Pass no params — no Midpoint construction takes zero points, so
+        // findConstruction returns null. With name omitted, the error path
+        // at createElement exercises the name-is-null fallback (lines 209-210).
+        assert.throws(
+            () => slate.createElement(E.Point.midpoint, []),
+            /Construction not found/);
+    });
+
+    // Colors.ts residual gaps — darken alias and parseRGB's hex + fallback
+    // branches (only reached via brighter/darker, not parseColor).
+    it("darken() should delegate to darker() for a given color", () => {
+        assert.equal(darken("rgb(200,100,50)"), darker("rgb(200,100,50)"));
+    });
+
+    it("brighter() should accept a 6-digit hex string via parseRGB", () => {
+        // "ff8040" → rgb(255,128,64). brighter(...) recomputes per component
+        // and produces a valid rgb() result (exact values don't matter — we
+        // just need the hex branch of parseRGB to fire).
+        let out = brighter("ff8040");
+        assert.ok(/^rgb\(\d+,\d+,\d+\)$/.test(out),
+            `brighter('ff8040') should return an rgb() string, got '${out}'`);
+    });
+
+    it("brighter() should return the input unchanged when it's unparseable", () => {
+        // parseRGB returns null → brighter returns col unchanged, hitting
+        // the fallback branch (line 144-145).
+        assert.equal(brighter("not-a-color"), "not-a-color");
+    });
+
+    // point;perpendicular has five signatures. Variant 5 (3 points + plane)
+    // is already covered by scene3d's "Pperp". These two tests cover the
+    // remaining uncovered variants.
+    it("E.Point.perpendicular with 4 points (no plane) should construct variant 3", () => {
+        let slate = buildScene3d();
+        let g = slate.createElement(
+            E.Point.perpendicular, ["A","B","C","origin"], "FP3");
+        assert.ok(g instanceof PointElement);
+    });
+
+    it("E.Point.perpendicular with 4 points + plane should construct variant 4", () => {
+        let slate = buildScene3d();
+        let g = slate.createElement(
+            E.Point.perpendicular, ["A","B","xyplane","C","origin"], "FP4");
+        assert.ok(g instanceof PointElement);
+    });
+
+    it("PolyhedronElement.drawVertex should render face vertices when vertexColor is set", () => {
+        let slate = buildSpecializedScene();
+        let pep = slate.lookupElement("pep");  // parallelepiped
+        assert.ok(pep != null, "parallelepiped should exist");
+        pep.vertexColor = "black";
+        // Should iterate every face and call drawVertex on each vertex
+        // without throwing.
+        pep.drawVertex(createCanvas(300, 300) as any);
+    });
+
+    // CircleElement._drawCircle has a degenerate branch for edge-on
+    // rendering (minor axis < 0.5 px) that our snapshot suite never
+    // triggers. Hand-craft a CircleElement with a tilted AP to exercise it.
+    it("CircleElement.drawEdge should handle an edge-on circle without throwing", () => {
+        let canvas = createCanvas(100, 100);
+        let center = new PointElement({x: 50, y: 50, z: 0});
+        let B      = new PointElement({x: 51, y: 50, z: 0});   // radius = 1
+
+        // A plane whose S.z² + T.z² ≈ 0.99 → factor = sqrt(1-amp2) ≈ 0.1,
+        // minorR ≈ 0.1 * 1 = 0.1 (< 0.5) → takes the degenerate branch.
+        let plane = new PlaneElement({
+            A: new PointElement({x: 0, y: 0, z: 0}),
+            B: new PointElement({x: 1, y: 0, z: 0}),
+            C: new PointElement({x: 0, y: 1, z: 0}),
+        });
+        plane.S = new PointElement({x: 0.1, y: 0, z: 0.995});
+        plane.T = new PointElement({x: 0,   y: 1, z: 0});
+        plane.U = new PointElement({x: 1,   y: 0, z: 0});
+
+        let circle = new CircleElement({C: center, A: center, B: B, AP: plane});
+        circle.edgeColor = "black";
+        // Should not throw even though the ellipse degenerates to a line.
+        circle.drawEdge(canvas as any);
     });
 
     // Exercises src/index.ts init() — the public entry point. Snapshot
@@ -2067,8 +2188,6 @@ describe("slate", ()=> {
     });
 
 });
-
-import {parseColor, brighter, darker} from "../src/Colors";
 
 describe("parseColor", () => {
 

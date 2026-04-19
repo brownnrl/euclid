@@ -145,10 +145,6 @@ export abstract class GeomElement {
         this._name = n;
     }
 
-    public hitTest(x : number, y: number) : boolean {
-        return false;
-    }
-
     public abstract update() : void;
     public reset() { this.update(); }
     public defined() : boolean { return false; }
