@@ -481,7 +481,9 @@ details { margin: 5px 0; }
                 for (let i = 0; i < MAX_DRAG_PAIRS; i++) {
                     if (i < entry.dragResults.length) {
                         let dr = entry.dragResults[i];
-                        html += `<td><img class="thumb" data-slate="${slateKey}" src="${relDir}/drag${i+1}-after.png" loading="lazy" title="${dr.pointName} (move)" alt="drag${i+1} move"></td>`;
+                        // Move image = with red arrow (shows the drag).
+                        // Verify image = clean post-drag state (baseline).
+                        html += `<td><img class="thumb" data-slate="${slateKey}" src="${relDir}/drag${i+1}-move.png" loading="lazy" title="${dr.pointName} (move)" alt="drag${i+1} move"></td>`;
                         html += `<td><img class="thumb" data-slate="${slateKey}" src="${relDir}/drag${i+1}-verify.png" loading="lazy" title="${dr.pointName} (verify)" alt="drag${i+1} verify"></td>`;
                     } else {
                         html += `<td>—</td><td>—</td>`;
@@ -555,8 +557,11 @@ function openModal(slateKey) {
     for (let i = 0; i < entry.dragPoints.length; i++) {
         const n = i + 1;
         const name = entry.dragPoints[i];
+        // Move image (with arrow) shows the drag action; verify image is
+        // the clean post-drag state used as the regression baseline.
+        // Sequence reads: before → move → verify → move → verify.
         images.push({
-            src: relDir + "/drag" + n + "-after.png",
+            src: relDir + "/drag" + n + "-move.png",
             label: "drag " + n + " move (" + name + ")"
         });
         images.push({

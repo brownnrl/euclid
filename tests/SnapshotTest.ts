@@ -125,25 +125,30 @@ describe("snapshot verification", function() {
                         recorded++;
                         let dragNum = recorded;
 
-                        let afterPath = path.join(fullSnapshotDir, `drag${dragNum}-after.png`);
-                        let afterResult = assertSnapshot(afterCanvas, afterPath);
+                        // The clean post-drag canvas is the verification
+                        // baseline — that's what we compare against in
+                        // future runs. The arrow-annotated version is the
+                        // "move" image, a visual showing which drag was
+                        // performed (not compared, just displayed).
+                        let verifyPath = path.join(fullSnapshotDir, `drag${dragNum}-verify.png`);
+                        let verifyResult = assertSnapshot(afterCanvas, verifyPath);
 
-                        let verifyCanvas = drawVerificationImage(
+                        let moveCanvas = drawVerificationImage(
                             afterCanvas, [fromX, fromY], [toX, toY],
                             point.name || `point${dragNum}`
                         );
-                        let verifyPath = path.join(fullSnapshotDir, `drag${dragNum}-verify.png`);
-                        saveVerificationImage(verifyCanvas, verifyPath);
+                        let movePath = path.join(fullSnapshotDir, `drag${dragNum}-move.png`);
+                        saveVerificationImage(moveCanvas, movePath);
 
                         entry.dragResults.push({
                             pointName: point.name || `point${dragNum}`,
-                            result: afterResult,
+                            result: verifyResult,
                         });
 
                         priorBytes = capturePixels(afterCanvas);
 
-                        assert.ok(afterResult.passed,
-                            `Drag ${dragNum} (${point.name}) snapshot failed: ${afterResult.diffPercent?.toFixed(2)}% pixels differ`);
+                        assert.ok(verifyResult.passed,
+                            `Drag ${dragNum} (${point.name}) snapshot failed: ${verifyResult.diffPercent?.toFixed(2)}% pixels differ`);
                     }
                 } catch (e) {
                     entry.error = (e as Error).message;
