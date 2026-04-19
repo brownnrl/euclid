@@ -278,7 +278,13 @@ class SlateControls {
             }
         }
 
-        let configJSON = JSON.stringify(this._config);
+        // Override the config's canvasid so geomlib.init() targets the
+        // new window's canvas (id="canvasId"), not the source page's canvas
+        // which doesn't exist in the new document. Without the override,
+        // init() would look up this._config.canvasid (e.g. "canvas_0") in
+        // the new document, get null, and throw in resizeCanvasToDisplaySize.
+        let newWinConfig = Object.assign({}, this._config, { canvasid: "canvasId" });
+        let configJSON = JSON.stringify(newWinConfig);
         let title = this._config.title || "Geometry";
 
         // Open maximized: use full screen dimensions, canvas fills viewport
