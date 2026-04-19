@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title>Test View - propI2 slate1 (drag instability reproducer, issue #41)</title>
+</head>
+<body>
+<p>Drag any free point (A, B, or C) — the scene should rotate/scale
+smoothly around the equilateral-triangle apex <b>D</b> (green) which
+is the pivot. In the Java applet (windows 1 &amp; 2 of the three-way
+harness) the rotation is visually stable. In the TS port before the
+fix for issue #41, dragging A even a small amount balloons the
+outer circle <i>GKL</i> and the radius circle <i>CGH</i>
+disproportionately — the points labeled L, E, F, G, H, K are all
+<code>point;last;...</code> references to existing line endpoints,
+and a missing preexists flag caused them to be moved twice in the
+rotation loop.</p>
+
+<canvas id="canvasId" style="width:340px; height: 320px;"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+
+<!--applet code=Geometry codebase="../../Geometry" archive=Geometry.zip height=320 width=340>
+<param name=background value="35,19,100">
+<param name=title value="I.2">
+<param name=e[1] value="A;point;free;160,190">
+<param name=e[2] value="B;point;free;190,160">
+<param name=e[3] value="C;point;free;180,90">
+<param name=e[4] value="BC;line;connect;B,C">
+<param name=e[5] value="DAB;polygon;equilateralTriangle;A,B;0;0;0;0">
+<param name=e[6] value="D;point;vertex;DAB,3;black;green">
+<param name=pivot value="D">
+<param name=e[7] value="AL;line;extend;D,A,B,C">
+<param name=e[8] value="L;point;last;AL">
+<param name=e[9] value="LE;line;extend;A,L,A,B">
+<param name=e[10] value="E;point;last;LE;black;0">
+<param name=e[11] value="BG;line;extend;D,B,B,C">
+<param name=e[12] value="G;point;last;BG">
+<param name=e[13] value="GF;line;extend;B,G,A,B">
+<param name=e[14] value="F;point;last;GF;black;0">
+<param name=e[15] value="CGH;circle;radius;BC;0;0;0;0">
+<param name=e[16] value="BH;line;extend;G,B,G,B;0;0;0">
+<param name=e[17] value="H;point;last;BH;black;0">
+<param name=e[18] value="GKL;circle;radius;D,G;0;0;black;darker">
+<param name=e[19] value="CGH*;circle;radius;BC;0;0;black;brighter">
+<param name=e[20] value="DK;line;extend;G,D,G,D;0;0;0">
+<param name=e[21] value="K;point;last;DK;black;0">
+<param name=e[22] value="DAB*;polygon;equilateralTriangle;A,B;0;0;black;random">
+</applet-->
+<script type="text/javascript">
+    geomlib.init({
+        background: "35,19,100",
+        title: "I.2",
+        canvasid: "canvasId",
+        pivot: "D",
+        elements: [
+            "A;point;free;160,190",
+            "B;point;free;190,160",
+            "C;point;free;180,90",
+            "BC;line;connect;B,C",
+            "DAB;polygon;equilateralTriangle;A,B;0;0;0;0",
+            "D;point;vertex;DAB,3;black;green",
+            "AL;line;extend;D,A,B,C",
+            "L;point;last;AL",
+            "LE;line;extend;A,L,A,B",
+            "E;point;last;LE;black;0",
+            "BG;line;extend;D,B,B,C",
+            "G;point;last;BG",
+            "GF;line;extend;B,G,A,B",
+            "F;point;last;GF;black;0",
+            "CGH;circle;radius;BC;0;0;0;0",
+            "BH;line;extend;G,B,G,B;0;0;0",
+            "H;point;last;BH;black;0",
+            "GKL;circle;radius;D,G;0;0;black;darker",
+            "CGH*;circle;radius;BC;0;0;black;brighter",
+            "DK;line;extend;G,D,G,D;0;0;0",
+            "K;point;last;DK;black;0",
+            "DAB*;polygon;equilateralTriangle;A,B;0;0;black;random",
+        ]
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<HTML><HEAD><TITLE>propI2 slate1 — L-drag instability reproducer (original)</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!--
+  Unmodified extraction of propI2 slate1 — the FIRST <applet> on
+  http://aleph0.clarku.edu/~djoyce/java/elements/bookI/propI2.html
+  ("slate1" = 1-indexed first slate, inside <div id="ap1">). The only
+  edit is the codebase path so appletviewer can find Geometry.zip.
+
+  Reproducer for issue #41: every point labeled L, E, F, G, H, K is
+  defined via `point;last;...` — a reference to an already-existing
+  line endpoint. In Java the applet's preexists[] array marks these
+  as references so the rotate-around-pivot loop skips them (their
+  containing line moves them already). The TS port's preexists
+  heuristic (indexOf-in-_elements) misses them because line endpoints
+  aren't registered as individual _elements entries. Result: picking
+  any of these points — especially L, which is visually the furthest
+  from pivot D and so has the largest moment arm — makes the scene
+  double-rotate / scale wildly as you drag. Java: clean rotation.
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip height=320 width=340 name=main>
+<img src=propI2.gif alt="java applet or image">
+<param name=background value="35,19,100">
+<param name=title value="I.2">
+<param name=e[1] value="A;point;free;160,190">
+<param name=e[2] value="B;point;free;190,160">
+<param name=e[3] value="C;point;free;180,90">
+<param name=e[4] value="BC;line;connect;B,C">
+<param name=e[5] value="DAB;polygon;equilateralTriangle;A,B;0;0;0;0">
+<param name=e[6] value="D;point;vertex;DAB,3;black;green">
+<param name=pivot value="D">
+<param name=e[7] value="AL;line;extend;D,A,B,C">
+<param name=e[8] value="L;point;last;AL">
+<param name=e[9] value="LE;line;extend;A,L,A,B">
+<param name=e[10] value="E;point;last;LE;black;0">
+<param name=e[11] value="BG;line;extend;D,B,B,C">
+<param name=e[12] value="G;point;last;BG">
+<param name=e[13] value="GF;line;extend;B,G,A,B">
+<param name=e[14] value="F;point;last;GF;black;0">
+<param name=e[15] value="CGH;circle;radius;BC;0;0;0;0">
+<param name=e[16] value="BH;line;extend;G,B,G,B;0;0;0">
+<param name=e[17] value="H;point;last;BH;black;0">
+<param name=e[18] value="GKL;circle;radius;D,G;0;0;black;darker">
+<param name=e[19] value="CGH*;circle;radius;BC;0;0;black;brighter">
+<param name=e[20] value="DK;line;extend;G,D,G,D;0;0;0">
+<param name=e[21] value="K;point;last;DK;black;0">
+<param name=e[22] value="DAB*;polygon;equilateralTriangle;A,B;0;0;black;random">
+</applet>
+</BODY></HTML>
