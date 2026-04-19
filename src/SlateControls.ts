@@ -45,8 +45,10 @@ class SlateControls {
         wrapperHeight: string;
         wrapperZIndex: string;
         wrapperBackground: string;
-        canvasWidth: string;
-        canvasHeight: string;
+        canvasStyleWidth: string;
+        canvasStyleHeight: string;
+        canvasAttrWidth: number;
+        canvasAttrHeight: number;
     } = null;
 
     constructor(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig) {
@@ -174,7 +176,9 @@ class SlateControls {
     }
 
     private maximize(): void {
-        // Save current styles
+        // Save current styles AND canvas width/height attributes. The attrs
+        // are the canvas bitmap resolution; resizeAndRedraw() overwrites them
+        // to match the maximized CSS size, so minimize() must restore them.
         this._savedStyles = {
             wrapperPosition: this._wrapper.style.position,
             wrapperTop: this._wrapper.style.top,
@@ -183,8 +187,10 @@ class SlateControls {
             wrapperHeight: this._wrapper.style.height,
             wrapperZIndex: this._wrapper.style.zIndex,
             wrapperBackground: this._wrapper.style.background,
-            canvasWidth: this._canvas.style.width,
-            canvasHeight: this._canvas.style.height,
+            canvasStyleWidth: this._canvas.style.width,
+            canvasStyleHeight: this._canvas.style.height,
+            canvasAttrWidth: this._canvas.width,
+            canvasAttrHeight: this._canvas.height,
         };
 
         // Maximize wrapper to fill viewport
@@ -217,8 +223,16 @@ class SlateControls {
         this._wrapper.style.zIndex = this._savedStyles.wrapperZIndex;
         this._wrapper.style.background = this._savedStyles.wrapperBackground;
 
-        this._canvas.style.width = this._savedStyles.canvasWidth;
-        this._canvas.style.height = this._savedStyles.canvasHeight;
+        this._canvas.style.width = this._savedStyles.canvasStyleWidth;
+        this._canvas.style.height = this._savedStyles.canvasStyleHeight;
+
+        // Restore the canvas bitmap resolution to match its pre-maximize
+        // intrinsic size. Without this, the canvas keeps the enlarged
+        // width/height attributes from the maximize pass and (when style
+        // width/height are empty) falls back to those attrs for its CSS
+        // size — leaving the diagram rendered full-width.
+        this._canvas.width = this._savedStyles.canvasAttrWidth;
+        this._canvas.height = this._savedStyles.canvasAttrHeight;
 
         this.resizeAndRedraw();
         this._maximized = false;
