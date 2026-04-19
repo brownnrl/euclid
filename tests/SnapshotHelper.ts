@@ -504,7 +504,7 @@ details { margin: 5px 0; }
     <p class="modal-subtitle" id="modalSubtitle"></p>
     <div class="strip" id="modalStrip"></div>
     <div class="live-area">
-      <canvas id="liveCanvas"></canvas>
+      <div id="liveSlateHost"></div>
       <p class="live-hint">Drag any orange/red point to interact.</p>
     </div>
   </div>
@@ -577,15 +577,18 @@ function openModal(slateKey) {
         modalStrip.appendChild(fig);
     }
 
-    // Rebuild the live canvas with a fresh id (so geomlib.init finds it).
-    // Replacing the node drops any old Slate's event listeners.
+    // Tear down any previous live slate: geomlib.init wraps the canvas
+    // in a controls div, so we can't just replaceChild on the host.
+    // Wiping the host and dropping the slate reference is the safe path.
+    destroyLiveSlate();
+
     const fresh = document.createElement("canvas");
     fresh.id = "liveCanvas";
     fresh.width = config.width;
     fresh.height = config.height;
     fresh.style.width = config.width + "px";
     fresh.style.height = config.height + "px";
-    liveCanvasContainer().replaceChild(fresh, document.getElementById("liveCanvas"));
+    document.getElementById("liveSlateHost").appendChild(fresh);
 
     modal.classList.add("open");
 
@@ -602,12 +605,20 @@ function openModal(slateKey) {
     }
 }
 
-function liveCanvasContainer() {
-    return document.querySelector(".live-area");
+function destroyLiveSlate() {
+    const host = document.getElementById("liveSlateHost");
+    if (host) host.innerHTML = "";
+    // geomlib.slates is the module-level registry that init() pushes into.
+    // Drop the most recent entry so the old Slate (and its event closures)
+    // can be garbage-collected.
+    if (typeof geomlib !== "undefined" && Array.isArray(geomlib.slates)) {
+        geomlib.slates.pop();
+    }
 }
 
 function closeModal() {
     modal.classList.remove("open");
+    destroyLiveSlate();
 }
 
 function openLightbox(src, alt) {
