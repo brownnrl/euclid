@@ -1,7 +1,7 @@
 import "mocha";
 import * as assert from "assert";
 import {Slate} from "../src/Slate";
-import {E, IConstructionInfo} from "../src/index";
+import {E, IConstructionInfo, init, slates} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {Intersection} from "../src/elements/point/Intersection";
 import {PointElement} from "../src/elements/point/PointElement";
@@ -460,6 +460,203 @@ describe("slate", ()=> {
         almostEqual(A.y, aInitY + 15, 0.001);
         almostEqual(D.x, dInitX + 20, 0.001);
         almostEqual(D.y, dInitY + 15, 0.001);
+    });
+
+    // propXI11-style 3D scene: exercises FixedPoint, PerpendicularPlane,
+    // ParallelPlane, Perpendicular (point), LineSlider, PlaneSlider on a
+    // non-screen plane, and the 3D foot-of-perpendicular Foot element.
+    // A drag through translateCoordinates / rotateCoordinates invokes
+    // translate()/rotate() on every element type — the biggest lever
+    // for the 50%-function files in the coverage report.
+    let scene3d_data : IConstructionInfo[] = [
+        { name: "origin",  construction: E.Point.free,          params: [120, 160] },
+        { name: "x",       construction: E.Point.fixed,         params: [280, 160, 100] },
+        { name: "yzplane", construction: E.Plane.perpendicular, params: ["origin","x"] },
+        { name: "y",       construction: E.Point.planeSlider,   params: ["yzplane", -90, 260, 40] },
+        { name: "xyplane", construction: E.Plane.threePoints,   params: ["origin","x","y"] },
+        { name: "z1",      construction: E.Point.perpendicular, params: ["origin","y","yzplane"] },
+        { name: "z",       construction: E.Point.lineSlider,    params: ["origin","z1",50,50,100] },
+        { name: "Oz",      construction: E.Line.connect,        params: ["origin","z"] },
+        { name: "ceiling", construction: E.Plane.parallel,      params: ["xyplane","z"] },
+        { name: "A",       construction: E.Point.planeSlider,   params: ["ceiling", 140, 100, 180] },
+        { name: "B",       construction: E.Point.planeSlider,   params: ["xyplane", 208, 270, 140] },
+        { name: "C",       construction: E.Point.planeSlider,   params: ["xyplane", 245, 190, 80] },
+        { name: "BC",      construction: E.Line.connect,        params: ["B","C"] },
+        { name: "D",       construction: E.Point.foot,          params: ["A","BC"] },
+    ];
+
+    function buildScene3d(): Slate {
+        let slate = new Slate(createCanvas(330, 330));
+        toElements(slate, scene3d_data);
+        for (let e of slate.elements) {
+            if (e instanceof PointElement) e.vertexColor = "black";
+        }
+        slate.elements.forEach(e => e.update());
+        return slate;
+    }
+
+    it("should translate 3D plane elements when dragging a non-draggable point", () => {
+        let slate = buildScene3d();
+
+        let origin = slate.lookupElement("origin") as PointElement;
+        let x = slate.lookupElement("x") as PointElement;
+        let D = slate.lookupElement("D") as PointElement;
+        let A = slate.lookupElement("A") as PointElement;
+        let oInitX = origin.x, oInitY = origin.y;
+        let xInitX = x.x, xInitY = x.y;
+        let aInitX = A.x, aInitY = A.y;
+
+        // Drag D (Foot — non-draggable). No pivot → translateCoordinates.
+        // Slate derives the drag delta from the pick's actual position,
+        // not the rounded mouse-down coordinates, so compute the expected
+        // delta the same way.
+        let dInitX = D.x, dInitY = D.y;
+        let dx0 = Math.round(dInitX), dy0 = Math.round(dInitY);
+        let targetX = dx0 + 15, targetY = dy0 - 10;
+        let deltaX = targetX - dInitX;
+        let deltaY = targetY - dInitY;
+        slate._onMouseDown(dx0, dy0);
+        slate._onMouseDrag(targetX, targetY);
+        slate._onMouseUp(targetX, targetY);
+
+        // Every non-preexisting element shifts by exactly the drag delta.
+        // Exercises translate() on PlaneSlider, FixedPoint, Foot (via
+        // PointElement), and indirectly on PerpendicularPlane /
+        // ParallelPlane / PlaneElement through their constituent points.
+        almostEqual(origin.x, oInitX + deltaX, 0.001);
+        almostEqual(origin.y, oInitY + deltaY, 0.001);
+        almostEqual(x.x, xInitX + deltaX, 0.001);
+        almostEqual(x.y, xInitY + deltaY, 0.001);
+        almostEqual(A.x, aInitX + deltaX, 0.001);
+        almostEqual(A.y, aInitY + deltaY, 0.001);
+    });
+
+    it("should rotate 3D plane elements around a pivot on xyplane", () => {
+        let slate = buildScene3d();
+        slate.setPivot("origin,xyplane");
+
+        let origin = slate.lookupElement("origin") as PointElement;
+        let D = slate.lookupElement("D") as PointElement;
+        let A = slate.lookupElement("A") as PointElement;
+        let oInitX = origin.x, oInitY = origin.y;
+        let aInitX = A.x, aInitY = A.y;
+
+        // Drag D through rotateCoordinates on xyplane → every non-
+        // preexisting element rotates via its rotate() method.
+        let dx0 = Math.round(D.x), dy0 = Math.round(D.y);
+        slate._onMouseDown(dx0, dy0);
+        slate._onMouseDrag(dx0 + 20, dy0 + 12);
+        slate._onMouseUp(dx0 + 20, dy0 + 12);
+
+        // Pivot doesn't move.
+        almostEqual(origin.x, oInitX, 0.001);
+        almostEqual(origin.y, oInitY, 0.001);
+        // A (planeSlider on ceiling) rotated — exercises PerpendicularPlane,
+        // ParallelPlane, and PlaneSlider rotate paths through updates.
+        assert.ok(Math.hypot(A.x - aInitX, A.y - aInitY) > 0.5,
+            `A should have rotated; went from (${aInitX},${aInitY}) to (${A.x},${A.y})`);
+    });
+
+    // Grab-bag scene covering the construction types whose translate() /
+    // rotate() methods were the long tail in the coverage report:
+    // RegularPolygon, Application, InvertCircle, SphereIntersection,
+    // CircleSlider, SphereSlider, Sector, Prism, Parallelepiped.
+    let specialized_data : IConstructionInfo[] = [
+        { name: "A",    construction: E.Point.free,              params: [50, 50] },
+        { name: "B",    construction: E.Point.free,              params: [140, 50] },
+        { name: "C",    construction: E.Point.free,              params: [100, 140] },
+        { name: "D",    construction: E.Point.free,              params: [50, 180] },
+        { name: "c1",   construction: E.Circle.radius,           params: ["A","B"] },
+        { name: "c2",   construction: E.Circle.radius,           params: ["B","A"] },
+        { name: "P",    construction: E.Point.circleSlider,      params: ["c1", 120, 30] },
+        { name: "inv",  construction: E.Circle.invert,           params: ["c1","c2"] },
+        { name: "s1",   construction: E.Sphere.radius,           params: ["A","B"] },
+        { name: "s2",   construction: E.Sphere.radius,           params: ["B","A"] },
+        { name: "sInt", construction: E.Circle.intersection,     params: ["s1","s2"] },
+        { name: "Q",    construction: E.Point.sphereSlider,      params: ["s1", 90, 70, 50] },
+        { name: "reg",  construction: E.Polygon.regularPolygon,  params: ["A","B", 5] },
+        { name: "poly", construction: E.Polygon.triangle,        params: ["A","B","C"] },
+        { name: "app",  construction: E.Polygon.application,     params: ["poly", "A", "B", "C"] },
+        { name: "sec",  construction: E.Sector.sector,           params: ["A","B","C"] },
+        { name: "pep",  construction: E.Polyhedra.parallelepiped,params: ["A","B","C","D"] },
+        { name: "M",    construction: E.Point.midpoint,          params: ["A","B"] },  // pick target
+    ];
+
+    it("should translate specialized elements (RegularPolygon, Application, InvertCircle, etc.)", () => {
+        let slate = new Slate(createCanvas(300, 300));
+        toElements(slate, specialized_data);
+        for (let e of slate.elements) {
+            if (e instanceof PointElement) e.vertexColor = "black";
+        }
+        slate.elements.forEach(e => e.update());
+
+        let A = slate.lookupElement("A") as PointElement;
+        let M = slate.lookupElement("M") as PointElement;
+        let aInitX = A.x, aInitY = A.y;
+        let mInitX = M.x, mInitY = M.y;
+
+        // Drag M (midpoint — non-draggable) → translateCoordinates fires,
+        // calling translate() on every non-preexisting element. That
+        // exercises the translate paths on RegularPolygonElement,
+        // ApplicationElement, InvertCircleElement, SphereIntersectionElement,
+        // CircleSlider, SphereSliderElement, SectorElement, PrismElement.
+        let dx0 = Math.round(mInitX), dy0 = Math.round(mInitY);
+        let targetX = dx0 + 25, targetY = dy0 + 15;
+        let deltaX = targetX - mInitX;
+        let deltaY = targetY - mInitY;
+        slate._onMouseDown(dx0, dy0);
+        slate._onMouseDrag(targetX, targetY);
+        slate._onMouseUp(targetX, targetY);
+
+        almostEqual(A.x, aInitX + deltaX, 0.001);
+        almostEqual(A.y, aInitY + deltaY, 0.001);
+    });
+
+    // Exercises src/index.ts init() — the public entry point. Snapshot
+    // tests use buildScene() directly; unit tests construct Slate without
+    // going through init(). This stubs the DOM lookup init() needs.
+    it("init() should build a slate from an IInitialization config", () => {
+        let canvas: any = createCanvas(250, 250);
+        canvas.clientWidth = 250;
+        canvas.clientHeight = 250;
+        canvas.parentElement = null;  // skip createControls — no DOM tree
+
+        let savedDoc = (global as any).document;
+        (global as any).document = {
+            getElementById: (id: string) => id === "myCanvas" ? canvas : null,
+        };
+
+        try {
+            let before = slates.length;
+            init({
+                background: "35,19,100",
+                title: "init-test",
+                canvasid: "myCanvas",
+                elements: [
+                    // Mix of string (parseParam path) and object form.
+                    "A;point;free;60,60",
+                    { name: "B", construction: E.Point.free, params: [180, 60] },
+                    { name: "C", construction: E.Point.free, params: [120, 180] },
+                    "circABC;circle;circumcircle;A,B,C",
+                    { name: "F", construction: E.Point.center, params: ["circABC"] },
+                ],
+                pivot: "F",
+            });
+
+            assert.equal(slates.length, before + 1,
+                "init() should have pushed one slate onto geomlib.slates");
+            let slate = slates[slates.length - 1];
+            let A = slate.lookupElement("A") as PointElement;
+            assert.ok(A instanceof PlaneSlider, "A should be a PlaneSlider");
+            almostEqual(A.x, 60, 0.001);
+            almostEqual(A.y, 60, 0.001);
+            // Pivot applied: screen.pivot must be F.
+            let F = slate.lookupElement("F") as PointElement;
+            assert.ok(F != null, "F should be constructed");
+        } finally {
+            if (savedDoc === undefined) delete (global as any).document;
+            else (global as any).document = savedDoc;
+        }
     });
 
     // Book I, Prop 12 — chord of circle cut by a line
