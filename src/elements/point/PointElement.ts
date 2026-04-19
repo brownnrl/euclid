@@ -59,22 +59,10 @@ export class PointElement extends GeomElement {
             && this._x != null && true && this._y != null && true && this._z != null;
     }
 
-    public toString() : string {
-        return `[${this._name} (${this._x}, ${this._y}, ${this._z})]`;
-    }
-
-    public hitTest(x: number, y: number) : boolean {
-        return Math.sqrt((this._x - x) * (this._x - x) + (this._y - y) * (this._y - y)) <= this._pixelTolerance;
-    }
-
     to(B : PointElement ) : PointElement {this._x = B._x; this._y = B._y; this._z= B._z; return this;}
     plus(B : PointElement ) : PointElement {this._x += B._x; this._y += B._y; this._z+= B._z; return this;}
     minus(B : PointElement) : PointElement {this._x -= B._x; this._y -= B._y; this._z-= B._z; return this;}
     times(a : number) : PointElement {this._x *= a; this._y *= a; this._z *= a; return this;}
-
-    static sum(A : PointElement, B: PointElement) : PointElement {
-        return new PointElement({x: A.x+B.x,y: A.y+B.y, z:A.z+B.z, AP: null});
-    }
 
     static difference(A : PointElement, B : PointElement) : PointElement {
         return new PointElement({x:A.x-B.x, y:A.y-B.y, z:A.z-B.z, AP: null});

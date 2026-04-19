@@ -50,16 +50,8 @@ export class SectorElement extends GeomElement {
         }
     }
 
-    public toString(): string {
-        return `[${this._name}: Center=${this._Center} A=${this._A} B=${this._B}]`;
-    }
-
     radius() : number {
         return this._Center.distance(this._A);
-    }
-
-    radius2() : number {
-        return this._Center.distance2(this._A);
     }
 
     defined() {

@@ -5,9 +5,13 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --noEmit",
-    "test": "mocha",
-    "coverage": "c8 mocha",
-    "coverage:report": "c8 report --reporter=html"
+    "test": "npm run test:snapshot && npm run test:unit",
+    "test:snapshot": "mocha --reporter min tests/SnapshotTest.ts",
+    "test:unit": "mocha tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
+    "coverage": "c8 mocha --reporter min tests/SnapshotTest.ts tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
+    "coverage:unit": "c8 mocha --reporter min tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
+    "coverage:report": "c8 report --reporter=html",
+    "snapshots:clean": "rm -rf tests/snapshots && mkdir -p tests/snapshots && touch tests/snapshots/.gitkeep"
   },
   "repository": {
     "type": "git",
@@ -23,6 +27,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.19.17",
+    "@types/pngjs": "^6.0.5",
     "c8": "^11.0.0",
     "canvas": "^3.2.3",
     "css-loader": "^7.1.2",
@@ -31,6 +36,8 @@
     "install": "^0.13.0",
     "mocha": "^11.7.5",
     "node-loader": "^2.0.0",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.7",
     "ts-node": "^10.9.2",

@@ -1,5 +1,7 @@
 node_modules
 coverage
+tests/snapshots/**/*.png
+tests/snapshots/report.html
 .idea/
 dist/
 *.js
