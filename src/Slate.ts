@@ -397,13 +397,24 @@ export class Slate {
       den = olds*olds + oldt*oldt;
       let ac : number = (news*olds + newt*oldt)/den;
       let as : number = (newt*olds - news*oldt)/den;
-      // rotate all non-preexisting elements
-      // (Java: Slate.java line 844 — if (!preexists[i]) element[i].rotate(...))
-      for (let elem of this._elementsForUpdate) {
+      // Rotate all non-preexisting elements directly.
+      // (Java: Slate.java line 843-845)
+      for (let elem of this._elements) {
           if (!elem.preexists)
               elem.rotate(piv, ac, as);
       }
-
+      // After direct rotation, recompute derived elements from their (now
+      // rotated) parents. Java doesn't need this because element[] carries
+      // duplicate entries for shared objects — a Layoff created by
+      // line;extend and re-referenced by point;last appears at two indices,
+      // one with preexists=false that gets rotated directly. TS dedupes
+      // _elements, so a shared object marked preexists=true is skipped,
+      // which means Layoff-style points backed by bare LineElement wrappers
+      // would never get moved directly (bare LineElement.rotate is a no-op).
+      // Running update() rebuilds them from their (rotated) parents, which
+      // produces the same result because rotation is a linear operation
+      // and Layoff.update() derives its position from parent coords.
+      this.update();
     }
 
 }

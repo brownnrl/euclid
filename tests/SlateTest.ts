@@ -276,6 +276,103 @@ describe("slate", () => {
         });
     });
 
+    // Regression test for bugfix/issue-41 — propI2 slate1.
+    // Dragging a non-draggable Layoff point (L, created via
+    // point;last on a line;extend-produced LineElement) should rotate
+    // the whole scene around the pivot D, including ALL derived
+    // Layoff points (E, G, F, H, K) — not just the free points (A, B, C).
+    // Before the fix, preexists marking on shared Layoff objects caused
+    // the derived points to be skipped during rotation, leaving them
+    // stationary while A/B/C swung around D — a visibly sheared scene.
+    describe("drag coordinates: propI2 slate1 (issue #41)", () => {
+        let params = [
+            "A;point;free;160,190",
+            "B;point;free;190,160",
+            "C;point;free;180,90",
+            "BC;line;connect;B,C",
+            "DAB;polygon;equilateralTriangle;A,B;0;0;0;0",
+            "D;point;vertex;DAB,3;black;green",
+            "AL;line;extend;D,A,B,C",
+            "L;point;last;AL",
+            "LE;line;extend;A,L,A,B",
+            "E;point;last;LE;black;0",
+            "BG;line;extend;D,B,B,C",
+            "G;point;last;BG",
+            "GF;line;extend;B,G,A,B",
+            "F;point;last;GF;black;0",
+            "BH;line;extend;G,B,G,B;0;0;0",
+            "H;point;last;BH;black;0",
+            "DK;line;extend;G,D,G,D;0;0;0",
+            "K;point;last;DK;black;0",
+        ];
+
+        function buildScene(): Slate {
+            let slate = new Slate(createCanvas(340, 320));
+            let parseParam = require("../src/index").parseParam;
+            for (let p of params) {
+                let info = parseParam(p);
+                slate.createElement(info.construction, info.params, info.name);
+            }
+            slate.elements.forEach(e => e.update());
+            for (let e of slate.elements) {
+                if (e instanceof PointElement && (e as any).vertexColor == null) {
+                    (e as any).vertexColor = "black";
+                }
+            }
+            slate.setPivot("D");
+            return slate;
+        }
+
+        it("dragging L rotates every derived point, not only the free A/B/C", () => {
+            let slate = buildScene();
+            let before: Record<string, [number, number]> = {};
+            for (let n of ["A","B","C","D","L","E","G","F","H","K"]) {
+                let p = slate.lookupElement(n) as PointElement;
+                before[n] = [p.x, p.y];
+            }
+
+            let L = slate.lookupElement("L") as PointElement;
+            let fromX = Math.round(L.x), fromY = Math.round(L.y);
+            let toX = fromX + 50, toY = fromY + 30;
+            (slate as any)._onMouseDown(fromX, fromY);
+            (slate as any)._onMouseDrag(toX, toY);
+            (slate as any)._onMouseUp(toX, toY);
+
+            let moved = (n: string) => {
+                let p = slate.lookupElement(n) as PointElement;
+                return Math.hypot(p.x - before[n][0], p.y - before[n][1]);
+            };
+
+            // Pivot must not move.
+            assert.ok(moved("D") < 0.001, `D (pivot) unexpectedly moved by ${moved("D")}`);
+            // L lands at drop target.
+            assert.ok(Math.abs(L.x - toX) < 1 && Math.abs(L.y - toY) < 1,
+                `L should have landed at (${toX},${toY}), got (${L.x},${L.y})`);
+            // Every non-pivot point must rotate, including Layoff-backed ones.
+            for (let n of ["A","B","C","E","G","F","H","K"]) {
+                assert.ok(moved(n) > 5,
+                    `${n} should rotate with L; moved by only ${moved(n).toFixed(2)} px`);
+            }
+        });
+
+        it("L stays on the ray DA after the drag (Layoff invariant)", () => {
+            let slate = buildScene();
+            let L = slate.lookupElement("L") as PointElement;
+            let fromX = Math.round(L.x), fromY = Math.round(L.y);
+            (slate as any)._onMouseDown(fromX, fromY);
+            (slate as any)._onMouseDrag(fromX + 30, fromY + 20);
+            (slate as any)._onMouseUp(fromX + 30, fromY + 20);
+
+            let A = slate.lookupElement("A") as PointElement;
+            let D = slate.lookupElement("D") as PointElement;
+            let dA = Math.hypot(A.x - D.x, A.y - D.y);
+            let dL = Math.hypot(L.x - D.x, L.y - D.y);
+            let ux = (A.x - D.x) / dA, uy = (A.y - D.y) / dA;
+            let err = Math.hypot(L.x - (D.x + dL * ux), L.y - (D.y + dL * uy));
+            assert.ok(err < 0.5, `L should stay on ray DA; off by ${err.toFixed(2)} px`);
+        });
+    });
+
     // Exercises src/index.ts init() — the public entry point. Snapshot
     // tests use buildScene() directly; unit tests construct Slate without
     // going through init(). Stubs the DOM lookup init() needs.
