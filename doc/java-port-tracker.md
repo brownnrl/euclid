@@ -127,7 +127,6 @@ implementation status. Updated as constructions are ported.
 |--------|-------|-------|
 | PORTED | 38 | Core element classes + all ported constructions (incl. InvertCircle ported 2026-04-12) |
 | PARTIAL | 2 | PerpendicularPL (split across 2 TS files), Slate (dispatch ported, rendering replaced) |
-| TBD | 0 | — |
 | TBD | 0 | All Java files ported or partially ported |
 | N/A | 3 | Geometry, ClientFrame, Remote |
 | **Total** | **44** | |
