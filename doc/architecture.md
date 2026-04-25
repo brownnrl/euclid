@@ -21,18 +21,22 @@ euclid/
 │       ├── sphere/               # SphereElement + SphereConstructions.ts
 │       └── polyhedron/           # PolyhedronElement, Prism, Pyramid + PolyhedronConstructions.ts
 ├── tests/
-│   └── SlateTest.ts              # Mocha test suite
+│   ├── {Circle,Line,Plane,Point,Polygon,Polyhedron,Sector,Sphere,Slate}Test.ts
+│   │                              # Per-element-type unit suites (split 2026-04-18)
+│   ├── ColorsTest.ts, ParseParamTest.ts
+│   ├── SnapshotTest.ts            # Auto-discovers HTML scenes, drags points,
+│   │                              #   diffs against tests/snapshots/ goldens
+│   ├── SnapshotHelper.ts          # Render + drag + pixel-diff utilities
+│   ├── HtmlParamParser.ts         # Loads Java <applet>/<param> HTML into Slate config
+│   ├── shared/dragScenes.ts       # Reusable scenes for slate-drag tests
+│   └── snapshots/                 # Golden PNGs (one per slate)
 ├── geom_applet/
 │   └── source/                   # Original Java source files (.java + .class)
 ├── view/
 │   ├── euclid-html/              # Original Java applet HTML (Books I–XIII)
-│   │   ├── booki/ … bookxiii/    # Per-book proposition HTML files
-│   └── test/                     # TypeScript demo pages, one per construction type
-│       ├── point/                # point/foot.html, point/intersection.html, …
-│       ├── line/                 # line/bichord.html, line/perpendicular.html, …
-│       ├── circle/               # circle/circle.html, circle/circumcircle.html
-│       ├── poly/                 # poly/index.html
-│       └── sector/               # sector/index.html
+│   ├── test/{type}/{sub}.html    # TypeScript demo pages, one per construction
+│   └── applet-tests/{type}/{cons}/{original,applet}.html
+│                                  # Three-way harness pairs (see AGENTS.md)
 ├── dist/
 │   └── bundle.js                 # Webpack output (consumed by view/test/ HTML files)
 └── AGENTS.md                     # Agent quick-start guide
@@ -43,28 +47,36 @@ euclid/
 ## Data flow: from `init()` to canvas
 
 ```
-geomlib.init({ canvasid, elements: [...] })
+geomlib.init({ canvasid, elements: [...], pivot?, background?, title?, … })
   └─ new Slate(canvas)
        ├─ creates screen plane (three FixedPoints + PlaneElement)
-       └─ for each element spec:
+       └─ for each element spec (object form OR Java param string):
+            (parseParam if string) → IConstructionInfo
             slate.createElement(construction, params, name)
-              ├─ convertParams(params)        ← string → element lookup
-              │                                 LineElement → two PointElements
-              ├─ findConstruction(cm, params)  ← iterates constructions[], validateSignature()
-              └─ Construction.construct(screen, params)
+              ├─ convertParams(params) ← string → element lookup; sorts into
+              │                          SortedParams { P[], E[], N[] }
+              │                          (LineElement names expand to their
+              │                           two endpoint PointElements in P)
+              ├─ findConstruction(cm, sp) ← iterates constructions[], picks the
+              │                              first whose validateSignature() matches
+              │                              by type counts (and elementTypes if set)
+              └─ Construction.construct(screen, P, E, N)
                    └─ returns [elementsForUpdate, newElement]
                         ├─ elementsForUpdate → pushed onto slate._elementsForUpdate
                         └─ newElement        → pushed onto slate._elements
 
-slate.update()
-  ├─ for each elem in _elementsForUpdate: elem.update()
-  └─ drawElements()
-       └─ for each elem in _elements:
-            elem.drawFace() → elem.drawEdge() → elem.drawVertex() → elem.drawName()
+  ├─ if config.pivot: slate.setPivot(config.pivot)
+  ├─ slate.update()
+  │     ├─ for each elem in _elementsForUpdate: elem.update()
+  │     └─ drawElements()
+  │          └─ for each elem in _elements:
+  │               elem.drawFace() → elem.drawEdge() → elem.drawVertex() → elem.drawName()
+  └─ createControls(slate, canvas, config)   ← injects reset/maximize/new-window
+                                                buttons + keyboard shortcuts on top
+                                                of the canvas (src/SlateControls.ts)
 ```
 
-Mouse/touch events call `movePick(x, y)` which translates the picked `PointElement`,
-then calls `slate.update()` to redraw.
+Mouse/touch events call `movePick(x, y)`; see "Drag pipeline" below.
 
 ---
 
@@ -140,20 +152,39 @@ explicit plane from the construction parameters.
 
 ## Construction dispatch: the `constructions` array
 
-`Slate.findConstruction(cm, params)` iterates the exported `constructions` array
-(`Constructions.ts`) and calls `validateSignature(cm, params)` on each entry.
+`Slate.findConstruction(cm, sp)` iterates the exported `constructions` array
+(`Constructions.ts`) and calls `validateSignature(cm, sp)` on each entry.
 The array is a spread-concatenation of 8 per-type arrays, each exported from
 its `{Type}Constructions.ts` file (e.g., `pointConstructions` from
 `point/PointConstructions.ts`).
 
-`validateSignature` checks two things:
-1. `construction.constructionMethod === cm` (the enum value matches)
-2. `params` types match `construction.signature` (element types in order)
+Dispatch is **type-counted**, mirroring Java's `selectDataChoice` in
+`Slate.java` 344-393. A `ConstructionSignature` is an object with numeric
+counts plus an optional subtype list:
 
-Because multiple `Construction` subclasses can share the same `constructionMethod`
-enum value with different signatures (2D vs. 3D variants), the **first match wins**.
-Insertion order in `constructions` is therefore significant — longer (3D) signatures
-must come before shorter (2D) ones to avoid greedy prefix matching.
+```typescript
+{ points: number, elements: number, integers: number, elementTypes?: Function[] }
+```
+
+`validateSignature` checks:
+
+1. `construction.constructionMethod === cm` (the enum value matches)
+2. `sp.P.length === sig.points`, `sp.E.length === sig.elements`,
+   `sp.N.length === sig.integers` (post-`convertParams` type counts match)
+3. If `sig.elementTypes` is set, each `sp.E[i] instanceof sig.elementTypes[i]`
+
+Because dispatch is by counts (not positional types), the source HTML param
+order is irrelevant — `"E,Vplane,D,B"` and `"E,D,B,Vplane"` both match
+`{ points: 3, elements: 1, elementTypes: [PlaneElement] }`. See
+`doc/analysis/type-counted-dispatch-plan.md` for the migration rationale.
+
+Because multiple `Construction` subclasses can share the same
+`constructionMethod` enum value, the **first match wins**. Insertion
+order matters **only** when two subclasses have *identical*
+`(points, elements, integers)` counts but differ in `elementTypes` —
+then the more specific (subtype-narrowed) signature must come first
+so it's checked before a more permissive sibling. With distinct counts
+(typical of 2D vs. 3D variants), order is irrelevant.
 
 ---
 
@@ -234,28 +265,48 @@ For `PointElement` subclasses: write `this._x`, `this._y`, `this._z`.
 For `LineElement` subclasses: write `this._A._x/y/z` and `this._B._x/y/z`
 (the two endpoint `PointElement`s stored on the line element).
 
+### `reset()` vs. `update()`
+
+`update()` recomputes from current parents. `reset()` restores an element
+to its construction-time state — `PlaneSlider.reset()` rewinds to its
+`_initx/_inity/_initz`, `LineSlider.reset()` to its initial `t`, and so on.
+`Slate.reset()` calls `elem.reset()` on every element and then `slate.update()`,
+which is what the reset button (and the `r`/`space` keyboard shortcut) on each
+SlateControls overlay invokes. After dragging, `update()` keeps showing the
+*current* dragged state; `reset()` rewinds the whole scene to where `init()`
+left it.
+
 ---
 
-## `convertParams` — the param expansion step
+## `convertParams` — the type-sort step
 
-Before a construction receives its `params`, `Slate.convertParams` transforms them:
+Before `findConstruction` looks anything up, `Slate.convertParams(params)`
+walks the raw `params` array and returns `SortedParams { P, E, N }`:
 
-1. **String → element lookup**: `"A"` → the `GeomElement` named `"A"` on the slate
-2. **`LineElement` → two `PointElement`s**: if the looked-up element is a `LineElement`,
-   it is replaced with `[lineElement._A, lineElement._B]` in the params array
+1. **String → element lookup**: `"A"` is replaced with the slate's element
+   named `"A"`.
+2. **Bucket by type**:
+   - `PointElement` instances → `P[]`
+   - `LineElement` instances → expanded to their two endpoint
+     `PointElement`s, both pushed into `P[]`
+   - all other elements (Circle, Plane, Sphere, Polygon, Polyhedron) → `E[]`
+   - numbers → `N[]`
 
-This means the `params` array that arrives at `Construction.construct()` can be longer
-than the original param list in the HTML. Construction `signature` arrays must reflect
-the post-expansion types, not the raw HTML param count.
+`Construction.construct()` then receives `(screen, P, E, N)` — three
+already-sorted arrays, not a single mixed list. Signatures match by the
+*counts* of these arrays, not by positional types; see the dispatch
+section above.
 
 ---
 
 ## Adding a new construction — the four-file checklist
 
 1. **Element class**: `src/elements/{type}/FooElement.ts`
-2. **Construction class**: new subclass in `src/elements/{type}/{Type}Constructions.ts`,
-   add to the per-type `{type}Constructions` array at the bottom of the same file
-3. **Test**: new `it(...)` block in `tests/SlateTest.ts`
+2. **Construction class**: new subclass in `src/elements/{type}/{Type}Constructions.ts`;
+   append `new FooConstruction()` to that file's `{type}Constructions` array
+3. **Test**: new `it(...)` block in `tests/{Type}Test.ts` (the suite is now
+   split per element type — point tests in `PointTest.ts`, line tests in
+   `LineTest.ts`, etc.). Slate-level integration tests stay in `SlateTest.ts`.
 4. **Demo page**: `view/test/{super_type}/{sub_type}.html`
 
 The enum entry for the construction (e.g. `PointConstructions.foo = N`) already exists
@@ -309,5 +360,24 @@ geomlib.init({
 `Align` is `{ ABOVE, BELOW, LEFT, RIGHT, CENTRAL }`.
 `parseParam(s)` converts a Java param string to `IConstructionInfo`.
 
-UI controls (reset, maximize, new window) are injected automatically by `init()`.
-Keyboard shortcuts when canvas is focused: `r`/`space` = reset, `u`/`return` = new window, `m` = maximize.
+`init()` accepts an optional `pivot` setting that fixes the rotation
+center for the drag pipeline (see "Drag pipeline" above):
+
+```typescript
+geomlib.init({ … , pivot: "C"            }) // pivot on screen plane
+geomlib.init({ … , pivot: "origin,xyplane" }) // 3D pivot on a non-screen plane
+```
+
+`Slate.setPivot(name)` accepts the same string format and can be called
+post-init.
+
+`init()` appends each constructed `Slate` to the exported `slates` array
+(`geomlib.slates`), so multiple canvases on the same page each get their
+own slate instance.
+
+UI controls (reset, maximize, new window) are injected by `init()` via
+`createControls(slate, canvas, config)` from `src/SlateControls.ts`. The
+overlay draws three icon buttons at the canvas's top-right and binds
+keyboard shortcuts when the canvas is focused: `r`/`space` = reset,
+`u`/`return` = open a new window with this scene maximized, `m` =
+maximize/minimize. See the file header for the icon and shortcut catalog.
