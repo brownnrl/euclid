@@ -6,17 +6,17 @@ The main task is implementing construction types one at a time until all proposi
 
 ## Read these first
 
-- [doc/process.md](doc/process.md) — the 8-step workflow for each session
-- [doc/construction-tracker.md](doc/construction-tracker.md) — which constructions are done, which are TBD, platform-level bugs
-- [doc/proposition-tracker.md](doc/proposition-tracker.md) — which Book I–III propositions are renderable today, and what blocks each of the rest
-- [doc/analysis/java-typescript-comparison.md](doc/analysis/java-typescript-comparison.md) — full Java↔TypeScript mapping, bugs found, easy wins list
+- [doc/historical/java-port/java-to-typescript-port-process.md](doc/historical/java-port/java-to-typescript-port-process.md) — the 8-step workflow for each session
+- [doc/historical/java-port/construction-tracker.md](doc/historical/java-port/construction-tracker.md) — which constructions are done, which are TBD, platform-level bugs
+- [doc/historical/java-port/proposition-tracker.md](doc/historical/java-port/proposition-tracker.md) — which Book I–III propositions are renderable today, and what blocks each of the rest
+- [doc/historical/java-port/analysis/java-typescript-comparison.md](doc/historical/java-port/analysis/java-typescript-comparison.md) — full Java↔TypeScript mapping, bugs found, easy wins list
 - [doc/constructions-reference.md](doc/constructions-reference.md) — every construction: params, usage count, priority ranking
-- [doc/journal.md](doc/journal.md) — dated session log; the top entry is always the canonical "what's next" handoff
+- [doc/historical/journal.md](doc/historical/journal.md) — dated session log; the top entry is always the canonical "what's next" handoff
 
 ## Session startup protocol
 
 **This project's working cadence is one construction per session**, on its own
-feature branch, following [doc/process.md](doc/process.md)'s 8-step workflow.
+feature branch, following [doc/historical/java-port/java-to-typescript-port-process.md](doc/historical/java-port/java-to-typescript-port-process.md)'s 8-step workflow.
 Sessions open with a cue phrase from the user, typically:
 
 > "Read AGENTS.md and let's begin the process again."
@@ -25,14 +25,14 @@ When that cue arrives (or any paraphrase of it — "let's do another
 construction", "start a new port", etc.), execute **this protocol in order**
 and **do not start implementing** until the user has picked a construction:
 
-1. Read [doc/process.md](doc/process.md) — the 8-step workflow may have been
+1. Read [doc/historical/java-port/java-to-typescript-port-process.md](doc/historical/java-port/java-to-typescript-port-process.md) — the 8-step workflow may have been
    refined since you last ran it.
-2. Read [doc/construction-tracker.md](doc/construction-tracker.md) —
+2. Read [doc/historical/java-port/construction-tracker.md](doc/historical/java-port/construction-tracker.md) —
    especially the **Platform-level TODOs** at the top (anything new might
    block the next port) and the per-construction IMPL/TBD status.
 3. Read the priority ranking table at the bottom of
    [doc/constructions-reference.md](doc/constructions-reference.md).
-4. Read the **top entry only** of [doc/journal.md](doc/journal.md). The most
+4. Read the **top entry only** of [doc/historical/journal.md](doc/historical/journal.md). The most
    recent session's "Next session" block is the canonical handoff; you do
    not need to read older entries unless the top one explicitly points at them.
 5. Run `git status` and `git log --oneline main..HEAD` on whatever branch
@@ -50,7 +50,7 @@ and **do not start implementing** until the user has picked a construction:
      `*Element.ts` class is needed or the construction reuses an existing
      one, and whether intermediate elements need to be pushed into
      `elementsForUpdate`.
-     [doc/analysis/java-typescript-comparison.md](doc/analysis/java-typescript-comparison.md)
+     [doc/historical/java-port/analysis/java-typescript-comparison.md](doc/historical/java-port/analysis/java-typescript-comparison.md)
      §7 ("Easy wins") is the canonical reference for what infrastructure
      already exists.
    - **Verifying prop** is the simplest Book I–III proposition that exercises
@@ -67,7 +67,7 @@ and **do not start implementing** until the user has picked a construction:
      variant already exists.
 
 7. **Stop.** Wait for the user to pick before doing anything else. Do not
-   begin Step 1 of `doc/process.md` until the user has explicitly chosen.
+   begin Step 1 of `doc/historical/java-port/java-to-typescript-port-process.md` until the user has explicitly chosen.
    If the user asks for a recommendation, give one **with reasoning** but
    still defer to them for the final call.
 
@@ -84,7 +84,7 @@ to Phase 2.
 already landed: parseColor rewrite (HSB, hex, brighter/darker matching
 Java exactly), PlaneElement rendering, ellipse rotation, dynamic CENTRAL
 label placement, null color defaults, and polyhedron face colors. See
-[doc/construction-tracker.md](doc/construction-tracker.md) for remaining
+[doc/historical/java-port/construction-tracker.md](doc/historical/java-port/construction-tracker.md) for remaining
 platform TODOs (font/fontsize, per-element align, title rendering,
 pivot rotation, background HSB parsing in init).
 
@@ -366,7 +366,7 @@ Rebuild and verify: `npx webpack && python3 -m http.server`
 
 See [doc/constructions-reference.md](doc/constructions-reference.md)'s priority
 ranking table for the full live list, and
-[doc/construction-tracker.md](doc/construction-tracker.md) for the
+[doc/historical/java-port/construction-tracker.md](doc/historical/java-port/construction-tracker.md) for the
 per-construction IMPL/TBD status. The session startup protocol above will
 compute the current top-5 ranked menu from these files at session boot —
 there is no hardcoded priority list in this document, because a static

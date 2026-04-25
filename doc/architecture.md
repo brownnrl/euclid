@@ -88,8 +88,10 @@ applet's `debug` flag is not implemented in the TS port.
 | `ClientFrame.java` (Java AWT detached frame) | replaced by SlateControls' "new window" button (`src/SlateControls.ts`) |
 | `Remote.java` (applet remote-control) | not ported |
 
-The full porting status is tracked in
-[java-port-tracker.md](java-port-tracker.md).
+The full porting status is recorded in
+[historical/java-port/java-port-tracker.md](historical/java-port/java-port-tracker.md);
+the porting completed 2026-04-12 and its trackers, journal, and
+analysis notes live under [historical/](historical/).
 
 ---
 
@@ -202,7 +204,8 @@ what was picked and the scene state:
        position because the rotation is linear. Java doesn't need this
        step because its `element[]` holds duplicate entries for shared
        objects and the Layoff gets rotated directly via its
-       non-preexists entry — see `doc/construction-tracker.md`'s
+       non-preexists entry — see
+       [historical/java-port/construction-tracker.md](historical/java-port/construction-tracker.md)'s
        *preexists* item for the full rationale.
 
 3. **Non-draggable point with no applicable pivot.** →
@@ -269,7 +272,8 @@ counts plus an optional subtype list:
 Because dispatch is by counts (not positional types), the source HTML param
 order is irrelevant — `"E,Vplane,D,B"` and `"E,D,B,Vplane"` both match
 `{ points: 3, elements: 1, elementTypes: [PlaneElement] }`. See
-`doc/analysis/type-counted-dispatch-plan.md` for the migration rationale.
+[historical/java-port/analysis/type-counted-dispatch-plan.md](historical/java-port/analysis/type-counted-dispatch-plan.md)
+for the migration rationale.
 
 Because multiple `Construction` subclasses can share the same
 `constructionMethod` enum value, the **first match wins**. Insertion

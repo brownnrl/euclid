@@ -5,7 +5,7 @@ port it to TypeScript, create a test view page, and optionally verify it against
 the Java applet. Repeat until all constructions are done, then convert all books.
 
 > **Getting here:** The normal entry point to this document is via
-> [AGENTS.md](../AGENTS.md)'s "Session startup protocol", which reads the
+> [AGENTS.md](../../../AGENTS.md)'s "Session startup protocol", which reads the
 > trackers, presents a ranked menu of TBD constructions, and hands control
 > to Step 1 below once the user has picked. If you reached this document
 > some other way (direct link, grep, etc.), scroll up to AGENTS.md and run
@@ -39,7 +39,7 @@ instead of after eight interleaved changes.
 
 ## Step 1 — Choose the next construction
 
-Open [constructions-reference.md](constructions-reference.md) and find the highest-priority
+Open [constructions-reference.md](../../constructions-reference.md) and find the highest-priority
 TBD construction (sorted by Books I–III usage count at the bottom of that file).
 
 Also check [proposition-tracker.md](proposition-tracker.md) to see which propositions
@@ -370,7 +370,7 @@ image alongside the proposition HTML in `view/euclid-html/`.
 
 ## Step 8 — Update the tracker and journal, then draft the PR body
 
-1. Mark the construction as **IMPL** in [constructions-reference.md](constructions-reference.md)
+1. Mark the construction as **IMPL** in [constructions-reference.md](../../constructions-reference.md)
 2. Check off any newly-renderable propositions in [proposition-tracker.md](proposition-tracker.md)
 3. Mark the construction as **IMPL** in [construction-tracker.md](construction-tracker.md) and link the
    test view + applet-tests pair, the same way the existing IMPL entries do
