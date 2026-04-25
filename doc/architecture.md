@@ -1,5 +1,98 @@
 # Architecture
 
+> **Companion docs:**
+> [api.md](api.md) is the reference for the public surface (every
+> `init()` field, every `E.{Type}.{name}`, every color/align value).
+> [creating-constructions.md](creating-constructions.md) is the
+> step-by-step recipe for adding a new construction. This document is
+> the implementation-level "how the pieces fit together."
+
+## What this library is
+
+`geomlib` is a TypeScript port of David E. Joyce's *Geometry Applet*
+(Clark University, 1996, Java version 2.2). Joyce wrote it to
+illustrate Euclid's *Elements* on the web; it renders interactive
+Euclidean diagrams where the user can drag points and watch all
+derived constructions follow. The original Java applet's overview
+page is mirrored at
+`geom_applet/source/Geometry.html` and its construction reference at
+`geom_applet/source/tables.html`. We aim to be a faithful reimplementation
+of those two contracts on top of the HTML5 `<canvas>` element.
+
+A diagram is described by an ordered list of *elements*. Each element
+belongs to one of **eight classes** — `point`, `line`, `circle`,
+`polygon`, `sector`, `plane`, `sphere`, `polyhedron` — and is built
+by one of that class's *construction methods*. Plane geometry uses the
+first five classes; all eight are needed for solid geometry. Joyce's
+`<param name=e[N] value="…">` schema and our
+`elements: [{...}]` API are two surfaces over the same model.
+
+### Interaction model
+
+Three kinds of points exist on a slate, distinguished by how the user
+can drag them (matching the Java applet's behavior):
+
+- **Free points** (red by default, drawn via `PlaneSlider`). Freely
+  draggable in their ambient plane. The rest of the diagram tracks.
+- **Sliding points** (orange by default — `LineSlider`, `CircleSlider`,
+  `PlaneSlider` on a non-screen plane, `SphereSliderElement`). Draggable,
+  but motion is constrained to a parent line/circle/plane/sphere.
+- **Computed / fixed points** (black by default, or green when used as
+  a *pivot*). Not directly draggable — but grabbing one fires the
+  drag pipeline's *translate* or *rotate-around-pivot* branch instead
+  of moving the point itself, so the whole scene shifts or rotates.
+
+The `r` / `space` keyboard shortcut (also exposed as a SlateControls
+button) calls `Slate.reset()` to restore every element to its
+construction-time position. `m` toggles maximize, `u` / `return`
+opens the same scene in a new window.
+
+### Element schema (one HTML param ↔ one `IConstructionInfo`)
+
+```
+"Name;type;construction;arg1,arg2,…[;nameColor[;vertexColor[;edgeColor[;faceColor]]]]"
+```
+
+- **Name** — slate-unique identifier for later references.
+- **type** — one of the eight element classes.
+- **construction** — the construction method within that class
+  (`free`, `midpoint`, `bichord`, …). The full catalog is
+  [api.md § Construction tables](api.md#construction-tables).
+- **args** — comma-separated. Strings reference earlier elements by
+  name; numbers are integer coordinates or counts. A `LineElement`
+  named in args auto-expands to its two endpoint `PointElement`s
+  (Joyce's "Special note 1": any time two points are needed, one line
+  may be given instead).
+- **colors** (all optional, in order): name, vertex, edge, face. Up to
+  four layers per element. See [Colors](#colors) for the parser rules.
+
+Slate-level params (set on `init()`, not per element):
+`background`, `title`, `align`, `pivot`, `font`, `fontsize`. The
+applet's `debug` flag is not implemented in the TS port.
+
+### Source-file mapping (Java → TypeScript)
+
+| Java class (Geometry.html §Source files) | TS file |
+|---|---|
+| `Geometry.java` (applet entry) | `src/index.ts` |
+| `Slate.java` (canvas + dispatch + drag) | `src/Slate.ts` (rendering on `<canvas>`) + `src/elements/Constructions.ts` (dispatch) |
+| `Element.java` | `src/elements/GeomElement.ts` |
+| `PointElement.java` (+ 17 subclasses) | `src/elements/point/*.ts` |
+| `LineElement.java` (+ Bichord, Chord, Perpendicular, PlanePerpendicular) | `src/elements/line/*.ts` |
+| `CircleElement.java` (+ Circumcircle, InvertCircle, IntersectionSS) | `src/elements/circle/*.ts` |
+| `PolygonElement.java` (+ Application, RegularPolygon) | `src/elements/polygon/*.ts` |
+| `SectorElement.java` (+ Arc) | `src/elements/sector/*.ts` |
+| `PlaneElement.java` (+ ParallelP, PerpendicularPL) | `src/elements/plane/*.ts` |
+| `SphereElement.java` | `src/elements/sphere/SphereElement.ts` |
+| `PolyhedronElement.java` (+ Prism, Pyramid) | `src/elements/polyhedron/*.ts` |
+| `ClientFrame.java` (Java AWT detached frame) | replaced by SlateControls' "new window" button (`src/SlateControls.ts`) |
+| `Remote.java` (applet remote-control) | not ported |
+
+The full porting status is tracked in
+[java-port-tracker.md](java-port-tracker.md).
+
+---
+
 ## Repository layout
 
 ```
@@ -299,18 +392,14 @@ section above.
 
 ---
 
-## Adding a new construction — the four-file checklist
+## Adding a new construction
 
-1. **Element class**: `src/elements/{type}/FooElement.ts`
-2. **Construction class**: new subclass in `src/elements/{type}/{Type}Constructions.ts`;
-   append `new FooConstruction()` to that file's `{type}Constructions` array
-3. **Test**: new `it(...)` block in `tests/{Type}Test.ts` (the suite is now
-   split per element type — point tests in `PointTest.ts`, line tests in
-   `LineTest.ts`, etc.). Slate-level integration tests stay in `SlateTest.ts`.
-4. **Demo page**: `view/test/{super_type}/{sub_type}.html`
-
-The enum entry for the construction (e.g. `PointConstructions.foo = N`) already exists
-for all documented constructions — check the enum definitions in `Constructions.ts`.
+The four files (element class, construction class, test, demo page),
+the contracts each must satisfy, and the common pitfalls to watch
+for live in [creating-constructions.md](creating-constructions.md).
+The enum entries (`PointConstructions.foo = N`, etc.) already exist
+for every construction Joyce documents in `tables.html`; the slot for
+your work is in `src/elements/{type}/{Type}Constructions.ts`.
 
 ---
 
@@ -328,56 +417,33 @@ Null color for a draw layer means `draw{Edge,Face,Vertex,Name}` is skipped entir
 
 ---
 
-## Public API (`src/index.ts`)
+## Public API — see [api.md](api.md)
+
+The full reference for every `init()` field, every `E.{Type}.{name}`,
+every accepted color/align value, and every public `Slate` method is
+in **[api.md](api.md)**. That doc is the canonical mapping back to
+Joyce's `Geometry.html` parameter contract and `tables.html`
+construction catalog.
+
+The high-level shape: `init()` takes an `IInitialization` object with
+slate-level params (`background`, `title`, `pivot`, `font`, `fontsize`,
+`align`, `canvasid`) and an `elements: (IConstructionInfo | string)[]`
+ordered list. Each element entry can be a structured object —
 
 ```typescript
-// Object form (structured)
-geomlib.init({
-    canvasid: "myCanvas",
-    background: "#ffe9cd",
-    title: "Proposition I.1",
-    elements: [
-        { name: "A", construction: E.Point.free, params: [125, 130] },
-        { name: "B", construction: E.Point.free, params: [215, 130] },
-        { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
-    ]
-})
-
-// String form (Java param format — can be mixed with object form)
-geomlib.init({
-    background: "35,19,100",
-    title: "I.1",
-    canvasid: "myCanvas",
-    elements: [
-        "A;point;free;125,130",
-        "B;point;free;215,130",
-        "AB;line;connect;A,B",
-    ]
-})
+{ name: "A", construction: E.Point.free, params: [125, 130] }
 ```
 
-`E` is the construction enum accessor: `E.Point.free`, `E.Line.connect`, `E.Circle.radius`, etc.
-`Align` is `{ ABOVE, BELOW, LEFT, RIGHT, CENTRAL }`.
-`parseParam(s)` converts a Java param string to `IConstructionInfo`.
-
-`init()` accepts an optional `pivot` setting that fixes the rotation
-center for the drag pipeline (see "Drag pipeline" above):
+— or a raw Java `<param value=…>` string —
 
 ```typescript
-geomlib.init({ … , pivot: "C"            }) // pivot on screen plane
-geomlib.init({ … , pivot: "origin,xyplane" }) // 3D pivot on a non-screen plane
+"A;point;free;125,130"
 ```
 
-`Slate.setPivot(name)` accepts the same string format and can be called
-post-init.
+— and the two forms can be mixed in the same `elements` array.
+`parseParam(s)` is the public converter.
 
-`init()` appends each constructed `Slate` to the exported `slates` array
-(`geomlib.slates`), so multiple canvases on the same page each get their
-own slate instance.
-
-UI controls (reset, maximize, new window) are injected by `init()` via
-`createControls(slate, canvas, config)` from `src/SlateControls.ts`. The
-overlay draws three icon buttons at the canvas's top-right and binds
-keyboard shortcuts when the canvas is focused: `r`/`space` = reset,
-`u`/`return` = open a new window with this scene maximized, `m` =
-maximize/minimize. See the file header for the icon and shortcut catalog.
+`init()` also calls `createControls()` from `src/SlateControls.ts`,
+which wraps the canvas and adds the reset / maximize / new-window
+button overlay plus keyboard shortcuts (`r`/`space`, `u`/`return`,
+`m`). See [api.md § SlateControls](api.md#slatecontrols-ui-overlay).
