@@ -265,7 +265,7 @@ quadrant the element occupies. ABOVE/RIGHT/BELOW/LEFT are static.
 
 Per-element align overrides are not yet supported (`IConstructionInfo`
 has no `align` field). Tracked under platform TODOs in
-[construction-tracker.md](construction-tracker.md).
+[historical/java-port/construction-tracker.md](historical/java-port/construction-tracker.md).
 
 ---
 
