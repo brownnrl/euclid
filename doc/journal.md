@@ -20,6 +20,73 @@ Each entry records what was completed, what was discovered, and what comes next.
 
 ---
 
+## 2026-04-19 — Drag-pipeline correctness + SlateControls polish
+
+**Completed:**
+- **Issue #41 — propI2 slate1 rotate-around-pivot instability** (PR #43).
+  Dragging a non-draggable Layoff point (L, created via `point;last` on
+  a `line;extend`-produced LineElement) with pivot D set made free
+  points A/B/C rotate correctly but left every derived Layoff point
+  (L/E/G/F/H/K) stationary, so the scene visibly sheared. Two causes:
+  1. `Slate.rotateCoordinates` iterated `_elementsForUpdate` — a strict
+     subset that skips bare-reference entries added via `createElement`'s
+     final push. Switched to iterate `_elements` to match Java's
+     full-`element[]` walk in `Slate.java` 843-845. Same rule
+     `translateCoordinates` already used.
+  2. Java's `element[]` carries *duplicate* entries for shared objects
+     (a Layoff created by `line;extend` appears once with
+     `preexists=false` and rotates directly, plus a second time via
+     `point;last` with `preexists=true` and gets skipped). TS dedupes
+     `_elements`, so a shared Layoff is marked preexists=true and the
+     rotate loop skips it — and its parent bare `LineElement.rotate` is
+     a no-op, so nothing moves it. Fix: call `this.update()` at the end
+     of `rotateCoordinates`. `Layoff.update()` re-derives from the
+     (now-rotated) parents, producing the same result the direct
+     rotation would because rotation is a linear operation.
+  Two new mocha tests in `drag coordinates: propI2 slate1 (issue #41)`
+  (135 → **137 passing**), 671 snapshot tests still green. 3-way
+  harness entry at `view/applet-tests/point/propI2-L-drag/` so
+  reviewers can flip before/after with `git checkout`.
+
+- **SlateControls maximize-restore fix** (PR #42). Click-maximize then
+  click-minimize used to leave the canvas at viewport width instead of
+  shrinking back. `maximize()` was saving `canvas.style.{width,height}`
+  but then `resizeAndRedraw()` clobbered `canvas.{width,height}` (the
+  *attributes* — bitmap resolution AND intrinsic size when CSS is
+  empty). `minimize()` restored the style but not the attrs, so
+  `clientWidth` stayed at the viewport size. Fix: save/restore the
+  canvas width/height attributes alongside the styles.
+
+- **SlateControls new-window config fix** (PR #42). Clicking the
+  new-window button on any converted page threw
+  `Uncaught TypeError: can't access property "clientWidth", canvas is null`.
+  `onNewWindow` stringified `this._config` verbatim — including the
+  source page's `canvasid` (e.g. `"canvas_0"`) — but wrote the new
+  window's canvas with `id="canvasId"`. `geomlib.init()` looked up the
+  old id, got null, threw. Fix: shallow-merge `{canvasid: "canvasId"}`
+  into the config before stringifying.
+
+**Discovered:**
+- The `preexists` tracking gap flagged in construction-tracker (xyplane
+  parallelogram growing on 3D pivot rotation) is very likely the same
+  class of bug that #41 fixed. The update-after-rotate hook re-derives
+  the parallelogram's Layoff-backed 4th vertex from its rotated
+  parents, so the growth should no longer occur. Marking it partially
+  addressed in the tracker; a direct propXI26 pivot test would confirm.
+- The snapshot suite only drags *free* points (picked by
+  `findDraggablePoints`), so it doesn't currently exercise the
+  rotate-around-pivot path at all — which is why the #41 bug passed
+  regression for weeks. A follow-up could broaden the candidate pool
+  to include Layoff and `point;last`-returned points.
+
+**Next session:**
+- Run the full three-way harness on propXI26 to verify the xyplane
+  parallelogram symptom is gone.
+- Consider extending `SnapshotTest.ts` to cover non-draggable-point
+  drags so rotation regressions land on goldens.
+
+---
+
 ## 2026-04-18 — Constructions.ts refactored + parseParam API
 
 **Completed:**

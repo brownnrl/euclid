@@ -68,6 +68,64 @@ then calls `slate.update()` to redraw.
 
 ---
 
+## Drag pipeline: `movePick` / `translateCoordinates` / `rotateCoordinates`
+
+`Slate.movePick(c, d)` routes a drag to one of three branches based on
+what was picked and the scene state:
+
+1. **Draggable point** (`PlaneSlider`, `LineSlider`, `CircleSlider`,
+   `SphereSliderElement`, `FixedPoint` with `draggable=true`).
+   → `pick.drag(c, d)` writes the new coords, then
+   `updateCoordinates(picki)` calls `.update()` on every element after
+   the picked one so derived elements recompute from the moved parent.
+
+2. **Non-draggable point whose ambient plane has a `pivot` set, and
+   the pick isn't the pivot itself.** → `rotateCoordinates(c, d)`.
+   Computes `(ac, as)` = the scale + rotation factor that maps the
+   pick's old position to the new mouse position (both expressed
+   relative to the pivot in the ambient plane's (S, T) basis). Then:
+     - Iterate `_elements` (not `_elementsForUpdate` — the latter is a
+       subset) and call `.rotate(pivot, ac, as)` on each non-preexists
+       entry, matching Java's full-`element[]` walk in `Slate.java`
+       843-845.
+     - Call `this.update()` afterward. This re-derives any element
+       whose container didn't move it directly — most importantly,
+       `Layoff` points returned by `point;last` on a `line;extend`-made
+       LineElement (the bare LineElement's `rotate()` is a no-op so
+       nothing moves the Layoff via the container path). Re-deriving
+       from the rotated parents gives the correct post-rotation
+       position because the rotation is linear. Java doesn't need this
+       step because its `element[]` holds duplicate entries for shared
+       objects and the Layoff gets rotated directly via its
+       non-preexists entry — see `doc/construction-tracker.md`'s
+       *preexists* item for the full rationale.
+
+3. **Non-draggable point with no applicable pivot.** →
+   `translateCoordinates(dx, dy)` moves every non-preexists element
+   by `(dx, dy)` and calls `.update()`.
+
+**Key invariants:**
+- Both `rotateCoordinates` and `translateCoordinates` iterate
+  `_elements`, not `_elementsForUpdate`. The latter is for `update()`
+  propagation only.
+- `preexists` is set on a `GeomElement` when `createElement` finds it
+  already in `_elements` before the construction push — i.e. it's a
+  re-reference (first/last/center/vertex/etc.) to something a prior
+  construction added. Java sets it explicitly in
+  `Slate.java` cases 3/4/5/8/9/15; the TS heuristic is coarser but
+  aligns for the common Layoff case and works for the bichord endpoint
+  case after the #43 update-after-rotate fix.
+- Rotation and translation **do not** commute with `update()` for
+  container elements that move their own points (Bichord, Chord,
+  Perpendicular, Circumcircle, RegularPolygon, Application, InvertCircle,
+  SphereIntersection). Their `rotate`/`translate` methods call
+  `.rotate`/`.translate` on owned sub-points, and those owned points
+  must NOT also be iterated by the outer loop — hence the preexists
+  skip. Getting this mapping right is the recurring footgun in this
+  codebase.
+
+---
+
 ## The `screen` plane
 
 `Slate`'s constructor creates three `FixedPoint`s (`screen_origin`, `screen_x`, `screen_y`)

@@ -38,19 +38,30 @@ These affect the library as a whole, independent of individual constructions.
 - [x] **`font` / `fontsize` params** — FIXED (2026-04-18): `IInitialization`
   accepts `font` and `fontsize`. Default matches Java: TimesRoman italic 18px.
   `GeomElement.setFont()` updates the static font string used by all labels
-- [ ] **`preexists` tracking missing** — Java's `Slate.java` has a
-  `preexists[]` boolean array that marks elements which are references
-  to existing elements (e.g., `point;first` returns `P[0]`,
-  `point;vertex` returns a polygon vertex, `point;center` returns a
-  circle's center). During `rotateCoordinates` and `translateCoordinates`,
-  Java skips `preexists` elements to avoid double-rotation/translation.
-  The TS port has no equivalent — all elements in `_elementsForUpdate`
-  are rotated/translated, causing double-movement of shared references.
-  **Visible symptom**: rotating a 3D scene via pivot causes the xyplane
-  parallelogram to grow progressively. Discovered on propXI26 pivot test.
-  **Fix**: add a `preexists` flag to `GeomElement` (or a separate set in
-  `Slate`), set it for elements returned by first/last/vertex/center
-  constructions, and skip flagged elements in rotate/translate loops.
+- [~] **`preexists` tracking — partially addressed (2026-04-19, PR #43)**.
+  Java's `Slate.java` has a `preexists[]` boolean array that marks
+  elements which are references to existing elements (e.g.,
+  `point;first` returns `P[0]`, `point;vertex` returns a polygon
+  vertex, `point;center` returns a circle's center). Java's
+  `element[]` also holds *duplicate* entries for shared objects so a
+  shared Layoff created by `line;extend` gets rotated once (via its
+  non-preexists entry) and skipped once (via its preexists entry).
+  TS dedupes `_elements`, so a single flag-on-object model can't
+  reproduce both semantics. **Workaround landed in #43**:
+  `Slate.rotateCoordinates` now iterates `_elements` (not
+  `_elementsForUpdate`) and calls `this.update()` at the end, so
+  Layoff-backed derived points re-derive from their rotated parents.
+  This fixed the propI2 slate1 shear (issue #41) and *likely* the
+  xyplane parallelogram growing symptom on propXI26, though that
+  hasn't been re-verified in the harness yet.
+  **Still potentially broken**: `translateCoordinates` uses the
+  original `indexOf(g) in _elements` heuristic from createElement,
+  which is correct for Layoff-from-line;extend but miscategorizes
+  Bichord/Chord/Perpendicular endpoints (they're not in `_elements`
+  as their own entries, so preexists stays false → double translation
+  via both the container's `translate` and the outer loop). Not yet
+  observed in a failing test; revisit if a 3D-translation regression
+  surfaces.
 - [x] **`pivot` rotation** — FIXED (2026-04-18): `setPivot` now handles
   Java's `"point,plane"` two-part format. The rotation math was already
   implemented in `Slate.rotateCoordinates` and `PointElement.rotate`
