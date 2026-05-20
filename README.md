@@ -72,13 +72,6 @@ npx webpack              # bundle to dist/bundle.js
 python3 -m http.server   # serve view/test/* and view/book01/* in a browser
 ```
 
-## Three-way comparison harness (optional)
-
-The repo ships a Java-vs-TypeScript visual comparison harness for
-verifying ported constructions render identically to Joyce's original.
-Requires Linux + Docker + X11. See the comment header of
-[`run_euclid_applet.sh`](run_euclid_applet.sh) for the setup recipe.
-
 ## Origin
 
 Built atop David E. Joyce's [*Geometry Applet
