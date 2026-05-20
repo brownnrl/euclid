@@ -69,7 +69,7 @@ npm run test:unit        # unit tests only
 npm run test:snapshot    # 671 rendered-pixel snapshot tests
 npm run coverage         # tests + c8 code coverage report
 npx webpack              # bundle to dist/bundle.js
-python3 -m http.server   # serve view/test/* and view/book01/* in a browser
+python3 -m http.server   # serve view/test/* pages in a browser
 ```
 
 ## Origin
