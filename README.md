@@ -13,6 +13,31 @@ The library exposes eight element classes — *point*, *line*, *circle*,
 [`tables.html`](geom_applet/source/tables.html). All 465 propositions
 across Books I–XIII of the *Elements* are renderable.
 
+## Installation
+
+### Via CDN (no build step)
+
+The simplest way — just a `<script>` tag pointing at unpkg or jsDelivr:
+
+```html
+<script src="https://unpkg.com/@brownnrl/geomlib@0.1.0/dist/bundle.js"></script>
+<!-- or -->
+<script src="https://cdn.jsdelivr.net/npm/@brownnrl/geomlib@0.1.0/dist/bundle.js"></script>
+```
+
+After loading, the library is available as `window.geomlib`. Pin the
+version explicitly (as above) for stability; `@latest` works but moves
+under your feet on every publish.
+
+### Via npm
+
+```sh
+npm install @brownnrl/geomlib
+```
+
+Then bundle the published `dist/bundle.js` with your application, or
+load it from `node_modules/@brownnrl/geomlib/dist/bundle.js` directly.
+
 ## Quick start
 
 Add a `<canvas>` and the bundle, then call `geomlib.init({...})` with
@@ -21,7 +46,7 @@ an equilateral triangle on a given finite straight line*:
 
 ```html
 <canvas id="propI1" style="width:340px; height:240px;"></canvas>
-<script src="dist/bundle.js"></script>
+<script src="https://unpkg.com/@brownnrl/geomlib@0.1.0/dist/bundle.js"></script>
 <script>
 const E = geomlib.E;
 geomlib.init({
@@ -66,11 +91,16 @@ npm install              # install dependencies (once)
 npm run build            # compile TypeScript (no emit; type-check only)
 npm test                 # run the full Mocha suite (unit + snapshot)
 npm run test:unit        # unit tests only
-npm run test:snapshot    # 671 rendered-pixel snapshot tests
+npm run test:snapshot    # 678 rendered-pixel snapshot tests
 npm run coverage         # tests + c8 code coverage report
-npx webpack              # bundle to dist/bundle.js
+npm run bundle           # webpack dev-mode bundle to dist/bundle.js
+npm run bundle:prod      # webpack production (minified) bundle
 python3 -m http.server   # serve view/test/* pages in a browser
 ```
+
+`npm publish` runs `test:unit` + `bundle:prod` via `prepublishOnly`,
+so the tarball always contains a fresh production-built bundle. Run
+`npm publish --dry-run` to preview what would ship without publishing.
 
 ## Origin
 
