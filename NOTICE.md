@@ -2,9 +2,10 @@
 
 ## About this project
 
-**geomlib** is a TypeScript port of David E. Joyce's *Geometry Applet*
-(Clark University, 1996, Java version 2.2), originally written to
-illustrate Euclid's *Elements* on the web. The port reimplements the
+**geomlib** is a TypeScript port of Dr. David E. Joyce's (Professor
+Emeritus, Clark University) *Geometry Applet* (1996, Java version
+2.2), originally written to illustrate Euclid's *Elements* on the
+web. The port reimplements the
 applet's construction model on top of the HTML5 `<canvas>` element so
 the diagrams render in modern browsers without a Java plugin.
 
@@ -36,9 +37,9 @@ License** (see [LICENSE](LICENSE)), under joint copyright:
 
 > Copyright (c) 1996–2020 David E. Joyce, 2019–2026 Nelson Brown
 
-Joyce's years credit his authorship of the original Java applet and
-its continued maintenance through the *Elements* web edition. Brown's
-years credit the TypeScript port.
+Dr. Joyce's years credit his authorship of the original Java applet
+and its continued maintenance through the *Elements* web edition.
+Brown's years credit the TypeScript port.
 
 ## Preserved Java artifacts
 
@@ -55,7 +56,7 @@ they are preserved verbatim for reference and historical fidelity.
 
 ## Related: *Elements* narrative content
 
-Joyce's translation and commentary on Euclid's *Elements* are not
-included in this code repository. They are published as a separate
+Dr. Joyce's translation and commentary on Euclid's *Elements* are
+not included in this code repository. They are published as a separate
 site at [euclids-elements.org](https://euclids-elements.org), which
 carries its own copyright notice.

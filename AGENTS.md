@@ -1,11 +1,12 @@
 # geomlib — Agent Guide
 
 `geomlib` is a TypeScript library that renders interactive Euclidean
-constructions on an HTML5 `<canvas>` — a port of David E. Joyce's
-1996 Java *Geometry Applet*. Published to npm as
-**@brownnrl/geomlib**. The converted *Elements* site (where the
-library will be consumed) lives in a separate content-site repo
-targeted at [euclids-elements.org](https://euclids-elements.org).
+constructions on an HTML5 `<canvas>` — a port of Dr. David E. Joyce's
+(Professor Emeritus, Clark University) 1996 Java *Geometry Applet*.
+Published to npm as **@brownnrl/geomlib**. The converted *Elements*
+site (where the library will be consumed) lives in a separate
+content-site repo targeted at
+[euclids-elements.org](https://www.euclids-elements.org/).
 
 ## Project status
 
@@ -18,7 +19,7 @@ Library is **post-porting, publish-ready**. There is no longer a
   + `bundle:prod`. `npm publish --dry-run` previews the tarball
   (97.7 kB gzipped, 6 files).
 - MIT-licensed, joint copyright (Joyce 1996–2020, Brown 2019–2026).
-  Joyce's permission text + Quora source recorded in
+  Dr. Joyce's permission text + Quora source recorded in
   [NOTICE.md](NOTICE.md).
 
 Ongoing work is library maintenance: bug fixes, doc edits, occasional
@@ -38,7 +39,7 @@ and publish-time polish. Approach those like normal feature work
   recipe for adding a new construction (element class, Construction
   class, test, demo page).
 - [CONTRIBUTING.md](CONTRIBUTING.md) — test/snapshot/bundle commands.
-- [NOTICE.md](NOTICE.md) — Joyce's permission + license posture.
+- [NOTICE.md](NOTICE.md) — Dr. Joyce's permission + license posture.
 
 The porting-era trackers and the dated session journal live under
 [doc/historical/](doc/historical/) — frozen, read-only history.
@@ -60,7 +61,7 @@ tests/                    Mocha suites
   HtmlParamParser.ts      Parses <applet> blocks from HTML test fixtures
 
 view/                     HTML test fixtures + demos
-  euclid-html/            Joyce's original HTML, Books I–XIII (snapshot input)
+  euclid-html/            Original Geometry Applet HTML, Books I–XIII (snapshot input)
   compass_geometry/       Compass-series scenes (snapshot input)
   round_geometry/         Spherical-geometry scenes (snapshot input)
   test/{type}/*.html      Per-construction TS demo pages
@@ -136,13 +137,13 @@ for the full recipe — the 4 files (element class, Construction
 class, Mocha test, demo page), the contracts above, and the common
 pitfalls.
 
-The enum entries for every construction Joyce documented in
-`tables.html` already exist in `src/elements/Constructions.ts`.
+The enum entries for every construction documented in the original
+applet's `tables.html` already exist in `src/elements/Constructions.ts`.
 
 ## Original HTML param format
 
 Many test fixtures (`view/euclid-html/`, `view/compass_geometry/`,
-`view/round_geometry/`) still carry Joyce's original Java applet
+`view/round_geometry/`) still carry the original Java applet's
 `<param>` strings:
 
 ```
@@ -158,8 +159,8 @@ Many test fixtures (`view/euclid-html/`, `view/compass_geometry/`,
 
 ## What this repo doesn't contain
 
-- The converted *Elements* proposition pages (Joyce's narrative text
-  + TS-canvas init calls) live in a separate content-site repo
+- The converted *Elements* proposition pages (Dr. Joyce's narrative
+  text + TS-canvas init calls) live in a separate content-site repo
   targeted at euclids-elements.org. Phase 3 (HTML conversion) was
   completed there.
 - The Java↔TypeScript visual comparison harness (docker, applet

@@ -9,10 +9,10 @@ historical fidelity.
 
 | Path | What it is |
 |---|---|
-| [`Geometry.zip`](Geometry.zip) | David E. Joyce's original deployable applet archive. The file timestamps inside (1998-02-17 through 2000-10-31) are the actual ship dates of the bytecode — this is what visitors to Joyce's *Elements* pages loaded into their browser's Java plugin from 1998 until applets were retired. 104 KB. Unzip it to recover the historical `.class` files alongside their 1998 timestamps. |
-| [`source/`](source/) | The Java source files Joyce wrote: 44 `.java` files plus `Geometry.html` (the applet's documentation page) and `tables.html` (the construction-method reference). The TypeScript port in [`../src/`](../src/) reimplements these classes. |
+| [`Geometry.zip`](Geometry.zip) | Dr. David E. Joyce's original deployable applet archive. The file timestamps inside (1998-02-17 through 2000-10-31) are the actual ship dates of the bytecode — this is what visitors to the *Elements* pages loaded into their browser's Java plugin from 1998 until applets were retired. 104 KB. Unzip it to recover the historical `.class` files alongside their 1998 timestamps. |
+| [`source/`](source/) | The Java source files written for the original Geometry Applet: 44 `.java` files plus `Geometry.html` (the applet's documentation page) and `tables.html` (the construction-method reference). The TypeScript port in [`../src/`](../src/) reimplements these classes. |
 
-The clean-mirror HTML of Joyce's compass-and-straightedge and
+The clean-mirror HTML of Dr. Joyce's compass-and-straightedge and
 spherical-geometry lecture series live one level up at
 [`../view/compass_geometry/`](../view/compass_geometry/) and
 [`../view/round_geometry/`](../view/round_geometry/) — they're
@@ -24,9 +24,9 @@ with the Java reference here.
 
 Two reasons:
 
-1. **Historical record.** Joyce's applet was originally hosted at Clark
-   University from 1996 onward; he lost write-access to those files
-   when he retired (his own words). The deployable
+1. **Historical record.** The original Geometry Applet was hosted at
+   Clark University from 1996 onward; Dr. Joyce lost write-access to
+   those files when he retired (his own words). The deployable
    archive isn't reliably recoverable from any other source if the
    Clark URL goes offline.
 2. **Reproducibility audit.** A reader who suspects the TS port drifts

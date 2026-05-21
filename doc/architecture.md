@@ -9,11 +9,12 @@
 
 ## What this library is
 
-`geomlib` is a TypeScript port of David E. Joyce's *Geometry Applet*
-(Clark University, 1996, Java version 2.2). Joyce wrote it to
-illustrate Euclid's *Elements* on the web; it renders interactive
-Euclidean diagrams where the user can drag points and watch all
-derived constructions follow. The original Java applet's overview
+`geomlib` is a TypeScript port of Dr. David E. Joyce's (Professor
+Emeritus, Clark University) *Geometry Applet* (1996, Java version
+2.2). The original applet was built to illustrate Euclid's
+*Elements* on the web; it renders interactive Euclidean diagrams
+where the user can drag points and watch all derived constructions
+follow. The original Java applet's overview
 page is mirrored at
 `geom_applet/source/Geometry.html` and its construction reference at
 `geom_applet/source/tables.html`. We aim to be a faithful reimplementation
@@ -23,8 +24,8 @@ A diagram is described by an ordered list of *elements*. Each element
 belongs to one of **eight classes** — `point`, `line`, `circle`,
 `polygon`, `sector`, `plane`, `sphere`, `polyhedron` — and is built
 by one of that class's *construction methods*. Plane geometry uses the
-first five classes; all eight are needed for solid geometry. Joyce's
-`<param name=e[N] value="…">` schema and our
+first five classes; all eight are needed for solid geometry. The
+original applet's `<param name=e[N] value="…">` schema and our
 `elements: [{...}]` API are two surfaces over the same model.
 
 ### Interaction model
@@ -61,8 +62,8 @@ opens the same scene in a new window.
 - **args** — comma-separated. Strings reference earlier elements by
   name; numbers are integer coordinates or counts. A `LineElement`
   named in args auto-expands to its two endpoint `PointElement`s
-  (Joyce's "Special note 1": any time two points are needed, one line
-  may be given instead).
+  (per the original applet's "Special note 1": any time two points
+  are needed, one line may be given instead).
 - **colors** (all optional, in order): name, vertex, edge, face. Up to
   four layers per element. See [Colors](#colors) for the parser rules.
 
@@ -129,9 +130,9 @@ euclid/
 │   ├── source/                   # Original Java source files (*.java + Geometry.html + tables.html)
 │   └── Geometry.zip              # Original 1998 deployable applet archive (preserved as-is)
 ├── view/
-│   ├── euclid-html/              # Original Joyce HTML pages, Books I–XIII (snapshot test fixtures)
-│   ├── compass_geometry/         # Joyce compass-series scenes (snapshot test fixtures)
-│   ├── round_geometry/           # Joyce spherical-geometry scenes (snapshot test fixtures)
+│   ├── euclid-html/              # Original Geometry Applet HTML, Books I–XIII (snapshot test fixtures)
+│   ├── compass_geometry/         # Compass-series scenes (snapshot test fixtures)
+│   ├── round_geometry/           # Spherical-geometry scenes (snapshot test fixtures)
 │   └── test/{type}/{sub}.html    # TypeScript demo pages, one per construction
 ├── dist/
 │   └── bundle.js                 # Webpack output (consumed by view/test/ HTML files)
@@ -403,8 +404,8 @@ The four files (element class, construction class, test, demo page),
 the contracts each must satisfy, and the common pitfalls to watch
 for live in [creating-constructions.md](creating-constructions.md).
 The enum entries (`PointConstructions.foo = N`, etc.) already exist
-for every construction Joyce documents in `tables.html`; the slot for
-your work is in `src/elements/{type}/{Type}Constructions.ts`.
+for every construction documented in the original `tables.html`; the
+slot for your work is in `src/elements/{type}/{Type}Constructions.ts`.
 
 ---
 
@@ -427,8 +428,8 @@ Null color for a draw layer means `draw{Edge,Face,Vertex,Name}` is skipped entir
 The full reference for every `init()` field, every `E.{Type}.{name}`,
 every accepted color/align value, and every public `Slate` method is
 in **[api.md](api.md)**. That doc is the canonical mapping back to
-Joyce's `Geometry.html` parameter contract and `tables.html`
-construction catalog.
+the original applet's `Geometry.html` parameter contract and
+`tables.html` construction catalog.
 
 The high-level shape: `init()` takes an `IInitialization` object with
 slate-level params (`background`, `title`, `pivot`, `font`, `fontsize`,

@@ -314,4 +314,4 @@ python3 -m http.server
   this guide.
 - [historical/java-port/creating-constructions.md](historical/java-port/creating-constructions.md)
   — the Java-port-era version of this guide, for anyone curious about
-  how new constructions were ported from Joyce's original Java applet.
+  how new constructions were ported from the original Java applet.

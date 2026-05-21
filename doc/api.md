@@ -1,7 +1,8 @@
 # Public API Reference
 
-This document is the reference for the public surface of `geomlib` — the
-TypeScript port of David Joyce's Geometry Applet (1996, version 2.2). It
+This document is the reference for the public surface of `geomlib` —
+the TypeScript port of Dr. David E. Joyce's Geometry Applet (1996,
+version 2.2). It
 maps every accepted parameter, every construction enum value, and every
 helper to its source location in `src/`, with the original Java applet
 contract in `geom_applet/source/Geometry.html` and `tables.html` as the
@@ -43,7 +44,7 @@ The canvas can be any size. `init()` matches `canvas.width/height`
 attributes to its `clientWidth/clientHeight` once at startup so the bitmap
 resolution is sharp at the CSS size you set.
 
-`elements:` accepts either object form (above) or Joyce's original Java
+`elements:` accepts either object form (above) or the original Java
 `<param>` strings — see [`parseParam()`](#parseparam) below.
 
 ---
@@ -305,7 +306,7 @@ what it produces.
 Conventions:
 
 - Lowercase italic `a`/`b`/`c` denote points; uppercase italic letters
-  match Joyce's `tables.html`.
+  match the original applet's `tables.html`.
 - `[plane X]` means the plane is optional — when omitted, the screen
   plane is used and the construction is 2D. When present, the
   construction is 3D.
@@ -491,9 +492,9 @@ canvas whose `parentElement` is `null`.
 
 ---
 
-## Example: porting a Joyce HTML page
+## Example: porting an original applet HTML page
 
-Joyce's `<applet>` block:
+The original `<applet>` block:
 
 ```html
 <applet code=Geometry archive=Geometry.zip width=340 height=320>
