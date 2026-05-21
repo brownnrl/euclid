@@ -152,8 +152,8 @@ export function discoverAllHtmlFiles(repoRoot: string): HtmlFileResult[] {
     let results: HtmlFileResult[] = [];
     let dirs = [
         { base: path.join(repoRoot, "view/euclid-html"), pattern: /\.(html)$/ },
-        { base: path.join(repoRoot, "geom_applet/compass_geometry"), pattern: /\.html$/ },
-        { base: path.join(repoRoot, "geom_applet/round_geometry"), pattern: /\.html$/ },
+        { base: path.join(repoRoot, "view/compass_geometry"), pattern: /\.html$/ },
+        { base: path.join(repoRoot, "view/round_geometry"), pattern: /\.html$/ },
         { base: path.join(repoRoot, "view/test"), pattern: /\.html$/ },
     ];
 

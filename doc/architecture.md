@@ -127,11 +127,11 @@ euclid/
 │   └── snapshots/                 # Golden PNGs (one per slate)
 ├── geom_applet/
 │   ├── source/                   # Original Java source files (*.java + Geometry.html + tables.html)
-│   ├── Geometry.zip              # Original 1998 deployable applet archive (preserved as-is)
-│   ├── compass_geometry/         # Joyce compass-series scenes (snapshot test fixtures)
-│   └── round_geometry/           # Joyce spherical-geometry scenes (snapshot test fixtures)
+│   └── Geometry.zip              # Original 1998 deployable applet archive (preserved as-is)
 ├── view/
 │   ├── euclid-html/              # Original Joyce HTML pages, Books I–XIII (snapshot test fixtures)
+│   ├── compass_geometry/         # Joyce compass-series scenes (snapshot test fixtures)
+│   ├── round_geometry/           # Joyce spherical-geometry scenes (snapshot test fixtures)
 │   └── test/{type}/{sub}.html    # TypeScript demo pages, one per construction
 ├── dist/
 │   └── bundle.js                 # Webpack output (consumed by view/test/ HTML files)
