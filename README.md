@@ -17,7 +17,7 @@ across Books I–XIII of the *Elements* are renderable.
 
 ### Via CDN (no build step)
 
-The simplest way — just a `<script>` tag pointing at unpkg or jsDelivr:
+Include the bundle from unpkg or jsDelivr:
 
 ```html
 <script src="https://unpkg.com/@brownnrl/geomlib@0.1.0/dist/bundle.js"></script>
@@ -40,9 +40,9 @@ load it from `node_modules/@brownnrl/geomlib/dist/bundle.js` directly.
 
 ## Quick start
 
-Add a `<canvas>` and the bundle, then call `geomlib.init({...})` with
-an ordered list of constructions. Here is Euclid I.1 — *to construct
-an equilateral triangle on a given finite straight line*:
+We'll construct Proposition I.1 — *an equilateral triangle on a given
+finite straight line*. A `<canvas>` for the figure, the bundle, and a
+`geomlib.init({...})` call with the ordered list of constructions:
 
 ```html
 <canvas id="propI1" style="width:340px; height:240px;"></canvas>
