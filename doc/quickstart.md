@@ -42,8 +42,8 @@ other so the result stays sharp.
 ## Naming the free points
 
 Every diagram begins with one or more **free points** — the points
-the user can drag around. Joyce drew red dots for these; `geomlib`
-follows the same convention.
+the user can drag around. The original Geometry Applet drew red dots
+for these; `geomlib` follows the same convention.
 
 ```javascript
 const E = geomlib.E;
@@ -66,7 +66,7 @@ draggable.
 
 ## Connecting them
 
-Joyce's first move in Proposition I.1 is to draw the segment AB.
+The first move in Proposition I.1 is to draw the segment AB.
 That's `E.Line.connect`:
 
 ```javascript
@@ -77,8 +77,8 @@ That's `E.Line.connect`:
 
 ## The two circles
 
-Next Joyce describes "the circle BCD with center A and radius AB"
-and "the circle ACE with center B and radius BA." In `geomlib` that's
+Next come "the circle BCD with center A and radius AB" and "the
+circle ACE with center B and radius BA." In `geomlib` that's
 `E.Circle.radius` — center first, edge point second:
 
 ```javascript
@@ -103,7 +103,7 @@ common chords of two circles. (`Ac` and `Bc` are the *circles*, not
 the centers — `bichord` takes circle elements directly.)
 
 The first endpoint of that line is the apex of our equilateral
-triangle — Joyce calls it **C**:
+triangle — we name it **C**:
 
 ```javascript
 { name: "C", construction: E.Point.first, params: ["CD"] },
@@ -153,7 +153,7 @@ Two new options snuck into that final version:
 - **`pivot: "C"`** — sets a rotation/scale center. If a user grabs a
   *non*-draggable point (like the line AB or the circle Ac) and
   drags, the whole diagram rotates and scales around C instead of
-  translating. This is the same behavior as Joyce's original.
+  translating. This matches the original Geometry Applet's behavior.
 
 ## What you can do now
 
@@ -172,8 +172,8 @@ buttons at the top-right of the canvas.
 
 ## What about the other shorter form?
 
-`geomlib` accepts Joyce's original Java `<param>` strings directly,
-which is convenient when porting one of his pages:
+`geomlib` accepts the original Java `<param>` strings directly,
+which is convenient when porting one of the applet's pages:
 
 ```javascript
 elements: [
@@ -190,7 +190,7 @@ elements: [
 
 Both forms produce the same diagram, and you can mix them in the same
 `elements` array. The string form is often handier when copy-pasting
-from one of Joyce's `<applet>` tags.
+from one of the original `<applet>` tags.
 
 ## Where to go from here
 

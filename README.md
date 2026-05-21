@@ -1,6 +1,6 @@
 # geomlib
 
-A TypeScript port of David E. Joyce's *Geometry Applet* (Clark
+A TypeScript port of Dr. David E. Joyce's *Geometry Applet* (Clark
 University, 1996, Java version 2.2). `geomlib` renders interactive
 Euclidean geometry diagrams on an HTML5 `<canvas>`: drag a point, and
 every construction that depends on it follows. The original Java applet
@@ -9,7 +9,7 @@ modern browser, no JVM required.
 
 The library exposes eight element classes — *point*, *line*, *circle*,
 *polygon*, *sector*, *plane*, *sphere*, *polyhedron* — and the
-~70 construction methods Joyce documented in his
+~70 construction methods documented in the original applet's
 [`tables.html`](geom_applet/source/tables.html). All 465 propositions
 across Books I–XIII of the *Elements* are renderable.
 
@@ -104,8 +104,11 @@ so the tarball always contains a fresh production-built bundle. Run
 
 ## Origin
 
-Built atop David E. Joyce's [*Geometry Applet
-v2.2*](http://aleph0.clarku.edu/~djoyce/java/Geometry/Geometry.html)
-(Java, 1996–1997). Joyce's original applet pages — the source of every
-proposition this port can render — live at
-[*Euclid's Elements*](http://aleph0.clarku.edu/~djoyce/elements/elements.html).
+Built atop Dr. David E. Joyce's (Professor Emeritus, Clark
+University) [*Geometry Applet
+v2.2*](http://aleph0.clarku.edu/~djoyce/java/Geometry/Geometry.html),
+Java, 1996–1997. The original *Elements* applet pages at
+[aleph0.clarku.edu](http://aleph0.clarku.edu/~djoyce/elements/elements.html)
+have been mirrored at [euclids-elements.org](https://www.euclids-elements.org/),
+with the static-image fallbacks replaced by live TypeScript
+animations powered by `geomlib`.
