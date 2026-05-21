@@ -1,7 +1,16 @@
 {
   "name": "euclid",
   "version": "0.1.0",
-  "description": "Euclid's Elements",
+  "description": "Interactive Euclidean geometry constructions in the browser — a TypeScript port of David E. Joyce's 1996 Java Geometry Applet.",
+  "keywords": [
+    "euclid",
+    "elements",
+    "geometry",
+    "constructions",
+    "canvas",
+    "mathematics",
+    "education"
+  ],
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --noEmit",

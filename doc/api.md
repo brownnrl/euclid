@@ -532,6 +532,6 @@ geomlib.init({
 </script>
 ```
 
-The sibling `djoyce/convert.py` automates this transformation across
-all of Joyce's published Elements pages. See `djoyce/README.md` for
-the conversion harness.
+The full Phase 3 conversion of all 566 *Elements* propositions has
+been done already; the output lives in the separate content-site
+repository served at [euclids-elements.org](https://euclids-elements.org).
