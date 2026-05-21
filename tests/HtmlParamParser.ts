@@ -106,6 +106,10 @@ function parseAppletBlock(block: string): SlateConfig | null {
 // Parse an HTML file and extract all applet configurations
 export function parseHtmlFile(filePath: string): HtmlFileResult {
     let content = fs.readFileSync(filePath, "utf-8");
+    // view/test/ pages preserve the original Java <applet> block as an HTML
+    // comment alongside the TS init() call so the param catalog stays
+    // visible. Strip the comment markers so the same parser handles both.
+    content = content.replace(/<!--(applet[\s\S]*?<\/applet)-->/gi, "<$1>");
     let fileName = path.basename(filePath, ".html");
 
     // Determine category from path
@@ -114,6 +118,10 @@ export function parseHtmlFile(filePath: string): HtmlFileResult {
         category = "compass";
     } else if (filePath.includes("round_geometry")) {
         category = "round";
+    } else if (filePath.includes("view/test")) {
+        // Per-construction TS demo pages — bucket by subdirectory
+        let subdirMatch = filePath.match(/view\/test\/([^/]+)\//);
+        category = subdirMatch ? `test/${subdirMatch[1]}` : "test";
     } else {
         // Euclid books: extract bookN from path
         let bookMatch = filePath.match(/book(\w+)/i);
@@ -144,8 +152,9 @@ export function discoverAllHtmlFiles(repoRoot: string): HtmlFileResult[] {
     let results: HtmlFileResult[] = [];
     let dirs = [
         { base: path.join(repoRoot, "view/euclid-html"), pattern: /\.(html)$/ },
-        { base: path.join(repoRoot, "geom_applet/compass_geometry"), pattern: /\.html$/ },
-        { base: path.join(repoRoot, "geom_applet/round_geometry"), pattern: /\.html$/ },
+        { base: path.join(repoRoot, "view/compass_geometry"), pattern: /\.html$/ },
+        { base: path.join(repoRoot, "view/round_geometry"), pattern: /\.html$/ },
+        { base: path.join(repoRoot, "view/test"), pattern: /\.html$/ },
     ];
 
     for (let dir of dirs) {

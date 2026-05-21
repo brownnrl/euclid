@@ -1,23 +1,45 @@
 {
-  "name": "euclid",
+  "name": "@brownnrl/geomlib",
   "version": "0.1.0",
-  "description": "Euclid's Elements",
-  "main": "dist/index.js",
+  "description": "Interactive Euclidean geometry constructions in the browser — a TypeScript port of David E. Joyce's 1996 Java Geometry Applet.",
+  "keywords": [
+    "euclid",
+    "elements",
+    "geometry",
+    "constructions",
+    "canvas",
+    "mathematics",
+    "education"
+  ],
+  "main": "dist/bundle.js",
+  "files": [
+    "dist/bundle.js",
+    "dist/bundle.js.map",
+    "LICENSE",
+    "NOTICE.md",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc --noEmit",
+    "bundle": "npx webpack",
+    "bundle:prod": "NODE_ENV=production npx webpack",
     "test": "npm run test:snapshot && npm run test:unit",
     "test:snapshot": "mocha --reporter min tests/SnapshotTest.ts",
     "test:unit": "mocha tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
     "coverage": "c8 mocha --reporter min tests/SnapshotTest.ts tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
     "coverage:unit": "c8 mocha --reporter min tests/CircleTest.ts tests/ColorsTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateTest.ts tests/SphereTest.ts",
     "coverage:report": "c8 report --reporter=html",
-    "snapshots:clean": "rm -rf tests/snapshots && mkdir -p tests/snapshots && touch tests/snapshots/.gitkeep"
+    "snapshots:clean": "rm -rf tests/snapshots && mkdir -p tests/snapshots && touch tests/snapshots/.gitkeep",
+    "prepublishOnly": "npm run test:unit && npm run bundle:prod"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/brownnrl/euclid.git"
   },
-  "author": "nrlb",
+  "author": "Nelson Brown <brownnrl@gmail.com>",
   "license": "MIT",
   "overrides": {
     "serialize-javascript": "^7.0.5",

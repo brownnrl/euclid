@@ -2,7 +2,7 @@ const path = require('path');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   // Enable sourcemaps for debugging webpack's output.
   devtool: "source-map",
   // target: 'node',

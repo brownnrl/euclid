@@ -10,3 +10,5 @@ dist/
 *.tsbuildinfo
 *.class
 Geometry.zip
+!geom_applet/Geometry.zip
+.DS_Store

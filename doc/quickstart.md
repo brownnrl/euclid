@@ -3,7 +3,7 @@
 Build your first interactive Euclidean diagram with `geomlib`. By the
 end of this page you'll have Euclid's Proposition I.1 — *to construct
 an equilateral triangle on a given finite straight line* — rendered
-and draggable in a browser. Total reading time: about ten minutes.
+and draggable in a browser.
 
 ## What you're going to build
 
@@ -11,10 +11,6 @@ Two free points **A** and **B** with the triangle **ABC** built on
 top, where **C** is the apex of an equilateral triangle on side AB.
 Drag A or B and the triangle follows; the construction stays correct
 because the geometry is recomputed from first principles every frame.
-
-This is exactly the figure Joyce drew on his Book I page — see the
-[live original](http://aleph0.clarku.edu/~djoyce/java/elements/bookI/propI1.html)
-for comparison.
 
 ## The skeleton
 
@@ -209,8 +205,3 @@ from one of Joyce's `<applet>` tags.
 - **Extending the library.** If a construction you need isn't
   there, [creating-constructions.md](creating-constructions.md)
   walks through adding one.
-- **Joyce's original.** Every proposition in this port traces back
-  to a page of [*Euclid's
-  Elements*](http://aleph0.clarku.edu/~djoyce/elements/elements.html).
-  The visual comparison is the best way to verify a construction
-  matches its source.
