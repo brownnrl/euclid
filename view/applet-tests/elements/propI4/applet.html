@@ -1,0 +1,38 @@
+<HTML><HEAD><TITLE>I.4 — applet form of view/test/elements/propI4.html</TITLE></HEAD>
+<BODY BGCOLOR=ffe9cd>
+<!-- TS:       view/test/elements/propI4.html -->
+<!-- ORIGINAL: view/applet-tests/elements/propI4/original.html -->
+<!--
+  Trimmed Java-applet rendering of the I.4 figure, with `a` reordered to
+  precede `b/c/d` (matches the TS port's strict in-order construction
+  semantics so window 2 and window 3 are pixel-comparable). The original
+  param order with the e[18]=a forward-ref is preserved in original.html
+  for the "what did Joyce ship" comparison.
+
+  Investigation target: does the arc through E,d,F render in the Java
+  applet? geomlib renders it (edgeColor=black per Joyce's color-slot
+  spec); the static propI4.gif on Joyce's site doesn't show it, but the
+  .gif may predate the arc construction being added to the params.
+-->
+<applet code=Geometry codebase=../../.. archive=Geometry.zip height=250 width=360>
+<param name=background value="35,19,100">
+<param name=title value="I.4">
+<param name=e[1] value="D;point;free;300,50">
+<param name=e[2] value="E;point;free;200,200">
+<param name=e[3] value="F;point;free;320,200">
+<param name=e[4] value="DEF;polygon;triangle;D,E,F;0;0;black;random">
+<param name=e[5] value="A;point;free;130,50">
+<param name=e[6] value="CircAB;circle;radius;A,D,E;0;0;0;0">
+<param name=e[7] value="B;point;circleSlider;CircAB,30,200">
+<param name=e[8] value="CircAC;circle;radius;A,D,F;0;0;0;0">
+<param name=e[9] value="CircBC;circle;radius;B,E,F;0;0;0;0">
+<param name=e[10] value="C'C;line;bichord;CircAC,CircBC;0;0;0">
+<param name=e[11] value="C;point;last;C'C">
+<param name=e[12] value="ABC;polygon;triangle;A,B,C;0;0;black;random">
+<param name=e[13] value="a;point;midpoint;E,F;0;0">
+<param name=e[14] value="b;point;extend;D,a,E,a;0;0">
+<param name=e[15] value="c;point;midpoint;a,b;0;0">
+<param name=e[16] value="d;point;midpoint;a,c;0;0">
+<param name=e[17] value="arc;sector;arc;E,d,F;0;0;black;0">
+</applet>
+</BODY></HTML>
