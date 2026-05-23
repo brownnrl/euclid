@@ -352,4 +352,58 @@ describe("line", () => {
         almostEqual(L.A.x, 50, 0.1);
         assert.ok(!isNaN(L.B.x));
     });
+
+    describe("drawName", () => {
+        function buildLine(slate: Slate, opts: { nameColor?: string, name?: string } = {}): LineElement {
+            let data: IConstructionInfo[] = [
+                { construction: E.Point.free,   name: "A",  params: [40, 60] },
+                { construction: E.Point.free,   name: "B",  params: [120, 200] },
+                { construction: E.Line.connect, name: "AB", params: ["A", "B"] },
+            ];
+            toElements(slate, data);
+            slate.elements.forEach(e => e.update());
+            let line = slate.lookupElement("AB") as LineElement;
+            if (opts.name !== undefined) line.name = opts.name;
+            if (opts.nameColor !== undefined) line.nameColor = opts.nameColor;
+            return line;
+        }
+
+        it("draws the label at the midpoint when nameColor and name are set", () => {
+            let slate = new Slate(createCanvas(300, 300));
+            let line = buildLine(slate, { name: "AB", nameColor: "black" });
+
+            let calls: [number, number][] = [];
+            (line as any).drawString = (ix: number, iy: number) => { calls.push([ix, iy]); };
+
+            line.drawName(slate as any);
+
+            assert.equal(calls.length, 1);
+            assert.equal(calls[0][0], Math.round((40 + 120) / 2));
+            assert.equal(calls[0][1], Math.round((60 + 200) / 2));
+        });
+
+        it("does nothing when nameColor is null", () => {
+            let slate = new Slate(createCanvas(300, 300));
+            let line = buildLine(slate, { name: "AB" });
+            line.nameColor = null;
+
+            let called = false;
+            (line as any).drawString = () => { called = true; };
+
+            line.drawName(slate as any);
+            assert.equal(called, false);
+        });
+
+        it("does nothing when name is null", () => {
+            let slate = new Slate(createCanvas(300, 300));
+            let line = buildLine(slate, { nameColor: "black" });
+            line.name = null;
+
+            let called = false;
+            (line as any).drawString = () => { called = true; };
+
+            line.drawName(slate as any);
+            assert.equal(called, false);
+        });
+    });
 });
