@@ -63,6 +63,12 @@ export class LineElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
+        if (this.nameColor == null || this.name == null) return;
+        if (this._A == null || !this._A.defined()) return;
+        if (this._B == null || !this._B.defined()) return;
+        const ix = Math.round((this._A.x + this._B.x) / 2);
+        const iy = Math.round((this._A.y + this._B.y) / 2);
+        this.drawString(ix, iy, c);
     }
 
     public drawVertex(c: SlateCanvas): void {
