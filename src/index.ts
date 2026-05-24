@@ -10,6 +10,11 @@ export type IndexAllConstructions = AllConstructions;
 export {align  as Align};
 export {e as E};
 
+// Build marker — bumped when behaviour-affecting changes ship so consumers
+// (e.g. the test pages used to investigate #55) can confirm which bundle
+// they're actually running.
+export const BUILD_MARKER = "pointer-events-refactor-v1 (Slate.ts #55)";
+
 export let slates : Slate[] = [];
 
 export interface IConstructionInfo {

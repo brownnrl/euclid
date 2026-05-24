@@ -67,48 +67,53 @@ export class Slate {
 
         if(this._htmlCanvas.addEventListener == null) return;
 
-        this._htmlCanvas.addEventListener("mousedown", (ev) => {
-            let [x, y] : number[] = this._getCanvasPosition(ev.clientX, ev.clientY);
+        // Pointer Events unify mouse / touch / stylus into one event model.
+        // Setting touch-action: none here (rather than relying on
+        // consumer-side CSS) tells the browser not to claim drag gestures
+        // for scroll/zoom; calling setPointerCapture on pointerdown ensures
+        // we keep getting move/up events even when the finger leaves the
+        // canvas bounds. See issue #55 for the design rationale.
+        this._htmlCanvas.style.touchAction = "none";
+
+        // Only the primary pointer drives the drag pipeline for now.
+        // Multi-touch (two-finger rotation etc.) is intentionally not yet
+        // wired — design questions tracked in issue #57.
+        let activePointerId: number | null = null;
+
+        this._htmlCanvas.addEventListener("pointerdown", (ev: PointerEvent) => {
+            if (activePointerId !== null) return; // already tracking a primary
+            activePointerId = ev.pointerId;
+            try { slate._htmlCanvas.setPointerCapture(ev.pointerId); } catch (_) { /* ignore */ }
+            let [x, y] = slate._getCanvasPosition(ev.clientX, ev.clientY);
             slate._onMouseDown(x, y);
         });
 
-        this._htmlCanvas.addEventListener("mouseup", (ev) => {
-            let [x, y] : number[] = this._getCanvasPosition(ev.clientX, ev.clientY);
-            slate._onMouseUp(x, y);
-        });
-
-        this._htmlCanvas.addEventListener("mousemove", (ev) => {
-            let [x, y] : number[] = this._getCanvasPosition(ev.clientX, ev.clientY);
+        this._htmlCanvas.addEventListener("pointermove", (ev: PointerEvent) => {
+            if (ev.pointerId !== activePointerId) return;
+            let [x, y] = slate._getCanvasPosition(ev.clientX, ev.clientY);
             slate._onMouseDrag(x, y);
         });
 
-        for(let [tEvent, mEvent] of [
-            ["touchend", "mouseup"],
-            ["touchstart", "mousedown"],
-            ["touchmove", "mousemove"]
-        ]) {
-            this._htmlCanvas.addEventListener(tEvent, (tv : TouchEvent) => {
-                let pos = slate._getTouchPos(tv);
-                let me = new MouseEvent(mEvent,
-                    {clientX: pos[0], clientY: pos[1]});
-                slate._htmlCanvas.dispatchEvent(me);
-            });
-        }
-        for(let eventType of ["touchstart", "touchmove", "touchend"]) {
-            document.body.addEventListener(eventType, (tv) => {
-                if (tv.target == slate._htmlCanvas) {
-                    tv.preventDefault();
+        let endPointer = (ev: PointerEvent) => {
+            if (ev.pointerId !== activePointerId) return;
+            let [x, y] = slate._getCanvasPosition(ev.clientX, ev.clientY);
+            slate._onMouseUp(x, y);
+            try { slate._htmlCanvas.releasePointerCapture(ev.pointerId); } catch (_) { /* ignore */ }
+            activePointerId = null;
+        };
+
+        this._htmlCanvas.addEventListener("pointerup", endPointer);
+        this._htmlCanvas.addEventListener("pointercancel", endPointer);
+        this._htmlCanvas.addEventListener("lostpointercapture", (ev: PointerEvent) => {
+            if (ev.pointerId === activePointerId) {
+                // Browser revoked capture (e.g., system gesture); clear pick state.
+                if (slate._pick != null) {
+                    slate._pick = null;
                 }
-            }, false);
-        }
+                activePointerId = null;
+            }
+        });
 
-    }
-
-    _getTouchPos(te : TouchEvent) : [number, number] {
-        if (this._htmlCanvas == null) return;
-        let r = this._htmlCanvas.getBoundingClientRect();
-        return [te.touches[0].clientX - r.left,
-                te.touches[0].clientY - r.top];
     }
 
     _getCanvasPosition(x: number, y: number) : [number, number] {

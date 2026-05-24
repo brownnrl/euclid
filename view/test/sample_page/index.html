@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Touch repro — sample proposition page</title>
+
+<!-- VARIABLE A: viewport meta. Mirrors what euclids-elements.org now does
+     post-Phase-1. Comment out to test the no-viewport-meta baseline that
+     the working circle.html test uses. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- VARIABLE B: external CSS. This is the site's actual style.css copy.
+     The ?v= query string is a cache-buster — bump when iterating so the
+     phone refetches CSS instead of using a cached copy. -->
+<link rel="stylesheet" type="text/css" href="style.css?v=2">
+
+<!-- Bundle from local build, so we can edit src/Slate.ts and rebuild
+     without re-publishing. The ?ts= cache-buster forces the phone to
+     refetch when the bundle is rebuilt locally. Use document.write
+     so the timestamp is computed at page-load time. -->
+<script>
+  document.write('<script src="../../../dist/bundle.js?ts=' + Date.now() + '"><\/script>');
+</script>
+</head>
+<body>
+
+<div id="build-version" style="background:#222;color:#0f0;font-family:monospace;font-size:12px;padding:6px;text-align:center;">
+  test build: v6 — Pointer Events + bundle cache-bust + BUILD_MARKER log
+</div>
+
+<!-- Live touch/pointer/mouse event log. Latest events at top. Tap a
+     canvas and watch what fires (or doesn't). -->
+<div id="evt-log" style="background:#111;color:#0ff;font-family:monospace;font-size:11px;padding:6px;height:120px;overflow-y:auto;white-space:pre;position:sticky;top:0;z-index:1000;"></div>
+<div style="display:flex;gap:6px;padding:4px;background:#111;position:sticky;top:120px;z-index:1000;">
+  <button id="evt-log-copy" style="flex:1;padding:8px;background:#0ff;color:#000;border:none;font-family:monospace;font-size:14px;font-weight:bold;">Copy log</button>
+  <button id="evt-log-clear" style="flex:0 0 80px;padding:8px;background:#444;color:#0ff;border:none;font-family:monospace;font-size:14px;">Clear</button>
+</div>
+<script>
+(function () {
+  var log = document.getElementById("evt-log");
+  function append(line) {
+    var t = new Date();
+    var ts = t.toTimeString().slice(0, 8) + "." + String(t.getMilliseconds()).padStart(3, "0");
+    log.textContent = ts + " " + line + "\n" + log.textContent;
+    // Cap so the log doesn't grow forever
+    if (log.textContent.length > 4000) {
+      log.textContent = log.textContent.slice(0, 4000);
+    }
+  }
+
+  // Copy + clear buttons
+  document.getElementById("evt-log-copy").addEventListener("click", function () {
+    var btn = this;
+    var orig = btn.textContent;
+    var version = (document.getElementById("build-version").textContent || "").trim();
+    var text = "===== " + version + " =====\n" + log.textContent;
+    // Prefer the modern Clipboard API; fall back to a hidden textarea for
+    // older Android Chrome that doesn't have it on http:// origins.
+    var done = function (ok) {
+      btn.textContent = ok ? "Copied!" : "Copy failed — long-press log to select";
+      setTimeout(function () { btn.textContent = orig; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (_) {}
+      document.body.removeChild(ta);
+      done(ok);
+    }
+  });
+  document.getElementById("evt-log-clear").addEventListener("click", function () {
+    log.textContent = "";
+  });
+  // Wait until canvases exist (geomlib.init has run)
+  window.addEventListener("load", function () {
+    // Log which geomlib bundle is actually running (catches stale-cache cases)
+    try {
+      append("geomlib.BUILD_MARKER = " + (geomlib && geomlib.BUILD_MARKER || "<missing — old bundle>"));
+    } catch (e) {
+      append("geomlib not loaded: " + e.message);
+    }
+    var canvases = document.querySelectorAll("canvas");
+    canvases.forEach(function (c, i) {
+      var label = "c" + i + "(" + (c.id || "?") + ")";
+      ["touchstart", "touchmove", "touchend", "touchcancel",
+       "pointerdown", "pointermove", "pointerup", "pointercancel",
+       "mousedown", "mouseup", "mousemove"].forEach(function (ev) {
+        c.addEventListener(ev, function (e) {
+          // Throttle move events
+          if (ev.indexOf("move") >= 0 && Math.random() > 0.1) return;
+          var x = e.clientX || (e.touches && e.touches[0] && e.touches[0].clientX) || "?";
+          var y = e.clientY || (e.touches && e.touches[0] && e.touches[0].clientY) || "?";
+          append(label + " " + ev + " @ (" + x + "," + y + ")");
+        }, { passive: true });
+      });
+    });
+    append("listeners attached to " + canvases.length + " canvas(es)");
+  });
+})();
+</script>
+
+<h1>I.1 — On a given finite straight line to construct an equilateral triangle</h1>
+
+<div class="theorem">
+
+<div class="statement">Sample statement text — on a given finite straight line to construct an equilateral triangle.</div>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac risus
+quis lectus pulvinar ornare. Vivamus euismod, mi vel dictum porttitor, dolor
+neque pulvinar nisi, sit amet aliquam ipsum nibh nec sapien. Fusce viverra
+arcu eu metus euismod, in vehicula lectus pretium.
+
+<div class="ldiagram">
+<!-- VARIABLE C: canvas width/height as HTML attributes (the site's pattern).
+     The working test/circle/circle.html uses CSS sizing instead, which is
+     known to be touch-safe. -->
+<canvas id="canvas_prop" width="340" height="200" tabindex="0"></canvas>
+<script type="text/javascript">
+    geomlib.init({
+        canvasid: "canvas_prop",
+        background: "35,19,100",
+        title: "I.1 (repro)",
+        elements: [
+            "A;point;free;100,150",
+            "B;point;free;240,150",
+            "ABC;polygon;equilateralTriangle;A,B;0;0;black;random",
+            "C;point;vertex;ABC,3"
+        ],
+    });
+</script>
+</div>
+
+<div class="just"><a href="#">I.Post.1</a><br><a href="#">I.Post.3</a></div>
+
+<p>Quisque consectetur, lacus eu congue tincidunt, sapien eros placerat ipsum,
+quis fermentum elit eros sit amet ipsum. Aliquam erat volutpat. Phasellus
+dignissim, ex non porttitor euismod, sapien metus interdum ex.
+
+<p>Etiam non lectus nec arcu interdum aliquam. Curabitur fermentum nibh quis
+mi pharetra, eget tristique magna laoreet. Donec luctus, augue at posuere
+posuere, lectus turpis bibendum velit, in posuere arcu enim non purus.
+
+<p>Therefore the triangle <i>ABC</i> is equilateral, and it has been
+constructed on the given finite straight line <i>AB</i>.
+
+<div class="qed">Q.E.F.</div>
+</div>
+
+<h2>Guide</h2>
+
+<p>Sed posuere consectetur lorem, eget sodales nisl pulvinar sit amet. Donec
+porttitor, neque a faucibus sodales, nisl tellus ornare leo, et vestibulum
+dolor ipsum vitae nisi.
+
+<table cellpadding="5">
+<tr>
+<td>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula
+nec quam non auctor. Praesent fermentum dictum tortor, vitae malesuada turpis
+laoreet ut. Maecenas dignissim risus a velit posuere, sed pulvinar ipsum
+fermentum.
+
+<p>Vivamus euismod, mi vel dictum porttitor, dolor neque pulvinar nisi, sit
+amet aliquam ipsum nibh nec sapien. Fusce viverra arcu eu metus euismod, in
+vehicula lectus pretium.
+</td>
+<td>
+<canvas id="canvas_guide" width="280" height="200" tabindex="0"></canvas>
+<script type="text/javascript">
+    geomlib.init({
+        canvasid: "canvas_guide",
+        background: "0,0,100",
+        title: "Guide (repro)",
+        elements: [
+            "P;point;free;80,100",
+            "Q;point;free;200,100",
+            "PQ;line;connect;P,Q"
+        ],
+    });
+</script>
+</td>
+</tr>
+</table>
+
+<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+ac turpis egestas. Cras commodo ipsum vitae arcu mollis, et porta nulla
+finibus. Aenean ut lectus mi.
+
+</body>
+</html>
