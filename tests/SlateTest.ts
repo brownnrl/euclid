@@ -4,6 +4,7 @@ import {Slate} from "../src/Slate";
 import {E, IConstructionInfo, init, slates} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
+import {trackWindowResize} from "../src/SlateControls";
 import {createCanvas} from "canvas";
 import {almostEqual, toElements} from "./shared/testHelpers";
 import {
@@ -417,5 +418,42 @@ describe("slate", () => {
             if (savedDoc === undefined) delete (global as any).document;
             else (global as any).document = savedDoc;
         }
+    });
+
+    // Helper used by SlateControls.maximize() to keep the canvas bitmap in
+    // sync with the wrapper's CSS size when the viewport changes (issue #61).
+    // Pure function — no real Window needed for the unit test.
+    describe("trackWindowResize", () => {
+        it("attaches a resize listener and the teardown removes it", () => {
+            let attached: Array<{type: string; fn: () => void}> = [];
+            let removed: Array<{type: string; fn: () => void}> = [];
+            let target = {
+                addEventListener: (type: "resize", fn: () => void) => {
+                    attached.push({type, fn});
+                },
+                removeEventListener: (type: "resize", fn: () => void) => {
+                    removed.push({type, fn});
+                },
+            };
+            let callCount = 0;
+            let teardown = trackWindowResize(target, () => { callCount++; });
+
+            assert.equal(attached.length, 1, "should attach exactly one listener");
+            assert.equal(attached[0].type, "resize");
+
+            // Firing the attached handler triggers the callback.
+            attached[0].fn();
+            assert.equal(callCount, 1);
+            attached[0].fn();
+            assert.equal(callCount, 2);
+
+            // Teardown removes the SAME handler reference (otherwise the
+            // browser would keep firing it after we stopped caring).
+            teardown();
+            assert.equal(removed.length, 1);
+            assert.equal(removed[0].type, "resize");
+            assert.equal(removed[0].fn, attached[0].fn,
+                "teardown must pass the original handler so removeEventListener actually unregisters it");
+        });
     });
 });
