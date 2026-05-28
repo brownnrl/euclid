@@ -1,7 +1,7 @@
 import "mocha";
 import * as assert from "assert";
 import {Slate} from "../src/Slate";
-import {E, IConstructionInfo, init, slates} from "../src/index";
+import {E, IConstructionInfo, init, slates, revealNoscriptFallback} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
 import {trackWindowResize} from "../src/SlateControls";
@@ -454,6 +454,92 @@ describe("slate", () => {
             assert.equal(removed[0].type, "resize");
             assert.equal(removed[0].fn, attached[0].fn,
                 "teardown must pass the original handler so removeEventListener actually unregisters it");
+        });
+    });
+
+    // When geomlib.init() throws, the conventional fallback is the
+    // <noscript> sibling of the canvas — usually a static .gif image
+    // representing the diagram. This helper reveals it. Issue #53.
+    describe("revealNoscriptFallback", () => {
+        function makeStubCanvas(noscript: any): any {
+            return {
+                nextElementSibling: noscript,
+                style: { display: "" },
+            };
+        }
+        function makeStubNoscript(innerHTML: string): any {
+            let inserted: any[] = [];
+            let stub: any = {
+                tagName: "NOSCRIPT",
+                innerHTML,
+                nextElementSibling: null,
+                parentNode: { insertBefore: (node: any) => inserted.push(node) },
+            };
+            stub.insertedSiblings = inserted;
+            return stub;
+        }
+
+        // Each test stubs the bare minimum of `document` so the helper's
+        // document.createElement call works.
+        function withStubDocument<T>(fn: () => T): T {
+            let savedDoc = (global as any).document;
+            (global as any).document = {
+                createElement: (_: string) => ({ innerHTML: "" }),
+            };
+            try {
+                return fn();
+            } finally {
+                if (savedDoc === undefined) delete (global as any).document;
+                else (global as any).document = savedDoc;
+            }
+        }
+
+        it("reveals the noscript content and hides the canvas", () => {
+            withStubDocument(() => {
+                let noscript = makeStubNoscript('<img src="propI4.gif"/>');
+                let canvas = makeStubCanvas(noscript);
+
+                revealNoscriptFallback(canvas);
+
+                assert.equal(noscript.insertedSiblings.length, 1,
+                    "should have inserted exactly one wrapper before the noscript");
+                assert.equal(noscript.insertedSiblings[0].innerHTML, '<img src="propI4.gif"/>',
+                    "the wrapper should carry the noscript's raw markup so the browser parses it as real DOM");
+                assert.equal(canvas.style.display, "none",
+                    "canvas should be hidden so it doesn't show as a blank box next to the fallback");
+            });
+        });
+
+        it("is a no-op when no noscript sibling is present", () => {
+            withStubDocument(() => {
+                let canvas = makeStubCanvas(null);
+                // Should neither throw nor mutate the canvas style.
+                assert.doesNotThrow(() => revealNoscriptFallback(canvas));
+                assert.equal(canvas.style.display, "");
+            });
+        });
+
+        it("is a no-op when canvas is null", () => {
+            withStubDocument(() => {
+                assert.doesNotThrow(() => revealNoscriptFallback(null));
+            });
+        });
+
+        it("swallows internal errors so the original error keeps surfacing", () => {
+            // If document.createElement itself throws, the helper should
+            // not propagate — init() already plans to re-throw the real
+            // failure after calling this helper.
+            let savedDoc = (global as any).document;
+            (global as any).document = {
+                createElement: () => { throw new Error("doc broken"); },
+            };
+            try {
+                let canvas = makeStubCanvas(makeStubNoscript("<img/>"));
+                assert.doesNotThrow(() => revealNoscriptFallback(canvas));
+            } finally {
+                if (savedDoc === undefined) delete (global as any).document;
+                else (global as any).document = savedDoc;
+            }
         });
     });
 });
