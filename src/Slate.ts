@@ -11,7 +11,6 @@ export type SlateCanvas = HTMLCanvasElement | Canvas;
 export class Slate {
 
     protected _elements : GeomElement[];
-    protected _elementsForUpdate : GeomElement[];
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
@@ -26,7 +25,6 @@ export class Slate {
         this._itsNumSlate = Slate.numSlate;
 
         this._elements = [];
-        this._elementsForUpdate = [];
         if(canvas == null) {
             throw new TypeError("canvas cannot be null or undefined.");
         }
@@ -58,8 +56,6 @@ export class Slate {
             e.faceHighlightColor = null;
             this._elements.push(e);
         }
-        this._elementsForUpdate = [...this._elements];
-
         let slate = this;
 
         let cnv : HTMLCanvasElement = this._canvas as HTMLCanvasElement;
@@ -140,10 +136,6 @@ export class Slate {
 
     get elements() : GeomElement[] {
         return this._elements;
-    }
-
-    get elementsForUpdate() : GeomElement[] {
-        return this._elementsForUpdate;
     }
 
     set bgcolor(value: string ) {
@@ -227,8 +219,6 @@ export class Slate {
         if(name != null)
             g.name = name;
         for (let elem of gs) {
-            if (this._elementsForUpdate.indexOf(elem) == -1)
-                this._elementsForUpdate.push(elem);
             if (this._elements.indexOf(elem) == -1)
                 this._elements.push(elem);
         }
@@ -245,7 +235,7 @@ export class Slate {
     }
 
     update() : void {
-        for(let element of this._elementsForUpdate) element.update();
+        for(let element of this._elements) element.update();
         this.drawElements();
     }
 

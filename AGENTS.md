@@ -102,14 +102,17 @@ When a `LineElement` name appears in `params`, `Slate.convertParams`
 two elements, not one. Signature counts (`{ points, elements,
 integers }`) must reflect the post-expansion form.
 
-### `[elementsForUpdate, newElement]` return contract
+### `[dependencyElements, newElement]` return contract
 
 `Construction.construct()` returns
-`[elementsForUpdate: GeomElement[], newElement: GeomElement]`.
+`[dependencyElements: GeomElement[], newElement: GeomElement]`.
 Any intermediate element your construction creates (e.g.
 `CircumcenterConstruction` builds an internal `CircumcircleElement`)
-MUST appear in `elementsForUpdate` — otherwise it never recomputes
-and dependents drift on stale data.
+MUST appear in `dependencyElements` — otherwise it never gets
+added to the slate's element list, never recomputes, and dependents
+drift on stale data. (Historically this first return value was called
+`elementsForUpdate` and maintained as a separate array on the slate;
+since #45 the slate iterates `_elements` directly.)
 
 ### Signature variant ordering
 

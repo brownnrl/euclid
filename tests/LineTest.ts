@@ -42,10 +42,10 @@ describe("line", () => {
         let slate: Slate = new Slate(createCanvas(200, 200));
         let elms = toElements(slate, circumcenter_data);
         slate.elements.forEach(e => e.update());
-        let elmsUpdate = slate.elementsForUpdate;
-        let n = elmsUpdate.length;
-        let pcircle = elmsUpdate[n - 2] as CircumcircleElement;
-        let pcenter = elmsUpdate[n - 1] as PointElement;
+        let allElms = slate.elements;
+        let n = allElms.length;
+        let pcircle = allElms[n - 2] as CircumcircleElement;
+        let pcenter = allElms[n - 1] as PointElement;
         assert.equal(pcircle.Center, pcenter);
         almostEqual(pcenter.x, 165, 1);
         almostEqual(pcenter.y, 115, 1);
