@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test — init() failure reveals noscript fallback</title>
+<style>
+  body { font-family: sans-serif; padding: 1em; max-width: 720px; margin: auto; }
+  h1 { font-size: 1.2em; }
+  .testcase { border: 1px solid #ccc; padding: 1em; margin: 1em 0; }
+  .testcase h2 { font-size: 1em; margin-top: 0; }
+  /* Make the noscript fallback visually unmistakable so it's obvious
+     it was revealed (vs. the page just sitting on a blank canvas). */
+  .fallback {
+    background: #ffe9cd;
+    padding: 1em;
+    border: 2px dashed #c33;
+    color: #c33;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+<script src="../../../dist/bundle.js"></script>
+</head>
+<body>
+
+<h1>geomlib init() failure — graceful fallback test (issue #53)</h1>
+
+<p>If the <code>revealNoscriptFallback</code> machinery is working, each
+of the broken cases below should show a red-dashed fallback box where
+the canvas would normally render. The console should also show the
+caught error (open DevTools).</p>
+
+<div class="testcase">
+<h2>1. Healthy init — sanity check (canvas should render normally)</h2>
+<canvas id="canvas_ok" width="300" height="200" tabindex="0"></canvas>
+<noscript><div class="fallback">FALLBACK (this should NOT appear when JS is enabled and init succeeds)</div></noscript>
+<script>
+  geomlib.init({
+    canvasid: "canvas_ok",
+    background: "35,19,100",
+    title: "OK case",
+    elements: [
+      "A;point;free;100,100",
+      "B;point;free;200,100",
+      "AB;line;connect;A,B"
+    ]
+  });
+</script>
+</div>
+
+<div class="testcase">
+<h2>2. Broken init — references undefined element name "B"</h2>
+<canvas id="canvas_undefined_ref" width="300" height="200" tabindex="0"></canvas>
+<noscript><div class="fallback">FALLBACK 2 — undefined-reference case caught, this should be visible</div></noscript>
+<script>
+  try {
+    geomlib.init({
+      canvasid: "canvas_undefined_ref",
+      background: "35,19,100",
+      title: "Broken: refs undefined B",
+      elements: [
+        "A;point;free;100,100",
+        // 'B' was never defined → createElement throws
+        "M;point;midpoint;A,B"
+      ]
+    });
+  } catch (e) {
+    console.log("[test 2] caught (expected):", e.message);
+  }
+</script>
+</div>
+
+<div class="testcase">
+<h2>3. Healthy init — interleaved (proves the previous failure didn't break the page)</h2>
+<canvas id="canvas_ok_2" width="300" height="200" tabindex="0"></canvas>
+<noscript><div class="fallback">FALLBACK (this should NOT appear; canvas should render)</div></noscript>
+<script>
+  geomlib.init({
+    canvasid: "canvas_ok_2",
+    background: "35,19,100",
+    title: "OK case 2 (post-failure)",
+    elements: [
+      "A;point;free;80,100",
+      "B;point;free;220,100",
+      "C;point;free;150,40",
+      "ABC;polygon;triangle;A,B,C"
+    ]
+  });
+</script>
+</div>
+
+<div class="testcase">
+<h2>4. Broken init — missing canvas element id</h2>
+<canvas id="canvas_present" width="300" height="200" tabindex="0"></canvas>
+<noscript><div class="fallback">FALLBACK 4 — missing-canvas case caught, this should be visible (next to the real canvas)</div></noscript>
+<script>
+  try {
+    geomlib.init({
+      canvasid: "canvas_does_not_exist",
+      background: "35,19,100",
+      title: "Broken: bad canvasid",
+      elements: ["A;point;free;100,100"]
+    });
+  } catch (e) {
+    console.log("[test 4] caught (expected):", e.message);
+  }
+</script>
+</div>
+
+<div class="testcase">
+<h2>5. Healthy init — interleaved (proves test 4's failure didn't break the page)</h2>
+<canvas id="canvas_ok_3" width="300" height="200" tabindex="0"></canvas>
+<noscript><div class="fallback">FALLBACK (this should NOT appear; canvas should render)</div></noscript>
+<script>
+  geomlib.init({
+    canvasid: "canvas_ok_3",
+    background: "35,19,100",
+    title: "OK case 3 (post-failure)",
+    elements: [
+      "A;point;free;100,100",
+      "B;point;free;200,100",
+      "ABC;polygon;equilateralTriangle;A,B"
+    ]
+  });
+</script>
+</div>
+
+<div class="testcase">
+<h2>6. Broken init — no noscript sibling (graceful no-op)</h2>
+<canvas id="canvas_no_noscript" width="300" height="200" tabindex="0"></canvas>
+<!-- intentionally no <noscript> here -->
+<p style="color:#666;font-size:0.9em;">↑ No fallback element exists; canvas
+should simply stay blank, no exceptions. Check DevTools for the caught
+error.</p>
+<script>
+  try {
+    geomlib.init({
+      canvasid: "canvas_no_noscript",
+      background: "35,19,100",
+      title: "Broken: no fallback available",
+      elements: [
+        "A;point;free;100,100",
+        "M;point;midpoint;A,B"  // B undefined
+      ]
+    });
+  } catch (e) {
+    console.log("[test 6] caught (expected):", e.message);
+  }
+</script>
+</div>
+
+<div class="testcase">
+<h2>7. Healthy init — final interleaved check</h2>
+<canvas id="canvas_ok_4" width="300" height="200" tabindex="0"></canvas>
+<script>
+  geomlib.init({
+    canvasid: "canvas_ok_4",
+    background: "35,19,100",
+    title: "OK case 4 (final)",
+    elements: [
+      "A;point;free;100,100",
+      "B;point;free;200,100",
+      "C;point;midpoint;A,B"
+    ]
+  });
+</script>
+</div>
+
+</body>
+</html>
