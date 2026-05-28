@@ -23,6 +23,23 @@ const BTN_SIZE = 20;
 const BTN_GAP = 4;
 const BTN_MARGIN = 8;
 
+// Minimal event-target interface so this helper is testable without a real
+// `Window`. Browser `Window`, `Document`, and `Element` all satisfy it.
+export interface IResizeTarget {
+    addEventListener(type: "resize", listener: () => void): void;
+    removeEventListener(type: "resize", listener: () => void): void;
+}
+
+/**
+ * Attach `callback` to the target's "resize" event. Returns a teardown
+ * function that removes the listener — call it to stop tracking.
+ */
+export function trackWindowResize(target: IResizeTarget, callback: () => void): () => void {
+    const handler = () => callback();
+    target.addEventListener("resize", handler);
+    return () => target.removeEventListener("resize", handler);
+}
+
 export function createControls(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig): void {
     // Skip in headless/test environments
     if (!canvas.parentElement) return;
@@ -50,6 +67,7 @@ class SlateControls {
         canvasAttrWidth: number;
         canvasAttrHeight: number;
     } = null;
+    private _stopTrackingResize: (() => void) | null = null;
 
     constructor(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig) {
         this._slate = slate;
@@ -209,10 +227,22 @@ class SlateControls {
         this.resizeAndRedraw();
         this._maximized = true;
         this.updateMaximizeIcon();
+
+        // Track window resize so the canvas bitmap stays in sync with the
+        // wrapper's 100vw × 100vh CSS size. Without this the bitmap stays
+        // at its maximize-time dimensions while the CSS display follows
+        // viewport changes, and the diagram visibly stretches/squishes.
+        this._stopTrackingResize = trackWindowResize(window, () => this.resizeAndRedraw());
     }
 
     private minimize(): void {
         if (!this._savedStyles) return;
+
+        // Stop tracking window resize before restoring saved layout.
+        if (this._stopTrackingResize) {
+            this._stopTrackingResize();
+            this._stopTrackingResize = null;
+        }
 
         // Restore saved styles
         this._wrapper.style.position = this._savedStyles.wrapperPosition;
