@@ -460,8 +460,7 @@ The publicly-useful methods, all defined in
 |---|---|
 | `slate.lookupElement(name)` | Return the `GeomElement` named `name`, or `null`. |
 | `slate.elements` | Read-only view of all elements (in construction order). |
-| `slate.elementsForUpdate` | Read-only view of elements whose `update()` recomputes from parents each frame. Subset of `elements`. |
-| `slate.update()` | Walk `_elementsForUpdate` calling `update()`, then redraw. Use after directly mutating an element's coords. |
+| `slate.update()` | Walk `_elements` calling `update()`, then redraw. Use after directly mutating an element's coords. |
 | `slate.reset()` | Restore every element to its construction-time position (sliders rewind to their initial coords) and redraw. Same action as the SlateControls reset button (`r` / `space`). |
 | `slate.setPivot(name)` | Set the rotation pivot. `"P"` for screen-plane pivot, `"P,plane"` for a 3D pivot on a non-screen plane. See [Drag pipeline](architecture.md#drag-pipeline-movepick--translatecoordinates--rotatecoordinates). |
 | `slate.bgcolor` | Get or set the canvas background color. |
