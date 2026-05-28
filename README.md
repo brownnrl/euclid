@@ -7,6 +7,12 @@ every construction that depends on it follows. The original Java applet
 illustrated Euclid's *Elements*; this port does the same job in a
 modern browser, no JVM required.
 
+**See it in action:** [**euclids-elements.org**](https://www.euclids-elements.org/)
+republishes Dr. Joyce's online edition of *Euclid's Elements* with
+every diagram powered by this library — Books I–XIII plus compass /
+spherical tutorials. Source lives at
+[brownnrl/euclids-elements.org](https://github.com/brownnrl/euclids-elements.org).
+
 The library exposes eight element classes — *point*, *line*, *circle*,
 *polygon*, *sector*, *plane*, *sphere*, *polyhedron* — and the
 ~70 construction methods documented in the original applet's
