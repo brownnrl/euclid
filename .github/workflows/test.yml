@@ -8,6 +8,8 @@ on:
 
 jobs:
   unit:
+    permissions:
+      contents: read
     name: typecheck + unit tests
     runs-on: ubuntu-latest
 
