@@ -118,6 +118,9 @@ export class CircleElement extends GeomElement {
         ctx.strokeStyle = this.shouldHighlight
             ? this.edgeHighlightColor
             : this.edgeColor;
+        // Match LineElement: bump line weight when highlighted; always
+        // assign explicitly so a previous element's value doesn't leak.
+        ctx.lineWidth = this.shouldHighlight ? 3 : 1;
         this._drawCircle(ctx);
         ctx.stroke();
     }

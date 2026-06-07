@@ -13,14 +13,14 @@ import {discoverAllHtmlFiles, HtmlFileResult} from "./HtmlParamParser";
 import {
     buildScene, renderScene, findDraggablePoints, simulateDrag,
     drawVerificationImage, assertSnapshot, saveVerificationImage,
-    generateReport, ReportEntry, countDiffPixels, capturePixels
+    ReportEntry, countDiffPixels, capturePixels
 } from "./SnapshotHelper";
+import {reportEntries, ensureReportFlushed} from "./sharedSnapshotReport";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const SNAPSHOT_DIR = path.join(__dirname, "snapshots");
 
-// Collect report entries across all tests
-let reportEntries: ReportEntry[] = [];
+ensureReportFlushed();
 
 // Discover all HTML files
 let allFiles: HtmlFileResult[];
@@ -166,15 +166,7 @@ describe("snapshot verification", function() {
         }
     }
 
-    // Generate the HTML report after all tests complete
-    after(function() {
-        if (reportEntries.length > 0) {
-            generateReport(reportEntries);
-            console.log(`\n  Report generated: tests/snapshots/report.html`);
-            console.log(`  Total slates: ${reportEntries.length}`);
-            console.log(`  Passed: ${reportEntries.filter(e => !e.error && e.beforeResult.passed).length}`);
-            console.log(`  New baselines: ${reportEntries.filter(e => e.beforeResult.isNew).length}`);
-            console.log(`  Errors: ${reportEntries.filter(e => e.error).length}`);
-        }
-    });
+    // Report generation moved into ./sharedSnapshotReport so other
+    // snapshot-style suites (e.g. HighlightSnapshotTest) can contribute
+    // categories to the same report.html.
 });

@@ -53,6 +53,11 @@ export class LineElement extends GeomElement {
 
         let ctx = c.getContext("2d");
         ctx.strokeStyle = color;
+        // Highlight bumps the line weight from 1 → 3 so the swap reads
+        // immediately. Always assign explicitly: drawElements iterates
+        // elements in order, and a leftover lineWidth would carry into
+        // the next stroke.
+        ctx.lineWidth = this.shouldHighlight ? 3 : 1;
         ctx.beginPath();
         ctx.moveTo(this._A.x, this._A.y);
         ctx.lineTo(this._B.x, this._B.y);

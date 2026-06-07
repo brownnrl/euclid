@@ -24,6 +24,7 @@ function recordingCanvas(w: number, h: number) {
     const recorded = {
         strokeStyles: [] as string[],
         fillStyles:   [] as string[],
+        lineWidths:   [] as number[],
         arcRadii:     [] as number[],
     };
     // Re-wire the proxy to push into the recorded object instead of
@@ -32,6 +33,7 @@ function recordingCanvas(w: number, h: number) {
         set(target, prop, value) {
             if (prop === "strokeStyle") recorded.strokeStyles.push(value);
             if (prop === "fillStyle")   recorded.fillStyles.push(value);
+            if (prop === "lineWidth")   recorded.lineWidths.push(value);
             (target as any)[prop] = value;
             return true;
         },
@@ -182,17 +184,54 @@ describe("highlight rendering (issue #72)", () => {
     });
 
     describe("GeomElement highlight color defaults", () => {
-        it("defaults edge + vertex highlights to a high-contrast amber", () => {
+        it("defaults edge + vertex highlights to a high-contrast gold", () => {
             const slate = new Slate(createCanvas(200, 200));
             toElements(slate, triangle_data);
             const pt = slate.lookupElement("A") as PointElement;
             const line = slate.lookupElement("AB") as LineElement;
             const circle = slate.lookupElement("Acirc") as CircleElement;
-            // Material amber #FFC107 — readable on the cream theorem
-            // background the Lektor site uses.
-            assert.strictEqual(pt.vertexHighlightColor, "#FFC107");
-            assert.strictEqual(line.edgeHighlightColor,  "#FFC107");
-            assert.strictEqual(circle.edgeHighlightColor, "#FFC107");
+            // Web gold #FFD700 — readable on cream / white.
+            assert.strictEqual(pt.vertexHighlightColor, "#FFD700");
+            assert.strictEqual(line.edgeHighlightColor,  "#FFD700");
+            assert.strictEqual(circle.edgeHighlightColor, "#FFD700");
+        });
+    });
+
+    describe("highlight stroke weight", () => {
+        it("bumps lineWidth from 1 → 3 on a highlighted line", () => {
+            const slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            const line = slate.lookupElement("AB") as LineElement;
+            line.edgeColor = "#000000";
+
+            const onCtx = recordingCanvas(200, 200);
+            line.shouldHighlight = true;
+            line.drawEdge(onCtx.canvas);
+            assert.ok(
+                onCtx.recorded.lineWidths.includes(3),
+                `expected lineWidth=3 when highlighted; got ${JSON.stringify(onCtx.recorded.lineWidths)}`
+            );
+
+            const offCtx = recordingCanvas(200, 200);
+            line.shouldHighlight = false;
+            line.drawEdge(offCtx.canvas);
+            assert.ok(
+                offCtx.recorded.lineWidths.includes(1),
+                "normal line should reset lineWidth to 1"
+            );
+        });
+
+        it("bumps lineWidth from 1 → 3 on a highlighted circle", () => {
+            const slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            slate.elements.forEach(e => e.update());
+            const circle = slate.lookupElement("Acirc") as CircleElement;
+            circle.edgeColor = "#000000";
+
+            const onCtx = recordingCanvas(200, 200);
+            circle.shouldHighlight = true;
+            circle.drawEdge(onCtx.canvas);
+            assert.ok(onCtx.recorded.lineWidths.includes(3));
         });
     });
 });

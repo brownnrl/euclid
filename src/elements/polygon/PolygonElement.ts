@@ -60,6 +60,7 @@ export class PolygonElement extends GeomElement {
         let ctx = c.getContext("2d");
         ctx.beginPath();
         ctx.strokeStyle = color;
+        ctx.lineWidth = this.shouldHighlight ? 3 : 1;
         let firstPoint = this.V[0];
         let rest = this.V.slice(1);
 
