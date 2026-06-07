@@ -52,7 +52,7 @@ export class LineElement extends GeomElement {
         if (color == null) return;
 
         let ctx = c.getContext("2d");
-        ctx.fillStyle = color;
+        ctx.strokeStyle = color;
         ctx.beginPath();
         ctx.moveTo(this._A.x, this._A.y);
         ctx.lineTo(this._B.x, this._B.y);

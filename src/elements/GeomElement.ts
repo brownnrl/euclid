@@ -46,10 +46,14 @@ export abstract class GeomElement {
     private _edgeColor : string = null;
     private _faceColor : string = null;
 
-    private _nameHighlightColor   : string = '#FF0000';
-    private _vertexHighlightColor : string = '#FFFFFF';
-    private _edgeHighlightColor   : string = '#FFFFFF';
-    private _faceHighlightColor   : string = '#00FFFF';
+    // Highlight defaults pick high-contrast values that read on the typical
+    // cream / white backgrounds the library is used against. The previous
+    // edge/vertex default of white was invisible on the Elements site's
+    // theorem-box background (HSB 35,19,100 ≈ #FFE9CD).
+    private _nameHighlightColor   : string = '#FFC107';
+    private _vertexHighlightColor : string = '#FFC107';
+    private _edgeHighlightColor   : string = '#FFC107';
+    private _faceHighlightColor   : string = '#FFC107';
 
     // Default matches Java: Font("TimesRoman", Font.ITALIC, 18)
     protected static _font : string = "italic 18px Times New Roman";

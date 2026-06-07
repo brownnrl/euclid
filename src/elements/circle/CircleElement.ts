@@ -115,7 +115,9 @@ export class CircleElement extends GeomElement {
     public drawEdge(c: SlateCanvas): void {
         if (this.edgeColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
-        ctx.strokeStyle = this.edgeColor;
+        ctx.strokeStyle = this.shouldHighlight
+            ? this.edgeHighlightColor
+            : this.edgeColor;
         this._drawCircle(ctx);
         ctx.stroke();
     }
