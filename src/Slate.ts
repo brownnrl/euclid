@@ -11,6 +11,15 @@ export type SlateCanvas = HTMLCanvasElement | Canvas;
 export class Slate {
 
     protected _elements : GeomElement[];
+    // Name aliases — secondary names that resolve to existing elements
+    // without adding new ones to _elements. The original Geometry Applet
+    // and Euclid's *Elements* refer to the same circle by every
+    // permutation of its three named points (BCD ≡ CDB ≡ DBC ≡ …) and
+    // to lines by either endpoint order (AB ≡ BA). Authors register
+    // those equivalences here so the prose-side `{NAME}` shortcode can
+    // light up the canonical element without needing a parallel
+    // invisible duplicate per alias.
+    private _aliases : Map<string, string> = new Map();
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
@@ -146,13 +155,43 @@ export class Slate {
         return this._bgcolor;
     }
 
+    // Public accessor for the underlying canvas. Consumer-side code on
+    // multi-canvas pages (e.g. the {NAME} shortcode on euclids-elements.org)
+    // needs to compare DOM positions of each slate's canvas against the
+    // prose-side <span> to pick the right slate. Was protected before
+    // 0.4.0; the few prior callers (s.canvas in elem-ref-highlight.js)
+    // were just reading undefined and falling through to a brute-force
+    // walk of geomlib.slates.
+    get canvas() : SlateCanvas {
+        return this._canvas;
+    }
+
     lookupElement(name: string) : GeomElement {
         for (let elem of this._elements) {
             if (elem.name == name) {
                 return elem;
             }
         }
+        // Direct miss — follow the alias map and look up the canonical
+        // name. One hop only: we don't chase chains because aliases are
+        // expected to point at real element names, not at each other.
+        let canonical = this._aliases.get(name);
+        if (canonical != null) {
+            for (let elem of this._elements) {
+                if (elem.name == canonical) return elem;
+            }
+        }
         return null;
+    }
+
+    // Register a single secondary name → canonical name mapping. Idempotent.
+    // Called by init() when the user passes an `aliases` field.
+    addAlias(from: string, to: string) : void {
+        this._aliases.set(from, to);
+    }
+
+    addAliases(aliases: {[from: string]: string}) : void {
+        for (let from in aliases) this._aliases.set(from, aliases[from]);
     }
 
     // Sort params into P[] (points), E[] (other elements), N[] (integers),

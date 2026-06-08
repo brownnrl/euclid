@@ -36,6 +36,12 @@ export interface IInitialization {
     font?: string;
     fontsize?: number;
     elements: (IConstructionInfo | string)[];
+    // Secondary element names that resolve to a canonical element.
+    // Lets prose name an element under any of the conventional
+    // letter-permutations (e.g. "circle BCD" ≡ "circle CDB") without
+    // forcing the canvas to carry an invisible duplicate per alias.
+    // Resolved by Slate.lookupElement after a direct-name miss.
+    aliases?: {[from: string]: string};
 }
 
 // Map Java element class names to E object keys
@@ -191,6 +197,10 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
         let lighterColor = lighten(slate.bgcolor);
         let defaultFaceColor = element.dimension == 2 ? lighterColor : null;
         element.faceColor = parseColor(param.faceColor, defaultFaceColor, slate.bgcolor);
+    }
+
+    if (i.aliases != null) {
+        slate.addAliases(i.aliases);
     }
 
     if(i.pivot != null) {

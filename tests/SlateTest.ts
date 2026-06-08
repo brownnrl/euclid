@@ -542,4 +542,60 @@ describe("slate", () => {
             }
         });
     });
+
+    describe("element name aliases", () => {
+        // Joyce's prose names the same circle as both "BCD" and "CDB"
+        // and the same line as both "AB" and "BA". Slate.lookupElement
+        // resolves the secondary name to the canonical element so the
+        // shortcode-driven highlight on the consumer site doesn't need
+        // a separate invisible duplicate per alias.
+        let triangle_data: IConstructionInfo[] = [
+            { construction: E.Point.free,    name: "A",   params: [50, 50] },
+            { construction: E.Point.free,    name: "B",   params: [150, 50] },
+            { construction: E.Line.connect,  name: "AB",  params: ["A", "B"] },
+            { construction: E.Circle.radius, name: "BCD", params: ["A", "B"] },
+        ];
+
+        it("resolves a secondary name to the canonical element", () => {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            slate.addAlias("CDB", "BCD");
+            slate.addAlias("BA", "AB");
+            let canonical = slate.lookupElement("BCD");
+            assert.ok(canonical);
+            assert.strictEqual(slate.lookupElement("CDB"), canonical);
+            assert.strictEqual(slate.lookupElement("BA"), slate.lookupElement("AB"));
+        });
+
+        it("returns null when the alias target itself doesn't exist", () => {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            slate.addAlias("XYZ", "NOPE");
+            assert.strictEqual(slate.lookupElement("XYZ"), null);
+        });
+
+        it("prefers a direct match over an alias when both exist", () => {
+            // Edge case: someone authored both an element named "BA"
+            // AND an alias "BA → AB". Direct match wins.
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            // Add a separate BA line so we can disambiguate.
+            toElements(slate, [
+                { construction: E.Line.connect, name: "BA", params: ["B", "A"] },
+            ]);
+            slate.addAlias("BA", "AB");
+            let direct = slate.lookupElement("BA");
+            let canonical = slate.lookupElement("AB");
+            assert.ok(direct);
+            assert.notStrictEqual(direct, canonical);
+        });
+
+        it("addAliases bulk-loads a map", () => {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            slate.addAliases({"CDB": "BCD", "BA": "AB"});
+            assert.strictEqual(slate.lookupElement("CDB"), slate.lookupElement("BCD"));
+            assert.strictEqual(slate.lookupElement("BA"),  slate.lookupElement("AB"));
+        });
+    });
 });
