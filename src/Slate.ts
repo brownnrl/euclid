@@ -155,6 +155,17 @@ export class Slate {
         return this._bgcolor;
     }
 
+    // Public accessor for the underlying canvas. Consumer-side code on
+    // multi-canvas pages (e.g. the {NAME} shortcode on euclids-elements.org)
+    // needs to compare DOM positions of each slate's canvas against the
+    // prose-side <span> to pick the right slate. Was protected before
+    // 0.4.0; the few prior callers (s.canvas in elem-ref-highlight.js)
+    // were just reading undefined and falling through to a brute-force
+    // walk of geomlib.slates.
+    get canvas() : SlateCanvas {
+        return this._canvas;
+    }
+
     lookupElement(name: string) : GeomElement {
         for (let elem of this._elements) {
             if (elem.name == name) {
