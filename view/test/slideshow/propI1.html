@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>geomlib slideshow demo — propI.1</title>
+<style>
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 0 16px;
+    background: #fffaf2;
+    color: #222;
+    line-height: 1.5;
+}
+h1 { font-size: 1.3rem; margin-bottom: 0.3em; }
+p.lede { color: #555; margin-top: 0; font-size: 0.95rem; }
+ol.howto { background: #f3eedf; padding: 12px 20px 12px 36px; border-radius: 4px; font-size: 0.92rem; }
+figure.diagram {
+    background: #ffe9cd;
+    padding: 12px;
+    border-radius: 4px;
+    margin: 24px 0;
+    display: inline-block;
+    border: 1px solid #d8c8a9;
+}
+canvas { display: block; }
+</style>
+</head>
+<body>
+
+<h1>geomlib slideshow demo — propI.1 (Euclid I.1)</h1>
+<p class="lede">Manual smoke test for <a href="https://github.com/brownnrl/euclid/issues/75">brownnrl/euclid#75</a>. Open this page against the local <code>dist/bundle.js</code> (run <code>npm run bundle</code> first).</p>
+
+<ol class="howto">
+    <li>The canvas below loads with all elements visible — same as today.</li>
+    <li>The bottom-right slate-control row should now show <strong>four</strong> buttons. The new one is a play-triangle: <em>"▶ Present"</em> on hover.</li>
+    <li>Click it (or press <kbd>p</kbd> while the canvas is focused) to enter presentation mode. The page should go full-screen with the canvas centred and a caption at the bottom.</li>
+    <li>Use <kbd>→</kbd> / <kbd>←</kbd> (or the Next / Prev buttons) to walk through 13 slides. Each slide names which elements are visible and which are gold-highlighted; justification refs render under the caption (with a link when the resolver maps them — try removing the entry from <code>window.eucrefs</code> in devtools).</li>
+    <li>Drag point <em>A</em> or <em>B</em> mid-presentation — the figure deforms live, the slide visibility stays. Free / draggable points are auto-unioned into every slide's visible set.</li>
+    <li><kbd>Esc</kbd> (or the ✕ button) exits. The canvas returns to its inline location with everything visible and no highlights.</li>
+    <li>Open this page in a hard-refresh state and check the devtools console for any errors.</li>
+</ol>
+
+<figure class="diagram">
+<canvas id="canvas_0" width="340" height="260" tabindex="0"></canvas>
+</figure>
+
+<script>
+// Stand-in for what the lektor site would emit. Maps justification
+// refs to URLs; the Presentation overlay calls slate.resolveJustification(ref).
+window.eucrefs = {
+    "I.Post.1": "https://www.euclids-elements.org/elements/books/bookI/postulates/post1/",
+    "I.Post.3": "https://www.euclids-elements.org/elements/books/bookI/postulates/post3/",
+    "I.Def.15": "https://www.euclids-elements.org/elements/books/bookI/definitions/defI15/",
+    "I.Def.20": "https://www.euclids-elements.org/elements/books/bookI/definitions/defI20/",
+    "C.N.1":    "https://www.euclids-elements.org/elements/commonnotions/cn1/"
+};
+</script>
+
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script>
+geomlib.init({
+    canvasid: "canvas_0",
+    background: "35,19,100",
+    title: "I.1",
+    pivot: "C",
+    elements: [
+        "A;point;free;125,130",
+        "B;point;free;215,130",
+        "AB;line;connect;A,B",
+        "BCD;circle;radius;A,B",
+        "ACE;circle;radius;B,A",
+        "CD;line;bichord;ACE,BCD;0;0;0",
+        "C;point;first;CD;black;green",
+        "AC;line;connect;A,C",
+        "BC;line;connect;B,C",
+        "AE;line;extend;AB,AB;0;0;0",
+        "E;point;last;AE;black;0",
+        "BD;line;extend;B,A,A,B;0;0;0",
+        "D;point;last;BD;black;0",
+        "ABC;polygon;triangle;A,B,C;0;0;0;random"
+    ],
+    aliases: {
+        "CDB": "BCD",
+        "CAE": "ACE",
+        "BA":  "AB",
+        "CA":  "AC",
+        "CB":  "BC"
+    },
+    slides: [
+        { text: "Let AB be the given finite straight line.",
+          visible: ["AB"] },
+        { text: "It is required to construct an equilateral triangle on the straight line AB.",
+          visible: ["AB","ABC"],
+          highlighted: ["ABC"] },
+        { text: "Describe the circle BCD with centre A and radius AB.",
+          visible: ["AB","BCD"],
+          justifications: [{ ref: "I.Post.3" }] },
+        { text: "Again describe the circle ACE with centre B and radius BA.",
+          visible: ["AB","BCD","ACE"],
+          justifications: [{ ref: "I.Post.3" }] },
+        { text: "Join the straight lines CA and CB from the point C at which the circles cut one another.",
+          visible: ["AB","BCD","ACE","C","AC","BC"],
+          justifications: [{ ref: "I.Post.1" }] },
+        { text: "Since the point A is the centre of the circle CDB, therefore AC equals AB.",
+          highlighted: ["A","BCD","AC","AB"],
+          justifications: [{ ref: "I.Def.15" }] },
+        { text: "Again, since the point B is the centre of the circle CAE, therefore BC equals BA.",
+          highlighted: ["B","ACE","BC","AB"],
+          justifications: [{ ref: "I.Def.15" }] },
+        { text: "But AC was proved equal to AB.",
+          highlighted: ["AC","AB"] },
+        { text: "Therefore each of the straight lines AC and BC equals AB.",
+          highlighted: ["AC","BC","AB"] },
+        { text: "And things which equal the same thing also equal one another,",
+          highlighted: ["AC","BC","AB"],
+          justifications: [{ ref: "C.N.1" }] },
+        { text: "therefore AC also equals BC.",
+          highlighted: ["AC","BC"] },
+        { text: "Therefore the three straight lines AC, AB, and BC equal one another.",
+          highlighted: ["AC","AB","BC"] },
+        { text: "Therefore the triangle ABC is equilateral, and it has been constructed on the given finite straight line AB.",
+          visible: ["AB","AC","BC","ABC"],
+          highlighted: ["ABC"],
+          justifications: [{ ref: "I.Def.20" }] }
+    ],
+    resolveJustification: function(ref) {
+        return (window.eucrefs && window.eucrefs[ref]) || null;
+    }
+});
+</script>
+
+</body>
+</html>
