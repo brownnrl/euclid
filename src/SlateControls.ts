@@ -9,6 +9,7 @@
 +----------------------------------------------------------------------*/
 
 import {Slate} from "./Slate";
+import {enterPresentation} from "./Presentation";
 
 interface IInitConfig {
     background: string;
@@ -110,6 +111,17 @@ class SlateControls {
             { draw: drawNewWindowIcon, action: () => this.onNewWindow(), title: "New Window (u)" },
         ];
 
+        // Conditionally append a "▶ Present" button when the slate
+        // carries any slides. Slates without slides see the same
+        // three-button row as before — backwards-compatible.
+        if (this._slate.slides.length > 0) {
+            buttons.push({
+                draw: drawPresentIcon,
+                action: () => enterPresentation(this._slate),
+                title: "Present (p)",
+            });
+        }
+
         for (let i = 0; i < buttons.length; i++) {
             let btn = document.createElement("button");
             btn.style.position = "absolute";
@@ -176,6 +188,13 @@ class SlateControls {
                 case "M":
                     e.preventDefault();
                     this.onMaximize();
+                    break;
+                case "p":
+                case "P":
+                    if (this._slate.slides.length > 0) {
+                        e.preventDefault();
+                        enterPresentation(this._slate);
+                    }
                     break;
             }
         });
@@ -480,6 +499,23 @@ function drawNewWindowIcon(ctx: CanvasRenderingContext2D, size: number): void {
     ctx.moveTo(arrowEndX, arrowEndY);
     ctx.lineTo(arrowEndX - 5, arrowEndY);
     ctx.lineTo(arrowEndX, arrowEndY + 5);
+    ctx.closePath();
+    ctx.fill();
+}
+
+function drawPresentIcon(ctx: CanvasRenderingContext2D, size: number): void {
+    // Right-pointing play triangle, centred. The button is square so a
+    // little leftward bias visually centres the optical mass.
+    let pad = size * 0.28;
+    let leftX = pad - 1;
+    let rightX = size - pad + 2;
+    let topY = pad;
+    let bottomY = size - pad;
+    ctx.fillStyle = "rgba(0,0,0,0.7)";
+    ctx.beginPath();
+    ctx.moveTo(leftX, topY);
+    ctx.lineTo(leftX, bottomY);
+    ctx.lineTo(rightX, size / 2);
     ctx.closePath();
     ctx.fill();
 }

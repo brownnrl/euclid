@@ -5,6 +5,9 @@ import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
 import {colors, randomColor, lighten, darken, parseColor} from "./Colors";
 import {createControls} from "./SlateControls";
+import {enterPresentation, exitPresentation} from "./Presentation";
+
+export {enterPresentation, exitPresentation};
 
 export type IndexAllConstructions = AllConstructions;
 export {align  as Align};
