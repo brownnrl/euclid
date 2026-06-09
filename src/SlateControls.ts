@@ -20,9 +20,18 @@ interface IInitConfig {
     elements: any[];
 }
 
-const BTN_SIZE = 20;
-const BTN_GAP = 4;
-const BTN_MARGIN = 8;
+// Slate-controls icon sizing. Touch devices (coarse pointer) get
+// roughly double-sized buttons so they hit the ~44px tap-target
+// minimum from Apple/Material guidance. Mouse/trackpad keeps the
+// compact 20px row that fits desktop.
+function isCoarsePointer(): boolean {
+    return typeof window !== "undefined"
+        && typeof window.matchMedia === "function"
+        && window.matchMedia("(pointer: coarse)").matches;
+}
+const BTN_SIZE = isCoarsePointer() ? 44 : 20;
+const BTN_GAP = isCoarsePointer() ? 8 : 4;
+const BTN_MARGIN = isCoarsePointer() ? 12 : 8;
 
 // Minimal event-target interface so this helper is testable without a real
 // `Window`. Browser `Window`, `Document`, and `Element` all satisfy it.
@@ -393,34 +402,35 @@ class SlateControls {
     }
 
     private buildPresentationOverlay(): void {
-        // Floating UI panel pinned to the bottom-centre of the viewport.
-        // position: fixed (not absolute) and appended directly to
-        // document.body so iOS / Android URL-bar viewport changes don't
-        // shove it off-screen the way a wrapper-relative absolute
-        // position would. Soft, semi-transparent background so the
-        // diagram stays visible behind it. Buttons sit inside the same
-        // panel for thumb reach on mobile.
+        // Floating UI panel pinned to the bottom of the viewport.
+        // Uses position: fixed and attaches to documentElement so it
+        // can't be clipped by any wrapper, transformed parent, or
+        // scrollable container — works the same on iOS Safari,
+        // Samsung Internet, Android Chrome, and desktop. Solid white
+        // (no transparency) so it's never mistaken for background;
+        // bright box-shadow so the boundary reads.
         const overlay = document.createElement("div");
         overlay.className = "geomlib-presentation-overlay";
         overlay.style.position = "fixed";
-        overlay.style.left = "50%";
-        // env() handles the iPhone home-indicator safe area; the
-        // fallback keeps 12px clearance on browsers that don't grok env().
-        overlay.style.bottom = "calc(12px + env(safe-area-inset-bottom, 0px))";
-        overlay.style.transform = "translateX(-50%)";
-        overlay.style.maxWidth = "min(800px, 94vw)";
-        overlay.style.width = "max-content";
-        overlay.style.background = "rgba(255,255,255,0.94)";
+        overlay.style.left = "0";
+        overlay.style.right = "0";
+        overlay.style.bottom = "0";
+        overlay.style.margin = "0 auto";
+        // Span the bottom of the viewport so the centred contents
+        // can't render off-screen and there's nowhere for the panel
+        // to "hide". The actual visible chrome is the inner column.
+        overlay.style.maxWidth = "100vw";
+        overlay.style.background = "#ffffff";
         overlay.style.color = "#222";
-        overlay.style.border = "1px solid rgba(0,0,0,0.15)";
-        overlay.style.borderRadius = "6px";
-        overlay.style.boxShadow = "0 4px 14px rgba(0,0,0,0.18)";
-        overlay.style.padding = "12px 16px 10px";
-        overlay.style.zIndex = "10001";
+        overlay.style.borderTop = "1px solid rgba(0,0,0,0.18)";
+        overlay.style.boxShadow = "0 -6px 18px rgba(0,0,0,0.18)";
+        overlay.style.padding = "12px 16px calc(12px + env(safe-area-inset-bottom, 0px))";
+        // Max possible z-index so nothing can stack above us.
+        overlay.style.zIndex = "2147483647";
         overlay.style.fontFamily = "Georgia, 'Times New Roman', serif";
-        // Mobile browsers can otherwise let the canvas swallow taps
-        // that should hit the panel.
         overlay.style.touchAction = "manipulation";
+        overlay.style.boxSizing = "border-box";
+        overlay.style.textAlign = "center";
 
         const caption = document.createElement("div");
         caption.className = "geomlib-presentation-caption";
@@ -476,7 +486,9 @@ class SlateControls {
         nav.appendChild(exitBtn);
         overlay.appendChild(nav);
 
-        document.body.appendChild(overlay);
+        // Append to documentElement (html) — outside body — so a
+        // mobile browser's odd body sizing can't clip us.
+        document.documentElement.appendChild(overlay);
         this._presentationOverlay = overlay;
         this._presentationCaption = caption;
         this._presentationJusts = justs;
