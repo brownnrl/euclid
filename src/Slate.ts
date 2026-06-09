@@ -5,8 +5,11 @@ import {AllConstructions, Construction, SortedParams, constructions, getConstruc
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas} from "canvas";
 import {LineElement} from "./elements/line/LineElement";
+import {ISlide} from "./index";
 
 export type SlateCanvas = HTMLCanvasElement | Canvas;
+
+export type ResolveJustification = (ref: string) => string | null | undefined;
 
 export class Slate {
 
@@ -20,6 +23,15 @@ export class Slate {
     // light up the canonical element without needing a parallel
     // invisible duplicate per alias.
     private _aliases : Map<string, string> = new Map();
+    // Optional slideshow walk-through; populated from init().slides.
+    // Empty array means no presentation mode is available; SlateControls
+    // skips the "▶ Present" button.
+    private _slides : ISlide[] = [];
+    // Consumer-supplied callback resolving a justification ref label
+    // (e.g. "I.Post.3") to a URL. Returns null/undefined when the ref
+    // isn't recognised, in which case the Presentation overlay renders
+    // the ref as plain text. Undefined means no resolver was passed.
+    private _resolveJustification : ResolveJustification | null = null;
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
@@ -192,6 +204,22 @@ export class Slate {
 
     addAliases(aliases: {[from: string]: string}) : void {
         for (let from in aliases) this._aliases.set(from, aliases[from]);
+    }
+
+    get slides() : ISlide[] {
+        return this._slides;
+    }
+
+    set slides(value: ISlide[]) {
+        this._slides = value || [];
+    }
+
+    get resolveJustification() : ResolveJustification | null {
+        return this._resolveJustification;
+    }
+
+    set resolveJustification(value: ResolveJustification | null) {
+        this._resolveJustification = value;
     }
 
     // Hide every element whose name is not in the supplied set. Names not
