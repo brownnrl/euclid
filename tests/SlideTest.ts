@@ -7,7 +7,7 @@ import "mocha";
 import * as assert from "assert";
 import {createCanvas} from "canvas";
 import {init, slates, ISlide, IConstructionInfo} from "../src/index";
-import {computeSlideState} from "../src/Presentation";
+import {computeSlideState} from "../src/slideshow";
 
 // Mock the minimum DOM that init() needs.
 function withFakeDOM<T>(fn: (canvasId: string) => T): T {

@@ -9,7 +9,7 @@
 +----------------------------------------------------------------------*/
 
 import {Slate} from "./Slate";
-import {enterPresentation} from "./Presentation";
+import {computeSlideState} from "./slideshow";
 
 interface IInitConfig {
     background: string;
@@ -70,6 +70,16 @@ class SlateControls {
     } = null;
     private _stopTrackingResize: (() => void) | null = null;
 
+    // Presentation-mode (slideshow) state. Caption + nav float over
+    // the maximized canvas; no fullscreen overlay, no background takeover.
+    private _presenting: boolean = false;
+    private _presentationIndex: number = 0;
+    private _presentationOverlay: HTMLDivElement | null = null;
+    private _presentationCaption: HTMLDivElement | null = null;
+    private _presentationJusts: HTMLDivElement | null = null;
+    private _presentationCounter: HTMLSpanElement | null = null;
+    private _presentationOnKey: ((e: KeyboardEvent) => void) | null = null;
+
     constructor(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig) {
         this._slate = slate;
         this._canvas = canvas;
@@ -117,7 +127,7 @@ class SlateControls {
         if (this._slate.slides.length > 0) {
             buttons.push({
                 draw: drawPresentIcon,
-                action: () => enterPresentation(this._slate),
+                action: () => this.onPresent(),
                 title: "Present (p)",
             });
         }
@@ -193,7 +203,7 @@ class SlateControls {
                 case "P":
                     if (this._slate.slides.length > 0) {
                         e.preventDefault();
-                        enterPresentation(this._slate);
+                        this.onPresent();
                     }
                     break;
             }
@@ -351,6 +361,225 @@ class SlateControls {
             newWin.document.close();
         }
     }
+
+    // --- Presentation mode (slideshow) ---
+    //
+    // Opens the slate's slides as a step-through. The canvas itself
+    // takes over the viewport via the existing maximize state (no
+    // separate fullscreen overlay, no black takeover) — the caption
+    // and nav controls float on top of the maximized canvas.
+
+    private onPresent(): void {
+        if (this._presenting) return;
+        if (this._slate.slides.length === 0) return;
+        if (!this._maximized) this.maximize();
+        this.buildPresentationOverlay();
+        this.bindPresentationKeys();
+        this._presenting = true;
+        this.showSlide(0);
+    }
+
+    private exitPresent(): void {
+        if (!this._presenting) return;
+        this.unbindPresentationKeys();
+        this.removePresentationOverlay();
+        this._slate.clearVisibility();
+        for (let e of this._slate.elements) e.shouldHighlight = false;
+        this._slate.update();
+        this._presenting = false;
+    }
+
+    private buildPresentationOverlay(): void {
+        // Floating UI panel pinned to the bottom-centre of the wrapper.
+        // Soft, semi-transparent background so the diagram stays
+        // visible behind it. Buttons sit inside the same panel for
+        // thumb reach on mobile.
+        const overlay = document.createElement("div");
+        overlay.className = "geomlib-presentation-overlay";
+        overlay.style.position = "absolute";
+        overlay.style.left = "50%";
+        overlay.style.bottom = "24px";
+        overlay.style.transform = "translateX(-50%)";
+        overlay.style.maxWidth = "min(800px, 92vw)";
+        overlay.style.background = "rgba(255,255,255,0.92)";
+        overlay.style.color = "#222";
+        overlay.style.border = "1px solid rgba(0,0,0,0.15)";
+        overlay.style.borderRadius = "6px";
+        overlay.style.boxShadow = "0 4px 14px rgba(0,0,0,0.18)";
+        overlay.style.padding = "14px 18px 12px";
+        overlay.style.zIndex = "10001";
+        overlay.style.fontFamily = "Georgia, 'Times New Roman', serif";
+
+        const caption = document.createElement("div");
+        caption.className = "geomlib-presentation-caption";
+        caption.style.fontSize = "1.1rem";
+        caption.style.lineHeight = "1.45";
+        caption.style.textAlign = "center";
+        caption.style.marginBottom = "6px";
+        overlay.appendChild(caption);
+
+        const justs = document.createElement("div");
+        justs.className = "geomlib-presentation-justs";
+        justs.style.fontSize = "0.85rem";
+        justs.style.textAlign = "center";
+        justs.style.opacity = "0.85";
+        justs.style.minHeight = "1em";
+        justs.style.marginBottom = "10px";
+        overlay.appendChild(justs);
+
+        const nav = document.createElement("div");
+        nav.className = "geomlib-presentation-nav";
+        nav.style.display = "flex";
+        nav.style.gap = "10px";
+        nav.style.alignItems = "center";
+        nav.style.justifyContent = "center";
+
+        const prevBtn = makePresentationButton("‹ Prev");
+        const counter = document.createElement("span");
+        counter.className = "geomlib-presentation-counter";
+        counter.style.minWidth = "56px";
+        counter.style.textAlign = "center";
+        counter.style.opacity = "0.7";
+        counter.style.fontSize = "0.9rem";
+        const nextBtn = makePresentationButton("Next ›");
+        const exitBtn = makePresentationButton("✕ Exit");
+        exitBtn.style.marginLeft = "16px";
+
+        prevBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.showSlide(this._presentationIndex - 1);
+        });
+        nextBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.showSlide(this._presentationIndex + 1);
+        });
+        exitBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.exitPresent();
+        });
+
+        nav.appendChild(prevBtn);
+        nav.appendChild(counter);
+        nav.appendChild(nextBtn);
+        nav.appendChild(exitBtn);
+        overlay.appendChild(nav);
+
+        this._wrapper.appendChild(overlay);
+        this._presentationOverlay = overlay;
+        this._presentationCaption = caption;
+        this._presentationJusts = justs;
+        this._presentationCounter = counter;
+    }
+
+    private removePresentationOverlay(): void {
+        if (this._presentationOverlay && this._presentationOverlay.parentNode) {
+            this._presentationOverlay.parentNode.removeChild(this._presentationOverlay);
+        }
+        this._presentationOverlay = null;
+        this._presentationCaption = null;
+        this._presentationJusts = null;
+        this._presentationCounter = null;
+    }
+
+    private bindPresentationKeys(): void {
+        const handler = (e: KeyboardEvent) => {
+            if (!this._presenting) return;
+            switch (e.key) {
+                case "ArrowLeft":
+                    e.preventDefault();
+                    this.showSlide(this._presentationIndex - 1);
+                    break;
+                case "ArrowRight":
+                case " ":
+                    e.preventDefault();
+                    this.showSlide(this._presentationIndex + 1);
+                    break;
+                case "Escape":
+                    e.preventDefault();
+                    this.exitPresent();
+                    break;
+            }
+        };
+        this._presentationOnKey = handler;
+        document.addEventListener("keydown", handler);
+    }
+
+    private unbindPresentationKeys(): void {
+        if (this._presentationOnKey) {
+            document.removeEventListener("keydown", this._presentationOnKey);
+            this._presentationOnKey = null;
+        }
+    }
+
+    private showSlide(index: number): void {
+        const slides = this._slate.slides;
+        if (slides.length === 0) return;
+        const clamped = Math.max(0, Math.min(slides.length - 1, index));
+        this._presentationIndex = clamped;
+
+        const state = computeSlideState(this._slate, slides, clamped);
+        for (let e of this._slate.elements) {
+            if (e.name == null) continue;
+            e.visible = state.visible.has(e.name);
+            e.shouldHighlight = state.highlighted.has(e.name);
+        }
+        this._slate.update();
+
+        const slide = slides[clamped];
+        if (this._presentationCaption) {
+            this._presentationCaption.textContent = slide.text || "";
+        }
+        if (this._presentationCounter) {
+            this._presentationCounter.textContent = (clamped + 1) + " / " + slides.length;
+        }
+        if (this._presentationJusts) {
+            this._presentationJusts.innerHTML = "";
+            const resolve = this._slate.resolveJustification;
+            if (slide.justifications) {
+                for (let i = 0; i < slide.justifications.length; i++) {
+                    if (i > 0) {
+                        const sep = document.createElement("span");
+                        sep.textContent = " · ";
+                        sep.style.opacity = "0.5";
+                        this._presentationJusts.appendChild(sep);
+                    }
+                    const ref = slide.justifications[i].ref;
+                    const url = resolve ? resolve(ref) : null;
+                    if (url) {
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.textContent = ref;
+                        a.target = "_blank";
+                        a.rel = "noopener";
+                        a.style.color = "#0066cc";
+                        this._presentationJusts.appendChild(a);
+                    } else {
+                        const span = document.createElement("span");
+                        span.textContent = ref;
+                        this._presentationJusts.appendChild(span);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Button styling shared by the four nav buttons in the presentation
+// overlay. Matches the soft, light visual of the surrounding panel.
+function makePresentationButton(label: string): HTMLButtonElement {
+    const b = document.createElement("button");
+    b.textContent = label;
+    b.style.background = "rgba(0,0,0,0.08)";
+    b.style.color = "#222";
+    b.style.border = "1px solid rgba(0,0,0,0.15)";
+    b.style.borderRadius = "3px";
+    b.style.padding = "6px 12px";
+    b.style.cursor = "pointer";
+    b.style.fontFamily = "inherit";
+    b.style.fontSize = "0.92rem";
+    b.addEventListener("mouseenter", () => { b.style.background = "rgba(0,0,0,0.16)"; });
+    b.addEventListener("mouseleave", () => { b.style.background = "rgba(0,0,0,0.08)"; });
+    return b;
 }
 
 // --- Icon drawing functions ---

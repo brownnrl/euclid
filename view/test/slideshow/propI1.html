@@ -35,10 +35,10 @@ canvas { display: block; }
 <ol class="howto">
     <li>The canvas below loads with all elements visible — same as today.</li>
     <li>The bottom-right slate-control row should now show <strong>four</strong> buttons. The new one is a play-triangle: <em>"▶ Present"</em> on hover.</li>
-    <li>Click it (or press <kbd>p</kbd> while the canvas is focused) to enter presentation mode. The page should go full-screen with the canvas centred and a caption at the bottom.</li>
+    <li>Click it (or press <kbd>p</kbd> while the canvas is focused) to enter presentation mode. The canvas should auto-maximise to fill the viewport, and a soft caption panel should float over the bottom-centre of the canvas with the slide text + nav buttons. <strong>No black overlay, no separate full-screen mode</strong> — the caption sits on top of the existing maximised view.</li>
     <li>Use <kbd>→</kbd> / <kbd>←</kbd> (or the Next / Prev buttons) to walk through 13 slides. Each slide names which elements are visible and which are gold-highlighted; justification refs render under the caption (with a link when the resolver maps them — try removing the entry from <code>window.eucrefs</code> in devtools).</li>
     <li>Drag point <em>A</em> or <em>B</em> mid-presentation — the figure deforms live, the slide visibility stays. Free / draggable points are auto-unioned into every slide's visible set.</li>
-    <li><kbd>Esc</kbd> (or the ✕ button) exits. The canvas returns to its inline location with everything visible and no highlights.</li>
+    <li><kbd>Esc</kbd> (or the ✕ button) exits the slideshow. The caption disappears; the canvas stays maximised (press <kbd>m</kbd> or the maximize button to minimize). Everything is visible again and no elements are highlighted.</li>
     <li>Open this page in a hard-refresh state and check the devtools console for any errors.</li>
 </ol>
 
