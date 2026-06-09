@@ -4,75 +4,65 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>geomlib slideshow demo — propI.1</title>
+<!-- Re-use the live euclids-elements.org stylesheet through a symlink
+     so this demo renders in the same body / theorem / figure typography
+     and sizing the real prop pages do. The view/lektor-css symlink
+     points at ../../euclids-elements-lektor/assets/css. -->
+<link rel="stylesheet" href="../../lektor-css/style.css">
 <style>
-body {
-    font-family: Georgia, "Times New Roman", serif;
-    max-width: 720px;
-    margin: 40px auto;
-    padding: 0 16px;
-    background: #fffaf2;
-    color: #222;
-    line-height: 1.5;
-}
-h1 { font-size: 1.3rem; margin-bottom: 0.3em; }
-p.lede { color: #555; margin-top: 0; font-size: 0.95rem; }
-ol.howto { background: #f3eedf; padding: 12px 20px 12px 36px; border-radius: 4px; font-size: 0.92rem; }
-figure.diagram {
-    background: #ffe9cd;
-    padding: 12px;
-    border-radius: 4px;
-    margin: 24px auto;
-    display: block;
-    width: max-content;
-    max-width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #d8c8a9;
-    text-align: center;
-}
-canvas { display: inline-block; touch-action: none; }
+/* Lock the body to the viewport width — defensive against any nested
+   long-string element trying to push the page wider and triggering the
+   mobile browser's auto-zoom-out. */
+html, body { max-width: 100%; overflow-x: hidden; }
 
-/* Mobile: trim the page chrome so the 340-px canvas sits comfortably
-   on a 360-class screen, and centre the figure as a block. Mirrors the
-   lektor site's @media (max-width: 480px) figure.diagram rule —
-   intentionally does NOT scale the canvas bitmap with max-width:100%
-   because that breaks the touch hit-test mapping. */
-@media (max-width: 720px) {
-    body {
-        margin: 16px auto;
-        padding: 0 8px;
-    }
-    h1 { font-size: 1.15rem; }
-    ol.howto { padding: 10px 16px 10px 28px; font-size: 0.85rem; }
-    figure.diagram {
-        padding: 6px;
-        margin: 16px auto;
-    }
+/* Smoke-checklist callout: visually distinct from the proof so it's
+   clear the test instructions aren't part of the real prop. */
+.smoke-notes {
+    background: #f3eedf;
+    border: 1px solid #d8c8a9;
+    border-radius: 4px;
+    padding: 10px 16px 10px 28px;
+    margin: 1em 0;
 }
+.smoke-notes h2 { margin-top: 0; font-size: 1rem; color: #8a4a08; }
 </style>
 </head>
 <body>
 
-<h1>geomlib slideshow demo — propI.1 (Euclid I.1)</h1>
-<p class="lede">Manual smoke test for <a href="https://github.com/brownnrl/euclid/issues/75">brownnrl/euclid#75</a>. Open this page against the local <code>dist/bundle.js</code> (run <code>npm run bundle</code> first).</p>
+<header class="site-header">
+<h1>Euclid&rsquo;s Elements</h1>
+<h1>Book I</h1>
+</header>
 
-<ol class="howto">
-    <li>The canvas below loads with all elements visible — same as today.</li>
-    <li>The bottom-right slate-control row should now show <strong>four</strong> buttons. The new one is a play-triangle: <em>"▶ Present"</em> on hover.</li>
-    <li>Click it (or press <kbd>p</kbd> while the canvas is focused) to enter presentation mode. The canvas should auto-maximise to fill the viewport, and a soft caption panel should float over the bottom-centre of the canvas with the slide text + nav buttons. <strong>No black overlay, no separate full-screen mode</strong> — the caption sits on top of the existing maximised view.</li>
-    <li>Use <kbd>→</kbd> / <kbd>←</kbd> (or the Next / Prev buttons) to walk through 13 slides. Each slide names which elements are visible and which are gold-highlighted; justification refs render under the caption (with a link when the resolver maps them — try removing the entry from <code>window.eucrefs</code> in devtools).</li>
-    <li>The element references in the caption text (e.g. <em>BCD</em>, <em>A</em>, <em>AB</em>) render as bold-italic links. Hover one — the matching element on the canvas gets a thicker gold stroke. Tap once to pin the emphasis (sticky), tap again to release.</li>
-    <li>Drag point <em>A</em> or <em>B</em> mid-presentation — the figure deforms live, the slide visibility stays. Free / draggable points are auto-unioned into every slide's visible set.</li>
-    <li><kbd>Esc</kbd> (or the ✕ button) exits the slideshow. The caption disappears; the canvas stays maximised (press <kbd>m</kbd> or the maximize button to minimize). Everything is visible again and no elements are highlighted.</li>
-    <li>Open this page in a hard-refresh state and check the devtools console for any errors.</li>
-</ol>
+<div class="theorem">
+<h1>Proposition 1</h1>
+<div class="statement">To construct an equilateral triangle on a given finite straight line.</div>
+
+<p>Let <em>AB</em> be the given finite straight line.</p>
 
 <figure class="diagram">
 <canvas id="canvas_0" width="340" height="260" tabindex="0"></canvas>
 </figure>
 
+<p>Tap the play-triangle button in the slate-control row to step through this proof one statement at a time.</p>
+</div>
+
+<section class="smoke-notes">
+<h2>Smoke checklist</h2>
+<ol>
+    <li>Four buttons appear at the top-right of the canvas (the new one is the play-triangle).</li>
+    <li>Tap the play button: canvas maximises and a white caption bar slides up from the bottom.</li>
+    <li>13 slides walk with Next / Prev or arrow keys.</li>
+    <li><em>{NAME}</em> tokens in the caption thicken the matching element on hover; tap pins.</li>
+    <li>Free points stay draggable mid-presentation.</li>
+    <li><kbd>Esc</kbd> or ✕ exits; canvas stays maximised, all visible, no highlights.</li>
+</ol>
+</section>
+
 <script>
-// Stand-in for what the lektor site would emit. Maps justification
-// refs to URLs; the Presentation overlay calls slate.resolveJustification(ref).
+// Stand-in for what the lektor site emits per page. Maps the slide's
+// symbolic justification refs to live euclids-elements.org URLs;
+// Presentation calls slate.resolveJustification(ref) to look up.
 window.eucrefs = {
     "I.Post.1": "https://www.euclids-elements.org/elements/books/bookI/postulates/post1/",
     "I.Post.3": "https://www.euclids-elements.org/elements/books/bookI/postulates/post3/",
