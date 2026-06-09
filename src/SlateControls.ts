@@ -384,7 +384,10 @@ class SlateControls {
         this.unbindPresentationKeys();
         this.removePresentationOverlay();
         this._slate.clearVisibility();
-        for (let e of this._slate.elements) e.shouldHighlight = false;
+        for (let e of this._slate.elements) {
+            e.shouldHighlight = false;
+            e.emphasized = false;
+        }
         this._slate.update();
         this._presenting = false;
     }
@@ -518,16 +521,19 @@ class SlateControls {
         this._presentationIndex = clamped;
 
         const state = computeSlideState(this._slate, slides, clamped);
+        // Reset emphasis between slides so a sticky-tap on slide N
+        // doesn't leak into N+1.
         for (let e of this._slate.elements) {
             if (e.name == null) continue;
             e.visible = state.visible.has(e.name);
             e.shouldHighlight = state.highlighted.has(e.name);
+            e.emphasized = false;
         }
         this._slate.update();
 
         const slide = slides[clamped];
         if (this._presentationCaption) {
-            this._presentationCaption.textContent = slide.text || "";
+            this.renderCaptionText(this._presentationCaption, slide.text || "");
         }
         if (this._presentationCounter) {
             this._presentationCounter.textContent = (clamped + 1) + " / " + slides.length;
@@ -561,6 +567,67 @@ class SlateControls {
                 }
             }
         }
+    }
+
+    // Parse {NAME} tokens in caption text and emit interactive bold-
+    // italic spans for any that resolve to a slate element (alias
+    // lookups included). Unknown / unresolved refs render as plain
+    // text with the braces stripped. Hover / pointerdown toggles
+    // element.emphasized so the figure picks the ref up with an
+    // extra-thick gold stroke.
+    private renderCaptionText(host: HTMLElement, text: string): void {
+        host.innerHTML = "";
+        const re = /\{([A-Za-z][A-Za-z0-9'\-]*)\}/g;
+        let lastIndex = 0;
+        let m: RegExpExecArray | null;
+        while ((m = re.exec(text)) !== null) {
+            if (m.index > lastIndex) {
+                host.appendChild(document.createTextNode(text.slice(lastIndex, m.index)));
+            }
+            const name = m[1];
+            const elem = this._slate.lookupElement(name);
+            if (elem) {
+                host.appendChild(this.buildCaptionRef(name, elem));
+            } else {
+                // Unknown — render plain so a typo doesn't surface as
+                // raw "{XYZ}" to the reader.
+                host.appendChild(document.createTextNode(name));
+            }
+            lastIndex = m.index + m[0].length;
+        }
+        if (lastIndex < text.length) {
+            host.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+    }
+
+    private buildCaptionRef(label: string, elem: import("./elements/GeomElement").GeomElement): HTMLSpanElement {
+        const span = document.createElement("span");
+        span.className = "geomlib-presentation-ref";
+        span.textContent = label;
+        span.style.fontWeight = "700";
+        span.style.fontStyle = "italic";
+        span.style.cursor = "pointer";
+        span.style.borderBottom = "1px dotted currentColor";
+        let sticky = false;
+        const setEmph = (on: boolean) => {
+            elem.emphasized = on;
+            this._slate.update();
+        };
+        span.addEventListener("mouseenter", () => {
+            if (!sticky) setEmph(true);
+        });
+        span.addEventListener("mouseleave", () => {
+            if (!sticky) setEmph(false);
+        });
+        span.addEventListener("pointerdown", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            sticky = !sticky;
+            span.classList.toggle("active", sticky);
+            span.style.color = sticky ? "#b08800" : "";
+            setEmph(sticky);
+        });
+        return span;
     }
 }
 

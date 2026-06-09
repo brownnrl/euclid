@@ -48,7 +48,7 @@ export class PolygonElement extends GeomElement {
     public drawEdge(c: HTMLCanvasElement, color?: string): void {
         if (!this.visible) return;
         if (color == null) {
-            if (this.shouldHighlight) {
+            if (this.emphasized || this.shouldHighlight) {
                 color = this.edgeHighlightColor;
             } else {
                 color = this.edgeColor;
@@ -61,7 +61,7 @@ export class PolygonElement extends GeomElement {
         let ctx = c.getContext("2d");
         ctx.beginPath();
         ctx.strokeStyle = color;
-        ctx.lineWidth = this.shouldHighlight ? 3 : 1;
+        ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
         let firstPoint = this.V[0];
         let rest = this.V.slice(1);
 

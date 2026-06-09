@@ -379,16 +379,16 @@ export class PointElement extends GeomElement {
         if (!this.visible) return;
         let ctx : CanvasRenderingContext2D = c.getContext("2d") as CanvasRenderingContext2D;
         if (color == null) {
-            if (this.shouldHighlight) {
+            if (this.emphasized || this.shouldHighlight) {
                 color = this.vertexHighlightColor;
             } else {
                 color = this.vertexColor;
             }
         }
         if (color == null) return;
-        // Bump radius from 2 → 4 when highlighted so the dot reads as a
-        // marker rather than a stray pixel. Stays 2 in the normal case.
-        let r = this.shouldHighlight ? 4 : 2;
+        // Radius scales with state: 2 normal, 4 slide-highlight, 6
+        // emphasised (caption ref hover/click).
+        let r = this.emphasized ? 6 : (this.shouldHighlight ? 4 : 2);
         ctx.beginPath();
         ctx.fillStyle = color;
         ctx.arc(this._x, this._y, r, 0, 2*Math.PI, false);
