@@ -21,11 +21,33 @@ figure.diagram {
     background: #ffe9cd;
     padding: 12px;
     border-radius: 4px;
-    margin: 24px 0;
-    display: inline-block;
+    margin: 24px auto;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    box-sizing: border-box;
     border: 1px solid #d8c8a9;
+    text-align: center;
 }
-canvas { display: block; }
+canvas { display: inline-block; touch-action: none; }
+
+/* Mobile: trim the page chrome so the 340-px canvas sits comfortably
+   on a 360-class screen, and centre the figure as a block. Mirrors the
+   lektor site's @media (max-width: 480px) figure.diagram rule —
+   intentionally does NOT scale the canvas bitmap with max-width:100%
+   because that breaks the touch hit-test mapping. */
+@media (max-width: 720px) {
+    body {
+        margin: 16px auto;
+        padding: 0 8px;
+    }
+    h1 { font-size: 1.15rem; }
+    ol.howto { padding: 10px 16px 10px 28px; font-size: 0.85rem; }
+    figure.diagram {
+        padding: 6px;
+        margin: 16px auto;
+    }
+}
 </style>
 </head>
 <body>
