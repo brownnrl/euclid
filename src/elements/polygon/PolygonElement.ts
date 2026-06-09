@@ -46,8 +46,9 @@ export class PolygonElement extends GeomElement {
     }
 
     public drawEdge(c: HTMLCanvasElement, color?: string): void {
+        if (!this.visible) return;
         if (color == null) {
-            if (this.shouldHighlight) {
+            if (this.emphasized || this.shouldHighlight) {
                 color = this.edgeHighlightColor;
             } else {
                 color = this.edgeColor;
@@ -60,7 +61,7 @@ export class PolygonElement extends GeomElement {
         let ctx = c.getContext("2d");
         ctx.beginPath();
         ctx.strokeStyle = color;
-        ctx.lineWidth = this.shouldHighlight ? 3 : 1;
+        ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
         let firstPoint = this.V[0];
         let rest = this.V.slice(1);
 
@@ -86,6 +87,7 @@ export class PolygonElement extends GeomElement {
     }
 
     public drawFace(c: SlateCanvas): void {
+        if (!this.visible) return;
         if(this.faceColor != null && this.defined() && this.V.length > 2) {
             let ctx : CanvasRenderingContext2D = c.getContext("2d") as CanvasRenderingContext2D;
             ctx.beginPath();
@@ -101,6 +103,7 @@ export class PolygonElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.nameColor != null && this.name != null && this.defined()) {
             let x : number = 0;
             let y : number = 0;
@@ -120,6 +123,7 @@ export class PolygonElement extends GeomElement {
     }
 
     public drawVertex(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.vertexColor != null && this.defined() ) {
             for(let v of this.V) {
                 v.drawVertex(c, this.vertexColor);

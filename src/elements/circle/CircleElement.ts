@@ -113,19 +113,22 @@ export class CircleElement extends GeomElement {
     }
 
     public drawEdge(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.edgeColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
-        ctx.strokeStyle = this.shouldHighlight
+        ctx.strokeStyle = (this.emphasized || this.shouldHighlight)
             ? this.edgeHighlightColor
             : this.edgeColor;
-        // Match LineElement: bump line weight when highlighted; always
-        // assign explicitly so a previous element's value doesn't leak.
-        ctx.lineWidth = this.shouldHighlight ? 3 : 1;
+        // Match LineElement: 1 normal, 3 slide-highlight, 6 emphasised
+        // (caption ref hover/click). Always assigned explicitly so a
+        // previous element's value doesn't leak.
+        ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
         this._drawCircle(ctx);
         ctx.stroke();
     }
 
     public drawFace(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.faceColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.fillStyle = this.faceColor;
@@ -134,6 +137,7 @@ export class CircleElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.nameColor != null && this.name != null) {
             let ctx = c.getContext("2d") as CanvasRenderingContext2D;
             ctx.strokeStyle = this.nameColor;

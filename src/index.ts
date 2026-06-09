@@ -27,6 +27,34 @@ export interface IConstructionInfo {
     faceColor?: string | number;
 }
 
+// Marginal-reference shape for slides. The `ref` is a symbolic label
+// such as "I.Post.3" or "C.N.1"; URL resolution happens via the
+// consumer-supplied resolveJustification callback so the data here
+// doesn't go stale if a referenced page moves on the consumer site.
+export interface ISlideJust {
+    ref: string;
+}
+
+// One step in the slideshow / presentation walk-through. The DSL is
+// declarative: each slide describes its full effective state, and the
+// Presentation controller computes the transitions between them.
+//
+//   - visible inherits from the previous slide if omitted, so authors
+//     only re-specify on state change.
+//   - highlighted defaults to [] (clears between slides), so a
+//     highlight only persists when re-specified on the next slide.
+//   - Draggable elements (e.draggable === true) are auto-unioned into
+//     the visible set by the Presentation controller; authors don't
+//     need to list free construction points per slide.
+//   - Highlighted elements are auto-unioned into visible — you can't
+//     highlight what isn't drawn.
+export interface ISlide {
+    text: string;
+    visible?: string[];
+    highlighted?: string[];
+    justifications?: ISlideJust[];
+}
+
 export interface IInitialization {
     background : string;
     title : string;
@@ -42,6 +70,16 @@ export interface IInitialization {
     // forcing the canvas to carry an invisible duplicate per alias.
     // Resolved by Slate.lookupElement after a direct-name miss.
     aliases?: {[from: string]: string};
+    // Optional slideshow walk-through. When provided + non-empty,
+    // SlateControls renders a "▶ Present" button that opens the
+    // Presentation overlay. Stays empty (no button, no behaviour
+    // change) for consumers that don't opt in.
+    slides?: ISlide[];
+    // Consumer lookup that maps a justification ref ("I.Post.3") to
+    // a URL string. Returning null/undefined renders the ref as
+    // plain text. Sync; the lektor site wires this to a page-emitted
+    // window.eucrefs map.
+    resolveJustification?: (ref: string) => string | null | undefined;
 }
 
 // Map Java element class names to E object keys
@@ -201,6 +239,14 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
     if (i.aliases != null) {
         slate.addAliases(i.aliases);
+    }
+
+    if (i.slides != null && i.slides.length > 0) {
+        slate.slides = i.slides;
+    }
+
+    if (i.resolveJustification != null) {
+        slate.resolveJustification = i.resolveJustification;
     }
 
     if(i.pivot != null) {

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>geomlib slideshow demo — propI.1</title>
+<!-- Re-use the live euclids-elements.org stylesheet through a symlink
+     so this demo renders in the same body / theorem / figure typography
+     and sizing the real prop pages do. The view/lektor-css symlink
+     points at ../../euclids-elements-lektor/assets/css. -->
+<link rel="stylesheet" href="../../lektor-css/style.css">
+<style>
+/* Lock the body to the viewport width — defensive against any nested
+   long-string element trying to push the page wider and triggering the
+   mobile browser's auto-zoom-out. */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* Smoke-checklist callout: visually distinct from the proof so it's
+   clear the test instructions aren't part of the real prop. */
+.smoke-notes {
+    background: #f3eedf;
+    border: 1px solid #d8c8a9;
+    border-radius: 4px;
+    padding: 10px 16px 10px 28px;
+    margin: 1em 0;
+}
+.smoke-notes h2 { margin-top: 0; font-size: 1rem; color: #8a4a08; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<h1>Euclid&rsquo;s Elements</h1>
+<h1>Book I</h1>
+</header>
+
+<div class="theorem">
+<h1>Proposition 1</h1>
+<div class="statement">To construct an equilateral triangle on a given finite straight line.</div>
+
+<p>Let <em>AB</em> be the given finite straight line.</p>
+
+<figure class="diagram">
+<canvas id="canvas_0" width="340" height="260" tabindex="0"></canvas>
+</figure>
+
+<p>Tap the play-triangle button in the slate-control row to step through this proof one statement at a time.</p>
+</div>
+
+<section class="smoke-notes">
+<h2>Smoke checklist</h2>
+<ol>
+    <li>Four buttons appear at the top-right of the canvas (the new one is the play-triangle).</li>
+    <li>Tap the play button: canvas maximises and a white caption bar slides up from the bottom.</li>
+    <li>13 slides walk with Next / Prev or arrow keys.</li>
+    <li><em>{NAME}</em> tokens in the caption thicken the matching element on hover; tap pins.</li>
+    <li>Free points stay draggable mid-presentation.</li>
+    <li><kbd>Esc</kbd> or ✕ exits; canvas stays maximised, all visible, no highlights.</li>
+</ol>
+</section>
+
+<script>
+// Stand-in for what the lektor site emits per page. Maps the slide's
+// symbolic justification refs to live euclids-elements.org URLs;
+// Presentation calls slate.resolveJustification(ref) to look up.
+window.eucrefs = {
+    "I.Post.1": "https://www.euclids-elements.org/elements/books/bookI/postulates/post1/",
+    "I.Post.3": "https://www.euclids-elements.org/elements/books/bookI/postulates/post3/",
+    "I.Def.15": "https://www.euclids-elements.org/elements/books/bookI/definitions/defI15/",
+    "I.Def.20": "https://www.euclids-elements.org/elements/books/bookI/definitions/defI20/",
+    "C.N.1":    "https://www.euclids-elements.org/elements/commonnotions/cn1/"
+};
+</script>
+
+<!-- Cache-bust the bundle so a phone reloading off a LAN http.server
+     picks up a freshly rebuilt dist/bundle.js without manual cache wipe. -->
+<script>
+document.write('<script src="../../../dist/bundle.js?ts=' + Date.now() + '"><\/script>');
+</script>
+<script>
+geomlib.init({
+    canvasid: "canvas_0",
+    background: "35,19,100",
+    title: "I.1",
+    pivot: "C",
+    elements: [
+        "A;point;free;125,130",
+        "B;point;free;215,130",
+        "AB;line;connect;A,B",
+        "BCD;circle;radius;A,B",
+        "ACE;circle;radius;B,A",
+        "CD;line;bichord;ACE,BCD;0;0;0",
+        "C;point;first;CD;black;green",
+        "AC;line;connect;A,C",
+        "BC;line;connect;B,C",
+        "AE;line;extend;AB,AB;0;0;0",
+        "E;point;last;AE;black;0",
+        "BD;line;extend;B,A,A,B;0;0;0",
+        "D;point;last;BD;black;0",
+        "ABC;polygon;triangle;A,B,C;0;0;0;random"
+    ],
+    aliases: {
+        "CDB": "BCD",
+        "CAE": "ACE",
+        "BA":  "AB",
+        "CA":  "AC",
+        "CB":  "BC"
+    },
+    slides: [
+        { text: "Let {AB} be the given finite straight line.",
+          visible: ["AB"] },
+        { text: "It is required to construct an equilateral triangle on the straight line {AB}.",
+          visible: ["AB","ABC"],
+          highlighted: ["ABC"] },
+        { text: "Describe the circle {BCD} with centre {A} and radius {AB}.",
+          visible: ["AB","BCD","D"],
+          justifications: [{ ref: "I.Post.3" }] },
+        { text: "Again describe the circle {ACE} with centre {B} and radius {BA}.",
+          visible: ["AB","BCD","ACE","D","E"],
+          justifications: [{ ref: "I.Post.3" }] },
+        { text: "Join the straight lines {CA} and {CB} from the point {C} at which the circles cut one another.",
+          visible: ["AB","BCD","ACE","C","AC","BC"],
+          justifications: [{ ref: "I.Post.1" }] },
+        { text: "Since the point {A} is the centre of the circle {CDB}, therefore {AC} equals {AB}.",
+          highlighted: ["A","BCD","AC","AB"],
+          justifications: [{ ref: "I.Def.15" }] },
+        { text: "Again, since the point {B} is the centre of the circle {CAE}, therefore {BC} equals {BA}.",
+          highlighted: ["B","ACE","BC","AB"],
+          justifications: [{ ref: "I.Def.15" }] },
+        { text: "But {AC} was proved equal to {AB}.",
+          highlighted: ["AC","AB"] },
+        { text: "Therefore each of the straight lines {AC} and {BC} equals {AB}.",
+          highlighted: ["AC","BC","AB"] },
+        { text: "And things which equal the same thing also equal one another,",
+          highlighted: ["AC","BC","AB"],
+          justifications: [{ ref: "C.N.1" }] },
+        { text: "therefore {AC} also equals {BC}.",
+          highlighted: ["AC","BC"] },
+        { text: "Therefore the three straight lines {AC}, {AB}, and {BC} equal one another.",
+          highlighted: ["AC","AB","BC"] },
+        { text: "Therefore the triangle {ABC} is equilateral, and it has been constructed on the given finite straight line {AB}.",
+          visible: ["A","B","C","D","E","AB","BCD","ACE","CD","AC","BC","AE","BD","ABC"],
+          highlighted: ["A","B","C","AB","AC","BC","ABC"],
+          justifications: [{ ref: "I.Def.20" }] }
+    ],
+    resolveJustification: function(ref) {
+        return (window.eucrefs && window.eucrefs[ref]) || null;
+    }
+});
+</script>
+
+</body>
+</html>

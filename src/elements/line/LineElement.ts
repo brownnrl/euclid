@@ -41,8 +41,9 @@ export class LineElement extends GeomElement {
     }
 
     public drawEdge(c: HTMLCanvasElement, color?: string): void {
+        if (!this.visible) return;
         if (color == null) {
-            if (this.shouldHighlight) {
+            if (this.emphasized || this.shouldHighlight) {
                 color = this.edgeHighlightColor;
             } else {
                 color = this.edgeColor;
@@ -53,11 +54,11 @@ export class LineElement extends GeomElement {
 
         let ctx = c.getContext("2d");
         ctx.strokeStyle = color;
-        // Highlight bumps the line weight from 1 → 3 so the swap reads
-        // immediately. Always assign explicitly: drawElements iterates
-        // elements in order, and a leftover lineWidth would carry into
-        // the next stroke.
-        ctx.lineWidth = this.shouldHighlight ? 3 : 1;
+        // Stroke weight scales with state: 1 normal, 3 slide-highlight,
+        // 6 when emphasised (caption ref hover/click). Always assigned
+        // explicitly so a leftover lineWidth doesn't carry into the
+        // next element in drawElements' iteration.
+        ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
         ctx.beginPath();
         ctx.moveTo(this._A.x, this._A.y);
         ctx.lineTo(this._B.x, this._B.y);
@@ -68,6 +69,7 @@ export class LineElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.nameColor == null || this.name == null) return;
         if (this._A == null || !this._A.defined()) return;
         if (this._B == null || !this._B.defined()) return;

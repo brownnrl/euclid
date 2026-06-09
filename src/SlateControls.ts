@@ -9,6 +9,7 @@
 +----------------------------------------------------------------------*/
 
 import {Slate} from "./Slate";
+import {computeSlideState} from "./slideshow";
 
 interface IInitConfig {
     background: string;
@@ -19,9 +20,18 @@ interface IInitConfig {
     elements: any[];
 }
 
-const BTN_SIZE = 20;
-const BTN_GAP = 4;
-const BTN_MARGIN = 8;
+// Slate-controls icon sizing. The historical default is 20 px; touch
+// devices (coarse pointer) get a slightly tighter 15-px row per author
+// preference — small enough to stay out of the diagram, still hittable
+// with a fingertip.
+function isCoarsePointer(): boolean {
+    return typeof window !== "undefined"
+        && typeof window.matchMedia === "function"
+        && window.matchMedia("(pointer: coarse)").matches;
+}
+const BTN_SIZE = isCoarsePointer() ? 18 : 20;
+const BTN_GAP = isCoarsePointer() ? 4 : 4;
+const BTN_MARGIN = isCoarsePointer() ? 7 : 8;
 
 // Minimal event-target interface so this helper is testable without a real
 // `Window`. Browser `Window`, `Document`, and `Element` all satisfy it.
@@ -69,6 +79,22 @@ class SlateControls {
     } = null;
     private _stopTrackingResize: (() => void) | null = null;
 
+    // Presentation-mode (slideshow) state. Caption + nav float over
+    // the maximized canvas; no fullscreen overlay, no background takeover.
+    private _presenting: boolean = false;
+    private _presentationIndex: number = 0;
+    private _presentationOverlay: HTMLDivElement | null = null;
+    private _presentationCaption: HTMLDivElement | null = null;
+    private _presentationJusts: HTMLDivElement | null = null;
+    private _presentationCounter: HTMLSpanElement | null = null;
+    private _presentationOnKey: ((e: KeyboardEvent) => void) | null = null;
+    // Single-pin sticky for caption {NAME} refs: only one element may be
+    // emphasized at a time. Clicking another ref clears the prior pin
+    // before stickying the new one; hover is suppressed while a pin is
+    // active so the sticky element stays the dominant one.
+    private _stickyRefSpan: HTMLSpanElement | null = null;
+    private _stickyRefElem: import("./elements/GeomElement").GeomElement | null = null;
+
     constructor(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig) {
         this._slate = slate;
         this._canvas = canvas;
@@ -109,6 +135,17 @@ class SlateControls {
             { draw: drawMaximizeIcon, action: () => this.onMaximize(), title: "Maximize (m)" },
             { draw: drawNewWindowIcon, action: () => this.onNewWindow(), title: "New Window (u)" },
         ];
+
+        // Conditionally append a "▶ Present" button when the slate
+        // carries any slides. Slates without slides see the same
+        // three-button row as before — backwards-compatible.
+        if (this._slate.slides.length > 0) {
+            buttons.push({
+                draw: drawPresentIcon,
+                action: () => this.onPresent(),
+                title: "Present (p)",
+            });
+        }
 
         for (let i = 0; i < buttons.length; i++) {
             let btn = document.createElement("button");
@@ -176,6 +213,13 @@ class SlateControls {
                 case "M":
                     e.preventDefault();
                     this.onMaximize();
+                    break;
+                case "p":
+                case "P":
+                    if (this._slate.slides.length > 0) {
+                        e.preventDefault();
+                        this.onPresent();
+                    }
                     break;
             }
         });
@@ -332,6 +376,337 @@ class SlateControls {
             newWin.document.close();
         }
     }
+
+    // --- Presentation mode (slideshow) ---
+    //
+    // Opens the slate's slides as a step-through. The canvas itself
+    // takes over the viewport via the existing maximize state (no
+    // separate fullscreen overlay, no black takeover) — the caption
+    // and nav controls float on top of the maximized canvas.
+
+    private onPresent(): void {
+        if (this._presenting) return;
+        if (this._slate.slides.length === 0) return;
+        if (!this._maximized) this.maximize();
+        this.buildPresentationOverlay();
+        this.bindPresentationKeys();
+        this._presenting = true;
+        this.showSlide(0);
+    }
+
+    private exitPresent(): void {
+        if (!this._presenting) return;
+        this.unbindPresentationKeys();
+        this.clearStickyRef();
+        this.removePresentationOverlay();
+        this._slate.clearVisibility();
+        for (let e of this._slate.elements) {
+            e.shouldHighlight = false;
+            e.emphasized = false;
+        }
+        this._slate.update();
+        this._presenting = false;
+    }
+
+    private buildPresentationOverlay(): void {
+        // Floating UI panel pinned to the bottom of the viewport.
+        // Uses position: fixed and attaches to documentElement so it
+        // can't be clipped by any wrapper, transformed parent, or
+        // scrollable container — works the same on iOS Safari,
+        // Samsung Internet, Android Chrome, and desktop. Solid white
+        // (no transparency) so it's never mistaken for background;
+        // bright box-shadow so the boundary reads.
+        const overlay = document.createElement("div");
+        overlay.className = "geomlib-presentation-overlay";
+        overlay.style.position = "fixed";
+        overlay.style.left = "0";
+        overlay.style.right = "0";
+        overlay.style.bottom = "0";
+        overlay.style.margin = "0 auto";
+        // Span the bottom of the viewport so the centred contents
+        // can't render off-screen and there's nowhere for the panel
+        // to "hide". The actual visible chrome is the inner column.
+        overlay.style.maxWidth = "100vw";
+        overlay.style.background = "#ffffff";
+        overlay.style.color = "#222";
+        overlay.style.borderTop = "1px solid rgba(0,0,0,0.18)";
+        overlay.style.boxShadow = "0 -6px 18px rgba(0,0,0,0.18)";
+        overlay.style.padding = "12px 16px calc(12px + env(safe-area-inset-bottom, 0px))";
+        // Max possible z-index so nothing can stack above us.
+        overlay.style.zIndex = "2147483647";
+        overlay.style.fontFamily = "Georgia, 'Times New Roman', serif";
+        overlay.style.touchAction = "manipulation";
+        overlay.style.boxSizing = "border-box";
+        overlay.style.textAlign = "center";
+
+        const caption = document.createElement("div");
+        caption.className = "geomlib-presentation-caption";
+        caption.style.fontSize = "1.1rem";
+        caption.style.lineHeight = "1.45";
+        caption.style.textAlign = "center";
+        caption.style.marginBottom = "6px";
+        overlay.appendChild(caption);
+
+        const justs = document.createElement("div");
+        justs.className = "geomlib-presentation-justs";
+        justs.style.fontSize = "0.85rem";
+        justs.style.textAlign = "center";
+        justs.style.opacity = "0.85";
+        justs.style.minHeight = "1em";
+        justs.style.marginBottom = "10px";
+        overlay.appendChild(justs);
+
+        const nav = document.createElement("div");
+        nav.className = "geomlib-presentation-nav";
+        nav.style.display = "flex";
+        nav.style.gap = "10px";
+        nav.style.alignItems = "center";
+        nav.style.justifyContent = "center";
+
+        const prevBtn = makePresentationButton("‹ Prev");
+        const counter = document.createElement("span");
+        counter.className = "geomlib-presentation-counter";
+        counter.style.minWidth = "56px";
+        counter.style.textAlign = "center";
+        counter.style.opacity = "0.7";
+        counter.style.fontSize = "0.9rem";
+        const nextBtn = makePresentationButton("Next ›");
+        const exitBtn = makePresentationButton("✕ Exit");
+        exitBtn.style.marginLeft = "16px";
+
+        prevBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.showSlide(this._presentationIndex - 1);
+        });
+        nextBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.showSlide(this._presentationIndex + 1);
+        });
+        exitBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.exitPresent();
+        });
+
+        nav.appendChild(prevBtn);
+        nav.appendChild(counter);
+        nav.appendChild(nextBtn);
+        nav.appendChild(exitBtn);
+        overlay.appendChild(nav);
+
+        // Append to documentElement (html) — outside body — so a
+        // mobile browser's odd body sizing can't clip us.
+        document.documentElement.appendChild(overlay);
+        this._presentationOverlay = overlay;
+        this._presentationCaption = caption;
+        this._presentationJusts = justs;
+        this._presentationCounter = counter;
+    }
+
+    private removePresentationOverlay(): void {
+        if (this._presentationOverlay && this._presentationOverlay.parentNode) {
+            this._presentationOverlay.parentNode.removeChild(this._presentationOverlay);
+        }
+        this._presentationOverlay = null;
+        this._presentationCaption = null;
+        this._presentationJusts = null;
+        this._presentationCounter = null;
+    }
+
+    private bindPresentationKeys(): void {
+        const handler = (e: KeyboardEvent) => {
+            if (!this._presenting) return;
+            switch (e.key) {
+                case "ArrowLeft":
+                    e.preventDefault();
+                    this.showSlide(this._presentationIndex - 1);
+                    break;
+                case "ArrowRight":
+                case " ":
+                    e.preventDefault();
+                    this.showSlide(this._presentationIndex + 1);
+                    break;
+                case "Escape":
+                    e.preventDefault();
+                    this.exitPresent();
+                    break;
+            }
+        };
+        this._presentationOnKey = handler;
+        document.addEventListener("keydown", handler);
+    }
+
+    private unbindPresentationKeys(): void {
+        if (this._presentationOnKey) {
+            document.removeEventListener("keydown", this._presentationOnKey);
+            this._presentationOnKey = null;
+        }
+    }
+
+    private showSlide(index: number): void {
+        const slides = this._slate.slides;
+        if (slides.length === 0) return;
+        const clamped = Math.max(0, Math.min(slides.length - 1, index));
+        this._presentationIndex = clamped;
+
+        const state = computeSlideState(this._slate, slides, clamped);
+        // Drop any sticky pin from the previous slide — its span
+        // belongs to the prior caption and is about to be replaced
+        // anyway. Also clear every element's emphasis so the new slide
+        // starts with a clean highlight set.
+        this.clearStickyRef();
+        for (let e of this._slate.elements) {
+            if (e.name == null) continue;
+            e.visible = state.visible.has(e.name);
+            e.shouldHighlight = state.highlighted.has(e.name);
+            e.emphasized = false;
+        }
+        this._slate.update();
+
+        const slide = slides[clamped];
+        if (this._presentationCaption) {
+            this.renderCaptionText(this._presentationCaption, slide.text || "");
+        }
+        if (this._presentationCounter) {
+            this._presentationCounter.textContent = (clamped + 1) + " / " + slides.length;
+        }
+        if (this._presentationJusts) {
+            this._presentationJusts.innerHTML = "";
+            const resolve = this._slate.resolveJustification;
+            if (slide.justifications) {
+                for (let i = 0; i < slide.justifications.length; i++) {
+                    if (i > 0) {
+                        const sep = document.createElement("span");
+                        sep.textContent = " · ";
+                        sep.style.opacity = "0.5";
+                        this._presentationJusts.appendChild(sep);
+                    }
+                    const ref = slide.justifications[i].ref;
+                    const url = resolve ? resolve(ref) : null;
+                    if (url) {
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.textContent = ref;
+                        a.target = "_blank";
+                        a.rel = "noopener";
+                        a.style.color = "#0066cc";
+                        this._presentationJusts.appendChild(a);
+                    } else {
+                        const span = document.createElement("span");
+                        span.textContent = ref;
+                        this._presentationJusts.appendChild(span);
+                    }
+                }
+            }
+        }
+    }
+
+    // Parse {NAME} tokens in caption text and emit interactive bold-
+    // italic spans for any that resolve to a slate element (alias
+    // lookups included). Unknown / unresolved refs render as plain
+    // text with the braces stripped. Hover / pointerdown toggles
+    // element.emphasized so the figure picks the ref up with an
+    // extra-thick gold stroke.
+    private renderCaptionText(host: HTMLElement, text: string): void {
+        host.innerHTML = "";
+        const re = /\{([A-Za-z][A-Za-z0-9'\-]*)\}/g;
+        let lastIndex = 0;
+        let m: RegExpExecArray | null;
+        while ((m = re.exec(text)) !== null) {
+            if (m.index > lastIndex) {
+                host.appendChild(document.createTextNode(text.slice(lastIndex, m.index)));
+            }
+            const name = m[1];
+            const elem = this._slate.lookupElement(name);
+            if (elem) {
+                host.appendChild(this.buildCaptionRef(name, elem));
+            } else {
+                // Unknown — render plain so a typo doesn't surface as
+                // raw "{XYZ}" to the reader.
+                host.appendChild(document.createTextNode(name));
+            }
+            lastIndex = m.index + m[0].length;
+        }
+        if (lastIndex < text.length) {
+            host.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+    }
+
+    private buildCaptionRef(label: string, elem: import("./elements/GeomElement").GeomElement): HTMLSpanElement {
+        const span = document.createElement("span");
+        span.className = "geomlib-presentation-ref";
+        span.textContent = label;
+        span.style.fontWeight = "700";
+        span.style.fontStyle = "italic";
+        span.style.cursor = "pointer";
+        span.style.borderBottom = "1px dotted currentColor";
+        span.addEventListener("mouseenter", () => {
+            // Hover does nothing while a sticky pin is active — the
+            // pinned element should remain the sole highlighted ref.
+            if (this._stickyRefSpan != null) return;
+            elem.emphasized = true;
+            this._slate.update();
+        });
+        span.addEventListener("mouseleave", () => {
+            if (this._stickyRefSpan != null) return;
+            elem.emphasized = false;
+            this._slate.update();
+        });
+        span.addEventListener("pointerdown", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const wasThis = this._stickyRefSpan === span;
+            this.clearStickyRef();
+            if (!wasThis) this.setStickyRef(span, elem);
+            this._slate.update();
+        });
+        return span;
+    }
+
+    // Drop the active sticky pin (if any): release the pinned
+    // element's emphasis flag and reset the span's visual state.
+    private clearStickyRef(): void {
+        if (this._stickyRefSpan != null) {
+            this._stickyRefSpan.classList.remove("active");
+            this._stickyRefSpan.style.color = "";
+        }
+        if (this._stickyRefElem != null) {
+            this._stickyRefElem.emphasized = false;
+        }
+        this._stickyRefSpan = null;
+        this._stickyRefElem = null;
+    }
+
+    // Pin a new sticky ref. Call clearStickyRef() first if another
+    // ref is currently pinned.
+    private setStickyRef(span: HTMLSpanElement, elem: import("./elements/GeomElement").GeomElement): void {
+        span.classList.add("active");
+        span.style.color = "#b08800";
+        elem.emphasized = true;
+        this._stickyRefSpan = span;
+        this._stickyRefElem = elem;
+    }
+}
+
+// Button styling shared by the four nav buttons in the presentation
+// overlay. Matches the soft, light visual of the surrounding panel.
+function makePresentationButton(label: string): HTMLButtonElement {
+    const b = document.createElement("button");
+    b.textContent = label;
+    b.style.background = "rgba(0,0,0,0.08)";
+    b.style.color = "#222";
+    b.style.border = "1px solid rgba(0,0,0,0.15)";
+    b.style.borderRadius = "4px";
+    // Min 44px tap target per Apple HIG / Material guidance; the
+    // wider padding also gives Pro Max thumbs some breathing room.
+    b.style.padding = "10px 16px";
+    b.style.minHeight = "44px";
+    b.style.cursor = "pointer";
+    b.style.fontFamily = "inherit";
+    b.style.fontSize = "1rem";
+    b.style.touchAction = "manipulation";
+    b.addEventListener("mouseenter", () => { b.style.background = "rgba(0,0,0,0.16)"; });
+    b.addEventListener("mouseleave", () => { b.style.background = "rgba(0,0,0,0.08)"; });
+    return b;
 }
 
 // --- Icon drawing functions ---
@@ -480,6 +855,23 @@ function drawNewWindowIcon(ctx: CanvasRenderingContext2D, size: number): void {
     ctx.moveTo(arrowEndX, arrowEndY);
     ctx.lineTo(arrowEndX - 5, arrowEndY);
     ctx.lineTo(arrowEndX, arrowEndY + 5);
+    ctx.closePath();
+    ctx.fill();
+}
+
+function drawPresentIcon(ctx: CanvasRenderingContext2D, size: number): void {
+    // Right-pointing play triangle, centred. The button is square so a
+    // little leftward bias visually centres the optical mass.
+    let pad = size * 0.28;
+    let leftX = pad - 1;
+    let rightX = size - pad + 2;
+    let topY = pad;
+    let bottomY = size - pad;
+    ctx.fillStyle = "rgba(0,0,0,0.7)";
+    ctx.beginPath();
+    ctx.moveTo(leftX, topY);
+    ctx.lineTo(leftX, bottomY);
+    ctx.lineTo(rightX, size / 2);
     ctx.closePath();
     ctx.fill();
 }

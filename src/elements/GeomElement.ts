@@ -69,6 +69,20 @@ export abstract class GeomElement {
     private _align : Align;
 
     private _shouldHighlight : boolean = false;
+    // Per-element visibility flag honoured by every draw method. Default
+    // true preserves existing consumer behaviour; flipping false makes
+    // drawFace / drawEdge / drawVertex / drawName early-return so the
+    // element disappears without being removed from _elements (so
+    // dependents that read its coordinates still work). Used by
+    // Slate.setVisibleNames + the slideshow Presentation overlay.
+    private _visible : boolean = true;
+    // One step above shouldHighlight: when the slideshow caption's
+    // {NAME} ref is hovered or clicked, the matching element flips to
+    // emphasized. drawEdge / drawVertex paint with the highlight colour
+    // at an even thicker stroke / larger dot so the element pops out
+    // from any other already-highlighted ones on the slide. Released on
+    // mouseleave (or click-to-toggle for sticky).
+    private _emphasized : boolean = false;
     protected _pixelTolerance : number = 50;
 
     protected _getTextMetrics(ctx: CanvasRenderingContext2D, txt: string) : [number, number] {
@@ -207,6 +221,14 @@ export abstract class GeomElement {
         this._shouldHighlight = value;
     }
 
+    set visible(value: boolean) {
+        this._visible = value;
+    }
+
+    set emphasized(value: boolean) {
+        this._emphasized = value;
+    }
+
     get nameColor(): string {
         return this._nameColor;
     }
@@ -257,5 +279,13 @@ export abstract class GeomElement {
 
     get shouldHighlight(): boolean {
         return this._shouldHighlight;
+    }
+
+    get visible(): boolean {
+        return this._visible;
+    }
+
+    get emphasized(): boolean {
+        return this._emphasized;
     }
 }
