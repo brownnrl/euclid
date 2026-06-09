@@ -393,25 +393,34 @@ class SlateControls {
     }
 
     private buildPresentationOverlay(): void {
-        // Floating UI panel pinned to the bottom-centre of the wrapper.
-        // Soft, semi-transparent background so the diagram stays
-        // visible behind it. Buttons sit inside the same panel for
-        // thumb reach on mobile.
+        // Floating UI panel pinned to the bottom-centre of the viewport.
+        // position: fixed (not absolute) and appended directly to
+        // document.body so iOS / Android URL-bar viewport changes don't
+        // shove it off-screen the way a wrapper-relative absolute
+        // position would. Soft, semi-transparent background so the
+        // diagram stays visible behind it. Buttons sit inside the same
+        // panel for thumb reach on mobile.
         const overlay = document.createElement("div");
         overlay.className = "geomlib-presentation-overlay";
-        overlay.style.position = "absolute";
+        overlay.style.position = "fixed";
         overlay.style.left = "50%";
-        overlay.style.bottom = "24px";
+        // env() handles the iPhone home-indicator safe area; the
+        // fallback keeps 12px clearance on browsers that don't grok env().
+        overlay.style.bottom = "calc(12px + env(safe-area-inset-bottom, 0px))";
         overlay.style.transform = "translateX(-50%)";
-        overlay.style.maxWidth = "min(800px, 92vw)";
-        overlay.style.background = "rgba(255,255,255,0.92)";
+        overlay.style.maxWidth = "min(800px, 94vw)";
+        overlay.style.width = "max-content";
+        overlay.style.background = "rgba(255,255,255,0.94)";
         overlay.style.color = "#222";
         overlay.style.border = "1px solid rgba(0,0,0,0.15)";
         overlay.style.borderRadius = "6px";
         overlay.style.boxShadow = "0 4px 14px rgba(0,0,0,0.18)";
-        overlay.style.padding = "14px 18px 12px";
+        overlay.style.padding = "12px 16px 10px";
         overlay.style.zIndex = "10001";
         overlay.style.fontFamily = "Georgia, 'Times New Roman', serif";
+        // Mobile browsers can otherwise let the canvas swallow taps
+        // that should hit the panel.
+        overlay.style.touchAction = "manipulation";
 
         const caption = document.createElement("div");
         caption.className = "geomlib-presentation-caption";
@@ -467,7 +476,7 @@ class SlateControls {
         nav.appendChild(exitBtn);
         overlay.appendChild(nav);
 
-        this._wrapper.appendChild(overlay);
+        document.body.appendChild(overlay);
         this._presentationOverlay = overlay;
         this._presentationCaption = caption;
         this._presentationJusts = justs;
@@ -639,11 +648,15 @@ function makePresentationButton(label: string): HTMLButtonElement {
     b.style.background = "rgba(0,0,0,0.08)";
     b.style.color = "#222";
     b.style.border = "1px solid rgba(0,0,0,0.15)";
-    b.style.borderRadius = "3px";
-    b.style.padding = "6px 12px";
+    b.style.borderRadius = "4px";
+    // Min 44px tap target per Apple HIG / Material guidance; the
+    // wider padding also gives Pro Max thumbs some breathing room.
+    b.style.padding = "10px 16px";
+    b.style.minHeight = "44px";
     b.style.cursor = "pointer";
     b.style.fontFamily = "inherit";
-    b.style.fontSize = "0.92rem";
+    b.style.fontSize = "1rem";
+    b.style.touchAction = "manipulation";
     b.addEventListener("mouseenter", () => { b.style.background = "rgba(0,0,0,0.16)"; });
     b.addEventListener("mouseleave", () => { b.style.background = "rgba(0,0,0,0.08)"; });
     return b;
