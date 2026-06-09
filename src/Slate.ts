@@ -222,11 +222,14 @@ export class Slate {
         this._resolveJustification = value;
     }
 
-    // Hide every element whose name is not in the supplied set. Names not
-    // matching any element are silently ignored; elements without a name
-    // (intermediate / screen-helper) are never affected — they stay
-    // visible. Called by the presentation overlay per slide; consumers
-    // can also call it directly.
+    // Hide every named element whose name is not in the supplied set.
+    // Names not matching any element are silently ignored; elements
+    // without a name (intermediate construction outputs) are left alone.
+    // Screen-helper elements (screen / screen_origin / screen_x /
+    // screen_y) follow the same rule: their visible flag does flip, but
+    // since they're created with all-null colours they never draw
+    // visible pixels anyway. Called by the presentation overlay per
+    // slide; consumers can call directly too.
     setVisibleNames(names: string[]) : void {
         const visible = new Set(names);
         for (let elem of this._elements) {
