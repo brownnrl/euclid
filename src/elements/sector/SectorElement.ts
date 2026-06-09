@@ -76,6 +76,7 @@ export class SectorElement extends GeomElement {
     }
 
     drawEdge(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.edgeColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.strokeStyle = this.edgeColor;
@@ -92,6 +93,7 @@ export class SectorElement extends GeomElement {
     }
 
     drawFace(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.faceColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.fillStyle = this.faceColor;

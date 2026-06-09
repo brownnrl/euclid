@@ -194,6 +194,26 @@ export class Slate {
         for (let from in aliases) this._aliases.set(from, aliases[from]);
     }
 
+    // Hide every element whose name is not in the supplied set. Names not
+    // matching any element are silently ignored; elements without a name
+    // (intermediate / screen-helper) are never affected — they stay
+    // visible. Called by the presentation overlay per slide; consumers
+    // can also call it directly.
+    setVisibleNames(names: string[]) : void {
+        const visible = new Set(names);
+        for (let elem of this._elements) {
+            if (elem.name == null) continue;
+            elem.visible = visible.has(elem.name);
+        }
+    }
+
+    // Restore every element's visible flag to true. Counterpart to
+    // setVisibleNames; called on presentation exit so the canvas
+    // returns to its inline default.
+    clearVisibility() : void {
+        for (let elem of this._elements) elem.visible = true;
+    }
+
     // Sort params into P[] (points), E[] (other elements), N[] (integers),
     // matching Java's selectDataChoice (Slate.java lines 344-393).
     // LineElements are expanded into their two endpoint PointElements.

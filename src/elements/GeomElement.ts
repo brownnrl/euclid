@@ -69,6 +69,13 @@ export abstract class GeomElement {
     private _align : Align;
 
     private _shouldHighlight : boolean = false;
+    // Per-element visibility flag honoured by every draw method. Default
+    // true preserves existing consumer behaviour; flipping false makes
+    // drawFace / drawEdge / drawVertex / drawName early-return so the
+    // element disappears without being removed from _elements (so
+    // dependents that read its coordinates still work). Used by
+    // Slate.setVisibleNames + the slideshow Presentation overlay.
+    private _visible : boolean = true;
     protected _pixelTolerance : number = 50;
 
     protected _getTextMetrics(ctx: CanvasRenderingContext2D, txt: string) : [number, number] {
@@ -207,6 +214,10 @@ export abstract class GeomElement {
         this._shouldHighlight = value;
     }
 
+    set visible(value: boolean) {
+        this._visible = value;
+    }
+
     get nameColor(): string {
         return this._nameColor;
     }
@@ -257,5 +268,9 @@ export abstract class GeomElement {
 
     get shouldHighlight(): boolean {
         return this._shouldHighlight;
+    }
+
+    get visible(): boolean {
+        return this._visible;
     }
 }

@@ -38,6 +38,7 @@ export class PolyhedronElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.nameColor != null && this.name != null && this.defined()) {
             let x = 0, y = 0, ct = 0;
             for (let j = 0; j < this.P.length; ++j) {
@@ -54,6 +55,7 @@ export class PolyhedronElement extends GeomElement {
     }
 
     public drawVertex(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.vertexColor != null && this.defined()) {
             for (let j = 0; j < this.P.length; ++j) {
                 for (let i = 0; i < this.P[j].V.length; ++i) {
@@ -64,6 +66,7 @@ export class PolyhedronElement extends GeomElement {
     }
 
     public drawEdge(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.edgeColor != null && this.defined()) {
             let ctx = c.getContext("2d") as CanvasRenderingContext2D;
             ctx.strokeStyle = this.edgeColor;
@@ -81,6 +84,7 @@ export class PolyhedronElement extends GeomElement {
     }
 
     public drawFace(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.faceColor != null && this.defined()) {
             for (let j = 0; j < this.P.length; ++j) {
                 // Pass the polyhedron's faceColor to each face polygon,

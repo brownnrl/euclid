@@ -68,6 +68,7 @@ export class PlaneElement extends GeomElement {
     // where D = B + C - A (the 4th corner in the plane of A, B, C).
 
     public drawEdge(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.edgeColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.save();
@@ -85,6 +86,7 @@ export class PlaneElement extends GeomElement {
     }
 
     public drawFace(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.faceColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.save();
@@ -102,6 +104,7 @@ export class PlaneElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.nameColor == null || this.name == null || !this.defined()) return;
         // Label placed at midpoint of BC, matching Java PlaneElement.drawName
         let ix = Math.round((this.B.x + this.C.x) / 2.0);
@@ -110,6 +113,7 @@ export class PlaneElement extends GeomElement {
     }
 
     public drawVertex(c: SlateCanvas): void {
+        if (!this.visible) return;
         if (this.vertexColor == null || !this.defined()) return;
         // Draw vertex at D = B + C - A (the 4th parallelogram corner).
         // A, B, C are drawn by their own drawVertex calls in Slate.
