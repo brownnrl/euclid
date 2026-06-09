@@ -20,18 +20,18 @@ interface IInitConfig {
     elements: any[];
 }
 
-// Slate-controls icon sizing. Touch devices (coarse pointer) get
-// roughly double-sized buttons so they hit the ~44px tap-target
-// minimum from Apple/Material guidance. Mouse/trackpad keeps the
-// compact 20px row that fits desktop.
+// Slate-controls icon sizing. The historical default is 20 px; touch
+// devices (coarse pointer) get a slightly tighter 15-px row per author
+// preference — small enough to stay out of the diagram, still hittable
+// with a fingertip.
 function isCoarsePointer(): boolean {
     return typeof window !== "undefined"
         && typeof window.matchMedia === "function"
         && window.matchMedia("(pointer: coarse)").matches;
 }
-const BTN_SIZE = isCoarsePointer() ? 44 : 20;
-const BTN_GAP = isCoarsePointer() ? 8 : 4;
-const BTN_MARGIN = isCoarsePointer() ? 12 : 8;
+const BTN_SIZE = isCoarsePointer() ? 18 : 20;
+const BTN_GAP = isCoarsePointer() ? 4 : 4;
+const BTN_MARGIN = isCoarsePointer() ? 7 : 8;
 
 // Minimal event-target interface so this helper is testable without a real
 // `Window`. Browser `Window`, `Document`, and `Element` all satisfy it.
@@ -88,6 +88,12 @@ class SlateControls {
     private _presentationJusts: HTMLDivElement | null = null;
     private _presentationCounter: HTMLSpanElement | null = null;
     private _presentationOnKey: ((e: KeyboardEvent) => void) | null = null;
+    // Single-pin sticky for caption {NAME} refs: only one element may be
+    // emphasized at a time. Clicking another ref clears the prior pin
+    // before stickying the new one; hover is suppressed while a pin is
+    // active so the sticky element stays the dominant one.
+    private _stickyRefSpan: HTMLSpanElement | null = null;
+    private _stickyRefElem: import("./elements/GeomElement").GeomElement | null = null;
 
     constructor(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig) {
         this._slate = slate;
@@ -391,6 +397,7 @@ class SlateControls {
     private exitPresent(): void {
         if (!this._presenting) return;
         this.unbindPresentationKeys();
+        this.clearStickyRef();
         this.removePresentationOverlay();
         this._slate.clearVisibility();
         for (let e of this._slate.elements) {
@@ -542,8 +549,11 @@ class SlateControls {
         this._presentationIndex = clamped;
 
         const state = computeSlideState(this._slate, slides, clamped);
-        // Reset emphasis between slides so a sticky-tap on slide N
-        // doesn't leak into N+1.
+        // Drop any sticky pin from the previous slide — its span
+        // belongs to the prior caption and is about to be replaced
+        // anyway. Also clear every element's emphasis so the new slide
+        // starts with a clean highlight set.
+        this.clearStickyRef();
         for (let e of this._slate.elements) {
             if (e.name == null) continue;
             e.visible = state.visible.has(e.name);
@@ -629,26 +639,51 @@ class SlateControls {
         span.style.fontStyle = "italic";
         span.style.cursor = "pointer";
         span.style.borderBottom = "1px dotted currentColor";
-        let sticky = false;
-        const setEmph = (on: boolean) => {
-            elem.emphasized = on;
-            this._slate.update();
-        };
         span.addEventListener("mouseenter", () => {
-            if (!sticky) setEmph(true);
+            // Hover does nothing while a sticky pin is active — the
+            // pinned element should remain the sole highlighted ref.
+            if (this._stickyRefSpan != null) return;
+            elem.emphasized = true;
+            this._slate.update();
         });
         span.addEventListener("mouseleave", () => {
-            if (!sticky) setEmph(false);
+            if (this._stickyRefSpan != null) return;
+            elem.emphasized = false;
+            this._slate.update();
         });
         span.addEventListener("pointerdown", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            sticky = !sticky;
-            span.classList.toggle("active", sticky);
-            span.style.color = sticky ? "#b08800" : "";
-            setEmph(sticky);
+            const wasThis = this._stickyRefSpan === span;
+            this.clearStickyRef();
+            if (!wasThis) this.setStickyRef(span, elem);
+            this._slate.update();
         });
         return span;
+    }
+
+    // Drop the active sticky pin (if any): release the pinned
+    // element's emphasis flag and reset the span's visual state.
+    private clearStickyRef(): void {
+        if (this._stickyRefSpan != null) {
+            this._stickyRefSpan.classList.remove("active");
+            this._stickyRefSpan.style.color = "";
+        }
+        if (this._stickyRefElem != null) {
+            this._stickyRefElem.emphasized = false;
+        }
+        this._stickyRefSpan = null;
+        this._stickyRefElem = null;
+    }
+
+    // Pin a new sticky ref. Call clearStickyRef() first if another
+    // ref is currently pinned.
+    private setStickyRef(span: HTMLSpanElement, elem: import("./elements/GeomElement").GeomElement): void {
+        span.classList.add("active");
+        span.style.color = "#b08800";
+        elem.emphasized = true;
+        this._stickyRefSpan = span;
+        this._stickyRefElem = elem;
     }
 }
 
