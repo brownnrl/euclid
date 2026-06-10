@@ -6,9 +6,11 @@ import {GeomElement} from "../GeomElement";
 import {Slate} from "../../Slate";
 import {LineElement} from "./LineElement";
 
-// Default trace rate in px/ms. A 200-px segment draws in 1 second at
-// 0.2; faster speeds feel snappy for short construction lines.
-const DEFAULT_LINE_RATE_PX_PER_MS = 0.5;
+// Default trace rate in px/ms. Calibrated for unhurried teaching: a
+// typical 100-px construction line draws over ~400 ms; 200-px lines
+// take ~800 ms. Authors who want snappier transitions raise the rate
+// via slate.animationConfig.rates["Line.straightEdgeConnect"].
+const DEFAULT_LINE_RATE_PX_PER_MS = 0.25;
 
 // Common helper: trace the target line from A toward B by driving
 // drawProgress. Used by both StraightEdgeConnect (the canonical

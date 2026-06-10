@@ -8,8 +8,8 @@ import {PolygonElement} from "./PolygonElement";
 
 // Default per-edge trace rate matches LineAnimations so a polygon's
 // edges feel like the same instrument tracing each side in turn.
-const DEFAULT_POLYGON_EDGE_RATE_PX_PER_MS = 0.5;
-const DEFAULT_POLYGON_FILL_MS = 300;
+const DEFAULT_POLYGON_EDGE_RATE_PX_PER_MS = 0.25;
+const DEFAULT_POLYGON_FILL_MS = 500;
 
 // Total perimeter (closed if V.length > 2, otherwise open) — used to
 // compute the outline duration from edge rate.

@@ -6,9 +6,11 @@ import {GeomElement} from "../GeomElement";
 import {Slate} from "../../Slate";
 import {CircleElement} from "./CircleElement";
 
-// Default sweep rate in radians/ms. A full circle (2π) draws in 1.25
-// seconds at 0.005 rad/ms — visually deliberate but not slow.
-const DEFAULT_ARC_RATE_RAD_PER_MS = 0.005;
+// Default sweep rate in radians/ms. Calibrated for unhurried teaching:
+// a full circle (2π) draws in ≈ 2 seconds at 0.003 rad/ms. Authors who
+// want a faster compass raise the rate via
+// slate.animationConfig.rates["Circle.compass"].
+const DEFAULT_ARC_RATE_RAD_PER_MS = 0.003;
 
 // A.Circle.compass — anchor at centre, pick up the pencil at the
 // radius-defining point B, sweep 2π back to the start. Args:

@@ -14,7 +14,7 @@ export class PointAppearAnimation extends Animation {
     public animationMethod = AllAnimations.POINT_APPEAR;
     public name = "Point.appear";
     public elementType = PointElement;
-    public defaultDurationMs = 200;
+    public defaultDurationMs = 350;
 
     public build(target: GeomElement, slate: Slate, args: any): IAnimationStep[] {
         return [{

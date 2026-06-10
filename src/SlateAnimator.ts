@@ -34,12 +34,26 @@ interface ActiveGroup {
     finishedAtMs?: number;       // when the last step finalised (for cascadeGapMs pacing)
 }
 
-// Detects whether the browser honours requestAnimationFrame. Tests
-// (node + mocha) shim a synchronous loop instead so they never hang.
+// Time source: performance.now() when available (monotonic, high-res,
+// unaffected by NTP adjustments and not subject to wall-clock skew).
+// Falls back to Date.now() in headless environments without
+// performance.now(). dt is computed from the diff between consecutive
+// frames and clamped (see MAX_DT_MS) so background-tab pauses or
+// long single-frame stalls don't cause the next frame to advance by
+// a multi-second jump — hardware with different refresh rates
+// (60 Hz / 120 Hz / 144 Hz) all see the same total wall-clock
+// duration because progress is dt-driven, not frame-count driven.
 const HAS_RAF = (typeof requestAnimationFrame === "function");
 const NOW: () => number = (typeof performance !== "undefined" && performance.now)
     ? () => performance.now()
     : () => Date.now();
+// Clamp per-frame dt. Prevents a backgrounded tab's accumulated
+// pause-time from collapsing an entire animation into one frame on
+// resume; also smooths very long single-frame stalls (e.g. GC pause).
+// 100 ms = 6 frames at 60 Hz worth of catch-up — enough for normal
+// jitter, small enough that a hidden tab resuming after 30 s doesn't
+// blink through 30 s of construction in one paint.
+const MAX_DT_MS = 100;
 
 export class SlateAnimator {
     private slate: Slate;
@@ -246,8 +260,13 @@ export class SlateAnimator {
         const config = this.slate.animationConfig || {};
         const speedMul = config.speedMultiplier != null ? config.speedMultiplier : 1;
         const cascadeGap = config.cascadeGapMs || 0;
-        let dt = (nowMs - this.lastFrameMs) * speedMul;
-        if (dt < 0) dt = 0;
+        // Real elapsed wall-clock dt, clamped to MAX_DT_MS so a
+        // backgrounded tab or long GC pause doesn't fast-forward
+        // through the rest of the animation in a single frame.
+        let rawDt = nowMs - this.lastFrameMs;
+        if (rawDt < 0) rawDt = 0;
+        if (rawDt > MAX_DT_MS) rawDt = MAX_DT_MS;
+        const dt = rawDt * speedMul;
         this.lastFrameMs = nowMs;
 
         // Advance the active step(s).
