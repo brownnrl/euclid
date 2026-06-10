@@ -75,30 +75,40 @@ export class PolygonOutlineAndFillAnimation extends Animation {
     public build(target: GeomElement, slate: Slate, args: any): IAnimationStep[] {
         const poly = target as PolygonElement;
         const outlineMs = Math.max(180, perimeter(poly) / this.defaultRate);
+        const fullRestore = () => {
+            poly.faceAlpha = 1;
+            poly.drawProgress = 1;
+            poly.visible = true;
+        };
+        // Step 1 — outline trace.
+        const outline: IAnimationStep = {
+            durationMs: outlineMs,
+            setup: () => {
+                poly.drawProgress = 0;
+                poly.faceAlpha = 0;   // hide fill until step 2
+            },
+            tick: (progress) => { poly.drawProgress = progress; },
+            finalise: () => { poly.drawProgress = 1; },
+        };
+        // A face-less polygon has nothing to fade — scheduling the
+        // fill step anyway would be pure dead time in the middle of
+        // a cascade (#81). Run the outline alone, with its finalise
+        // doing the full restore.
+        if (poly.faceColor == null) {
+            outline.finalise = fullRestore;
+            return [outline];
+        }
         // Fill ~twice as fast as the outline, capped at the
         // class-level default so a giant polygon doesn't yield a
         // glacial fade.
         const fillMs = Math.min(outlineMs / 2, this.defaultDurationMs);
         return [
-            // Step 1 — outline trace.
-            {
-                durationMs: outlineMs,
-                setup: () => {
-                    poly.drawProgress = 0;
-                    poly.faceAlpha = 0;   // hide fill until step 2
-                },
-                tick: (progress) => { poly.drawProgress = progress; },
-                finalise: () => { poly.drawProgress = 1; },
-            },
+            outline,
             // Step 2 — face fade-in over the already-traced outline.
             {
                 durationMs: fillMs,
                 tick: (progress) => { poly.faceAlpha = progress; },
-                finalise: () => {
-                    poly.faceAlpha = 1;
-                    poly.drawProgress = 1;
-                    poly.visible = true;
-                },
+                finalise: fullRestore,
             },
         ];
     }

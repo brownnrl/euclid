@@ -37,31 +37,41 @@ export class CircleCompassAnimation extends Animation {
             ? args.startAngle
             : Math.atan2(circle.B.y - circle.Center.y, circle.B.x - circle.Center.x);
         const sweepMs = (2 * Math.PI) / this.defaultRate;
+        const fullRestore = () => {
+            circle.faceAlpha = 1;
+            circle.drawProgress = 1;
+            circle.drawStartAngle = 0;
+            circle.visible = true;
+        };
+        // Step 1 — edge sweep with the face hidden.
+        const sweep: IAnimationStep = {
+            durationMs: sweepMs,
+            setup: () => {
+                circle.drawStartAngle = explicitStart;
+                circle.faceAlpha = 0;
+                circle.drawProgress = 0;
+            },
+            tick: (progress) => { circle.drawProgress = progress; },
+            finalise: () => { circle.drawProgress = 1; },
+        };
+        // A face-less circle has nothing to fade — scheduling the
+        // fill step anyway would be pure dead time in the middle of
+        // a cascade (#81). Run the sweep alone, with its finalise
+        // doing the full restore.
+        if (circle.faceColor == null) {
+            sweep.finalise = fullRestore;
+            return [sweep];
+        }
         // Fill ~twice as fast as the sweep, capped by the class-level
         // default so a tiny circle doesn't yield a blink-of-an-eye fade.
         const fillMs = Math.min(sweepMs / 2, this.defaultDurationMs);
         return [
-            // Step 1 — edge sweep with the face hidden.
-            {
-                durationMs: sweepMs,
-                setup: () => {
-                    circle.drawStartAngle = explicitStart;
-                    circle.faceAlpha = 0;
-                    circle.drawProgress = 0;
-                },
-                tick: (progress) => { circle.drawProgress = progress; },
-                finalise: () => { circle.drawProgress = 1; },
-            },
+            sweep,
             // Step 2 — face fade-in over the now-complete arc.
             {
                 durationMs: fillMs,
                 tick: (progress) => { circle.faceAlpha = progress; },
-                finalise: () => {
-                    circle.faceAlpha = 1;
-                    circle.drawProgress = 1;
-                    circle.drawStartAngle = 0;
-                    circle.visible = true;
-                },
+                finalise: fullRestore,
             },
         ];
     }
