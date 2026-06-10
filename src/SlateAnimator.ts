@@ -55,6 +55,13 @@ const NOW: () => number = (typeof performance !== "undefined" && performance.now
 // blink through 30 s of construction in one paint.
 const MAX_DT_MS = 100;
 
+// Duration of the post-animation emphasis fade-out. Trims the visible
+// "snap from 6 px to highlight thickness" into a smooth taper so the
+// settle isn't jarring when the underlying element is also slide-
+// highlighted (the polygon ABC over the highlighted AB / AC / BC is
+// the canonical case).
+const EMPHASIS_FADE_OUT_MS = 250;
+
 export class SlateAnimator {
     private slate: Slate;
     // The currently-running set of groups. Empty when idle.
@@ -65,6 +72,12 @@ export class SlateAnimator {
     private cascadeIndex: number = 0;
     private rafId: number | null = null;
     private lastFrameMs: number = 0;
+    // Emphasis fade-out phase tracking. After every group's last step
+    // finalises, the animator enters this phase and ticks each target's
+    // emphasisAmount from 1 → 0 over EMPHASIS_FADE_OUT_MS before
+    // resolving the promise.
+    private fadingOut: boolean = false;
+    private fadeStartMs: number = 0;
 
     constructor(slate: Slate) {
         this.slate = slate;
@@ -175,6 +188,14 @@ export class SlateAnimator {
             return Promise.resolve();
         }
 
+        // Mark every animating target as emphasized so its render pops
+        // over any slide-highlighted underlying elements that share a
+        // path (e.g. the polygon ABC animating over highlighted lines
+        // AB / AC / BC). Cleared in _allFinalised / cancel().
+        for (const g of groups) {
+            g.target.emphasized = true;
+        }
+
         this.groups = groups;
         this.mode = mode;
         this.cascadeIndex = 0;
@@ -184,6 +205,15 @@ export class SlateAnimator {
             this._kickoff();
             this._scheduleFrame();
         });
+    }
+
+    // Drop the during-animation emphasis bumps from every group target.
+    // Called once on completion or cancel so the slide settles back
+    // into its plain highlight / not-highlighted steady state.
+    private _clearAnimatedEmphasis(): void {
+        for (const g of this.groups) {
+            g.target.emphasized = false;
+        }
     }
 
     // Cancel any in-flight run: finalise every step that started, wipe
@@ -204,9 +234,11 @@ export class SlateAnimator {
                 as.finalised = true;
             }
         }
+        this._clearAnimatedEmphasis();
         this.slate.clearEphemerals();
         this.slate.drawElements();
         this.groups = [];
+        this.fadingOut = false;
         if (this.rafId != null && typeof cancelAnimationFrame === "function") {
             cancelAnimationFrame(this.rafId);
         }
@@ -280,14 +312,35 @@ export class SlateAnimator {
         // drawn alongside permanent elements.
         this.slate.drawElements();
 
-        // Done?
+        // Once every step's tick has finalised, enter the fade-out
+        // phase: tick each target's emphasisAmount from 1 → 0 over
+        // EMPHASIS_FADE_OUT_MS, redrawing each frame. Only resolves
+        // once the fade completes.
         if (this._allFinalised()) {
-            this.groups = [];
-            this.rafId = null;
-            if (this.resolveCurrent) {
-                this.resolveCurrent();
-                this.resolveCurrent = null;
+            if (!this.fadingOut) {
+                this.fadingOut = true;
+                this.fadeStartMs = nowMs;
             }
+            const fadeElapsed = nowMs - this.fadeStartMs;
+            const fp = fadeElapsed >= EMPHASIS_FADE_OUT_MS
+                ? 1 : fadeElapsed / EMPHASIS_FADE_OUT_MS;
+            const ea = 1 - fp;
+            for (const g of this.groups) {
+                g.target.emphasisAmount = ea;
+            }
+            this.slate.drawElements();
+            if (fp >= 1) {
+                this._clearAnimatedEmphasis();
+                this.groups = [];
+                this.fadingOut = false;
+                this.rafId = null;
+                if (this.resolveCurrent) {
+                    this.resolveCurrent();
+                    this.resolveCurrent = null;
+                }
+                return;
+            }
+            this._scheduleFrame();
             return;
         }
         this._scheduleFrame();

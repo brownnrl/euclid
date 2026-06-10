@@ -141,10 +141,13 @@ export class CircleElement extends GeomElement {
         ctx.strokeStyle = (this.emphasized || this.shouldHighlight)
             ? this.edgeHighlightColor
             : this.edgeColor;
-        // Match LineElement: 1 normal, 3 slide-highlight, 6 emphasised
-        // (caption ref hover/click). Always assigned explicitly so a
+        // Match LineElement: smooth interpolation between baseline (1 or 3)
+        // and 6 via emphasisAmount. Always assigned explicitly so a
         // previous element's value doesn't leak.
-        ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
+        {
+            const baseW = this.shouldHighlight ? 3 : 1;
+            ctx.lineWidth = baseW + this.emphasisAmount * (6 - baseW);
+        }
         // Edge sweep: partial arc from drawStartAngle through
         // 2π · drawProgress. Default progress = 1 yields a full circle.
         let arcStart = this.drawStartAngle;

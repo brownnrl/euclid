@@ -386,12 +386,11 @@ export class PointElement extends GeomElement {
             }
         }
         if (color == null) return;
-        // Radius scales with state: 2 normal, 4 slide-highlight, 6
-        // emphasised (caption ref hover/click). Slide-transition
-        // animation (A.Point.appear) further multiplies by drawProgress
-        // so the marker pulses in from 0 to its final size. Default
-        // drawProgress = 1 keeps the existing behaviour.
-        let r = this.emphasized ? 6 : (this.shouldHighlight ? 4 : 2);
+        // Radius interpolates by emphasisAmount: baseline 2 (normal) or
+        // 4 (highlight) → 6 at full emphasis. drawProgress then scales
+        // the result so A.Point.appear can pulse the marker in from 0.
+        const baseR = this.shouldHighlight ? 4 : 2;
+        let r = baseR + this.emphasisAmount * (6 - baseR);
         r *= this.drawProgress;
         if (r < 0.5) return;   // avoid degenerate sub-pixel arcs
         ctx.beginPath();

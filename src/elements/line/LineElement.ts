@@ -54,11 +54,13 @@ export class LineElement extends GeomElement {
 
         let ctx = c.getContext("2d");
         ctx.strokeStyle = color;
-        // Stroke weight scales with state: 1 normal, 3 slide-highlight,
-        // 6 when emphasised (caption ref hover/click). Always assigned
-        // explicitly so a leftover lineWidth doesn't carry into the
-        // next element in drawElements' iteration.
-        ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
+        // Stroke weight scales smoothly. Baseline is 1 (normal) or 3
+        // (slide-highlight); emphasisAmount interpolates up to 6 for
+        // full emphasis. emphasisAmount = 0 → baseline; 1 → 6 px;
+        // animator fades 1 → 0 over ~250 ms at the end of a transition
+        // so the post-animation settle isn't a hard pop.
+        const baseW = this.shouldHighlight ? 3 : 1;
+        ctx.lineWidth = baseW + this.emphasisAmount * (6 - baseW);
         // Slide-transition animation: drawProgress < 1 traces only the
         // first `progress` fraction of the line A → B. Default 1 keeps
         // the full-line behaviour every existing consumer relies on.
