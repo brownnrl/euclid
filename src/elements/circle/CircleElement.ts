@@ -136,11 +136,19 @@ export class CircleElement extends GeomElement {
 
     public drawEdge(c: SlateCanvas): void {
         if (!this.visible) return;
-        if (this.edgeColor == null || !this.defined()) return;
-        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
-        ctx.strokeStyle = (this.emphasized || this.shouldHighlight)
+        // Pick the highlight color BEFORE the null bail, matching
+        // LineElement / PolygonElement (#81). A circle with a null
+        // edgeColor can still render in the highlight stroke while
+        // emphasized or slide-highlighted — the "invisible highlight
+        // target" pattern, and what lets a zero-color transitionary
+        // circle show up during its compass animation (SlateAnimator
+        // holds emphasisAmount = 1 on animating targets).
+        const color = (this.emphasized || this.shouldHighlight)
             ? this.edgeHighlightColor
             : this.edgeColor;
+        if (color == null || !this.defined()) return;
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
+        ctx.strokeStyle = color;
         // Match LineElement: smooth interpolation between baseline (1 or 3)
         // and 6 via emphasisAmount. Always assigned explicitly so a
         // previous element's value doesn't leak.

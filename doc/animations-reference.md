@@ -66,7 +66,7 @@ Rates are in `px/ms` for linear traces and `rad/ms` for arc sweeps.
 
 | Name | Status | Target | Args | Default | Visual |
 |---|---|---|---|---|---|
-| `A.Circle.compass` | **IMPL** | `CircleElement` | `{ startAngle?: number }` | rate `0.003 rad/ms`, fill cap `600 ms` | Strict two-step. **Step 1** — anchor at centre, pick up the pencil at the radius-defining point `B`, sweep `2π` back to the start (default `startAngle` = angle from centre to `B`, so the trace begins where a real compass would). **Step 2** — face fades in over the now-complete arc at ~half the sweep duration. Independent fields drive the two steps: `drawProgress` finalises to 1 before `faceAlpha` ticks 0 → 1, so the edge stays stable while the fill lands. |
+| `A.Circle.compass` | **IMPL** | `CircleElement` | `{ startAngle?: number }` | rate `0.003 rad/ms`, fill cap `600 ms` | Strict two-step. **Step 1** — anchor at centre, pick up the pencil at the radius-defining point `B`, sweep `2π` back to the start (default `startAngle` = angle from centre to `B`, so the trace begins where a real compass would). **Step 2** — face fades in over the now-complete arc at ~half the sweep duration. Independent fields drive the two steps: `drawProgress` finalises to 1 before `faceAlpha` ticks 0 → 1, so the edge stays stable while the fill lands. A face-less circle (`faceColor` null) skips step 2 entirely — no dead time mid-cascade. |
 | `A.Circle.compassExplicit` | TBD | `CircleElement` | — | — | Reserved. Same sweep as `compass`, but renders ephemeral compass arms (two short lines from centre to the pencil) during the trace. Good for early teaching propositions where the tool itself is part of the explanation. |
 
 ## Polygon animations
@@ -74,7 +74,7 @@ Rates are in `px/ms` for linear traces and `rad/ms` for arc sweeps.
 | Name | Status | Target | Args | Default | Visual |
 |---|---|---|---|---|---|
 | `A.Polygon.outline` | **IMPL** | `PolygonElement` | — | rate `0.25 px/ms`, min `180 ms` | Cascade-trace each edge in `V[]` order. `PolygonElement.drawEdge` partitions `drawProgress` across edges so a single `0 → 1` step traces every edge in sequence at the right per-edge proportion. |
-| `A.Polygon.outlineAndFill` | **IMPL** | `PolygonElement` | — | outline rate `0.25 px/ms`, fill cap `500 ms` | Strict two-step. **Step 1** — outline trace (`drawProgress: 0 → 1`). **Step 2** — face fade-in (`faceAlpha: 0 → 1`) at ~half the outline's runtime. Fill is intentionally shorter than the outline — the eye has already absorbed the shape from the trace, so the fill should land quickly. |
+| `A.Polygon.outlineAndFill` | **IMPL** | `PolygonElement` | — | outline rate `0.25 px/ms`, fill cap `500 ms` | Strict two-step. **Step 1** — outline trace (`drawProgress: 0 → 1`). **Step 2** — face fade-in (`faceAlpha: 0 → 1`) at ~half the outline's runtime. Fill is intentionally shorter than the outline — the eye has already absorbed the shape from the trace, so the fill should land quickly. A face-less polygon (`faceColor` null) skips step 2 entirely. |
 
 ## Reserved / no-namespace
 

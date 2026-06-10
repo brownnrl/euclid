@@ -45,7 +45,9 @@ const TRIANGLE_CONFIG: SlateConfig = {
         "A;point;free;90,200",
         "B;point;free;250,200",
         "C;point;free;170,70",
-        "ABC;polygon;triangle;A,B,C;0;0;black;random",
+        // Deterministic face color — "random" rolls a new pastel per
+        // run, so goldens only match the run that created them (#84).
+        "ABC;polygon;triangle;A,B,C;0;0;black;#ffb6c1",
     ],
 };
 

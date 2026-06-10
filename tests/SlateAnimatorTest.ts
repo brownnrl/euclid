@@ -158,6 +158,61 @@ describe("SlateAnimator (issue #78)", () => {
         });
     });
 
+    describe("deferred reveal (issue #83)", () => {
+        it("keeps a cascade target invisible until its own step starts", async () => {
+            const slate = buildSlate(propI1);
+            slate.animationConfig = {};
+            const ab = slate.lookupElement("AB") as LineElement;
+            const bcd = slate.lookupElement("BCD") as CircleElement;
+            ab.visible = false;
+            bcd.visible = false;
+            // Kick off a two-entry cascade without awaiting: AB's step
+            // starts on kickoff; BCD's turn hasn't come.
+            const p = slate.animateTo(
+                new Set(["A","B","AB","BCD"]),
+                new Set(),
+                [
+                    { elem: "AB",  name: A.Line.straightEdgeConnect },
+                    { elem: "BCD", name: A.Circle.compass },
+                ],
+                "cascade",
+            );
+            // First step (AB) revealed immediately; the pending target
+            // (BCD) stays hidden — its face fill and name label must
+            // not render while AB is still tracing.
+            assert.strictEqual(ab.visible, true, "active target should be revealed");
+            assert.strictEqual(bcd.visible, false, "pending target should stay hidden");
+            slate.animator!.cancel();
+            await p;
+            // Cancel finalises everything — both end visible.
+            assert.strictEqual(ab.visible, true);
+            assert.strictEqual(bcd.visible, true);
+        });
+
+        it("reveals every target up front in parallel mode", async () => {
+            const slate = buildSlate(propI1);
+            slate.animationConfig = {};
+            const ab = slate.lookupElement("AB") as LineElement;
+            const bcd = slate.lookupElement("BCD") as CircleElement;
+            ab.visible = false;
+            bcd.visible = false;
+            const p = slate.animateTo(
+                new Set(["A","B","AB","BCD"]),
+                new Set(),
+                [
+                    { elem: "AB",  name: A.Line.straightEdgeConnect },
+                    { elem: "BCD", name: A.Circle.compass },
+                ],
+                "parallel",
+            );
+            // Parallel kickoff starts every group's first step at once.
+            assert.strictEqual(ab.visible, true);
+            assert.strictEqual(bcd.visible, true);
+            slate.animator!.cancel();
+            await p;
+        });
+    });
+
     describe("cancel()", () => {
         it("finalises every step started so far + clears ephemerals", async () => {
             const slate = buildSlate(propI1);
