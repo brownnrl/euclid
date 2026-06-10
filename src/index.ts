@@ -1,5 +1,13 @@
 import {GeomElement, Align as align} from "./elements/GeomElement"
 import {AllConstructions, E as e} from "./elements/Constructions"
+import {AllAnimations, A} from "./elements/Animations"
+// Per-type animation modules — imported for side effects so each
+// Animation subclass registers with the registry at module load. Adding
+// a new animation file is a one-line `import "./elements/.../X"` here.
+import "./elements/point/PointAnimations";
+import "./elements/line/LineAnimations";
+import "./elements/circle/CircleAnimations";
+import "./elements/polygon/PolygonAnimations";
 import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
@@ -9,6 +17,7 @@ import {createControls} from "./SlateControls";
 export type IndexAllConstructions = AllConstructions;
 export {align  as Align};
 export {e as E};
+export {AllAnimations, A};
 
 // Build marker — bumped when behaviour-affecting changes ship so consumers
 // (e.g. the test pages used to investigate #55) can confirm which bundle
