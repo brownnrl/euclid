@@ -43,9 +43,18 @@ export class CircleElement extends GeomElement {
     // so the trace begins at the natural compass-point (the angle from
     // centre to the radius-defining B). Reset in finalise().
     private _drawStartAngle : number = 0;
+    // Face fill alpha — drives drawFace's globalAlpha independent of
+    // drawProgress (which only drives the edge sweep). Default 1 means
+    // "fully opaque" — every existing render path behaves identically.
+    private _faceAlpha : number = 1;
 
     set drawStartAngle(value: number) { this._drawStartAngle = value; }
     get drawStartAngle(): number { return this._drawStartAngle; }
+
+    set faceAlpha(value: number) {
+        this._faceAlpha = value < 0 ? 0 : (value > 1 ? 1 : value);
+    }
+    get faceAlpha(): number { return this._faceAlpha; }
 
     constructor(ice? : ICircleElementConstruction) {
         super();
@@ -75,16 +84,13 @@ export class CircleElement extends GeomElement {
     // drawEllipse and fillEllipse not necessary as they are provided
     // in the canvas api.
 
-    private _drawCircle(ctx : CanvasRenderingContext2D) : void {
+    // Shared geometry walk. `arcStart` / `arcEnd` let the caller render
+    // either a partial arc (the slide-transition edge sweep) or a
+    // full circle for fill purposes — the face never gets partial.
+    private _drawCircleArc(ctx : CanvasRenderingContext2D, arcStart : number, arcEnd : number) : void {
         ctx.beginPath();
         let r2 : number = this.radius2;
         let r : number = Math.sqrt(r2);
-        // Slide-transition arc: sweep from `drawStartAngle` through
-        // `2π · drawProgress`. drawProgress = 1 (the default) yields a
-        // full circle regardless of startAngle, so the existing
-        // closed-circle render path is preserved bit-for-bit.
-        let arcStart : number = this.drawStartAngle;
-        let arcEnd   : number = arcStart + 2 * Math.PI * this.drawProgress;
         let amp2 : number = this.AP.S.z*this.AP.S.z + this.AP.T.z*this.AP.T.z;
         if (Math.abs(amp2) < 0.01) { // the circle is flat
             ctx.ellipse(
@@ -139,17 +145,37 @@ export class CircleElement extends GeomElement {
         // (caption ref hover/click). Always assigned explicitly so a
         // previous element's value doesn't leak.
         ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
-        this._drawCircle(ctx);
+        // Edge sweep: partial arc from drawStartAngle through
+        // 2π · drawProgress. Default progress = 1 yields a full circle.
+        let arcStart = this.drawStartAngle;
+        let arcEnd   = arcStart + 2 * Math.PI * this.drawProgress;
+        this._drawCircleArc(ctx, arcStart, arcEnd);
         ctx.stroke();
     }
 
     public drawFace(c: SlateCanvas): void {
         if (!this.visible) return;
         if (this.faceColor == null || !this.defined()) return;
+        // Face is independent of the edge sweep — always fills the
+        // full circle (filling a partial arc would render a pie wedge
+        // with a chord bleeding out, which is not what a compass sweep
+        // should look like). Alpha is driven by the dedicated faceAlpha
+        // field so an animation can fade the fill in after the edge
+        // trace completes; default faceAlpha = 1 preserves the
+        // fully-opaque behaviour for every consumer that doesn't animate.
+        let a = this.faceAlpha;
+        if (a <= 0) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.fillStyle = this.faceColor;
-        this._drawCircle(ctx);
-        ctx.fill();
+        this._drawCircleArc(ctx, 0, 2 * Math.PI);
+        if (a < 1) {
+            ctx.save();
+            ctx.globalAlpha = a;
+            ctx.fill();
+            ctx.restore();
+        } else {
+            ctx.fill();
+        }
     }
 
     public drawName(c: SlateCanvas): void {

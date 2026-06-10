@@ -24,6 +24,19 @@ export class PolygonElement extends GeomElement {
 
     public V : PointElement[];
 
+    // Face fill alpha — drives drawFace's globalAlpha independent of
+    // drawProgress (which drives the edge trace). Lets an animation
+    // run the outline to completion at drawProgress = 1 first, then
+    // separately fade the fill in by ticking faceAlpha 0 → 1. Default
+    // 1 means "fully opaque" — every existing render path behaves
+    // identically.
+    private _faceAlpha : number = 1;
+
+    set faceAlpha(value: number) {
+        this._faceAlpha = value < 0 ? 0 : (value > 1 ? 1 : value);
+    }
+    get faceAlpha(): number { return this._faceAlpha; }
+
     constructor(ps?: PointElement[]) {
         super();
         this.dimension = 2;
@@ -112,13 +125,17 @@ export class PolygonElement extends GeomElement {
             for(let vertex of rest)
                 ctx.lineTo(vertex.x, vertex.y);
             ctx.closePath();
-            // Animate the fill in by scaling globalAlpha by drawProgress.
-            // Default 1 keeps the fully-opaque behaviour. Save/restore
-            // so the alpha doesn't leak into later draws.
-            let p = this.drawProgress;
-            if (p < 1) {
+            // Animate the fill via the dedicated faceAlpha field so
+            // outline-then-fill animations can run the edge trace to
+            // completion at drawProgress = 1 first, then independently
+            // tick faceAlpha from 0 to 1 for the fade-in. Default
+            // faceAlpha = 1 preserves the fully-opaque behaviour for
+            // every consumer that doesn't animate.
+            let a = this.faceAlpha;
+            if (a < 1) {
+                if (a <= 0) return;  // fully transparent — skip
                 ctx.save();
-                ctx.globalAlpha = p;
+                ctx.globalAlpha = a;
                 ctx.fill();
                 ctx.restore();
             } else {

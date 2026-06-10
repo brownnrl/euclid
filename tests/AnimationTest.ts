@@ -229,22 +229,20 @@ describe("element drawProgress rendering (issue #78)", () => {
     });
 
     describe("PolygonElement.drawFace", () => {
-        it("fades the fill via globalAlpha at progress < 1", () => {
+        it("fades the fill via globalAlpha at faceAlpha < 1", () => {
             const slate = new Slate(createCanvas(300, 300));
             toElements(slate, triangle_data);
             const tri = slate.lookupElement("ABC") as PolygonElement;
             tri.faceColor = "#ff0000";
-            tri.drawProgress = 0.5;
+            tri.faceAlpha = 0.5;
 
             const r = recordingCanvas(300, 300);
             tri.drawFace(r.canvas);
-            // globalAlpha should have been set to 0.5 (then restored
-            // by save/restore — we only care that it was assigned).
             assert.ok(r.recorded.alphas.includes(0.5),
                 `alphas observed: ${JSON.stringify(r.recorded.alphas)}`);
         });
 
-        it("does not touch globalAlpha at progress=1 (the default)", () => {
+        it("does not touch globalAlpha at faceAlpha=1 (the default)", () => {
             const slate = new Slate(createCanvas(300, 300));
             toElements(slate, triangle_data);
             const tri = slate.lookupElement("ABC") as PolygonElement;
@@ -252,9 +250,24 @@ describe("element drawProgress rendering (issue #78)", () => {
 
             const r = recordingCanvas(300, 300);
             tri.drawFace(r.canvas);
-            // No alpha < 1 should have been recorded.
             for (const a of r.recorded.alphas) {
                 assert.strictEqual(a, 1, `unexpected alpha ${a}`);
+            }
+        });
+
+        it("face fade is independent of edge drawProgress", () => {
+            const slate = new Slate(createCanvas(300, 300));
+            toElements(slate, triangle_data);
+            const tri = slate.lookupElement("ABC") as PolygonElement;
+            tri.faceColor = "#ff0000";
+            // Mid-outline (edges at 50% complete) but face fully shown.
+            tri.drawProgress = 0.5;
+            tri.faceAlpha = 1;
+
+            const r = recordingCanvas(300, 300);
+            tri.drawFace(r.canvas);
+            for (const a of r.recorded.alphas) {
+                assert.strictEqual(a, 1, "face should be opaque regardless of drawProgress");
             }
         });
     });
