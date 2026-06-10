@@ -5,7 +5,8 @@ import {AllConstructions, Construction, SortedParams, constructions, getConstruc
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas} from "canvas";
 import {LineElement} from "./elements/line/LineElement";
-import {ISlide} from "./index";
+import {ISlide, ISlideAnimation, IAnimationConfig} from "./index";
+import {SlateAnimator} from "./SlateAnimator";
 
 export type SlateCanvas = HTMLCanvasElement | Canvas;
 
@@ -32,6 +33,20 @@ export class Slate {
     // isn't recognised, in which case the Presentation overlay renders
     // the ref as plain text. Undefined means no resolver was passed.
     private _resolveJustification : ResolveJustification | null = null;
+    // Slide-transition animation config (rates, durations, modifiers).
+    // The slate ships a default; init() merges in whatever the
+    // consumer provides via IInitialization.animationConfig.
+    private _animationConfig : IAnimationConfig = {};
+    // The frame-driver. Lazy-created on first animateTo() so a
+    // headless test slate that never animates doesn't allocate a
+    // requestAnimationFrame loop.
+    private _animator : SlateAnimator | null = null;
+    // Ephemeral helper elements an animation can spawn for its
+    // lifetime (compass arms, guide circles, straightedge bars).
+    // Drawn on top of _elements in the same face → edge → vertex →
+    // name order; never appear in lookupElement; cleared on
+    // animator.cancel() as a safety net.
+    private _ephemerals : GeomElement[] = [];
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
@@ -222,6 +237,61 @@ export class Slate {
         this._resolveJustification = value;
     }
 
+    get animationConfig() : IAnimationConfig {
+        return this._animationConfig;
+    }
+
+    set animationConfig(value: IAnimationConfig) {
+        this._animationConfig = value || {};
+    }
+
+    get animator() : SlateAnimator | null {
+        return this._animator;
+    }
+
+    get ephemerals() : GeomElement[] {
+        return this._ephemerals;
+    }
+
+    addEphemeral(e: GeomElement) : void {
+        this._ephemerals.push(e);
+    }
+
+    removeEphemeral(e: GeomElement) : void {
+        const i = this._ephemerals.indexOf(e);
+        if (i >= 0) this._ephemerals.splice(i, 1);
+    }
+
+    clearEphemerals() : void {
+        this._ephemerals.length = 0;
+    }
+
+    // Lazy-create the animator on first use. Each slate owns at most
+    // one — cancel() preserves it for re-use across slide transitions.
+    private _ensureAnimator() : SlateAnimator {
+        if (this._animator == null) {
+            this._animator = new SlateAnimator(this);
+        }
+        return this._animator;
+    }
+
+    // Public entry point for slideshow controllers. Diff the current
+    // visibility / highlight state against the target, run any slide-
+    // listed animations against the elements becoming visible. Newly-
+    // visible elements without an explicit animation entry pop in
+    // instantly (4b parity). Returns a Promise that resolves when the
+    // animator completes the run or cancel() is called.
+    animateTo(
+        targetVisible: Set<string>,
+        targetHighlighted: Set<string>,
+        slideAnimations: ISlideAnimation[],
+        mode: "cascade" | "parallel",
+    ) : Promise<void> {
+        return this._ensureAnimator().run(
+            targetVisible, targetHighlighted, slideAnimations, mode,
+        );
+    }
+
     // Hide every named element whose name is not in the supplied set.
     // Names not matching any element are silently ignored; elements
     // without a name (intermediate construction outputs) are left alone.
@@ -344,6 +414,14 @@ export class Slate {
         // and then draw their names.
         for(let element of this._elements)
             element.drawName(this._canvas);
+        // Ephemeral animation helpers render on top of the permanent
+        // figure (compass arms, guide circles, straightedge bars).
+        // Same face → edge → vertex → name pass order so a guide arc
+        // overlays correctly without re-clearing the canvas.
+        for(let e of this._ephemerals) e.drawFace(this._canvas);
+        for(let e of this._ephemerals) e.drawEdge(this._canvas);
+        for(let e of this._ephemerals) e.drawVertex(this._canvas);
+        for(let e of this._ephemerals) e.drawName(this._canvas);
     }
 
     // Update coordinates starting with element[i+1], matching Java's

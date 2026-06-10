@@ -106,20 +106,51 @@ geomlib.init({
         "CA":  "AC",
         "CB":  "BC"
     },
+    // animationConfig is optional. With it omitted, slides still pop
+    // in instantly the same as 0.5.0. Providing even an empty object
+    // is fine; the per-slide transition.animations entries below opt
+    // into actual animation.
+    animationConfig: {},
     slides: [
+        // Slide 1 — opens with the straightedge tracing AB.
         { text: "Let {AB} be the given finite straight line.",
-          visible: ["AB"] },
+          visible: ["AB"],
+          transition: {
+              animations: [
+                  { elem: "AB", name: geomlib.A.Line.straightEdgeConnect }
+              ]
+          } },
         { text: "It is required to construct an equilateral triangle on the straight line {AB}.",
           visible: ["AB","ABC"],
           highlighted: ["ABC"] },
+        // Construction slides 3-5 — circles sweep, lines trace, point C appears.
         { text: "Describe the circle {BCD} with centre {A} and radius {AB}.",
           visible: ["AB","BCD","D"],
+          transition: {
+              animations: [
+                  { elem: "BCD", name: geomlib.A.Circle.compass }
+              ]
+          },
           justifications: [{ ref: "I.Post.3" }] },
         { text: "Again describe the circle {ACE} with centre {B} and radius {BA}.",
           visible: ["AB","BCD","ACE","D","E"],
+          transition: {
+              animations: [
+                  { elem: "ACE", name: geomlib.A.Circle.compass }
+              ]
+          },
           justifications: [{ ref: "I.Post.3" }] },
         { text: "Join the straight lines {CA} and {CB} from the point {C} at which the circles cut one another.",
           visible: ["AB","BCD","ACE","C","AC","BC"],
+          transition: {
+              // Cascade matches the proof's verb order: point C lands at
+              // the intersection, then each line straightedge-traces.
+              animations: [
+                  { elem: "C",  name: geomlib.A.Point.appear },
+                  { elem: "AC", name: geomlib.A.Line.straightEdgeConnect },
+                  { elem: "BC", name: geomlib.A.Line.straightEdgeConnect }
+              ]
+          },
           justifications: [{ ref: "I.Post.1" }] },
         { text: "Since the point {A} is the centre of the circle {CDB}, therefore {AC} equals {AB}.",
           highlighted: ["A","BCD","AC","AB"],
@@ -140,6 +171,11 @@ geomlib.init({
           highlighted: ["AC","AB","BC"] },
         { text: "Therefore the triangle {ABC} is equilateral, and it has been constructed on the given finite straight line {AB}.",
           visible: ["A","B","C","D","E","AB","BCD","ACE","CD","AC","BC","AE","BD","ABC"],
+          transition: {
+              animations: [
+                  { elem: "ABC", name: geomlib.A.Polygon.outlineAndFill }
+              ]
+          },
           highlighted: ["A","B","C","AB","AC","BC","ABC"],
           justifications: [{ ref: "I.Def.20" }] }
     ],

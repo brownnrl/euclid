@@ -551,18 +551,36 @@ class SlateControls {
         const state = computeSlideState(this._slate, slides, clamped);
         // Drop any sticky pin from the previous slide — its span
         // belongs to the prior caption and is about to be replaced
-        // anyway. Also clear every element's emphasis so the new slide
-        // starts with a clean highlight set.
+        // anyway.
         this.clearStickyRef();
-        for (let e of this._slate.elements) {
-            if (e.name == null) continue;
-            e.visible = state.visible.has(e.name);
-            e.shouldHighlight = state.highlighted.has(e.name);
-            e.emphasized = false;
-        }
-        this._slate.update();
 
         const slide = slides[clamped];
+        const transition = slide.transition;
+        const animations = transition && transition.animations;
+        const mode: "cascade" | "parallel" =
+            (transition && transition.mode === "parallel") ? "parallel" : "cascade";
+        // Clear per-element emphasis on every transition so a previous
+        // slide's hover state doesn't carry forward.
+        for (let e of this._slate.elements) e.emphasized = false;
+
+        if (animations && animations.length > 0) {
+            // Animated transition — slate.animateTo flips visibility +
+            // highlight per-element and runs the configured Animation
+            // for each entry. Newly-visible elements without an entry
+            // pop in instantly (handled inside animateTo).
+            this._slate.animateTo(state.visible, state.highlighted, animations, mode);
+        } else {
+            // Instant transition (4b behaviour) — flip every element
+            // synchronously, no rAF loop.
+            for (let e of this._slate.elements) {
+                if (e.name == null) continue;
+                e.visible = state.visible.has(e.name);
+                e.shouldHighlight = state.highlighted.has(e.name);
+                e.drawProgress = 1;
+            }
+            this._slate.update();
+        }
+
         if (this._presentationCaption) {
             this.renderCaptionText(this._presentationCaption, slide.text || "");
         }

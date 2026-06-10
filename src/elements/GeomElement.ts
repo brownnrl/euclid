@@ -82,7 +82,23 @@ export abstract class GeomElement {
     // at an even thicker stroke / larger dot so the element pops out
     // from any other already-highlighted ones on the slide. Released on
     // mouseleave (or click-to-toggle for sticky).
-    private _emphasized : boolean = false;
+    // Emphasis amount in [0, 1]. Boolean emphasized is a thin shim
+    // that toggles between 0 and 1; the SlateAnimator fades the
+    // amount smoothly from 1 → 0 after an animation finishes so the
+    // visible "shrink back to highlight thickness" feels less jarring
+    // when the underlying element is also slide-highlighted (e.g.
+    // ABC polygon edges over the highlighted AB / AC / BC).
+    private _emphasisAmount : number = 0;
+    // Animation progress for the next slide-transition render. 1 means
+    // "fully drawn" (the default and the existing behaviour). Values in
+    // [0, 1) tell per-type draw methods to render a partial geometry —
+    // a half-traced line, a 30° sweep of an arc, the first edge of a
+    // polygon plus a fraction of the next. Driven by Animation
+    // subclasses through SlateAnimator during slide transitions; flips
+    // back to 1 on each animation's finalise() so the canvas returns
+    // to the fully-rendered state when the transition completes or is
+    // cancelled.
+    private _drawProgress : number = 1;
     protected _pixelTolerance : number = 50;
 
     protected _getTextMetrics(ctx: CanvasRenderingContext2D, txt: string) : [number, number] {
@@ -226,7 +242,18 @@ export abstract class GeomElement {
     }
 
     set emphasized(value: boolean) {
-        this._emphasized = value;
+        this._emphasisAmount = value ? 1 : 0;
+    }
+
+    set emphasisAmount(value: number) {
+        this._emphasisAmount = value < 0 ? 0 : (value > 1 ? 1 : value);
+    }
+
+    set drawProgress(value: number) {
+        // Clamp to [0, 1] — out-of-range values would push the partial
+        // geometry past either endpoint, which is never what callers
+        // mean. Animations tick this in [0, 1] and finalise to 1.
+        this._drawProgress = value < 0 ? 0 : (value > 1 ? 1 : value);
     }
 
     get nameColor(): string {
@@ -286,6 +313,14 @@ export abstract class GeomElement {
     }
 
     get emphasized(): boolean {
-        return this._emphasized;
+        return this._emphasisAmount > 0;
+    }
+
+    get emphasisAmount(): number {
+        return this._emphasisAmount;
+    }
+
+    get drawProgress(): number {
+        return this._drawProgress;
     }
 }

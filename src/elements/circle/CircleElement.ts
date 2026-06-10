@@ -37,6 +37,25 @@ export class CircleElement extends GeomElement {
     public B : PointElement;
     public AP : PlaneElement;
 
+    // Starting angle (radians) for the slide-transition arc sweep.
+    // Default 0 keeps the existing closed-circle render path identical
+    // when drawProgress is 1. Set by A.Circle.compass before sweeping
+    // so the trace begins at the natural compass-point (the angle from
+    // centre to the radius-defining B). Reset in finalise().
+    private _drawStartAngle : number = 0;
+    // Face fill alpha — drives drawFace's globalAlpha independent of
+    // drawProgress (which only drives the edge sweep). Default 1 means
+    // "fully opaque" — every existing render path behaves identically.
+    private _faceAlpha : number = 1;
+
+    set drawStartAngle(value: number) { this._drawStartAngle = value; }
+    get drawStartAngle(): number { return this._drawStartAngle; }
+
+    set faceAlpha(value: number) {
+        this._faceAlpha = value < 0 ? 0 : (value > 1 ? 1 : value);
+    }
+    get faceAlpha(): number { return this._faceAlpha; }
+
     constructor(ice? : ICircleElementConstruction) {
         super();
         this.dimension = 2;
@@ -65,7 +84,10 @@ export class CircleElement extends GeomElement {
     // drawEllipse and fillEllipse not necessary as they are provided
     // in the canvas api.
 
-    private _drawCircle(ctx : CanvasRenderingContext2D) : void {
+    // Shared geometry walk. `arcStart` / `arcEnd` let the caller render
+    // either a partial arc (the slide-transition edge sweep) or a
+    // full circle for fill purposes — the face never gets partial.
+    private _drawCircleArc(ctx : CanvasRenderingContext2D, arcStart : number, arcEnd : number) : void {
         ctx.beginPath();
         let r2 : number = this.radius2;
         let r : number = Math.sqrt(r2);
@@ -77,8 +99,8 @@ export class CircleElement extends GeomElement {
                 r,
                 r,
                 0,
-                0,
-                2*Math.PI);
+                arcStart,
+                arcEnd);
             return;
         }
         let h : number = r/Math.sqrt(amp2);
@@ -108,8 +130,8 @@ export class CircleElement extends GeomElement {
             majorR,
             minorR,
             rotation,
-            0,
-            2*Math.PI);
+            arcStart,
+            arcEnd);
     }
 
     public drawEdge(c: SlateCanvas): void {
@@ -119,21 +141,44 @@ export class CircleElement extends GeomElement {
         ctx.strokeStyle = (this.emphasized || this.shouldHighlight)
             ? this.edgeHighlightColor
             : this.edgeColor;
-        // Match LineElement: 1 normal, 3 slide-highlight, 6 emphasised
-        // (caption ref hover/click). Always assigned explicitly so a
+        // Match LineElement: smooth interpolation between baseline (1 or 3)
+        // and 6 via emphasisAmount. Always assigned explicitly so a
         // previous element's value doesn't leak.
-        ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
-        this._drawCircle(ctx);
+        {
+            const baseW = this.shouldHighlight ? 3 : 1;
+            ctx.lineWidth = baseW + this.emphasisAmount * (6 - baseW);
+        }
+        // Edge sweep: partial arc from drawStartAngle through
+        // 2π · drawProgress. Default progress = 1 yields a full circle.
+        let arcStart = this.drawStartAngle;
+        let arcEnd   = arcStart + 2 * Math.PI * this.drawProgress;
+        this._drawCircleArc(ctx, arcStart, arcEnd);
         ctx.stroke();
     }
 
     public drawFace(c: SlateCanvas): void {
         if (!this.visible) return;
         if (this.faceColor == null || !this.defined()) return;
+        // Face is independent of the edge sweep — always fills the
+        // full circle (filling a partial arc would render a pie wedge
+        // with a chord bleeding out, which is not what a compass sweep
+        // should look like). Alpha is driven by the dedicated faceAlpha
+        // field so an animation can fade the fill in after the edge
+        // trace completes; default faceAlpha = 1 preserves the
+        // fully-opaque behaviour for every consumer that doesn't animate.
+        let a = this.faceAlpha;
+        if (a <= 0) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.fillStyle = this.faceColor;
-        this._drawCircle(ctx);
-        ctx.fill();
+        this._drawCircleArc(ctx, 0, 2 * Math.PI);
+        if (a < 1) {
+            ctx.save();
+            ctx.globalAlpha = a;
+            ctx.fill();
+            ctx.restore();
+        } else {
+            ctx.fill();
+        }
     }
 
     public drawName(c: SlateCanvas): void {

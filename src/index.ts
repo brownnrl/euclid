@@ -1,5 +1,13 @@
 import {GeomElement, Align as align} from "./elements/GeomElement"
 import {AllConstructions, E as e} from "./elements/Constructions"
+import {AllAnimations, A} from "./elements/Animations"
+// Per-type animation modules — imported for side effects so each
+// Animation subclass registers with the registry at module load. Adding
+// a new animation file is a one-line `import "./elements/.../X"` here.
+import "./elements/point/PointAnimations";
+import "./elements/line/LineAnimations";
+import "./elements/circle/CircleAnimations";
+import "./elements/polygon/PolygonAnimations";
 import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
@@ -9,6 +17,7 @@ import {createControls} from "./SlateControls";
 export type IndexAllConstructions = AllConstructions;
 export {align  as Align};
 export {e as E};
+export {AllAnimations, A};
 
 // Build marker — bumped when behaviour-affecting changes ship so consumers
 // (e.g. the test pages used to investigate #55) can confirm which bundle
@@ -48,11 +57,46 @@ export interface ISlideJust {
 //     need to list free construction points per slide.
 //   - Highlighted elements are auto-unioned into visible — you can't
 //     highlight what isn't drawn.
+// Per-element animation choice on one slide. Cascade order = the
+// array order. An element revealed by the slide but not listed here
+// pops in instantly. See A.* / AllAnimations for valid name values.
+export interface ISlideAnimation {
+    elem: string;
+    name: AllAnimations | string;
+    args?: any;
+    durationMs?: number;
+}
+
+export interface ISlideTransition {
+    mode?: "cascade" | "parallel";
+    animations?: ISlideAnimation[];
+}
+
 export interface ISlide {
     text: string;
     visible?: string[];
     highlighted?: string[];
     justifications?: ISlideJust[];
+    transition?: ISlideTransition;
+}
+
+// Slate-level animation tuning. No "default animations" — animations
+// are strictly opt-in per slide via slide.transition.animations. A
+// slate that never sets animationConfig keeps the 0.5.0 instant
+// behaviour everywhere.
+export interface IAnimationConfig {
+    // Per-animation rate overrides, keyed by animation name. Lets a
+    // consumer dial all "Line.straightEdgeConnect" animations 30%
+    // slower without touching individual slides.
+    rates?: { [animationName: string]: number };
+    // Per-animation duration overrides.
+    durations?: { [animationName: string]: number };
+    // Pause between cascaded steps; default 0.
+    cascadeGapMs?: number;
+    // Global multiplier; 1.0 default; 0 = jump-to-final.
+    speedMultiplier?: number;
+    // Default reads prefers-reduced-motion CSS media query at init().
+    reducedMotion?: boolean;
 }
 
 export interface IInitialization {
@@ -80,6 +124,11 @@ export interface IInitialization {
     // plain text. Sync; the lektor site wires this to a page-emitted
     // window.eucrefs map.
     resolveJustification?: (ref: string) => string | null | undefined;
+    // Slide-transition animation config. Optional; without it, the
+    // slideshow keeps the 0.5.0 instant behaviour. Animations are
+    // also strictly per-slide opt-in — even with animationConfig set,
+    // a slide without transition.animations pops in instantly.
+    animationConfig?: IAnimationConfig;
 }
 
 // Map Java element class names to E object keys
@@ -247,6 +296,10 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
     if (i.resolveJustification != null) {
         slate.resolveJustification = i.resolveJustification;
+    }
+
+    if (i.animationConfig != null) {
+        slate.animationConfig = i.animationConfig;
     }
 
     if(i.pivot != null) {

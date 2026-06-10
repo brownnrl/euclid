@@ -19,6 +19,14 @@ The library exposes eight element classes — *point*, *line*, *circle*,
 [`tables.html`](geom_applet/source/tables.html). All 465 propositions
 across Books I–XIII of the *Elements* are renderable.
 
+On top of the construction layer the library also ships an optional
+slideshow surface — per-element visibility, declarative `slides[]`,
+a caption / justification overlay — and a slide-transition animation
+registry where a circle can sweep in like a compass, a line can trace
+like a straightedge, and a polygon can outline then fade in its fill.
+Both layers are additive and default-off, so diagrams that don't opt
+in render exactly as they always have.
+
 ## Installation
 
 ### Via CDN (no build step)
@@ -84,10 +92,12 @@ example, see [doc/quickstart.md](doc/quickstart.md).
 | Doc | Audience |
 |---|---|
 | [doc/quickstart.md](doc/quickstart.md) | First-time user. Builds Proposition I.1 line by line with prose explanations. |
-| [doc/api.md](doc/api.md) | API reference. Every `init()` field, every `E.{Type}.{name}` construction, every accepted color value. |
-| [doc/architecture.md](doc/architecture.md) | Implementation model. The slate, the construction dispatch, the drag pipeline. |
+| [doc/api.md](doc/api.md) | API reference. Every `init()` field, every `E.{Type}.{name}` construction, every `A.{Type}.{name}` animation, every accepted color value. |
+| [doc/architecture.md](doc/architecture.md) | Implementation model. The slate, the construction dispatch, the drag pipeline, the slideshow surface, the animation orchestrator. |
 | [doc/creating-constructions.md](doc/creating-constructions.md) | Adding a new construction type to the library. |
+| [doc/creating-animations.md](doc/creating-animations.md) | Adding a new slide-transition animation. |
 | [doc/constructions-reference.md](doc/constructions-reference.md) | Per-construction priority and usage frequency across Books I–III. |
+| [doc/animations-reference.md](doc/animations-reference.md) | Catalog of every `A.*` animation — defaults, args, visual behaviour. |
 | [doc/historical/](doc/historical/) | Project journal and the Java-to-TypeScript porting record. |
 
 ## Build, test, develop
@@ -97,7 +107,7 @@ npm install              # install dependencies (once)
 npm run build            # compile TypeScript (no emit; type-check only)
 npm test                 # run the full Mocha suite (unit + snapshot)
 npm run test:unit        # unit tests only
-npm run test:snapshot    # 678 rendered-pixel snapshot tests
+npm run test:snapshot    # 700 rendered-pixel snapshot tests
 npm run coverage         # tests + c8 code coverage report
 npm run bundle           # webpack dev-mode bundle to dist/bundle.js
 npm run bundle:prod      # webpack production (minified) bundle

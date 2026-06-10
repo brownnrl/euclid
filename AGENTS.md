@@ -14,30 +14,44 @@ Library is **post-porting, publish-ready**. There is no longer a
 "next construction to port" backlog or session-startup ritual.
 
 - All 69 construction methods (with 19 3D variants) are implemented.
-- 137 unit tests + 678 snapshot tests pass.
+- 202 unit tests + 700 snapshot tests pass.
+- 0.4.0 shipped cross-highlighting (`emphasized` / `emphasisAmount`
+  + `lookupElement`); 0.5.0 shipped the slideshow surface
+  (`slides`, `setVisibleNames`, `addAlias`, `resolveJustification`,
+  SlateControls overlay); 0.6.0 shipped slide-transition animations
+  (`A.{Type}.{name}` registry, `drawProgress`, `SlateAnimator`,
+  `slate.animateTo`). All three are additive and default-off — every
+  pre-existing render path is bit-for-bit unchanged.
 - npm publish pipeline is wired: `prepublishOnly` runs `test:unit`
-  + `bundle:prod`. `npm publish --dry-run` previews the tarball
-  (97.7 kB gzipped, 6 files).
+  + `bundle:prod`. `npm publish --dry-run` previews the tarball.
 - MIT-licensed, joint copyright (Joyce 1996–2020, Brown 2019–2026).
   Dr. Joyce's permission text + Quora source recorded in
   [NOTICE.md](NOTICE.md).
 
 Ongoing work is library maintenance: bug fixes, doc edits, occasional
-new constructions outside Books I–XIII, snapshot or test refinements,
-and publish-time polish. Approach those like normal feature work
-(branch, PR, review) — no special cadence.
+new constructions outside Books I–XIII, new animations as future
+propositions need them, snapshot or test refinements, and publish-time
+polish. Approach those like normal feature work (branch, PR, review)
+— no special cadence.
 
 ## Read these first
 
 - [doc/quickstart.md](doc/quickstart.md) — walkthrough building
   Proposition I.1.
 - [doc/api.md](doc/api.md) — full public API reference (every
-  `E.{Type}.{name}` construction and `init()` field).
+  `E.{Type}.{name}` construction, every `A.{Type}.{name}` animation,
+  and every `init()` field).
 - [doc/architecture.md](doc/architecture.md) — implementation model:
-  slate, dispatch, drag pipeline, the `update()` contract.
+  slate, dispatch, drag pipeline, the `update()` contract, slideshow,
+  and animation orchestration.
 - [doc/creating-constructions.md](doc/creating-constructions.md) —
   recipe for adding a new construction (element class, Construction
   class, test, demo page).
+- [doc/creating-animations.md](doc/creating-animations.md) — recipe
+  for adding a new slide-transition animation.
+- [doc/constructions-reference.md](doc/constructions-reference.md) +
+  [doc/animations-reference.md](doc/animations-reference.md) —
+  catalogs of every `E.*` construction and `A.*` animation.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — test/snapshot/bundle commands.
 - [NOTICE.md](NOTICE.md) — Dr. Joyce's permission + license posture.
 
