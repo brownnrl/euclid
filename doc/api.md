@@ -89,6 +89,13 @@ interface IInitialization {
     font?: string;
     fontsize?: number;
     elements: (IConstructionInfo | string)[];
+    // 0.4.0+ — name aliases (Joyce's "circle CDB" ≡ "circle BCD" etc.)
+    aliases?: {[from: string]: string};
+    // 0.5.0+ — slideshow / presentation mode
+    slides?: ISlide[];
+    resolveJustification?: (ref: string) => string | null | undefined;
+    // 0.6.0+ — slide-transition animation
+    animationConfig?: IAnimationConfig;
 }
 ```
 
@@ -102,6 +109,10 @@ interface IInitialization {
 | `font` | `font` | `"Times New Roman"` | Font family for element labels. Set globally on `GeomElement` via `GeomElement.setFont()`. Java default is `"TimesRoman"`. |
 | `fontsize` | `fontsize` | `18` | Pixel size for the label font. |
 | `elements` | `e[1]`, `e[2]`, … | (required) | Ordered list of element specs. May mix `IConstructionInfo` objects and Java param strings. |
+| `aliases` | — | `{}` | Secondary element names that resolve to a canonical element. See [Slides & visibility](#slides--visibility). |
+| `slides` | — | `[]` | Optional slideshow walk-through. When present, SlateControls shows a "▶ Present" button. See [Slides & visibility](#slides--visibility). |
+| `resolveJustification` | — | `null` | Callback that maps a symbolic justification ref (e.g. `"I.Post.3"`) to a URL string. See [Slides & visibility](#slides--visibility). |
+| `animationConfig` | — | `{}` | Per-animation rate / duration overrides, `speedMultiplier`, `reducedMotion`. See [Animation](#animation). |
 
 `debug` from the Java applet is not implemented in the TS port.
 
@@ -292,6 +303,303 @@ has no `align` field). Tracked under platform TODOs in
 Each element has four color slots: name, vertex, edge, face. A `null`
 value means "skip drawing this layer." The default for face on
 non-2D-dimension elements is `null` — points and lines have no fill.
+
+---
+
+## Slides & visibility
+
+> *Available 0.5.0+. The library covers two distinct surfaces here — a
+> raw per-element visibility primitive that any consumer can use, and a
+> data-driven slideshow on top of it that renders its own UI.*
+
+### Per-element visibility
+
+```typescript
+class GeomElement {
+    visible: boolean;            // default true
+}
+
+class Slate {
+    setVisibleNames(names: string[]): void;
+    clearVisibility(): void;
+}
+```
+
+Setting `element.visible = false` makes every per-type draw method
+short-circuit — the element stops drawing but stays in the slate's
+`_elements` list, so dependents that read its coordinates still work
+(e.g. a hidden mid-construction circle whose intersection point is
+still shown). `Slate.setVisibleNames(["A","AB"])` flips every *named*
+element's flag according to set membership; `clearVisibility()`
+restores every element to `visible = true`.
+
+Unnamed elements (intermediate construction outputs) are not touched
+by `setVisibleNames`.
+
+### Name aliases
+
+```typescript
+class Slate {
+    addAlias(from: string, to: string): void;
+    addAliases(aliases: {[from: string]: string}): void;
+}
+```
+
+`init({ aliases: { "CDB": "BCD", "BA": "AB" } })` registers symbolic
+synonyms — Joyce's prose refers to the same circle as both *BCD* and
+*CDB*. After a direct-name miss, `Slate.lookupElement()` follows the
+alias map once. Aliases never appear in `_elements`; the slate stays
+the same size whether or not you register them.
+
+### Slideshow data on `init()`
+
+```typescript
+interface ISlideJust { ref: string; }
+
+interface ISlideAnimation {           // 0.6.0+; see Animation below
+    elem: string;
+    name: AllAnimations | string;
+    args?: any;
+    durationMs?: number;
+}
+
+interface ISlideTransition {
+    mode?: "cascade" | "parallel";    // default "cascade"
+    animations?: ISlideAnimation[];   // 0.6.0+
+}
+
+interface ISlide {
+    text: string;
+    visible?: string[];               // inherits from previous if omitted
+    highlighted?: string[];           // defaults to []; clears each slide
+    justifications?: ISlideJust[];
+    transition?: ISlideTransition;    // 0.6.0+
+}
+```
+
+Each slide is a *declarative* state — what's visible, what's
+highlighted, the caption text, and any marginal justification
+references. The presentation controller diffs the current state
+against the target on each Next / Prev and applies it.
+
+Resolution rules:
+
+- `visible` **inherits** from the most recent earlier slide that
+  declared it. Authors only re-specify on state change.
+- `highlighted` **defaults to `[]`** (clears between slides). A
+  highlight must be re-listed every slide it should appear on.
+- Every `draggable` element on the slate is **auto-unioned** into the
+  visible set on every slide — free construction points stay
+  interactive while the reader walks the proof.
+- Highlighted elements are auto-unioned into visible (can't highlight
+  what isn't drawn).
+
+Captions go through a small markup pass: `{NAME}` tokens become
+clickable bold-italic spans tied to the matching slate element.
+Hover / tap on a span flips `element.emphasisAmount` so the element
+pops with a thicker stroke; tapping pins a single sticky reference at
+a time.
+
+### Justification refs
+
+```typescript
+type ResolveJustification =
+    (ref: string) => string | null | undefined;
+
+class Slate {
+    resolveJustification: ResolveJustification | null;
+}
+```
+
+Slide entries carry symbolic `justifications: [{ ref: "I.Post.3" }]`.
+URLs are resolved at render time by the consumer-provided callback
+(`init({ resolveJustification: r => myMap[r] })`) so refs don't go
+stale when target pages move. Returning `null` / `undefined` makes
+the reference render as plain text.
+
+### Public Slate surface
+
+```typescript
+class Slate {
+    canvas: SlateCanvas;                // public getter (0.4.0+)
+    slides: ISlide[];                   // (0.5.0+)
+}
+```
+
+`Slate.canvas` exposes the underlying `HTMLCanvasElement` so consumer
+glue can do DOM-relative reasoning (e.g. compare position against a
+prose span on a multi-canvas page).
+
+### What renders this
+
+`SlateControls` (the slate-overlay UI) adds a fourth button — the
+play-triangle — whenever `slate.slides.length > 0`. Pressing it (or
+the `p` keyboard shortcut) maximises the canvas and floats a soft
+white caption panel at the bottom of the viewport with the slide
+text, justification links, and prev / counter / next / exit buttons.
+Arrow keys (← / →), `Esc`, and tapping a `{NAME}` ref all do what
+you'd expect.
+
+The overlay is purely library-side — no host CSS required.
+
+---
+
+## Animation
+
+> *Available 0.6.0+. Builds on the slideshow: when a slide reveals a
+> new element, an Animation can draw it in compass-and-straightedge
+> style instead of popping it into existence. Animations live in their
+> own named registry parallel to constructions, so they're additive
+> and don't disturb existing consumers.*
+
+### `A` — animation enum accessor
+
+```typescript
+A.Point      // PointAnimations
+A.Line       // LineAnimations
+A.Circle     // CircleAnimations
+A.Polygon    // PolygonAnimations
+A.instant    // no-op finalise (suppress an inherited animation)
+```
+
+Each method is a value from `AllAnimations`. Names follow the
+physical drawing instrument — `A.Line.straightEdgeConnect`,
+`A.Circle.compass`, `A.Polygon.outlineAndFill`. See
+[animations-reference.md](animations-reference.md) for every legal
+value.
+
+### Slide-side annotation
+
+```javascript
+transition: {
+    mode: "cascade",                         // default "cascade"; "parallel" also accepted
+    animations: [
+        { elem: "BCD", name: A.Circle.compass },
+        { elem: "CE",  name: A.Line.straightEdgeConnect, durationMs: 800 },
+        { elem: "ABC", name: A.Polygon.outlineAndFill },
+        { elem: "C",   name: A.instant }      // suppress an inherited animation
+    ]
+}
+```
+
+Cascade order = array order. An element revealed by the slide but
+**not** listed in `animations` pops in instantly (matches the 0.5.0
+behaviour). The slate-level animationConfig has no "default per
+element type" hook — animations are strictly opt-in per slide.
+
+### `IAnimationConfig`
+
+```typescript
+interface IAnimationConfig {
+    rates?:   { [animationName: string]: number };  // px/ms or rad/ms
+    durations?: { [animationName: string]: number };
+    cascadeGapMs?: number;       // pause between cascaded steps; default 0
+    speedMultiplier?: number;    // 1.0 default; 0 = jump-to-final
+    reducedMotion?: boolean;     // default reads prefers-reduced-motion CSS
+}
+```
+
+Lets a consumer dial all `Circle.compass` animations 30% slower
+without touching individual slides:
+
+```javascript
+animationConfig: { rates: { [A.Circle.compass]: 0.0021 } }
+```
+
+Resolution chain for an animation step's effective duration:
+slide-entry `durationMs` → `config.durations[name]` →
+`config.rates[name] × geometry` → animation's `defaultDurationMs` →
+animation's `defaultRate × geometry`.
+
+`reducedMotion: true` (or `speedMultiplier === 0`) short-circuits to
+synchronous finalise — every animation jumps to its end state.
+
+### Per-element animation properties
+
+```typescript
+class GeomElement {
+    drawProgress: number;          // [0, 1]; default 1 (fully drawn)
+    emphasisAmount: number;        // [0, 1]; default 0; replaces the old `emphasized` bool
+}
+
+class CircleElement extends GeomElement {
+    drawStartAngle: number;        // default 0; arc sweep start
+    faceAlpha: number;             // default 1; independent of drawProgress
+}
+
+class PolygonElement extends GeomElement {
+    faceAlpha: number;             // default 1; independent of drawProgress
+}
+```
+
+Default values reproduce the pre-animation render path bit-for-bit
+on every consumer. Animations tick these fields through `[0, 1]`
+during slide transitions and reset them in `finalise()`.
+
+### `Slate.animateTo()` — the controller seam
+
+```typescript
+class Slate {
+    animationConfig: IAnimationConfig;
+    animator: SlateAnimator | null;        // lazy-created
+    addEphemeral(e: GeomElement): void;
+    removeEphemeral(e: GeomElement): void;
+    clearEphemerals(): void;
+    animateTo(
+        targetVisible: Set<string>,
+        targetHighlighted: Set<string>,
+        slideAnimations: ISlideAnimation[],
+        mode: "cascade" | "parallel",
+    ): Promise<void>;
+}
+```
+
+The slideshow controller (`SlateControls.showSlide`) computes the
+target state and calls `animateTo()`; the promise resolves when every
+animated step has finalised. Calling `animateTo` while a previous run
+is in flight implicitly cancels it (`animator.cancel()` finalises every
+started step + clears ephemerals + resolves the prior promise).
+
+The `_ephemerals` list is for animation-local helpers — compass arms,
+guide circles, straightedge bars. They render on top of `_elements`
+in the same `face → edge → vertex → name` pass order, don't appear
+in `lookupElement`, and never survive a `cancel()`.
+
+### `IAnimationStep` shape
+
+```typescript
+interface IAnimationStep {
+    durationMs: number;
+    setup?: () => void;       // fires once before the first tick
+    tick: (progress: number, dtMs: number, totalMs: number) => void;
+    finalise: () => void;     // runs on completion, cancel, or skip
+}
+```
+
+Each Animation's `build()` returns one or more steps. The animator
+calls `setup()` once when the step is about to start (hide the target
+element, register ephemeral helpers); `tick()` each frame with
+clamped progress; `finalise()` always runs at the end (restore the
+target's visible state, clean up ephemerals).
+
+### What renders this
+
+`SlateAnimator` (`src/SlateAnimator.ts`) owns a `requestAnimationFrame`
+loop on `performance.now()`. `dt` is clamped to 100 ms per frame so a
+backgrounded tab or long GC pause can't fast-forward the rest of the
+animation into one paint — 60 / 120 / 144 Hz displays all see the
+same wall-clock duration.
+
+After every step finalises, the animator enters a 250 ms emphasis
+fade-out phase: every animated target's `emphasisAmount` ticks 1 → 0
+so the post-animation settle-back from full-emphasis stroke to
+slide-highlight stroke is a smooth taper, not a snap.
+
+### Adding new animations
+
+The recipe (animation subclass, registry import, test, demo)
+parallels [creating-constructions.md](creating-constructions.md);
+see [creating-animations.md](creating-animations.md).
 
 ---
 

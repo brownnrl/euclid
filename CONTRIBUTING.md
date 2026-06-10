@@ -13,8 +13,8 @@ That's it.
 ## Running tests
 
 ```sh
-npm run test:unit      # 137 unit tests — fast (~100 ms)
-npm run test:snapshot  # 678 visual-regression tests against snapshot goldens
+npm run test:unit      # 202 unit tests — fast (~100 ms)
+npm run test:snapshot  # 700 visual-regression tests against snapshot goldens
 npm test               # both (snapshot then unit)
 ```
 
@@ -38,11 +38,19 @@ See [doc/creating-constructions.md](doc/creating-constructions.md)
 for the full recipe (element class, Construction class, Mocha test,
 demo page).
 
+## Adding a new slide-transition animation
+
+See [doc/creating-animations.md](doc/creating-animations.md) for the
+parallel recipe (Animation subclass, registry entry, test, demo
+annotation). The catalog of existing animations lives in
+[doc/animations-reference.md](doc/animations-reference.md).
+
 ## Architecture overview
 
 [doc/architecture.md](doc/architecture.md) walks through the
 implementation: the slate, type-counted construction dispatch, the
-drag pipeline, and the `update()` contract.
+drag pipeline, the `update()` contract, the slideshow surface, and
+the animation orchestrator.
 
 ## Licensing
 

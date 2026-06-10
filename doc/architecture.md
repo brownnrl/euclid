@@ -101,17 +101,19 @@ analysis notes live under [historical/](historical/).
 ```
 euclid/
 ├── src/
-│   ├── index.ts                  # Public API: init(), parseParam(), E enum, Align
-│   ├── Slate.ts                  # Canvas manager, element orchestration, mouse events
-│   ├── SlateControls.ts          # UI overlay: reset, maximize, new window buttons
+│   ├── index.ts                  # Public API: init(), parseParam(), E enum, A enum, Align
+│   ├── Slate.ts                  # Canvas manager, element orchestration, mouse events, animateTo
+│   ├── SlateControls.ts          # UI overlay: reset, maximize, new window, presentation
+│   ├── SlateAnimator.ts          # 0.6.0+ rAF loop for slide-transition animations
 │   ├── Colors.ts                 # Color parsing: parseColor(), brighter(), darker()
 │   └── elements/
 │       ├── GeomElement.ts        # Abstract base class for all geometry
-│       ├── Constructions.ts      # Enums, abstract Construction, registration array (262 lines)
-│       ├── point/                # PointElement subclasses + PointConstructions.ts
-│       ├── line/                 # LineElement subclasses + LineConstructions.ts
-│       ├── circle/               # CircleElement subclasses + CircleConstructions.ts
-│       ├── polygon/              # PolygonElement subclasses + PolygonConstructions.ts
+│       ├── Constructions.ts      # Enums, abstract Construction, registration array
+│       ├── Animations.ts         # 0.6.0+ AllAnimations enum, A accessor, Animation base, registry
+│       ├── point/                # PointElement + PointConstructions + PointAnimations
+│       ├── line/                 # LineElement + LineConstructions + LineAnimations
+│       ├── circle/               # CircleElement + CircleConstructions + CircleAnimations
+│       ├── polygon/              # PolygonElement + PolygonConstructions + PolygonAnimations
 │       ├── sector/               # SectorElement subclasses + SectorConstructions.ts
 │       ├── plane/                # PlaneElement subclasses + PlaneConstructions.ts
 │       ├── sphere/               # SphereElement + SphereConstructions.ts
@@ -166,11 +168,16 @@ geomlib.init({ canvasid, elements: [...], pivot?, background?, title?, … })
   ├─ slate.update()
   │     ├─ for each elem in _elementsForUpdate: elem.update()
   │     └─ drawElements()
-  │          └─ for each elem in _elements:
-  │               elem.drawFace() → elem.drawEdge() → elem.drawVertex() → elem.drawName()
+  │          ├─ for each elem in _elements:
+  │          │    elem.drawFace() → elem.drawEdge() → elem.drawVertex() → elem.drawName()
+  │          └─ for each elem in _ephemerals: same four-layer pass on top
+  │                                            (animation-local helpers; 0.6.0+)
   └─ createControls(slate, canvas, config)   ← injects reset/maximize/new-window
                                                 buttons + keyboard shortcuts on top
-                                                of the canvas (src/SlateControls.ts)
+                                                of the canvas (src/SlateControls.ts).
+                                                When slate.slides.length > 0, also
+                                                adds a fourth play-triangle button
+                                                and the slideshow overlay.
 ```
 
 Mouse/touch events call `movePick(x, y)`; see "Drag pipeline" below.
@@ -245,6 +252,203 @@ and a `PlaneElement` from them named `screen`. The plane's orthonormal basis vec
 This `screen` plane is passed as the first argument to every `Construction.construct()` call.
 2D constructions use it as their implicit plane of operation. 3D constructions receive an
 explicit plane from the construction parameters.
+
+---
+
+## Slide transitions & visibility (0.5.0+)
+
+Two surfaces, the raw primitive and the slideshow on top of it.
+
+**Raw visibility primitive.** Every `GeomElement` carries a `visible:
+boolean` flag (default `true`). Each per-type `draw{Face,Edge,Vertex,Name}`
+method short-circuits at the top when the flag is false, so a hidden
+element stops drawing without leaving the slate's `_elements` list —
+dependents that read its coordinates still work. `Slate.setVisibleNames(names)`
+flips every *named* element's flag according to set membership;
+`clearVisibility()` resets them all to true. Unnamed intermediate
+construction outputs are never touched by `setVisibleNames`.
+
+**Name aliases.** `Slate.addAlias("CDB", "BCD")` registers a synonym.
+After a direct-name miss in `lookupElement`, the alias map is followed
+once. Aliases never appear in `_elements` and never affect dispatch —
+they exist so prose can refer to *circle BCD* and *circle CDB* without
+the slate having to know they're the same object.
+
+**Slideshow data.** `init({ slides: ISlide[] })` attaches an ordered
+sequence of *declarative* states to the slate. Each `ISlide` declares
+`text` (caption), `visible?` (set of element names — **inherits** from
+the most recent earlier slide that declared it), `highlighted?`
+(defaults to `[]`; clears every slide), `justifications?` (`[{ ref:
+"I.Post.3" }]`), and `transition?` (0.6.0+ animation directives — see
+below). Every `draggable` element on the slate is auto-unioned into
+the visible set on every slide so free construction points stay
+interactive while the reader walks the proof; highlighted elements are
+auto-unioned into visible (can't highlight what isn't drawn).
+
+**Justification refs.** `init({ resolveJustification: ref => urlMap[ref] })`
+maps a symbolic ref to a URL at render time, so refs don't go stale
+when target pages move.
+
+**SlateControls overlay.** When `slate.slides.length > 0`, the existing
+reset/maximize/new-window button strip grows a fourth play-triangle
+button. Pressing it (or the `p` keyboard shortcut) maximises the canvas
+and floats a soft white caption panel at the bottom of the viewport
+with prev / counter / next / exit controls; arrow keys and `Esc` do
+what you'd expect. Caption `{NAME}` tokens become clickable bold-italic
+spans tied to the matching slate element — hover / tap flips
+`element.emphasisAmount` so the element pops with a thicker stroke;
+tapping pins a single sticky reference at a time. The overlay is
+purely library-side — no host CSS required.
+
+The slide controller's `showSlide(index)` is the single seam that
+diffs current vs. target state. When the target adds no new visible
+elements, or `animationConfig` says skip, it flips state synchronously
+(the 0.5.0 instant path). Otherwise it cancels any in-flight animator
+and calls `slate.animateTo(...)`. The caption / counter / justifications
+update immediately so the reader's eyes have something to follow.
+
+---
+
+## Animation & progress-based rendering (0.6.0+)
+
+Animation layers on top of the slideshow. When a slide reveals a new
+element, an Animation can draw it in compass-and-straightedge style
+instead of popping it into existence. The registry of animations is
+**parallel to** but **distinct from** the registry of constructions —
+a Construction builds an element once; an Animation describes how to
+*reveal* it on a slide transition. Multiple Animations can target the
+same element type, and authors pick the right one per slide.
+
+### Per-element progress fields
+
+Three numeric fields on `GeomElement` drive every render path; all
+default to a value that preserves the pre-animation behaviour
+bit-for-bit:
+
+| Field | Default | Range | Drives |
+|---|---|---|---|
+| `drawProgress` | `1` | `[0, 1]` | Edge trace fraction (line endpoint lerp, polygon edges, circle arc end-angle). |
+| `emphasisAmount` | `0` | `[0, 1]` | Numeric interpolation of edge stroke width between baseline (`1`px, or `3`px when highlighted) and `6`px. Replaces the old `emphasized: boolean` flag, which now reads `> 0`. |
+
+Plus two type-specific fields:
+
+| Class | Field | Default | Drives |
+|---|---|---|---|
+| `CircleElement` | `drawStartAngle` | `0` | Where the arc sweep begins. |
+| `CircleElement` | `faceAlpha` | `1` | `globalAlpha` during fill, independent of `drawProgress`. The face is always filled with the *full* `(0, 2π)` arc so a partial edge sweep doesn't render as a pie wedge. |
+| `PolygonElement` | `faceAlpha` | `1` | `globalAlpha` during fill, independent of `drawProgress` — lets `outlineAndFill` trace edges then fade in the face. |
+
+### The Animation registry
+
+`src/elements/Animations.ts` is the parallel-to-`Constructions.ts`
+file. It exports an abstract `Animation` base class, the
+`AllAnimations` enum, the `A` typed-constants accessor (mirroring `E`),
+the `InstantAnimation` (no-op finalise), and a `Map<string, Animation>`
+registered via `registerAnimation` / `findAnimation`.
+
+Concrete Animation subclasses live alongside their per-type
+Construction files:
+
+| File | Animations |
+|---|---|
+| `src/elements/point/PointAnimations.ts` | `PointAppearAnimation` |
+| `src/elements/line/LineAnimations.ts` | `LineStraightEdgeConnectAnimation`, `LineStraightEdgeExtendAnimation` |
+| `src/elements/circle/CircleAnimations.ts` | `CircleCompassAnimation` |
+| `src/elements/polygon/PolygonAnimations.ts` | `PolygonOutlineAnimation`, `PolygonOutlineAndFillAnimation` |
+
+Each file's module load calls `registerAnimation(new
+{Name}Animation())` at the bottom. `src/index.ts` imports them all
+for the side effect, so every Animation is in the registry by the
+time `init()` runs.
+
+The catalog of every legal `A.{Type}.{name}` (with default rates,
+args, and visual behaviour) lives in
+[animations-reference.md](animations-reference.md); the recipe for
+adding a new one is [creating-animations.md](creating-animations.md).
+
+### Animation lifecycle
+
+```
+abstract class Animation {
+    animationMethod: AllAnimations;
+    name: string;                       // "Line.straightEdgeConnect"
+    elementType: Function;              // e.g. LineElement
+    defaultDurationMs?: number;
+    defaultRate?: number;
+    build(target: GeomElement, slate: Slate, args: any): IAnimationStep[];
+}
+
+interface IAnimationStep {
+    durationMs: number;
+    setup?: () => void;                 // once, before first tick
+    tick: (progress: number, dtMs: number, totalMs: number) => void;
+    finalise: () => void;               // on completion / cancel / skip
+}
+```
+
+`build()` returns one or more steps. The scheduler calls `setup()`
+once when the step is about to start (hide the target, register
+ephemeral helpers), `tick()` each frame with clamped progress, and
+`finalise()` at the end (restore visible state, clean up ephemerals).
+The `finalise` contract is hard: it must run on completion *and*
+cancellation, must remove every ephemeral the animation added, and
+must restore the target to its final visible state.
+
+### `SlateAnimator` — the rAF orchestrator
+
+`src/SlateAnimator.ts` is a small (~150 line) per-Slate scheduler.
+It owns a `requestAnimationFrame` loop on `performance.now()`:
+
+1. Compute `dt = now − lastFrame`, scale by
+   `animationConfig.speedMultiplier`, **clamp to `MAX_DT_MS = 100`**
+   so a backgrounded tab or long GC pause can't fast-forward the
+   rest of the animation into one paint.
+2. Advance each active step's elapsed time; when it crosses its
+   `durationMs`, call `finalise()` and move on (cascade) or remove
+   from the parallel set.
+3. Call `slate.drawElements()` after every frame.
+4. When all steps are done, enter a `250 ms` fade-out phase
+   ticking every animated target's `emphasisAmount` from `1` to
+   `0`, so the post-animation settle-back from the full-emphasis
+   stroke down to the slide's highlight stroke is a smooth taper
+   rather than a snap.
+
+`cancel()` jumps every started step to `finalise`, then calls
+`slate.clearEphemerals()` as a safety net, and resolves the in-flight
+promise. The `reducedMotion` path (either via
+`prefers-reduced-motion` or `animationConfig.reducedMotion === true`,
+or `speedMultiplier === 0`) skips the loop entirely — every step's
+`finalise` runs synchronously and the promise resolves immediately.
+
+### Ephemerals — animation-local helper elements
+
+A `Slate` carries a small `_ephemerals: GeomElement[]` list with
+`addEphemeral` / `removeEphemeral` / `clearEphemerals`. They render
+on top of `_elements` in the same `face → edge → vertex → name` pass
+order, don't appear in `lookupElement`, and never survive a
+`cancel()`. They exist so richer animations (a compass with visible
+arms, a guide circle for a length-transfer walk) can draw temporary
+helpers using the same `GeomElement` machinery (`drawProgress`,
+`visible`, colours) without polluting the slate's persistent element
+list. The simple v1 animations (`Point.appear`,
+`Line.straightEdgeConnect`, `Circle.compass`, `Polygon.outline`,
+`Polygon.outlineAndFill`) don't use ephemerals — they just drive
+the target's own `drawProgress`.
+
+### Resolution of effective duration
+
+Every step's `durationMs` is resolved through this chain (first hit
+wins):
+
+1. `slide.transition.animations[i].durationMs` (per-slide override)
+2. `slate.animationConfig.durations[name]`
+3. `slate.animationConfig.rates[name] × geometry` (length / arc-length)
+4. animation's `defaultDurationMs`
+5. animation's `defaultRate × geometry`
+6. `600 ms` fallback
+
+Geometry-based rates (steps 3 / 5) let an author dial all
+`Circle.compass` sweeps 30% slower without re-tuning each slide.
 
 ---
 
@@ -345,6 +549,9 @@ GeomElement (abstract — src/elements/GeomElement.ts)
 | `faceColor` | `string\|null` | Fill color for polygons and sectors |
 | `highlight*` | `string\|null` | Highlight-state override colors |
 | `align` | `Align` | Label placement: ABOVE / BELOW / LEFT / RIGHT / CENTRAL |
+| `visible` | `boolean` | 0.5.0+. Default true. False skips every draw layer. |
+| `drawProgress` | `number` | 0.6.0+. `[0, 1]`, default 1. Edge trace fraction. |
+| `emphasisAmount` | `number` | 0.6.0+. `[0, 1]`, default 0. Interpolates edge stroke width between baseline and 6px. The legacy `emphasized: boolean` accessor reads `> 0` and writes `0`/`1`. |
 
 ---
 
