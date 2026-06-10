@@ -158,12 +158,17 @@ export class SlateAnimator {
             const willBeVisible = targetVisible.has(e.name);
             const willBeHighlighted = targetHighlighted.has(e.name);
             if (animatedTargets.has(e)) {
-                // Animation owns visible flag during its run. Pre-flip
-                // shouldHighlight + drawProgress to 0 so the step's
-                // tick / setup start from a clean slate.
+                // Animation owns the visible flag during its run.
+                // Deferred reveal (#83): the target stays hidden until
+                // its own first step starts — drawProgress only gates
+                // the edge, so a pre-revealed target would render its
+                // face fill and name label at full strength while
+                // earlier cascade steps play. _startStep flips it
+                // visible; finalise() restores the final state on
+                // every exit path.
                 e.shouldHighlight = willBeHighlighted;
                 e.drawProgress = 0;
-                e.visible = willBeVisible;
+                e.visible = false;
             } else {
                 // Instant flip — matches 4b behaviour.
                 e.visible = willBeVisible;
@@ -271,6 +276,12 @@ export class SlateAnimator {
         if (stepIdx >= g.steps.length) return;
         const as = g.steps[stepIdx];
         if (as.started) return;
+        // Deferred reveal (#83): the target was held invisible through
+        // any earlier cascade steps; it appears the moment its own
+        // first step begins. setup() runs after this, so an animation
+        // that hides the target to render ephemeral proxies instead
+        // can still do so.
+        if (stepIdx === 0) g.target.visible = true;
         if (as.step.setup) as.step.setup();
         as.started = true;
         g.currentIndex = stepIdx;
