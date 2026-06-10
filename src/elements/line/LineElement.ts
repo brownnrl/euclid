@@ -59,9 +59,15 @@ export class LineElement extends GeomElement {
         // explicitly so a leftover lineWidth doesn't carry into the
         // next element in drawElements' iteration.
         ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
+        // Slide-transition animation: drawProgress < 1 traces only the
+        // first `progress` fraction of the line A → B. Default 1 keeps
+        // the full-line behaviour every existing consumer relies on.
+        let p = this.drawProgress;
+        let endX = this._A.x + (this._B.x - this._A.x) * p;
+        let endY = this._A.y + (this._B.y - this._A.y) * p;
         ctx.beginPath();
         ctx.moveTo(this._A.x, this._A.y);
-        ctx.lineTo(this._B.x, this._B.y);
+        ctx.lineTo(endX, endY);
         ctx.stroke();
     }
 

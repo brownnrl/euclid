@@ -37,6 +37,16 @@ export class CircleElement extends GeomElement {
     public B : PointElement;
     public AP : PlaneElement;
 
+    // Starting angle (radians) for the slide-transition arc sweep.
+    // Default 0 keeps the existing closed-circle render path identical
+    // when drawProgress is 1. Set by A.Circle.compass before sweeping
+    // so the trace begins at the natural compass-point (the angle from
+    // centre to the radius-defining B). Reset in finalise().
+    private _drawStartAngle : number = 0;
+
+    set drawStartAngle(value: number) { this._drawStartAngle = value; }
+    get drawStartAngle(): number { return this._drawStartAngle; }
+
     constructor(ice? : ICircleElementConstruction) {
         super();
         this.dimension = 2;
@@ -69,6 +79,12 @@ export class CircleElement extends GeomElement {
         ctx.beginPath();
         let r2 : number = this.radius2;
         let r : number = Math.sqrt(r2);
+        // Slide-transition arc: sweep from `drawStartAngle` through
+        // `2π · drawProgress`. drawProgress = 1 (the default) yields a
+        // full circle regardless of startAngle, so the existing
+        // closed-circle render path is preserved bit-for-bit.
+        let arcStart : number = this.drawStartAngle;
+        let arcEnd   : number = arcStart + 2 * Math.PI * this.drawProgress;
         let amp2 : number = this.AP.S.z*this.AP.S.z + this.AP.T.z*this.AP.T.z;
         if (Math.abs(amp2) < 0.01) { // the circle is flat
             ctx.ellipse(
@@ -77,8 +93,8 @@ export class CircleElement extends GeomElement {
                 r,
                 r,
                 0,
-                0,
-                2*Math.PI);
+                arcStart,
+                arcEnd);
             return;
         }
         let h : number = r/Math.sqrt(amp2);
@@ -108,8 +124,8 @@ export class CircleElement extends GeomElement {
             majorR,
             minorR,
             rotation,
-            0,
-            2*Math.PI);
+            arcStart,
+            arcEnd);
     }
 
     public drawEdge(c: SlateCanvas): void {

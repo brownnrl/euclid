@@ -387,8 +387,13 @@ export class PointElement extends GeomElement {
         }
         if (color == null) return;
         // Radius scales with state: 2 normal, 4 slide-highlight, 6
-        // emphasised (caption ref hover/click).
+        // emphasised (caption ref hover/click). Slide-transition
+        // animation (A.Point.appear) further multiplies by drawProgress
+        // so the marker pulses in from 0 to its final size. Default
+        // drawProgress = 1 keeps the existing behaviour.
         let r = this.emphasized ? 6 : (this.shouldHighlight ? 4 : 2);
+        r *= this.drawProgress;
+        if (r < 0.5) return;   // avoid degenerate sub-pixel arcs
         ctx.beginPath();
         ctx.fillStyle = color;
         ctx.arc(this._x, this._y, r, 0, 2*Math.PI, false);

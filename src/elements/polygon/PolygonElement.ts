@@ -62,18 +62,32 @@ export class PolygonElement extends GeomElement {
         ctx.beginPath();
         ctx.strokeStyle = color;
         ctx.lineWidth = this.emphasized ? 6 : (this.shouldHighlight ? 3 : 1);
-        let firstPoint = this.V[0];
-        let rest = this.V.slice(1);
+        // Edge enumeration: a closed polygon (>2 verts) has V.length
+        // edges including the closing one; an open polyline has
+        // V.length - 1. Each integer step of drawProgress · edgeCount
+        // advances one full edge; the fractional remainder partially
+        // traces the next. drawProgress = 1 (default) reproduces the
+        // pre-animation full-trace behaviour bit-for-bit.
+        let n = this.V.length;
+        let isClosed = n > 2;
+        let edgeCount = isClosed ? n : n - 1;
+        let p = this.drawProgress;
+        let totalProgress = p * edgeCount;
+        let fullEdges = Math.floor(totalProgress);
+        let fractionalEdge = totalProgress - fullEdges;
 
-        ctx.moveTo(firstPoint.x, firstPoint.y);
-        
-        for(let vertex of rest) {
-            ctx.lineTo(vertex.x, vertex.y);
+        ctx.moveTo(this.V[0].x, this.V[0].y);
+        for (let i = 0; i < fullEdges; i++) {
+            let to = this.V[(i + 1) % n];
+            ctx.lineTo(to.x, to.y);
             ctx.stroke();
         }
-
-        if (this.V.length > 2) {
-            ctx.lineTo(firstPoint.x, firstPoint.y);
+        if (fractionalEdge > 0 && fullEdges < edgeCount) {
+            let from = this.V[fullEdges];
+            let to = this.V[(fullEdges + 1) % n];
+            let px = from.x + (to.x - from.x) * fractionalEdge;
+            let py = from.y + (to.y - from.y) * fractionalEdge;
+            ctx.lineTo(px, py);
             ctx.stroke();
         }
     }
@@ -98,7 +112,18 @@ export class PolygonElement extends GeomElement {
             for(let vertex of rest)
                 ctx.lineTo(vertex.x, vertex.y);
             ctx.closePath();
-            ctx.fill();
+            // Animate the fill in by scaling globalAlpha by drawProgress.
+            // Default 1 keeps the fully-opaque behaviour. Save/restore
+            // so the alpha doesn't leak into later draws.
+            let p = this.drawProgress;
+            if (p < 1) {
+                ctx.save();
+                ctx.globalAlpha = p;
+                ctx.fill();
+                ctx.restore();
+            } else {
+                ctx.fill();
+            }
         }
     }
 
