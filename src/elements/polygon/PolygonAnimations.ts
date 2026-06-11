@@ -205,6 +205,12 @@ export class PolygonSuperposeAnimation extends Animation {
             {
                 durationMs: translateMs,
                 setup: () => {
+                    // Superpose is not a reveal — the real polygon is
+                    // already on stage and must stay fully drawn while
+                    // its ghost travels. Undo the animator's reveal-
+                    // convention pre-zeroing.
+                    poly.drawProgress = 1;
+                    poly.visible = true;
                     src = poly.V.map(p => ({ x: p.x, y: p.y }));
                     dx = onto.V[0].x - src[0].x;
                     dy = onto.V[0].y - src[0].y;

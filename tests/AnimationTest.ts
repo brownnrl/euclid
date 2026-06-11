@@ -603,8 +603,15 @@ describe("sector sweep + polygon superposition (issue #86)", () => {
             const anim = findAnimation(A.Polygon.superpose)!;
             const steps = anim.build(abc, slate, { onto: "DEF" });
             assert.strictEqual(slate.ephemerals.length, 0);
+            // The animator's reveal convention pre-zeroes the target;
+            // superpose's setup must immediately restore it (the real
+            // polygon stays fully drawn while the ghost travels).
+            abc.drawProgress = 0;
+            abc.visible = false;
             steps[0].setup!();
             assert.strictEqual(slate.ephemerals.length, 1);
+            assert.strictEqual(abc.drawProgress, 1);
+            assert.strictEqual(abc.visible, true);
             for (const s of steps) s.finalise();
             assert.strictEqual(slate.ephemerals.length, 0);
         });
