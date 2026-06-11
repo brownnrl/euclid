@@ -39,6 +39,16 @@ export class SectorElement extends GeomElement {
 
     _angle : number = null;
 
+    // Face fill alpha — drives drawFace's globalAlpha independent of
+    // drawProgress (which drives the arc sweep). Default 1 keeps every
+    // existing render path identical. Mirrors Circle/Polygon (#86).
+    private _faceAlpha : number = 1;
+
+    set faceAlpha(value: number) {
+        this._faceAlpha = value < 0 ? 0 : (value > 1 ? 1 : value);
+    }
+    get faceAlpha(): number { return this._faceAlpha; }
+
     constructor(isec?: ISectorElementConstruction) {
         super();
         this.dimension = 2;
@@ -77,17 +87,31 @@ export class SectorElement extends GeomElement {
 
     drawEdge(c: SlateCanvas): void {
         if (!this.visible) return;
-        if (this.edgeColor == null || !this.defined()) return;
+        // Pick the highlight color BEFORE the null bail, matching the
+        // other element types (#81 / #86) — a zero-color sector can
+        // still render in the highlight stroke while emphasized or
+        // slide-highlighted, which is what lets invisible angle
+        // markers light up on demand.
+        const color = (this.emphasized || this.shouldHighlight)
+            ? this.edgeHighlightColor
+            : this.edgeColor;
+        if (color == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
-        ctx.strokeStyle = this.edgeColor;
+        ctx.strokeStyle = color;
+        {
+            const baseW = this.shouldHighlight ? 3 : 1;
+            ctx.lineWidth = baseW + this.emphasisAmount * (6 - baseW);
+        }
         ctx.beginPath();
         let r = this.radius();
-        let d = 2 * r;
         let startAngle = Math.atan2(
             this._A.y - this._Center.y,
             this._A.x - this._Center.x);
         let arcAngle = this._Center.angle(this._A, this._B, this._P);
-        let endAngle = startAngle + arcAngle;
+        // Partial sweep for slide-transition animation: the arc grows
+        // from the A arm toward the B arm as drawProgress goes 0 → 1.
+        // Default progress = 1 reproduces the full arc bit-for-bit.
+        let endAngle = startAngle + arcAngle * this.drawProgress;
         ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, true);
         ctx.stroke();
     }
@@ -95,11 +119,16 @@ export class SectorElement extends GeomElement {
     drawFace(c: SlateCanvas): void {
         if (!this.visible) return;
         if (this.faceColor == null || !this.defined()) return;
+        // Face is independent of the edge sweep — always the full
+        // sector wedge, with alpha driven by the dedicated faceAlpha
+        // field (mirrors Circle/Polygon, #86). Default 1 preserves
+        // the fully-opaque behaviour for every non-animating consumer.
+        let a = this.faceAlpha;
+        if (a <= 0) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.fillStyle = this.faceColor;
         ctx.beginPath();
         let r = this.radius();
-        let d = 2 * r;
         let startAngle = Math.atan2(
             this._A.y - this._Center.y,
             this._A.x - this._Center.x);
@@ -115,7 +144,14 @@ export class SectorElement extends GeomElement {
             ctx.lineTo(this._A.x, this._A.y);
         }
         ctx.lineTo(this._Center.x, this._Center.y);
-        ctx.fill();
+        if (a < 1) {
+            ctx.save();
+            ctx.globalAlpha = a;
+            ctx.fill();
+            ctx.restore();
+        } else {
+            ctx.fill();
+        }
     }
 
     drawName(c: SlateCanvas): void {

@@ -8,6 +8,7 @@ import "./elements/point/PointAnimations";
 import "./elements/line/LineAnimations";
 import "./elements/circle/CircleAnimations";
 import "./elements/polygon/PolygonAnimations";
+import "./elements/sector/SectorAnimations";
 import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
