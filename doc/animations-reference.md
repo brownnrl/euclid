@@ -75,6 +75,13 @@ Rates are in `px/ms` for linear traces and `rad/ms` for arc sweeps.
 |---|---|---|---|---|---|
 | `A.Polygon.outline` | **IMPL** | `PolygonElement` | — | rate `0.25 px/ms`, min `180 ms` | Cascade-trace each edge in `V[]` order. `PolygonElement.drawEdge` partitions `drawProgress` across edges so a single `0 → 1` step traces every edge in sequence at the right per-edge proportion. |
 | `A.Polygon.outlineAndFill` | **IMPL** | `PolygonElement` | — | outline rate `0.25 px/ms`, fill cap `500 ms` | Strict two-step. **Step 1** — outline trace (`drawProgress: 0 → 1`). **Step 2** — face fade-in (`faceAlpha: 0 → 1`) at ~half the outline's runtime. Fill is intentionally shorter than the outline — the eye has already absorbed the shape from the trace, so the fill should land quickly. A face-less polygon (`faceColor` null) skips step 2 entirely. |
+| `A.Polygon.superpose` | **IMPL** | `PolygonElement` | `{ onto: string }` | translate `0.25 px/ms`, rotate `0.003 rad/ms`, hold `800 ms` | Euclid's superposition (I.4). An **ephemeral gold-outline ghost copy** of the target lifts off, translates so its vertex 0 lands on `onto`'s vertex 0, rotates about the landing point to lay side 0→1 onto the target side, holds a beat coinciding, then retraces both motions home. The real polygon never moves. `onto` must name a polygon with the same vertex count — anything else warns and no-ops. |
+
+## Sector animations
+
+| Name | Status | Target | Args | Default | Visual |
+|---|---|---|---|---|---|
+| `A.Sector.sweep` | **IMPL** | `SectorElement` (incl. `ArcElement`) | — | rate `0.003 rad/ms`, min `250 ms`, fill cap `500 ms` | The arc grows from the A arm toward the B arm (`drawProgress: 0 → 1`) — the angle-marker reveal. Two-step (sweep then face fade) when the sector has a face; a face-less sector skips the fill step. Zero-color sectors render in the gold emphasis stroke only while animating — the invisible angle-marker pattern. |
 
 ## Reserved / no-namespace
 

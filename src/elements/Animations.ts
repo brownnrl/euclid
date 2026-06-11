@@ -31,6 +31,8 @@ export enum AllAnimations {
     CIRCLE_COMPASS_EXPLICIT,         // future
     POLYGON_OUTLINE,
     POLYGON_OUTLINE_AND_FILL,
+    POLYGON_SUPERPOSE,
+    SECTOR_SWEEP,
 }
 
 // Typed constants object, mirroring E for constructions. Authors
@@ -52,6 +54,10 @@ export const A = {
     Polygon: {
         outline:             AllAnimations.POLYGON_OUTLINE,
         outlineAndFill:      AllAnimations.POLYGON_OUTLINE_AND_FILL,
+        superpose:           AllAnimations.POLYGON_SUPERPOSE,
+    },
+    Sector: {
+        sweep:               AllAnimations.SECTOR_SWEEP,
     },
     instant:                 AllAnimations.INSTANT,
 };

@@ -13,6 +13,7 @@ import {PointElement} from "../src/elements/point/PointElement";
 import {LineElement} from "../src/elements/line/LineElement";
 import {CircleElement} from "../src/elements/circle/CircleElement";
 import {PolygonElement} from "../src/elements/polygon/PolygonElement";
+import {SectorElement} from "../src/elements/sector/SectorElement";
 import {A, findAnimation} from "../src/elements/Animations";
 import {toElements} from "./shared/testHelpers";
 
@@ -28,7 +29,10 @@ function recordingCanvas(w: number, h: number) {
             x: number, y: number, rx: number, ry: number,
             rotation: number, startAngle: number, endAngle: number,
         }>,
-        arcs:       [] as Array<{x: number, y: number, r: number}>,
+        arcs:       [] as Array<{
+            x: number, y: number, r: number,
+            startAngle?: number, endAngle?: number,
+        }>,
         alphas:     [] as number[],
     };
     const ctx: any = new Proxy(real.getContext("2d") as any, {
@@ -59,7 +63,10 @@ function recordingCanvas(w: number, h: number) {
             }
             if (prop === "arc") {
                 return function(x: number, y: number, r: number, ...rest: any[]) {
-                    recorded.arcs.push({x, y, r});
+                    recorded.arcs.push({
+                        x, y, r,
+                        startAngle: rest[0], endAngle: rest[1],
+                    });
                     return (target as any).arc(x, y, r, ...rest);
                 };
             }
@@ -451,6 +458,207 @@ describe("null-edge highlight + face-less animation steps (issue #81)", () => {
             const anim = findAnimation(A.Polygon.outlineAndFill)!;
             const steps = anim.build(tri, slate, {});
             assert.strictEqual(steps.length, 2);
+        });
+    });
+});
+
+// Issue #86 — sector angle-arc animation + polygon superposition.
+//   1. SectorElement.drawEdge gains drawProgress partial sweep,
+//      emphasisAmount stroke interpolation, and the highlight-before-
+//      null-bail color pick (so zero-color angle markers render gold
+//      under emphasis / slide-highlight).
+//   2. A.Sector.sweep — arc grows from the A arm toward the B arm;
+//      face-less sectors skip the fill step (the #81 pattern).
+//   3. A.Polygon.superpose — ephemeral gold ghost translates onto the
+//      args.onto polygon, rotates side onto side, holds, and retraces
+//      home; the real polygon never moves.
+describe("sector sweep + polygon superposition (issue #86)", () => {
+
+    const sector_data: IConstructionInfo[] = [
+        { construction: E.Point.free,     name: "O", params: [100, 100] },
+        { construction: E.Point.free,     name: "P", params: [200, 100] },
+        { construction: E.Point.free,     name: "Q", params: [100, 200] },
+        { construction: E.Sector.sector,  name: "S", params: ["O", "P", "Q"] },
+    ];
+
+    // DEF is ABC translated by (150, 50) then rotated 90° about D —
+    // congruent, same orientation, so a superposed ghost lands exactly.
+    const two_triangles: IConstructionInfo[] = [
+        { construction: E.Point.free,       name: "A",   params: [50, 50] },
+        { construction: E.Point.free,       name: "B",   params: [150, 50] },
+        { construction: E.Point.free,       name: "C",   params: [100, 130] },
+        { construction: E.Polygon.triangle, name: "ABC", params: ["A", "B", "C"] },
+        { construction: E.Point.free,       name: "D",   params: [200, 100] },
+        { construction: E.Point.free,       name: "E2",  params: [200, 200] },
+        { construction: E.Point.free,       name: "F",   params: [120, 150] },
+        { construction: E.Polygon.triangle, name: "DEF", params: ["D", "E2", "F"] },
+    ];
+
+    function makeSector(): [Slate, SectorElement] {
+        const slate = new Slate(createCanvas(300, 300));
+        toElements(slate, sector_data);
+        slate.elements.forEach(e => e.update());
+        return [slate, slate.lookupElement("S") as SectorElement];
+    }
+
+    describe("SectorElement.drawEdge", () => {
+        it("sweeps a partial arc at drawProgress = 0.5", () => {
+            const [, sector] = makeSector();
+            sector.edgeColor = "#000000";
+            sector.drawProgress = 0.5;
+
+            const r = recordingCanvas(300, 300);
+            sector.drawEdge(r.canvas);
+            assert.strictEqual(r.recorded.arcs.length, 1);
+            const a = r.recorded.arcs[0];
+            // P is due east of O → startAngle 0; Q is due south (+90°
+            // in canvas coords) but the sector sweeps anticlockwise
+            // (-270°): arcAngle from angle() keeps its sign and the
+            // half sweep is exactly half of the full endAngle.
+            const rFull = recordingCanvas(300, 300);
+            sector.drawProgress = 1;
+            sector.drawEdge(rFull.canvas);
+            const full = rFull.recorded.arcs[0];
+            assert.ok(approx(a.startAngle!, full.startAngle!),
+                `start angles differ: ${a.startAngle} vs ${full.startAngle}`);
+            const half = full.startAngle! + (full.endAngle! - full.startAngle!) / 2;
+            assert.ok(approx(a.endAngle!, half),
+                `endAngle at 0.5: ${a.endAngle} (expected ${half})`);
+        });
+
+        it("renders nothing with null edgeColor and no emphasis", () => {
+            const [, sector] = makeSector();
+            sector.edgeColor = null;
+            const r = recordingCanvas(300, 300);
+            sector.drawEdge(r.canvas);
+            assert.strictEqual(r.recorded.arcs.length, 0);
+        });
+
+        it("renders in the highlight stroke while emphasized", () => {
+            const [, sector] = makeSector();
+            sector.edgeColor = null;
+            sector.emphasisAmount = 1;
+            const r = recordingCanvas(300, 300);
+            sector.drawEdge(r.canvas);
+            assert.strictEqual(r.recorded.arcs.length, 1);
+        });
+
+        it("renders in the highlight stroke while slide-highlighted", () => {
+            const [, sector] = makeSector();
+            sector.edgeColor = null;
+            sector.shouldHighlight = true;
+            const r = recordingCanvas(300, 300);
+            sector.drawEdge(r.canvas);
+            assert.strictEqual(r.recorded.arcs.length, 1);
+        });
+    });
+
+    describe("A.Sector.sweep build()", () => {
+        it("face-less sector gets the sweep step alone, with full restore", () => {
+            const [slate, sector] = makeSector();
+            sector.faceColor = null;
+            const anim = findAnimation(A.Sector.sweep)!;
+            const steps = anim.build(sector, slate, {});
+            assert.strictEqual(steps.length, 1);
+
+            steps[0].setup!();
+            assert.strictEqual(sector.drawProgress, 0);
+            steps[0].tick(0.5, 8, steps[0].durationMs);
+            assert.ok(approx(sector.drawProgress, 0.5));
+            steps[0].finalise();
+            assert.strictEqual(sector.drawProgress, 1);
+            assert.strictEqual(sector.faceAlpha, 1);
+            assert.strictEqual(sector.visible, true);
+        });
+
+        it("faced sector gets sweep + fill", () => {
+            const [slate, sector] = makeSector();
+            sector.faceColor = "#ffe9cd";
+            const anim = findAnimation(A.Sector.sweep)!;
+            const steps = anim.build(sector, slate, {});
+            assert.strictEqual(steps.length, 2);
+        });
+    });
+
+    describe("A.Polygon.superpose build()", () => {
+        function makeTriangles(): [Slate, PolygonElement, PolygonElement] {
+            const slate = new Slate(createCanvas(400, 300));
+            toElements(slate, two_triangles);
+            return [
+                slate,
+                slate.lookupElement("ABC") as PolygonElement,
+                slate.lookupElement("DEF") as PolygonElement,
+            ];
+        }
+
+        it("returns the five-step out-and-back journey", () => {
+            const [slate, abc] = makeTriangles();
+            const anim = findAnimation(A.Polygon.superpose)!;
+            const steps = anim.build(abc, slate, { onto: "DEF" });
+            assert.strictEqual(steps.length, 5);
+        });
+
+        it("setup spawns the ghost ephemeral; the last finalise removes it", () => {
+            const [slate, abc] = makeTriangles();
+            const anim = findAnimation(A.Polygon.superpose)!;
+            const steps = anim.build(abc, slate, { onto: "DEF" });
+            assert.strictEqual(slate.ephemerals.length, 0);
+            // The animator's reveal convention pre-zeroes the target;
+            // superpose's setup must immediately restore it (the real
+            // polygon stays fully drawn while the ghost travels).
+            abc.drawProgress = 0;
+            abc.visible = false;
+            steps[0].setup!();
+            assert.strictEqual(slate.ephemerals.length, 1);
+            assert.strictEqual(abc.drawProgress, 1);
+            assert.strictEqual(abc.visible, true);
+            for (const s of steps) s.finalise();
+            assert.strictEqual(slate.ephemerals.length, 0);
+        });
+
+        it("translate midpoint, rotated landing, and untouched original", () => {
+            const [slate, abc, def] = makeTriangles();
+            const anim = findAnimation(A.Polygon.superpose)!;
+            const steps = anim.build(abc, slate, { onto: "DEF" });
+
+            steps[0].setup!();
+            const ghost = slate.ephemerals[0] as PolygonElement;
+
+            // Halfway through the glide: vertex 0 between A(50,50)
+            // and D(200,100).
+            steps[0].tick(0.5, 8, steps[0].durationMs);
+            assert.ok(approx(ghost.V[0].x, 125), `ghost V0.x ${ghost.V[0].x}`);
+            assert.ok(approx(ghost.V[0].y, 75), `ghost V0.y ${ghost.V[0].y}`);
+            steps[0].finalise();
+
+            // Rotation complete: every ghost vertex coincides with DEF.
+            steps[1].tick(1, 8, steps[1].durationMs);
+            for (let i = 0; i < 3; i++) {
+                assert.ok(approx(ghost.V[i].x, def.V[i].x, 0.5),
+                    `ghost V${i}.x ${ghost.V[i].x} vs ${def.V[i].x}`);
+                assert.ok(approx(ghost.V[i].y, def.V[i].y, 0.5),
+                    `ghost V${i}.y ${ghost.V[i].y} vs ${def.V[i].y}`);
+            }
+
+            // Return trip ends at home; the real ABC never moved.
+            steps[1].finalise(); steps[2].finalise();
+            steps[3].finalise();
+            steps[4].tick(1, 8, steps[4].durationMs);
+            assert.ok(approx(ghost.V[0].x, 50));
+            assert.ok(approx(ghost.V[0].y, 50));
+            assert.strictEqual(abc.V[0].x, 50);
+            assert.strictEqual(abc.V[0].y, 50);
+            steps[4].finalise();
+        });
+
+        it("warns and no-ops on a missing or mismatched onto", () => {
+            const [slate, abc] = makeTriangles();
+            const anim = findAnimation(A.Polygon.superpose)!;
+            const steps = anim.build(abc, slate, { onto: "NOPE" });
+            assert.strictEqual(steps.length, 1);
+            steps[0].finalise();
+            assert.strictEqual(abc.visible, true);
+            assert.strictEqual(slate.ephemerals.length, 0);
         });
     });
 });
