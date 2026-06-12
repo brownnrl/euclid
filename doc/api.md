@@ -400,6 +400,9 @@ Resolution rules:
 
 Captions go through a small markup pass: `{NAME}` tokens become
 clickable bold-italic spans tied to the matching slate element.
+`{DISPLAY|element}` (0.7.1+) renders DISPLAY but binds to `element` —
+for prose names that collide with another element's name ("the angle
+{ABC|angBint}" where bare `{ABC}` would resolve to the triangle).
 Hover / tap on a span flips `element.emphasisAmount` so the element
 pops with a thicker stroke; tapping pins a single sticky reference at
 a time.

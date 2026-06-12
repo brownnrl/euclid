@@ -624,23 +624,29 @@ class SlateControls {
     // text with the braces stripped. Hover / pointerdown toggles
     // element.emphasized so the figure picks the ref up with an
     // extra-thick gold stroke.
+    //
+    // Display override (#90): {DISPLAY|element} renders DISPLAY but
+    // binds the highlight to `element` — for prose names that collide
+    // with another element's name, e.g. "the angle {ABC|angBint}"
+    // where the bare token would resolve to the triangle ABC.
     private renderCaptionText(host: HTMLElement, text: string): void {
         host.innerHTML = "";
-        const re = /\{([A-Za-z][A-Za-z0-9'\-]*)\}/g;
+        const re = /\{([A-Za-z][A-Za-z0-9'\-]*)(?:\|([A-Za-z][A-Za-z0-9'\-]*))?\}/g;
         let lastIndex = 0;
         let m: RegExpExecArray | null;
         while ((m = re.exec(text)) !== null) {
             if (m.index > lastIndex) {
                 host.appendChild(document.createTextNode(text.slice(lastIndex, m.index)));
             }
-            const name = m[1];
-            const elem = this._slate.lookupElement(name);
+            const display = m[1];
+            const target = m[2] != null ? m[2] : m[1];
+            const elem = this._slate.lookupElement(target);
             if (elem) {
-                host.appendChild(this.buildCaptionRef(name, elem));
+                host.appendChild(this.buildCaptionRef(display, elem));
             } else {
                 // Unknown — render plain so a typo doesn't surface as
                 // raw "{XYZ}" to the reader.
-                host.appendChild(document.createTextNode(name));
+                host.appendChild(document.createTextNode(display));
             }
             lastIndex = m.index + m[0].length;
         }
