@@ -221,6 +221,22 @@ export class Slate {
         for (let from in aliases) this._aliases.set(from, aliases[from]);
     }
 
+    // Draggable elements named here are excluded from the slideshow's
+    // every-slide auto-union and follow slide visible sets like any
+    // other element — for proof-introduced draggables ("Take an
+    // arbitrary point F") that shouldn't show before their moment.
+    // They stay fully draggable whenever visible (#89). Populated by
+    // init() from the `deferDraggables` field.
+    private _deferredDraggables : Set<string> = new Set();
+
+    get deferredDraggables() : Set<string> {
+        return this._deferredDraggables;
+    }
+
+    deferDraggables(names: string[]) : void {
+        for (const n of names || []) this._deferredDraggables.add(n);
+    }
+
     get slides() : ISlide[] {
         return this._slides;
     }
