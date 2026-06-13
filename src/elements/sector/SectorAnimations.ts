@@ -29,8 +29,9 @@ export class SectorSweepAnimation extends Animation {
 
     public build(target: GeomElement, slate: Slate, args: any): IAnimationStep[] {
         const sector = target as SectorElement;
-        const arcAngle = Math.abs(
-            sector._Center.angle(sector._A, sector._B, sector._P));
+        // arcSpan() reflects what's actually drawn (the major arc for a
+        // reflex marker), so the duration matches the visible sweep.
+        const arcAngle = sector.arcSpan();
         const sweepMs = Math.max(MIN_SWEEP_MS, arcAngle / this.defaultRate);
         const fullRestore = () => {
             sector.faceAlpha = 1;

@@ -107,13 +107,35 @@ export class SectorElement extends GeomElement {
         let startAngle = Math.atan2(
             this._A.y - this._Center.y,
             this._A.x - this._Center.x);
-        let arcAngle = this._Center.angle(this._A, this._B, this._P);
+        let arcAngle = this._arcAngle();
         // Partial sweep for slide-transition animation: the arc grows
         // from the A arm toward the B arm as drawProgress goes 0 → 1.
         // Default progress = 1 reproduces the full arc bit-for-bit.
         let endAngle = startAngle + arcAngle * this.drawProgress;
-        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, true);
+        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, this._anticlockwise());
         ctx.stroke();
+    }
+
+    // The signed arc to sweep from the A arm to the B arm, in radians.
+    // Default is the minor signed angle (−π..π). AngleMarkerElement
+    // overrides this to optionally sweep the major (reflex) arc.
+    protected _arcAngle(): number {
+        return this._Center.angle(this._A, this._B, this._P);
+    }
+
+    // Sweep direction passed to ctx.arc. Fixed true for plain sectors /
+    // arcs (their authors order _A/_B for that). AngleMarkerElement
+    // flips it to draw the major arc between the same two rays for a
+    // reflex marker.
+    protected _anticlockwise(): boolean {
+        return true;
+    }
+
+    // Magnitude of the swept arc — used by A.Sector.sweep to size the
+    // animation duration to what's actually drawn (so a reflex marker
+    // doesn't sweep a big arc in a tiny time).
+    public arcSpan(): number {
+        return Math.abs(this._arcAngle());
     }
 
     drawFace(c: SlateCanvas): void {
@@ -132,9 +154,9 @@ export class SectorElement extends GeomElement {
         let startAngle = Math.atan2(
             this._A.y - this._Center.y,
             this._A.x - this._Center.x);
-        let arcAngle = this._Center.angle(this._A, this._B, this._P);
+        let arcAngle = this._arcAngle();
         let endAngle = startAngle + arcAngle;
-        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, true);
+        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, this._anticlockwise());
         ctx.moveTo(this._Center.x, this._Center.y);
         if(arcAngle <= 180.) {
             ctx.lineTo(this._A.x, this._A.y);

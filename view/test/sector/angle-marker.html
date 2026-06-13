@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Test View - Sector.angleMarker (#91)</title>
+</head>
+<body>
+<h3 style="font-family: sans-serif;">angle markers (#91)</h3>
+<p style="font-family: sans-serif; max-width: 640px; color: #444;">
+Each marker computes its own fixed radius (default 22px, clamped to
+0.45&times; the shorter arm) and auto-orients to the interior angle —
+so they're consistently sized no matter how long the arms are, and the
+arm order doesn't matter. Default colors come from a translucent
+palette. Drag any vertex: markers track and stay interior. Hover the
+caption refs to brighten a marker to gold. Two markers on a shared
+vertex still overlap at the same radius (the 0.8.1 nesting gap) — use
+the px-radius override or different palette slots as a stopgap.
+</p>
+<canvas id="canvasId" style="width:640px; height: 420px;" tabindex="0"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    let A = geomlib.A;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "angleMarker",
+        canvasid: "canvasId",
+        elements: [
+            // A scalene triangle PQR — the three interior angles get
+            // markers. P has a short arm to one side and a long arm to
+            // the other, which would wreck a distance-based radius.
+            { name: "P", construction: E.Point.free, params: [120, 110] },
+            { name: "Q", construction: E.Point.free, params: [90, 330] },
+            { name: "R", construction: E.Point.free, params: [430, 300] },
+            { name: "PQR", construction: E.Polygon.triangle, params: ["P", "Q", "R"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(120,180,210,0.18)" },
+            // Interior angle markers (vertex, arm1, arm2). Palette-colored.
+            { name: "angP", construction: E.Sector.angleMarker, params: ["P", "Q", "R"] },
+            { name: "angQ", construction: E.Sector.angleMarker, params: ["Q", "P", "R"] },
+            { name: "angR", construction: E.Sector.angleMarker, params: ["R", "P", "Q"] },
+
+            // A far-flung second figure sharing vertex Q's style: an angle
+            // whose arm reaches way off to prove the radius doesn't grow.
+            { name: "S", construction: E.Point.free, params: [600, 120] },
+            { name: "QS", construction: E.Line.connect, params: ["Q", "S"],
+              nameColor: 0, vertexColor: 0, edgeColor: "darkGray" },
+            { name: "angQS", construction: E.Sector.angleMarker, params: ["Q", "R", "S"] },
+
+            // Same vertex P, a second marker between R and a new ray —
+            // demonstrates the same-vertex overlap (0.8.1 gap) and the
+            // radius override used to separate them by hand.
+            { name: "T", construction: E.Point.free, params: [300, 70] },
+            { name: "PT", construction: E.Line.connect, params: ["P", "T"],
+              nameColor: 0, vertexColor: 0, edgeColor: "darkGray" },
+            { name: "angP2", construction: E.Sector.angleMarker, params: ["P", "R", "T", 38] },
+
+            // Reflex marker at R — the MAJOR (>180°) arc between the
+            // same two arms. Euclid avoids reflex angles, so this is for
+            // the rare teaching case; default markers stay interior.
+            { name: "angRreflex", construction: E.Sector.angleMarkerReflex, params: ["R", "P", "Q", 40] },
+        ],
+        slides: [
+            { text: "Three interior angles of triangle {PQR}: {angP|angP}, {angQ|angQ}, {angR|angR}.",
+              visible: ["PQR","angP","angQ","angR"],
+              transition: { mode: "parallel", animations: [
+                  { elem: "angP", name: A.Sector.sweep },
+                  { elem: "angQ", name: A.Sector.sweep },
+                  { elem: "angR", name: A.Sector.sweep }
+              ] } },
+            { text: "A long arm {QS} doesn't grow the marker {angQS|angQS} — radius is fixed.",
+              visible: ["PQR","angP","angQ","angR","QS","S","angQS"],
+              transition: { animations: [ { elem: "angQS", name: A.Sector.sweep } ] } },
+            { text: "Same vertex {P}: a second marker {angP2|angP2} at an overridden 38px radius so it nests outside {angP|angP}.",
+              visible: ["PQR","angP","angQ","angR","QS","S","angQS","PT","T","angP2"],
+              transition: { animations: [ { elem: "angP2", name: A.Sector.sweep } ] } },
+            { text: "Reflex marker at {R}: the major (>180°) arc {angRreflex|angRreflex}. Euclid avoids these — interior is the default.",
+              visible: ["PQR","angP","angQ","angR","QS","S","angQS","PT","T","angP2","angRreflex"],
+              transition: { animations: [ { elem: "angRreflex", name: A.Sector.sweep } ] } }
+        ]
+    });
+</script>
+</body>
+</html>

@@ -12,7 +12,8 @@ import "./elements/sector/SectorAnimations";
 import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
-import {colors, randomColor, lighten, darken, parseColor} from "./Colors";
+import {AngleMarkerElement} from "./elements/sector/AngleMarkerElement";
+import {colors, randomColor, lighten, darken, parseColor, anglePalette} from "./Colors";
 import {createControls} from "./SlateControls";
 
 export type IndexAllConstructions = AllConstructions;
@@ -271,11 +272,32 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
     // Parse background through parseColor so HSB triples like "35,19,100"
     // are converted to valid CSS rgb() strings for ctx.fillStyle.
     slate.bgcolor = parseColor(i.background, "#ffffff", "#ffffff");
+    // Cycles the angle-marker palette in construction order (#91) so
+    // concurrent markers get distinct colors.
+    let angleMarkerCount = 0;
     for(let raw of i.elements) {
         let param: IConstructionInfo = typeof raw === "string" ? parseParam(raw) : raw;
         let element = slate.createElement(param.construction, param.params, param.name);
 
         element.align = defaultAlign;
+
+        // Angle markers default to a translucent palette fill + solid
+        // colored edge instead of the dim2 lighten-bg face / black edge.
+        // The rgba face is set directly (it wouldn't survive parseColor)
+        // unless the author supplies an explicit faceColor param.
+        if (element instanceof AngleMarkerElement) {
+            const swatch = anglePalette[angleMarkerCount % anglePalette.length];
+            angleMarkerCount++;
+            element.nameColor = parseColor(param.nameColor, null, slate.bgcolor);
+            element.vertexColor = parseColor(param.vertexColor, null, slate.bgcolor);
+            element.edgeColor = parseColor(param.edgeColor, swatch.edge, slate.bgcolor);
+            if (param.faceColor != null) {
+                element.faceColor = parseColor(param.faceColor, swatch.edge, slate.bgcolor);
+            } else {
+                element.faceColor = swatch.face;
+            }
+            continue;
+        }
 
         // Name string
         let defaultNameColor = element instanceof PointElement ? "black" : null;
