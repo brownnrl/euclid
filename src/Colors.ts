@@ -29,6 +29,22 @@ export const colors : {[colorName: string]: string} =
     "yellow": "rgb(255,255,0)"
 };
 
+// Default color cycle for angle markers (#91). Each entry pairs a
+// solid edge color with a translucent face twin so concurrent markers
+// read as distinct, readable wedges. Hues are spread and deliberately
+// avoid gold (#FFD700, the highlight color) so an emphasized marker
+// still contrasts against its own fill. init() assigns these in
+// construction order; authors can override per element.
+export const anglePalette : {edge: string, face: string}[] =
+[
+    { edge: "rgb(59,110,165)",  face: "rgba(59,110,165,0.30)"  },  // blue
+    { edge: "rgb(63,142,79)",   face: "rgba(63,142,79,0.30)"   },  // green
+    { edge: "rgb(122,79,163)",  face: "rgba(122,79,163,0.30)"  },  // purple
+    { edge: "rgb(194,90,60)",   face: "rgba(194,90,60,0.30)"   },  // orange-red
+    { edge: "rgb(46,139,139)",  face: "rgba(46,139,139,0.30)"  },  // teal
+    { edge: "rgb(163,60,122)",  face: "rgba(163,60,122,0.30)"  }   // magenta
+];
+
 export function parseColor(val: string | number, dfault: string, bgcolor: string) : string {
     // Handle numeric 0 (from IConstructionInfo where vertexColor: 0)
     if (val === 0) return null;

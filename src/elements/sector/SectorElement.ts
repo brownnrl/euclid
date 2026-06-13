@@ -107,13 +107,64 @@ export class SectorElement extends GeomElement {
         let startAngle = Math.atan2(
             this._A.y - this._Center.y,
             this._A.x - this._Center.x);
-        let arcAngle = this._Center.angle(this._A, this._B, this._P);
+        let arcAngle = this._arcAngle();
         // Partial sweep for slide-transition animation: the arc grows
         // from the A arm toward the B arm as drawProgress goes 0 → 1.
         // Default progress = 1 reproduces the full arc bit-for-bit.
         let endAngle = startAngle + arcAngle * this.drawProgress;
-        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, true);
+        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, this._anticlockwise());
         ctx.stroke();
+    }
+
+    // The signed arc to sweep from the A arm to the B arm, in radians.
+    // Default is the minor signed angle (−π..π). AngleMarkerElement
+    // overrides this to optionally sweep the major (reflex) arc.
+    protected _arcAngle(): number {
+        return this._Center.angle(this._A, this._B, this._P);
+    }
+
+    // Sweep direction passed to ctx.arc. Fixed true for plain sectors /
+    // arcs (their authors order _A/_B for that). AngleMarkerElement
+    // flips it to draw the major arc between the same two rays for a
+    // reflex marker.
+    protected _anticlockwise(): boolean {
+        return true;
+    }
+
+    // Magnitude of the swept arc — used by A.Sector.sweep to size the
+    // animation duration to what's actually drawn (so a reflex marker
+    // doesn't sweep a big arc in a tiny time).
+    public arcSpan(): number {
+        return Math.abs(this._arcAngle());
+    }
+
+    // Trace the closed wedge path (arc + the two radii back to centre)
+    // into the current ctx path. Shared by the face fill and the flash
+    // overlay so they cover exactly the same region.
+    protected _traceWedge(ctx: CanvasRenderingContext2D, r: number): void {
+        let startAngle = Math.atan2(
+            this._A.y - this._Center.y,
+            this._A.x - this._Center.x);
+        let arcAngle = this._arcAngle();
+        let endAngle = startAngle + arcAngle;
+        ctx.beginPath();
+        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, this._anticlockwise());
+        ctx.moveTo(this._Center.x, this._Center.y);
+        if(arcAngle <= 180.) {
+            ctx.lineTo(this._A.x, this._A.y);
+            ctx.lineTo(this._B.x, this._B.y);
+        } else {
+            ctx.lineTo(this._B.x, this._B.y);
+            ctx.lineTo(this._A.x, this._A.y);
+        }
+        ctx.lineTo(this._Center.x, this._Center.y);
+    }
+
+    // Whether the whole wedge should flash (fill with the highlight
+    // color) while emphasised. False for plain sectors/arcs — only
+    // angle markers light up their fill during a slide transition.
+    protected _flashFace(): boolean {
+        return false;
     }
 
     drawFace(c: SlateCanvas): void {
@@ -126,24 +177,9 @@ export class SectorElement extends GeomElement {
         let a = this.faceAlpha;
         if (a <= 0) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
-        ctx.fillStyle = this.faceColor;
-        ctx.beginPath();
         let r = this.radius();
-        let startAngle = Math.atan2(
-            this._A.y - this._Center.y,
-            this._A.x - this._Center.x);
-        let arcAngle = this._Center.angle(this._A, this._B, this._P);
-        let endAngle = startAngle + arcAngle;
-        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, true);
-        ctx.moveTo(this._Center.x, this._Center.y);
-        if(arcAngle <= 180.) {
-            ctx.lineTo(this._A.x, this._A.y);
-            ctx.lineTo(this._B.x, this._B.y);
-        } else {
-            ctx.lineTo(this._B.x, this._B.y);
-            ctx.lineTo(this._A.x, this._A.y);
-        }
-        ctx.lineTo(this._Center.x, this._Center.y);
+        ctx.fillStyle = this.faceColor;
+        this._traceWedge(ctx, r);
         if (a < 1) {
             ctx.save();
             ctx.globalAlpha = a;
@@ -151,6 +187,19 @@ export class SectorElement extends GeomElement {
             ctx.restore();
         } else {
             ctx.fill();
+        }
+        // Transition flash: while emphasised (the animator bumps
+        // emphasisAmount to 1 during a sweep and fades it 1 → 0
+        // afterward), light the ENTIRE wedge with the highlight color,
+        // fading with the emphasis. Edge-only emphasis (stroke width /
+        // gold) already happens in drawEdge; this fills the area too.
+        if (this._flashFace() && this.emphasisAmount > 0) {
+            ctx.save();
+            ctx.fillStyle = this.faceHighlightColor;
+            ctx.globalAlpha = 0.55 * this.emphasisAmount;
+            this._traceWedge(ctx, r);
+            ctx.fill();
+            ctx.restore();
         }
     }
 

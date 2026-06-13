@@ -724,6 +724,8 @@ Conventions:
 |---|---|---|---|
 | `E.Sector.sector` | `sector;sector` | points `A, B, C, [plane D]` | Sector with center A, radial points B and C. |
 | `E.Sector.arc` | `sector;arc` | points `A, B, C, [plane D]` | Arc through A, B, C — the circumcircle's arc, drawn as a sector. |
+| `E.Sector.angleMarker` | `sector;angleMarker` | points `V, P1, P2, [int radiusPx]` | 0.8.0+. Marks the **interior** angle P1-V-P2 with a small wedge whose radius the element chooses (default 22px, clamped to 0.45× the shorter arm) — independent of arm length, and auto-oriented to the interior so arm order doesn't matter. Defaults to a translucent palette fill + colored edge (cycled per marker); overridable per element. |
+| `E.Sector.angleMarkerReflex` | `sector;angleMarkerReflex` | points `V, P1, P2, [int radiusPx]` | 0.8.0+. Same as `angleMarker` but draws the **major (reflex, > 180°)** arc. Euclid avoids reflex angles, so this is for rare teaching cases (a III.20-style central angle); interior is the default. |
 
 ### Plane — `E.Plane.{name}` (all 3D-only)
 
