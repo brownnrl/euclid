@@ -96,6 +96,8 @@ interface IInitialization {
     resolveJustification?: (ref: string) => string | null | undefined;
     // 0.6.0+ — slide-transition animation
     animationConfig?: IAnimationConfig;
+    // 0.7.1+ — draggables exempt from the slideshow auto-union
+    deferDraggables?: string[];
 }
 ```
 
