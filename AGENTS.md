@@ -14,7 +14,7 @@ Library is **post-porting, publish-ready**. There is no longer a
 "next construction to port" backlog or session-startup ritual.
 
 - All 69 construction methods (with 19 3D variants) are implemented.
-- 234 unit tests + 700 snapshot tests pass.
+- 236 unit tests + 700 snapshot tests pass.
 - 0.4.0 shipped cross-highlighting (`emphasized` / `emphasisAmount`
   + `lookupElement`); 0.5.0 shipped the slideshow surface
   (`slides`, `setVisibleNames`, `addAlias`, `resolveJustification`,

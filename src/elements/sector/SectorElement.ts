@@ -138,24 +138,16 @@ export class SectorElement extends GeomElement {
         return Math.abs(this._arcAngle());
     }
 
-    drawFace(c: SlateCanvas): void {
-        if (!this.visible) return;
-        if (this.faceColor == null || !this.defined()) return;
-        // Face is independent of the edge sweep — always the full
-        // sector wedge, with alpha driven by the dedicated faceAlpha
-        // field (mirrors Circle/Polygon, #86). Default 1 preserves
-        // the fully-opaque behaviour for every non-animating consumer.
-        let a = this.faceAlpha;
-        if (a <= 0) return;
-        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
-        ctx.fillStyle = this.faceColor;
-        ctx.beginPath();
-        let r = this.radius();
+    // Trace the closed wedge path (arc + the two radii back to centre)
+    // into the current ctx path. Shared by the face fill and the flash
+    // overlay so they cover exactly the same region.
+    protected _traceWedge(ctx: CanvasRenderingContext2D, r: number): void {
         let startAngle = Math.atan2(
             this._A.y - this._Center.y,
             this._A.x - this._Center.x);
         let arcAngle = this._arcAngle();
         let endAngle = startAngle + arcAngle;
+        ctx.beginPath();
         ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, this._anticlockwise());
         ctx.moveTo(this._Center.x, this._Center.y);
         if(arcAngle <= 180.) {
@@ -166,6 +158,28 @@ export class SectorElement extends GeomElement {
             ctx.lineTo(this._A.x, this._A.y);
         }
         ctx.lineTo(this._Center.x, this._Center.y);
+    }
+
+    // Whether the whole wedge should flash (fill with the highlight
+    // color) while emphasised. False for plain sectors/arcs — only
+    // angle markers light up their fill during a slide transition.
+    protected _flashFace(): boolean {
+        return false;
+    }
+
+    drawFace(c: SlateCanvas): void {
+        if (!this.visible) return;
+        if (this.faceColor == null || !this.defined()) return;
+        // Face is independent of the edge sweep — always the full
+        // sector wedge, with alpha driven by the dedicated faceAlpha
+        // field (mirrors Circle/Polygon, #86). Default 1 preserves
+        // the fully-opaque behaviour for every non-animating consumer.
+        let a = this.faceAlpha;
+        if (a <= 0) return;
+        let ctx = c.getContext("2d") as CanvasRenderingContext2D;
+        let r = this.radius();
+        ctx.fillStyle = this.faceColor;
+        this._traceWedge(ctx, r);
         if (a < 1) {
             ctx.save();
             ctx.globalAlpha = a;
@@ -173,6 +187,19 @@ export class SectorElement extends GeomElement {
             ctx.restore();
         } else {
             ctx.fill();
+        }
+        // Transition flash: while emphasised (the animator bumps
+        // emphasisAmount to 1 during a sweep and fades it 1 → 0
+        // afterward), light the ENTIRE wedge with the highlight color,
+        // fading with the emphasis. Edge-only emphasis (stroke width /
+        // gold) already happens in drawEdge; this fills the area too.
+        if (this._flashFace() && this.emphasisAmount > 0) {
+            ctx.save();
+            ctx.fillStyle = this.faceHighlightColor;
+            ctx.globalAlpha = 0.55 * this.emphasisAmount;
+            this._traceWedge(ctx, r);
+            ctx.fill();
+            ctx.restore();
         }
     }
 

@@ -178,6 +178,65 @@ describe("angle marker (issue #91)", () => {
         almostEqual(B.distance(m._A), m.radius(), 1e-6);
     });
 
+    // Records the fillStyle + globalAlpha at each fill() call so we can
+    // see the transition flash add a second (gold) fill over the wedge.
+    function fillRecordingCanvas(slate: Slate) {
+        const real = (slate as any).canvas;
+        const fills: Array<{style: any, alpha: number}> = [];
+        const ctx: any = new Proxy(real.getContext("2d"), {
+            get(t, p) {
+                if (p === "fill") return () => fills.push({ style: t.fillStyle, alpha: t.globalAlpha });
+                const v = t[p];
+                return typeof v === "function" ? v.bind(t) : v;
+            },
+            set(t, p, v) { t[p] = v; return true; },
+        });
+        return { canvas: { getContext: () => ctx } as any, fills };
+    }
+
+    it("flashes the whole wedge with the highlight color while emphasised", () => {
+        const slate = markerSlate([
+            { name: "m", construction: E.Sector.angleMarker, params: ["B", "A", "Cnear"] },
+        ]);
+        const m = slate.lookupElement("m") as AngleMarkerElement;
+        m.faceColor = "rgb(59,110,165)";
+
+        // Not emphasised: one fill (the palette face), no flash.
+        m.emphasisAmount = 0;
+        let r = fillRecordingCanvas(slate);
+        m.drawFace(r.canvas);
+        assert.strictEqual(r.fills.length, 1);
+
+        // Emphasised: a second fill with the gold highlight color,
+        // alpha scaling with emphasisAmount.
+        m.emphasisAmount = 1;
+        r = fillRecordingCanvas(slate);
+        m.drawFace(r.canvas);
+        assert.strictEqual(r.fills.length, 2);
+        // node-canvas echoes fillStyle back lowercased.
+        assert.strictEqual(
+            String(r.fills[1].style).toLowerCase(),
+            m.faceHighlightColor.toLowerCase());
+        assert.ok(r.fills[1].alpha > 0 && r.fills[1].alpha <= 1);
+    });
+
+    it("plain sectors do not flash their face", () => {
+        const slate = new Slate(createCanvas(300, 300));
+        toElements(slate, [
+            { name: "O", construction: E.Point.free, params: [100, 100] },
+            { name: "U", construction: E.Point.free, params: [180, 100] },
+            { name: "V", construction: E.Point.free, params: [100, 180] },
+            { name: "S", construction: E.Sector.sector, params: ["O", "U", "V"] },
+        ]);
+        slate.elements.forEach(e => e.update());
+        const s = slate.lookupElement("S") as any;
+        s.faceColor = "rgb(0,0,255)";
+        s.emphasisAmount = 1;
+        const r = fillRecordingCanvas(slate);
+        s.drawFace(r.canvas);
+        assert.strictEqual(r.fills.length, 1);  // no flash overlay
+    });
+
     it("reflex markers sweep the major arc (2pi minus the interior)", () => {
         const slate = markerSlate([
             { name: "mi", construction: E.Sector.angleMarker,       params: ["B", "A", "Cnear"] },

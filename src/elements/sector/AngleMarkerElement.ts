@@ -74,6 +74,12 @@ export class AngleMarkerElement extends SectorElement {
         return !this.reflex;
     }
 
+    // Angle markers flash their whole wedge during a transition (the
+    // emphasis bump), not just the edge.
+    protected _flashFace(): boolean {
+        return true;
+    }
+
     radius() : number {
         const a1 = this._Center.distance(this._arm1);
         const a2 = this._Center.distance(this._arm2);
