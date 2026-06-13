@@ -104,6 +104,19 @@ describe("ISlide on init() (issue #75)", () => {
         });
         assert.strictEqual(slates[0].resolveJustification, null);
     });
+
+    it("init({ deferDraggables: [...] }) populates slate.deferredDraggables", () => {
+        withFakeDOM((canvasId) => {
+            init({
+                canvasid: canvasId,
+                background: "0,0,100",
+                title: "test",
+                elements: propI1_elements,
+                deferDraggables: ["A"],
+            });
+        });
+        assert.ok(slates[0].deferredDraggables.has("A"));
+    });
 });
 
 describe("computeSlideState (issue #75)", () => {
@@ -169,6 +182,23 @@ describe("computeSlideState (issue #75)", () => {
         const slate = makeSlate(slides);
         const s = computeSlideState(slate, slides, 0);
         assert.ok(s.visible.has("BCD"), "highlighted BCD should auto-include in visible");
+    });
+
+    it("deferred draggables follow visible sets instead of auto-union (issue #89)", () => {
+        const slides: ISlide[] = [
+            { text: "1", visible: ["AB"] },           // B not listed
+            { text: "2", visible: ["AB","B"] },       // B's moment
+        ];
+        const slate = makeSlate(slides);
+        slate.deferDraggables(["B"]);
+        const s0 = computeSlideState(slate, slides, 0);
+        assert.ok(!s0.visible.has("B"),
+            "deferred draggable B should stay hidden until listed");
+        assert.ok(s0.visible.has("A"),
+            "non-deferred draggable A still auto-includes");
+        const s1 = computeSlideState(slate, slides, 1);
+        assert.ok(s1.visible.has("B"),
+            "B appears once a slide's visible set lists it");
     });
 
     it("initial state with no explicit visible array is hide-all (plus draggable)", () => {

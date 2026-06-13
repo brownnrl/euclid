@@ -110,6 +110,7 @@ interface IInitialization {
 | `fontsize` | `fontsize` | `18` | Pixel size for the label font. |
 | `elements` | `e[1]`, `e[2]`, … | (required) | Ordered list of element specs. May mix `IConstructionInfo` objects and Java param strings. |
 | `aliases` | — | `{}` | Secondary element names that resolve to a canonical element. See [Slides & visibility](#slides--visibility). |
+| `deferDraggables` | — | `[]` | 0.7.1+. Draggable element names excluded from the slideshow's every-slide auto-union — they follow slide `visible` sets like any other element. For draggables the proof introduces mid-walk. |
 | `slides` | — | `[]` | Optional slideshow walk-through. When present, SlateControls shows a "▶ Present" button. See [Slides & visibility](#slides--visibility). |
 | `resolveJustification` | — | `null` | Callback that maps a symbolic justification ref (e.g. `"I.Post.3"`) to a URL string. See [Slides & visibility](#slides--visibility). |
 | `animationConfig` | — | `{}` | Per-animation rate / duration overrides, `speedMultiplier`, `reducedMotion`. See [Animation](#animation). |
@@ -390,12 +391,18 @@ Resolution rules:
   highlight must be re-listed every slide it should appear on.
 - Every `draggable` element on the slate is **auto-unioned** into the
   visible set on every slide — free construction points stay
-  interactive while the reader walks the proof.
+  interactive while the reader walks the proof. Names listed in
+  `init({ deferDraggables: [...] })` (0.7.1+) are exempt: they follow
+  slide `visible` sets like any other element, for draggables the
+  proof introduces mid-walk ("Take an arbitrary point F").
 - Highlighted elements are auto-unioned into visible (can't highlight
   what isn't drawn).
 
 Captions go through a small markup pass: `{NAME}` tokens become
 clickable bold-italic spans tied to the matching slate element.
+`{DISPLAY|element}` (0.7.1+) renders DISPLAY but binds to `element` —
+for prose names that collide with another element's name ("the angle
+{ABC|angBint}" where bare `{ABC}` would resolve to the triangle).
 Hover / tap on a span flips `element.emphasisAmount` so the element
 pops with a thicker stroke; tapping pins a single sticky reference at
 a time.

@@ -11,7 +11,10 @@ import {ISlide} from "./index";
 //     visible (initial state is the empty set).
 //   - highlighted clears each slide (defaults to []).
 //   - Every draggable element on the slate is auto-unioned into
-//     visible — free construction points always stay interactive.
+//     visible — free construction points always stay interactive —
+//     EXCEPT names in slate.deferredDraggables (#89): draggables the
+//     proof introduces mid-walk follow visible sets like any other
+//     element.
 //   - Every highlighted name is auto-unioned into visible — you can't
 //     highlight what isn't drawn.
 export function computeSlideState(
@@ -33,7 +36,10 @@ export function computeSlideState(
     const highlighted = new Set<string>(slide.highlighted || []);
 
     for (const e of slate.elements) {
-        if (e.draggable && e.name != null) visible.add(e.name);
+        if (e.draggable && e.name != null
+            && !slate.deferredDraggables.has(e.name)) {
+            visible.add(e.name);
+        }
     }
     highlighted.forEach(name => visible.add(name));
 

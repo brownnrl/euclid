@@ -115,6 +115,13 @@ export interface IInitialization {
     // forcing the canvas to carry an invisible duplicate per alias.
     // Resolved by Slate.lookupElement after a direct-name miss.
     aliases?: {[from: string]: string};
+    // Draggable element names excluded from the slideshow's
+    // every-slide auto-union (#89). Use for draggables the proof
+    // introduces mid-walk ("Take an arbitrary point F") so they stay
+    // hidden until a slide's visible set includes them. They remain
+    // fully draggable whenever shown. No effect outside presentation
+    // mode.
+    deferDraggables?: string[];
     // Optional slideshow walk-through. When provided + non-empty,
     // SlateControls renders a "▶ Present" button that opens the
     // Presentation overlay. Stays empty (no button, no behaviour
@@ -289,6 +296,10 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
     if (i.aliases != null) {
         slate.addAliases(i.aliases);
+    }
+
+    if (i.deferDraggables != null) {
+        slate.deferDraggables(i.deferDraggables);
     }
 
     if (i.slides != null && i.slides.length > 0) {
