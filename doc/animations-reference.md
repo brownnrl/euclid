@@ -52,6 +52,7 @@ Rates are in `px/ms` for linear traces and `rad/ms` for arc sweeps.
 | Name | Status | Target | Args | Default | Visual |
 |---|---|---|---|---|---|
 | `A.Point.appear` | **IMPL** | `PointElement` | — | `350 ms` | Marker radius scales from 0 to its final value. The simplest reveal — used for points constructed at an intersection ("the point C at which the circles cut"). |
+| `A.Point.slide` | **IMPL** | `LineSlider` | `{ to: number }` | `650 ms` | Glide a slider point along its line to the target parameter `t` (`A + t·(B−A)`; an infinite `lineSlider` accepts `t < 0` / `t > 1`), its dependents following each frame — the scripted counterpart of a reader dragging the slider. `finalise()` leaves the point at the target. Non-slider targets warn + fall through. |
 | `A.Point.intersect` | TBD | `PointElement` | — | — | Reserved. Brief flash on the intersecting curves before the dot lands. Will use ephemerals to render the flash. |
 
 ## Line animations
@@ -82,6 +83,12 @@ Rates are in `px/ms` for linear traces and `rad/ms` for arc sweeps.
 | Name | Status | Target | Args | Default | Visual |
 |---|---|---|---|---|---|
 | `A.Sector.sweep` | **IMPL** | `SectorElement` (incl. `ArcElement`) | — | rate `0.003 rad/ms`, min `250 ms`, fill cap `500 ms` | The arc grows from the A arm toward the B arm (`drawProgress: 0 → 1`) — the angle-marker reveal. Two-step (sweep then face fade) when the sector has a face; a face-less sector skips the fill step. Zero-color sectors render in the gold emphasis stroke only while animating — the invisible angle-marker pattern. |
+
+## Group animations
+
+| Name | Status | Target | Args | Default | Visual |
+|---|---|---|---|---|---|
+| `A.Group.cloneAside` | **IMPL** | `GeomElement` (anchor; clone set comes from args) | `{ dx, dy, include?, vary? }` | translate `0.4 px/ms`, min `200 ms` | Clone a sub-figure (`include: "all"` or a name list of elements) into displaced bare render-copies that slide aside and **persist** for the slide (cleared on the next advance / on presentation exit). Optional `vary: { elem, to }` sets a slider point to parameter `t` before snapshotting, so each copy shows a different case (a trichotomy's "one of them is greater"). The real figure never moves; the anchor stays fully drawn. v1 snapshots point / line / polygon (others skipped with a warn). Copies clamp to the canvas and are **skipped below a ≈520px viewport** — case-variants are a desktop affordance for now (see #99 auto-placement, #71 scale-to-fit). |
 
 ## Reserved / no-namespace
 

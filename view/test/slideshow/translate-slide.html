@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Test View - A.Group.cloneAside + A.Point.slide (#98, #95)</title>
+</head>
+<body>
+<h3 style="font-family: sans-serif;">case-variant figure clones + point slide (#98, #95)</h3>
+<p style="font-family: sans-serif; max-width: 700px; color: #444;">
+Press <b>p</b> (or ▶ Present) and walk the slides.
+<b>#98 A.Group.cloneAside</b> clones the WHOLE figure (triangle + the
+slider point D + the line CD) aside, with D in a different position in
+each copy — three versions of D: the centre (real figure), one with D
+<b>past A</b> (off the segment, t&lt;0), one with D <b>between A and B</b>.
+<b>#95 A.Point.slide</b> then glides the real D along AB to its place.
+D is an infinite lineSlider so it can travel past A.
+</p>
+<canvas id="canvasId" style="width:720px; height: 380px;" tabindex="0"></canvas>
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "cloneAside + slide",
+        canvasid: "canvasId",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [330, 110] },
+            { name: "B", construction: E.Point.free, params: [430, 300] },
+            { name: "C", construction: E.Point.free, params: [300, 300] },
+            { name: "ABC", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(120,180,210,0.25)" },
+            // D is an INFINITE lineSlider on AB (not a segment) so a
+            // case-variant can place it past A (t < 0).
+            { name: "D", construction: E.Point.lineSlider, params: ["A", "B", 380, 205],
+              vertexColor: "orange", nameColor: "black" },
+            { name: "CD", construction: E.Line.connect, params: ["C", "D"],
+              nameColor: 0, vertexColor: 0, edgeColor: "darkGray" },
+        ],
+        deferDraggables: ["D"],
+        slides: [
+            { text: "The figure: triangle {ABC}, with {D} on line {AB} and {CD} joined.",
+              visible: ["ABC","D","CD"] },
+            { text: "If the sides are unequal, one is greater — consider both cases (clones slide aside, each with {D} placed differently).",
+              visible: ["ABC","D","CD"],
+              transition: { mode: "parallel", animations: [
+                  { elem: "ABC", name: A.Group.cloneAside,
+                    args: { dx: -250, dy: 0, include: "all", vary: { elem: "D", to: -0.35 } } },
+                  { elem: "ABC", name: A.Group.cloneAside,
+                    args: { dx:  250, dy: 0, include: "all", vary: { elem: "D", to:  0.55 } } }
+              ] } },
+            { text: "Take the case where {D} lies between {A} and {B}: the copies clear and {D} slides to place.",
+              visible: ["ABC","D","CD"],
+              transition: { animations: [
+                  { elem: "D", name: A.Point.slide, args: { to: 0.55 } }
+              ] } }
+        ]
+    });
+</script>
+</body>
+</html>

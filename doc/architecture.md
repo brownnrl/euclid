@@ -261,12 +261,19 @@ Two surfaces, the raw primitive and the slideshow on top of it.
 
 **Raw visibility primitive.** Every `GeomElement` carries a `visible:
 boolean` flag (default `true`). Each per-type `draw{Face,Edge,Vertex,Name}`
-method short-circuits at the top when the flag is false, so a hidden
-element stops drawing without leaving the slate's `_elements` list —
-dependents that read its coordinates still work. `Slate.setVisibleNames(names)`
-flips every *named* element's flag according to set membership;
-`clearVisibility()` resets them all to true. Unnamed intermediate
-construction outputs are never touched by `setVisibleNames`.
+method short-circuits at the top when the flag is false — **unless the
+element is slide-highlighted or emphasised (its `{NAME}` ref hovered)**,
+in which case it still draws (0.9.0+), so a referenced-but-hidden
+element is never completely unseeable. The element stays in the slate's
+`_elements` list either way, so dependents that read its coordinates
+still work. `Slate.setVisibleNames(names)` flips every *named* element's
+flag according to set membership. Some elements **start hidden**: angle
+markers by default (`init({ showAngles: true })` reveals them) and
+anything in `init({ initiallyHidden: [...] })`; `clearVisibility()`
+restores that **baseline** (visible except the initially-hidden set),
+not blanket true, so hidden elements stay hidden after a presentation
+walk. Unnamed intermediate construction outputs are never touched by
+`setVisibleNames`.
 
 **Name aliases.** `Slate.addAlias("CDB", "BCD")` registers a synonym.
 After a direct-name miss in `lookupElement`, the alias map is followed

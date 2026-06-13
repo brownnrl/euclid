@@ -41,7 +41,7 @@ export class LineElement extends GeomElement {
     }
 
     public drawEdge(c: HTMLCanvasElement, color?: string): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if (color == null) {
             if (this.emphasized || this.shouldHighlight) {
                 color = this.edgeHighlightColor;
@@ -77,7 +77,7 @@ export class LineElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if (this.nameColor == null || this.name == null) return;
         if (this._A == null || !this._A.defined()) return;
         if (this._B == null || !this._B.defined()) return;

@@ -325,4 +325,94 @@ describe("angle marker (issue #91)", () => {
             assert.strictEqual(m.faceColor, "rgb(255,0,0)");
         });
     });
+
+    // #100 — marker initial visibility.
+    it("hides angle markers in the static figure by default", () => {
+        withFakeDOM((canvasid) => {
+            slates.length = 0;
+            init({
+                canvasid, background: "0,0,100", title: "t",
+                elements: [...baseMarkerElements, "m;sector;angleMarker;B,A,Cnear"],
+            });
+            const m = slates[0].lookupElement("m") as AngleMarkerElement;
+            assert.strictEqual(m.visible, false);
+            assert.ok(slates[0].initiallyHidden.has("m"));
+        });
+    });
+
+    it("shows angle markers when init({ showAngles: true })", () => {
+        withFakeDOM((canvasid) => {
+            slates.length = 0;
+            init({
+                canvasid, background: "0,0,100", title: "t", showAngles: true,
+                elements: [...baseMarkerElements, "m;sector;angleMarker;B,A,Cnear"],
+            } as any);
+            const m = slates[0].lookupElement("m") as AngleMarkerElement;
+            assert.strictEqual(m.visible, true);
+            assert.ok(!slates[0].initiallyHidden.has("m"));
+        });
+    });
+
+    it("initiallyHidden hides any named element; clearVisibility keeps it hidden", () => {
+        withFakeDOM((canvasid) => {
+            slates.length = 0;
+            init({
+                canvasid, background: "0,0,100", title: "t", showAngles: true,
+                initiallyHidden: ["Cfar"],
+                elements: [...baseMarkerElements, "m;sector;angleMarker;B,A,Cnear"],
+            } as any);
+            const slate = slates[0];
+            const cfar = slate.lookupElement("Cfar")!;
+            const m = slate.lookupElement("m")!;
+            assert.strictEqual(cfar.visible, false);  // explicitly hidden
+            assert.strictEqual(m.visible, true);       // showAngles on
+            // Presentation makes everything visible, then exit restores
+            // the baseline: Cfar hidden again, m still shown.
+            slate.setVisibleNames(slate.elements.map(e => e.name!).filter(Boolean));
+            assert.strictEqual(cfar.visible, true);
+            slate.clearVisibility();
+            assert.strictEqual(cfar.visible, false);
+            assert.strictEqual(m.visible, true);
+        });
+    });
+
+    it("a hidden element still renders when highlighted/emphasised (#100 hover-reveal)", () => {
+        const slate = new Slate(createCanvas(400, 400));
+        toElements(slate, [
+            { name: "O", construction: E.Point.free, params: [100, 100] },
+            { name: "P", construction: E.Point.free, params: [180, 100] },
+            { name: "Q", construction: E.Point.free, params: [100, 180] },
+            { name: "S", construction: E.Sector.sector, params: ["O", "P", "Q"] },
+        ]);
+        slate.elements.forEach(e => e.update());
+        const s = slate.lookupElement("S") as any;
+        s.edgeColor = "#000000";
+        s.visible = false;
+
+        // Hidden + not lit → no draw.
+        let r = recordingArcs(slate);
+        s.drawEdge(r.canvas);
+        assert.strictEqual(r.arcs.length, 0);
+
+        // Hidden but highlighted (hovered) → draws.
+        s.shouldHighlight = true;
+        r = recordingArcs(slate);
+        s.drawEdge(r.canvas);
+        assert.strictEqual(r.arcs.length, 1);
+    });
 });
+
+// Minimal arc recorder for the hover-reveal test.
+function recordingArcs(slate: Slate) {
+    const real = (slate as any).canvas;
+    const arcs: any[] = [];
+    const ctx: any = new Proxy(real.getContext("2d"), {
+        get(t, p) {
+            if (p === "arc") return () => arcs.push(1);
+            const v = t[p];
+            return typeof v === "function" ? v.bind(t) : v;
+        },
+        set(t, p, v) { t[p] = v; return true; },
+    });
+    return { canvas: { getContext: () => ctx } as any, arcs };
+}

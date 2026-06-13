@@ -369,14 +369,14 @@ export class PointElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if (this.nameColor != null && this.name != null && this.defined()) {
             this.drawString(Math.round(this.x), Math.round(this.y), c)
         }
     }
 
     public drawVertex(c: SlateCanvas, color?: string): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         let ctx : CanvasRenderingContext2D = c.getContext("2d") as CanvasRenderingContext2D;
         if (color == null) {
             if (this.emphasized || this.shouldHighlight) {

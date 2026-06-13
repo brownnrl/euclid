@@ -9,6 +9,7 @@ import "./elements/line/LineAnimations";
 import "./elements/circle/CircleAnimations";
 import "./elements/polygon/PolygonAnimations";
 import "./elements/sector/SectorAnimations";
+import "./elements/group/GroupAnimations";
 import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
@@ -123,6 +124,16 @@ export interface IInitialization {
     // fully draggable whenever shown. No effect outside presentation
     // mode.
     deferDraggables?: string[];
+    // 0.9.0+ — element names that start hidden in the static figure
+    // (visible = false). Revealed by a slide's visible set, or when the
+    // element is highlighted / its {NAME} ref is hovered. clearVisibility
+    // (presentation exit) restores to this baseline. (#100)
+    initiallyHidden?: string[];
+    // 0.9.0+ — show angle markers (E.Sector.angleMarker /
+    // angleMarkerReflex) in the static figure. Default false: markers
+    // are hidden initially (Euclid's source diagram draws no angle arcs)
+    // and appear during the slide walk or on hover. (#100)
+    showAngles?: boolean;
     // Optional slideshow walk-through. When provided + non-empty,
     // SlateControls renders a "▶ Present" button that opens the
     // Presentation overlay. Stays empty (no button, no behaviour
@@ -322,6 +333,21 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
     if (i.deferDraggables != null) {
         slate.deferDraggables(i.deferDraggables);
+    }
+
+    // Angle markers are hidden in the static figure by default (Euclid's
+    // diagram draws no angle arcs); init({ showAngles: true }) reveals
+    // them. Plus any explicit initiallyHidden names. clearVisibility
+    // restores to this baseline. (#100)
+    if (!i.showAngles) {
+        for (let elem of slate.elements) {
+            if (elem instanceof AngleMarkerElement && elem.name != null) {
+                slate.setInitiallyHidden(elem.name);
+            }
+        }
+    }
+    if (i.initiallyHidden != null) {
+        for (let name of i.initiallyHidden) slate.setInitiallyHidden(name);
     }
 
     if (i.slides != null && i.slides.length > 0) {

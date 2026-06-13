@@ -399,6 +399,11 @@ class SlateControls {
         this.unbindPresentationKeys();
         this.clearStickyRef();
         this.removePresentationOverlay();
+        // Cancel any in-flight transition and drop any parked ephemerals
+        // (e.g. a cloneAside case-variant clone) so the static figure is
+        // clean on exit.
+        if (this._slate.animator != null) this._slate.animator.cancel();
+        this._slate.clearEphemerals();
         this._slate.clearVisibility();
         for (let e of this._slate.elements) {
             e.shouldHighlight = false;
@@ -553,6 +558,12 @@ class SlateControls {
         // belongs to the prior caption and is about to be replaced
         // anyway.
         this.clearStickyRef();
+        // Wipe any ephemerals a prior slide left parked (e.g. a
+        // translateAside case-variant clone that persisted for its
+        // slide). The animated branch's animateTo→cancel also clears
+        // ephemerals, but an instant transition wouldn't — so clear
+        // here on every advance.
+        this._slate.clearEphemerals();
 
         const slide = slides[clamped];
         const transition = slide.transition;
