@@ -469,6 +469,7 @@ A.Line       // LineAnimations
 A.Circle     // CircleAnimations
 A.Polygon    // PolygonAnimations
 A.Sector     // SectorAnimations (0.7.0+)
+A.Group      // cross-type group animations (0.9.0+)
 A.instant    // no-op finalise (suppress an inherited animation)
 ```
 

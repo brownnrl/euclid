@@ -24,6 +24,7 @@ export enum AllAnimations {
     INSTANT,
     POINT_APPEAR,
     POINT_INTERSECT,                 // future
+    POINT_SLIDE,
     LINE_STRAIGHT_EDGE_CONNECT,
     LINE_STRAIGHT_EDGE_EXTEND,
     LINE_COMPASS_TRANSFER,           // future
@@ -33,6 +34,7 @@ export enum AllAnimations {
     POLYGON_OUTLINE_AND_FILL,
     POLYGON_SUPERPOSE,
     SECTOR_SWEEP,
+    GROUP_CLONE_ASIDE,
 }
 
 // Typed constants object, mirroring E for constructions. Authors
@@ -41,6 +43,7 @@ export const A = {
     Point: {
         appear:              AllAnimations.POINT_APPEAR,
         intersect:           AllAnimations.POINT_INTERSECT,           // future
+        slide:               AllAnimations.POINT_SLIDE,
     },
     Line: {
         straightEdgeConnect: AllAnimations.LINE_STRAIGHT_EDGE_CONNECT,
@@ -58,6 +61,9 @@ export const A = {
     },
     Sector: {
         sweep:               AllAnimations.SECTOR_SWEEP,
+    },
+    Group: {
+        cloneAside:          AllAnimations.GROUP_CLONE_ASIDE,
     },
     instant:                 AllAnimations.INSTANT,
 };

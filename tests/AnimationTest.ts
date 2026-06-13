@@ -662,3 +662,175 @@ describe("sector sweep + polygon superposition (issue #86)", () => {
         });
     });
 });
+
+// Issue #95 — A.Point.slide glides a slider point along its line to a
+// target parameter t, dragging its dependents. Issue #94 —
+// A.Polygon.translateAside spawns a persistent displaced clone.
+describe("point slide + polygon translate-aside (issues #95, #94)", () => {
+
+    const slider_data: IConstructionInfo[] = [
+        { construction: E.Point.free,       name: "A", params: [0, 100] },
+        { construction: E.Point.free,       name: "B", params: [200, 100] },
+        { construction: E.Point.lineSlider, name: "D", params: ["A", "B", 40, 100] },
+        // A dependent line so we can confirm dependents follow the slide.
+        { construction: E.Line.connect,     name: "BD", params: ["B", "D"] },
+    ];
+
+    const tri_data: IConstructionInfo[] = [
+        { construction: E.Point.free,        name: "A",   params: [50, 50] },
+        { construction: E.Point.free,        name: "B",   params: [150, 50] },
+        { construction: E.Point.free,        name: "C",   params: [100, 130] },
+        { construction: E.Polygon.triangle,  name: "ABC", params: ["A", "B", "C"] },
+    ];
+
+    describe("A.Point.slide", () => {
+        function sliderSlate(): [Slate, PointElement] {
+            const slate = new Slate(createCanvas(300, 200));
+            slate.inTest = true;
+            toElements(slate, slider_data);
+            slate.elements.forEach(e => e.update());
+            return [slate, slate.lookupElement("D") as PointElement];
+        }
+
+        it("glides D from its start to the target parameter t", () => {
+            const [slate, D] = sliderSlate();
+            // D projects onto AB (y=100) at x=40.
+            assert.ok(approx(D.x, 40) && approx(D.y, 100));
+            const anim = findAnimation(A.Point.slide)!;
+            const steps = anim.build(D, slate, { to: 0.75 });   // → x = 150
+            steps[0].setup!();
+            steps[0].tick(0.5, 8, steps[0].durationMs);         // halfway 40→150
+            assert.ok(approx(D.x, 95), `mid x ${D.x}`);
+            steps[0].finalise();
+            assert.ok(approx(D.x, 150), `final x ${D.x}`);
+            assert.ok(approx(D.y, 100));
+        });
+
+        it("dependents follow the slide", () => {
+            const [slate, D] = sliderSlate();
+            const BD = slate.lookupElement("BD") as LineElement;
+            const anim = findAnimation(A.Point.slide)!;
+            const steps = anim.build(D, slate, { to: 0 });       // D → A at x=0
+            steps[0].setup!();
+            steps[0].finalise();
+            // BD's D-endpoint should now sit at x≈0 (D moved to A).
+            assert.ok(approx((BD as any)._B.x, 0), `BD endpoint ${(BD as any)._B.x}`);
+        });
+
+        it("warns + falls through to instant on a non-slider point", () => {
+            const [slate] = sliderSlate();
+            const A_free = slate.lookupElement("A") as PointElement;
+            // findAnimation resolves; animateTo would reject the type —
+            // here we just confirm A.Point.slide's elementType guards it.
+            const anim = findAnimation(A.Point.slide)!;
+            assert.notStrictEqual(A_free.constructor, anim.elementType);
+        });
+    });
+
+    describe("A.Group.cloneAside", () => {
+        // A small triangle (≈80px wide), an infinite-slider point D on
+        // AB, and a line CD that depends on D — small enough that a
+        // clone clears the original on a wide test canvas.
+        const figure_data: IConstructionInfo[] = [
+            { construction: E.Point.free,       name: "A",   params: [40, 50] },
+            { construction: E.Point.free,       name: "B",   params: [120, 50] },
+            { construction: E.Point.free,       name: "C",   params: [80, 140] },
+            { construction: E.Polygon.triangle, name: "ABC", params: ["A", "B", "C"] },
+            { construction: E.Point.lineSlider, name: "D",   params: ["A", "B", 80, 50] },
+            { construction: E.Line.connect,     name: "CD",  params: ["C", "D"] },
+        ];
+
+        // Wide canvas so a 200px offset clears the ~80px figure.
+        function figSlate(w: number = 600): Slate {
+            const slate = new Slate(createCanvas(w, 300));
+            slate.inTest = true;
+            toElements(slate, figure_data);
+            slate.elements.forEach(e => e.update());
+            return slate;
+        }
+
+        it("single-element include: one clone, offset lerps, original unmoved", () => {
+            const slate = figSlate();
+            const abc = slate.lookupElement("ABC") as PolygonElement;
+            const a0x = abc.V[0].x;
+            const anim = findAnimation(A.Group.cloneAside)!;
+            const steps = anim.build(abc, slate, { dx: 200, dy: 0, include: ["ABC"] });
+            assert.strictEqual(slate.ephemerals.length, 0);
+            steps[0].setup!();
+            assert.strictEqual(slate.ephemerals.length, 1);
+            const ghost = slate.ephemerals[0] as PolygonElement;
+            steps[0].tick(0.5, 8, steps[0].durationMs);
+            assert.ok(approx(ghost.V[0].x, a0x + 100), `mid ${ghost.V[0].x}`);
+            steps[0].finalise();
+            assert.ok(approx(ghost.V[0].x, a0x + 200), `final ${ghost.V[0].x}`);
+            assert.ok(approx(abc.V[0].x, a0x), "real polygon unmoved");
+        });
+
+        it("include 'all' clones every named visible element (point+line+polygon)", () => {
+            const slate = figSlate();
+            const abc = slate.lookupElement("ABC") as PolygonElement;
+            const anim = findAnimation(A.Group.cloneAside)!;
+            const steps = anim.build(abc, slate, { dx: 200, dy: 0 });  // include defaults to all
+            steps[0].setup!();
+            // A, B, C, D (points) + ABC (polygon) + CD (line) = 6 ghosts.
+            assert.strictEqual(slate.ephemerals.length, 6);
+        });
+
+        it("vary places the cloned slider at A + t·(B−A) and restores the real one", () => {
+            const slate = figSlate();
+            const D = slate.lookupElement("D") as PointElement;
+            const ptA = slate.lookupElement("A") as PointElement;
+            const ptB = slate.lookupElement("B") as PointElement;
+            const d0x = D.x, d0y = D.y;
+            const anim = findAnimation(A.Group.cloneAside)!;
+            const steps = anim.build(slate.lookupElement("ABC")!, slate, {
+                dx: 250, dy: 0, include: ["D"],   // a lone point always clears
+                vary: { elem: "D", to: -0.3 },     // past A
+            });
+            steps[0].setup!();
+            // Real D restored to its original position.
+            assert.ok(approx(D.x, d0x) && approx(D.y, d0y), "real D restored");
+            // Cloned D (offset not yet applied — that happens in tick)
+            // sits at the varied parameter, past A.
+            const ghostD = slate.ephemerals[0] as PointElement;
+            const expX = ptA.x + (ptB.x - ptA.x) * -0.3;
+            assert.ok(approx(ghostD.x, expX), `cloned D ${ghostD.x} vs ${expX}`);
+        });
+
+        it("clones copy colors; unsupported types are skipped", () => {
+            const slate = figSlate();
+            const abc = slate.lookupElement("ABC") as PolygonElement;
+            abc.edgeColor = "#123456";
+            abc.faceColor = "rgba(1,2,3,0.3)";
+            const anim = findAnimation(A.Group.cloneAside)!;
+            const steps = anim.build(abc, slate, { dx: 200, dy: 0, include: ["ABC"] });
+            steps[0].setup!();
+            const ghost = slate.ephemerals[0] as PolygonElement;
+            assert.strictEqual(ghost.edgeColor, "#123456");
+            assert.strictEqual(ghost.faceColor, "rgba(1,2,3,0.3)");
+        });
+
+        it("persists past finalise; cleared by the slide-advance wipe", () => {
+            const slate = figSlate();
+            const abc = slate.lookupElement("ABC")!;
+            const anim = findAnimation(A.Group.cloneAside)!;
+            const steps = anim.build(abc, slate, { dx: 200, dy: 0, include: ["ABC"] });
+            steps[0].setup!();
+            steps[0].finalise();
+            assert.strictEqual(slate.ephemerals.length, 1);
+            slate.clearEphemerals();
+            assert.strictEqual(slate.ephemerals.length, 0);
+        });
+
+        it("desktop-only guard: skips a copy that can't clear the original on a narrow canvas", () => {
+            // 150px-wide canvas can't fit the ~80px figure plus a clone
+            // clear of it → no clone spawned.
+            const slate = figSlate(150);
+            const abc = slate.lookupElement("ABC")!;
+            const anim = findAnimation(A.Group.cloneAside)!;
+            const steps = anim.build(abc, slate, { dx: 200, dy: 0, include: ["ABC"] });
+            steps[0].setup!();
+            assert.strictEqual(slate.ephemerals.length, 0);
+        });
+    });
+});
