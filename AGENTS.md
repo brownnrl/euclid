@@ -20,8 +20,10 @@ Library is **post-porting, publish-ready**. There is no longer a
   (`slides`, `setVisibleNames`, `addAlias`, `resolveJustification`,
   SlateControls overlay); 0.6.0 shipped slide-transition animations
   (`A.{Type}.{name}` registry, `drawProgress`, `SlateAnimator`,
-  `slate.animateTo`). All three are additive and default-off — every
-  pre-existing render path is bit-for-bit unchanged.
+  `slate.animateTo`); 0.7.0 added `A.Sector.sweep` + `A.Polygon.superpose`
+  with the `SectorElement` render upgrade; 0.7.1 added `deferDraggables`
+  + the `{DISPLAY|element}` caption token override. All additive and
+  default-off — every pre-existing render path is bit-for-bit unchanged.
 - npm publish pipeline is wired: `prepublishOnly` runs `test:unit`
   + `bundle:prod`. `npm publish --dry-run` previews the tarball.
 - MIT-licensed, joint copyright (Joyce 1996–2020, Brown 2019–2026).

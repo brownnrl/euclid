@@ -282,8 +282,11 @@ the most recent earlier slide that declared it), `highlighted?`
 "I.Post.3" }]`), and `transition?` (0.6.0+ animation directives — see
 below). Every `draggable` element on the slate is auto-unioned into
 the visible set on every slide so free construction points stay
-interactive while the reader walks the proof; highlighted elements are
-auto-unioned into visible (can't highlight what isn't drawn).
+interactive while the reader walks the proof — except names passed to
+`init({ deferDraggables: [...] })` (0.7.1+), which follow slide
+`visible` sets like any other element (for draggables the proof
+introduces mid-walk); highlighted elements are auto-unioned into
+visible (can't highlight what isn't drawn).
 
 **Justification refs.** `init({ resolveJustification: ref => urlMap[ref] })`
 maps a symbolic ref to a URL at render time, so refs don't go stale
