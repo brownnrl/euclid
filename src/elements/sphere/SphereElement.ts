@@ -43,7 +43,7 @@ export class SphereElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas) : void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if(this.nameColor != null && this.name != null && this.defined()) {
             this.drawString(Math.round(this._Center.x), Math.round(this._Center.y), c, Align.CENTRAL);
         }
@@ -54,7 +54,7 @@ export class SphereElement extends GeomElement {
     }
 
     public drawEdge(c: SlateCanvas) : void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if (this.edgeColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.save();
@@ -75,7 +75,7 @@ export class SphereElement extends GeomElement {
     }
 
     public drawFace(c: SlateCanvas) : void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if (this.faceColor == null || !this.defined()) return;
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         ctx.save();

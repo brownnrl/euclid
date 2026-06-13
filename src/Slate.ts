@@ -324,11 +324,33 @@ export class Slate {
         }
     }
 
-    // Restore every element's visible flag to true. Counterpart to
+    // Names of elements that start hidden (angle markers by default, or
+    // anything in init's `initiallyHidden`). clearVisibility restores to
+    // this baseline rather than blanket-true, so hidden elements stay
+    // hidden after a presentation walk. (#100)
+    private _initiallyHidden : Set<string> = new Set();
+
+    get initiallyHidden() : Set<string> {
+        return this._initiallyHidden;
+    }
+
+    // Mark a named element hidden in the initial figure: flips its
+    // visible flag off now and remembers it for clearVisibility.
+    setInitiallyHidden(name: string) : void {
+        if (name == null) return;
+        this._initiallyHidden.add(name);
+        const elem = this.lookupElement(name);
+        if (elem != null) elem.visible = false;
+    }
+
+    // Restore every element's visible flag to its initial baseline —
+    // true, except names registered as initially hidden. Counterpart to
     // setVisibleNames; called on presentation exit so the canvas
     // returns to its inline default.
     clearVisibility() : void {
-        for (let elem of this._elements) elem.visible = true;
+        for (let elem of this._elements) {
+            elem.visible = !(elem.name != null && this._initiallyHidden.has(elem.name));
+        }
     }
 
     // Sort params into P[] (points), E[] (other elements), N[] (integers),

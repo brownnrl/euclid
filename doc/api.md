@@ -98,6 +98,10 @@ interface IInitialization {
     animationConfig?: IAnimationConfig;
     // 0.7.1+ — draggables exempt from the slideshow auto-union
     deferDraggables?: string[];
+    // 0.9.0+ — elements that start hidden in the static figure
+    initiallyHidden?: string[];
+    // 0.9.0+ — show angle markers in the static figure (default: hidden)
+    showAngles?: boolean;
 }
 ```
 
@@ -113,6 +117,8 @@ interface IInitialization {
 | `elements` | `e[1]`, `e[2]`, … | (required) | Ordered list of element specs. May mix `IConstructionInfo` objects and Java param strings. |
 | `aliases` | — | `{}` | Secondary element names that resolve to a canonical element. See [Slides & visibility](#slides--visibility). |
 | `deferDraggables` | — | `[]` | 0.7.1+. Draggable element names excluded from the slideshow's every-slide auto-union — they follow slide `visible` sets like any other element. For draggables the proof introduces mid-walk. |
+| `initiallyHidden` | — | `[]` | 0.9.0+. Element names that start hidden (`visible = false`) in the static figure. Revealed by a slide's `visible` set, or when the element is slide-highlighted / its `{NAME}` ref is hovered. `clearVisibility()` (presentation exit) restores this baseline. |
+| `showAngles` | — | `false` | 0.9.0+. Show angle markers (`E.Sector.angleMarker` / `angleMarkerReflex`) in the static figure. Default `false`: markers are hidden initially — Euclid's source diagram draws no angle arcs — and appear during the slide walk or on hover. |
 | `slides` | — | `[]` | Optional slideshow walk-through. When present, SlateControls shows a "▶ Present" button. See [Slides & visibility](#slides--visibility). |
 | `resolveJustification` | — | `null` | Callback that maps a symbolic justification ref (e.g. `"I.Post.3"`) to a URL string. See [Slides & visibility](#slides--visibility). |
 | `animationConfig` | — | `{}` | Per-animation rate / duration overrides, `speedMultiplier`, `reducedMotion`. See [Animation](#animation). |

@@ -86,7 +86,7 @@ export class SectorElement extends GeomElement {
     }
 
     drawEdge(c: SlateCanvas): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         // Pick the highlight color BEFORE the null bail, matching the
         // other element types (#81 / #86) — a zero-color sector can
         // still render in the highlight stroke while emphasized or
@@ -168,7 +168,7 @@ export class SectorElement extends GeomElement {
     }
 
     drawFace(c: SlateCanvas): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if (this.faceColor == null || !this.defined()) return;
         // Face is independent of the edge sweep — always the full
         // sector wedge, with alpha driven by the dedicated faceAlpha

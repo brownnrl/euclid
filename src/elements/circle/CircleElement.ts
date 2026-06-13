@@ -135,7 +135,7 @@ export class CircleElement extends GeomElement {
     }
 
     public drawEdge(c: SlateCanvas): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         // Pick the highlight color BEFORE the null bail, matching
         // LineElement / PolygonElement (#81). A circle with a null
         // edgeColor can still render in the highlight stroke while
@@ -165,7 +165,7 @@ export class CircleElement extends GeomElement {
     }
 
     public drawFace(c: SlateCanvas): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if (this.faceColor == null || !this.defined()) return;
         // Face is independent of the edge sweep — always fills the
         // full circle (filling a partial arc would render a pie wedge
@@ -190,7 +190,7 @@ export class CircleElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
-        if (!this.visible) return;
+        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
         if (this.nameColor != null && this.name != null) {
             let ctx = c.getContext("2d") as CanvasRenderingContext2D;
             ctx.strokeStyle = this.nameColor;
