@@ -832,5 +832,194 @@ describe("point slide + polygon translate-aside (issues #95, #94)", () => {
             steps[0].setup!();
             assert.strictEqual(slate.ephemerals.length, 0);
         });
+
+        // #99 — autoPlace: slide the whole figure to canvas centre, then
+        // drop the copy in the freed space on its side. The test figure
+        // spans x∈[40,120] (centre 80), y∈[50,140] (centre 95).
+        describe("autoPlace (#99)", () => {
+            it("slides the view offset to centre the figure", () => {
+                const slate = figSlate(600);   // 600×300
+                const abc = slate.lookupElement("ABC")!;
+                const anim = findAnimation(A.Group.cloneAside)!;
+                const steps = anim.build(abc, slate, {
+                    dx: -200, dy: 0, include: ["ABC"], autoPlace: true,
+                });
+                assert.strictEqual(slate.viewOffsetX, 0, "offset starts at 0");
+                steps[0].setup!();
+                steps[0].finalise();
+                // figure centre (80,95) → canvas centre (300,150).
+                assert.ok(approx(slate.viewOffsetX, 220), `offX ${slate.viewOffsetX}`);
+                assert.ok(approx(slate.viewOffsetY, 55), `offY ${slate.viewOffsetY}`);
+            });
+
+            it("centres first, then splits the copy out", () => {
+                const slate = figSlate(600);
+                const abc = slate.lookupElement("ABC") as PolygonElement;
+                const baseX = abc.V[0].x;
+                const anim = findAnimation(A.Group.cloneAside)!;
+                const steps = anim.build(abc, slate, {
+                    dx: -200, dy: 0, include: ["ABC"], autoPlace: true,
+                });
+                steps[0].setup!();
+                const ghost = slate.ephemerals[0] as PolygonElement;
+                // End of the centre phase: offset fully applied, copy not
+                // yet slid (still at its snapshot base position).
+                steps[0].tick(0.4, 8, steps[0].durationMs);
+                assert.ok(approx(slate.viewOffsetX, 220), "centred by 0.4");
+                assert.ok(approx(ghost.V[0].x, baseX), "copy not split yet");
+                // After the split phase the copy has moved off its base.
+                steps[0].finalise();
+                assert.ok(!approx(ghost.V[0].x, baseX), "copy slid out");
+            });
+
+            it("lands the copy in the freed space on its side, clear of the figure", () => {
+                const slate = figSlate(600);
+                const abc = slate.lookupElement("ABC") as PolygonElement;
+                const anim = findAnimation(A.Group.cloneAside)!;
+                const steps = anim.build(abc, slate, {
+                    dx: -200, dy: 0, include: ["ABC"], autoPlace: true,   // left
+                });
+                steps[0].setup!();
+                steps[0].finalise();
+                const ghost = slate.ephemerals[0] as PolygonElement;
+                // Display = model + view offset. The copy's displayed
+                // right edge must clear the centred figure's left edge
+                // (figure spans display x∈[260,340]).
+                const ox = slate.viewOffsetX;
+                const gxs = ghost.V.map(v => v.x + ox);
+                const ghostMaxX = Math.max(...gxs);
+                assert.ok(ghostMaxX < 260, `copy right edge ${ghostMaxX} not clear of figure`);
+                assert.ok(Math.min(...gxs) > 0, "copy on-canvas (left margin)");
+            });
+
+            it("opts out (no copy, no view offset) when there's no room", () => {
+                const slate = figSlate(160);   // too narrow for an 80px copy beside the figure
+                const abc = slate.lookupElement("ABC")!;
+                const anim = findAnimation(A.Group.cloneAside)!;
+                const steps = anim.build(abc, slate, {
+                    dx: -200, dy: 0, include: ["ABC"], autoPlace: true,
+                });
+                steps[0].setup!();
+                steps[0].finalise();
+                assert.strictEqual(slate.ephemerals.length, 0, "no copy added");
+                assert.strictEqual(slate.viewOffsetX, 0, "figure not moved");
+                assert.strictEqual(slate.viewOffsetY, 0);
+            });
+
+            it("variants array: both copies placed atomically on a wide canvas", () => {
+                const slate = figSlate(600);
+                const abc = slate.lookupElement("ABC")!;
+                const anim = findAnimation(A.Group.cloneAside)!;
+                const steps = anim.build(abc, slate, {
+                    include: ["ABC"], autoPlace: true,
+                    variants: [{ vary: { elem: "D", to: -0.35 } }, { vary: { elem: "D", to: 0.55 } }],
+                });
+                steps[0].setup!();
+                steps[0].finalise();
+                const polys = slate.ephemerals.filter(e => e instanceof PolygonElement);
+                assert.strictEqual(polys.length, 2, "both case copies placed");
+                assert.ok(approx(slate.viewOffsetX, 220), `figure centred ${slate.viewOffsetX}`);
+            });
+
+            it("variants: neither copy placed when there's no room (both-or-neither)", () => {
+                const slate = figSlate(160);   // too narrow for either copy beside the figure
+                const abc = slate.lookupElement("ABC")!;
+                const anim = findAnimation(A.Group.cloneAside)!;
+                const steps = anim.build(abc, slate, {
+                    include: ["ABC"], autoPlace: true,
+                    variants: [{ vary: { elem: "D", to: -0.35 } }, { vary: { elem: "D", to: 0.55 } }],
+                });
+                steps[0].setup!();
+                steps[0].finalise();
+                assert.strictEqual(slate.ephemerals.length, 0, "no copies");
+                assert.strictEqual(slate.viewOffsetX, 0, "figure not moved");
+            });
+
+            it("variants: a single oversize variant aborts the whole layout", () => {
+                // Vertical AB on a SHORT canvas: the D-past-A copy is too
+                // tall to fit any side, so atomic placement drops BOTH —
+                // even though the shorter D-between copy would fit alone.
+                const vdata: IConstructionInfo[] = [
+                    { construction: E.Point.free,        name: "A",   params: [50, 40] },
+                    { construction: E.Point.free,        name: "B",   params: [50, 200] },
+                    { construction: E.Point.free,        name: "C",   params: [120, 120] },
+                    { construction: E.Polygon.triangle,  name: "ABC", params: ["A", "B", "C"] },
+                    { construction: E.Point.lineSlider,  name: "D",   params: ["A", "B", 50, 120] },
+                    { construction: E.Line.connect,      name: "CD",  params: ["C", "D"] },
+                ];
+                function vslate(): Slate {
+                    const s = new Slate(createCanvas(700, 220));   // wide but short
+                    s.inTest = true;
+                    toElements(s, vdata);
+                    s.elements.forEach(e => e.update());
+                    return s;
+                }
+                const anim = findAnimation(A.Group.cloneAside)!;
+                // The short (between) variant alone DOES place.
+                const sOnly = vslate();
+                anim.build(sOnly.lookupElement("ABC")!, sOnly, {
+                    include: "all", autoPlace: true,
+                    variants: [{ vary: { elem: "D", to: 0.55 } }],
+                })[0].setup!();
+                assert.ok(sOnly.ephemerals.length > 0, "short variant alone fits");
+                // Paired with the oversize past-A variant, the whole layout aborts.
+                const both = vslate();
+                anim.build(both.lookupElement("ABC")!, both, {
+                    include: "all", autoPlace: true,
+                    variants: [{ vary: { elem: "D", to: -0.6 } }, { vary: { elem: "D", to: 0.55 } }],
+                })[0].setup!();
+                assert.strictEqual(both.ephemerals.length, 0, "oversize variant aborts both");
+                assert.strictEqual(both.viewOffsetX, 0);
+            });
+
+            it("copies survive a reduced-motion run (no ephemeral wipe)", async () => {
+                const slate = figSlate(600);
+                slate.animationConfig = { reducedMotion: true };
+                const anim = findAnimation(A.Group.cloneAside)!;
+                await slate.animateTo(
+                    new Set(["A","B","C","ABC","D","CD"]), new Set(),
+                    [{ elem: "ABC", name: A.Group.cloneAside, args: {
+                        include: ["ABC"], autoPlace: true,
+                        variants: [{ vary: { elem: "D", to: -0.35 } }, { vary: { elem: "D", to: 0.55 } }],
+                    } }],
+                    "parallel",
+                );
+                const polys = slate.ephemerals.filter(e => e instanceof PolygonElement);
+                assert.strictEqual(polys.length, 2, "reduced-motion keeps the case copies");
+            });
+
+            it("falls back to above/below when the sides are too tight", () => {
+                // A wide, short figure (x∈[20,300] → 280px) on a tall but
+                // not-very-wide canvas: a left/right copy can't fit beside
+                // it, so the left-preferring entry lands ABOVE instead.
+                const wide_data: IConstructionInfo[] = [
+                    { construction: E.Point.free,        name: "A",   params: [20, 250] },
+                    { construction: E.Point.free,        name: "B",   params: [300, 260] },
+                    { construction: E.Point.free,        name: "C",   params: [160, 320] },
+                    { construction: E.Polygon.triangle,  name: "ABC", params: ["A", "B", "C"] },
+                ];
+                const slate = new Slate(createCanvas(340, 600));   // tall, sides too tight
+                slate.inTest = true;
+                toElements(slate, wide_data);
+                slate.elements.forEach(e => e.update());
+                const abc = slate.lookupElement("ABC") as PolygonElement;
+                const anim = findAnimation(A.Group.cloneAside)!;
+                const steps = anim.build(abc, slate, {
+                    dx: -200, dy: 0, include: ["ABC"], autoPlace: true,   // left preference
+                });
+                steps[0].setup!();
+                steps[0].finalise();
+                assert.strictEqual(slate.ephemerals.length, 1, "copy placed (above)");
+                // Figure is centred (display centre ≈ canvas centre 300).
+                const ghost = slate.ephemerals[0] as PolygonElement;
+                const oy = slate.viewOffsetY;
+                const gys = ghost.V.map(v => v.y + oy);
+                // The copy sits in the top band: its displayed bottom edge
+                // clears the centred figure's top edge (figure spans display
+                // y∈[300−35, 300+35] = [265,335]).
+                assert.ok(Math.max(...gys) < 265, `copy not above figure (maxY ${Math.max(...gys)})`);
+                assert.ok(Math.min(...gys) > 0, "copy on-canvas (top margin)");
+            });
+        });
     });
 });

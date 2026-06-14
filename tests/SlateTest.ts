@@ -598,4 +598,76 @@ describe("slate", () => {
             assert.strictEqual(slate.lookupElement("BA"),  slate.lookupElement("AB"));
         });
     });
+
+    describe("view offset + visibleBounds (#99)", () => {
+        let triangle_data: IConstructionInfo[] = [
+            { construction: E.Point.free,       name: "A",   params: [50, 50] },
+            { construction: E.Point.free,       name: "B",   params: [150, 50] },
+            { construction: E.Point.free,       name: "C",   params: [100, 140] },
+            { construction: E.Polygon.triangle, name: "ABC", params: ["A", "B", "C"] },
+        ];
+
+        it("setViewOffset / clearViewOffset round-trips", () => {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            assert.strictEqual(slate.viewOffsetX, 0);
+            assert.strictEqual(slate.viewOffsetY, 0);
+            slate.setViewOffset(30, -20);
+            assert.strictEqual(slate.viewOffsetX, 30);
+            assert.strictEqual(slate.viewOffsetY, -20);
+            slate.clearViewOffset();
+            assert.strictEqual(slate.viewOffsetX, 0);
+            assert.strictEqual(slate.viewOffsetY, 0);
+        });
+
+        it("the pick path subtracts the view offset (drag stays on the real element)", () => {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            // Stub the DOM rect _getCanvasPosition reads.
+            (slate as any)._htmlCanvas = { getBoundingClientRect: () => ({ left: 5, top: 7 }) };
+            // No offset → just the rect subtraction.
+            assert.deepStrictEqual(slate._getCanvasPosition(105, 207), [100, 200]);
+            // With the figure slid by (30,-20), a click at the same screen
+            // point resolves 30px left / 20px down in model space.
+            slate.setViewOffset(30, -20);
+            assert.deepStrictEqual(slate._getCanvasPosition(105, 207), [70, 220]);
+        });
+
+        it("visibleBounds spans every visible named element", () => {
+            let slate: Slate = new Slate(createCanvas(300, 300));
+            toElements(slate, triangle_data);
+            slate.elements.forEach(e => e.update());
+            const b = slate.visibleBounds()!;
+            assert.ok(b);
+            assert.strictEqual(b.minX, 50);
+            assert.strictEqual(b.maxX, 150);
+            assert.strictEqual(b.minY, 50);
+            assert.strictEqual(b.maxY, 140);
+        });
+
+        it("visibleBounds grows to enclose a circle (centre ± radius)", () => {
+            let slate: Slate = new Slate(createCanvas(400, 400));
+            toElements(slate, [
+                { construction: E.Point.free,    name: "A",   params: [150, 150] },
+                { construction: E.Point.free,    name: "B",   params: [250, 150] },
+                // centre A(150,150), radius |AB| = 100 → spans [50,250]².
+                { construction: E.Circle.radius, name: "BCD", params: ["A", "B"] },
+            ]);
+            slate.elements.forEach(e => e.update());
+            const b = slate.visibleBounds()!;
+            assert.strictEqual(b.minX, 50);
+            assert.strictEqual(b.maxX, 250);
+            assert.strictEqual(b.minY, 50);
+            assert.strictEqual(b.maxY, 250);
+        });
+
+        it("visibleBounds ignores hidden elements and returns null when empty", () => {
+            let slate: Slate = new Slate(createCanvas(300, 300));
+            // Only screen helpers present → no figure.
+            assert.strictEqual(slate.visibleBounds(), null);
+            toElements(slate, triangle_data);
+            slate.elements.forEach(e => e.update());
+            // Hide everything named → back to null.
+            slate.elements.forEach(e => { if (e.name != null) e.visible = false; });
+            assert.strictEqual(slate.visibleBounds(), null);
+        });
+    });
 });

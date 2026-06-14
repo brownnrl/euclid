@@ -1,0 +1,156 @@
+<html>
+<head>
+    <title>autoPlace placement probe (#99)</title>
+    <style>
+        body { font-family: sans-serif; margin: 16px; color: #333; }
+        button { font: inherit; padding: 4px 10px; margin: 2px; cursor: pointer; }
+        button.preset { background: #eef3f8; border: 1px solid #b9c8d6; border-radius: 4px; }
+        #readout { white-space: pre; font-family: ui-monospace, Menlo, monospace;
+                   font-size: 12px; background: #faf6ef; border: 1px solid #e3d6c2;
+                   padding: 10px; margin-top: 10px; max-width: 560px; }
+        input { width: 64px; font: inherit; }
+        .controls { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+<h3>autoPlace placement probe (#99)</h3>
+<p style="max-width: 640px; color: #555;">
+Drive the case-variant placement at an arbitrary canvas size — no presentation /
+window-resizing. Pick a size; the figure centres and the two copies (D past A,
+D between A&amp;B) are laid out by the same fit-search the slideshow uses. Watch
+sides → above/below → opt-out as the canvas gets tighter.
+</p>
+<div class="controls">
+    <button class="preset" data-w="1200" data-h="520">Wide 1200×520 (sides)</button>
+    <button class="preset" data-w="640"  data-h="640">Square 640×640 (sides)</button>
+    <button class="preset" data-w="390"  data-h="820">Narrow-tall 390×820 (above/below)</button>
+    <button class="preset" data-w="440"  data-h="760">Boundary 440×760 (mixed)</button>
+    <button class="preset" data-w="340"  data-h="520">Thin 340×520 (opt out)</button>
+</div>
+<div class="controls">
+    W <input id="wIn" type="number" value="1200">
+    H <input id="hIn" type="number" value="520">
+    <button id="applyBtn">Apply</button>
+</div>
+<canvas id="canvasId" style="width:1200px; height:520px; border:1px solid #ccc;" tabindex="0"></canvas>
+<div id="readout">—</div>
+
+<script src="../../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+    const NAMES = ["A", "B", "C", "ABC", "D", "CD"];
+    // Mirror the library's autoPlace spacing constants for the readout.
+    const MARGIN = 8, GAP = 16;
+
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "autoPlace probe",
+        canvasid: "canvasId",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [330, 110] },
+            { name: "B", construction: E.Point.free, params: [430, 300] },
+            { name: "C", construction: E.Point.free, params: [300, 300] },
+            { name: "ABC", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(120,180,210,0.25)" },
+            { name: "D", construction: E.Point.lineSlider, params: ["A", "B", 380, 205],
+              vertexColor: "orange", nameColor: "black" },
+            { name: "CD", construction: E.Line.connect, params: ["C", "D"],
+              nameColor: 0, vertexColor: 0, edgeColor: "darkGray" },
+        ],
+    });
+
+    const canvas = document.getElementById("canvasId");
+    const slate = geomlib.slates[geomlib.slates.length - 1];
+
+    function reset() {
+        slate.clearEphemerals();
+        slate.clearViewOffset();
+        NAMES.forEach(n => {
+            const e = slate.lookupElement(n);
+            if (e) { e.visible = true; e.drawProgress = 1; e.emphasized = false; }
+        });
+        slate.update();
+    }
+
+    function classify(b) {
+        // b: copy display bbox; f: figure display bbox. Where is the copy?
+        const fcx = (fig.minX + fig.maxX) / 2, fcy = (fig.minY + fig.maxY) / 2;
+        const ccx = (b.minX + b.maxX) / 2, ccy = (b.minY + b.maxY) / 2;
+        if (b.maxX <= fig.minX) return "LEFT";
+        if (b.minX >= fig.maxX) return "RIGHT";
+        if (b.maxY <= fig.minY) return "ABOVE";
+        if (b.minY >= fig.maxY) return "BELOW";
+        return "(overlaps figure)";
+    }
+
+    let fig = null;
+    function bboxOf(elems, ox, oy) {
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        const add = (x, y) => { if (x<minX)minX=x; if(x>maxX)maxX=x; if(y<minY)minY=y; if(y>maxY)maxY=y; };
+        for (const e of elems) {
+            if (e.V) { for (const v of e.V) add(v.x + ox, v.y + oy); }
+            else if (e.A && e.B) { add(e.A.x+ox, e.A.y+oy); add(e.B.x+ox, e.B.y+oy); }
+            else if (typeof e.x === "number") { add(e.x+ox, e.y+oy); }
+        }
+        return minX === Infinity ? null : { minX, maxX, minY, maxY };
+    }
+
+    function updateReadout(W, H) {
+        const fb = slate.visibleBounds();   // figure in model space
+        const ox = slate.viewOffsetX, oy = slate.viewOffsetY;
+        fig = { minX: fb.minX+ox, maxX: fb.maxX+ox, minY: fb.minY+oy, maxY: fb.maxY+oy };
+        const figW = fb.maxX - fb.minX, figH = fb.maxY - fb.minY;
+        const sideBand = W/2 - figW/2 - GAP - MARGIN;
+        const vertBand = H/2 - figH/2 - GAP - MARGIN;
+
+        // Group ephemerals into copies (each copy = one polygon + its parts).
+        // Simpler: report every ephemeral polygon's placement (one per copy).
+        const polys = slate.ephemerals.filter(e => e.V);
+        const placements = polys.map(p => {
+            const b = bboxOf([p], ox, oy);
+            return classify(b);
+        });
+
+        document.getElementById("readout").textContent =
+            "canvas        " + W + " × " + H + "\n" +
+            "figure (model)" + Math.round(figW) + " × " + Math.round(figH) + "\n" +
+            "view offset   (" + Math.round(ox) + ", " + Math.round(oy) + ")  → figure centred\n" +
+            "side band     " + Math.round(sideBand) + "px   (left & right freed width)\n" +
+            "vert band     " + Math.round(vertBand) + "px   (top & bottom freed height)\n" +
+            "copies placed " + polys.length + "/2" + (polys.length === 0 ? "   ← OPTED OUT (no room)" : "") + "\n" +
+            "where         " + (placements.length ? placements.join(", ") : "—");
+    }
+
+    function run(W, H) {
+        canvas.style.width = W + "px";
+        canvas.style.height = H + "px";
+        canvas.width = W;
+        canvas.height = H;
+        reset();
+        const vis = new Set(NAMES);
+        slate.animateTo(vis, new Set(), [
+            { elem: "ABC", name: A.Group.cloneAside, args: {
+                include: "all", autoPlace: true,
+                variants: [{ vary: { elem: "D", to: -0.35 } },
+                           { vary: { elem: "D", to:  0.55 } }],
+            } },
+        ], "parallel").then(() => updateReadout(W, H));
+    }
+
+    document.querySelectorAll("button.preset").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const w = +btn.dataset.w, h = +btn.dataset.h;
+            document.getElementById("wIn").value = w;
+            document.getElementById("hIn").value = h;
+            run(w, h);
+        });
+    });
+    document.getElementById("applyBtn").addEventListener("click", () => {
+        run(+document.getElementById("wIn").value, +document.getElementById("hIn").value);
+    });
+
+    // Initial render.
+    run(1200, 520);
+</script>
+</body>
+</html>

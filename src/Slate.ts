@@ -5,6 +5,8 @@ import {AllConstructions, Construction, SortedParams, constructions, getConstruc
 import {PointElement} from "./elements/point/PointElement";
 import {Canvas} from "canvas";
 import {LineElement} from "./elements/line/LineElement";
+import {PolygonElement} from "./elements/polygon/PolygonElement";
+import {CircleElement} from "./elements/circle/CircleElement";
 import {ISlide, ISlideAnimation, IAnimationConfig} from "./index";
 import {SlateAnimator} from "./SlateAnimator";
 
@@ -47,6 +49,15 @@ export class Slate {
     // name order; never appear in lookupElement; cleared on
     // animator.cancel() as a safety net.
     private _ephemerals : GeomElement[] = [];
+    // Translate-only view offset (px) applied to every drawn element +
+    // ephemeral. Used by A.Group.cloneAside's auto-place to slide the
+    // whole figure to the canvas centre so case-variant copies have
+    // symmetric room (#99). Default (0,0) is a no-op, so every existing
+    // render path is bit-for-bit unchanged. No scale factor — #71 will
+    // add one for mobile fit. The pick path subtracts this so the
+    // (still-real) figure stays draggable under the offset.
+    private _viewOffsetX : number = 0;
+    private _viewOffsetY : number = 0;
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
@@ -150,8 +161,11 @@ export class Slate {
 
     _getCanvasPosition(x: number, y: number) : [number, number] {
         let r = this._htmlCanvas.getBoundingClientRect();
-        return [x - r.left,
-                y - r.top];
+        // Map into model space: undo the translate-only view offset so a
+        // click lands on the real element under the cursor even while the
+        // figure is slid to centre (#99). Identity when offset is (0,0).
+        return [x - r.left - this._viewOffsetX,
+                y - r.top  - this._viewOffsetY];
     }
 
     _onMouseDown(x: number, y: number) {
@@ -280,6 +294,52 @@ export class Slate {
 
     clearEphemerals() : void {
         this._ephemerals.length = 0;
+    }
+
+    get viewOffsetX() : number { return this._viewOffsetX; }
+    get viewOffsetY() : number { return this._viewOffsetY; }
+
+    // Slide the whole drawn figure by (x,y) px. drawElements applies it
+    // to elements + ephemerals; the pick path subtracts it. (#99)
+    setViewOffset(x: number, y: number) : void {
+        this._viewOffsetX = x;
+        this._viewOffsetY = y;
+    }
+
+    clearViewOffset() : void {
+        this._viewOffsetX = 0;
+        this._viewOffsetY = 0;
+    }
+
+    // Axis-aligned bounding box (canvas px) of the visible figure —
+    // every named, visible, non-screen element. Returns null when the
+    // figure is empty. Used by cloneAside auto-place for the centre
+    // target and the fit check (#99). Points/lines/polygons/circles are
+    // measured exactly; sector markers sit inside their vertex (already
+    // counted) so they're not separately walked.
+    visibleBounds() : { minX: number, maxX: number, minY: number, maxY: number } | null {
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        const add = (x: number, y: number) => {
+            if (x < minX) minX = x; if (x > maxX) maxX = x;
+            if (y < minY) minY = y; if (y > maxY) maxY = y;
+        };
+        for (let elem of this._elements) {
+            if (elem.name == null || !elem.visible || elem.name.startsWith("screen")) continue;
+            if (elem instanceof PolygonElement) {
+                for (let v of elem.V) add(v.x, v.y);
+            } else if (elem instanceof CircleElement) {
+                const r = elem.radius;
+                add(elem.Center.x - r, elem.Center.y - r);
+                add(elem.Center.x + r, elem.Center.y + r);
+            } else if (elem instanceof LineElement) {
+                add(elem.A.x, elem.A.y);
+                add(elem.B.x, elem.B.y);
+            } else if (elem instanceof PointElement) {
+                add(elem.x, elem.y);
+            }
+        }
+        if (minX === Infinity) return null;
+        return { minX, maxX, minY, maxY };
     }
 
     // Lazy-create the animator on first use. Each slate owns at most
@@ -446,6 +506,13 @@ export class Slate {
         ctx.clearRect(0,0,w,h);
         ctx.fillStyle = this._bgcolor;
         ctx.fillRect(0,0,w,h);
+        // Translate-only view offset (#99). The background fill above
+        // stays untransformed so it always covers the whole canvas; the
+        // figure + ephemerals draw shifted. Skip the save/translate when
+        // the offset is zero (the common case) so nothing changes.
+        const ox = this._viewOffsetX, oy = this._viewOffsetY;
+        const offset = ox !== 0 || oy !== 0;
+        if (offset) { ctx.save(); ctx.translate(ox, oy); }
         for(let element of this._elements) element.drawFace(this._canvas);
         for(let element of this._elements) element.drawEdge(this._canvas);
         for(let element of this._elements) element.drawVertex(this._canvas);
@@ -460,6 +527,7 @@ export class Slate {
         for(let e of this._ephemerals) e.drawEdge(this._canvas);
         for(let e of this._ephemerals) e.drawVertex(this._canvas);
         for(let e of this._ephemerals) e.drawName(this._canvas);
+        if (offset) ctx.restore();
     }
 
     // Update coordinates starting with element[i+1], matching Java's

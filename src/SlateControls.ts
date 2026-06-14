@@ -404,6 +404,7 @@ class SlateControls {
         // clean on exit.
         if (this._slate.animator != null) this._slate.animator.cancel();
         this._slate.clearEphemerals();
+        this._slate.clearViewOffset();   // undo any cloneAside centre slide (#99)
         this._slate.clearVisibility();
         for (let e of this._slate.elements) {
             e.shouldHighlight = false;
@@ -564,6 +565,9 @@ class SlateControls {
         // ephemerals, but an instant transition wouldn't — so clear
         // here on every advance.
         this._slate.clearEphemerals();
+        // Likewise reset any cloneAside centre slide (#99) so each slide
+        // starts un-offset; an autoPlace transition re-applies it.
+        this._slate.clearViewOffset();
 
         const slide = slides[clamped];
         const transition = slide.transition;
