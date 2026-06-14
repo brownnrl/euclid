@@ -445,6 +445,27 @@ class Slate {
 glue can do DOM-relative reasoning (e.g. compare position against a
 prose span on a multi-canvas page).
 
+### Slate view offset
+
+```typescript
+class Slate {
+    get viewOffsetX(): number;          // (0.10.0+)
+    get viewOffsetY(): number;
+    setViewOffset(x: number, y: number): void;
+    clearViewOffset(): void;
+    visibleBounds(): { minX, maxX, minY, maxY } | null;
+}
+```
+
+A **translate-only** offset (no scale) applied to every drawn element
+and ephemeral; the pick path subtracts it, so the figure stays draggable
+under the offset. Default `(0, 0)` is a no-op — every pre-existing render
+path is unchanged. `A.Group.cloneAside`'s `autoPlace` uses it to slide
+the figure to the canvas centre (#99); the presentation overlay clears it
+on every slide advance and on exit. `visibleBounds()` returns the
+axis-aligned bounding box of the visible named figure (or `null` when
+empty) — used to compute the centre target and fit the copies.
+
 ### What renders this
 
 `SlateControls` (the slate-overlay UI) adds a fourth button — the
@@ -475,7 +496,7 @@ A.Line       // LineAnimations
 A.Circle     // CircleAnimations
 A.Polygon    // PolygonAnimations
 A.Sector     // SectorAnimations (0.7.0+)
-A.Group      // cross-type group animations (0.9.0+)
+A.Group      // cross-type group animations (0.9.0+; cloneAside autoPlace + variants 0.10.0+)
 A.instant    // no-op finalise (suppress an inherited animation)
 ```
 

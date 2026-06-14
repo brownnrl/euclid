@@ -11,11 +11,20 @@ import {LineSlider} from "../point/LineSlider";
 
 const CLONE_ASIDE_RATE_PX_PER_MS = 0.4;
 const CLONE_ASIDE_MIN_MS = 200;
-// Below this canvas (≈ viewport, in presentation mode) width, skip the
-// case-variant copies entirely — they're a desktop affordance for now.
-// Phones in portrait fall under this; #99 will auto-place them where
-// there is room and #71's scale-to-fit will make mobile viable.
+// Below this canvas (≈ viewport, in presentation mode) width, the legacy
+// explicit-offset path skips the case-variant copies — they were a
+// desktop affordance. The autoPlace path (#99) supersedes this: it slides
+// the figure to centre and only opts out when a copy genuinely can't fit.
 const CLONE_ASIDE_DESKTOP_MIN_WIDTH = 520;
+
+// autoPlace timing + spacing (#99).
+const CLONE_ASIDE_AUTOPLACE_MS = 900;   // whole centre-then-split beat
+const AUTOPLACE_CENTRE_FRAC = 0.4;      // first 40%: slide figure to centre
+const AUTOPLACE_MARGIN = 8;             // px gap to the canvas edge
+const AUTOPLACE_GAP = 16;               // px gap between figure and a copy
+
+// easeOutCubic for the slide-to-centre phase.
+function easeOut(t: number): number { return 1 - Math.pow(1 - t, 3); }
 
 // A mutable clone vertex tracked against its snapshot base, so the
 // animation can slide every clone point by the same offset.
@@ -66,169 +75,310 @@ function snapshotElement(el: GeomElement): { ghost: GeomElement, pts: ClonePoint
     return null;   // circle / sector / other — deferred
 }
 
+type Bounds = { minX: number, maxX: number, minY: number, maxY: number };
+type Side = "left" | "right" | "top" | "bottom";
+
+// Resolve the elements a copy clones: "all" / missing → every named,
+// visible, non-screen element; otherwise the explicit name list.
+function resolveSources(slate: Slate, include: any): GeomElement[] {
+    const sources: GeomElement[] = [];
+    if (Array.isArray(include)) {
+        for (const nm of include) {
+            const e = slate.lookupElement(String(nm));
+            if (e != null) sources.push(e);
+        }
+    } else {
+        for (const e of slate.elements) {
+            if (e.name != null && e.visible && !e.name.startsWith("screen")) {
+                sources.push(e);
+            }
+        }
+    }
+    return sources;
+}
+
+// Snapshot the figure's current geometry into bare render-copies.
+let warnedUnsupported = false;
+function snapshotSources(sources: GeomElement[]): { ghosts: GeomElement[], pts: ClonePoint[] } {
+    const ghosts: GeomElement[] = [];
+    const pts: ClonePoint[] = [];
+    for (const el of sources) {
+        const snap = snapshotElement(el);
+        if (snap == null) {
+            if (!warnedUnsupported && typeof console !== "undefined" && console.warn) {
+                console.warn("[geomlib] Group.cloneAside: skipping unsupported "
+                    + "element type (" + el.name + ")");
+                warnedUnsupported = true;
+            }
+            continue;
+        }
+        ghosts.push(snap.ghost);
+        for (const p of snap.pts) pts.push(p);
+    }
+    return { ghosts, pts };
+}
+
+// Apply a { elem, to } slider vary, recomputing the figure. Returns a
+// restore thunk (or null when the vary doesn't apply), so the caller can
+// snapshot the varied figure and put the real slider back.
+function applyVary(slate: Slate, vary: any): (() => void) | null {
+    if (!vary || vary.elem == null || typeof vary.to !== "number") return null;
+    const s = slate.lookupElement(String(vary.elem));
+    if (!(s instanceof LineSlider)) return null;
+    const sx = s.x, sy = s.y, sz = s.z;
+    const A = (s as any)._A as PointElement;
+    const B = (s as any)._B as PointElement;
+    s.x = A.x + (B.x - A.x) * vary.to;
+    s.y = A.y + (B.y - A.y) * vary.to;
+    s.z = A.z + (B.z - A.z) * vary.to;
+    slate.update();
+    return () => { s.x = sx; s.y = sy; s.z = sz; slate.update(); };
+}
+
+function boundsOf(pts: ClonePoint[]): Bounds {
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const c of pts) {
+        if (c.bx < minX) minX = c.bx; if (c.bx > maxX) maxX = c.bx;
+        if (c.by < minY) minY = c.by; if (c.by > maxY) maxY = c.by;
+    }
+    return { minX, maxX, minY, maxY };
+}
+
+function sideFromSign(dx: number, dy: number): Side {
+    if (Math.abs(dx) >= Math.abs(dy)) return dx < 0 ? "left" : "right";
+    return dy < 0 ? "top" : "bottom";
+}
+
+
 // A.Group.cloneAside — clone a sub-figure (a named set of elements, or
 // "all") into displaced bare copies and slide them aside, where they
-// PERSIST for the slide. Optionally vary a slider point first so each
-// copy shows a different case (e.g. a trichotomy's "one of them is
-// greater"). The real figure never moves.
+// PERSIST for the slide. Optionally vary a slider point per copy so each
+// shows a different case (a trichotomy's three positions of D). The real
+// figure never moves; only bare render-copies are added as ephemerals.
 //
 // args:
-//   dx, dy          pixel offset to displace the clone by
-//   include         "all" (default) or an array of element names
-//   vary?           { elem, to } — set a slider point to parameter t
-//                   (A + t·(B−A); infinite-slider t can be < 0) before
-//                   snapshotting, so the clone shows the varied figure;
-//                   the real slider is restored afterward
+//   include       "all" (default) or an array of element names — what
+//                 each copy clones.
+//   vary?         { elem, to } — set a slider to parameter t (A + t·(B−A);
+//                 infinite-slider t may be < 0) before snapshotting, so the
+//                 copy shows the varied figure; the real slider is restored
+//                 afterward. (Single-copy form.)
+//   dx, dy        legacy explicit pixel offset for the single copy (no
+//                 autoPlace). With autoPlace + no `variants`, only the SIGN
+//                 is used, to pick the copy's preferred side.
+//   autoPlace?    when true (#99): slide the whole visible figure to the
+//                 canvas centre (a translate-only slate view offset — the
+//                 real figure stays draggable), then lay the copies in the
+//                 freed space around it. Each copy takes its preferred side
+//                 (left/right/top/bottom), falling back to a free
+//                 perpendicular side when its first choice can't fit. No
+//                 scaling.
+//   variants?     [{ vary?, prefer? }, …] — with autoPlace, the case copies
+//                 to lay out ATOMICALLY: either every variant gets a slot
+//                 (all placed), or if any can't fit anywhere free, NONE are
+//                 placed and the figure doesn't move (both-or-neither).
+//                 `prefer` is a side name; default by index (left, right,
+//                 top, bottom). Direction is per-variant independent; only
+//                 the place/no-place decision is collective.
 //
-// Lifecycle: the clones are ephemerals this animation does NOT remove —
-// they stay until the next slide advance clears them (SlateControls
-// .showSlide wipes leftover ephemerals on every transition). A
-// fade-out on dismissal is a future polish (#94/#98).
+// Lifecycle: copies are ephemerals this animation does NOT remove — they
+// persist until the next slide advance clears them (SlateControls.showSlide
+// wipes leftover ephemerals + the view offset on every transition).
 //
-// elementType is GeomElement: the entry's `elem` is a nominal anchor;
-// the clone set comes from args.include.
+// elementType is GeomElement: the entry's `elem` is a nominal anchor; the
+// clone set comes from args.include.
 export class GroupCloneAsideAnimation extends Animation {
     public animationMethod = AllAnimations.GROUP_CLONE_ASIDE;
     public name = "Group.cloneAside";
     public elementType = GeomElement;
 
     public build(target: GeomElement, slate: Slate, args: any): IAnimationStep[] {
+        const include = args && args.include;
+        const autoPlace = args && args.autoPlace === true;
+        const sources = resolveSources(slate, include);
+        return autoPlace
+            ? [this._autoPlaceStep(target, slate, args, sources)]
+            : [this._legacyStep(target, slate, args, sources)];
+    }
+
+    // Atomic centred layout (#99). Snapshot every variant, centre the
+    // figure, assign each copy a free slot (preferred side → fallback);
+    // commit all only if every variant fits, else place nothing.
+    private _autoPlaceStep(target: GeomElement, slate: Slate, args: any,
+                           sources: GeomElement[]): IAnimationStep {
+        // Normalise to a variant list. No `variants` → a single copy whose
+        // preferred side comes from the dx/dy sign (so the old single-copy
+        // autoPlace call still works).
         const dx = args && typeof args.dx === "number" ? args.dx : 0;
         const dy = args && typeof args.dy === "number" ? args.dy : 0;
-        const include = args && args.include;
+        const variants: any[] = Array.isArray(args && args.variants) && args.variants.length > 0
+            ? args.variants
+            : [{ vary: args && args.vary, prefer: sideFromSign(dx, dy) }];
+
+        let targetOffX = 0, targetOffY = 0;
+        let placed = false;
+        // Per placed copy: its mutable points + the slot offset it slides to.
+        let copies: { pts: ClonePoint[], edx: number, edy: number }[] = [];
+
+        const drive = (p: number) => {
+            if (!placed) return;
+            const centreP = easeOut(Math.min(1, p / AUTOPLACE_CENTRE_FRAC));
+            const splitP = Math.max(0, Math.min(1,
+                (p - AUTOPLACE_CENTRE_FRAC) / (1 - AUTOPLACE_CENTRE_FRAC)));
+            slate.setViewOffset(targetOffX * centreP, targetOffY * centreP);
+            for (const c of copies)
+                for (const pt of c.pts) {
+                    pt.pt.x = pt.bx + c.edx * splitP;
+                    pt.pt.y = pt.by + c.edy * splitP;
+                }
+        };
+
+        return {
+            durationMs: CLONE_ASIDE_AUTOPLACE_MS,
+            setup: () => {
+                target.drawProgress = 1;
+                target.visible = true;
+                const canvas = slate.canvas;
+                const W = canvas ? canvas.width : 0;
+                const H = canvas ? canvas.height : 0;
+                if (!W || !H) return;
+
+                // Snapshot each variant (vary → snapshot → restore).
+                const snaps: { ghosts: GeomElement[], pts: ClonePoint[], bbox: Bounds, prefer?: Side }[] = [];
+                for (const variant of variants) {
+                    const restore = applyVary(slate, variant && variant.vary);
+                    const snap = snapshotSources(sources);
+                    if (restore) restore();
+                    if (snap.pts.length === 0) continue;
+                    snaps.push({
+                        ghosts: snap.ghosts, pts: snap.pts,
+                        bbox: boundsOf(snap.pts),
+                        prefer: variant && variant.prefer,
+                    });
+                }
+                if (snaps.length === 0) return;
+
+                // Centre target from the real (restored) figure.
+                const fb = slate.visibleBounds();
+                if (fb == null) return;
+                const figW = fb.maxX - fb.minX, figH = fb.maxY - fb.minY;
+                const figCx = (fb.minX + fb.maxX) / 2;
+                const figCy = (fb.minY + fb.maxY) / 2;
+                targetOffX = W / 2 - figCx;
+                targetOffY = H / 2 - figCy;
+
+                const M = AUTOPLACE_MARGIN, G = AUTOPLACE_GAP;
+                // The slot offset that drops a copy (bbox bb) centred in the
+                // freed band on `side`, cross-aligned with the centred
+                // figure — or null when it doesn't fit. (display = model +
+                // view offset, so edx = bandCentre − targetOff − copyCentre.)
+                const slotFor = (side: Side, bb: Bounds): [number, number] | null => {
+                    const bw = bb.maxX - bb.minX, bh = bb.maxY - bb.minY;
+                    const ccx = (bb.minX + bb.maxX) / 2, ccy = (bb.minY + bb.maxY) / 2;
+                    if (side === "left" || side === "right") {
+                        if (bh > H - 2 * M) return null;
+                        const inner = side === "left" ? W / 2 - figW / 2 - G : W / 2 + figW / 2 + G;
+                        const outer = side === "left" ? M : W - M;
+                        if (Math.abs(outer - inner) < bw) return null;
+                        return [(inner + outer) / 2 - targetOffX - ccx, figCy - ccy];
+                    }
+                    if (bw > W - 2 * M) return null;
+                    const inner = side === "top" ? H / 2 - figH / 2 - G : H / 2 + figH / 2 + G;
+                    const outer = side === "top" ? M : H - M;
+                    if (Math.abs(outer - inner) < bh) return null;
+                    return [figCx - ccx, (inner + outer) / 2 - targetOffY - ccy];
+                };
+
+                // Assign each variant a free slot: preferred side first,
+                // then any other free side. ATOMIC — if any variant can't be
+                // placed, none are (both-or-neither).
+                const DEFAULT: Side[] = ["left", "right", "top", "bottom"];
+                const taken = new Set<Side>();
+                const assigned: { pts: ClonePoint[], edx: number, edy: number }[] = [];
+                for (let i = 0; i < snaps.length; i++) {
+                    const s = snaps[i];
+                    const prefer = s.prefer || DEFAULT[i % DEFAULT.length];
+                    const order: Side[] = [prefer].concat(DEFAULT.filter(x => x !== prefer));
+                    let slot: [number, number] | null = null;
+                    for (const side of order) {
+                        if (taken.has(side)) continue;
+                        slot = slotFor(side, s.bbox);
+                        if (slot != null) { taken.add(side); break; }
+                    }
+                    if (slot == null) return;   // no free slot — abort, place nothing
+                    assigned.push({ pts: s.pts, edx: slot[0], edy: slot[1] });
+                }
+
+                // Commit every copy.
+                for (const s of snaps) for (const g of s.ghosts) slate.addEphemeral(g);
+                copies = assigned;
+                placed = true;
+            },
+            tick: (p) => { drive(p); },
+            finalise: () => { drive(1); },
+        };
+    }
+
+    // Legacy explicit-offset single copy (≤ 0.9.x behaviour, unchanged):
+    // clone once, clamp the requested dx/dy into the canvas, only show the
+    // copy if it clears the figure; skip on a narrow viewport.
+    private _legacyStep(target: GeomElement, slate: Slate, args: any,
+                        sources: GeomElement[]): IAnimationStep {
+        const dx = args && typeof args.dx === "number" ? args.dx : 0;
+        const dy = args && typeof args.dy === "number" ? args.dy : 0;
         const vary = args && args.vary;
         const durationMs = Math.max(CLONE_ASIDE_MIN_MS,
             Math.hypot(dx, dy) / CLONE_ASIDE_RATE_PX_PER_MS);
 
-        // Resolve the elements to clone. "all" / missing → every named,
-        // visible, non-screen element; otherwise the explicit name list.
-        const sources: GeomElement[] = [];
-        if (Array.isArray(include)) {
-            for (const nm of include) {
-                const e = slate.lookupElement(String(nm));
-                if (e != null) sources.push(e);
-            }
-        } else {
-            for (const e of slate.elements) {
-                if (e.name != null && e.visible && !e.name.startsWith("screen")) {
-                    sources.push(e);
-                }
-            }
-        }
-
         let cloned: ClonePoint[] = [];
-        // Effective offset — clamped in setup to keep the clone's
-        // bounding box within the canvas so a copy never slides out of
-        // the visible extents.
         let edx = dx, edy = dy;
-
-        const setOffset = (p: number) => {
+        let placed = false;
+        const slideCopy = (p: number) => {
             for (const c of cloned) {
                 c.pt.x = c.bx + edx * p;
                 c.pt.y = c.by + edy * p;
             }
         };
 
-        return [{
+        return {
             durationMs,
             setup: () => {
-                // The real figure stays fully on stage — cloneAside is
-                // not a reveal. Undo the animator's pre-zeroing of the
-                // anchor target (it sets drawProgress = 0 on every
-                // animated target's element).
                 target.drawProgress = 1;
                 target.visible = true;
-                // Optionally vary a slider, recompute the real figure,
-                // snapshot, then restore — so the clone captures the
-                // varied geometry without disturbing the live figure.
-                let slider: LineSlider | null = null;
-                let sx = 0, sy = 0, sz = 0;
-                if (vary && vary.elem != null && typeof vary.to === "number") {
-                    const s = slate.lookupElement(String(vary.elem));
-                    if (s instanceof LineSlider) {
-                        slider = s;
-                        sx = s.x; sy = s.y; sz = s.z;
-                        const A = (s as any)._A as PointElement;
-                        const B = (s as any)._B as PointElement;
-                        s.x = A.x + (B.x - A.x) * vary.to;
-                        s.y = A.y + (B.y - A.y) * vary.to;
-                        s.z = A.z + (B.z - A.z) * vary.to;
-                        slate.update();
-                    }
-                }
+                const restore = applyVary(slate, vary);
+                const snap = snapshotSources(sources);
+                if (restore) restore();
+                const temp = snap.ghosts;
+                const pts = snap.pts;
+                if (temp.length === 0) return;
 
-                // Snapshot into a temp set first (don't commit yet — the
-                // desktop-only fit check below decides whether to show).
-                const temp: { ghost: GeomElement, pts: ClonePoint[] }[] = [];
-                let warnedSkip = false;
-                for (const el of sources) {
-                    const snap = snapshotElement(el);
-                    if (snap == null) {
-                        if (!warnedSkip && typeof console !== "undefined" && console.warn) {
-                            console.warn("[geomlib] Group.cloneAside: skipping "
-                                + "unsupported element type (" + el.name + ")");
-                            warnedSkip = true;
-                        }
-                        continue;
-                    }
-                    temp.push(snap);
-                }
-
-                if (slider != null) {
-                    slider.x = sx; slider.y = sy; slider.z = sz;
-                    slate.update();
-                }
-
-                // Figure bbox (clone base coords == figure coords).
-                let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-                for (const t of temp) for (const c of t.pts) {
-                    if (c.bx < minX) minX = c.bx; if (c.bx > maxX) maxX = c.bx;
-                    if (c.by < minY) minY = c.by; if (c.by > maxY) maxY = c.by;
-                }
-                const bw = maxX - minX, bh = maxY - minY;
-
-                const MARGIN = 6;
-                const canvas: any = (slate as any).canvas;
+                const bb = boundsOf(pts);
+                const bw = bb.maxX - bb.minX, bh = bb.maxY - bb.minY;
+                const canvas = slate.canvas;
                 const W = canvas ? canvas.width : 0;
                 const H = canvas ? canvas.height : 0;
-
-                // Desktop-only: skip case-variant copies on a narrow
-                // (mobile) viewport — there isn't room to lay them out.
+                const MARGIN = 6;
                 if (W && W < CLONE_ASIDE_DESKTOP_MIN_WIDTH) return;
-
-                // Clamp the requested offset so the copy stays inside the
-                // canvas (respect direction; only reduce magnitude).
                 edx = dx; edy = dy;
-                if (W && H && temp.length > 0) {
-                    if (minX + edx < MARGIN) edx = MARGIN - minX;
-                    if (maxX + edx > W - MARGIN) edx = (W - MARGIN) - maxX;
-                    if (minY + edy < MARGIN) edy = MARGIN - minY;
-                    if (maxY + edy > H - MARGIN) edy = (H - MARGIN) - maxY;
+                if (W && H) {
+                    if (bb.minX + edx < MARGIN) edx = MARGIN - bb.minX;
+                    if (bb.maxX + edx > W - MARGIN) edx = (W - MARGIN) - bb.maxX;
+                    if (bb.minY + edy < MARGIN) edy = MARGIN - bb.minY;
+                    if (bb.maxY + edy > H - MARGIN) edy = (H - MARGIN) - bb.maxY;
                 }
-
-                // Desktop-only fit guard: only show the copy if, after
-                // clamping, it clears the original figure (no overlap) on
-                // at least one axis. On a canvas too narrow to place it
-                // clear (mobile), skip the copy entirely — case-variants
-                // are a desktop affordance for now (#99 will auto-place
-                // them in the available area). A single point always
-                // clears (bw/bh = 0).
                 const CLEAR_GAP = 8;
-                const clears = temp.length === 0
-                    || Math.abs(edx) >= bw + CLEAR_GAP
+                const clears = Math.abs(edx) >= bw + CLEAR_GAP
                     || Math.abs(edy) >= bh + CLEAR_GAP
                     || (bw === 0 && bh === 0);
-                if (!clears) return;   // no room — skip
+                if (!clears) return;
 
-                for (const t of temp) {
-                    slate.addEphemeral(t.ghost);
-                    cloned = cloned.concat(t.pts);
-                }
+                for (const g of temp) slate.addEphemeral(g);
+                cloned = pts;
+                placed = true;
             },
-            tick: (p) => { setOffset(p); },
-            // Persist parked at the offset; the next slide advance clears.
-            finalise: () => { setOffset(1); },
-        }];
+            tick: (p) => { if (placed) slideCopy(p); },
+            finalise: () => { if (placed) slideCopy(1); },
+        };
     }
 }
 

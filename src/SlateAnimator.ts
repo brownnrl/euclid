@@ -188,7 +188,11 @@ export class SlateAnimator {
                     as.finalised = true;
                 }
             }
-            this.slate.clearEphemerals();
+            // Don't blanket-clear ephemerals here: normal (animated)
+            // completion never does, and transient helpers self-remove in
+            // their own finalise() (e.g. superpose). Clearing would wipe an
+            // animation's *persisted* ephemerals (a cloneAside case-variant
+            // copy) for reduced-motion users only — #99.
             this.slate.drawElements();
             return Promise.resolve();
         }
