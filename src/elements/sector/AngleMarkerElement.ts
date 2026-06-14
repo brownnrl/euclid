@@ -60,6 +60,22 @@ export class AngleMarkerElement extends SectorElement {
         this._B = new PointElement();
     }
 
+    // The vertex this marker sits at — used to group same-vertex
+    // markers for auto radius-stepping (#103).
+    get vertex() : PointElement { return this._Center; }
+
+    // Whether the author pinned an explicit radius (opts the marker out
+    // of auto radius-stepping).
+    get hasRadiusOverride() : boolean { return this._radiusOverride != null; }
+
+    // The interior angle magnitude (radians) between the two arms,
+    // computed directly from the arm points so it's available before
+    // update() places _A/_B. Used to order a same-vertex group
+    // (smallest angle innermost).
+    spanRadians() : number {
+        return Math.abs(this._Center.angle(this._arm1, this._arm2, this._P));
+    }
+
     // update() orders _A/_B so the inherited minor angle is negative
     // (interior, drawn with the default anticlockwise=true). A reflex
     // marker draws the MAJOR arc between the same two rays — same

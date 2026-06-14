@@ -293,12 +293,14 @@ describe("angle marker (issue #91)", () => {
     it("assigns translucent palette colors in construction order", () => {
         withFakeDOM((canvasid) => {
             slates.length = 0;
+            // Different vertices so they stay singletons (#103 nesting
+            // only recolors same-vertex groups).
             init({
                 canvasid, background: "0,0,100", title: "t",
                 elements: [
                     ...baseMarkerElements,
                     "m0;sector;angleMarker;B,A,Cnear",
-                    "m1;sector;angleMarker;B,Cnear,Cfar",
+                    "m1;sector;angleMarker;Cnear,A,B",
                 ],
             });
             const slate = slates[0];
@@ -399,6 +401,68 @@ describe("angle marker (issue #91)", () => {
         r = recordingArcs(slate);
         s.drawEdge(r.canvas);
         assert.strictEqual(r.arcs.length, 1);
+    });
+
+    // #103 — same-vertex auto radius-stepping.
+    it("nests same-vertex markers with stepped rings + distinct colors", () => {
+        withFakeDOM((canvasid) => {
+            slates.length = 0;
+            init({
+                canvasid, background: "0,0,100", title: "t", showAngles: true,
+                elements: [
+                    ...baseMarkerElements,
+                    "m1;sector;angleMarker;B,A,Cnear",
+                    "m2;sector;angleMarker;B,A,Cfar",
+                    "m3;sector;angleMarker;B,Cnear,Cfar",
+                ],
+            } as any);
+            const slate = slates[0];
+            const ms = ["m1", "m2", "m3"].map(n => slate.lookupElement(n) as AngleMarkerElement);
+            // Distinct consecutive rings, and distinct palette faces.
+            assert.deepStrictEqual(ms.map(m => m.ringIndex).sort(), [0, 1, 2]);
+            assert.strictEqual(new Set(ms.map(m => m.faceColor)).size, 3);
+        });
+    });
+
+    it("does not nest markers at different vertices", () => {
+        withFakeDOM((canvasid) => {
+            slates.length = 0;
+            init({
+                canvasid, background: "0,0,100", title: "t", showAngles: true,
+                elements: [
+                    ...baseMarkerElements,
+                    "atB;sector;angleMarker;B,A,Cnear",
+                    "atC;sector;angleMarker;Cnear,A,B",
+                ],
+            } as any);
+            const slate = slates[0];
+            const atB = slate.lookupElement("atB") as AngleMarkerElement;
+            const atC = slate.lookupElement("atC") as AngleMarkerElement;
+            assert.strictEqual(atB.ringIndex, 0);
+            assert.strictEqual(atC.ringIndex, 0);  // singletons, not stepped
+        });
+    });
+
+    it("a pinned radiusPx marker keeps ring 0; others step around it", () => {
+        withFakeDOM((canvasid) => {
+            slates.length = 0;
+            init({
+                canvasid, background: "0,0,100", title: "t", showAngles: true,
+                elements: [
+                    ...baseMarkerElements,
+                    "pinned;sector;angleMarker;B,A,Cnear,40",   // radiusPx override
+                    "auto1;sector;angleMarker;B,A,Cfar",
+                    "auto2;sector;angleMarker;B,Cnear,Cfar",
+                ],
+            } as any);
+            const slate = slates[0];
+            const pinned = slate.lookupElement("pinned") as AngleMarkerElement;
+            const auto1 = slate.lookupElement("auto1") as AngleMarkerElement;
+            const auto2 = slate.lookupElement("auto2") as AngleMarkerElement;
+            assert.strictEqual(pinned.ringIndex, 0);   // override opts out
+            // The two auto markers get consecutive rings 0 and 1.
+            assert.deepStrictEqual([auto1.ringIndex, auto2.ringIndex].sort(), [0, 1]);
+        });
     });
 });
 
