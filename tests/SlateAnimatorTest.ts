@@ -182,6 +182,11 @@ describe("SlateAnimator (issue #78)", () => {
             // not render while AB is still tracing.
             assert.strictEqual(ab.visible, true, "active target should be revealed");
             assert.strictEqual(bcd.visible, false, "pending target should stay hidden");
+            // #104: a pending cascade target must NOT be emphasised yet —
+            // since #100 a hidden-but-emphasised element draws fully from
+            // t=0. AB (started) is emphasised; BCD (pending) is not.
+            assert.ok(ab.emphasisAmount > 0, "active target should be emphasised");
+            assert.strictEqual(bcd.emphasisAmount, 0, "pending target must not be emphasised");
             slate.animator!.cancel();
             await p;
             // Cancel finalises everything — both end visible.

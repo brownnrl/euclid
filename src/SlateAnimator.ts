@@ -193,13 +193,12 @@ export class SlateAnimator {
             return Promise.resolve();
         }
 
-        // Mark every animating target as emphasized so its render pops
-        // over any slide-highlighted underlying elements that share a
-        // path (e.g. the polygon ABC animating over highlighted lines
-        // AB / AC / BC). Cleared in _allFinalised / cancel().
-        for (const g of groups) {
-            g.target.emphasized = true;
-        }
+        // NOTE: targets are emphasised in _startStep when their own step
+        // begins (not here at run start), so an un-started cascade target
+        // stays hidden until its turn — otherwise, since #100, a
+        // hidden-but-emphasised target would draw fully from t=0 (#104).
+        // The emphasis still makes the target's render pop over any
+        // slide-highlighted siblings throughout its own animation.
 
         this.groups = groups;
         this.mode = mode;
@@ -278,10 +277,16 @@ export class SlateAnimator {
         if (as.started) return;
         // Deferred reveal (#83): the target was held invisible through
         // any earlier cascade steps; it appears the moment its own
-        // first step begins. setup() runs after this, so an animation
-        // that hides the target to render ephemeral proxies instead
-        // can still do so.
-        if (stepIdx === 0) g.target.visible = true;
+        // first step begins. The emphasis bump is applied here too (not
+        // at run start) so an un-started cascade target stays hidden —
+        // since #100 a hidden-but-emphasised element would otherwise
+        // draw fully from t=0 (#104). setup() runs after this, so an
+        // animation that hides the target to render ephemeral proxies
+        // instead can still do so.
+        if (stepIdx === 0) {
+            g.target.visible = true;
+            g.target.emphasized = true;
+        }
         if (as.step.setup) as.step.setup();
         as.started = true;
         g.currentIndex = stepIdx;
