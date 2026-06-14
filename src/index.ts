@@ -350,6 +350,42 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
         for (let name of i.initiallyHidden) slate.setInitiallyHidden(name);
     }
 
+    // Same-vertex angle markers auto-nest: group by shared vertex and
+    // step each one's radius into a concentric ring (smallest interior
+    // angle innermost), with distinct palette colors within the group,
+    // so they don't overlap. Author radiusPx overrides opt out of the
+    // ring-stepping. Runs before update() places the arc endpoints. (#103)
+    {
+        const byVertex = new Map<PointElement, AngleMarkerElement[]>();
+        for (let elem of slate.elements) {
+            if (elem instanceof AngleMarkerElement) {
+                let g = byVertex.get(elem.vertex);
+                if (g == null) { g = []; byVertex.set(elem.vertex, g); }
+                g.push(elem);
+            }
+        }
+        byVertex.forEach((group: AngleMarkerElement[]) => {
+            if (group.length <= 1) return;
+            // Smallest angle innermost so a tight wedge nests inside a
+            // wider one sharing the vertex.
+            group.sort((a, b) => a.spanRadians() - b.spanRadians());
+            let ring = 0;
+            group.forEach((m, idx) => {
+                // Distinct color per group member (de-clash by group
+                // position). Author param-color overrides are left alone.
+                const isDefault = anglePalette.some(p => p.face === m.faceColor);
+                if (isDefault) {
+                    const sw = anglePalette[idx % anglePalette.length];
+                    m.edgeColor = sw.edge;
+                    m.faceColor = sw.face;
+                }
+                // Pinned-radius markers keep their explicit radius (ring
+                // 0); only auto-radius markers step outward, consecutively.
+                if (!m.hasRadiusOverride) { m.ringIndex = ring; ring++; }
+            });
+        });
+    }
+
     if (i.slides != null && i.slides.length > 0) {
         slate.slides = i.slides;
     }
