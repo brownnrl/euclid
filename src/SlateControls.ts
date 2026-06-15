@@ -1,11 +1,11 @@
 /*----------------------------------------------------------------------+
 |    Title:  SlateControls.ts                                           |
-|    UI overlay for geometry diagrams: reset, maximize, new window.     |
+|    UI overlay for geometry diagrams: reset, maximize, present.        |
 |    Buttons are canvas-drawn icons overlaid on each Slate canvas.      |
-|    Keyboard shortcuts match the original Java applet:                 |
+|    Keyboard shortcuts:                                                 |
 |      r / space  → reset                                               |
-|      u / return → new window                                          |
 |      m          → maximize/minimize                                   |
+|      p          → present (when the slate has slides)                 |
 +----------------------------------------------------------------------*/
 
 import {Slate} from "./Slate";
@@ -153,7 +153,6 @@ class SlateControls {
         let buttons = [
             { draw: drawResetIcon, action: () => this.onReset(), title: "Reset (r)" },
             { draw: drawMaximizeIcon, action: () => this.onMaximize(), title: "Maximize (m)" },
-            { draw: drawNewWindowIcon, action: () => this.onNewWindow(), title: "New Window (u)" },
         ];
 
         // Conditionally append a "▶ Present" button when the slate
@@ -222,12 +221,6 @@ class SlateControls {
                 case " ":
                     e.preventDefault();
                     this.onReset();
-                    break;
-                case "u":
-                case "U":
-                case "Enter":
-                    e.preventDefault();
-                    this.onNewWindow();
                     break;
                 case "m":
                 case "M":
@@ -381,43 +374,6 @@ class SlateControls {
         } else {
             drawMaximizeIcon(ctx, BTN_SIZE);
             btn.title = "Maximize (m)";
-        }
-    }
-
-    private onNewWindow(): void {
-        // Find the bundle.js script path from the current page
-        let scripts = document.querySelectorAll("script[src]");
-        let bundleSrc = "bundle.js";
-        for (let i = 0; i < scripts.length; i++) {
-            let src = (scripts[i] as HTMLScriptElement).src;
-            if (src.indexOf("bundle.js") >= 0) {
-                bundleSrc = src;
-                break;
-            }
-        }
-
-        // Override the config's canvasid so geomlib.init() targets the
-        // new window's canvas (id="canvasId"), not the source page's canvas
-        // which doesn't exist in the new document. Without the override,
-        // init() would look up this._config.canvasid (e.g. "canvas_0") in
-        // the new document, get null, and throw in resizeCanvasToDisplaySize.
-        let newWinConfig = Object.assign({}, this._config, { canvasid: "canvasId" });
-        let configJSON = JSON.stringify(newWinConfig);
-        let title = this._config.title || "Geometry";
-
-        // Open maximized: use full screen dimensions, canvas fills viewport
-        let html = `<!DOCTYPE html>
-<html><head><title>${title}</title></head>
-<body style="margin:0;padding:0;overflow:hidden;">
-<canvas id="canvasId" style="width:100vw;height:100vh;"></canvas>
-<script src="${bundleSrc}"><\/script>
-<script>geomlib.init(${configJSON});<\/script>
-</body></html>`;
-
-        let newWin = window.open("", "_blank");
-        if (newWin) {
-            newWin.document.write(html);
-            newWin.document.close();
         }
     }
 
@@ -913,40 +869,6 @@ function drawMinimizeIcon(ctx: CanvasRenderingContext2D, size: number): void {
     ctx.moveTo(bx, by);
     ctx.lineTo(bx - 5, by);
     ctx.lineTo(bx, by + 5);
-    ctx.closePath();
-    ctx.fill();
-}
-
-function drawNewWindowIcon(ctx: CanvasRenderingContext2D, size: number): void {
-    let pad = 4;
-    let s = size - pad * 2;
-
-    ctx.strokeStyle = "rgba(0,0,0,0.7)";
-    ctx.fillStyle = "rgba(0,0,0,0.7)";
-    ctx.lineWidth = 1.5;
-
-    // Small rectangle (the window)
-    let rx = pad;
-    let ry = pad + s * 0.3;
-    let rw = s * 0.65;
-    let rh = s * 0.7;
-    ctx.strokeRect(rx, ry, rw, rh);
-
-    // Arrow pointing up-right out of the rectangle
-    let arrowStartX = pad + s * 0.4;
-    let arrowStartY = pad + s * 0.6;
-    let arrowEndX = pad + s;
-    let arrowEndY = pad;
-    ctx.beginPath();
-    ctx.moveTo(arrowStartX, arrowStartY);
-    ctx.lineTo(arrowEndX, arrowEndY);
-    ctx.stroke();
-
-    // Arrowhead
-    ctx.beginPath();
-    ctx.moveTo(arrowEndX, arrowEndY);
-    ctx.lineTo(arrowEndX - 5, arrowEndY);
-    ctx.lineTo(arrowEndX, arrowEndY + 5);
     ctx.closePath();
     ctx.fill();
 }

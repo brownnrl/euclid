@@ -108,7 +108,7 @@ interface IInitialization {
 | Field | Java applet param | Default | Description |
 |---|---|---|---|
 | `background` | `background` | `"#ffffff"` | Canvas fill. Same string grammar as element colors — see [Colors](#colors). HSB triples like `"35,19,100"` are valid. |
-| `title` | `title` | `""` | Title shown when the diagram is opened in a separate window via the new-window button. Stored on the Slate; not currently rendered on the canvas itself (open platform TODO). |
+| `title` | `title` | `""` | A label for the diagram. Stored on the Slate; not currently rendered on the canvas itself. |
 | `align` | `align` | `Align.CENTRAL` | Default label placement applied to every element. CENTRAL chooses ABOVE/BELOW/LEFT/RIGHT dynamically based on the label's quadrant relative to the canvas center. |
 | `canvasid` | (none — applet's host element) | `"canvasid"` | DOM `id` of the `<canvas>` to draw into. |
 | `pivot` | `pivot` | (no pivot) | Name of a point used as the rotation/scale center when the user drags a non-draggable point. Two-part form `"P,plane"` pivots on a non-screen plane (3D). See [Drag pipeline](architecture.md#drag-pipeline-movepick--translatecoordinates--rotatecoordinates). |
@@ -861,7 +861,6 @@ buttons at the top-right:
 |---|---|---|
 | Reset (circular arrow) | `r` or `space` | `slate.reset()`. |
 | Maximize (expand arrows) | `m` | Toggle: fill the viewport (position fixed, 100vw / 100vh, z-index 9999) or restore. |
-| New window (box-with-arrow) | `u` or `return` | Open a new browser window with the same scene maximized. |
 
 Keyboard shortcuts only fire when the canvas itself has focus. The
 overlay can be skipped (e.g. for headless rendering) by passing a

@@ -405,7 +405,7 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
     slate.update();
     slate.updateCoordinates(0);
 
-    // Add UI controls (reset, maximize, new window) if running in browser
+    // Add UI controls (reset, maximize, present) if running in browser
     if (canvas && canvas.parentElement) {
         createControls(slate, canvas, i);
     }
