@@ -33,6 +33,24 @@ const BTN_SIZE = isCoarsePointer() ? 18 : 20;
 const BTN_GAP = isCoarsePointer() ? 4 : 4;
 const BTN_MARGIN = isCoarsePointer() ? 7 : 8;
 
+// #69 — keep the control buttons hidden until the canvas/wrapper is
+// hovered or focused, so a page full of diagrams isn't cluttered with a
+// button row on every one. CSS-only (`:hover` / `:focus-within`), no
+// per-frame JS; `opacity` keeps the buttons in the layout (no reflow) and
+// fades them. Injected once per document. Touch users tap the canvas
+// first, which focuses it and reveals the controls.
+const CONTROLS_STYLE_ID = "geomlib-controls-style";
+function ensureControlsStyle(): void {
+    if (typeof document === "undefined") return;
+    if (document.getElementById(CONTROLS_STYLE_ID)) return;
+    const style = document.createElement("style");
+    style.id = CONTROLS_STYLE_ID;
+    style.textContent =
+        ".geomlib-wrapper>button{opacity:0;transition:opacity .15s ease-in-out}" +
+        ".geomlib-wrapper:hover>button,.geomlib-wrapper:focus-within>button{opacity:1}";
+    (document.head || document.documentElement).appendChild(style);
+}
+
 // Minimal event-target interface so this helper is testable without a real
 // `Window`. Browser `Window`, `Document`, and `Element` all satisfy it.
 export interface IResizeTarget {
@@ -108,7 +126,9 @@ class SlateControls {
     }
 
     private createWrapper(): HTMLDivElement {
+        ensureControlsStyle();   // #69 — hover/focus reveal stylesheet (once)
         let wrapper = document.createElement("div");
+        wrapper.className = "geomlib-wrapper";
         wrapper.style.position = "relative";
         wrapper.style.display = "inline-block";
 
