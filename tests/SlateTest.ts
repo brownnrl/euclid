@@ -619,6 +619,39 @@ describe("slate", () => {
             assert.strictEqual(slate.viewOffsetY, 0);
         });
 
+        it("reset restores a dragged free point to its initial position", () => {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            toElements(slate, [
+                { construction: E.Point.free, name: "A", params: [100, 100] },
+            ]);
+            slate.elements.forEach(e => { (e as any).vertexColor = "black"; e.update(); });
+            const A = slate.lookupElement("A") as PointElement;
+            slate._onMouseDown(100, 100);
+            slate._onMouseDrag(150, 60);
+            slate._onMouseUp(150, 60);
+            almostEqual(A.x, 150, 0.5); almostEqual(A.y, 60, 0.5);   // dragged
+            slate.reset();
+            almostEqual(A.x, 100, 0.001); almostEqual(A.y, 100, 0.001);   // restored
+        });
+
+        it("drag clamp shifts with the view offset (#107 maximized recenter)", () => {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            toElements(slate, [
+                { construction: E.Point.free, name: "A", params: [100, 150] },
+                { construction: E.Point.free, name: "B", params: [120, 150] },
+            ]);
+            slate.elements.forEach(e => { (e as any).vertexColor = "black"; e.update(); });
+            const A = slate.lookupElement("A") as PointElement;
+            // Shift the figure DOWN by 80px (as #107 centring does on a
+            // maximized canvas). Model y = −40 is screen y = 40 → on-canvas.
+            slate.setViewOffset(0, 80);
+            slate._onMouseDown(100, 150);
+            slate._onMouseDrag(100, -40);
+            slate._onMouseUp(100, -40);
+            // Pre-fix this pinned at y=0 (clamped to [0,h]); now [−80,120].
+            almostEqual(A.y, -40, 0.5);
+        });
+
         it("the pick path subtracts the view offset (drag stays on the real element)", () => {
             let slate: Slate = new Slate(createCanvas(200, 200));
             // Stub the DOM rect _getCanvasPosition reads.
@@ -668,6 +701,87 @@ describe("slate", () => {
             // Hide everything named → back to null.
             slate.elements.forEach(e => { if (e.name != null) e.visible = false; });
             assert.strictEqual(slate.visibleBounds(), null);
+        });
+
+        it("figureBounds spans hidden elements too (stable across visibility)", () => {
+            let slate: Slate = new Slate(createCanvas(300, 400));
+            toElements(slate, [
+                { construction: E.Point.free, name: "A", params: [50, 50] },
+                { construction: E.Point.free, name: "B", params: [150, 50] },
+                { construction: E.Line.connect, name: "AB", params: ["A", "B"] },
+                // A lone far point that defines the lower bound on its own.
+                { construction: E.Point.free, name: "F", params: [50, 300] },
+            ]);
+            slate.elements.forEach(e => e.update());
+            const full = slate.figureBounds()!;
+            assert.strictEqual(full.maxY, 300);
+            // Hide F — visibleBounds shrinks (no element reaches y=300),
+            // figureBounds is unchanged.
+            (slate.lookupElement("F") as PointElement).visible = false;
+            assert.strictEqual(slate.visibleBounds()!.maxY, 50,
+                "visibleBounds shrinks when F is hidden");
+            assert.deepStrictEqual(slate.figureBounds(), full,
+                "figureBounds unchanged by hiding F");
+        });
+    });
+
+    describe("highlight event + alias names (#108)", () => {
+        let triangle_data: IConstructionInfo[] = [
+            { construction: E.Point.free,    name: "A",   params: [50, 50] },
+            { construction: E.Point.free,    name: "B",   params: [150, 50] },
+            { construction: E.Line.connect,  name: "AB",  params: ["A", "B"] },
+            { construction: E.Circle.radius, name: "BCD", params: ["A", "B"] },
+        ];
+
+        it("namesFor returns the canonical name plus all its aliases", () => {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            slate.addAliases({ "CDB": "BCD", "DBC": "BCD", "BA": "AB" });
+            const bcd = slate.namesFor("BCD").sort();
+            assert.deepStrictEqual(bcd, ["BCD", "CDB", "DBC"]);
+            assert.deepStrictEqual(slate.namesFor("AB").sort(), ["AB", "BA"]);
+            // An element with no aliases → just itself.
+            assert.deepStrictEqual(slate.namesFor("A"), ["A"]);
+        });
+
+        it("dispatches geomlib:highlight only when the highlighted set changes", () => {
+            if (typeof (global as any).CustomEvent !== "function") {
+                (global as any).CustomEvent = class {
+                    type: string; detail: any; bubbles: boolean;
+                    constructor(type: string, opts: any) {
+                        this.type = type; this.detail = opts && opts.detail;
+                        this.bubbles = !!(opts && opts.bubbles);
+                    }
+                };
+            }
+            const canvas: any = createCanvas(200, 200);
+            const events: any[] = [];
+            canvas.dispatchEvent = (e: any) => { events.push(e); return true; };
+            const slate = new Slate(canvas);   // inTest stays false → drawElements runs
+            toElements(slate, triangle_data);
+            slate.addAliases({ "CDB": "BCD" });
+            slate.update();
+            events.length = 0;   // drop the initial baseline dispatch
+
+            // Highlight the circle → one event carrying its aliases.
+            (slate.lookupElement("BCD") as any).emphasized = true;
+            slate.update();
+            assert.strictEqual(events.length, 1, "one event on change");
+            assert.strictEqual(events[0].type, "geomlib:highlight");
+            assert.deepStrictEqual(
+                events[0].detail.highlighted.map((h: any) => h.name), ["BCD"]);
+            assert.deepStrictEqual(
+                events[0].detail.highlighted[0].aliases.sort(), ["BCD", "CDB"]);
+
+            // No change → no further dispatch.
+            slate.update();
+            assert.strictEqual(events.length, 1, "no event when set unchanged");
+
+            // Un-highlight → an event with the empty set.
+            (slate.lookupElement("BCD") as any).emphasized = false;
+            slate.update();
+            assert.strictEqual(events.length, 2);
+            assert.deepStrictEqual(events[1].detail.highlighted, []);
         });
     });
 });

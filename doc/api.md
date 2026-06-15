@@ -454,17 +454,47 @@ class Slate {
     setViewOffset(x: number, y: number): void;
     clearViewOffset(): void;
     visibleBounds(): { minX, maxX, minY, maxY } | null;
+    figureBounds(): { minX, maxX, minY, maxY } | null;   // (0.11.0+)
+    namesFor(canonical: string): string[];               // (0.11.0+)
 }
 ```
 
 A **translate-only** offset (no scale) applied to every drawn element
-and ephemeral; the pick path subtracts it, so the figure stays draggable
-under the offset. Default `(0, 0)` is a no-op — every pre-existing render
-path is unchanged. `A.Group.cloneAside`'s `autoPlace` uses it to slide
-the figure to the canvas centre (#99); the presentation overlay clears it
-on every slide advance and on exit. `visibleBounds()` returns the
-axis-aligned bounding box of the visible named figure (or `null` when
-empty) — used to compute the centre target and fit the copies.
+and ephemeral; the pick path subtracts it (and the drag clamp shifts with
+it), so the figure stays draggable under the offset. Default `(0, 0)` is a
+no-op — every pre-existing render path is unchanged. `A.Group.cloneAside`'s
+`autoPlace` uses it to slide the figure to the canvas centre (#99).
+
+`visibleBounds()` is the bbox of the *visible* named figure; `figureBounds()`
+(0.11.0+) is the bbox of *all* named elements regardless of visibility — a
+stable centre that doesn't drift as a presentation reveals/hides elements.
+
+**Maximized-view recenter (#107, 0.11.0+).** When the canvas is maximized
+(via the control or by entering presentation), the figure is centred with
+this offset (translate only); on minimize / presentation exit it restores
+the inline view **and runs `reset()`** (the ⟲ control's behaviour). Every
+presentation slide stays centred; an `autoPlace` case slide eases out from
+that base with no jump.
+
+### `geomlib:highlight` event (#108, 0.11.0+)
+
+When the set of highlighted elements (`shouldHighlight || emphasized`)
+changes, a slate dispatches a `CustomEvent("geomlib:highlight")` on its
+canvas (bubbling), so a page can bind highlighting **bidirectionally** —
+e.g. light up every prose reference to an element the moment it's
+highlighted by any source (a `{NAME}` hover, a slide's `highlighted` set).
+
+```typescript
+canvas.addEventListener("geomlib:highlight", (ev) => {
+    // ev.detail.highlighted: Array<{ name: string, aliases: string[] }>
+    // `aliases` = the canonical name + every alias resolving to it,
+    // so a ref spelled "CDB" matches the highlighted "BCD".
+});
+```
+
+Fires only when the set *changes* (not per frame / per `emphasisAmount`
+fade) and is idempotent, so a listener that highlights text spans creates
+no feedback loop. No-op when the canvas can't dispatch DOM events.
 
 ### What renders this
 

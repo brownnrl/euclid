@@ -216,6 +216,12 @@ export class GroupCloneAsideAnimation extends Animation {
             : [{ vary: args && args.vary, prefer: sideFromSign(dx, dy) }];
 
         let targetOffX = 0, targetOffY = 0;
+        // View offset already in effect at setup time — the presentation /
+        // maximize base centring (#107). The centre phase eases from this
+        // base to the target, so when the figure is ALREADY centred
+        // (base == target) it's a no-op (no jump) and only the copies
+        // slide; outside a maximized view base is 0 → centres as before.
+        let baseOffX = 0, baseOffY = 0;
         let placed = false;
         // Per placed copy: its mutable points + the slot offset it slides to.
         let copies: { pts: ClonePoint[], edx: number, edy: number }[] = [];
@@ -225,7 +231,8 @@ export class GroupCloneAsideAnimation extends Animation {
             const centreP = easeOut(Math.min(1, p / AUTOPLACE_CENTRE_FRAC));
             const splitP = Math.max(0, Math.min(1,
                 (p - AUTOPLACE_CENTRE_FRAC) / (1 - AUTOPLACE_CENTRE_FRAC)));
-            slate.setViewOffset(targetOffX * centreP, targetOffY * centreP);
+            slate.setViewOffset(baseOffX + (targetOffX - baseOffX) * centreP,
+                                baseOffY + (targetOffY - baseOffY) * centreP);
             for (const c of copies)
                 for (const pt of c.pts) {
                     pt.pt.x = pt.bx + c.edx * splitP;
@@ -258,8 +265,15 @@ export class GroupCloneAsideAnimation extends Animation {
                 }
                 if (snaps.length === 0) return;
 
-                // Centre target from the real (restored) figure.
-                const fb = slate.visibleBounds();
+                // Capture the base offset (a maximized/presentation centring,
+                // #107) so the centre phase eases from it instead of 0.
+                baseOffX = slate.viewOffsetX;
+                baseOffY = slate.viewOffsetY;
+
+                // Centre target from the real (restored) figure. Use the
+                // visibility-independent figure bounds so it matches the
+                // #107 base-centring exactly (no shift when already centred).
+                const fb = slate.figureBounds();
                 if (fb == null) return;
                 const figW = fb.maxX - fb.minX, figH = fb.maxY - fb.minY;
                 const figCx = (fb.minX + fb.maxX) / 2;

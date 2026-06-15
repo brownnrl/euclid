@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Test View — #108 bidirectional highlight binding</title>
+<style>
+    body { font-family: sans-serif; margin: 16px; color: #333; max-width: 720px; }
+    .ref { cursor: pointer; border-bottom: 1px dotted #999; padding: 0 1px; }
+    .ref.hl { background: #FFD700; border-radius: 3px; }
+    #log { font-family: ui-monospace, monospace; font-size: 12px; color: #666;
+           background: #faf6ef; border: 1px solid #e3d6c2; padding: 8px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<h3>bidirectional highlight binding (#108)</h3>
+<p style="color:#555;">
+<b>Hover</b> a reference below for a transient preview; <b>click</b> to
+<b>pin</b> it so it stays highlighted (click again to unpin). Either sets
+the canvas element's emphasis (text→diagram). The library then emits a
+<code>geomlib:highlight</code> event carrying the element's canonical name
++ aliases, and the page lights up <b>every</b> reference to the same
+element — including ones spelled with an alias (diagram→all-text). Never
+triggered by clicking the canvas.
+</p>
+<p>
+Points: the apex <span class="ref" data-ref="A">A</span> and the base
+corner <span class="ref" data-ref="B">B</span>.
+The base segment <span class="ref" data-ref="AB">AB</span> (also written
+<span class="ref" data-ref="BA">BA</span>).
+The circle <span class="ref" data-ref="BCD">BCD</span> — Euclid also names
+it <span class="ref" data-ref="CDB">CDB</span> and
+<span class="ref" data-ref="DBC">DBC</span>.
+</p>
+<canvas id="canvasId" style="width:420px; height: 320px;" tabindex="0"></canvas>
+<div id="log">geomlib:highlight — (hover a reference)</div>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#fbfbf6',
+        title: "highlight event",
+        canvasid: "canvasId",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [120, 90],  vertexColor: "black", nameColor: "black" },
+            { name: "B", construction: E.Point.free, params: [300, 90],  vertexColor: "black", nameColor: "black" },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"], edgeColor: "black" },
+            { name: "BCD", construction: E.Circle.radius, params: ["A", "B"], edgeColor: "#3a6" },
+        ],
+        aliases: { "BA": "AB", "CDB": "BCD", "DBC": "BCD" },
+    });
+
+    const canvas = document.getElementById("canvasId");
+    const slate = geomlib.slates[geomlib.slates.length - 1];
+    const spans = Array.from(document.querySelectorAll(".ref"));
+
+    // text → diagram: pinned (clicked) refs stay emphasised; hover adds a
+    // transient preview on top. Both keyed by the canonical element name so
+    // an alias ref pins the same element.
+    const pinned = new Set();   // canonical element names
+    let hovered = null;
+    const canonOf = s => { const el = slate.lookupElement(s.dataset.ref); return el ? el.name : null; };
+
+    function refresh() {
+        for (const el of slate.elements) {
+            if (el.name == null) continue;
+            el.emphasized = pinned.has(el.name) || el.name === hovered;
+        }
+        slate.update();   // → emits geomlib:highlight → the listener lights up spans
+    }
+
+    spans.forEach(s => {
+        s.addEventListener("mouseenter", () => { hovered = canonOf(s); refresh(); });
+        s.addEventListener("mouseleave", () => { hovered = null; refresh(); });
+        s.addEventListener("click", () => {
+            const n = canonOf(s); if (n == null) return;
+            if (pinned.has(n)) pinned.delete(n); else pinned.add(n);
+            refresh();
+        });
+    });
+
+    // diagram → all-text: the library tells us which elements are
+    // highlighted (canonical + aliases); light up every matching ref.
+    canvas.addEventListener("geomlib:highlight", ev => {
+        const names = new Set();
+        ev.detail.highlighted.forEach(h => h.aliases.forEach(n => names.add(n)));
+        spans.forEach(s => s.classList.toggle("hl", names.has(s.dataset.ref)));
+        document.getElementById("log").textContent =
+            "geomlib:highlight → " +
+            (ev.detail.highlighted.map(h => h.name + " [" + h.aliases.join(",") + "]").join("; ") || "(none)");
+    });
+</script>
+</body>
+</html>

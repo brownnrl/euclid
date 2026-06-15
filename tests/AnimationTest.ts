@@ -988,6 +988,31 @@ describe("point slide + polygon translate-aside (issues #95, #94)", () => {
                 assert.strictEqual(polys.length, 2, "reduced-motion keeps the case copies");
             });
 
+            it("does not jump the offset when the figure is already centred (#107 fold)", () => {
+                // Pre-centre the figure (as #107 does on a maximized view):
+                // offset = canvasCentre − figureCentre. autoPlace must ease
+                // FROM this base, not dip back to 0.
+                const slate = figSlate(600);   // 600×300, figure centre (80,95)
+                slate.setViewOffset(220, 55);
+                const abc = slate.lookupElement("ABC")!;
+                const anim = findAnimation(A.Group.cloneAside)!;
+                const steps = anim.build(abc, slate, {
+                    include: ["ABC"], autoPlace: true,
+                    variants: [{ vary: { elem: "D", to: -0.35 } }, { vary: { elem: "D", to: 0.55 } }],
+                });
+                steps[0].setup!();
+                // Through the whole centre phase the offset stays put (no dip).
+                steps[0].tick(0, 8, steps[0].durationMs);
+                assert.ok(approx(slate.viewOffsetX, 220) && approx(slate.viewOffsetY, 55),
+                    `offset jumped at p=0: (${slate.viewOffsetX},${slate.viewOffsetY})`);
+                steps[0].tick(0.4, 8, steps[0].durationMs);   // end of centre phase
+                assert.ok(approx(slate.viewOffsetX, 220) && approx(slate.viewOffsetY, 55),
+                    `offset moved during centre phase: (${slate.viewOffsetX},${slate.viewOffsetY})`);
+                steps[0].finalise();
+                const polys = slate.ephemerals.filter(e => e instanceof PolygonElement);
+                assert.strictEqual(polys.length, 2, "copies still placed");
+            });
+
             it("falls back to above/below when the sides are too tight", () => {
                 // A wide, short figure (x∈[20,300] → 280px) on a tall but
                 // not-very-wide canvas: a left/right copy can't fit beside
