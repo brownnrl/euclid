@@ -388,6 +388,10 @@ class SlateControls {
         if (this._presenting) return;
         if (this._slate.slides.length === 0) return;
         if (!this._maximized) this.maximize();
+        // #114 — centre ONCE on entering presentation (covers the case
+        // where we were already maximized, so maximize() didn't run). Slide
+        // advances no longer re-centre.
+        this._applyCentring();
         this.buildPresentationOverlay();
         this.bindPresentationKeys();
         this._presenting = true;
@@ -399,9 +403,12 @@ class SlateControls {
         this.unbindPresentationKeys();
         this.clearStickyRef();
         this.removePresentationOverlay();
-        // Cancel any in-flight transition and drop any parked ephemerals
-        // (e.g. a cloneAside case-variant clone) so the static figure is
-        // clean on exit.
+        // #115 — leave presentation mode but STAY in the maximized view,
+        // keeping the viewer's manipulation. Only the maximize control
+        // un-maximizes (and that's what resets — see minimize()). Drop the
+        // parked case-variant ephemerals + the walk's highlight/visibility
+        // state, but keep the current view offset (the centre set on enter)
+        // and any dragged positions.
         if (this._slate.animator != null) this._slate.animator.cancel();
         this._slate.clearEphemerals();
         this._slate.clearVisibility();
@@ -410,15 +417,7 @@ class SlateControls {
             e.emphasized = false;
         }
         this._presenting = false;
-        // Reset to the inline view on slideshow exit (#107). minimize()
-        // resizes back, clears the view offset, redraws, AND resets the
-        // construction (same as the reset control).
-        if (this._maximized) {
-            this.minimize();
-        } else {
-            this._applyCentring();
-            this._slate.reset();
-        }
+        this._slate.update();
     }
 
     private buildPresentationOverlay(): void {
@@ -572,11 +571,10 @@ class SlateControls {
         // ephemerals, but an instant transition wouldn't — so clear
         // here on every advance.
         this._slate.clearEphemerals();
-        // Reset the view offset to the maximized base centring (#107) so
-        // every slide stays centred; an autoPlace transition (#99) eases
-        // from this base out to its case layout. Off the maximized path
-        // this clears to (0,0).
-        this._applyCentring();
+        // #114 — do NOT re-centre per slide; the figure is centred once on
+        // enter (onPresent / maximize) and stays put so a viewer dragging
+        // mid-walk isn't yanked back. An autoPlace transition (#99) still
+        // eases from the current (centred) offset out to its case layout.
 
         const slide = slides[clamped];
         const transition = slide.transition;
