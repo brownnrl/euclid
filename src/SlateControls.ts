@@ -268,8 +268,10 @@ class SlateControls {
         this._canvas.style.width = "100%";
         this._canvas.style.height = "100%";
 
-        this.resizeAndRedraw();
+        // Set the flag BEFORE resizeAndRedraw so its centring pass (#107)
+        // sees the maximized state and slides the figure to centre.
         this._maximized = true;
+        this.resizeAndRedraw();
         this.updateMaximizeIcon();
 
         // Track window resize so the canvas bitmap stays in sync with the
@@ -308,10 +310,16 @@ class SlateControls {
         this._canvas.width = this._savedStyles.canvasAttrWidth;
         this._canvas.height = this._savedStyles.canvasAttrHeight;
 
-        this.resizeAndRedraw();
+        // Clear the flag BEFORE resizeAndRedraw so its centring pass (#107)
+        // restores the figure to its authored position.
         this._maximized = false;
+        this.resizeAndRedraw();
         this._savedStyles = null;
         this.updateMaximizeIcon();
+        // Exiting the maximized view also resets the construction to its
+        // authored state — same as the reset (r) control — so any dragging
+        // done while maximized / presenting is undone on the way out (#107).
+        this._slate.reset();
     }
 
     private resizeAndRedraw(): void {
@@ -322,7 +330,23 @@ class SlateControls {
             this._canvas.width = w;
             this._canvas.height = h;
         }
+        this._applyCentring();
         this._slate.update();
+    }
+
+    // #107 — when maximized (via the control or presentation), slide the
+    // whole figure to the centre of the enlarged canvas (translate-only
+    // view offset, no scaling); when not maximized, restore the authored
+    // position. Recomputed on every resize so it stays centred as the
+    // window changes. Uses figureBounds() (visibility-independent) so the
+    // centre doesn't drift slide-to-slide during a presentation.
+    private _applyCentring(): void {
+        if (!this._maximized) { this._slate.clearViewOffset(); return; }
+        const b = this._slate.figureBounds();
+        if (b == null) { this._slate.clearViewOffset(); return; }
+        const cx = (b.minX + b.maxX) / 2, cy = (b.minY + b.maxY) / 2;
+        this._slate.setViewOffset(this._canvas.width / 2 - cx,
+                                  this._canvas.height / 2 - cy);
     }
 
     private updateMaximizeIcon(): void {
@@ -404,14 +428,21 @@ class SlateControls {
         // clean on exit.
         if (this._slate.animator != null) this._slate.animator.cancel();
         this._slate.clearEphemerals();
-        this._slate.clearViewOffset();   // undo any cloneAside centre slide (#99)
         this._slate.clearVisibility();
         for (let e of this._slate.elements) {
             e.shouldHighlight = false;
             e.emphasized = false;
         }
-        this._slate.update();
         this._presenting = false;
+        // Reset to the inline view on slideshow exit (#107). minimize()
+        // resizes back, clears the view offset, redraws, AND resets the
+        // construction (same as the reset control).
+        if (this._maximized) {
+            this.minimize();
+        } else {
+            this._applyCentring();
+            this._slate.reset();
+        }
     }
 
     private buildPresentationOverlay(): void {
@@ -565,9 +596,11 @@ class SlateControls {
         // ephemerals, but an instant transition wouldn't — so clear
         // here on every advance.
         this._slate.clearEphemerals();
-        // Likewise reset any cloneAside centre slide (#99) so each slide
-        // starts un-offset; an autoPlace transition re-applies it.
-        this._slate.clearViewOffset();
+        // Reset the view offset to the maximized base centring (#107) so
+        // every slide stays centred; an autoPlace transition (#99) eases
+        // from this base out to its case layout. Off the maximized path
+        // this clears to (0,0).
+        this._applyCentring();
 
         const slide = slides[clamped];
         const transition = slide.transition;
