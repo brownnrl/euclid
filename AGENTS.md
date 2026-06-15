@@ -67,7 +67,7 @@ src/                      TypeScript library source (54 files)
   Constructions.ts        Enums, abstract Construction base, registration array
   elements/{type}/        Per-type element classes + Constructions
   Slate.ts                Canvas manager, dispatch, drag pipeline
-  SlateControls.ts        UI overlay (reset/maximize/new-window)
+  SlateControls.ts        UI overlay (reset/maximize/present)
   Colors.ts               parseColor(), brighter/darker/HSB/hex
   index.ts                Public API — init(), parseParam(), E, Align, Color
 

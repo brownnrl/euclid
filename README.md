@@ -83,9 +83,9 @@ geomlib.init({
 ```
 
 Drag **A** or **B** and the triangle ABC follows. Press `r` (or the
-spacebar) to reset the diagram, `m` to maximize the canvas, `u` to pop
-the figure into a new window. For a step-by-step walkthrough of this
-example, see [doc/quickstart.md](doc/quickstart.md).
+spacebar) to reset the diagram and `m` to maximize the canvas. For a
+step-by-step walkthrough of this example, see
+[doc/quickstart.md](doc/quickstart.md).
 
 ## Documentation
 

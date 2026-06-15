@@ -45,8 +45,7 @@ can drag them (matching the Java applet's behavior):
 
 The `r` / `space` keyboard shortcut (also exposed as a SlateControls
 button) calls `Slate.reset()` to restore every element to its
-construction-time position. `m` toggles maximize, `u` / `return`
-opens the same scene in a new window.
+construction-time position. `m` toggles maximize.
 
 ### Element schema (one HTML param ↔ one `IConstructionInfo`)
 
@@ -86,7 +85,7 @@ applet's `debug` flag is not implemented in the TS port.
 | `PlaneElement.java` (+ ParallelP, PerpendicularPL) | `src/elements/plane/*.ts` |
 | `SphereElement.java` | `src/elements/sphere/SphereElement.ts` |
 | `PolyhedronElement.java` (+ Prism, Pyramid) | `src/elements/polyhedron/*.ts` |
-| `ClientFrame.java` (Java AWT detached frame) | replaced by SlateControls' "new window" button (`src/SlateControls.ts`) |
+| `ClientFrame.java` (Java AWT detached frame) | not ported |
 | `Remote.java` (applet remote-control) | not ported |
 
 The full porting status is recorded in
@@ -103,7 +102,7 @@ euclid/
 ├── src/
 │   ├── index.ts                  # Public API: init(), parseParam(), E enum, A enum, Align
 │   ├── Slate.ts                  # Canvas manager, element orchestration, mouse events, animateTo
-│   ├── SlateControls.ts          # UI overlay: reset, maximize, new window, presentation
+│   ├── SlateControls.ts          # UI overlay: reset, maximize, presentation
 │   ├── SlateAnimator.ts          # 0.6.0+ rAF loop for slide-transition animations
 │   ├── Colors.ts                 # Color parsing: parseColor(), brighter(), darker()
 │   └── elements/
@@ -172,7 +171,7 @@ geomlib.init({ canvasid, elements: [...], pivot?, background?, title?, … })
   │          │    elem.drawFace() → elem.drawEdge() → elem.drawVertex() → elem.drawName()
   │          └─ for each elem in _ephemerals: same four-layer pass on top
   │                                            (animation-local helpers; 0.6.0+)
-  └─ createControls(slate, canvas, config)   ← injects reset/maximize/new-window
+  └─ createControls(slate, canvas, config)   ← injects reset/maximize
                                                 buttons + keyboard shortcuts on top
                                                 of the canvas (src/SlateControls.ts).
                                                 When slate.slides.length > 0, also
@@ -300,8 +299,8 @@ maps a symbolic ref to a URL at render time, so refs don't go stale
 when target pages move.
 
 **SlateControls overlay.** When `slate.slides.length > 0`, the existing
-reset/maximize/new-window button strip grows a fourth play-triangle
-button. Pressing it (or the `p` keyboard shortcut) maximises the canvas
+reset/maximize button strip grows a play-triangle button. Pressing it
+(or the `p` keyboard shortcut) maximises the canvas
 and floats a soft white caption panel at the bottom of the viewport
 with prev / counter / next / exit controls; arrow keys and `Esc` do
 what you'd expect. Caption `{NAME}` tokens become clickable bold-italic
@@ -667,6 +666,6 @@ ordered list. Each element entry can be a structured object —
 `parseParam(s)` is the public converter.
 
 `init()` also calls `createControls()` from `src/SlateControls.ts`,
-which wraps the canvas and adds the reset / maximize / new-window
-button overlay plus keyboard shortcuts (`r`/`space`, `u`/`return`,
-`m`). See [api.md § SlateControls](api.md#slatecontrols-ui-overlay).
+which wraps the canvas and adds the reset / maximize button overlay
+plus keyboard shortcuts (`r`/`space`, `m`). See
+[api.md § SlateControls](api.md#slatecontrols-ui-overlay).
