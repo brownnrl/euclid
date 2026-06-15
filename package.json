@@ -1,6 +1,6 @@
 {
   "name": "@brownnrl/geomlib",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Interactive Euclidean geometry constructions in the browser — a TypeScript port of David E. Joyce's 1996 Java Geometry Applet.",
   "keywords": [
     "euclid",

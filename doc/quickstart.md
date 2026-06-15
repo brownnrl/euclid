@@ -167,7 +167,8 @@ With the page loaded:
 | Press **m** | Maximize the canvas to fill the viewport. |
 
 The reset/maximize controls also appear as small icon buttons at the
-top-right of the canvas.
+top-right of the canvas — hidden by default, fading in on hover or when
+the canvas has keyboard focus.
 
 ## What about the other shorter form?
 

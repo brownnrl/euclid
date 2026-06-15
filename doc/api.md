@@ -469,12 +469,15 @@ no-op — every pre-existing render path is unchanged. `A.Group.cloneAside`'s
 (0.11.0+) is the bbox of *all* named elements regardless of visibility — a
 stable centre that doesn't drift as a presentation reveals/hides elements.
 
-**Maximized-view recenter (#107, 0.11.0+).** When the canvas is maximized
-(via the control or by entering presentation), the figure is centred with
-this offset (translate only); on minimize / presentation exit it restores
-the inline view **and runs `reset()`** (the ⟲ control's behaviour). Every
-presentation slide stays centred; an `autoPlace` case slide eases out from
-that base with no jump.
+**Maximized-view recenter (#107, #114, #115).** When the canvas is
+maximized — via the control or by entering presentation — the figure is
+centred with this offset (translate only). It centres **once** on enter
+and **not** on each slide advance, so a viewer dragging a point mid-walk
+isn't yanked back (#114); an `autoPlace` case slide still eases from the
+centred offset out to its layout with no jump. **Exiting presentation
+(`Esc`) leaves the walk but stays maximized**, keeping the viewer's
+manipulation (#115). Only the **minimize** control un-maximizes, and that
+is what restores the inline view + runs `reset()`.
 
 ### `geomlib:highlight` event (#108, 0.11.0+)
 
@@ -854,17 +857,21 @@ Lower-level methods (`createElement`, `convertParams`, `findConstruction`,
 
 `init()` automatically calls `createControls(slate, canvas, config)`
 from [src/SlateControls.ts](../src/SlateControls.ts), which wraps the
-canvas in a relative-positioned `<div>` and overlays three icon
-buttons at the top-right:
+canvas in a relative-positioned `<div>` and overlays icon buttons at
+the top-right:
 
 | Button | Keyboard | Action |
 |---|---|---|
 | Reset (circular arrow) | `r` or `space` | `slate.reset()`. |
 | Maximize (expand arrows) | `m` | Toggle: fill the viewport (position fixed, 100vw / 100vh, z-index 9999) or restore. |
+| Present (play triangle) | `p` | Only when the slate has slides — step through the slideshow. |
 
-Keyboard shortcuts only fire when the canvas itself has focus. The
-overlay can be skipped (e.g. for headless rendering) by passing a
-canvas whose `parentElement` is `null`.
+The controls are **hidden by default and fade in on canvas hover or
+keyboard focus** (`:hover` / `:focus-within`), so a page of many
+diagrams isn't cluttered with a button row on each (#69). Keyboard
+shortcuts only fire when the canvas itself has focus. The overlay can be
+skipped (e.g. for headless rendering) by passing a canvas whose
+`parentElement` is `null`.
 
 ---
 
