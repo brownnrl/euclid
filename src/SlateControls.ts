@@ -123,6 +123,11 @@ class SlateControls {
         this._wrapper = this.createWrapper();
         this.createButtons();
         this.addKeyboardShortcuts();
+        // Track window resize for the lifetime of the slate (#71): an inline
+        // responsive canvas (`max-width:100%`) must re-fit on orientation
+        // flip / column resize, not only while maximized. resizeAndRedraw
+        // re-syncs the bitmap, recomputes the fit-scale, and redraws.
+        this._stopTrackingResize = trackWindowResize(window, () => this.resizeAndRedraw());
     }
 
     private createWrapper(): HTMLDivElement {
@@ -286,22 +291,14 @@ class SlateControls {
         this._maximized = true;
         this.resizeAndRedraw();
         this.updateMaximizeIcon();
-
-        // Track window resize so the canvas bitmap stays in sync with the
-        // wrapper's 100vw × 100vh CSS size. Without this the bitmap stays
-        // at its maximize-time dimensions while the CSS display follows
-        // viewport changes, and the diagram visibly stretches/squishes.
-        this._stopTrackingResize = trackWindowResize(window, () => this.resizeAndRedraw());
+        // Window-resize tracking is persistent (set up in init), so the
+        // maximized 100vw × 100vh canvas already re-syncs on viewport change.
     }
 
     private minimize(): void {
         if (!this._savedStyles) return;
-
-        // Stop tracking window resize before restoring saved layout.
-        if (this._stopTrackingResize) {
-            this._stopTrackingResize();
-            this._stopTrackingResize = null;
-        }
+        // Resize tracking stays active (persistent since init) so the inline
+        // canvas keeps re-fitting after we restore it.
 
         // Restore saved styles
         this._wrapper.style.position = this._savedStyles.wrapperPosition;
@@ -336,30 +333,36 @@ class SlateControls {
     }
 
     private resizeAndRedraw(): void {
-        // Sync canvas internal resolution to CSS size
-        let w = this._canvas.clientWidth;
-        let h = this._canvas.clientHeight;
+        // Sync the canvas BITMAP to CSS size × dpr so it stays crisp on
+        // HiDPI and after CSS scaling (#71). drawElements scales the context
+        // by dpr; coordinates stay in CSS px.
+        const dpr = (typeof window !== "undefined" && window.devicePixelRatio) || 1;
+        let w = Math.round(this._canvas.clientWidth * dpr);
+        let h = Math.round(this._canvas.clientHeight * dpr);
         if (this._canvas.width !== w || this._canvas.height !== h) {
             this._canvas.width = w;
             this._canvas.height = h;
         }
+        this._slate.recomputeFitScale();   // #71 — F = min(1, display/logical)
         this._applyCentring();
         this._slate.update();
     }
 
     // #107 — when maximized (via the control or presentation), slide the
-    // whole figure to the centre of the enlarged canvas (translate-only
-    // view offset, no scaling); when not maximized, restore the authored
-    // position. Recomputed on every resize so it stays centred as the
-    // window changes. Uses figureBounds() (visibility-independent) so the
-    // centre doesn't drift slide-to-slide during a presentation.
+    // whole figure to the centre of the enlarged canvas; when not maximized,
+    // restore the authored position (translate 0; the fit-scale handles
+    // responsive sizing). Recomputed on every resize so it stays centred as
+    // the window changes. figureBounds() is in logical coords, so the centre
+    // target is computed in display px through the fit-scale F (#71).
     private _applyCentring(): void {
         if (!this._maximized) { this._slate.clearViewOffset(); return; }
         const b = this._slate.figureBounds();
         if (b == null) { this._slate.clearViewOffset(); return; }
         const cx = (b.minX + b.maxX) / 2, cy = (b.minY + b.maxY) / 2;
-        this._slate.setViewOffset(this._canvas.width / 2 - cx,
-                                  this._canvas.height / 2 - cy);
+        const F = this._slate.viewScale;
+        // T (display px) so F·figureCentre + T lands at the display centre.
+        this._slate.setViewOffset(this._slate.displayWidth / 2 - F * cx,
+                                  this._slate.displayHeight / 2 - F * cy);
     }
 
     private updateMaximizeIcon(): void {

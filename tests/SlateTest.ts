@@ -4,6 +4,7 @@ import {Slate} from "../src/Slate";
 import {E, IConstructionInfo, init, slates, revealNoscriptFallback} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
+import {GeomElement} from "../src/elements/GeomElement";
 import {trackWindowResize} from "../src/SlateControls";
 import {createCanvas} from "canvas";
 import {almostEqual, toElements} from "./shared/testHelpers";
@@ -632,6 +633,61 @@ describe("slate", () => {
             almostEqual(A.x, 150, 0.5); almostEqual(A.y, 60, 0.5);   // dragged
             slate.reset();
             almostEqual(A.x, 100, 0.001); almostEqual(A.y, 100, 0.001);   // restored
+        });
+
+        it("styleScale enlarges the label font so it stays constant size under fit-scale (#71)", () => {
+            GeomElement.setFont("Times New Roman", 18);
+            GeomElement.styleScale = 1;
+            assert.ok(GeomElement.fontString().includes("18px"), GeomElement.fontString());
+            GeomElement.styleScale = 2;   // figure shrunk to F=0.5 → decorations ×2
+            assert.ok(GeomElement.fontString().includes("36px"), GeomElement.fontString());
+            GeomElement.styleScale = 1;   // reset for other tests
+        });
+
+        it("logicalWidth defaults to the bitmap; setLogicalSize overrides (#71)", () => {
+            const slate: Slate = new Slate(createCanvas(400, 300));
+            assert.strictEqual(slate.logicalWidth, 400);
+            assert.strictEqual(slate.logicalHeight, 300);
+            slate.setLogicalSize(680, 520);
+            assert.strictEqual(slate.logicalWidth, 680);
+            assert.strictEqual(slate.logicalHeight, 520);
+        });
+
+        it("recomputeFitScale = min(1, display/logical) — shrinks, never grows (#71)", () => {
+            const slate: Slate = new Slate(createCanvas(340, 260));   // display = bitmap (node)
+            // Logical smaller than display → no scaling (clamped to 1).
+            slate.setLogicalSize(200, 150);
+            slate.recomputeFitScale();
+            assert.strictEqual(slate.viewScale, 1);
+            // Logical larger than display → shrink to fit (the narrow-column case).
+            slate.setLogicalSize(680, 520);
+            slate.recomputeFitScale();
+            almostEqual(slate.viewScale, 0.5, 0.001);   // min(340/680, 260/520)
+        });
+
+        it("the pick path maps display px → logical coords through the fit-scale (#71)", () => {
+            const slate: Slate = new Slate(createCanvas(340, 260));
+            (slate as any)._htmlCanvas = { getBoundingClientRect: () => ({ left: 0, top: 0 }) };
+            slate.setLogicalSize(680, 520);
+            slate.recomputeFitScale();   // F = 0.5
+            // A click at display (100, 50) is logical (200, 100).
+            assert.deepStrictEqual(slate._getCanvasPosition(100, 50), [200, 100]);
+        });
+
+        it("drag clamp uses the on-screen model range under the fit-scale (#71)", () => {
+            const slate: Slate = new Slate(createCanvas(340, 260));
+            toElements(slate, [
+                { construction: E.Point.free, name: "A", params: [200, 100] },
+            ]);
+            slate.elements.forEach(e => { (e as any).vertexColor = "black"; e.update(); });
+            const A = slate.lookupElement("A") as PointElement;
+            slate.setLogicalSize(680, 520);
+            slate.recomputeFitScale();   // F = 0.5 → on-screen model range [0,680]×[0,520]
+            slate._onMouseDown(200, 100);
+            slate._onMouseDrag(1000, 500);   // past the right edge
+            slate._onMouseUp(1000, 500);
+            almostEqual(A.x, 680, 0.5);   // clamped to displayWidth/F = logical width
+            almostEqual(A.y, 500, 0.5);   // within range, unclamped
         });
 
         it("drag clamp shifts with the view offset (#107 maximized recenter)", () => {

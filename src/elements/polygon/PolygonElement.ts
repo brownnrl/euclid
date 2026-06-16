@@ -76,7 +76,7 @@ export class PolygonElement extends GeomElement {
         ctx.strokeStyle = color;
         {
             const baseW = this.shouldHighlight ? 3 : 1;
-            ctx.lineWidth = baseW + this.emphasisAmount * (6 - baseW);
+            ctx.lineWidth = (baseW + this.emphasisAmount * (6 - baseW)) * GeomElement.styleScale;
         }
         // Edge enumeration: a closed polygon (>2 verts) has V.length
         // edges including the closing one; an open polyline has

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test View — 3D figure scale-to-fit (#71)</title>
+<style>
+    body { font-family: Georgia, serif; color: #2a2a2a; background: #fbf7ef; margin: 0; }
+    main { max-width: 40rem; margin: 0 auto; padding: 16px; }
+    h1 { font-size: 1.3rem; }
+    p { line-height: 1.5; }
+    figure.diagram { margin: 1.2em 0; }
+    figure.diagram canvas { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    figcaption { font-size: 0.85rem; color: #666; text-align: center; margin-top: 4px; }
+    .note { background: #fff; border: 1px solid #e3d6c2; border-radius: 6px;
+            padding: 10px 12px; font-size: 0.85rem; color: #555; }
+    code { background: #f0ead9; padding: 0 3px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<main>
+<h1>3D figure on a phone (#71)</h1>
+<p class="note">
+A richer construction — a parallelepiped, a pyramid, and a sphere
+(coords ~720 wide) in the lektor responsive figure setup. On a narrow
+screen it should <b>scale down whole to fit the column</b> (no clip / no
+overflow), stay <b>crisp</b> at the device's pixel density, and keep its
+<b>labels, dots, and line widths a constant readable size</b> while the
+solids shrink. <b>Drag</b> any vertex to rotate the scene about {A} — the
+cursor should track correctly even when the figure is scaled.
+</p>
+
+<figure class="diagram">
+  <canvas id="scene" style="width:720px; height:520px;" tabindex="0"></canvas>
+  <figcaption>parallelepiped + pyramid + sphere — drag to rotate</figcaption>
+</figure>
+</main>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "3D scale-to-fit",
+        canvasid: "scene",
+        pivot: "A",
+        elements: [
+            // Parallelepiped (box), left. Oblique coords so it reads as 3D.
+            { name: "A", construction: E.Point.fixed, params: [70, 380, 0],  vertexColor: "black", nameColor: "black" },
+            { name: "B", construction: E.Point.fixed, params: [250, 380, 0], vertexColor: "black", nameColor: "black" },
+            { name: "C", construction: E.Point.fixed, params: [70, 210, 0],  vertexColor: "black", nameColor: "black" },
+            { name: "D", construction: E.Point.fixed, params: [150, 300, 130], vertexColor: "black", nameColor: "black" },
+            { name: "box", construction: E.Polyhedra.parallelepiped, params: ["A","B","C","D"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(120,180,210,0.30)" },
+            // Pyramid, middle.
+            { name: "P", construction: E.Point.fixed, params: [330, 400, 0], vertexColor: "black", nameColor: "black" },
+            { name: "Q", construction: E.Point.fixed, params: [540, 400, 0], vertexColor: "black", nameColor: "black" },
+            { name: "R", construction: E.Point.fixed, params: [430, 330, 150], vertexColor: "black", nameColor: "black" },
+            { name: "pbase", construction: E.Polygon.triangle, params: ["P","Q","R"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(210,170,120,0.28)" },
+            { name: "V", construction: E.Point.fixed, params: [440, 200, 70], vertexColor: "black", nameColor: "black" },
+            { name: "pyr", construction: E.Polyhedra.pyramid, params: ["pbase","V"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(180,150,210,0.30)" },
+            // Sphere, right.
+            { name: "O", construction: E.Point.fixed, params: [630, 270, 0], vertexColor: "black", nameColor: "black" },
+            { name: "S", construction: E.Point.fixed, params: [690, 270, 0], vertexColor: "black", nameColor: "black" },
+            { name: "ball", construction: E.Sphere.radius, params: ["O","S"],
+              nameColor: 0, vertexColor: 0, edgeColor: "darkGreen", faceColor: 0 },
+        ],
+    });
+</script>
+</body>
+</html>

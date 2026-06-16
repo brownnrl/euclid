@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Real mobile viewport, like a phone. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test View — mobile canvas scaling (#71)</title>
+<style>
+    /* Echoes the euclids-elements lektor figure styling: a narrow reading
+       column, figures that should fit the column on a phone. */
+    body { font-family: Georgia, serif; color: #2a2a2a; background: #fbf7ef;
+           margin: 0; }
+    main { max-width: 38rem; margin: 0 auto; padding: 16px; }
+    h1 { font-size: 1.3rem; }
+    p { line-height: 1.5; }
+    figure.diagram { margin: 1.2em 0; }
+    /* The key responsive rule the site uses. */
+    figure.diagram canvas {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+    figcaption { font-size: 0.85rem; color: #666; text-align: center; margin-top: 4px; }
+    .note { background: #fff; border: 1px solid #e3d6c2; border-radius: 6px;
+            padding: 10px 12px; font-size: 0.85rem; color: #555; }
+    code { background: #f0ead9; padding: 0 3px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Mobile canvas scaling probe (#71)</h1>
+<p class="note">
+Open this in a phone or browser device-emulation at a narrow width
+(≈390px). Each figure below wraps a geomlib canvas in
+<code>&lt;figure class="diagram"&gt;</code> with
+<code>canvas { max-width: 100%; height: auto }</code> — the lektor site's
+responsive rule. Watch what happens to a figure whose authored coordinate
+width is <b>wider than the column</b>: does it scale to fit, clip, or push
+the page wider (horizontal scroll)?
+</p>
+
+<p>A small figure (authored ~300px wide) — comfortably narrower than the
+reading column, so it should look fine everywhere:</p>
+<figure class="diagram">
+  <canvas id="small" style="width:300px; height:220px;" tabindex="0"></canvas>
+  <figcaption>~300-unit figure</figcaption>
+</figure>
+
+<p>A wide figure (authored 680px) — <b>wider than a phone column</b>.
+This is the case in question: today it overflows / clips instead of
+scaling down to fit:</p>
+<figure class="diagram">
+  <canvas id="wide" style="width:680px; height:300px;" tabindex="0"></canvas>
+  <figcaption>~680-unit figure</figcaption>
+</figure>
+
+<p class="note">
+Desired: the wide figure should <b>scale to fit the column</b> — whole
+figure visible, smaller, crisp at the device's pixel density — instead of
+running off the side of the screen.
+</p>
+</main>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+
+    // Small figure: a triangle with a cevian, coords ~300×220.
+    geomlib.init({
+        background: '#ffe9cd', title: "small", canvasid: "small",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [70, 40] },
+            { name: "B", construction: E.Point.free, params: [250, 190] },
+            { name: "C", construction: E.Point.free, params: [40, 190] },
+            { name: "ABC", construction: E.Polygon.triangle, params: ["A","B","C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(120,180,210,0.25)" },
+        ],
+    });
+
+    // Wide figure: coords span to ~660 — wider than a phone column.
+    geomlib.init({
+        background: '#ffe9cd', title: "wide", canvasid: "wide",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [40, 50] },
+            { name: "B", construction: E.Point.free, params: [640, 60] },
+            { name: "C", construction: E.Point.free, params: [330, 260] },
+            { name: "ABC", construction: E.Polygon.triangle, params: ["A","B","C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(210,150,120,0.25)" },
+            { name: "D", construction: E.Point.lineSlider, params: ["A","B",340,55],
+              vertexColor: "orange", nameColor: "black" },
+            { name: "CD", construction: E.Line.connect, params: ["C","D"],
+              nameColor: 0, vertexColor: 0, edgeColor: "darkGray" },
+        ],
+    });
+</script>
+</body>
+</html>

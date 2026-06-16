@@ -245,9 +245,10 @@ export class GroupCloneAsideAnimation extends Animation {
             setup: () => {
                 target.drawProgress = 1;
                 target.visible = true;
-                const canvas = slate.canvas;
-                const W = canvas ? canvas.width : 0;
-                const H = canvas ? canvas.height : 0;
+                // Display px (#71): autoPlace runs only while presenting
+                // (maximized ⇒ fit-scale 1), so this is the on-screen extent.
+                const W = slate.displayWidth;
+                const H = slate.displayHeight;
                 if (!W || !H) return;
 
                 // Snapshot each variant (vary → snapshot → restore).
@@ -368,9 +369,10 @@ export class GroupCloneAsideAnimation extends Animation {
 
                 const bb = boundsOf(pts);
                 const bw = bb.maxX - bb.minX, bh = bb.maxY - bb.minY;
-                const canvas = slate.canvas;
-                const W = canvas ? canvas.width : 0;
-                const H = canvas ? canvas.height : 0;
+                // Display px (#71): autoPlace runs only while presenting
+                // (maximized ⇒ fit-scale 1), so this is the on-screen extent.
+                const W = slate.displayWidth;
+                const H = slate.displayHeight;
                 const MARGIN = 6;
                 if (W && W < CLONE_ASIDE_DESKTOP_MIN_WIDTH) return;
                 edx = dx; edy = dy;

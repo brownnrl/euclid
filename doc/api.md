@@ -445,25 +445,51 @@ class Slate {
 glue can do DOM-relative reasoning (e.g. compare position against a
 prose span on a multi-canvas page).
 
-### Slate view offset
+### Coordinate spaces & the view transform
 
 ```typescript
 class Slate {
-    get viewOffsetX(): number;          // (0.10.0+)
+    get viewOffsetX(): number;          // (0.10.0+)  translate T (display px)
     get viewOffsetY(): number;
+    get viewScale(): number;            // (0.12.x+)  fit scale F
     setViewOffset(x: number, y: number): void;
     clearViewOffset(): void;
+    setLogicalSize(w: number, h: number): void;   // (0.12.x+)
+    recomputeFitScale(): void;
+    get logicalWidth(): number; get logicalHeight(): number;
+    get displayWidth(): number; get displayHeight(): number;
     visibleBounds(): { minX, maxX, minY, maxY } | null;
     figureBounds(): { minX, maxX, minY, maxY } | null;   // (0.11.0+)
     namesFor(canonical: string): string[];               // (0.11.0+)
 }
 ```
 
-A **translate-only** offset (no scale) applied to every drawn element
-and ephemeral; the pick path subtracts it (and the drag clamp shifts with
-it), so the figure stays draggable under the offset. Default `(0, 0)` is a
-no-op — every pre-existing render path is unchanged. `A.Group.cloneAside`'s
-`autoPlace` uses it to slide the figure to the canvas centre (#99).
+geomlib keeps three sizes distinct (#71):
+
+- **logical** — the authored coordinate space element positions live in
+  (the canvas's CSS `style` px / `width`-`height` attribute, or the `width`
+  /`height` init field). Fixed.
+- **display** — `canvas.clientWidth/Height`, responsive via the consumer's
+  `max-width: 100%`.
+- **bitmap** — `canvas.width` = display × `devicePixelRatio` (device px).
+
+A drawn point maps to device px as `dpr · (F · model + T)`:
+
+- **`F` (`viewScale`)** = `min(1, display / logical)` — shrinks the figure
+  to **fit** a narrow column (never grows it; `F = 1` at authored size). So
+  the whole figure scales down on a phone instead of clipping, and renders
+  at native pixels (crisp on HiDPI). Decorations (label font, vertex dots,
+  line widths) are multiplied by `1/F` so they keep a **constant on-screen
+  size** while the geometry shrinks.
+- **`T` (`viewOffset`)** = the translate, in display px — `(0,0)` inline;
+  the figure-centre when maximized (#107). `A.Group.cloneAside`'s
+  `autoPlace` slides the figure to centre with it (#99).
+
+The pick/drag path inverts the transform, so dragging lands under the
+cursor at any fit-scale. **`F = 1, T = (0,0)`** (desktop at authored size,
+and the headless/snapshot path) is the identity — every pre-existing
+render path is unchanged. **Consumer note:** scale-to-fit only engages when
+the page lets the canvas shrink, i.e. `canvas { max-width: 100%; height: auto }`.
 
 `visibleBounds()` is the bbox of the *visible* named figure; `figureBounds()`
 (0.11.0+) is the bbox of *all* named elements regardless of visibility — a

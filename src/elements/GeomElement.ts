@@ -58,10 +58,25 @@ export abstract class GeomElement {
     private _faceHighlightColor   : string = '#FFD700';
 
     // Default matches Java: Font("TimesRoman", Font.ITALIC, 18)
-    protected static _font : string = "italic 18px Times New Roman";
+    protected static _fontSize : number = 18;
+    protected static _fontName : string = "Times New Roman";
+
+    // Style scale (#71): when the figure is fit-scaled down to a narrow
+    // display (view scale F < 1), decorations — label font, vertex dots,
+    // line widths — are multiplied by 1/F so they keep a constant on-screen
+    // size and stay readable while the geometry shrinks. Slate.drawElements
+    // sets it from the view scale before each frame; 1 (the default, and
+    // F=1 desktop/headless) leaves rendering bit-for-bit unchanged.
+    static styleScale : number = 1;
 
     static setFont(fontName: string, fontSize: number): void {
-        GeomElement._font = `italic ${fontSize}px ${fontName}`;
+        GeomElement._fontName = fontName;
+        GeomElement._fontSize = fontSize;
+    }
+
+    // The label font, scaled by the current styleScale.
+    static fontString(): string {
+        return `italic ${GeomElement._fontSize * GeomElement.styleScale}px ${GeomElement._fontName}`;
     }
 
     private _draggable : boolean;
@@ -114,7 +129,7 @@ export abstract class GeomElement {
     drawString(ix : number, iy : number,  c: SlateCanvas, overrideAlign? : Align) {
         let ctx = c.getContext("2d") as CanvasRenderingContext2D;
         if(this._nameColor == null) return;
-        ctx.font = GeomElement._font;
+        ctx.font = GeomElement.fontString();
         ctx.fillStyle = this._nameColor;
         let [w, h] = this._getTextMetrics(ctx, this._name);
 
