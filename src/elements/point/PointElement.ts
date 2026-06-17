@@ -391,7 +391,7 @@ export class PointElement extends GeomElement {
         // the result so A.Point.appear can pulse the marker in from 0.
         const baseR = this.shouldHighlight ? 4 : 2;
         let r = baseR + this.emphasisAmount * (6 - baseR);
-        r *= this.drawProgress;
+        r *= this.drawProgress * GeomElement.styleScale;   // constant on-screen dot under fit-scale (#71)
         if (r < 0.5) return;   // avoid degenerate sub-pixel arcs
         ctx.beginPath();
         ctx.fillStyle = color;

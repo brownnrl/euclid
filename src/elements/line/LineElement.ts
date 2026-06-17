@@ -60,7 +60,7 @@ export class LineElement extends GeomElement {
         // animator fades 1 → 0 over ~250 ms at the end of a transition
         // so the post-animation settle isn't a hard pop.
         const baseW = this.shouldHighlight ? 3 : 1;
-        ctx.lineWidth = baseW + this.emphasisAmount * (6 - baseW);
+        ctx.lineWidth = (baseW + this.emphasisAmount * (6 - baseW)) * GeomElement.styleScale;
         // Slide-transition animation: drawProgress < 1 traces only the
         // first `progress` fraction of the line A → B. Default 1 keeps
         // the full-line behaviour every existing consumer relies on.

@@ -154,7 +154,7 @@ export class CircleElement extends GeomElement {
         // previous element's value doesn't leak.
         {
             const baseW = this.shouldHighlight ? 3 : 1;
-            ctx.lineWidth = baseW + this.emphasisAmount * (6 - baseW);
+            ctx.lineWidth = (baseW + this.emphasisAmount * (6 - baseW)) * GeomElement.styleScale;
         }
         // Edge sweep: partial arc from drawStartAngle through
         // 2π · drawProgress. Default progress = 1 yields a full circle.
@@ -194,7 +194,7 @@ export class CircleElement extends GeomElement {
         if (this.nameColor != null && this.name != null) {
             let ctx = c.getContext("2d") as CanvasRenderingContext2D;
             ctx.strokeStyle = this.nameColor;
-            ctx.font = GeomElement._font;
+            ctx.font = GeomElement.fontString();
             let [w, h] = this._getTextMetrics(ctx, this.name);
             ctx.fillText(this._name, this.Center.x - w/2, this.Center.y - h/2);
         }

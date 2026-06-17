@@ -100,7 +100,7 @@ export class SectorElement extends GeomElement {
         ctx.strokeStyle = color;
         {
             const baseW = this.shouldHighlight ? 3 : 1;
-            ctx.lineWidth = baseW + this.emphasisAmount * (6 - baseW);
+            ctx.lineWidth = (baseW + this.emphasisAmount * (6 - baseW)) * GeomElement.styleScale;
         }
         ctx.beginPath();
         let r = this.radius();

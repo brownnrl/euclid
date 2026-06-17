@@ -185,6 +185,12 @@ Mouse/touch events call `movePick(x, y)`; see "Drag pipeline" below.
 
 ## Drag pipeline: `movePick` / `translateCoordinates` / `rotateCoordinates`
 
+Pointer coords reach the pipeline already mapped into **model (logical)
+space** by `_getCanvasPosition`, which inverts the view transform
+`dpr·(F·model + T)` — i.e. `model = ((clientXY − rect) − T) / F` (#71/#107).
+So `movePick` works in logical coords regardless of the fit-scale `F` or
+centre offset `T`; its on-screen clamp is the model range `[−T/F, (display − T)/F]`.
+
 `Slate.movePick(c, d)` routes a drag to one of three branches based on
 what was picked and the scene state:
 

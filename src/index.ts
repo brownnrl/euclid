@@ -110,6 +110,11 @@ export interface IInitialization {
     pivot?: string;
     font?: string;
     fontsize?: number;
+    // Authored logical coordinate size (#71). Optional — normally inferred
+    // from the canvas's CSS style px / width-height attribute. Set it to
+    // pin the coordinate space when neither is declared, or to override.
+    width?: number;
+    height?: number;
     elements: (IConstructionInfo | string)[];
     // Secondary element names that resolve to a canonical element.
     // Lets prose name an element under any of the conventional
@@ -201,10 +206,32 @@ export function parseParam(value: string): IConstructionInfo {
     return result;
 }
 
+// The construction's authored coordinate extent (logical px). Element
+// coords are authored in this space; the figure is fit-scaled from here to
+// the (responsive) display. Read before the bitmap is resized. (#71)
+function authoredLogicalSize(i: IInitialization, canvas: HTMLCanvasElement) : [number, number] {
+    const c = canvas as any;
+    const px = (s: any) => {
+        const m = /^\s*(\d+(?:\.\d+)?)\s*px\s*$/.exec(typeof s === "string" ? s : "");
+        return m ? parseFloat(m[1]) : 0;
+    };
+    const style = c.style || {};
+    const attr = (n: string) => (typeof c.getAttribute === "function"
+        ? parseInt(c.getAttribute(n) || "0", 10) || 0 : 0);
+    const w = (i.width || 0) || px(style.width)  || attr("width")  || c.clientWidth  || canvas.width;
+    const h = (i.height || 0) || px(style.height) || attr("height") || c.clientHeight || canvas.height;
+    return [w, h];
+}
+
+// Size the canvas BITMAP to its CSS display size × devicePixelRatio so it
+// renders crisp on HiDPI / retina (#71). The construction coordinate space
+// stays in CSS px (clientWidth/Height); drawElements scales the context by
+// dpr. Headless / no window → dpr 1, so node rendering is unchanged.
 // see https://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5
 function resizeCanvasToDisplaySize(canvas: HTMLCanvasElement) : void {
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
+    const dpr = (typeof window !== "undefined" && window.devicePixelRatio) || 1;
+    const width = Math.round(canvas.clientWidth * dpr);
+    const height = Math.round(canvas.clientHeight * dpr);
 
     if (canvas.width != width || canvas.height != height) {
         canvas.width = width;
@@ -272,8 +299,17 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
     // position relative to canvas center. Override with align param.
     let defaultAlign : align = i.align != null ? i.align : align.CENTRAL;
 
+    // Capture the authored LOGICAL coordinate size (#71) before
+    // resizeCanvasToDisplaySize overwrites the bitmap: explicit config →
+    // CSS style px → width/height attribute → clientWidth. The first three
+    // are the uncapped authored size (so a figure stays its logical size
+    // even when CSS shrinks the display on a narrow column); clientWidth is
+    // the last-resort legacy behaviour.
+    const [logicalW, logicalH] = authoredLogicalSize(i, canvas);
     resizeCanvasToDisplaySize(canvas);
     let slate : Slate = new Slate(canvas);
+    slate.setLogicalSize(logicalW, logicalH);
+    slate.recomputeFitScale();
     slates.push(slate);
 
     // Set font — Java defaults: Font("TimesRoman", Font.ITALIC, 18)
