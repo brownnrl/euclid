@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — curved triangle (arc-sided, #119)</title>
+<style>
+    body { font-family: Georgia, serif; color: #2a2a2a; background: #fff; margin: 0; }
+    main { max-width: 40rem; margin: 0 auto; padding: 16px; }
+    .ref { cursor: pointer; border-bottom: 1px dotted #999; }
+    .ref.hl { background: #FFD700; border-radius: 3px; }
+    figure.diagram canvas { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.85rem; color:#555; }
+</style>
+</head>
+<body>
+<main>
+<h1>Curved triangle (#119) — I.16 elliptic triangle</h1>
+<p class="note">
+The I.16 Guide's elliptic-geometry "triangle"
+<span class="ref" data-ref="ABC">ABC</span> has sides that are
+great-circle <b>arcs</b>. <code>polygon;curvedTriangle;A,B,C,…</code>
+takes the three vertices and the three "line" circles their sides lie on,
+and draws each side as the geodesic arc between two vertices — clipped to
+the corners, not run on to the disk edge. It IS the three side-segments,
+so hovering the prose ref lights exactly the curved sides gold.
+</p>
+<p>
+Hover <span class="ref" data-ref="ABC">triangle ABC</span> to light the
+elliptic triangle.
+</p>
+
+<figure class="diagram">
+  <canvas id="canvas_1" width="300" height="300" tabindex="0"></canvas>
+</figure>
+</main>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    geomlib.init({
+        canvasid: "canvas_1",
+        background: "0,0,100",
+        title: "Elliptic plane",
+        elements: [
+            "O;point;free;150,150;0;0",
+            "P;point;free;260,150;0;0",
+            "disk;circle;radius;O,P;0;0;blue;rgba(120,150,235,0.16)",
+            "A;point;free;70,140",
+            "B;point;free;150,170",
+            "C;point;free;125,90",
+            "A#;point;proportion;O,A,O,P,O,P,O,A;0;0",
+            "A*;point;extend;A,O,O,A#;0;0",
+            "C#;point;proportion;O,C,O,P,O,P,O,C;0;0",
+            "C*;point;extend;C,O,O,C#;0;0",
+            "ABcirc;circle;circumcircle;A,B,A*;0;0;0;0",
+            "CBcirc;circle;circumcircle;C,B,C*;0;0;0;0",
+            "ACcirc;circle;circumcircle;A,C,A*;0;0;0;0",
+            // #119: the elliptic triangle IS its three side-segments — the
+            // geodesic arcs A→B, B→C, C→A on the line-circles, clipped to
+            // the vertices. One highlightable element for the "triangle
+            // {ABC}" ref (replaces a straight-chord stub).
+            "ABC;polygon;curvedTriangle;A,B,C,ABcirc,CBcirc,ACcirc;0;0;black;0",
+        ],
+    });
+
+    const slate = geomlib.slates[geomlib.slates.length - 1];
+    const spans = Array.from(document.querySelectorAll(".ref"));
+    function setEmph(name, on) { const el = slate.lookupElement(name); if (el) { el.emphasized = on; slate.update(); } }
+    spans.forEach(s => {
+        s.addEventListener("mouseenter", () => setEmph(s.dataset.ref, true));
+        s.addEventListener("mouseleave", () => setEmph(s.dataset.ref, false));
+    });
+    document.getElementById("canvas_1").addEventListener("geomlib:highlight", ev => {
+        const names = new Set();
+        ev.detail.highlighted.forEach(h => h.aliases.forEach(n => names.add(n)));
+        spans.forEach(s => s.classList.toggle("hl", names.has(s.dataset.ref)));
+    });
+</script>
+</body>
+</html>

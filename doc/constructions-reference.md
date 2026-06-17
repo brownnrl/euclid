@@ -105,6 +105,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `pentagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E` | Pentagon (5 free vertices) | 0 | — |
 | `hexagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E, F` | Hexagon (6 free vertices) | 0 | — |
 | `octagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E, F, G, H` | Octagon (8 free vertices) | 0 | XII.2 |
+| `curvedTriangle` | IMPL 2026-06 | (new) | `Point A, B, C, Circle ab, bc, ca` | A triangle whose three sides are circular arcs — an elliptic or hyperbolic triangle (both have circular-arc sides). Takes the 3 vertices and the 3 "line" circles their sides lie on; draws each side as the geodesic arc between consecutive vertices, **clipped to the vertices** (it stops at the corners, unlike the full great-circle arc that runs on to the disk boundary). It *is* the three side-segments — drawing and highlighting them itself as **one** element, so hovering "triangle ABC" lights exactly the curved sides gold. (#119) | 0 | I.16 Guide (elliptic) |
 
 ---
 

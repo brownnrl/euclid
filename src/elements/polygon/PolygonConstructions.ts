@@ -13,6 +13,8 @@ import {PointElement} from "../point/PointElement";
 import {Layoff} from "../point/Layoff";
 import {SimilarElement} from "../point/SimilarElement";
 import {PolygonElement} from "./PolygonElement";
+import {CurvedTriangleElement} from "./CurvedTriangleElement";
+import {CircleElement} from "../circle/CircleElement";
 import {RegularPolygonElement} from "./RegularPolygonElement";
 import {ApplicationElement} from "./ApplicationElement";
 import {PolyhedronElement} from "../polyhedron/PolyhedronElement";
@@ -229,7 +231,27 @@ export class FacePolygonConstruction extends Construction {
     }
 }
 
+// polygon — curvedTriangle — 3 vertices A,B,C + 3 "line" circles
+// A triangle whose sides are circular arcs (an elliptic or hyperbolic
+// triangle): side i is the geodesic arc on circle i from vertex i to
+// vertex i+1, clipped to the vertices. It draws and highlights those
+// three side-segments itself, as one element (#119).
+export class CurvedTriangleConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructionsEnum.curvedTriangle;
+    signature: ConstructionSignature = { points: 3, elements: 3, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 0
+            && sp.E.length === 3 && sp.E.every(e => e instanceof CircleElement);
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const g = new CurvedTriangleElement(P.slice(), E.slice() as CircleElement[]);
+        return [[g], g];
+    }
+}
+
 export const polygonConstructions: Construction[] = [
+    new CurvedTriangleConstruction(),
     new TrianglePolygonConstruction(),
     new StarPolygonConstruction(),
     new RegularPolygonConstruction(),

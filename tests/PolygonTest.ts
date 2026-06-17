@@ -31,6 +31,51 @@ describe("polygon", () => {
         assert.ok(C.y < A.y);
     });
 
+    // polygon;curvedTriangle — a triangle whose sides are circular arcs
+    // (elliptic/hyperbolic), drawn from 3 vertices + the 3 "line" circles
+    // the sides lie on, clipped to the vertices, as one element (#119).
+    describe("curvedTriangle (arc-sided, #119)", () => {
+        const curvedTri: IConstructionInfo[] = [
+            { name: "A",  construction: E.Point.free, params: [80, 110] },
+            { name: "B",  construction: E.Point.free, params: [300, 110] },
+            { name: "C",  construction: E.Point.free, params: [190, 300] },
+            { name: "Mab", construction: E.Point.free, params: [190, 150] },
+            { name: "Mbc", construction: E.Point.free, params: [280, 210] },
+            { name: "Mca", construction: E.Point.free, params: [100, 210] },
+            { name: "circAB", construction: E.Circle.circumcircle, params: ["A","B","Mab"] },
+            { name: "circBC", construction: E.Circle.circumcircle, params: ["B","C","Mbc"] },
+            { name: "circCA", construction: E.Circle.circumcircle, params: ["C","A","Mca"] },
+            { name: "ABC", construction: E.Polygon.curvedTriangle,
+              params: ["A","B","C","circAB","circBC","circCA"] },
+        ];
+        function build(): Slate {
+            const s = new Slate(createCanvas(380, 360));
+            toElements(s, curvedTri);
+            s.elements.forEach(e => e.update());
+            return s;
+        }
+
+        it("builds a CurvedTriangleElement from 3 vertices + 3 line-circles, defined", () => {
+            const s = build();
+            const tri = s.lookupElement("ABC");
+            assert.strictEqual(tri.constructor.name, "CurvedTriangleElement");
+            assert.ok(tri.defined(), "curvedTriangle defined when its parts are");
+        });
+
+        it("draws one arc per side (the three segments A→B, B→C, C→A)", () => {
+            const s = build();
+            const tri = s.lookupElement("ABC");
+            tri.edgeColor = "black";
+            const arcs: any[] = [];
+            const fakeCtx: any = {
+                beginPath() {}, stroke() {}, strokeStyle: "", lineWidth: 0,
+                arc(...a: number[]) { arcs.push(a); },
+            };
+            (tri as any).drawEdge({ getContext: () => fakeCtx } as any);
+            assert.strictEqual(arcs.length, 3, "one clipped side-arc per edge");
+        });
+    });
+
     // polygon;parallelogram — propI34 fixture
     let pgram_propI34_data: IConstructionInfo[] = [
         { name: "A",    construction: E.Point.free,              params: [90, 50] },
