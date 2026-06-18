@@ -95,7 +95,8 @@ export enum PolygonConstructions {
     similar = 310,
     application = 311,
     octagon = 312,
-    face = 313
+    face = 313,
+    curvedTriangle = 314
 }
 
 export enum SectorConstructions {
@@ -188,6 +189,12 @@ export abstract class Construction {
     // Signature: type counts + element subtype list for E[] entries.
     // e.g. { points: 2, elements: 1, integers: 0, elementTypes: [PlaneElement] }
     public abstract signature: ConstructionSignature;
+
+    // Normally a LineElement param is expanded to its two endpoint points
+    // before dispatch (convertParams). A construction that wants a line to
+    // arrive INTACT in E[] (e.g. curvedTriangle, where a line is a
+    // straight-side carrier) sets this true to suppress that expansion.
+    public keepsLineElements: boolean = false;
 
     public abstract construct(screen: PlaneElement, P: PointElement[],
                               E: GeomElement[], N: number[]) : [GeomElementsForUpdate, GeomElement];

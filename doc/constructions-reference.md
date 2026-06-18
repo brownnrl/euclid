@@ -105,6 +105,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `pentagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E` | Pentagon (5 free vertices) | 0 | — |
 | `hexagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E, F` | Hexagon (6 free vertices) | 0 | — |
 | `octagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E, F, G, H` | Octagon (8 free vertices) | 0 | XII.2 |
+| `curvedTriangle` | IMPL 2026-06 | (new) | `Point A, B, C, Carrier ab, bc, ca` | A triangle whose three sides are circular arcs — an elliptic or hyperbolic triangle (both have circular-arc sides). Takes 3 vertices and 3 **side carriers** (the "lines" the sides lie on): each carrier is a `circle` (→ minor arc side, **clipped to the vertices** so it stops at the corners, unlike the full great-circle arc) or a `line` (→ straight side, e.g. a disk diameter). It *is* the three side-segments — drawing/highlighting them itself as **one** element (hovering "triangle ABC" lights the curved sides gold), and filling the interior when a `faceColor` is set. Carriers reach the construction intact: lines are normally expanded to endpoints, but this construction opts out via `keepsLineElements`. (A general curved polygon is a later generalisation.) (#119) | 0 | I.16 Guide (elliptic) |
 
 ---
 
