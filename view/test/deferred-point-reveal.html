@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — deferred / hidden point reveal (#126)</title>
+<style>
+    body { font-family: sans-serif; color: #333; background: #fff; margin: 0; }
+    main { max-width: 44rem; margin: 0 auto; padding: 16px; }
+    canvas { background: #fff; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.9rem; color:#555; }
+    kbd { background:#eee; border:1px solid #ccc; border-radius:3px; padding:0 4px; }
+</style>
+</head>
+<body>
+<main>
+<h2>Deferred / hidden point reveal (#126)</h2>
+<p class="note">
+Press <kbd>p</kbd> to present, then <kbd>→</kbd> to advance. This shows two
+things the fix corrects:
+<ol style="margin:.4rem 0 0; padding-left:1.2rem;">
+  <li><b>Slide 2</b> — the midpoint <b>M</b> is in the slide's
+  <code>highlighted</code> set <i>and</i> appears via <code>Point.appear</code>.
+  Its dot and <b>label</b> stay hidden until the appear step runs — they no
+  longer flash in at the start of the slide.</li>
+  <li><b>Slide 3</b> — the equilateral triangle is highlighted (gold), but its
+  apex <b>T</b> is <i>not</i> in the slide's <code>visible</code> set. Even
+  though T is in the <code>highlighted</code> set, it draws <b>no stray dot or
+  label</b>. Highlight styles a shown point; it never reveals a hidden one.</li>
+</ol>
+</p>
+
+<canvas id="canvasId" width="460" height="320" tabindex="0"></canvas>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+    geomlib.init({
+        background: "#ffffff",
+        title: "deferred point reveal",
+        canvasid: "canvasId",
+        elements: [
+            { name: "A",  construction: E.Point.free,   params: [140, 270],
+              vertexColor: "black", nameColor: "black" },
+            { name: "B",  construction: E.Point.free,   params: [320, 270],
+              vertexColor: "black", nameColor: "black" },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            // The constructed point that appears on cue (slide 2).
+            { name: "M",  construction: E.Point.midpoint, params: ["A", "B"],
+              vertexColor: "black", nameColor: "black" },
+            // Equilateral triangle on AB; its apex T is extracted but is left
+            // out of slide 3's visible set (slide 3).
+            { name: "eq", construction: E.Polygon.equilateralTriangle, params: ["A", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "#555" },
+            { name: "T",  construction: E.Point.vertex, params: ["eq", 3],
+              vertexColor: "black", nameColor: "black" },
+        ],
+        slides: [
+            { text: "Segment {AB}.",
+              visible: ["A", "B", "AB"], highlighted: ["AB"] },
+            { text: "Its midpoint {M} appears on cue — the label does not flash in early.",
+              visible: ["A", "B", "AB", "M"], highlighted: ["M"],
+              transition: { animations: [ { elem: "M", name: A.Point.appear } ] } },
+            { text: "The equilateral triangle on {AB} is highlighted, but its apex {T} is not in this slide — no stray dot.",
+              visible: ["A", "B", "AB", "eq"], highlighted: ["eq", "T"] },
+        ],
+    });
+</script>
+</main>
+</body>
+</html>
