@@ -70,7 +70,8 @@ export enum LineConstructions {
     parallel = 110,
     similar = 111,
     proportion = 112,
-    meanProportional = 113
+    meanProportional = 113,
+    path = 114
 }
 
 
@@ -96,8 +97,7 @@ export enum PolygonConstructions {
     application = 311,
     octagon = 312,
     face = 313,
-    curvedTriangle = 314,
-    path = 315
+    curvedTriangle = 314
 }
 
 export enum SectorConstructions {

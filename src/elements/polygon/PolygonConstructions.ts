@@ -13,7 +13,6 @@ import {PointElement} from "../point/PointElement";
 import {Layoff} from "../point/Layoff";
 import {SimilarElement} from "../point/SimilarElement";
 import {PolygonElement} from "./PolygonElement";
-import {PolylineElement} from "./PolylineElement";
 import {CurvedTriangleElement} from "./CurvedTriangleElement";
 import {CircleElement} from "../circle/CircleElement";
 import {LineElement} from "../line/LineElement";
@@ -233,25 +232,6 @@ export class FacePolygonConstruction extends Construction {
     }
 }
 
-// polygon — path — an ordered list of 2+ points
-// An open path (polyline) A → B → C → … that does NOT close back to the
-// first point — a one-dimensional connected route, highlightable as one
-// element (#121, the "bent line" of Heron's I.20). Variable arity, so
-// validateSignature overrides the default fixed-count match: any number
-// (≥2) of points, no elements, no integers.
-export class PolylineConstruction extends Construction {
-    constructionMethod: AllConstructions = PolygonConstructionsEnum.path;
-    signature: ConstructionSignature = { points: 2, elements: 0, integers: 0 };
-    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
-        if (cm !== this.constructionMethod) return false;
-        return sp.E.length === 0 && sp.N.length === 0 && sp.P.length >= 2;
-    }
-    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
-        const g = new PolylineElement(P.slice());
-        return [[g], g];
-    }
-}
-
 // A side carrier is the "line" a curved side lies on: a CircleElement (arc
 // side) or a LineElement (straight side / diameter). Lines reach us intact
 // because the construction sets keepsLineElements (see convertParams).
@@ -281,7 +261,6 @@ export class CurvedTriangleConstruction extends Construction {
 }
 
 export const polygonConstructions: Construction[] = [
-    new PolylineConstruction(),
     new CurvedTriangleConstruction(),
     new TrianglePolygonConstruction(),
     new StarPolygonConstruction(),

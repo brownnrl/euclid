@@ -406,4 +406,56 @@ describe("line", () => {
             assert.equal(called, false);
         });
     });
+
+    // line;path — an open polyline (connected route) through points,
+    // highlightable as one element; the multi-segment generalization of
+    // line;connect (#121).
+    describe("path (open polyline, #121)", () => {
+        const route: IConstructionInfo[] = [
+            { name: "A",   construction: E.Point.free,  params: [40, 60] },
+            { name: "E",   construction: E.Point.free,  params: [120, 200] },
+            { name: "B",   construction: E.Point.free,  params: [220, 60] },
+            { name: "AEB", construction: E.Line.path,   params: ["A", "E", "B"] },
+        ];
+        function build(): Slate {
+            const s = new Slate(createCanvas(300, 260));
+            toElements(s, route);
+            s.elements.forEach(e => e.update());
+            return s;
+        }
+        // Render through a recording context; report segments + stroke colour.
+        function spyDraw(el: any): { lineTo: number, stroke: string } {
+            let lineTo = 0, stroke = "";
+            const ctx: any = {
+                beginPath() {}, moveTo() {}, stroke() {}, lineWidth: 0,
+                lineTo() { lineTo++; },
+                set strokeStyle(v: string) { stroke = v; }, get strokeStyle() { return stroke; },
+            };
+            el.drawEdge({ getContext: () => ctx } as any);
+            return { lineTo, stroke };
+        }
+
+        it("builds a PolylineElement from the route points, defined", () => {
+            const s = build();
+            const p = s.lookupElement("AEB");
+            assert.strictEqual(p.constructor.name, "PolylineElement");
+            assert.ok(p.defined(), "path defined when its points are");
+        });
+
+        it("is open: three points draw two segments (A→E→B), no closing edge", () => {
+            const s = build();
+            const p = s.lookupElement("AEB");
+            p.edgeColor = "black";
+            assert.strictEqual(spyDraw(p).lineTo, 2, "two segments, not three");
+        });
+
+        it("strokes the highlight colour when emphasized", () => {
+            const s = build();
+            const p = s.lookupElement("AEB");
+            p.edgeColor = "black";
+            assert.strictEqual(spyDraw(p).stroke, "black", "rest colour when not emphasized");
+            p.emphasized = true;
+            assert.strictEqual(spyDraw(p).stroke, "#FFD700", "gold when emphasized");
+        });
+    });
 });

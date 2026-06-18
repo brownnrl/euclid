@@ -18,9 +18,10 @@
 <p class="note">
 The I.20 Guide (Heron's minimum-distance problem) talks about
 <span class="ref" data-ref="AEB">the path AEB</span> — the bent line
-A→E→B that bounces off the mirror line CD at E. <code>polygon;path;A,E,B</code>
+A→E→B that bounces off the mirror line CD at E. <code>line;path;A,E,B</code>
 is an <b>open</b> polyline: a connected route through the listed points
-that does <i>not</i> close back to A (unlike a polygon). It is one
+that does <i>not</i> close back to A (the multi-segment generalization of
+<code>line;connect</code>). It is one
 highlightable element, so hovering the prose ref lights the whole route.
 </p>
 <p>
@@ -47,7 +48,7 @@ Hover <span class="ref" data-ref="AEB">the path AEB</span> to light the route.
             "E;point;free;205,210",
             // #121: the route A→E→B as one open path — drawn red, lights
             // gold when the "path AEB" ref is hovered.
-            "AEB;polygon;path;A,E,B;0;0;#cc1144;0",
+            "AEB;line;path;A,E,B;0;0;#cc1144;0",
         ],
     });
 
