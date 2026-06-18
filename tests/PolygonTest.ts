@@ -32,10 +32,33 @@ describe("polygon", () => {
     });
 
     // polygon;curvedTriangle — a triangle whose sides are circular arcs
-    // (elliptic/hyperbolic), drawn from 3 vertices + the 3 "line" circles
-    // the sides lie on, clipped to the vertices, as one element (#119).
+    // (elliptic/hyperbolic), drawn from 3 vertices + 3 side carriers (a circle
+    // = arc side, a line = straight side), as one highlightable/fillable
+    // element (#119).
     describe("curvedTriangle (arc-sided, #119)", () => {
-        const curvedTri: IConstructionInfo[] = [
+        // Recording 2D context: counts path ops + remembers stroke/fill style.
+        function spy() {
+            const rec = { arc: 0, lineTo: 0, moveTo: 0, closePath: 0,
+                          stroke: 0, fill: 0, strokeStyle: "", fillStyle: "" };
+            const ctx: any = {
+                beginPath() {}, lineWidth: 0,
+                moveTo() { rec.moveTo++; }, lineTo() { rec.lineTo++; },
+                arc() { rec.arc++; }, closePath() { rec.closePath++; },
+                stroke() { rec.stroke++; }, fill() { rec.fill++; },
+                set strokeStyle(v: string) { rec.strokeStyle = v; }, get strokeStyle() { return rec.strokeStyle; },
+                set fillStyle(v: string) { rec.fillStyle = v; }, get fillStyle() { return rec.fillStyle; },
+            };
+            return { rec, canvas: { getContext: () => ctx } as any };
+        }
+        function build(data: IConstructionInfo[]): Slate {
+            const s = new Slate(createCanvas(380, 360));
+            toElements(s, data);
+            s.elements.forEach(e => e.update());
+            return s;
+        }
+        // Three circumcircles, one per side, each through that side's two
+        // vertices (+ a bulge point), so membership holds.
+        const tri: IConstructionInfo[] = [
             { name: "A",  construction: E.Point.free, params: [80, 110] },
             { name: "B",  construction: E.Point.free, params: [300, 110] },
             { name: "C",  construction: E.Point.free, params: [190, 300] },
@@ -48,31 +71,70 @@ describe("polygon", () => {
             { name: "ABC", construction: E.Polygon.curvedTriangle,
               params: ["A","B","C","circAB","circBC","circCA"] },
         ];
-        function build(): Slate {
-            const s = new Slate(createCanvas(380, 360));
-            toElements(s, curvedTri);
-            s.elements.forEach(e => e.update());
-            return s;
-        }
 
-        it("builds a CurvedTriangleElement from 3 vertices + 3 line-circles, defined", () => {
-            const s = build();
-            const tri = s.lookupElement("ABC");
-            assert.strictEqual(tri.constructor.name, "CurvedTriangleElement");
-            assert.ok(tri.defined(), "curvedTriangle defined when its parts are");
+        it("builds a CurvedTriangleElement from 3 vertices + 3 carriers, defined", () => {
+            const t = build(tri).lookupElement("ABC");
+            assert.strictEqual(t.constructor.name, "CurvedTriangleElement");
+            assert.ok(t.defined(), "defined when vertices + carriers are, and membership holds");
         });
 
-        it("draws one arc per side (the three segments A→B, B→C, C→A)", () => {
-            const s = build();
-            const tri = s.lookupElement("ABC");
-            tri.edgeColor = "black";
-            const arcs: any[] = [];
-            const fakeCtx: any = {
-                beginPath() {}, stroke() {}, strokeStyle: "", lineWidth: 0,
-                arc(...a: number[]) { arcs.push(a); },
-            };
-            (tri as any).drawEdge({ getContext: () => fakeCtx } as any);
-            assert.strictEqual(arcs.length, 3, "one clipped side-arc per edge");
+        it("traces one arc per side (the three segments A→B, B→C, C→A)", () => {
+            const t = build(tri).lookupElement("ABC");
+            t.edgeColor = "black";
+            const { rec, canvas } = spy();
+            (t as any).drawEdge(canvas);
+            assert.strictEqual(rec.arc, 3, "one clipped side-arc per edge");
+            assert.strictEqual(rec.lineTo, 0, "no straight sides");
+            assert.strictEqual(rec.closePath, 1, "closed boundary");
+        });
+
+        it("a line carrier survives intact (keepsLineElements) and traces a straight side", () => {
+            const withLine: IConstructionInfo[] = [
+                { name: "A",  construction: E.Point.free, params: [80, 110] },
+                { name: "B",  construction: E.Point.free, params: [300, 110] },
+                { name: "C",  construction: E.Point.free, params: [190, 300] },
+                { name: "Mab", construction: E.Point.free, params: [190, 150] },
+                { name: "Mca", construction: E.Point.free, params: [100, 210] },
+                { name: "circAB", construction: E.Circle.circumcircle, params: ["A","B","Mab"] },
+                { name: "lineBC", construction: E.Line.connect, params: ["B","C"] },  // straight side
+                { name: "circCA", construction: E.Circle.circumcircle, params: ["C","A","Mca"] },
+                { name: "ABC", construction: E.Polygon.curvedTriangle,
+                  params: ["A","B","C","circAB","lineBC","circCA"] },
+            ];
+            const t = build(withLine).lookupElement("ABC");
+            assert.ok(t.defined(), "defined with a mixed circle/line carrier set");
+            const { rec, canvas } = spy();
+            t.edgeColor = "black";
+            (t as any).drawEdge(canvas);
+            assert.strictEqual(rec.arc, 2, "two arc sides");
+            assert.strictEqual(rec.lineTo, 1, "one straight side from the line carrier");
+        });
+
+        it("is undefined when a carrier does not pass through its side's vertices", () => {
+            const bad = tri.slice(0, -1).concat([
+                // side A→B carrier is circBC (through B,C) — does NOT pass A.
+                { name: "ABC", construction: E.Polygon.curvedTriangle,
+                  params: ["A","B","C","circBC","circBC","circCA"] },
+            ]);
+            const t = build(bad).lookupElement("ABC");
+            assert.ok(!t.defined(), "membership failure → undefined (no misleading arcs)");
+        });
+
+        it("fills only when faceColor is set; edge highlights gold when emphasized", () => {
+            const t = build(tri).lookupElement("ABC");
+            // no faceColor → drawFace is a no-op
+            let s0 = spy(); (t as any).drawFace(s0.canvas);
+            assert.strictEqual(s0.rec.fill, 0, "no fill without faceColor");
+            // faceColor set → fills the traced region
+            t.faceColor = "#dde";
+            let s1 = spy(); (t as any).drawFace(s1.canvas);
+            assert.strictEqual(s1.rec.fill, 1, "fills when faceColor set");
+            assert.strictEqual(s1.rec.closePath, 1, "closed fill path");
+            // hover → gold stroke
+            t.edgeColor = "black";
+            t.emphasized = true;
+            let s2 = spy(); (t as any).drawEdge(s2.canvas);
+            assert.strictEqual(s2.rec.strokeStyle, "#FFD700", "gold when emphasized");
         });
     });
 

@@ -13,7 +13,7 @@ That's it.
 ## Running tests
 
 ```sh
-npm run test:unit      # 279 unit tests — fast (~100 ms)
+npm run test:unit      # 282 unit tests — fast (~100 ms)
 npm run test:snapshot  # 700 visual-regression tests against snapshot goldens
 npm test               # both (snapshot then unit)
 ```
