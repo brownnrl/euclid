@@ -13,6 +13,7 @@ import {PointElement} from "../point/PointElement";
 import {Layoff} from "../point/Layoff";
 import {SimilarElement} from "../point/SimilarElement";
 import {PolygonElement} from "./PolygonElement";
+import {PolylineElement} from "./PolylineElement";
 import {RegularPolygonElement} from "./RegularPolygonElement";
 import {ApplicationElement} from "./ApplicationElement";
 import {PolyhedronElement} from "../polyhedron/PolyhedronElement";
@@ -229,7 +230,27 @@ export class FacePolygonConstruction extends Construction {
     }
 }
 
+// polygon — path — an ordered list of 2+ points
+// An open path (polyline) A → B → C → … that does NOT close back to the
+// first point — a one-dimensional connected route, highlightable as one
+// element (#121, the "bent line" of Heron's I.20). Variable arity, so
+// validateSignature overrides the default fixed-count match: any number
+// (≥2) of points, no elements, no integers.
+export class PolylineConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructionsEnum.path;
+    signature: ConstructionSignature = { points: 2, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.E.length === 0 && sp.N.length === 0 && sp.P.length >= 2;
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const g = new PolylineElement(P.slice());
+        return [[g], g];
+    }
+}
+
 export const polygonConstructions: Construction[] = [
+    new PolylineConstruction(),
     new TrianglePolygonConstruction(),
     new StarPolygonConstruction(),
     new RegularPolygonConstruction(),

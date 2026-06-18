@@ -95,7 +95,8 @@ export enum PolygonConstructions {
     similar = 310,
     application = 311,
     octagon = 312,
-    face = 313
+    face = 313,
+    path = 315
 }
 
 export enum SectorConstructions {

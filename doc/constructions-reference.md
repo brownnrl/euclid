@@ -105,6 +105,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `pentagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E` | Pentagon (5 free vertices) | 0 | — |
 | `hexagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E, F` | Hexagon (6 free vertices) | 0 | — |
 | `octagon` | IMPL | `PolygonElement.java` | `Point A, B, C, D, E, F, G, H` | Octagon (8 free vertices) | 0 | XII.2 |
+| `path` | IMPL 2026-06 | (new) | `Point A, B, … (≥2)` | An **open** path (polyline) — an ordered run of connected segments A→B→… that does **not** close back to the first point (unlike a polygon). A one-dimensional connected route, drawn and highlightable as **one** element, so a prose ref to the whole route (e.g. "the path AEB") lights every segment together. No fill. (#121) | 0 | I.20 Guide (Heron's bent line) |
 
 ---
 
