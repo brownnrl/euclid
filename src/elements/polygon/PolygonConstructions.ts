@@ -234,7 +234,7 @@ export class FacePolygonConstruction extends Construction {
 
 // A side carrier is the "line" a curved side lies on: a CircleElement (arc
 // side) or a LineElement (straight side / diameter). Lines reach us intact
-// because both constructions set keepsLineElements (see convertParams).
+// because the construction sets keepsLineElements (see convertParams).
 function isCarrier(e: GeomElement): boolean {
     return e instanceof CircleElement || e instanceof LineElement;
 }

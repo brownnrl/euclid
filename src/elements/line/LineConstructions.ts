@@ -17,6 +17,7 @@ import {Layoff} from "../point/Layoff";
 import {Foot} from "../point/Foot";
 import {PlaneFootElement} from "../point/PlaneFootElement";
 import {LineElement} from "./LineElement";
+import {PolylineElement} from "./PolylineElement";
 import {Perpendicular} from "./Perpendicular";
 import {PlanePerpendicularLine} from "./PlanePerpendicularLine";
 import {Bichord} from "./Bichord";
@@ -304,7 +305,27 @@ export class MeanProportionalLineConstruction extends Construction {
     }
 }
 
+// line — path — an ordered list of 2+ points
+// An open path (polyline) A → B → C → … that does NOT close back to the
+// first point — the multi-segment generalization of line;connect, a
+// one-dimensional connected route highlightable as one element (#121, the
+// "bent line" of Heron's I.20). Variable arity, so validateSignature
+// overrides the default fixed-count match: any number (≥2) of points.
+export class PolylineConstruction extends Construction {
+    constructionMethod: AllConstructions = LineConstructionsEnum.path;
+    signature: ConstructionSignature = { points: 2, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.E.length === 0 && sp.N.length === 0 && sp.P.length >= 2;
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const g = new PolylineElement(P.slice());
+        return [[g], g];
+    }
+}
+
 export const lineConstructions: Construction[] = [
+    new PolylineConstruction(),
     new LineConnectConstruction(),
     new LineExtendConstruction(),
     new LinePerpendicular1Construction(),

@@ -76,6 +76,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `similar` | IMPL | `Similar.java` | `Point A, B, D, E, F [, Plane]` | Line AH where △ABH ∼ △DEF (2D + 3D) | ~1 | I.31 |
 | `proportion` | IMPL | `Proportion.java` | As point variant | Line form of proportion | 0 | — |
 | `meanProportional` | IMPL | `MeanProportional.java` | As point variant | Line form | 0 | — |
+| `path` | IMPL 2026-06 | (new) | `Point A, B, … (≥2)` | An **open** path (polyline) — an ordered run of connected segments A→B→… that does **not** close back to the first point. The multi-segment generalization of `connect`: a one-dimensional connected route, drawn and highlightable as **one** element, so a prose ref to the whole route (e.g. "the path AEB") lights every segment together. No fill. (#121) | 0 | I.20 Guide (Heron's bent line) |
 
 ---
 

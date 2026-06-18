@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — open path / polyline (#121)</title>
+<style>
+    body { font-family: Georgia, serif; color: #2a2a2a; background: #fff; margin: 0; }
+    main { max-width: 40rem; margin: 0 auto; padding: 16px; }
+    .ref { cursor: pointer; border-bottom: 1px dotted #999; }
+    .ref.hl { background: #FFD700; border-radius: 3px; }
+    figure.diagram canvas { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.85rem; color:#555; }
+</style>
+</head>
+<body>
+<main>
+<h1>Open path / polyline (#121) — Heron's bent line</h1>
+<p class="note">
+The I.20 Guide (Heron's minimum-distance problem) talks about
+<span class="ref" data-ref="AEB">the path AEB</span> — the bent line
+A→E→B that bounces off the mirror line CD at E. <code>line;path;A,E,B</code>
+is an <b>open</b> polyline: a connected route through the listed points
+that does <i>not</i> close back to A (the multi-segment generalization of
+<code>line;connect</code>). It is one
+highlightable element, so hovering the prose ref lights the whole route.
+</p>
+<p>
+Hover <span class="ref" data-ref="AEB">the path AEB</span> to light the route.
+</p>
+
+<figure class="diagram">
+  <canvas id="canvas_1" width="400" height="260" tabindex="0"></canvas>
+</figure>
+</main>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    geomlib.init({
+        canvasid: "canvas_1",
+        background: "0,0,100",
+        title: "Heron's minimum path",
+        elements: [
+            "C;point;free;40,210",
+            "D;point;free;360,210",
+            "CD;line;connect;C,D;0;0;#888",
+            "A;point;free;110,70",
+            "B;point;free;300,110",
+            "E;point;free;205,210",
+            // #121: the route A→E→B as one open path — drawn red, lights
+            // gold when the "path AEB" ref is hovered.
+            "AEB;line;path;A,E,B;0;0;#cc1144;0",
+        ],
+    });
+
+    const slate = geomlib.slates[geomlib.slates.length - 1];
+    const spans = Array.from(document.querySelectorAll(".ref"));
+    function setEmph(name, on) { const el = slate.lookupElement(name); if (el) { el.emphasized = on; slate.update(); } }
+    spans.forEach(s => {
+        s.addEventListener("mouseenter", () => setEmph(s.dataset.ref, true));
+        s.addEventListener("mouseleave", () => setEmph(s.dataset.ref, false));
+    });
+    document.getElementById("canvas_1").addEventListener("geomlib:highlight", ev => {
+        const names = new Set();
+        ev.detail.highlighted.forEach(h => h.aliases.forEach(n => names.add(n)));
+        spans.forEach(s => s.classList.toggle("hl", names.has(s.dataset.ref)));
+    });
+</script>
+</body>
+</html>

@@ -70,7 +70,8 @@ export enum LineConstructions {
     parallel = 110,
     similar = 111,
     proportion = 112,
-    meanProportional = 113
+    meanProportional = 113,
+    path = 114
 }
 
 
