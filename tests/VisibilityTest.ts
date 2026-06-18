@@ -115,6 +115,50 @@ describe("element visibility (issue #75)", () => {
             pt.drawVertex(r.canvas as any);
             assert.ok(r.recorded.arcRadii.length > 0, "visible point should arc its marker");
         });
+
+        // #126 — a hidden point must stay hidden even when highlighted /
+        // emphasised: being in a slide's `highlighted` set (or an alias of
+        // one) must not force a point that is NOT in the visible set, or is a
+        // not-yet-revealed deferred reveal target, to draw its dot or label.
+        it("drawVertex writes nothing when visible=false even if highlighted (out-of-set apex)", () => {
+            const slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            const pt = slate.lookupElement("A") as PointElement;
+            pt.vertexColor = "#000000";
+            pt.visible = false;
+            pt.shouldHighlight = true;   // highlighted but not in the visible set
+            const r = recordingCanvas(200, 200);
+            pt.drawVertex(r.canvas as any);
+            assert.ok(!recordedAnyDraw(r.recorded),
+                `hidden+highlighted point should make no canvas writes; got ${JSON.stringify(r.recorded)}`);
+        });
+
+        it("drawName writes nothing when visible=false even if highlighted (deferred reveal)", () => {
+            const slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            const pt = slate.lookupElement("A") as PointElement;
+            pt.nameColor = "#000000";
+            pt.visible = false;
+            pt.shouldHighlight = true;
+            pt.drawProgress = 0;         // deferred — not yet revealed by its appear step
+            const r = recordingCanvas(200, 200);
+            pt.drawName(r.canvas as any);
+            assert.strictEqual(r.recorded.textWrites.length, 0,
+                "a deferred highlighted point must not draw its label before its reveal");
+        });
+
+        it("drawVertex still draws (in highlight colour) when visible=true and highlighted", () => {
+            const slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            const pt = slate.lookupElement("A") as PointElement;
+            pt.vertexColor = "#000000";
+            pt.visible = true;
+            pt.shouldHighlight = true;   // highlight styles a SHOWN point
+            const r = recordingCanvas(200, 200);
+            pt.drawVertex(r.canvas as any);
+            assert.ok(r.recorded.arcRadii.length > 0, "visible highlighted point still draws its marker");
+            assert.ok(r.recorded.fillStyles.includes("#FFD700"), "and in the highlight colour");
+        });
     });
 
     describe("LineElement", () => {
