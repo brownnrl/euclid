@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — curved triangle vs straight stopgap (I.16 elliptic, #119)</title>
+<style>
+    body { font-family: Georgia, serif; color: #2a2a2a; background: #fff; margin: 0; }
+    main { max-width: 46rem; margin: 0 auto; padding: 16px; }
+    .ref { cursor: pointer; border-bottom: 1px dotted #999; }
+    .ref.hl { background: #FFD700; border-radius: 3px; }
+    .cols { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    figure.diagram { margin: 0; text-align: center; }
+    figure.diagram canvas { max-width: 100%; height: auto; display: block; }
+    figcaption { font-size: .85rem; color: #555; margin-top: 4px; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.85rem; color:#555; }
+</style>
+</head>
+<body>
+<main>
+<h1>I.16 elliptic triangle (#119)</h1>
+<p class="note">
+Joyce's I.16 elliptic figure (copied from the <i>Elements</i> site). The
+elliptic "lines" are great-circle <b>arcs</b>; the triangle's sides are the
+arc segments between the vertices. The left canvas is the <b>old</b> hover
+target — a straight-chord <code>polygon;triangle</code> stopgap — which lights
+straight gold lines that ignore the curvature. The right canvas uses the new
+<code>polygon;curvedTriangle;A,B,C,ABcirc,CBcirc,ACcirc</code>, whose gold
+sides follow the actual elliptic arcs.
+</p>
+<p>
+Hover <span class="ref" data-ref="ABC">triangle ABC</span> to compare the two highlights.
+</p>
+
+<div class="cols">
+  <figure class="diagram">
+    <canvas id="canvas_old" width="300" height="300" tabindex="0"></canvas>
+    <figcaption>old: straight-chord stopgap</figcaption>
+  </figure>
+  <figure class="diagram">
+    <canvas id="canvas_new" width="300" height="300" tabindex="0"></canvas>
+    <figcaption>new: curvedTriangle (arc sides)</figcaption>
+  </figure>
+</div>
+</main>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    // Joyce's I.16 elliptic construction (from euclids-elements-lektor propI16
+    // canvas_1). Only the final "ABC" hover target differs between the two.
+    function ellipticElements(abcTarget) {
+        return [
+            "O;point;free;150,150;0;0",
+            "P;point;free;260,150;0;0",
+            "disk;circle;radius;O,P;0;0;blue;220,12,99",
+            "A;point;free;70,140",
+            "B;point;free;150,170",
+            "C;point;free;125,90",
+            "A#;point;proportion;O,A,O,P,O,P,O,A;0;0",
+            "A*;point;extend;A,O,O,A#;0;0",
+            "C#;point;proportion;O,C,O,P,O,P,O,C;0;0",
+            "C*;point;extend;C,O,O,C#;0;0",
+            "ABcirc;circle;circumcircle;A,B,A*;0;0;0;0",
+            "Dchord;line;bichord;disk,ABcirc;0;0;0",
+            "D;point;first;Dchord",
+            "D ;point;last;Dchord",
+            "DD;sector;arc;D ,B,D;0;0;black;0",
+            "CBcirc;circle;circumcircle;C,B,C*;0;0;0;0",
+            "Echord;line;bichord;disk,CBcirc;0;0;0",
+            "E;point;last;Echord",
+            "E ;point;first;Echord",
+            "EE;sector;arc;E,B,E ;0;0;black;0",
+            "ACcirc;circle;circumcircle;A,C,A*;0;0;0;0",
+            "Fchord;line;bichord;disk,ACcirc;0;0;0",
+            "F;point;last;Fchord",
+            "F ;point;first;Fchord",
+            "FF;sector;arc;F,C,F ;0;0;black;0",
+            abcTarget,
+        ];
+    }
+
+    geomlib.init({
+        canvasid: "canvas_old", background: "0,0,100", title: "Elliptic plane (old)",
+        elements: ellipticElements("ABC;polygon;triangle;A,B,C;0;0;0;0"),
+    });
+    geomlib.init({
+        canvasid: "canvas_new", background: "0,0,100", title: "Elliptic plane (new)",
+        elements: ellipticElements("ABC;polygon;curvedTriangle;A,B,C,ABcirc,CBcirc,ACcirc;0;0;0;0"),
+    });
+
+    const slates = geomlib.slates.slice(-2);
+    const spans = Array.from(document.querySelectorAll(".ref"));
+    function setEmph(name, on) {
+        slates.forEach(sl => { const el = sl.lookupElement(name); if (el) { el.emphasized = on; sl.update(); } });
+    }
+    spans.forEach(s => {
+        s.addEventListener("mouseenter", () => setEmph(s.dataset.ref, true));
+        s.addEventListener("mouseleave", () => setEmph(s.dataset.ref, false));
+    });
+</script>
+</body>
+</html>

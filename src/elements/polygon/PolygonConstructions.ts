@@ -14,6 +14,9 @@ import {Layoff} from "../point/Layoff";
 import {SimilarElement} from "../point/SimilarElement";
 import {PolygonElement} from "./PolygonElement";
 import {PolylineElement} from "./PolylineElement";
+import {CurvedTriangleElement} from "./CurvedTriangleElement";
+import {CircleElement} from "../circle/CircleElement";
+import {LineElement} from "../line/LineElement";
 import {RegularPolygonElement} from "./RegularPolygonElement";
 import {ApplicationElement} from "./ApplicationElement";
 import {PolyhedronElement} from "../polyhedron/PolyhedronElement";
@@ -249,8 +252,37 @@ export class PolylineConstruction extends Construction {
     }
 }
 
+// A side carrier is the "line" a curved side lies on: a CircleElement (arc
+// side) or a LineElement (straight side / diameter). Lines reach us intact
+// because the construction sets keepsLineElements (see convertParams).
+function isCarrier(e: GeomElement): boolean {
+    return e instanceof CircleElement || e instanceof LineElement;
+}
+
+// polygon — curvedTriangle — 3 vertices A,B,C + 3 side carriers
+// A triangle whose sides are circular arcs (an elliptic or hyperbolic
+// triangle): side i is the minor arc on carrier i from vertex i to vertex
+// i+1, clipped to the vertices (a line carrier gives a straight side). It
+// draws/fills/highlights those three side-segments itself, as one element
+// (#119). Strict 3 vertices + 3 carriers.
+export class CurvedTriangleConstruction extends Construction {
+    constructionMethod: AllConstructions = PolygonConstructionsEnum.curvedTriangle;
+    signature: ConstructionSignature = { points: 3, elements: 3, integers: 0 };
+    keepsLineElements: boolean = true;
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 0
+            && sp.E.length === 3 && sp.E.every(isCarrier);
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        const g = new CurvedTriangleElement(P.slice(), E.slice() as any[]);
+        return [[g], g];
+    }
+}
+
 export const polygonConstructions: Construction[] = [
     new PolylineConstruction(),
+    new CurvedTriangleConstruction(),
     new TrianglePolygonConstruction(),
     new StarPolygonConstruction(),
     new RegularPolygonConstruction(),
