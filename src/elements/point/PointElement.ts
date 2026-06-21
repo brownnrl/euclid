@@ -377,6 +377,11 @@ export class PointElement extends GeomElement {
         // (#126; the dot's radius already zeroes at drawProgress=0, but the
         // label had no such guard.)
         if (!this.visible) return;
+        // The label snaps in only once the marker is fully revealed: through a
+        // Point.appear pulse (drawProgress 0→1) the dot grows, then the label
+        // lands at completion — it does not ride the pulse. Static points are
+        // drawProgress = 1, so this is a no-op for them. (#126)
+        if (this.drawProgress < 1) return;
         if (this.nameColor != null && this.name != null && this.defined()) {
             this.drawString(Math.round(this.x), Math.round(this.y), c)
         }

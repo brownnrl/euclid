@@ -21,7 +21,8 @@ the cascade. The constructed apex <b>C</b> is in the slide's
 step. The bug (now fixed): C's dot and <b>label</b> used to flash in at the
 <i>start</i> of the slide — a point "hanging in space before any line arrived".
 Now the two sides draw first, and <b>C appears only when its own step runs</b>,
-where the sides meet.
+where the sides meet. During that step the marker pulses in, then the
+<b>label snaps on once the dot is full</b> — it doesn't ride the pulse.
 </p>
 
 <canvas id="canvasId" width="460" height="320" tabindex="0"></canvas>

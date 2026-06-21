@@ -147,6 +147,25 @@ describe("element visibility (issue #75)", () => {
                 "a deferred highlighted point must not draw its label before its reveal");
         });
 
+        it("drawName holds the label until the marker is fully revealed (snap, not fade)", () => {
+            const slate = new Slate(createCanvas(200, 200));
+            toElements(slate, triangle_data);
+            const pt = slate.lookupElement("A") as PointElement;
+            pt.nameColor = "#000000";
+            pt.visible = true;
+            // Mid-appear: marker is pulsing in (drawProgress < 1) — the label
+            // must not ride the pulse.
+            pt.drawProgress = 0.6;
+            let r = recordingCanvas(200, 200);
+            pt.drawName(r.canvas as any);
+            assert.strictEqual(r.recorded.textWrites.length, 0, "no label while the marker is still growing");
+            // Fully revealed → the label lands.
+            pt.drawProgress = 1;
+            r = recordingCanvas(200, 200);
+            pt.drawName(r.canvas as any);
+            assert.strictEqual(r.recorded.textWrites.length, 1, "label snaps in once fully revealed");
+        });
+
         it("drawVertex still draws (in highlight colour) when visible=true and highlighted", () => {
             const slate = new Slate(createCanvas(200, 200));
             toElements(slate, triangle_data);
