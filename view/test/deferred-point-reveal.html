@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — deferred point reveal (#126)</title>
+<style>
+    body { font-family: sans-serif; color: #333; background: #fff; margin: 0; }
+    main { max-width: 44rem; margin: 0 auto; padding: 16px; }
+    canvas { background: #fff; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.9rem; color:#555; }
+    kbd { background:#eee; border:1px solid #ccc; border-radius:3px; padding:0 4px; }
+</style>
+</head>
+<body>
+<main>
+<h2>Deferred point reveal (#126)</h2>
+<p class="note">
+Press <kbd>p</kbd> to present, then <kbd>→</kbd> to advance to slide 2 and watch
+the cascade. The constructed apex <b>C</b> is in the slide's
+<code>highlighted</code> set <i>and</i> has a late <code>Point.appear</code>
+step. The bug (now fixed): C's dot and <b>label</b> used to flash in at the
+<i>start</i> of the slide — a point "hanging in space before any line arrived".
+Now the two sides draw first, and <b>C appears only when its own step runs</b>,
+where the sides meet. During that step the marker pulses in, then the
+<b>label snaps on once the dot is full</b> — it doesn't ride the pulse.
+</p>
+
+<canvas id="canvasId" width="460" height="320" tabindex="0"></canvas>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+    geomlib.init({
+        background: "#ffffff",
+        title: "deferred point reveal",
+        canvasid: "canvasId",
+        elements: [
+            { name: "A",  construction: E.Point.free,   params: [130, 250],
+              vertexColor: "black", nameColor: "black" },
+            { name: "B",  construction: E.Point.free,   params: [330, 250],
+              vertexColor: "black", nameColor: "black" },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            // Invisible scaffold to derive the apex position.
+            { name: "eq", construction: E.Polygon.equilateralTriangle, params: ["A", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: 0 },
+            { name: "C",  construction: E.Point.vertex, params: ["eq", 3],
+              vertexColor: "black", nameColor: "black" },
+            // The two sides that arrive at the apex.
+            { name: "AC", construction: E.Line.connect, params: ["A", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "#333" },
+            { name: "BC", construction: E.Line.connect, params: ["B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "#333" },
+        ],
+        slides: [
+            { text: "Segment {AB}.",
+              visible: ["A", "B", "AB"], highlighted: ["AB"] },
+            { text: "The two sides {AC} and {BC} are drawn; their apex {C} appears where they meet — not before.",
+              visible: ["A", "B", "AB", "AC", "BC", "C"], highlighted: ["AC", "BC", "C"],
+              transition: { animations: [
+                  { elem: "AC", name: A.Line.straightEdgeConnect },
+                  { elem: "BC", name: A.Line.straightEdgeConnect },
+                  { elem: "C",  name: A.Point.appear },
+              ] } },
+        ],
+    });
+</script>
+</main>
+</body>
+</html>

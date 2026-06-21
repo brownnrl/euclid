@@ -369,14 +369,26 @@ export class PointElement extends GeomElement {
     }
 
     public drawName(c: SlateCanvas): void {
-        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
+        // A point shows its dot/label only when it is actually revealed
+        // (visible). Highlight / emphasis style a SHOWN point — they must not
+        // force a hidden one to draw: a deferred reveal target (visible=false
+        // until its appear step flips it true) or a point not in the slide's
+        // visible set must stay dark even when it is in the highlighted set.
+        // (#126; the dot's radius already zeroes at drawProgress=0, but the
+        // label had no such guard.)
+        if (!this.visible) return;
+        // The label snaps in only once the marker is fully revealed: through a
+        // Point.appear pulse (drawProgress 0→1) the dot grows, then the label
+        // lands at completion — it does not ride the pulse. Static points are
+        // drawProgress = 1, so this is a no-op for them. (#126)
+        if (this.drawProgress < 1) return;
         if (this.nameColor != null && this.name != null && this.defined()) {
             this.drawString(Math.round(this.x), Math.round(this.y), c)
         }
     }
 
     public drawVertex(c: SlateCanvas, color?: string): void {
-        if (!this.visible && !this.shouldHighlight && this.emphasisAmount <= 0) return;
+        if (!this.visible) return;   // see drawName — highlight never reveals a hidden point (#126)
         let ctx : CanvasRenderingContext2D = c.getContext("2d") as CanvasRenderingContext2D;
         if (color == null) {
             if (this.emphasized || this.shouldHighlight) {
