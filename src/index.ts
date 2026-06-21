@@ -29,6 +29,35 @@ export const BUILD_MARKER = "pointer-events-refactor-v1 (Slate.ts #55)";
 
 export let slates : Slate[] = [];
 
+// #130 — highlight a named element across MORE THAN ONE canvas at once.
+// A proposition drawn as several figures that share element names (e.g.
+// I.26's two case triangles, both labelled ABC/DEF) wants a single prose
+// reference to light the element in EVERY canvas it appears in, not just
+// one. This sets `emphasized` on each matching element — alias-aware, via
+// `slate.lookupElement` (so a ref spelled "CBA" still matches "ABC") —
+// across all live slates, or only those whose canvas id is listed in
+// `opts.canvasids` (scope correctly on a page with unrelated figures).
+// Each touched slate is redrawn, which fires that canvas's
+// `geomlib:highlight` event (#108) so the page lights every prose span.
+// Returns the number of canvases the element was found in.
+export function highlightByName(name: string, on: boolean = true,
+                                opts?: { canvasids?: string[] }): number {
+    const ids = opts && opts.canvasids;
+    let hits = 0;
+    for (const slate of slates) {
+        if (ids != null) {
+            const id = (slate.canvas as any) && (slate.canvas as any).id;
+            if (ids.indexOf(id) === -1) continue;
+        }
+        const el = slate.lookupElement(name);
+        if (el == null) continue;
+        el.emphasized = on;
+        slate.update();
+        hits++;
+    }
+    return hits;
+}
+
 export interface IConstructionInfo {
     name: string;
     construction: IndexAllConstructions;

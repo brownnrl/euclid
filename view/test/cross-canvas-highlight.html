@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — cross-canvas highlight (#130)</title>
+<style>
+    body { font-family: Georgia, serif; color: #2a2a2a; background: #fff; margin: 0; }
+    main { max-width: 44rem; margin: 0 auto; padding: 16px; }
+    .ref { cursor: pointer; border-bottom: 1px dotted #999; }
+    .ref.hl { background: #FFD700; border-radius: 3px; }
+    .cols { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    figure.diagram { margin: 0; text-align: center; }
+    figure.diagram canvas { max-width: 100%; height: auto; display: block; }
+    figcaption { font-size: .85rem; color: #555; margin-top: 4px; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.9rem; color:#555; }
+</style>
+</head>
+<body>
+<main>
+<h2>Cross-canvas highlight (#130) — I.26 two cases</h2>
+<p class="note">
+A proposition drawn as two figures (here the ASA and AAS cases of I.26) shares
+labels: both triangles are <b>ABC</b>. A single prose reference should light the
+element in <i>both</i> canvases at once. <code>geomlib.highlightByName("ABC",
+on, {canvasids:[…]})</code> sets <code>emphasized</code> on every matching
+element across the listed canvases and fires each one's
+<code>geomlib:highlight</code> event — alias-aware, so a ref spelled "CBA"
+still matches.
+</p>
+<p>
+Hover <span class="ref" data-ref="ABC">triangle ABC</span> — it lights in both cases.
+</p>
+
+<div class="cols">
+  <figure class="diagram">
+    <canvas id="canvas_0" width="260" height="220" tabindex="0"></canvas>
+    <figcaption>case a (ASA)</figcaption>
+  </figure>
+  <figure class="diagram">
+    <canvas id="canvas_1" width="260" height="220" tabindex="0"></canvas>
+    <figcaption>case b (AAS)</figcaption>
+  </figure>
+</div>
+</main>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    function triangle(canvasid, a, b, c) {
+        geomlib.init({
+            canvasid: canvasid, background: "0,0,100", title: canvasid,
+            elements: [
+                { name: "A", construction: E.Point.free, params: a, vertexColor: "black", nameColor: "black" },
+                { name: "B", construction: E.Point.free, params: b, vertexColor: "black", nameColor: "black" },
+                { name: "C", construction: E.Point.free, params: c, vertexColor: "black", nameColor: "black" },
+                { name: "ABC", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            ],
+        });
+    }
+    triangle("canvas_0", [50, 60], [210, 70], [90, 180]);
+    triangle("canvas_1", [60, 70], [200, 60], [170, 185]);
+
+    const group = ["canvas_0", "canvas_1"];
+    const spans = Array.from(document.querySelectorAll(".ref"));
+    spans.forEach(s => {
+        s.addEventListener("mouseenter", () => geomlib.highlightByName(s.dataset.ref, true,  { canvasids: group }));
+        s.addEventListener("mouseleave", () => geomlib.highlightByName(s.dataset.ref, false, { canvasids: group }));
+    });
+    // Either canvas's geomlib:highlight event lights the shared prose span.
+    group.forEach(id => document.getElementById(id).addEventListener("geomlib:highlight", ev => {
+        const names = new Set();
+        ev.detail.highlighted.forEach(h => h.aliases.forEach(n => names.add(n)));
+        spans.forEach(s => { if (names.has(s.dataset.ref)) s.classList.add("hl"); });
+    }));
+    // Clear the prose span when nothing is highlighted (empty event from either).
+    group.forEach(id => document.getElementById(id).addEventListener("geomlib:highlight", ev => {
+        if (ev.detail.highlighted.length === 0) spans.forEach(s => s.classList.remove("hl"));
+    }));
+</script>
+</body>
+</html>
