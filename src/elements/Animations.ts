@@ -30,9 +30,11 @@ export enum AllAnimations {
     LINE_COMPASS_TRANSFER,           // future
     CIRCLE_COMPASS,
     CIRCLE_COMPASS_EXPLICIT,         // future
+    CIRCLE_COMPASS_TRANSFER,
     POLYGON_OUTLINE,
     POLYGON_OUTLINE_AND_FILL,
     POLYGON_SUPERPOSE,
+    POLYGON_EQUILATERAL_BUILD,
     SECTOR_SWEEP,
     GROUP_CLONE_ASIDE,
 }
@@ -53,11 +55,13 @@ export const A = {
     Circle: {
         compass:             AllAnimations.CIRCLE_COMPASS,
         compassExplicit:     AllAnimations.CIRCLE_COMPASS_EXPLICIT,   // future
+        compassTransfer:     AllAnimations.CIRCLE_COMPASS_TRANSFER,   // I.2 (#127)
     },
     Polygon: {
         outline:             AllAnimations.POLYGON_OUTLINE,
         outlineAndFill:      AllAnimations.POLYGON_OUTLINE_AND_FILL,
         superpose:           AllAnimations.POLYGON_SUPERPOSE,
+        equilateralBuild:    AllAnimations.POLYGON_EQUILATERAL_BUILD,    // I.1 (#127)
     },
     Sector: {
         sweep:               AllAnimations.SECTOR_SWEEP,

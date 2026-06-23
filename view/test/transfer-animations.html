@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — I.1 / I.2 construction animations: before vs after (#127)</title>
+<style>
+    body { font-family: sans-serif; color: #333; background: #fff; margin: 0; }
+    main { max-width: 64rem; margin: 0 auto; padding: 16px; }
+    h3 { margin: 22px 0 6px; }
+    .cols { display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-start; }
+    figure.diagram { margin: 0; }
+    figure.diagram canvas { background: #fff; border: 1px solid #eee; display: block; }
+    figcaption { font-size: .85rem; color: #555; margin-top: 4px; max-width: 24rem; }
+    .before figcaption b { color: #a33; }
+    .after  figcaption b { color: #284; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.9rem; color:#555; }
+    kbd { background:#eee; border:1px solid #ccc; border-radius:3px; padding:0 4px; }
+    code { background:#f3f3f3; padding:0 3px; border-radius:3px; }
+</style>
+</head>
+<body>
+<main>
+<h2>Construction animations — before vs after (#127)</h2>
+<p class="note">
+Each row is the same construction two ways: <b style="color:#a33">left</b> = the
+deck pattern <b>as built today</b> (every circle / triangle / side declared and
+animated by hand, with a follow-up slide to clear the scaffolding);
+<b style="color:#284">right</b> = the <b>one reusable animation entry</b> that
+replaces the rig. Click a canvas and press <kbd>p</kbd> to present, then
+<kbd>→</kbd>. They should land on the same figure — the right just gets there in
+one entry and self-clears its scaffolding.
+</p>
+
+<h3>Euclid I.1 — equilateral triangle on a base</h3>
+<div class="cols">
+  <figure class="diagram before">
+    <canvas id="i1_before" width="320" height="280" tabindex="0"></canvas>
+    <figcaption><b>before</b> — 2 circles + outline, hand-listed, then a clear slide
+      (3 slides, 3 animation entries). The transitory equilateral sub-walk as decks write it today.</figcaption>
+  </figure>
+  <figure class="diagram after">
+    <canvas id="i1_after" width="320" height="280" tabindex="0"></canvas>
+    <figcaption><b>after</b> — <code>{elem:"ABC", name:A.Polygon.equilateralBuild}</code>
+      (2 slides, 1 entry). Circles sweep, triangle lands, circles clear automatically.</figcaption>
+  </figure>
+</div>
+
+<h3>Euclid I.2 — copy a length to a point (the I.23 transfer rig)</h3>
+<div class="cols">
+  <figure class="diagram before">
+    <canvas id="i2_before" width="460" height="440" tabindex="0"></canvas>
+    <figcaption><b>before</b> — join, equilateral, two produced sides
+      (<code>extend</code>/<code>cutoff</code>), two lay-off circles, the radius circle:
+      ~10 elements + 7 animation entries + a clear slide. The I.23 "t1" rig as built today.</figcaption>
+  </figure>
+  <figure class="diagram after">
+    <canvas id="i2_after" width="460" height="440" tabindex="0"></canvas>
+    <figcaption><b>after</b> — <code>{elem:"K", name:A.Circle.compassTransfer}</code>
+      on the declared <code>circle;radius;P,C,D</code> (2 slides, 1 entry). Same walk, same circle.</figcaption>
+  </figure>
+</div>
+</main>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+
+    // ---- I.1: before (hand rig) vs after (equilateralBuild) ----
+    geomlib.init({
+        canvasid: "i1_before", background: "0,0,100", title: "I.1 before",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [80, 190], vertexColor: "black", nameColor: "black" },
+            { name: "B", construction: E.Point.free, params: [240, 190], vertexColor: "black", nameColor: "black" },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"], nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            { name: "ABC", construction: E.Polygon.equilateralTriangle, params: ["A", "B"], nameColor: 0, vertexColor: 0, edgeColor: "#1144cc", faceColor: "210,18,96" },
+            // transitory compass circles (zero-color → gold only while animating)
+            { name: "Ac", construction: E.Circle.radius, params: ["A", "B"], nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: 0 },
+            { name: "Bc", construction: E.Circle.radius, params: ["B", "A"], nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: 0 },
+        ],
+        slides: [
+            { text: "The base {AB}.", visible: ["A", "B", "AB"] },
+            { text: "Sweep both circles, then trace the triangle.",
+              visible: ["A", "B", "AB", "Ac", "Bc", "ABC"],
+              transition: { animations: [
+                  { elem: "Ac", name: A.Circle.compass },
+                  { elem: "Bc", name: A.Circle.compass },
+                  { elem: "ABC", name: A.Polygon.outlineAndFill } ] } },
+            { text: "Clear the construction circles.", visible: ["A", "B", "AB", "ABC"] },
+        ],
+    });
+    geomlib.init({
+        canvasid: "i1_after", background: "0,0,100", title: "I.1 after",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [80, 190], vertexColor: "black", nameColor: "black" },
+            { name: "B", construction: E.Point.free, params: [240, 190], vertexColor: "black", nameColor: "black" },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"], nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            { name: "ABC", construction: E.Polygon.equilateralTriangle, params: ["A", "B"], nameColor: 0, vertexColor: 0, edgeColor: "#1144cc", faceColor: "210,18,96" },
+        ],
+        slides: [
+            { text: "The base {AB}.", visible: ["A", "B", "AB"] },
+            { text: "Build the equilateral triangle {ABC}.",
+              visible: ["A", "B", "AB", "ABC"],
+              transition: { animations: [ { elem: "ABC", name: A.Polygon.equilateralBuild } ] } },
+        ],
+    });
+
+    // ---- I.2 transfer: before (hand rig) vs after (compassTransfer) ----
+    // Copy length |CD| to point P → a radius circle K at P. apex up (room above).
+    const i2pts = [
+        { name: "P", construction: E.Point.free, params: [180, 300], vertexColor: "black", nameColor: "black" },
+        { name: "C", construction: E.Point.free, params: [280, 300], vertexColor: "black", nameColor: "black" },
+        { name: "D", construction: E.Point.free, params: [340, 280], vertexColor: "black", nameColor: "black" },
+        { name: "CD", construction: E.Line.connect, params: ["C", "D"], nameColor: 0, vertexColor: 0, edgeColor: "black" },
+        { name: "K", construction: E.Circle.radius, params: ["P", "C", "D"], nameColor: 0, vertexColor: 0, edgeColor: "#1144cc", faceColor: 0 },
+    ];
+    geomlib.init({
+        canvasid: "i2_before", background: "0,0,100", title: "I.2 before",
+        elements: i2pts.concat([
+            { name: "PC",  construction: E.Line.connect, params: ["P", "C"], nameColor: 0, vertexColor: 0, edgeColor: 0 },
+            // the two I.1 circles that fix the equilateral apex (transitory)
+            { name: "Pq",  construction: E.Circle.radius, params: ["P", "C"], nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: 0 },
+            { name: "Cq",  construction: E.Circle.radius, params: ["C", "P"], nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: 0 },
+            { name: "PCT", construction: E.Polygon.equilateralTriangle, params: ["P", "C"], nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: 0 },
+            { name: "T",   construction: E.Point.vertex, params: ["PCT", 3], nameColor: 0, vertexColor: 0 },
+            { name: "M",   construction: E.Point.extend, params: ["T", "C", "C", "D"], nameColor: 0, vertexColor: 0 },
+            { name: "TM",  construction: E.Line.connect, params: ["T", "M"], nameColor: 0, vertexColor: 0, edgeColor: 0 },
+            { name: "N",   construction: E.Point.cutoff, params: ["T", "P", "T", "M"], nameColor: 0, vertexColor: 0 },
+            { name: "TN",  construction: E.Line.connect, params: ["T", "N"], nameColor: 0, vertexColor: 0, edgeColor: 0 },
+            { name: "Cc",  construction: E.Circle.radius, params: ["C", "C", "D"], nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: 0 },
+            { name: "Tc",  construction: E.Circle.radius, params: ["T", "T", "M"], nameColor: 0, vertexColor: 0, edgeColor: 0, faceColor: 0 },
+        ]),
+        slides: [
+            { text: "Copy {CD} to {P}.", visible: ["P", "C", "D", "CD"] },
+            { text: "Join, raise the equilateral, produce the sides, swing the two circles.",
+              visible: ["P", "C", "D", "CD", "PC", "Pq", "Cq", "PCT", "TM", "TN", "Cc", "Tc", "K"],
+              transition: { animations: [
+                  { elem: "PC",  name: A.Line.straightEdgeConnect },
+                  { elem: "Pq",  name: A.Circle.compass },
+                  { elem: "Cq",  name: A.Circle.compass },
+                  { elem: "PCT", name: A.Polygon.outline },
+                  { elem: "TM",  name: A.Line.straightEdgeExtend },
+                  { elem: "TN",  name: A.Line.straightEdgeExtend },
+                  { elem: "Cc",  name: A.Circle.compass },
+                  { elem: "Tc",  name: A.Circle.compass },
+                  { elem: "K",   name: A.Circle.compass } ] } },
+            { text: "Clear the scaffolding, keep the circle.", visible: ["P", "C", "D", "CD", "K"] },
+        ],
+    });
+    geomlib.init({
+        canvasid: "i2_after", background: "0,0,100", title: "I.2 after",
+        elements: i2pts.slice(),
+        slides: [
+            { text: "Copy {CD} to {P}.", visible: ["P", "C", "D", "CD"] },
+            { text: "One compass-transfer walk leaves the radius circle {K} at {P}.",
+              visible: ["P", "C", "D", "CD", "K"],
+              transition: { animations: [ { elem: "K", name: A.Circle.compassTransfer, args: { side: -1 } } ] } },
+        ],
+    });
+</script>
+</body>
+</html>

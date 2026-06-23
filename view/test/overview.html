@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>geomlib — view/test catalog</title>
+<style>
+    body { font-family: sans-serif; color: #2a2a2a; background: #fff; margin: 0; line-height: 1.45; }
+    main { max-width: 60rem; margin: 0 auto; padding: 18px 20px 60px; }
+    h1 { margin: 0 0 4px; } h2 { margin: 26px 0 8px; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+    p.lead { color: #555; margin: 0 0 8px; }
+    table { border-collapse: collapse; width: 100%; margin: 6px 0; }
+    th, td { text-align: left; vertical-align: top; padding: 6px 10px; border-bottom: 1px solid #eee; font-size: .92rem; }
+    th { color: #555; font-weight: 600; }
+    td a { font-family: ui-monospace, monospace; text-decoration: none; color: #1144cc; white-space: nowrap; }
+    td a:hover { text-decoration: underline; }
+    .tag { display: inline-block; font-size: .72rem; font-weight: 700; color: #fff; background: #888; border-radius: 4px; padding: 0 5px; margin-left: 4px; }
+    .tag.n127 { background: #284; } .tag.feat { background: #1144cc; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.88rem; color:#555; margin: 10px 0; }
+    kbd { background:#eee; border:1px solid #ccc; border-radius:3px; padding:0 4px; }
+    code { background:#f3f3f3; padding:0 3px; border-radius:3px; }
+</style>
+</head>
+<body>
+<main>
+<h1>geomlib — <code>view/test/</code> catalog</h1>
+<p class="lead">Manual catalog of the demo + fixture pages. Each demo loads
+<code>../../dist/bundle.js</code> — run <code>npm&nbsp;run&nbsp;bundle</code> first, then
+open a page. Slideshow demos: press <kbd>p</kbd> to present, <kbd>→</kbd> to advance.</p>
+<p class="note">Hand-maintained — add a row here when you add a top-level demo.
+The per-construction subdirectories double as snapshot-test input
+(<code>tests/SnapshotTest.ts</code>), so they're listed as groups rather than
+individually.</p>
+
+<h2>#127 — construction animations <span class="tag n127">#127</span></h2>
+<p class="lead">The two reusable construction animations and the contexts that use them.</p>
+<table>
+  <tr><th>Page</th><th>Shows</th></tr>
+  <tr><td><a href="transfer-animations.html">transfer-animations.html</a></td>
+      <td><b>Before vs after</b>, side by side. I.1 (equilateral) and I.2 (copy a length): the hand-built rig on the left, the single <code>A.Polygon.equilateralBuild</code> / <code>A.Circle.compassTransfer</code> entry on the right. They land on the same figure.</td></tr>
+  <tr><td><a href="propI23-transfer.html">propI23-transfer.html</a></td>
+      <td>The <b>real I.23 guide deck</b> (copy an angle), with its two hand-built transfer rigs replaced by two <code>compassTransfer</code> calls. Uses <code>keepCircles</code> so slide 9's "ten circles" count still works.</td></tr>
+</table>
+
+<h2>Construction / element features</h2>
+<table>
+  <tr><th>Page</th><th>Shows</th><th>Issue</th></tr>
+  <tr><td><a href="curved-triangle.html">curved-triangle.html</a></td>
+      <td>Curved (elliptic) triangle vs the straight-chord stopgap — the I.16 figure, two ways.</td><td>#119</td></tr>
+  <tr><td><a href="open-path.html">open-path.html</a></td>
+      <td><code>line;path</code> — an open polyline highlighted as one route (Heron's bent line, I.20).</td><td>#121</td></tr>
+  <tr><td><a href="circumcenter_lineperp.html">circumcenter_lineperp.html</a></td>
+      <td><code>Point.circumcenter</code> + <code>Line.perpendicular</code> (III.25a).</td><td>—</td></tr>
+  <tr><td><a href="quad_line.html">quad_line.html</a></td>
+      <td>Quadrilateral + line construction scratch page.</td><td>—</td></tr>
+</table>
+
+<h2>Slideshow / animation / highlight features</h2>
+<table>
+  <tr><th>Page</th><th>Shows</th><th>Issue</th></tr>
+  <tr><td><a href="recenter-maximize.html">recenter-maximize.html</a></td>
+      <td>Maximized-view recenter + present/centre-once + Esc-stays-maximized.</td><td>#107 / #114 / #115</td></tr>
+  <tr><td><a href="highlight-event.html">highlight-event.html</a></td>
+      <td>Bidirectional <code>geomlib:highlight</code> binding — prose ⇄ canvas hover/pin.</td><td>#108</td></tr>
+  <tr><td><a href="deferred-point-reveal.html">deferred-point-reveal.html</a></td>
+      <td>A deferred <code>Point.appear</code> target stays dark until its step; the label snaps in at full reveal.</td><td>#126</td></tr>
+</table>
+
+<h2>Responsive / 3D</h2>
+<table>
+  <tr><th>Page</th><th>Shows</th><th>Issue</th></tr>
+  <tr><td><a href="mobile-scaling.html">mobile-scaling.html</a></td>
+      <td>Responsive scale-to-fit on a narrow column (no mobile clipping), crisp HiDPI.</td><td>#71</td></tr>
+  <tr><td><a href="mobile-3d.html">mobile-3d.html</a></td>
+      <td>A 3-D figure scaling to fit.</td><td>#71</td></tr>
+  <tr><td><a href="icosahedron.html">icosahedron.html</a></td>
+      <td>The icosahedron (ported from the original <code>Geometry.html</code>).</td><td>—</td></tr>
+  <tr><td><a href="two_canvas.html">two_canvas.html</a></td>
+      <td>Two independent slates on one page.</td><td>—</td></tr>
+</table>
+
+<h2>Per-construction &amp; fixture pages (subdirectories)</h2>
+<p class="lead">Demo pages per element type — also the input scenes the snapshot
+suite auto-discovers. Browse a folder for its pages.</p>
+<table>
+  <tr><th>Folder</th><th>Contents</th></tr>
+  <tr><td><a href="point/">point/</a></td><td>Point constructions (free, intersection, sliders, foot, extend/cutoff, proportion, …) — 14 pages.</td></tr>
+  <tr><td><a href="line/">line/</a></td><td>Line constructions (connect, chord, bichord, perpendicular, parallel, …) — 9 pages.</td></tr>
+  <tr><td><a href="poly/">poly/</a></td><td>Polygon constructions (triangle, regular, application, superpose, …) — 9 pages.</td></tr>
+  <tr><td><a href="circle/">circle/</a></td><td>Circle constructions (radius, circumcircle, invert, intersection) — 4 pages.</td></tr>
+  <tr><td><a href="sector/">sector/</a></td><td>Sector / arc / angle-marker — 3 pages.</td></tr>
+  <tr><td><a href="plane/">plane/</a></td><td>Plane constructions — 2 pages.</td></tr>
+  <tr><td><a href="polyhedron/">polyhedron/</a></td><td>Polyhedra (tetrahedron, prism, …) — 2 pages.</td></tr>
+  <tr><td><a href="slideshow/">slideshow/</a></td><td>Slideshow walk-throughs (e.g. propI1) — 3 pages.</td></tr>
+  <tr><td><a href="sample_page/">sample_page/</a></td><td>A sample consumer page wiring init() + controls.</td></tr>
+  <tr><td><a href="init-failure/">init-failure/</a></td><td>init() error-handling / noscript fallback.</td></tr>
+</table>
+</main>
+</body>
+</html>

@@ -6,6 +6,7 @@ import {GeomElement} from "../GeomElement";
 import {Slate} from "../../Slate";
 import {PolygonElement} from "./PolygonElement";
 import {PointElement} from "../point/PointElement";
+import {CircleElement} from "../circle/CircleElement";
 
 // Default per-edge trace rate matches LineAnimations so a polygon's
 // edges feel like the same instrument tracing each side in turn.
@@ -271,6 +272,98 @@ export class PolygonSuperposeAnimation extends Animation {
     }
 }
 
+// A.Polygon.equilateralBuild — Euclid I.1: build the equilateral triangle
+// on a base as a transitory compass walk. Two gold compass circles (centre
+// V[0] through V[1], centre V[1] through V[0]) sweep out, then the triangle
+// traces (and fills) — and the circles vanish, leaving just the triangle.
+// The target is the declared `polygon;equilateralTriangle` (V[0]=A, V[1]=B,
+// V[2]=apex); the circles are bare EPHEMERALS the animation owns and clears,
+// so a deck calls one entry instead of declaring + sequencing the rig.
+//
+// Unlike A.Polygon.superpose (whose target is already on stage), this target
+// is a DEFERRED REVEAL: it stays dark (drawProgress=0, faceAlpha=0) through
+// the circle sweeps and only traces in on the outline step.
+const EQUILATERAL_SWEEP_RATE_RAD_PER_MS = 0.0045;   // brisker than the lone compass
+
+export class PolygonEquilateralBuildAnimation extends Animation {
+    public animationMethod = AllAnimations.POLYGON_EQUILATERAL_BUILD;
+    public name = "Polygon.equilateralBuild";
+    public elementType = PolygonElement;
+    public defaultRate = EQUILATERAL_SWEEP_RATE_RAD_PER_MS;
+    public defaultDurationMs = DEFAULT_POLYGON_FILL_MS;
+
+    public build(target: GeomElement, slate: Slate, args: any): IAnimationStep[] {
+        const poly = target as PolygonElement;
+        // Need a base (A, B) to centre the two compass circles on.
+        if (poly.V.length < 2) {
+            return [{ durationMs: 0, tick: () => {},
+                finalise: () => { poly.drawProgress = 1; poly.faceAlpha = 1; poly.visible = true; } }];
+        }
+        const A = poly.V[0], B = poly.V[1];
+        const plane = A.AP;
+        const sweepMs = (2 * Math.PI) / this.defaultRate;
+        // Bare ephemeral circles (no face — a compass walk is the arc only).
+        // They paint gold via the highlight stroke because they're emphasised.
+        const circAB = new CircleElement({ C: A, B: B, AP: plane });   // centre A through B
+        const circBA = new CircleElement({ C: B, B: A, AP: plane });   // centre B through A
+        for (const c of [circAB, circBA]) {
+            c.edgeColor = null; c.faceColor = null; c.nameColor = null; c.vertexColor = null;
+            c.emphasized = true;
+        }
+        const startAngle = (c: CircleElement) =>
+            Math.atan2(c.B.y - c.Center.y, c.B.x - c.Center.x);
+        const sweep = (c: CircleElement): IAnimationStep => ({
+            durationMs: sweepMs,
+            setup: () => { c.drawStartAngle = startAngle(c); c.drawProgress = 0; },
+            tick: (p) => { c.drawProgress = p; },
+            finalise: () => { c.drawProgress = 1; },
+        });
+
+        const outlineMs = Math.max(180, perimeter(poly) / DEFAULT_POLYGON_EDGE_RATE_PX_PER_MS);
+        const clearCircles = () => { slate.removeEphemeral(circAB); slate.removeEphemeral(circBA); };
+        const fullRestore = () => {
+            poly.drawProgress = 1; poly.faceAlpha = 1; poly.visible = true;
+            clearCircles();
+        };
+
+        // Step 1 — first compass circle; also creates + registers both ephemerals
+        // and hides the polygon until its outline step.
+        const first = sweep(circAB);
+        const firstSetup = first.setup;
+        first.setup = () => {
+            poly.drawProgress = 0; poly.faceAlpha = 0;   // deferred reveal — stay dark
+            slate.addEphemeral(circAB); slate.addEphemeral(circBA);
+            // Both circles start un-drawn: a fresh CircleElement defaults to
+            // drawProgress = 1, and ephemerals get no animator pre-zeroing, so
+            // the second circle would otherwise flash full during the first sweep.
+            circAB.drawProgress = 0; circBA.drawProgress = 0;
+            if (firstSetup) firstSetup();
+        };
+
+        // Step N — outline trace. Reveals the triangle; clears the circles last
+        // (after a faceless polygon, or before the fill step takes over).
+        const outline: IAnimationStep = {
+            durationMs: outlineMs,
+            setup: () => { poly.drawProgress = 0; poly.faceAlpha = 0; },
+            tick: (p) => { poly.drawProgress = p; },
+            finalise: () => { poly.drawProgress = 1; },
+        };
+        if (poly.faceColor == null) {
+            outline.finalise = fullRestore;
+            return [first, sweep(circBA), outline];
+        }
+        const fillMs = Math.min(outlineMs / 2, this.defaultDurationMs);
+        return [
+            first,
+            sweep(circBA),
+            outline,
+            // Final step — face fade-in; clears the circles as the triangle lands.
+            { durationMs: fillMs, tick: (p) => { poly.faceAlpha = p; }, finalise: fullRestore },
+        ];
+    }
+}
+
 registerAnimation(new PolygonOutlineAnimation());
 registerAnimation(new PolygonOutlineAndFillAnimation());
 registerAnimation(new PolygonSuperposeAnimation());
+registerAnimation(new PolygonEquilateralBuildAnimation());
