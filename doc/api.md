@@ -525,6 +525,35 @@ Fires only when the set *changes* (not per frame / per `emphasisAmount`
 fade) and is idempotent, so a listener that highlights text spans creates
 no feedback loop. No-op when the canvas can't dispatch DOM events.
 
+### `geomlib.highlightByName()` — cross-canvas highlight (#130, 0.13.0+)
+
+When a proposition is drawn across **more than one canvas** that share
+element names (e.g. I.26's two case triangles, both labelled `ABC`), a
+single prose reference should light the element in **every** canvas it
+appears in — not just one. `highlightByName` fans the per-slate highlight
+out across slates:
+
+```typescript
+geomlib.highlightByName(
+    name: string,                       // canonical name OR any alias
+    on: boolean = true,                 // true = highlight, false = clear
+    opts?: { canvasids?: string[] },    // scope to these canvases; default all
+): number;                              // # of canvases the element was found in
+```
+
+It sets `emphasized` on each matching element (alias-aware, via
+`slate.lookupElement`), redraws each touched slate, and so fires every
+affected canvas's `geomlib:highlight` event — letting the page light each
+canvas's prose spans through the same listener as the single-canvas path.
+Pass `opts.canvasids` to scope to one proposition's group so unrelated
+figures elsewhere on the page stay dark. Typical page use:
+
+```typescript
+const group = ["canvas_0", "canvas_1"];           // one proposition's figures
+ref.addEventListener("mouseenter", () => geomlib.highlightByName(ref.dataset.ref, true,  { canvasids: group }));
+ref.addEventListener("mouseleave", () => geomlib.highlightByName(ref.dataset.ref, false, { canvasids: group }));
+```
+
 ### What renders this
 
 `SlateControls` (the slate-overlay UI) adds a fourth button — the
