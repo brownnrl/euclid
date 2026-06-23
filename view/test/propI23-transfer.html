@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — I.23 guide deck with A.Circle.compassTransfer (#127)</title>
+<style>
+    body { font-family: sans-serif; color: #333; background: #fff; margin: 0; }
+    main { max-width: 44rem; margin: 0 auto; padding: 16px; }
+    canvas { background: #fff; border: 1px solid #eee; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.9rem; color:#555; }
+    kbd { background:#eee; border:1px solid #ccc; border-radius:3px; padding:0 4px; }
+    code { background:#f3f3f3; padding:0 3px; border-radius:3px; }
+</style>
+</head>
+<body>
+<main>
+<h2>I.23 construction walk — real deck, on <code>compassTransfer</code> (#127)</h2>
+<p class="note">
+This is the actual <b>I.23 guide construction slideshow</b> (copy an angle),
+copied from the lektor deck, with its <b>two hand-built transfer rigs</b>
+(<code>t1*</code>/<code>t2*</code> — ~22 elements + ~19 cascade entries) replaced
+by <b>two <code>A.Circle.compassTransfer</code> entries</b> on the kept radius
+circles <code>Acirc</code>/<code>Gcirc</code>. Press <kbd>p</kbd> to present,
+<kbd>→</kbd> to walk. Slides 3 and 5 are the transfers. The compass scaffolding
+sweeps and self-clears (it extends past the canvas edge, exactly as the
+hand-built rig's circles did). The transfers pass <code>keepCircles</code> so
+their four construction circles persist as named elements (<code>t1Ka</code>…),
+which lets <b>slide 9 restore the original "ten circles" count</b> — the
+transitory scaffolding (join/triangle/sides) still clears, but the circles
+remain countable.
+</p>
+<canvas id="canvas_1" width="360" height="300" tabindex="0"></canvas>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    geomlib.init({
+        canvasid: "canvas_1",
+        background: "0,0,100",
+        title: "I.23",
+        elements: [
+            "D;point;free;270,30",
+            "C;point;free;200,80",
+            "Ccirc;circle;radius;C,D;0;0;0;0",
+            "E;point;circleSlider;Ccirc,280,130",
+            "D1;point;extend;C,D,C,D;0;0",
+            "E1;point;extend;C,E,C,E;0;0",
+            "CD1;line;connect;C,D1",
+            "CE1;line;connect;C,E1",
+            "CDE;sector;sector;C,E,D;0;0;black",
+            "A;point;free;50,180",
+            "B;point;free;210,180",
+            "AB;line;connect;A,B",
+            "G;point;cutoff;A,B,C,D",
+            // the two kept result circles (centre A radius CD, centre G radius ED)
+            "Acirc;circle;radius;A,C,D;0;0;black;0",
+            "Gcirc;circle;radius;G,D,E;0;0;black;0",
+            "F'F;line;bichord;Acirc,Gcirc;0;0",
+            "F;point;last;F'F",
+            "AF;line;connect;A,F",
+            "AGF;sector;sector;A,G,F;0;0;0",
+            "DCE;sector;angleMarker;C,D,E",
+            "FAG;sector;angleMarker;A,G,F",
+            "CD;line;connect;C,D;0;0;0",
+            "CE;line;connect;C,E;0;0;0",
+            "DE;line;connect;D,E;0;0;0",
+        ],
+        aliases: { "ED": "DE" },
+        slides: [
+            { text: "Unless there is some special reason for selecting particular points {D} and {E} on the sides of the angle {C}, they might as well be taken equidistant from {C} as Apollonius suggested — then only two distances need to be transferred instead of three.",
+              visible: ["CD1","CE1","CDE","AB"],
+              highlighted: ["D","E","C"] },
+            { text: "In order to make {CE} equal to {CD}, one circle is required.",
+              visible: ["CD1","CE1","CDE","AB","Ccirc","CD","CE"],
+              highlighted: ["Ccirc","CE","CD"],
+              transition: { animations: [ { elem: "Ccirc", name: geomlib.A.Circle.compass } ] } },
+            { text: "Next, transfer the distance {CD} to {A} — one compass-transfer walk lays it off, leaving the circle on {A} of radius {CD}, which meets {AB} at {G}.",
+              visible: ["CD1","CE1","CDE","AB","Acirc","G","CD"],
+              highlighted: ["Acirc","CD"],
+              transition: { mode: "cascade", animations: [
+                  { elem: "Acirc", name: geomlib.A.Circle.compassTransfer,
+                    args: { side: -1, keepCircles: ["t1Ka","t1Kc","t1Kc2","t1KT"] } },
+                  { elem: "G",     name: geomlib.A.Point.appear } ] },
+              justifications: [{ ref: "I.1" }, { ref: "I.2" }] },
+            { text: "With {G} fixed, the transfer scaffolding has cleared, leaving {G} and the circle on {A}.",
+              visible: ["CD1","CE1","CDE","AB","G","Acirc"],
+              highlighted: ["G","Acirc"] },
+            { text: "In the same way, transfer the distance {ED} to {G}, then draw the circle with center {G} and radius {ED}.",
+              visible: ["CD1","CE1","CDE","AB","G","Acirc","Gcirc","DE"],
+              highlighted: ["Gcirc","DE"],
+              transition: { mode: "cascade", animations: [
+                  { elem: "Gcirc", name: geomlib.A.Circle.compassTransfer,
+                    args: { side: -1, keepCircles: ["t2Kg","t2Ke","t2Ke2","t2KT"] } } ] },
+              justifications: [{ ref: "I.1" }, { ref: "I.2" }] },
+            { text: "Clearing that scaffolding too leaves the two circles — one on {A} with radius {CD}, one on {G} with radius {ED}.",
+              visible: ["CD1","CE1","CDE","AB","G","Acirc","Gcirc"],
+              highlighted: ["Acirc","Gcirc"] },
+            { text: "These two circles meet at the point {F}.",
+              visible: ["CD1","CE1","CDE","AB","G","Acirc","Gcirc","F","CD","DE"],
+              highlighted: ["Acirc","Gcirc","F"],
+              transition: { animations: [ { elem: "F", name: geomlib.A.Point.appear } ] } },
+            { text: "The line {AF} is the other side of the required angle.",
+              visible: ["CD1","CE1","CDE","AB","G","Acirc","Gcirc","F","AF","AGF"],
+              highlighted: ["AF","AGF"],
+              transition: { mode: "cascade", animations: [
+                  { elem: "AF",  name: geomlib.A.Line.straightEdgeConnect },
+                  { elem: "AGF", name: geomlib.A.Sector.sweep } ] } },
+            { text: "In all there are ten circles and one line that must be drawn;",
+              visible: ["CD1","CE1","CDE","AB","G","F","AF","AGF","t1Ka","t1Kc","t1Kc2","t1KT","Acirc","t2Kg","t2Ke","t2Ke2","t2KT","Gcirc"],
+              highlighted: ["AF","t1Ka","t1Kc","t1Kc2","t1KT","Acirc","t2Kg","t2Ke","t2Ke2","t2KT","Gcirc"],
+              transition: { mode: "cascade", animations: [
+                  { elem: "AF",    name: geomlib.A.Line.straightEdgeConnect },
+                  { elem: "t1Ka",  name: geomlib.A.Circle.compass },
+                  { elem: "t1Kc",  name: geomlib.A.Circle.compass },
+                  { elem: "t1Kc2", name: geomlib.A.Circle.compass },
+                  { elem: "t1KT",  name: geomlib.A.Circle.compass },
+                  { elem: "Acirc", name: geomlib.A.Circle.compass },
+                  { elem: "t2Kg",  name: geomlib.A.Circle.compass },
+                  { elem: "t2Ke",  name: geomlib.A.Circle.compass },
+                  { elem: "t2Ke2", name: geomlib.A.Circle.compass },
+                  { elem: "t2KT",  name: geomlib.A.Circle.compass },
+                  { elem: "Gcirc", name: geomlib.A.Circle.compass } ] } },
+            { text: "The lines in the intermediate stages may be suppressed as usual, since they are only needed to verify the construction is correct. The constructed angle {FAG} equals the given angle {DCE}.",
+              visible: ["CD1","CE1","CDE","AB","G","Acirc","Gcirc","F","AF","AGF","DCE","FAG"],
+              highlighted: ["DCE","FAG"],
+              transition: { mode: "parallel", animations: [
+                  { elem: "DCE", name: geomlib.A.Sector.sweep },
+                  { elem: "FAG", name: geomlib.A.Sector.sweep } ] } },
+        ],
+        resolveJustification: function(ref) {
+            return (window.eucrefs && window.eucrefs[ref]) || null;
+        },
+    });
+    window.eucrefs = Object.assign(window.eucrefs || {}, {
+        "I.1": "https://www.euclids-elements.org/elements/books/bookI/propositions/propI1/",
+        "I.2": "https://www.euclids-elements.org/elements/books/bookI/propositions/propI2/",
+    });
+</script>
+</main>
+</body>
+</html>

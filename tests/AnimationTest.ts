@@ -1048,3 +1048,164 @@ describe("point slide + polygon translate-aside (issues #95, #94)", () => {
         });
     });
 });
+
+// ---------------------------------------------------------------------
+// #127 — A.Polygon.equilateralBuild: the I.1 compass walk as a single
+// animation. Two ephemeral compass circles sweep, then the triangle
+// outlines/fills, then the circles are cleared.
+// ---------------------------------------------------------------------
+describe("A.Polygon.equilateralBuild build() (#127)", () => {
+    function makeTri(face: string | null): [Slate, PolygonElement] {
+        const slate = new Slate(createCanvas(440, 320));
+        const data: IConstructionInfo[] = [
+            { construction: E.Point.free,                name: "A",   params: [130, 240] },
+            { construction: E.Point.free,                name: "B",   params: [310, 240] },
+            { construction: E.Polygon.equilateralTriangle, name: "ABC", params: ["A", "B"] },
+        ];
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        const tri = slate.lookupElement("ABC") as PolygonElement;
+        tri.faceColor = face;   // toElements doesn't apply colors; set directly
+        return [slate, tri];
+    }
+
+    it("returns 4 steps with a face (2 sweeps + outline + fill), 3 without", () => {
+        const [s1, tri1] = makeTri("rgb(210,228,245)");
+        assert.strictEqual(findAnimation(A.Polygon.equilateralBuild)!.build(tri1, s1, {}).length, 4);
+        const [s2, tri2] = makeTri(null);
+        assert.strictEqual(findAnimation(A.Polygon.equilateralBuild)!.build(tri2, s2, {}).length, 3);
+    });
+
+    it("step-1 setup spawns two ephemeral circles; the last finalise clears them", () => {
+        const [slate, tri] = makeTri("rgb(210,228,245)");
+        const steps = findAnimation(A.Polygon.equilateralBuild)!.build(tri, slate, {});
+        assert.strictEqual(slate.ephemerals.length, 0);
+        steps[0].setup!();
+        assert.strictEqual(slate.ephemerals.length, 2, "two compass circles");
+        assert.ok(slate.ephemerals.every(e => e instanceof CircleElement));
+        steps.forEach(s => s.finalise());   // last finalise (fullRestore) clears them
+        assert.strictEqual(slate.ephemerals.length, 0, "cleared after the walk");
+    });
+
+    it("starts both circles un-drawn so the second doesn't flash full during the first sweep", () => {
+        const [slate, tri] = makeTri(null);
+        const steps = findAnimation(A.Polygon.equilateralBuild)!.build(tri, slate, {});
+        steps[0].setup!();
+        const [cA, cB] = slate.ephemerals as CircleElement[];
+        assert.strictEqual(cA.drawProgress, 0, "first circle starts at 0");
+        assert.strictEqual(cB.drawProgress, 0, "second circle starts at 0 (not the default 1)");
+    });
+
+    it("the circles are centred on the base endpoints with radius |AB|", () => {
+        const [slate, tri] = makeTri(null);
+        const steps = findAnimation(A.Polygon.equilateralBuild)!.build(tri, slate, {});
+        steps[0].setup!();
+        const [cA, cB] = slate.ephemerals as CircleElement[];
+        const pA = tri.V[0], pB = tri.V[1], ab = pA.distance(pB);
+        assert.ok(approx(cA.Center.x, pA.x) && approx(cA.Center.y, pA.y), "circle 1 centred on A");
+        assert.ok(approx(cA.radius, ab), `circle 1 radius ${cA.radius} vs ${ab}`);
+        assert.ok(approx(cB.Center.x, pB.x) && approx(cB.Center.y, pB.y), "circle 2 centred on B");
+        assert.ok(approx(cB.radius, ab), `circle 2 radius ${cB.radius} vs ${ab}`);
+    });
+
+    it("keeps the triangle dark (drawProgress 0) through the circle sweeps", () => {
+        const [slate, tri] = makeTri(null);
+        const steps = findAnimation(A.Polygon.equilateralBuild)!.build(tri, slate, {});
+        tri.drawProgress = 1;            // animator pre-state
+        steps[0].setup!();
+        assert.strictEqual(tri.drawProgress, 0, "hidden while the compass sweeps");
+        // the outline step (last) reveals it
+        steps[steps.length - 1].finalise();
+        assert.strictEqual(tri.drawProgress, 1, "revealed at the end");
+        assert.strictEqual(tri.visible, true);
+    });
+});
+
+// ---------------------------------------------------------------------
+// #127 — A.Circle.compassTransfer: Euclid I.2 (copy a length) as one
+// animation. Target = the kept radius circle (circle;radius;P,C,D); the
+// macro animates the rigorous I.2 scaffolding (join, equilateral, two
+// produced sides, two lay-off circles) as ephemerals, then reveals it.
+// ---------------------------------------------------------------------
+describe("A.Circle.compassTransfer build() (#127)", () => {
+    // P = centre/target point; C,D = the source segment (length to copy).
+    function makeScene(radiusParams: string[]): [Slate, CircleElement] {
+        const slate = new Slate(createCanvas(460, 360));
+        const data: IConstructionInfo[] = [
+            { construction: E.Point.free,   name: "P", params: [140, 200] },
+            { construction: E.Point.free,   name: "C", params: [250, 230] },
+            { construction: E.Point.free,   name: "D", params: [330, 180] },
+            { construction: E.Circle.radius, name: "K", params: radiusParams },
+        ];
+        toElements(slate, data);
+        slate.elements.forEach(e => e.update());
+        const k = slate.lookupElement("K") as CircleElement;
+        k.visible = true; k.emphasized = true;   // animator _startStep pre-state
+        return [slate, k];
+    }
+
+    it("returns the 9-step I.2 walk for a radius circle", () => {
+        const [slate, k] = makeScene(["P", "C", "D"]);
+        const steps = findAnimation(A.Circle.compassTransfer)!.build(k, slate, {});
+        assert.strictEqual(steps.length, 9);
+    });
+
+    it("step-1 setup spawns 8 ephemerals; the last finalise clears them", () => {
+        const [slate, k] = makeScene(["P", "C", "D"]);
+        const steps = findAnimation(A.Circle.compassTransfer)!.build(k, slate, {});
+        assert.strictEqual(slate.ephemerals.length, 0);
+        steps[0].setup!();
+        assert.strictEqual(slate.ephemerals.length, 8,
+            "join + 2 equilateral circles + triangle + 2 produced sides + 2 lay-off circles");
+        steps.forEach(s => s.finalise());   // the reveal's finalise clears the scaffold
+        assert.strictEqual(slate.ephemerals.length, 0, "scaffolding cleared once the circle lands");
+    });
+
+    it("a lay-off circle carries the copied length |CD| (centred on the near source end)", () => {
+        const [slate, k] = makeScene(["P", "C", "D"]);
+        const C = slate.lookupElement("C") as PointElement;
+        const D = slate.lookupElement("D") as PointElement;
+        const r = C.distance(D);
+        findAnimation(A.Circle.compassTransfer)!.build(k, slate, {})[0].setup!();
+        const circles = slate.ephemerals.filter(e => e instanceof CircleElement) as CircleElement[];
+        // Two circles are centred on C — the I.1 equilateral circle (radius |PC|)
+        // and the lay-off circle (radius |CD|); assert the lay-off one exists.
+        const layoff = circles.find(c => approx(c.Center.x, C.x) && approx(c.Center.y, C.y) && approx(c.radius, r));
+        assert.ok(layoff, "a lay-off compass circle centred on C carries radius |CD|");
+        assert.ok(approx(k.radius, r), "the kept circle's radius is the copied length");
+    });
+
+    it("hides the result circle until the reveal step", () => {
+        const [slate, k] = makeScene(["P", "C", "D"]);
+        const steps = findAnimation(A.Circle.compassTransfer)!.build(k, slate, {});
+        k.drawProgress = 1;
+        steps[0].setup!();
+        assert.strictEqual(k.drawProgress, 0, "result dark while the walk runs");
+        steps[steps.length - 1].finalise();
+        assert.strictEqual(k.drawProgress, 1, "revealed at the end");
+    });
+
+    it("keepCircles persists the four circles as named real elements for a later count", () => {
+        const [slate, k] = makeScene(["P", "C", "D"]);
+        const names = ["Ka", "Kc", "Kc2", "KT"];
+        const steps = findAnimation(A.Circle.compassTransfer)!.build(k, slate, { keepCircles: names });
+        steps[0].setup!();
+        // the four construction circles are real, name-addressable elements …
+        names.forEach(n => assert.ok(slate.lookupElement(n) instanceof CircleElement, n + " is a real named circle"));
+        steps.forEach(s => s.finalise());
+        // … the transitory scaffolding (join/triangle/sides) cleared, but the
+        // named circles persist so a later slide can re-show / count them …
+        assert.strictEqual(slate.ephemerals.length, 0, "transitory scaffolding cleared");
+        names.forEach(n => assert.ok(slate.lookupElement(n), n + " persists for the count"));
+        // … and they're initiallyHidden so they don't pollute the static figure.
+        names.forEach(n => assert.ok(slate.initiallyHidden.has(n), n + " is initiallyHidden"));
+    });
+
+    it("degenerate radius (centre-through-point, no distinct source) → 1 instant step, no ephemerals", () => {
+        const [slate, k] = makeScene(["P", "C"]);   // circle;radius;P,C → A defaults to centre P
+        const steps = findAnimation(A.Circle.compassTransfer)!.build(k, slate, {});
+        assert.strictEqual(steps.length, 1);
+        if (steps[0].setup) steps[0].setup();
+        assert.strictEqual(slate.ephemerals.length, 0, "no scaffolding for a degenerate input");
+    });
+});

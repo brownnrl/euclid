@@ -14,7 +14,7 @@ Library is **post-porting, publish-ready**. There is no longer a
 "next construction to port" backlog or session-startup ritual.
 
 - All 69 construction methods (with 19 3D variants) are implemented.
-- 294 unit tests + 700 snapshot tests pass.
+- 305 unit tests + 700 snapshot tests pass.
 - 0.4.0 shipped cross-highlighting (`emphasized` / `emphasisAmount`
   + `lookupElement`); 0.5.0 shipped the slideshow surface
   (`slides`, `setVisibleNames`, `addAlias`, `resolveJustification`,
@@ -96,7 +96,7 @@ dist/                     Webpack output (gitignored, shipped to npm)
 ```sh
 npm install              # one-time
 npm run build            # tsc --noEmit (typecheck only)
-npm run test:unit        # 294 unit tests (~110 ms)
+npm run test:unit        # 305 unit tests (~110 ms)
 npm run test:snapshot    # 700 snapshot tests; auto-creates goldens on first run
 npm test                 # both
 npm run bundle           # dev-mode bundle to dist/bundle.js
