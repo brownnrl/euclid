@@ -725,6 +725,74 @@ describe("point slide + polygon translate-aside (issues #95, #94)", () => {
             const anim = findAnimation(A.Point.slide)!;
             assert.notStrictEqual(A_free.constructor, anim.elementType);
         });
+
+        // #122 — slide to a target ELEMENT (resolved + projected at setup).
+        // A=(0,100), B=(200,100) (horizontal); E=(130,40) projects to x=130.
+        function targetSlate(segment = false): [Slate, PointElement] {
+            const slate = new Slate(createCanvas(400, 200));
+            slate.inTest = true;
+            toElements(slate, [
+                { construction: E.Point.free, name: "A", params: [0, 100] },
+                { construction: E.Point.free, name: "B", params: [200, 100] },
+                { construction: segment ? E.Point.lineSegmentSlider : E.Point.lineSlider,
+                  name: "D", params: ["A", "B", 40, 100] },
+                { construction: E.Point.free, name: "E", params: [130, 40] },
+            ]);
+            slate.elements.forEach(e => e.update());
+            return [slate, slate.lookupElement("D") as PointElement];
+        }
+
+        it("slides to a target element — projects it onto the line (#122)", () => {
+            const [slate, D] = targetSlate();
+            const steps = findAnimation(A.Point.slide)!.build(D, slate, { to: "E" });
+            steps[0].setup!();
+            steps[0].tick(0.5, 8, steps[0].durationMs);   // halfway 40→130
+            assert.ok(approx(D.x, 85), `mid x ${D.x}`);
+            steps[0].finalise();
+            assert.ok(approx(D.x, 130) && approx(D.y, 100), `landed (${D.x},${D.y})`);
+        });
+
+        it("accepts the explicit { toElement } form (#122)", () => {
+            const [slate, D] = targetSlate();
+            const steps = findAnimation(A.Point.slide)!.build(D, slate, { toElement: "E" });
+            steps[0].setup!(); steps[0].finalise();
+            assert.ok(approx(D.x, 130), `landed x ${D.x}`);
+        });
+
+        it("resolves the target at setup — tracks a point moved after build (#122)", () => {
+            const [slate, D] = targetSlate();
+            const Ept = slate.lookupElement("E") as PointElement;
+            const steps = findAnimation(A.Point.slide)!.build(D, slate, { to: "E" });
+            Ept.x = 170; slate.update();   // reader drags E after build
+            steps[0].setup!(); steps[0].finalise();
+            assert.ok(approx(D.x, 170), `tracked to x ${D.x}`);
+        });
+
+        it("clamps the projection to a segment slider's domain (#122)", () => {
+            const [slate, D] = targetSlate(true);   // lineSegmentSlider
+            const Ept = slate.lookupElement("E") as PointElement;
+            Ept.x = 300; slate.update();            // projects to factor 1.5 → clamp to B
+            const steps = findAnimation(A.Point.slide)!.build(D, slate, { to: "E" });
+            steps[0].setup!(); steps[0].finalise();
+            assert.ok(approx(D.x, 200), `clamped to B x ${D.x}`);
+        });
+
+        it("an infinite-line slider follows the projection past B (#122)", () => {
+            const [slate, D] = targetSlate(false);  // lineSlider (unbounded)
+            const Ept = slate.lookupElement("E") as PointElement;
+            Ept.x = 300; slate.update();
+            const steps = findAnimation(A.Point.slide)!.build(D, slate, { to: "E" });
+            steps[0].setup!(); steps[0].finalise();
+            assert.ok(approx(D.x, 300), `past B x ${D.x}`);
+        });
+
+        it("warns + stays put on an unresolvable target (#122)", () => {
+            const [slate, D] = targetSlate();
+            const x0 = D.x;
+            const steps = findAnimation(A.Point.slide)!.build(D, slate, { to: "Nonexistent" });
+            steps[0].setup!(); steps[0].finalise();
+            assert.ok(approx(D.x, x0), `stayed at ${D.x}`);
+        });
     });
 
     describe("A.Group.cloneAside", () => {
