@@ -59,6 +59,37 @@ describe("parseColor", () => {
         assert.equal(parseColor("yellow", null, bgcolor), "rgb(255,255,0)");
     });
 
+    // 3b. Full CSS named-color set (#125)
+    it("should resolve newly-added CSS names to their CSS rgb", () => {
+        assert.equal(parseColor("crimson", null, bgcolor), "rgb(220,20,60)");
+        assert.equal(parseColor("teal", null, bgcolor), "rgb(0,128,128)");
+        assert.equal(parseColor("gold", null, bgcolor), "rgb(255,215,0)");
+        assert.equal(parseColor("steelblue", null, bgcolor), "rgb(70,130,180)");
+        assert.equal(parseColor("navy", null, bgcolor), "rgb(0,0,128)");
+        assert.equal(parseColor("rebeccapurple", null, bgcolor), "rgb(102,51,153)");
+    });
+    it("should keep the 5 geomlib/Java exceptions, NOT the CSS values", () => {
+        // these CSS names disagree with Java AWT; geomlib keeps the Java value
+        assert.equal(parseColor("green", null, bgcolor), "rgb(0,255,0)");      // CSS 0,128,0
+        assert.equal(parseColor("orange", null, bgcolor), "rgb(255,200,0)");   // CSS 255,165,0
+        assert.equal(parseColor("pink", null, bgcolor), "rgb(255,175,175)");   // CSS 255,192,203
+        assert.equal(parseColor("darkgray", null, bgcolor), "rgb(64,64,64)");  // CSS 169,169,169
+        assert.equal(parseColor("lightgray", null, bgcolor), "rgb(192,192,192)"); // CSS 211,211,211
+        // grey-spelling aliases agree with their gray twins
+        assert.equal(parseColor("darkgrey", null, bgcolor), "rgb(64,64,64)");
+        assert.equal(parseColor("lightgrey", null, bgcolor), "rgb(192,192,192)");
+    });
+    it("should look up named colors case-insensitively", () => {
+        assert.equal(parseColor("CRIMSON", null, bgcolor), "rgb(220,20,60)");
+        assert.equal(parseColor("SteelBlue", null, bgcolor), "rgb(70,130,180)");
+        // camelCase darkGray and lowercase darkgray resolve identically
+        assert.equal(parseColor("DARKGRAY", null, bgcolor), parseColor("darkGray", null, bgcolor));
+    });
+    it("should still return null for an unknown color name", () => {
+        assert.equal(parseColor("notacolor", null, bgcolor), null);
+        assert.equal(parseColor("chartruse", null, bgcolor), null); // misspelled
+    });
+
     // 4. Hex color parsing
     it("should parse 6-digit hex 'ff0000' as red", () => {
         assert.equal(parseColor("ff0000", null, bgcolor), "rgb(255,0,0)");

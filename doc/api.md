@@ -298,7 +298,7 @@ has no `align` field). Tracked under platform TODOs in
 
 | Input | Result |
 |---|---|
-| Named CSS color (`"black"`, `"red"`, `"darkGray"`, …) | Java's color table values, exact RGB. Includes the Java additions `"darkGray"`, `"lightGray"`, `"gray"`. |
+| Named color (`"black"`, `"red"`, `"crimson"`, `"teal"`, `"steelblue"`, …) | The full **W3C/CSS** named-color set, looked up **case-insensitively** (0.13.0+, #125). **Five names keep their historical Java AWT values** instead of the CSS ones — `green` (`0,255,0`), `orange` (`255,200,0`), `pink` (`255,175,175`), `darkGray`/`darkgray` (`64,64,64`), `lightGray`/`lightgray` (`192,192,192`). `grey`-spelling aliases are accepted. |
 | 6-hex-digit `#rrggbb` or `rrggbb` | The exact RGB. |
 | Comma-triple `"H,S,B"` (e.g. `"35,19,100"`) | HSB; H ∈ 0–360, S/B ∈ 0–100. Matches the Java applet's `Color.getHSBColor()` semantics. |
 | `"random"` | Random pastel each call. |
