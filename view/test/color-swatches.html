@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — CSS named-color swatches (#125)</title>
+<style>
+    body { font-family: sans-serif; color: #333; background: #fff; margin: 0; }
+    header { max-width: 60rem; margin: 0 auto; padding: 16px 16px 0; }
+    .chart { padding: 8px 16px 40px; overflow-x: auto; }
+    canvas { background: #fff; border: 1px solid #eee; display: block; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.9rem; color:#555; }
+    code { background:#f3f3f3; padding:0 3px; border-radius:3px; }
+    b.exc { color: #dc143c; }
+</style>
+</head>
+<body>
+<header>
+<h2>CSS named-color swatches (#125)</h2>
+<p class="note">
+Every name <code>parseColor</code> accepts from the W3C/CSS set (0.13.0+),
+drawn as a filled square with its name labelled at the upper-left vertex.
+Names lookup <b>case-insensitively</b>; <code>grey</code>-spelling aliases
+(not shown) mirror their <code>gray</code> twins. The
+<b class="exc">five crimson labels</b> — <code>green</code>, <code>orange</code>,
+<code>pink</code>, <code>darkgray</code>, <code>lightgray</code> — keep their
+historical <b>Java AWT</b> values, which differ from CSS (e.g. this
+<code>green</code> is <code>0,255,0</code>, not CSS's <code>0,128,0</code>;
+this <code>darkgray</code> is the darker <code>64,64,64</code>). Each swatch
+is a <code>polygon;quadrilateral</code> whose <code>faceColor</code> is just
+the name string.
+</p>
+</header>
+<div class="chart">
+<canvas id="swatches" width="1124" height="2392" tabindex="0"></canvas>
+</div>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    const E = geomlib.E, Align = geomlib.Align;
+
+    // The full W3C/CSS named set parseColor resolves (grey-spelling aliases
+    // omitted — they equal their gray twins). Five render their Java AWT value.
+    const NAMES = ("aliceblue antiquewhite aqua aquamarine azure beige bisque black " +
+        "blanchedalmond blue blueviolet brown burlywood cadetblue chartreuse chocolate " +
+        "coral cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod " +
+        "darkgray darkgreen darkkhaki darkmagenta darkolivegreen darkorange darkorchid " +
+        "darkred darksalmon darkseagreen darkslateblue darkslategray darkturquoise " +
+        "darkviolet deeppink deepskyblue dimgray dodgerblue firebrick floralwhite " +
+        "forestgreen fuchsia gainsboro ghostwhite gold goldenrod gray green greenyellow " +
+        "honeydew hotpink indianred indigo ivory khaki lavender lavenderblush lawngreen " +
+        "lemonchiffon lightblue lightcoral lightcyan lightgoldenrodyellow lightgray " +
+        "lightgreen lightpink lightsalmon lightseagreen lightskyblue lightslategray " +
+        "lightsteelblue lightyellow lime limegreen linen magenta maroon mediumaquamarine " +
+        "mediumblue mediumorchid mediumpurple mediumseagreen mediumslateblue " +
+        "mediumspringgreen mediumturquoise mediumvioletred midnightblue mintcream " +
+        "mistyrose moccasin navajowhite navy oldlace olive olivedrab orange orangered " +
+        "orchid palegoldenrod palegreen paleturquoise palevioletred papayawhip peachpuff " +
+        "peru pink plum powderblue purple rebeccapurple red rosybrown royalblue " +
+        "saddlebrown salmon sandybrown seagreen seashell sienna silver skyblue slateblue " +
+        "slategray snow springgreen steelblue tan teal thistle tomato turquoise violet " +
+        "wheat white whitesmoke yellow yellowgreen").split(" ");
+    const EXC = new Set(["green", "orange", "pink", "darkgray", "lightgray"]);
+
+    const COLS = 6, SW = 150, SH = 64, HP = 170, VP = 98, X0 = 92, Y0 = 46;
+    const els = [];
+    NAMES.forEach((nm, k) => {
+        const c = k % COLS, r = Math.floor(k / COLS);
+        const x = X0 + c * HP, y = Y0 + r * VP;
+        // upper-left vertex carries the label (crimson if a Java exception),
+        // floated ABOVE so it reads on the page background over any fill.
+        els.push({ name: nm,        construction: E.Point.free, params: [x, y],
+                   vertexColor: 0, nameColor: EXC.has(nm) ? "crimson" : "black", align: Align.ABOVE });
+        els.push({ name: nm + "_b", construction: E.Point.free, params: [x + SW, y],      vertexColor: 0, nameColor: 0 });
+        els.push({ name: nm + "_c", construction: E.Point.free, params: [x + SW, y + SH], vertexColor: 0, nameColor: 0 });
+        els.push({ name: nm + "_d", construction: E.Point.free, params: [x, y + SH],      vertexColor: 0, nameColor: 0 });
+        els.push({ name: nm + "_sq", construction: E.Polygon.quadrilateral,
+                   params: [nm, nm + "_b", nm + "_c", nm + "_d"],
+                   nameColor: 0, vertexColor: 0, edgeColor: "c8c8c8", faceColor: nm });
+    });
+
+    geomlib.init({
+        canvasid: "swatches",
+        background: "0,0,100",
+        title: "CSS named colors",
+        fontsize: 12,
+        elements: els,
+    });
+</script>
+</body>
+</html>
