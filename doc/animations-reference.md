@@ -52,7 +52,7 @@ Rates are in `px/ms` for linear traces and `rad/ms` for arc sweeps.
 | Name | Status | Target | Args | Default | Visual |
 |---|---|---|---|---|---|
 | `A.Point.appear` | **IMPL** | `PointElement` | — | `350 ms` | Marker radius scales from 0 to its final value. The simplest reveal — used for points constructed at an intersection ("the point C at which the circles cut"). |
-| `A.Point.slide` | **IMPL** | `LineSlider` | `{ to: number }` | `650 ms` | Glide a slider point along its line to the target parameter `t` (`A + t·(B−A)`; an infinite `lineSlider` accepts `t < 0` / `t > 1`), its dependents following each frame — the scripted counterpart of a reader dragging the slider. `finalise()` leaves the point at the target. Non-slider targets warn + fall through. |
+| `A.Point.slide` | **IMPL** | `LineSlider` | `{ to: number }` or `{ to: "E" }` / `{ toElement: "E" }` | `650 ms` | Glide a slider point along its line, its dependents following each frame — the scripted counterpart of a reader dragging the slider. **Numeric `to`:** the target parameter `t` (`A + t·(B−A)`; an infinite `lineSlider` accepts `t < 0` / `t > 1`). **Element `to`/`toElement` (#122):** a target **point**, resolved via `lookupElement` **at setup** and projected onto the slider's line (nearest point, clamped to a segment slider's domain) — so it lands on a *derived* point (e.g. an intersection) and still tracks it after the reader drags the givens. `finalise()` leaves the point at the target. A non-resolvable / non-point name warns and stays put; a non-slider target warns + falls through. |
 | `A.Point.intersect` | TBD | `PointElement` | — | — | Reserved. Brief flash on the intersecting curves before the dot lands. Will use ephemerals to render the flash. |
 
 ## Line animations

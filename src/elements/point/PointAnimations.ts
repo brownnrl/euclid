@@ -32,12 +32,22 @@ export class PointAppearAnimation extends Animation {
 }
 
 // A.Point.slide — glide a slider point along its line to a target
-// parameter `t` (the scripted counterpart of a reader dragging it).
-// The point really travels its constraint and its dependents follow.
-// Args: { to: number } — the target parameter along A→B (0 = A, 1 = B;
-// for a segment slider it's clamped to [0,1] by the slider's own
-// projection). Optional durationMs; default ~ a standard transition
-// glide, resolved through the usual chain.
+// (the scripted counterpart of a reader dragging it). The point really
+// travels its constraint and its dependents follow.
+//
+// Args (one of):
+//   { to: number }       — a target parameter along A→B (0 = A, 1 = B;
+//                          for a segment slider it's clamped to [0,1] by
+//                          the slider's own projection). Default 1.
+//   { to: "E" } / { toElement: "E" }  — a target ELEMENT (#122). At setup
+//                          the named point is resolved via lookupElement,
+//                          projected onto the slider's line (nearest point,
+//                          clamped to the segment domain), and the slider
+//                          glides there. Resolved at runtime, so it tracks
+//                          a derived point (e.g. an intersection) even after
+//                          the reader drags the givens. A non-resolvable /
+//                          non-point name warns and stays put.
+// Optional durationMs; default ~ a standard transition glide.
 //
 // elementType is LineSlider — covers both `lineSlider` and
 // `lineSegmentSlider`. A non-slider target warns + falls through to
@@ -50,13 +60,18 @@ export class PointSlideAnimation extends Animation {
 
     public build(target: GeomElement, slate: Slate, args: any): IAnimationStep[] {
         const slider = target as LineSlider;
-        const to = args && typeof args.to === "number" ? args.to : 1;
+        const toNum = args && typeof args.to === "number" ? args.to : null;
+        // A string `to` (or the explicit `toElement`) names a target point.
+        const toName: string | null = args
+            ? (typeof args.to === "string" ? args.to
+              : (typeof args.toElement === "string" ? args.toElement : null))
+            : null;
         // Start + target positions are captured at setup time (after
         // any earlier-slide motion has settled), both on the line A→B,
         // so the lerp between them stays collinear and the slider's own
         // re-projection in update() is a no-op.
         let sx = 0, sy = 0, sz = 0;   // start
-        let tx = 0, ty = 0, tz = 0;   // target = A + t·(B−A)
+        let tx = 0, ty = 0, tz = 0;   // target = A + factor·(B−A)
         const apply = (p: number) => {
             slider.x = sx + (tx - sx) * p;
             slider.y = sy + (ty - sy) * p;
@@ -74,9 +89,29 @@ export class PointSlideAnimation extends Animation {
                 sx = slider.x; sy = slider.y; sz = slider.z;
                 const A = (slider as any)._A as PointElement;
                 const B = (slider as any)._B as PointElement;
-                tx = A.x + (B.x - A.x) * to;
-                ty = A.y + (B.y - A.y) * to;
-                tz = A.z + (B.z - A.z) * to;
+                const segment = !!(slider as any)._segment;
+                const dx = B.x - A.x, dy = B.y - A.y, dz = B.z - A.z;
+                // factor along A→B that the slider will lerp to.
+                let factor: number;
+                if (toName != null) {
+                    // Resolve the target element and project it onto the line.
+                    const tgt = slate.lookupElement(toName) as PointElement;
+                    if (tgt == null || !(tgt instanceof PointElement)) {
+                        console.warn(`[geomlib] Point.slide: target "${toName}" is not a resolvable point — staying put`);
+                        tx = sx; ty = sy; tz = sz;
+                        return;
+                    }
+                    const denom = dx * dx + dy * dy + dz * dz;
+                    factor = denom > 1e-9
+                        ? ((tgt.x - A.x) * dx + (tgt.y - A.y) * dy + (tgt.z - A.z) * dz) / denom
+                        : 0;
+                    if (segment) factor = Math.max(0, Math.min(1, factor));
+                } else {
+                    factor = toNum != null ? toNum : 1;
+                }
+                tx = A.x + dx * factor;
+                ty = A.y + dy * factor;
+                tz = A.z + dz * factor;
             },
             tick: (progress) => { apply(progress); },
             finalise: () => {

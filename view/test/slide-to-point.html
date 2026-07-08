@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test View — A.Point.slide to a target point (#122)</title>
+<style>
+    body { font-family: sans-serif; color: #333; background: #fff; margin: 0; }
+    main { max-width: 44rem; margin: 0 auto; padding: 16px; }
+    canvas { background: #fff; border: 1px solid #eee; }
+    .note { background:#faf7ef; border:1px solid #e3d6c2; border-radius:6px; padding:10px 12px; font-size:.9rem; color:#555; }
+    kbd { background:#eee; border:1px solid #ccc; border-radius:3px; padding:0 4px; }
+    code { background:#f3f3f3; padding:0 3px; border-radius:3px; }
+</style>
+</head>
+<body>
+<main>
+<h2>Slider gliding to a derived point — <code>A.Point.slide { to: "E" }</code> (#122)</h2>
+<p class="note">
+<b>P</b> is a <code>lineSlider</code> on <b>CD</b>; <b>E</b> is the derived
+intersection of <b>AB</b> and <b>CD</b>. Press <kbd>p</kbd> to present,
+<kbd>→</kbd> to walk: P hunts along the line, then slides <b>to the element E</b>
+— resolved + projected at runtime, so it lands exactly on the intersection.
+The key test: <b>drag A, B, C, or D, then present again</b> — E moves, and P
+still lands on it (no hand-computed parameter to go stale). This is the I.20
+Heron "search → land on E" motion.
+</p>
+<canvas id="canvas_1" width="380" height="320" tabindex="0"></canvas>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    const A = geomlib.A;
+    geomlib.init({
+        canvasid: "canvas_1",
+        background: "0,0,100",
+        title: "Point.slide → E",
+        initiallyHidden: ["E"],
+        elements: [
+            "C;point;free;60,70;black;black",
+            "D;point;free;330,260;black;black",
+            "CD;line;connect;C,D;0;0;black",
+            "A;point;free;70,255;black;black",
+            "B;point;free;345,95;black;black",
+            "AB;line;connect;A,B;0;0;808080",
+            "E;point;intersection;AB,CD;dc143c;dc143c",
+            "P;point;lineSlider;C,D,100,95;black;orange",
+        ],
+        slides: [
+            { text: "P slides along CD. E (hidden) is where AB crosses CD.",
+              visible: ["C","D","CD","A","B","AB","P"],
+              highlighted: ["P"] },
+            { text: "P hunts up and down the line, looking for the right spot…",
+              visible: ["C","D","CD","A","B","AB","P"],
+              highlighted: ["P"],
+              transition: { animations: [ { elem: "P", name: A.Point.slide, args: { to: 0.9 } } ] } },
+            { text: "…and lands exactly on E, the intersection — at runtime, so it tracks E however the givens are dragged.",
+              visible: ["C","D","CD","A","B","AB","P","E"],
+              highlighted: ["E","P"],
+              transition: { mode: "cascade", animations: [
+                  { elem: "P", name: A.Point.slide, args: { to: "E" } },
+                  { elem: "E", name: A.Point.appear } ] } },
+        ],
+    });
+</script>
+</main>
+</body>
+</html>
