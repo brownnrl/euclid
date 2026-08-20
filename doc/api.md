@@ -527,8 +527,17 @@ and **not** on each slide advance, so a viewer dragging a point mid-walk
 isn't yanked back (#114); an `autoPlace` case slide still eases from the
 centred offset out to its layout with no jump. **Exiting presentation
 (`Esc`) leaves the walk but stays maximized**, keeping the viewer's
-manipulation (#115). Only the **minimize** control un-maximizes, and that
-is what restores the inline view + runs `reset()`.
+manipulation (#115). Un-maximizing is what restores the inline view +
+runs `reset()`.
+
+**`Esc` peels off one layer per press (#139, 0.14.0+).** In a slideshow the
+first press leaves the walk and stays maximized (#115, unchanged); the next
+press leaves the maximized view — equivalent to the **minimize** control, so
+it restores the inline view and runs `reset()`. On a maximized canvas with no
+slideshow running, one press exits. On an inline canvas `Esc` does nothing.
+The handler is bound on `document` while maximized, so it fires whether focus
+sits on the canvas or on a control button (unlike the canvas-scoped
+`r`/`space`, `m`, `p` shortcuts).
 
 ### Highlight z-order (#140, 0.14.0+)
 

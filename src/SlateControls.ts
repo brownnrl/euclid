@@ -6,6 +6,8 @@
 |      r / space  → reset                                               |
 |      m          → maximize/minimize                                   |
 |      p          → present (when the slate has slides)                 |
+|      Escape     → leave presentation, then leave the maximized view   |
+|                   (one layer per press; see escapeAction)             |
 +----------------------------------------------------------------------*/
 
 import {Slate} from "./Slate";
@@ -68,6 +70,18 @@ export function trackWindowResize(target: IResizeTarget, callback: () => void): 
     return () => target.removeEventListener("resize", handler);
 }
 
+// #139 — what one Escape press should do. Escape peels off ONE layer of
+// takeover at a time: a slideshow exits to the maximized view it opened in
+// (#115 — the viewer keeps their manipulation), and a second press leaves
+// the maximized view. Pure so it is testable without a DOM.
+export type EscapeAction = "exitPresent" | "minimize" | "none";
+
+export function escapeAction(state: {presenting: boolean; maximized: boolean}): EscapeAction {
+    if (state.presenting) return "exitPresent";
+    if (state.maximized) return "minimize";
+    return "none";
+}
+
 export function createControls(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig): void {
     // Skip in headless/test environments
     if (!canvas.parentElement) return;
@@ -96,6 +110,7 @@ class SlateControls {
         canvasAttrHeight: number;
     } = null;
     private _stopTrackingResize: (() => void) | null = null;
+    private _maximizedOnKey: ((e: KeyboardEvent) => void) | null = null;
 
     // Presentation-mode (slideshow) state. Caption + nav float over
     // the maximized canvas; no fullscreen overlay, no background takeover.
@@ -291,8 +306,46 @@ class SlateControls {
         this._maximized = true;
         this.resizeAndRedraw();
         this.updateMaximizeIcon();
+        this.bindMaximizedKeys();
         // Window-resize tracking is persistent (set up in init), so the
         // maximized 100vw × 100vh canvas already re-syncs on viewport change.
+    }
+
+    // #139 — Escape while the canvas owns the viewport. Bound on `document`,
+    // not the canvas: the r/m/p shortcuts only fire when the canvas itself
+    // has focus, and maximizing by CLICKING the control leaves focus on the
+    // button, so a canvas-bound Escape would never fire.
+    //
+    // This handler is the single owner of Escape (bindPresentationKeys
+    // deliberately does not bind it). Two document-level handlers both
+    // matching Escape would fire on one keypress and blow through
+    // presentation AND maximize at once. onPresent() maximizes first, so
+    // presenting implies maximized — this handler is always bound while a
+    // slideshow is running, and escapeAction() decides which layer to peel.
+    private bindMaximizedKeys(): void {
+        if (this._maximizedOnKey) return;
+        const handler = (e: KeyboardEvent) => {
+            if (e.key !== "Escape") return;
+            switch (escapeAction({presenting: this._presenting, maximized: this._maximized})) {
+                case "exitPresent":
+                    e.preventDefault();
+                    this.exitPresent();
+                    break;
+                case "minimize":
+                    e.preventDefault();
+                    this.minimize();
+                    break;
+            }
+        };
+        this._maximizedOnKey = handler;
+        document.addEventListener("keydown", handler);
+    }
+
+    private unbindMaximizedKeys(): void {
+        if (this._maximizedOnKey) {
+            document.removeEventListener("keydown", this._maximizedOnKey);
+            this._maximizedOnKey = null;
+        }
     }
 
     private minimize(): void {
@@ -323,6 +376,7 @@ class SlateControls {
         // Clear the flag BEFORE resizeAndRedraw so its centring pass (#107)
         // restores the figure to its authored position.
         this._maximized = false;
+        this.unbindMaximizedKeys();
         this.resizeAndRedraw();
         this._savedStyles = null;
         this.updateMaximizeIcon();
@@ -561,10 +615,10 @@ class SlateControls {
                     e.preventDefault();
                     this.showSlide(this._presentationIndex + 1);
                     break;
-                case "Escape":
-                    e.preventDefault();
-                    this.exitPresent();
-                    break;
+                // Escape is NOT bound here — the maximized-state handler
+                // (bindMaximizedKeys, #139) owns it and routes the first
+                // press to exitPresent(). Binding it in both places would
+                // exit presentation and minimize on a single keypress.
             }
         };
         this._presentationOnKey = handler;

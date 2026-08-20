@@ -1,0 +1,56 @@
+<html>
+<head><title>Test View — #139 Escape leaves the maximized view</title></head>
+<body>
+<h3 style="font-family: sans-serif;">Escape leaves the maximized view (#139)</h3>
+<p style="font-family: sans-serif; max-width: 680px; color: #444;">
+<b>Escape peels off one layer of takeover per press.</b>
+</p>
+<ol style="font-family: sans-serif; max-width: 680px; color: #444;">
+<li>Click <b>maximize</b> (top-right of the canvas), then press <b>Esc</b> —
+    the canvas returns to its inline size and resets. Before #139 nothing
+    happened here and you had to find the minimize control or press
+    <b>m</b>.</li>
+<li>Maximize again <b>by clicking the button</b> (so keyboard focus is on the
+    button, not the canvas) and press <b>Esc</b>. It still exits — the
+    handler is bound on <code>document</code>, unlike the canvas-scoped
+    r/m/p shortcuts.</li>
+<li>Press <b>p</b> to present, walk a slide or two, drag point <b>D</b>, then
+    press <b>Esc</b> <u>once</u>: you leave the walk but <b>stay maximized</b>
+    with your drag intact (#115). Press <b>Esc</b> again: now you leave the
+    maximized view and the figure resets.</li>
+<li>Press <b>Esc</b> on the inline canvas — nothing should happen (no reset,
+    no jump).</li>
+</ol>
+<canvas id="canvasId" style="width:520px; height: 360px;" tabindex="0"></canvas>
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+    geomlib.init({
+        background: '#ffe9cd',
+        title: "escape-exit",
+        canvasid: "canvasId",
+        elements: [
+            { name: "A", construction: E.Point.free, params: [120, 90] },
+            { name: "B", construction: E.Point.free, params: [220, 280] },
+            { name: "C", construction: E.Point.free, params: [90, 280] },
+            { name: "ABC", construction: E.Polygon.triangle, params: ["A", "B", "C"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(120,180,210,0.25)" },
+            { name: "D", construction: E.Point.lineSlider, params: ["A", "B", 170, 185],
+              vertexColor: "orange", nameColor: "black" },
+            { name: "CD", construction: E.Line.connect, params: ["C", "D"],
+              nameColor: 0, vertexColor: 0, edgeColor: "darkGray" },
+        ],
+        slides: [
+            { text: "Triangle {ABC}, with {D} on {AB}.", visible: ["ABC", "D"] },
+            { text: "Join {CD} — now drag {D}, then press Esc once.", visible: ["ABC", "D", "CD"],
+              highlighted: ["CD"],
+              transition: { animations: [
+                  { elem: "CD", name: A.Line.straightEdgeConnect },
+              ] } },
+            { text: "You should still be maximized, with your drag kept. Esc again to leave.",
+              visible: ["ABC", "D", "CD"] },
+        ],
+    });
+</script>
+</body>
+</html>

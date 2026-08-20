@@ -5,7 +5,7 @@ import {E, IConstructionInfo, init, slates, revealNoscriptFallback, parseParam} 
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
 import {GeomElement} from "../src/elements/GeomElement";
-import {trackWindowResize} from "../src/SlateControls";
+import {trackWindowResize, escapeAction} from "../src/SlateControls";
 import {createCanvas} from "canvas";
 import {almostEqual, toElements} from "./shared/testHelpers";
 import {parseColor} from "../src/Colors";
@@ -699,6 +699,46 @@ describe("slate", () => {
             assert.equal(removed[0].type, "resize");
             assert.equal(removed[0].fn, attached[0].fn,
                 "teardown must pass the original handler so removeEventListener actually unregisters it");
+        });
+    });
+
+    // #139 — Escape peels off ONE layer of viewport takeover per press.
+    // Pure routing decision, so no DOM is needed to pin the semantics.
+    describe("escapeAction", () => {
+        it("exits presentation first, keeping the maximized view (#115)", () => {
+            assert.equal(
+                escapeAction({presenting: true, maximized: true}), "exitPresent",
+                "the first Escape in a slideshow must leave the walk, NOT un-maximize — " +
+                "#115 keeps the viewer's manipulation until they leave the maximized view");
+        });
+
+        it("minimizes on the next press, once the walk is over", () => {
+            assert.equal(
+                escapeAction({presenting: false, maximized: true}), "minimize",
+                "Escape in the maximized view (no slideshow running) should leave it");
+        });
+
+        it("does nothing for an inline canvas", () => {
+            assert.equal(
+                escapeAction({presenting: false, maximized: false}), "none",
+                "Escape must not reset or otherwise disturb a diagram sitting inline");
+        });
+
+        it("takes two presses to leave a slideshow entirely", () => {
+            // Walk the state machine the way the handler drives it: each press
+            // performs its action, which flips the corresponding flag.
+            let presenting = true, maximized = true;
+            const press = () => {
+                const action = escapeAction({presenting, maximized});
+                if (action === "exitPresent") presenting = false;
+                if (action === "minimize") maximized = false;
+                return action;
+            };
+            assert.equal(press(), "exitPresent");
+            assert.ok(maximized, "still maximized after leaving the walk");
+            assert.equal(press(), "minimize");
+            assert.ok(!maximized && !presenting, "fully out after the second press");
+            assert.equal(press(), "none", "further presses are inert");
         });
     });
 

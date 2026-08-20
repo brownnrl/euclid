@@ -309,7 +309,8 @@ reset/maximize button strip grows a play-triangle button. Pressing it
 (or the `p` keyboard shortcut) maximises the canvas
 and floats a soft white caption panel at the bottom of the viewport
 with prev / counter / next / exit controls; arrow keys and `Esc` do
-what you'd expect. Caption `{NAME}` tokens become clickable bold-italic
+what you'd expect — `Esc` peels off one layer of takeover per press
+(out of the walk, then out of the maximized view; #115 / #139). Caption `{NAME}` tokens become clickable bold-italic
 spans tied to the matching slate element — hover / tap flips
 `element.emphasisAmount` so the element pops with a thicker stroke;
 tapping pins a single sticky reference at a time. The overlay is
@@ -699,5 +700,5 @@ ordered list. Each element entry can be a structured object —
 
 `init()` also calls `createControls()` from `src/SlateControls.ts`,
 which wraps the canvas and adds the reset / maximize button overlay
-plus keyboard shortcuts (`r`/`space`, `m`). See
+plus keyboard shortcuts (`r`/`space`, `m`, and `Esc` while maximized). See
 [api.md § SlateControls](api.md#slatecontrols-ui-overlay).
