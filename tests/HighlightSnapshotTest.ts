@@ -62,6 +62,27 @@ const CROSSING_CONFIG: SlateConfig = {
     ],
 };
 
+// #140 fixture, stronger form — a second segment lying EXACTLY on top of
+// the one we highlight (same endpoints, so coincident and parallel), and
+// declared after it. The crossing fixture above only contests a handful of
+// pixels where two strokes meet; here the later element covers the
+// highlighted one along its whole length, so without promotion the gold is
+// completely hidden rather than merely nicked.
+const COINCIDENT_CONFIG: SlateConfig = {
+    width: 340,
+    height: 260,
+    background: "35,19,100",
+    title: "#140 coincident fixture",
+    elements: [
+        "A;point;free;60,130",
+        "B;point;free;280,130",
+        "AB;line;connect;A,B",
+        // Same two endpoints → exactly collinear and overlapping. Declared
+        // last, so pre-#140 it wins every pixel of the shared stroke.
+        "COVER;line;connect;A,B",
+    ],
+};
+
 // Each scenario flips shouldHighlight on a subset, renders, and
 // snapshots. The fileName + scenario combine to form a unique key
 // per ReportEntry.
@@ -86,6 +107,11 @@ const scenarios: { name: string; highlight: string[]; config?: SlateConfig; high
     // changed.
     { name: "crossing_no_promotion", highlight: ["AB"], config: CROSSING_CONFIG,
       highlightOnTop: false },
+    // The decisive pair: a coincident segment declared over the highlighted
+    // one. Pre-#140 the highlight is invisible along its entire length.
+    { name: "coincident_no_promotion", highlight: ["AB"], config: COINCIDENT_CONFIG,
+      highlightOnTop: false },
+    { name: "coincident_promoted",     highlight: ["AB"], config: COINCIDENT_CONFIG },
 ];
 
 describe("highlight snapshot (issue #72)", function() {
