@@ -435,6 +435,32 @@ promise. The `reducedMotion` path (either via
 or `speedMultiplier === 0`) skips the loop entirely — every step's
 `finalise` runs synchronously and the promise resolves immediately.
 
+### Draw pass order and highlight promotion (#140)
+
+`drawElements()` runs four passes over the slate's elements — `face → edge →
+vertex → name` — so every face sits under every edge, every edge under every
+vertex dot, and labels land on top. Within a pass, elements were painted in
+**declaration order**, which meant a later-declared element painted over an
+earlier one.
+
+That made highlighting order-dependent: a gold-stroked segment was chopped
+wherever a neighbour declared after it happened to cross. Since 0.14.0 each
+pass is reordered by `promotedDrawOrder()` so that elements which are
+highlighted (`shouldHighlight`), emphasised (`emphasisAmount > 0`, covering
+`{NAME}` hovers and the post-animation fade taper), or mid-animation
+(`drawProgress < 1`) are drawn **last within their own pass**.
+
+Promotion stays inside a pass on purpose — promoting a face to the very top
+would let a highlighted polygon hide the lines across it. When nothing is
+promoted, `promotedDrawOrder()` returns the input array unchanged (no
+allocation, no reorder), so static figures render exactly as before. A slate
+can opt out with `highlightOnTop = false`.
+
+Note that `Slate.drawElements()` early-returns under `inTest`, so the snapshot
+suite renders through `SnapshotHelper.renderScene()` instead — that helper
+mirrors this pass order, promotion included, or the goldens would stop
+representing what a browser paints.
+
 ### Ephemerals — animation-local helper elements
 
 A `Slate` carries a small `_ephemerals: GeomElement[]` list with

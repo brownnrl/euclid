@@ -102,6 +102,8 @@ interface IInitialization {
     initiallyHidden?: string[];
     // 0.9.0+ — show angle markers in the static figure (default: hidden)
     showAngles?: boolean;
+    // 0.14.0+ — highlighted / mid-animation elements draw on top (default: true)
+    highlightOnTop?: boolean;
 }
 ```
 
@@ -119,6 +121,7 @@ interface IInitialization {
 | `deferDraggables` | — | `[]` | 0.7.1+. Draggable element names excluded from the slideshow's every-slide auto-union — they follow slide `visible` sets like any other element. For draggables the proof introduces mid-walk. |
 | `initiallyHidden` | — | `[]` | 0.9.0+. Element names that start hidden (`visible = false`) in the static figure. Revealed by a slide's `visible` set, or when the element is slide-highlighted / its `{NAME}` ref is hovered. `clearVisibility()` (presentation exit) restores this baseline. |
 | `showAngles` | — | `false` | 0.9.0+. Show angle markers (`E.Sector.angleMarker` / `angleMarkerReflex`) in the static figure. Default `false`: markers are hidden initially — Euclid's source diagram draws no angle arcs — and appear during the slide walk or on hover. |
+| `highlightOnTop` | — | `true` | 0.14.0+. Draw highlighted / mid-animation elements last within each draw pass, so a neighbour declared later in `elements` can't paint over the gold stroke where it crosses. Promotion is *within a pass*, so a promoted face still stays under every edge. Set `false` to keep the strict declaration order. See [Highlight z-order](#highlight-z-order-140-0140). |
 | `slides` | — | `[]` | Optional slideshow walk-through. When present, SlateControls shows a "▶ Present" button. See [Slides & visibility](#slides--visibility). |
 | `resolveJustification` | — | `null` | Callback that maps a symbolic justification ref (e.g. `"I.Post.3"`) to a URL string. See [Slides & visibility](#slides--visibility). |
 | `animationConfig` | — | `{}` | Per-animation rate / duration overrides, `speedMultiplier`, `reducedMotion`. See [Animation](#animation). |
@@ -504,6 +507,37 @@ centred offset out to its layout with no jump. **Exiting presentation
 (`Esc`) leaves the walk but stays maximized**, keeping the viewer's
 manipulation (#115). Only the **minimize** control un-maximizes, and that
 is what restores the inline view + runs `reset()`.
+
+### Highlight z-order (#140, 0.14.0+)
+
+`drawElements()` runs four passes — face, edge, vertex, name — each over the
+slate's elements. Before 0.14.0 every pass followed **declaration order**, so
+an element declared later in `elements` painted over an earlier one. A
+highlighted segment was therefore chopped wherever a later-declared neighbour
+crossed it, and whether the gold read as continuous was an accident of
+authoring order.
+
+From 0.14.0 an element that is **highlighted or mid-animation** is drawn last
+within each pass, so it paints over its neighbours for as long as it is the
+thing the viewer is meant to be watching. An element qualifies when any of:
+
+- `shouldHighlight` — a slide's `highlighted` set,
+- `emphasized` (i.e. `emphasisAmount > 0`) — a `{NAME}` hover / caption ref,
+  and the post-animation fade taper, so an element can't drop back down in
+  z-order while it is still visibly gold,
+- `drawProgress < 1` — currently being drawn in by an animation. This is
+  independent of emphasis, so an animation that drives partial geometry
+  without touching emphasis is still promoted.
+
+The promotion is deliberately **within a pass**, not to the top of the whole
+figure: a promoted *face* still stays under every *edge*, so highlighting a
+filled polygon cannot hide the lines drawn across it. Ephemeral animation
+helpers continue to render above the permanent figure, unchanged.
+
+When nothing is highlighted or animating the pass order is untouched — the
+render is bit-for-bit identical to earlier versions, which is why no existing
+snapshot golden moved. Opt out per slate with `init({ highlightOnTop: false })`
+or `slate.highlightOnTop = false`.
 
 ### `geomlib:highlight` event (#108, 0.11.0+)
 

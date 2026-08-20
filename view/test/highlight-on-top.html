@@ -1,0 +1,69 @@
+<html>
+<head><title>Test View — #140 highlighted elements draw on top</title></head>
+<body>
+<h3 style="font-family: sans-serif;">Highlighted / animating elements draw on top (#140)</h3>
+<p style="font-family: sans-serif; max-width: 720px; color: #444;">
+Both canvases hold the same figure: the gold <b>BD</b> is declared
+<b>before</b> the black <b>AC</b> that crosses it. On the left,
+<code>highlightOnTop</code> is off (the pre-0.14.0 behaviour) — AC paints over
+the highlight and chops the gold at the crossing. On the right it is on (the
+default) — BD stays continuous.
+</p>
+<p style="font-family: sans-serif; max-width: 720px; color: #444;">
+<b>Hover</b> a <span style="font-weight:bold">{NAME}</span> ref below to
+emphasise an element, and press <b>p</b> on either canvas to walk the slides:
+promotion holds for the whole animation and through the fade-out taper, so an
+element never drops back under its neighbours while it is still gold.
+</p>
+
+<table style="font-family: sans-serif; border-collapse: collapse;">
+<tr>
+  <td style="padding: 0 14px 6px 0; color:#666;"><code>highlightOnTop: false</code> — chopped</td>
+  <td style="padding: 0 0 6px 14px; color:#666;"><code>highlightOnTop: true</code> (default) — continuous</td>
+</tr>
+<tr>
+  <td style="padding-right: 14px;"><canvas id="canvasOff" style="width:340px; height:260px;" tabindex="0"></canvas></td>
+  <td style="padding-left: 14px;"><canvas id="canvasOn" style="width:340px; height:260px;" tabindex="0"></canvas></td>
+</tr>
+</table>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+
+    // BD is declared BEFORE AC, so without #140 the later AC wins the
+    // crossing pixels even while BD is the highlighted element.
+    function scene(canvasid, onTop) {
+        geomlib.init({
+            background: '35,19,100',
+            title: "highlight-on-top",
+            canvasid: canvasid,
+            highlightOnTop: onTop,
+            elements: [
+                { name: "B", construction: E.Point.free, params: [60, 60] },
+                { name: "D", construction: E.Point.free, params: [280, 200] },
+                { name: "BD", construction: E.Line.connect, params: ["B", "D"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+                { name: "A", construction: E.Point.free, params: [60, 200] },
+                { name: "C", construction: E.Point.free, params: [280, 60] },
+                { name: "AC", construction: E.Line.connect, params: ["A", "C"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            ],
+            slides: [
+                { text: "The diagonals {BD} and {AC}.", visible: ["BD", "AC"] },
+                { text: "Highlight {BD} — it should read as one unbroken stroke.",
+                  visible: ["BD", "AC"], highlighted: ["BD"] },
+                { text: "Now trace {AC} — the element being drawn comes forward too.",
+                  visible: ["BD", "AC"],
+                  transition: { animations: [
+                      { elem: "AC", name: A.Line.straightEdgeConnect },
+                  ] } },
+            ],
+        });
+    }
+
+    scene("canvasOff", false);
+    scene("canvasOn", true);
+</script>
+</body>
+</html>

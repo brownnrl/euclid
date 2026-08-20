@@ -10,7 +10,7 @@ import * as path from "path";
 import {PNG} from "pngjs";
 const pixelmatch = require("pixelmatch");
 import {createCanvas, Canvas} from "canvas";
-import {Slate} from "../src/Slate";
+import {Slate, promotedDrawOrder} from "../src/Slate";
 import {PointElement} from "../src/elements/point/PointElement";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {parseColor, lighten} from "../src/Colors";
@@ -93,10 +93,16 @@ export function renderScene(slate: Slate): Canvas {
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = slate.bgcolor;
     ctx.fillRect(0, 0, w, h);
-    for (let element of slate.elements) element.drawFace(canvas as any);
-    for (let element of slate.elements) element.drawEdge(canvas as any);
-    for (let element of slate.elements) element.drawVertex(canvas as any);
-    for (let element of slate.elements) element.drawName(canvas as any);
+    // Mirror Slate.drawElements' pass order INCLUDING the #140 promotion of
+    // highlighted / mid-animation elements. Slate.drawElements early-returns
+    // under inTest, so this is the only draw path the snapshot suite takes —
+    // if it diverges, the goldens stop representing what a browser paints.
+    const order = slate.highlightOnTop
+        ? promotedDrawOrder(slate.elements) : slate.elements;
+    for (let element of order) element.drawFace(canvas as any);
+    for (let element of order) element.drawEdge(canvas as any);
+    for (let element of order) element.drawVertex(canvas as any);
+    for (let element of order) element.drawName(canvas as any);
     return canvas;
 }
 
