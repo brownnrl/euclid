@@ -65,7 +65,7 @@ const CROSSING_CONFIG: SlateConfig = {
 // Each scenario flips shouldHighlight on a subset, renders, and
 // snapshots. The fileName + scenario combine to form a unique key
 // per ReportEntry.
-const scenarios: { name: string; highlight: string[]; config?: SlateConfig }[] = [
+const scenarios: { name: string; highlight: string[]; config?: SlateConfig; highlightOnTop?: boolean }[] = [
     { name: "baseline",         highlight: [] },
     { name: "highlight_line",   highlight: ["AB"] },
     { name: "highlight_circle", highlight: ["BCD"] },
@@ -77,6 +77,15 @@ const scenarios: { name: string; highlight: string[]; config?: SlateConfig }[] =
     // read correctly — it already painted last. Guards against the
     // promotion disturbing the case that was already fine.
     { name: "crossing_highlight_over",  highlight: ["CD"], config: CROSSING_CONFIG },
+    // The SAME scene as crossing_highlight_under with promotion switched
+    // off — i.e. the pre-#140 rendering. Kept so the suite carries a
+    // golden of the defect next to the golden of the fix: diff the two
+    // PNGs (or view them side by side in report.html) and the only
+    // differing pixels are where CD crosses the highlighted AB. Without
+    // this scene the suite pins the new behaviour but never shows what
+    // changed.
+    { name: "crossing_no_promotion", highlight: ["AB"], config: CROSSING_CONFIG,
+      highlightOnTop: false },
 ];
 
 describe("highlight snapshot (issue #72)", function() {
@@ -104,6 +113,9 @@ describe("highlight snapshot (issue #72)", function() {
 
             try {
                 const slate = buildScene(config);
+                if (scenario.highlightOnTop != null) {
+                    slate.highlightOnTop = scenario.highlightOnTop;
+                }
                 for (const name of scenario.highlight) {
                     const el = slate.lookupElement(name);
                     if (el) el.shouldHighlight = true;
