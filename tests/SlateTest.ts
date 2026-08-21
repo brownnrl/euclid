@@ -1,13 +1,14 @@
 import "mocha";
 import * as assert from "assert";
 import {Slate, isPromoted, promotedDrawOrder} from "../src/Slate";
-import {E, IConstructionInfo, init, slates, revealNoscriptFallback} from "../src/index";
+import {E, IConstructionInfo, init, slates, revealNoscriptFallback, parseParam} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
 import {GeomElement} from "../src/elements/GeomElement";
 import {trackWindowResize} from "../src/SlateControls";
 import {createCanvas} from "canvas";
 import {almostEqual, toElements} from "./shared/testHelpers";
+import {parseColor} from "../src/Colors";
 import {
     buildPivotScene,
     buildScene3d,
@@ -183,6 +184,151 @@ describe("slate", () => {
             assert.ok(slate.highlightOnTop, "#140 promotion is on by default");
             slate.highlightOnTop = false;
             assert.ok(!slate.highlightOnTop);
+        });
+    });
+
+    // #138 — a figure's centring box must ignore construction helpers that
+    // paint nothing. Hit on three decks (I.35, I.42, I.43): an off-screen
+    // zero-colour helper inflated the box, present-centring translated the
+    // real geometry off-canvas, and the slideshow rendered blank.
+    describe("centringBounds (#138)", () => {
+
+        // The I.42 shape: two invisible anchors defining the track two
+        // sliders run along, plus the triangle the reader actually sees.
+        // Zero colours (";0;0") make the anchors paint nothing — but they
+        // are still `visible`, which is the whole point of the bug.
+        function anchoredScene(anchorX: number): Slate {
+            let slate = new Slate(createCanvas(340, 240));
+            slate.inTest = true;
+            const specs = [
+                `B0;point;free;${-anchorX},180;0;0`,
+                `B3;point;free;${anchorX},180;0;0`,
+                "B;point;lineSlider;B0,B3,90,0",
+                "C;point;lineSlider;B0,B3,210,0",
+                "A;point;free;120,30",
+                "AB;line;connect;A,B",
+            ];
+            for (const spec of specs) {
+                const i = parseParam(spec);
+                const el = slate.createElement(i.construction, i.params, i.name);
+                // Mirror what init() does with the colour fields — note
+                // parseParam yields the STRING "0", and parseColor maps that
+                // to null (paints nothing); an omitted field takes the
+                // default, which for edgeColor is black even on a point.
+                el.nameColor = parseColor(i.nameColor, "black", "white");
+                el.vertexColor = parseColor(i.vertexColor, "red", "white");
+                el.edgeColor = parseColor(i.edgeColor, "black", "white");
+            }
+            slate.update();
+            return slate;
+        }
+
+        it("excludes zero-colour helpers that a visibility filter would keep", () => {
+            const slate = anchoredScene(1000);
+
+            // The bug, stated as a test: `visible` is TRUE for these helpers,
+            // so _bounds(true) — the fix originally proposed on the ticket —
+            // would NOT have excluded them.
+            const B0 = slate.lookupElement("B0");
+            assert.ok(B0.visible,
+                "a zero-colour helper is still `visible`; only asking what PAINTS excludes it");
+            assert.deepEqual(slate.visibleBounds(), slate.figureBounds(),
+                "visibleBounds and figureBounds agree here — a visibility filter is no fix");
+
+            const b = slate.captureCentringBounds();
+            assert.ok(b.minX > -1000 && b.maxX < 1000,
+                `centring box should exclude the ±1000 anchors, got ${JSON.stringify(b)}`);
+        });
+
+        it("centres on the real geometry, not the helper span", () => {
+            const slate = anchoredScene(1000);
+            const b = slate.captureCentringBounds();
+            const cx = (b.minX + b.maxX) / 2;
+            // Painted geometry spans x = 90..210 (the two sliders) plus A at
+            // 120, so the centre belongs near 150 — not near 0, which is what
+            // the symmetric ±1000 anchors average to.
+            assert.ok(cx > 90 && cx < 220,
+                `centre should sit inside the drawn figure, got ${cx}`);
+        });
+
+        it("is unmoved by how far off-screen the helpers sit", () => {
+            // I.35 failed with a one-sided helper at x=10000; I.42 with a
+            // symmetric ±1000 pair. Different numbers, same cause — so the
+            // centring box must not depend on them at all.
+            const near = anchoredScene(1000).captureCentringBounds();
+            const far = anchoredScene(100000).captureCentringBounds();
+            // Compared with a tolerance, not exactly: a lineSlider
+            // parameterised across a ±100000 track loses a little precision
+            // (89.99999999998545 rather than 90). That is the slider's
+            // arithmetic, not the centring box — what matters is that the
+            // helpers' distance doesn't move the frame.
+            almostEqual(far.minX, near.minX, 1e-6);
+            almostEqual(far.maxX, near.maxX, 1e-6);
+            almostEqual(far.minY, near.minY, 1e-6);
+            almostEqual(far.maxY, near.maxY, 1e-6);
+        });
+
+        it("still counts an element that paints only a label", () => {
+            let slate = new Slate(createCanvas(200, 200));
+            slate.inTest = true;
+            const i = parseParam("P;point;free;150,150;0;0");
+            const el = slate.createElement(i.construction, i.params, i.name);
+            el.nameColor = "black";     // labelled but no dot — it shows
+            el.vertexColor = null;
+            el.edgeColor = "black";     // irrelevant to a point; must not count
+            const j = parseParam("Q;point;free;10,10");
+            const q = slate.createElement(j.construction, j.params, j.name);
+            q.nameColor = "black"; q.vertexColor = "red";
+            slate.update();
+
+            const b = slate.captureCentringBounds();
+            assert.equal(b.maxX, 150, "a label-only point is visible ink and must count");
+        });
+
+        it("ignores an element hidden by initiallyHidden / a slide", () => {
+            let slate = new Slate(createCanvas(200, 200));
+            slate.inTest = true;
+            for (const spec of ["A;point;free;10,10", "Z;point;free;900,900"]) {
+                const i = parseParam(spec);
+                const el = slate.createElement(i.construction, i.params, i.name);
+                el.nameColor = "black"; el.vertexColor = "red";
+            }
+            slate.lookupElement("Z").visible = false;
+            slate.update();
+
+            const b = slate.captureCentringBounds();
+            assert.ok(b.maxX < 900, "a hidden element paints nothing, so it must not frame the view");
+        });
+
+        it("falls back to the all-elements box when nothing paints", () => {
+            let slate = new Slate(createCanvas(200, 200));
+            slate.inTest = true;
+            const i = parseParam("H;point;free;40,50;0;0");
+            const el = slate.createElement(i.construction, i.params, i.name);
+            el.nameColor = null; el.vertexColor = null;
+            el.edgeColor = "black";     // the point default; still no ink
+            slate.update();
+
+            const b = slate.captureCentringBounds();
+            assert.ok(b != null, "a figure of pure helpers still gets a box rather than null");
+            assert.equal(b.minX, 40);
+        });
+
+        it("caches the box and clears it on demand", () => {
+            const slate = anchoredScene(1000);
+            assert.equal(slate.centringBounds, null, "nothing captured yet");
+            const first = slate.captureCentringBounds();
+            assert.deepEqual(slate.centringBounds, first, "captured box is readable");
+
+            // Moving a point must NOT change the already-captured box: the
+            // centre is fixed on entering the maximized view (#114) so a
+            // resize mid-walk re-centres on the same frame the walk began in.
+            (slate.lookupElement("A") as PointElement).x = 300;
+            slate.update();
+            assert.deepEqual(slate.centringBounds, first, "captured box stays put until cleared");
+
+            slate.clearCentringBounds();
+            assert.equal(slate.centringBounds, null);
         });
     });
 

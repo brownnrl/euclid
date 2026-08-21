@@ -355,8 +355,19 @@ class SlateControls {
     // the window changes. figureBounds() is in logical coords, so the centre
     // target is computed in display px through the fit-scale F (#71).
     private _applyCentring(): void {
-        if (!this._maximized) { this._slate.clearViewOffset(); return; }
-        const b = this._slate.figureBounds();
+        if (!this._maximized) {
+            this._slate.clearViewOffset();
+            this._slate.clearCentringBounds();
+            return;
+        }
+        // #138 — measure once per maximized session, from elements that
+        // actually paint. Once, because a resize mid-walk must re-centre on
+        // the same box the walk started from rather than on whatever the
+        // current slide happens to reveal; painting elements only, because a
+        // zero-colour off-screen helper would otherwise define the frame and
+        // shove the figure off-canvas (I.35, I.42, I.43 all hit this).
+        const b = this._slate.centringBounds != null
+            ? this._slate.centringBounds : this._slate.captureCentringBounds();
         if (b == null) { this._slate.clearViewOffset(); return; }
         const cx = (b.minX + b.maxX) / 2, cy = (b.minY + b.maxY) / 2;
         const F = this._slate.viewScale;
@@ -393,7 +404,10 @@ class SlateControls {
         if (!this._maximized) this.maximize();
         // #114 — centre ONCE on entering presentation (covers the case
         // where we were already maximized, so maximize() didn't run). Slide
-        // advances no longer re-centre.
+        // advances no longer re-centre. #138 — drop any box captured by an
+        // earlier plain maximize so present-enter measures the figure as it
+        // stands now.
+        this._slate.clearCentringBounds();
         this._applyCentring();
         this.buildPresentationOverlay();
         this.bindPresentationKeys();
