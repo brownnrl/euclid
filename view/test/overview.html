@@ -69,6 +69,8 @@ individually.</p>
       <td><code>A.Point.slide { to: "E" }</code> — a slider glides to a <b>derived point</b> (an intersection), resolved at runtime so it tracks E when the givens are dragged. I.20 Heron's "land on E".</td><td>#122</td></tr>
   <tr><td><a href="highlight-on-top.html">highlight-on-top.html</a></td>
       <td>Off vs on, two ways: a <b>coincident</b> segment declared over the highlighted one (which buried it entirely), and the subtler <b>crossing</b> case. Promotion also holds through an animation and its fade-out.</td><td>#140</td></tr>
+  <tr><td><a href="present-centring-bounds.html">present-centring-bounds.html</a></td>
+      <td>Present-centring measures only elements that <b>paint</b>. Invisible zero-colour track anchors 1000px off-canvas no longer define the frame — the shape that rendered I.35 / I.42 / I.43 blank on present.</td><td>#138</td></tr>
 </table>
 
 <h2>Responsive / 3D</h2>

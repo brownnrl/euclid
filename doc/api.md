@@ -495,8 +495,30 @@ render path is unchanged. **Consumer note:** scale-to-fit only engages when
 the page lets the canvas shrink, i.e. `canvas { max-width: 100%; height: auto }`.
 
 `visibleBounds()` is the bbox of the *visible* named figure; `figureBounds()`
-(0.11.0+) is the bbox of *all* named elements regardless of visibility — a
-stable centre that doesn't drift as a presentation reveals/hides elements.
+(0.11.0+) is the bbox of *all* named elements regardless of visibility.
+
+**Centring bounds (#138, 0.14.0+).** Neither of those is what the
+maximized / presentation centring should measure. Deck figures carry
+construction helpers that exist only to define a direction or a slider's
+track — a "point at infinity" aim, the two anchors a `lineSlider` runs
+between — authored with zero colours so they draw nothing. They are still
+`visible`, so `visibleBounds()` keeps them, and an off-screen helper then
+inflates the box until the centre transform pushes the real geometry off
+canvas (a blank slideshow; hit on I.35, I.42 and I.43).
+
+`captureCentringBounds()` measures only elements that actually **paint**,
+and stores the result; `centringBounds` reads it back and
+`clearCentringBounds()` drops it. The test is per element type, because a
+colour slot an element never uses tells you nothing — `PointElement`'s
+`drawEdge`/`drawFace` are no-ops, so a point's `edgeColor` (which defaults
+to black when the author omits the field) is not ink. It falls back to the
+all-elements box if nothing paints at all.
+
+The box is captured **once** on entering the maximized view rather than
+recomputed: a resize mid-walk must re-centre on the frame the walk started
+in, not on whatever the current slide reveals, and `cloneAside`'s centre
+phase (#99) reads the same stored box so it eases to exactly where the
+figure already sits.
 
 **Maximized-view recenter (#107, #114, #115).** When the canvas is
 maximized — via the control or by entering presentation — the figure is

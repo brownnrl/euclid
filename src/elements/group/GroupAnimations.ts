@@ -271,10 +271,14 @@ export class GroupCloneAsideAnimation extends Animation {
                 baseOffX = slate.viewOffsetX;
                 baseOffY = slate.viewOffsetY;
 
-                // Centre target from the real (restored) figure. Use the
-                // visibility-independent figure bounds so it matches the
-                // #107 base-centring exactly (no shift when already centred).
-                const fb = slate.figureBounds();
+                // Centre target from the real (restored) figure. Read the
+                // box the #107 base-centring was computed from so this lands
+                // exactly where the figure already sits (no shift when
+                // already centred). #138 — that is now the captured
+                // painting-elements box; fall back to figureBounds() when
+                // nothing captured it (not maximized / no presentation).
+                const fb = slate.centringBounds != null
+                    ? slate.centringBounds : slate.figureBounds();
                 if (fb == null) return;
                 const figW = fb.maxX - fb.minX, figH = fb.maxY - fb.minY;
                 const figCx = (fb.minX + fb.maxX) / 2;

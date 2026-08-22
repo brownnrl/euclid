@@ -102,6 +102,12 @@ export class Slate {
     // F shrinks the figure to fit a narrow display (#71). Defaults
     // F=1, T=(0,0) are a no-op, so every existing render path — and the
     // headless snapshot path — is bit-for-bit unchanged.
+    // #138 — the bounding box the maximized / presentation centring was
+    // computed from. Captured ONCE on entering the maximized view (#114
+    // centres once, not per slide) and cleared on leaving, so the centre
+    // can't drift as slides reveal and hide elements, and so cloneAside's
+    // centre phase (#99) eases to exactly the same target.
+    private _centringBounds : { minX: number, maxX: number, minY: number, maxY: number } | null = null;
     private _viewOffsetX : number = 0;
     private _viewOffsetY : number = 0;
     private _viewScale : number = 1;
@@ -445,7 +451,54 @@ export class Slate {
         return this._bounds(false);
     }
 
-    private _bounds(visibleOnly: boolean) : { minX: number, maxX: number, minY: number, maxY: number } | null {
+    // #138 — does this element put any ink on the canvas?
+    //
+    // Deck figures carry construction helpers that exist only to define a
+    // direction or a slider's track — a "point at infinity" aim, the two
+    // anchors a lineSlider runs between — authored with zero colours so they
+    // draw nothing. They are still `visible`, so a visibility filter does NOT
+    // exclude them; only asking what actually paints does.
+    //
+    // The test is per type because a colour slot an element never uses tells
+    // us nothing: PointElement.drawEdge / drawFace are no-ops, so a point's
+    // edgeColor (which defaults to black when the author omits the field)
+    // must not count as ink — that default is exactly what made these helpers
+    // look paintable.
+    private _paintsInk(elem: GeomElement) : boolean {
+        if (!elem.visible) return false;
+        if (elem.nameColor != null) return true;
+        if (elem instanceof PointElement) return elem.vertexColor != null;
+        return elem.edgeColor != null || elem.faceColor != null;
+    }
+
+    // Bounding box to centre the figure on in the maximized / presentation
+    // view (#107). Measures only elements that actually paint, so an
+    // off-screen zero-colour helper can't inflate the box and translate the
+    // real geometry off-canvas — the #138 blank-slideshow bug, hit on I.35,
+    // I.42 and I.43.
+    //
+    // Captured once per maximized session rather than recomputed: the result
+    // must not move as slides change visibility, and cloneAside reads the
+    // same captured box so its centre phase lands where the base centring
+    // already is. Falls back to the all-elements bounds if nothing paints at
+    // all (a figure built entirely from helpers), so the caller always gets
+    // the same shape of answer as before.
+    captureCentringBounds() : { minX: number, maxX: number, minY: number, maxY: number } | null {
+        const inked = this._bounds(false, (e) => this._paintsInk(e));
+        this._centringBounds = inked != null ? inked : this._bounds(false);
+        return this._centringBounds;
+    }
+
+    get centringBounds() : { minX: number, maxX: number, minY: number, maxY: number } | null {
+        return this._centringBounds;
+    }
+
+    clearCentringBounds() : void {
+        this._centringBounds = null;
+    }
+
+    private _bounds(visibleOnly: boolean,
+                    accept?: (e: GeomElement) => boolean) : { minX: number, maxX: number, minY: number, maxY: number } | null {
         let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
         const add = (x: number, y: number) => {
             if (x < minX) minX = x; if (x > maxX) maxX = x;
@@ -454,6 +507,7 @@ export class Slate {
         for (let elem of this._elements) {
             if (elem.name == null || elem.name.startsWith("screen")) continue;
             if (visibleOnly && !elem.visible) continue;
+            if (accept != null && !accept(elem)) continue;
             if (elem instanceof PolygonElement) {
                 for (let v of elem.V) add(v.x, v.y);
             } else if (elem instanceof CircleElement) {
