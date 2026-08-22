@@ -42,14 +42,76 @@ const TRIANGLE_CONFIG: SlateConfig = {
     ],
 };
 
+// #140 fixture — two segments that cross MID-SPAN, with the crossing
+// line declared AFTER the one we highlight. In TRIANGLE_CONFIG the circles
+// only meet AB at its endpoints, so it has no occlusion to catch; here the
+// black CD runs straight over the middle of the gold AB. Without the
+// z-order promotion the highlight is visibly chopped at the crossing.
+const CROSSING_CONFIG: SlateConfig = {
+    width: 340,
+    height: 260,
+    background: "35,19,100",
+    title: "#140 crossing fixture",
+    elements: [
+        "A;point;free;60,60",
+        "B;point;free;280,200",
+        "AB;line;connect;A,B",
+        "C;point;free;60,200",
+        "D;point;free;280,60",
+        "CD;line;connect;C,D",
+    ],
+};
+
+// #140 fixture, stronger form — a second segment lying EXACTLY on top of
+// the one we highlight (same endpoints, so coincident and parallel), and
+// declared after it. The crossing fixture above only contests a handful of
+// pixels where two strokes meet; here the later element covers the
+// highlighted one along its whole length, so without promotion the gold is
+// completely hidden rather than merely nicked.
+const COINCIDENT_CONFIG: SlateConfig = {
+    width: 340,
+    height: 260,
+    background: "35,19,100",
+    title: "#140 coincident fixture",
+    elements: [
+        "A;point;free;60,130",
+        "B;point;free;280,130",
+        "AB;line;connect;A,B",
+        // Same two endpoints → exactly collinear and overlapping. Declared
+        // last, so pre-#140 it wins every pixel of the shared stroke.
+        "COVER;line;connect;A,B",
+    ],
+};
+
 // Each scenario flips shouldHighlight on a subset, renders, and
 // snapshots. The fileName + scenario combine to form a unique key
 // per ReportEntry.
-const scenarios: { name: string; highlight: string[] }[] = [
+const scenarios: { name: string; highlight: string[]; config?: SlateConfig; highlightOnTop?: boolean }[] = [
     { name: "baseline",         highlight: [] },
     { name: "highlight_line",   highlight: ["AB"] },
     { name: "highlight_circle", highlight: ["BCD"] },
     { name: "highlight_point",  highlight: ["A"] },
+    // #140 — the highlighted AB is declared BEFORE the CD that crosses it,
+    // so pre-#140 the gold stroke was chopped where CD painted over it.
+    { name: "crossing_highlight_under", highlight: ["AB"], config: CROSSING_CONFIG },
+    // Control: highlighting the later-declared CD needs no promotion to
+    // read correctly — it already painted last. Guards against the
+    // promotion disturbing the case that was already fine.
+    { name: "crossing_highlight_over",  highlight: ["CD"], config: CROSSING_CONFIG },
+    // The SAME scene as crossing_highlight_under with promotion switched
+    // off — i.e. the pre-#140 rendering. Kept so the suite carries a
+    // golden of the defect next to the golden of the fix: diff the two
+    // PNGs (or view them side by side in report.html) and the only
+    // differing pixels are where CD crosses the highlighted AB. Without
+    // this scene the suite pins the new behaviour but never shows what
+    // changed.
+    { name: "crossing_no_promotion", highlight: ["AB"], config: CROSSING_CONFIG,
+      highlightOnTop: false },
+    // The decisive pair: a coincident segment declared over the highlighted
+    // one. Pre-#140 the highlight is invisible along its entire length.
+    { name: "coincident_no_promotion", highlight: ["AB"], config: COINCIDENT_CONFIG,
+      highlightOnTop: false },
+    { name: "coincident_promoted",     highlight: ["AB"], config: COINCIDENT_CONFIG },
 ];
 
 describe("highlight snapshot (issue #72)", function() {
@@ -59,6 +121,7 @@ describe("highlight snapshot (issue #72)", function() {
         const scenario = scenarios[i];
         const slateNum = i + 1;
         const fileName = scenario.name;
+        const config = scenario.config || TRIANGLE_CONFIG;
         const snapshotDir = path.join(CATEGORY, fileName, `slate${slateNum}`);
         const fullSnapshotDir = path.join(SNAPSHOT_DIR, snapshotDir);
         const testName = `${CATEGORY}/${fileName}/slate${slateNum}`;
@@ -69,13 +132,16 @@ describe("highlight snapshot (issue #72)", function() {
                 fileName: fileName,
                 slateIndex: slateNum,
                 snapshotDir: snapshotDir,
-                config: TRIANGLE_CONFIG,
+                config: config,
                 beforeResult: {passed: false, isNew: false},
                 dragResults: [],
             };
 
             try {
-                const slate = buildScene(TRIANGLE_CONFIG);
+                const slate = buildScene(config);
+                if (scenario.highlightOnTop != null) {
+                    slate.highlightOnTop = scenario.highlightOnTop;
+                }
                 for (const name of scenario.highlight) {
                     const el = slate.lookupElement(name);
                     if (el) el.shouldHighlight = true;

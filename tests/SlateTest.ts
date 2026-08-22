@@ -1,6 +1,6 @@
 import "mocha";
 import * as assert from "assert";
-import {Slate} from "../src/Slate";
+import {Slate, isPromoted, promotedDrawOrder} from "../src/Slate";
 import {E, IConstructionInfo, init, slates, revealNoscriptFallback} from "../src/index";
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
@@ -86,6 +86,104 @@ describe("slate", () => {
         assert.throws(
             () => slate.createElement(E.Point.midpoint, []),
             /Construction not found/);
+    });
+
+    // #140 — a highlighted or mid-animation element should paint over its
+    // neighbours instead of being chopped by whatever was declared after it.
+    describe("promotedDrawOrder", () => {
+
+        // Three named elements in declaration order, so the tests can talk
+        // about "declared later paints over".
+        function scene(): {slate: Slate; A: GeomElement; B: GeomElement; C: GeomElement} {
+            let slate: Slate = new Slate(createCanvas(200, 200));
+            slate.inTest = true;
+            toElements(slate, [
+                { construction: E.Point.free, name: "A", params: [10, 10] },
+                { construction: E.Point.free, name: "B", params: [50, 50] },
+                { construction: E.Point.free, name: "C", params: [90, 90] },
+            ]);
+            let [A, B, C] = ["A", "B", "C"].map(n => slate.lookupElement(n));
+            return {slate, A, B, C};
+        }
+
+        // A slate carries built-in screen_* plane elements ahead of the
+        // authored ones; ignore them the way _dispatchHighlightChange does.
+        const names = (es: GeomElement[]) => es
+            .map(e => e.name)
+            .filter(n => n != null && !n.startsWith("screen"))
+            .join(",");
+
+        it("returns the original array untouched when nothing is promoted", () => {
+            let {slate} = scene();
+            assert.strictEqual(
+                promotedDrawOrder(slate.elements), slate.elements,
+                "the idle path must hand back the SAME array — no reorder and no " +
+                "allocation, so every static figure and snapshot golden is unchanged");
+        });
+
+        it("moves a highlighted element to the end of the pass", () => {
+            let {slate, A} = scene();
+            A.shouldHighlight = true;
+            assert.equal(names(promotedDrawOrder(slate.elements)), "B,C,A",
+                "A was declared first, so B and C used to paint over it");
+        });
+
+        it("promotes an emphasised element (hover / caption ref)", () => {
+            let {slate, A} = scene();
+            A.emphasized = true;
+            assert.equal(names(promotedDrawOrder(slate.elements)), "B,C,A");
+        });
+
+        it("keeps promotion through the post-animation emphasis fade", () => {
+            let {slate, A} = scene();
+            // SlateAnimator ticks emphasisAmount 1 → 0 over EMPHASIS_FADE_OUT_MS.
+            // Mid-taper the element is still visibly gold, so it must stay on top
+            // rather than snapping back down in z-order.
+            A.emphasisAmount = 0.2;
+            assert.equal(names(promotedDrawOrder(slate.elements)), "B,C,A");
+            A.emphasisAmount = 0;
+            assert.equal(names(promotedDrawOrder(slate.elements)), "A,B,C",
+                "once the taper reaches 0 the element drops back to declaration order");
+        });
+
+        it("promotes a mid-animation element via drawProgress", () => {
+            let {slate, B} = scene();
+            // drawProgress defaults to 1 and every finalise()/cancel resets it,
+            // so < 1 is an independent "being drawn in right now" flag — it
+            // covers an animation that never touches emphasis.
+            B.drawProgress = 0.4;
+            assert.equal(names(promotedDrawOrder(slate.elements)), "A,C,B");
+            B.drawProgress = 1;
+            assert.equal(names(promotedDrawOrder(slate.elements)), "A,B,C");
+        });
+
+        it("preserves relative order within each group", () => {
+            let {slate, A, C} = scene();
+            A.shouldHighlight = true;
+            C.shouldHighlight = true;
+            assert.equal(names(promotedDrawOrder(slate.elements)), "B,A,C",
+                "A still precedes C among the promoted; the unpromoted keep their order too");
+        });
+
+        it("isPromoted covers highlight, emphasis and animation", () => {
+            let {A} = scene();
+            assert.ok(!isPromoted(A), "a resting element is not promoted");
+            A.shouldHighlight = true;
+            assert.ok(isPromoted(A));
+            A.shouldHighlight = false;
+            A.emphasisAmount = 0.5;
+            assert.ok(isPromoted(A));
+            A.emphasisAmount = 0;
+            A.drawProgress = 0.5;
+            assert.ok(isPromoted(A));
+        });
+
+        it("slate.highlightOnTop defaults on and can be turned off", () => {
+            let {slate} = scene();
+            assert.ok(slate.highlightOnTop, "#140 promotion is on by default");
+            slate.highlightOnTop = false;
+            assert.ok(!slate.highlightOnTop);
+        });
     });
 
     describe("drag coordinates: 2D pivot scene", () => {

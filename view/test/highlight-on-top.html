@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #140 highlighted elements draw on top</title>
+</head>
+<body>
+<h3 style="font-family: sans-serif;">Highlighted / animating elements draw on top (#140)</h3>
+<p style="font-family: sans-serif; max-width: 720px; color: #444;">
+In both rows the highlighted element is declared <b>before</b> the black one
+that covers it. Left canvas: <code>highlightOnTop: false</code> (the
+pre-0.14.0 behaviour). Right canvas: <code>highlightOnTop: true</code>, the
+default.
+</p>
+<p style="font-family: sans-serif; max-width: 720px; color: #444;">
+Press <b>p</b> on any canvas to walk the slides — promotion holds for the
+whole animation and through the fade-out taper, so an element never drops
+back under its neighbours while it is still gold.
+</p>
+
+<table style="font-family: sans-serif; border-collapse: collapse;">
+<tr>
+  <td></td>
+  <td style="padding: 0 14px 6px 0; color:#666;"><code>highlightOnTop: false</code></td>
+  <td style="padding: 0 0 6px 14px; color:#666;"><code>highlightOnTop: true</code> (default)</td>
+</tr>
+<tr>
+  <td style="padding-right:10px; color:#444; font-size:.9em; max-width:130px;">
+      <b>Coincident.</b> A second segment on the same two endpoints, declared
+      after. The highlight is buried along its whole length.</td>
+  <td style="padding-right: 14px;"><canvas id="coincOff" style="width:340px; height:150px;" tabindex="0"></canvas></td>
+  <td style="padding-left: 14px;"><canvas id="coincOn" style="width:340px; height:150px;" tabindex="0"></canvas></td>
+</tr>
+<tr>
+  <td style="padding-right:10px; color:#444; font-size:.9em; max-width:130px;">
+      <b>Crossing.</b> The subtler case — only the pixels at the intersection
+      are contested.</td>
+  <td style="padding-right: 14px;"><canvas id="crossOff" style="width:340px; height:260px;" tabindex="0"></canvas></td>
+  <td style="padding-left: 14px;"><canvas id="crossOn" style="width:340px; height:260px;" tabindex="0"></canvas></td>
+</tr>
+</table>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+
+    // A second line on the SAME endpoints: exactly coincident and parallel,
+    // declared after AB, so pre-#140 it wins every pixel of the shared stroke.
+    function coincident(canvasid, onTop) {
+        geomlib.init({
+            background: '35,19,100',
+            title: "coincident",
+            canvasid: canvasid,
+            highlightOnTop: onTop,
+            elements: [
+                { name: "A", construction: E.Point.free, params: [60, 75] },
+                { name: "B", construction: E.Point.free, params: [280, 75] },
+                { name: "AB", construction: E.Line.connect, params: ["A", "B"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+                { name: "COVER", construction: E.Line.connect, params: ["A", "B"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            ],
+            slides: [
+                { text: "Two segments share the same endpoints.", visible: ["AB", "COVER"] },
+                { text: "Highlight {AB} — it should be gold, not buried.",
+                  visible: ["AB", "COVER"], highlighted: ["AB"] },
+            ],
+        });
+    }
+
+    // BD is declared before the AC that crosses it.
+    function crossing(canvasid, onTop) {
+        geomlib.init({
+            background: '35,19,100',
+            title: "crossing",
+            canvasid: canvasid,
+            highlightOnTop: onTop,
+            elements: [
+                { name: "B", construction: E.Point.free, params: [60, 60] },
+                { name: "D", construction: E.Point.free, params: [280, 200] },
+                { name: "BD", construction: E.Line.connect, params: ["B", "D"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+                { name: "A", construction: E.Point.free, params: [60, 200] },
+                { name: "C", construction: E.Point.free, params: [280, 60] },
+                { name: "AC", construction: E.Line.connect, params: ["A", "C"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            ],
+            slides: [
+                { text: "The diagonals {BD} and {AC}.", visible: ["BD", "AC"] },
+                { text: "Highlight {BD} — one unbroken stroke through the crossing.",
+                  visible: ["BD", "AC"], highlighted: ["BD"] },
+                { text: "Now trace {AC} — the element being drawn comes forward too.",
+                  visible: ["BD", "AC"],
+                  transition: { animations: [
+                      { elem: "AC", name: A.Line.straightEdgeConnect },
+                  ] } },
+            ],
+        });
+    }
+
+    coincident("coincOff", false);
+    coincident("coincOn",  true);
+    crossing("crossOff",   false);
+    crossing("crossOn",    true);
+</script>
+</body>
+</html>

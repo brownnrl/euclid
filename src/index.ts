@@ -168,6 +168,12 @@ export interface IInitialization {
     // are hidden initially (Euclid's source diagram draws no angle arcs)
     // and appear during the slide walk or on hover. (#100)
     showAngles?: boolean;
+    // 0.14.0+ — draw highlighted / mid-animation elements last within each
+    // draw pass, so a neighbour declared later in `elements` can't paint
+    // over the gold stroke where it crosses. Promotion is within a pass, so
+    // a promoted face still stays under every edge. Default true; set false
+    // to keep the strict declaration order. (#140)
+    highlightOnTop?: boolean;
     // Optional slideshow walk-through. When provided + non-empty,
     // SlateControls renders a "▶ Present" button that opens the
     // Presentation overlay. Stays empty (no button, no behaviour
@@ -398,6 +404,12 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
     if (i.deferDraggables != null) {
         slate.deferDraggables(i.deferDraggables);
+    }
+
+    // #140 — opt out of highlight/animation z-order promotion. Default is
+    // on, so only an explicit `false` changes anything.
+    if (i.highlightOnTop != null) {
+        slate.highlightOnTop = i.highlightOnTop;
     }
 
     // Angle markers are hidden in the static figure by default (Euclid's
