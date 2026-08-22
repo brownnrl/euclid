@@ -5,6 +5,7 @@
 
 import "mocha";
 import * as assert from "assert";
+import {parseCaptionTokens} from "../src/SlateControls";
 import {createCanvas} from "canvas";
 import {init, slates, ISlide, IConstructionInfo} from "../src/index";
 import {computeSlideState} from "../src/slideshow";
@@ -213,5 +214,71 @@ describe("computeSlideState (issue #75)", () => {
         assert.ok(s.visible.has("B"));
         assert.ok(!s.visible.has("AB"));
         assert.ok(!s.visible.has("BCD"));
+    });
+});
+
+// #136 — caption token grammar. The DISPLAY half of a {display|element}
+// override may be a whole phrase; the element half stays strict because it
+// has to resolve against the slate.
+describe("parseCaptionTokens (#136)", () => {
+
+    const refs = (text: string) =>
+        parseCaptionTokens(text)
+            .filter(t => t.kind === "ref")
+            .map(t => `${(t as any).display}->${(t as any).target}`);
+
+    it("keeps a bare token binding display and target together", () => {
+        assert.deepEqual(refs("Join {AB} and {CD}."), ["AB->AB", "CD->CD"]);
+    });
+
+    it("keeps the single-word display override (#90)", () => {
+        assert.deepEqual(refs("the angle {ABC|angBint}"), ["ABC->angBint"]);
+    });
+
+    it("accepts a multi-word display — the case that filed the ticket", () => {
+        // From I.31. Before this, the whole token leaked into the caption
+        // verbatim as "{the side from D to A|sideDA}", so decks bound a
+        // single keyword inside the phrase instead.
+        assert.deepEqual(
+            refs("Produce {the side from D to A|sideDA} to meet it."),
+            ["the side from D to A->sideDA"]);
+    });
+
+    it("keeps the surrounding prose intact around a phrase ref", () => {
+        const toks = parseCaptionTokens("Produce {the side from D to A|sideDA} to meet it.");
+        assert.deepEqual(toks.map(t => t.kind), ["text", "ref", "text"]);
+        assert.equal((toks[0] as any).text, "Produce ");
+        assert.equal((toks[2] as any).text, " to meet it.");
+    });
+
+    it("still requires the element half to look like a name", () => {
+        // A strict target is what makes the display half safe to widen: the
+        // second group can never swallow prose.
+        assert.deepEqual(refs("{some words|not a name}"), []);
+        assert.deepEqual(refs("{display|9bad}"), []);
+    });
+
+    it("does not let a display run across the closing brace", () => {
+        assert.deepEqual(refs("{a|X} and {b|Y}"), ["a->X", "b->Y"]);
+    });
+
+    it("handles several refs and adjacent tokens", () => {
+        assert.deepEqual(
+            refs("{AB}{the base|BC} then {angle ABC|angB}."),
+            ["AB->AB", "the base->BC", "angle ABC->angB"]);
+    });
+
+    it("leaves text with no tokens as a single run", () => {
+        const toks = parseCaptionTokens("No refs here at all.");
+        assert.deepEqual(toks, [{ kind: "text", text: "No refs here at all." }]);
+    });
+
+    it("is not stateful across calls", () => {
+        // A module-level regex with /g carries lastIndex between calls; the
+        // tokenizer must build its own each time or every second caption
+        // would tokenize from the wrong offset.
+        const once = refs("{AB} and {CD}");
+        const twice = refs("{AB} and {CD}");
+        assert.deepEqual(once, twice);
     });
 });

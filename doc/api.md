@@ -418,6 +418,23 @@ Hover / tap on a span flips `element.emphasisAmount` so the element
 pops with a thicker stroke; tapping pins a single sticky reference at
 a time.
 
+**The DISPLAY half may be a phrase (#136, 0.14.0+.)** The two halves have
+different grammars on purpose: the element name stays strict (it has to
+resolve against the slate), while the display half is anything up to the
+closing brace, because it is prose.
+
+```
+{AB}                             element name doubles as the display
+{ABC|angBint}                    single-word override
+{the side from D to A|sideDA}    a whole phrase lights one element
+```
+
+Before 0.14.0 the display half was restricted to one word, so a
+multi-word token did not match at all and leaked into the caption
+verbatim as `{the side from D to A|sideDA}`. The workaround was to bind a
+single keyword inside the phrase — `the {side|sideDA} from D to A` — which
+lights only that word. `parseCaptionTokens()` is exported for testing.
+
 ### Justification refs
 
 ```typescript
