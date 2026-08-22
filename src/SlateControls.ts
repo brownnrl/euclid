@@ -478,6 +478,13 @@ class SlateControls {
         nav.style.alignItems = "center";
         nav.style.justifyContent = "center";
 
+        // #142 — these glyphs must not reach the bundle as raw UTF-8: a
+        // consumer page without <meta charset> decodes our <script src>
+        // using its own encoding and geomlib's controls turn to mojibake.
+        // Escaping them HERE does not help (tsc decodes the escape, the
+        // minifier re-normalises it) — it is enforced at emit by
+        // `ascii_only` in webpack.config.js, and checked by
+        // scripts/check-bundle-ascii.js at publish time.
         const prevBtn = makePresentationButton("‹ Prev");
         const counter = document.createElement("span");
         counter.className = "geomlib-presentation-counter";
