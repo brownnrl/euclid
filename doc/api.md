@@ -438,6 +438,11 @@ lights only that word. `parseCaptionTokens()` is exported for testing.
 ### Justification refs
 
 ```typescript
+interface ISlideJust {
+    ref: string;
+    claim?: string;      // 0.14.0+ (#146)
+}
+
 type ResolveJustification =
     (ref: string) => string | null | undefined;
 
@@ -445,6 +450,29 @@ class Slate {
     resolveJustification: ResolveJustification | null;
 }
 ```
+
+**`claim` (#146, 0.14.0+)** states what a step asserts, rendered ahead of
+the citation as `claim — ref`:
+
+```js
+justifications: [
+    { claim: "angle EGB = angle AGH",           ref: "I.15" },
+    { claim: "angle AGH + angle BGH = 2rt",     ref: "I.13" },
+    { claim: "subtract angle BGH",              ref: "C.N.3" },
+]
+```
+
+Without it a chip can say *which* proposition licenses a step but never
+*what* the step claims, so a slide carrying several reasoning steps had to
+be split one-per-sub-slide purely to keep each statement beside its own
+citation.
+
+**Layout follows the data.** If any justification on a slide has a claim,
+the entries stack one per line — statements don't read as a dot-separated
+row, and a bare citation shouldn't be stranded mid-row beside them. With no
+claims anywhere, the panel is the same inline `·`-joined row as before, so
+existing decks are untouched. `justsUseStackedLayout()` is exported for
+testing. `claim` is plain text; it does not take `{NAME}` tokens.
 
 Slide entries carry symbolic `justifications: [{ ref: "I.Post.3" }]`.
 URLs are resolved at render time by the consumer-provided callback
