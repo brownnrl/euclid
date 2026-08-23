@@ -165,6 +165,7 @@ With the page loaded:
 | Drag a non-free point (the line, a circle) | The diagram rotates/scales around the pivot **C**. |
 | Press **r** or **space** | Reset to the initial configuration. |
 | Press **m** | Maximize the canvas to fill the viewport. |
+| Press **Esc** | Leave the maximized view (in a slideshow, the first press leaves the walk and the next leaves the maximized view). |
 
 The reset/maximize controls also appear as small icon buttons at the
 top-right of the canvas — hidden by default, fading in on hover or when
