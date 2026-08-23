@@ -183,5 +183,15 @@ Many test fixtures (`view/euclid-html/`, `view/compass_geometry/`,
   targeted at euclids-elements.org. Phase 3 (HTML conversion) was
   completed there.
 - The Java↔TypeScript visual comparison harness (docker, applet
-  viewer, X11) was retired. The snapshot test suite is the
-  ongoing regression mechanism.
+  viewer, X11) was retired from day-to-day use. The snapshot test suite
+  is the ongoing regression mechanism.
+
+  **Kept deliberately as a baseline**, not abandoned: the
+  `archive/java-harness` tag holds the retired harness, and the
+  **`harness/propI4` branch** carries a Proposition I.4 comparison pair
+  (`view/applet-tests/elements/propI4/` + `view/test/elements/propI4.html`)
+  that exists nowhere else — not on `main`, not under the tag. Both are
+  there so that if the port ever shows behaviour we can't explain, the
+  original Java 8 applet can be run as the reference. Expect to reach for
+  this rarely, and less often as the library grows features the applet
+  never had — but do not delete either one during branch cleanup.
