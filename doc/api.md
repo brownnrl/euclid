@@ -637,6 +637,103 @@ render is bit-for-bit identical to earlier versions, which is why no existing
 snapshot golden moved. Opt out per slate with `init({ highlightOnTop: false })`
 or `slate.highlightOnTop = false`.
 
+### Diagnostics and the on-canvas badge (#154, 0.14.0+)
+
+geomlib skips what it cannot resolve and keeps rendering: an animation
+whose target does not exist is passed over, a slide name matching nothing
+is ignored. That keeps a partly-broken deck usable, but the only evidence
+used to be a `console.warn` — and a deck author has no reason to have
+devtools open. (An audit of the *Elements* decks found 33 inert names
+across 17 canvases that had gone unnoticed for months.)
+
+Every diagnostic is now recorded on the slate that produced it:
+
+```typescript
+interface IDiagnostic {
+    severity: "warning" | "error";
+    code: string;        // "unknown-animation", "unknown-slide-name", ...
+    message: string;     // without the "[geomlib] " console prefix
+    detail?: object;     // structured payload, e.g. { elem: "GHOST" }
+    at: number;          // first occurrence
+    count: number;       // occurrences of this dedupe key
+}
+
+class Slate {
+    reportDiagnostic(input): void;
+    get diagnostics(): IDiagnostic[];
+    get diagnosticSeverity(): "warning" | "error" | null;   // null = clean
+    clearDiagnostics(): void;
+    onDiagnosticsChanged(fn: (s: Slate) => void): () => void;
+}
+```
+
+**The badge.** A canvas that has reported anything shows a small mark in
+its **upper-left** corner — an amber `!` triangle for warnings, a red stop-sign
+octagon when anything reached error severity (error supersedes warning). Tooltip:
+`geomlib generated warnings - check console`. A clean diagram shows
+nothing and does not even create the element.
+
+Unlike the reset / maximize / present controls, which stay hidden until
+the canvas is hovered or focused (#69), **the badge is always visible** —
+a diagnostic you only see once you go looking for it is no use. It rides
+along into maximized and presentation views, and does not overlap the
+presentation caption or nav (those are pinned to the bottom).
+
+**It latches.** A warning raised on slide 4 is still showing on slide 5,
+so it cannot scroll past unnoticed. It clears on the **reset** control
+(`r` / space) — the deliberate "I have seen it" gesture. Note this is
+*not* `Slate.reset()`: minimize and presentation-exit both call that
+internally, and construction-time diagnostics never fire again, so
+clearing there would discard exactly the warnings worth keeping.
+
+**Decks are checked at load.** Every name in a slide's `visible` /
+`highlighted` set and every animation `elem:` is resolved once when the
+figure is built, so a stale reference reports immediately. Without that
+the diagnostic would only fire if a viewer actually advanced to the
+offending slide — the case that goes unnoticed, and one that would leave
+a build-time checker seeing a clean page.
+
+**Per canvas.** Diagnostics belong to the slate that produced them, so on
+a page of many figures each badge reflects only its own canvas. (Before
+0.14.0 two dedupe flags were module-global, so the first figure to hit a
+bad name silenced every other figure on the page.)
+
+#### Reading diagnostics programmatically
+
+```typescript
+geomlib.diagnostics(opts?: { canvasids?: string[] }): {
+    severity: "warning" | "error" | null;   // worst on the page
+    count: number;
+    slates: { canvasid: string | null; index: number;
+              severity: "warning" | "error" | null;
+              entries: IDiagnostic[] }[];   // only slates that reported
+    init: IDiagnostic[];                    // init() failures (no slate exists)
+}
+```
+
+One call gives a page's whole diagnostic state — for a console check, or
+for a static-site generator gating a build. `opts.canvasids` scopes the
+query, mirroring [`highlightByName`](#geomlibhighlightbyname--cross-canvas-highlight-130-0130).
+
+`init()` failures cannot belong to a slate (a wrong `canvasid` makes the
+Slate constructor throw), so they collect in `geomlib.initDiagnostics`
+and appear under `init`. On failure geomlib also places an error mark
+next to where the diagram would have been, then reveals the `<noscript>`
+fallback as before.
+
+#### `geomlib:diagnostic` event
+
+Mirrors `geomlib:highlight`: a bubbling `CustomEvent` on the slate's
+canvas, so a page can collect diagnostics as they happen.
+
+```js
+document.addEventListener("geomlib:diagnostic", (ev) => {
+    // ev.detail.diagnostic — the new IDiagnostic, or null when cleared
+    // ev.detail.severity   — worst on that slate, null when cleared
+    // ev.detail.count      — distinct diagnostics on that slate
+});
+```
+
 ### `geomlib:highlight` event (#108, 0.11.0+)
 
 When the set of highlighted elements (`shouldHighlight || emphasized`)

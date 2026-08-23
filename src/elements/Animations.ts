@@ -148,7 +148,6 @@ export class InstantAnimation extends Animation {
 // looks anything up.
 const animationsByEnum: Map<AllAnimations, Animation> = new Map();
 const animationsByName: Map<string, Animation> = new Map();
-const warnedUnknown: Set<string> = new Set();
 
 export function registerAnimation(a: Animation): void {
     animationsByEnum.set(a.animationMethod, a);
@@ -156,26 +155,19 @@ export function registerAnimation(a: Animation): void {
 }
 
 // Accepts either the enum value or the string name; returns the
-// registered Animation or null when the name doesn't resolve. An
-// unknown name emits a console.warn once per name across the slate's
-// lifetime so consumers see typos surfaced without log spam.
+// registered Animation or null when the name doesn't resolve.
+//
+// Pure lookup: it does NOT report an unknown name. #154 moved that to
+// the caller (SlateAnimator.run), which holds the slate the diagnostic
+// belongs to. That also retired a module-global "already warned" Set
+// which suppressed the warning for every OTHER slate on the page once
+// any one slate hit the same bad name.
 export function findAnimation(ref: AllAnimations | string): Animation | null {
     let a: Animation | undefined;
     if (typeof ref === "string") {
         a = animationsByName.get(ref);
     } else {
         a = animationsByEnum.get(ref);
-    }
-    if (a == null) {
-        const key = String(ref);
-        if (!warnedUnknown.has(key)) {
-            warnedUnknown.add(key);
-            // eslint-disable-next-line no-console
-            if (typeof console !== "undefined" && console.warn) {
-                console.warn("[geomlib] unknown animation '" + key + "' — falling back to instant");
-            }
-        }
-        return null;
     }
     return a ?? null;
 }

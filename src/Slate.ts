@@ -9,6 +9,8 @@ import {PolygonElement} from "./elements/polygon/PolygonElement";
 import {CircleElement} from "./elements/circle/CircleElement";
 import {ISlide, ISlideAnimation, IAnimationConfig} from "./index";
 import {SlateAnimator} from "./SlateAnimator";
+import {DiagnosticLog, IDiagnostic, IDiagnosticInput, DiagnosticSeverity,
+        diagnosticEventDetail} from "./Diagnostics";
 
 export type SlateCanvas = HTMLCanvasElement | Canvas;
 
@@ -121,6 +123,12 @@ export class Slate {
     // (#108) fires only when the SET of highlighted elements changes — not
     // on every redraw frame / emphasisAmount fade.
     private _lastHighlightedKey : string = "\u0000";
+    // #154 — what this slate has complained about, so a badge can show it
+    // and a consumer can read it. Per-slate on purpose: the dedupe flags
+    // this replaced were module-global, so one figure's warning silenced
+    // every other figure on the page.
+    private _diagnostics : DiagnosticLog = new DiagnosticLog();
+    private _diagnosticListeners : Array<(s: Slate) => void> = [];
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
@@ -766,6 +774,87 @@ export class Slate {
         canvas.dispatchEvent(new CustomEvent("geomlib:highlight", {
             bubbles: true,
             detail: { highlighted },
+        }));
+    }
+
+    // ---- Diagnostics (#154) ------------------------------------------
+    //
+    // geomlib skips what it cannot resolve and keeps rendering, which is
+    // the right behaviour — a deck with one bad name should still draw.
+    // The cost is that the only evidence was a console line nobody has
+    // open. Reporting through here records it too, so SlateControls can
+    // badge the canvas and a consumer can read the list.
+
+    /**
+     * Record a diagnostic and mirror it to the console.
+     *
+     * Deduped per key, per slate: repeat reports bump a counter without
+     * a second console line. That replaces two module-global dedupe
+     * flags which silenced a warning for every OTHER figure on the page
+     * once any one figure tripped them.
+     */
+    reportDiagnostic(input: IDiagnosticInput) : void {
+        const rec = this._diagnostics.report(input, Date.now());
+        if (rec == null) return;   // already reported on this slate
+
+        if (typeof console !== "undefined") {
+            const fn = rec.severity === "error" ? console.error : console.warn;
+            if (fn) fn("[geomlib] " + rec.message);
+        }
+        this._dispatchDiagnostic(rec);
+        this._notifyDiagnosticListeners();
+    }
+
+    /** Everything this slate has reported, oldest first. */
+    get diagnostics() : IDiagnostic[] {
+        return this._diagnostics.entries;
+    }
+
+    /** Worst severity reported, or null when the slate is clean. */
+    get diagnosticSeverity() : DiagnosticSeverity | null {
+        return this._diagnostics.severity;
+    }
+
+    /**
+     * Forget everything reported so far.
+     *
+     * NOT called from reset(): minimize() and presentation-exit both run
+     * reset() internally, and construction-time diagnostics never fire
+     * again, so clearing there would silently discard exactly the
+     * warnings worth keeping. SlateControls calls this from the explicit
+     * reset control / `r` key instead — a deliberate viewer gesture.
+     */
+    clearDiagnostics() : void {
+        this._diagnostics.clear();
+        this._dispatchDiagnostic(null);
+        this._notifyDiagnosticListeners();
+    }
+
+    /** Subscribe to diagnostic changes. Returns an unsubscribe fn. */
+    onDiagnosticsChanged(listener: (s: Slate) => void) : () => void {
+        this._diagnosticListeners.push(listener);
+        return () => {
+            const i = this._diagnosticListeners.indexOf(listener);
+            if (i >= 0) this._diagnosticListeners.splice(i, 1);
+        };
+    }
+
+    private _notifyDiagnosticListeners() : void {
+        for (const l of this._diagnosticListeners.slice()) {
+            try { l(this); } catch (_) { /* a listener must not break reporting */ }
+        }
+    }
+
+    // Same capability guard as the geomlib:highlight dispatch above — a
+    // node-canvas Canvas has no dispatchEvent, so the headless path
+    // short-circuits here exactly as it does for highlights.
+    private _dispatchDiagnostic(d: IDiagnostic | null) : void {
+        const canvas: any = this._canvas;
+        if (!canvas || typeof canvas.dispatchEvent !== "function"
+            || typeof CustomEvent !== "function") return;
+        canvas.dispatchEvent(new CustomEvent("geomlib:diagnostic", {
+            bubbles: true,
+            detail: diagnosticEventDetail(this._diagnostics, d),
         }));
     }
 

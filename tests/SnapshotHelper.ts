@@ -26,9 +26,13 @@ const FAIL_PERCENT = 0.5;
 // -----------------------------------------------------------------
 // Build a Slate from a SlateConfig (parsed from HTML)
 // -----------------------------------------------------------------
-export function buildScene(config: SlateConfig): Slate {
+export function buildScene(config: SlateConfig, label?: string): Slate {
     let canvas = createCanvas(config.width, config.height);
     let slate = new Slate(canvas as unknown as HTMLCanvasElement);
+    // #154 — the fixture this scene came from. Diagnostics are mirrored to
+    // the console during a test run, where "element 'b' failed to construct"
+    // is unactionable without knowing which of ~650 fixtures produced it.
+    const scene = label != null ? label + ": " : "";
 
     // Parse background
     let bgcolor = parseColor(config.background, "#ffffff", "#ffffff");
@@ -42,7 +46,16 @@ export function buildScene(config: SlateConfig): Slate {
         try {
             param = parseParam(paramStr);
         } catch (e) {
-            // Skip unparseable elements (e.g., unknown constructions)
+            // #154 — was a silent skip. A fixture with an unparseable
+            // element still renders, just missing a piece, so nothing ever
+            // said so. Report it against the slate and the Warn column in
+            // report.html picks it up.
+            slate.reportDiagnostic({
+                code: "unparseable-element",
+                key: String(paramStr),
+                message: scene + "could not parse element param: " + String(paramStr),
+                detail: { param: String(paramStr) },
+            });
             continue;
         }
 
@@ -50,7 +63,15 @@ export function buildScene(config: SlateConfig): Slate {
         try {
             element = slate.createElement(param.construction, param.params, param.name);
         } catch (e) {
-            // Skip elements that fail to construct
+            // #154 — likewise: a construction that throws leaves a hole in
+            // the figure and used to do so silently.
+            slate.reportDiagnostic({
+                code: "construction-failed",
+                key: String(param.name),
+                message: scene + "element '" + String(param.name) + "' failed to construct: "
+                    + String((e as Error).message),
+                detail: { elem: String(param.name) },
+            });
             continue;
         }
 
@@ -324,6 +345,10 @@ export interface ReportEntry {
         result: SnapshotResult;
     }[];
     error?: string;
+    // #154 — diagnostics the slate reported while this scene was built
+    // and rendered. Report-only: nothing here fails a test, because CI
+    // runs test:unit and never reaches the snapshot suite.
+    warnings?: string[];
 }
 
 export function generateReport(entries: ReportEntry[]): void {
@@ -361,6 +386,7 @@ img { max-width: 150px; max-height: 120px; border: 1px solid #ddd; }
 .fail { background: #f8d7da; }
 .new { background: #fff3cd; }
 .error { background: #f8d7da; color: #721c24; }
+.warn { background: #fff3cd; color: #7a5c00; font-weight: 600; }
 .section { margin-bottom: 30px; }
 details { margin: 5px 0; }
 
@@ -445,7 +471,8 @@ details { margin: 5px 0; }
    Passed: ${entries.filter(e => !e.error && e.beforeResult.passed).length} |
    New baselines: ${entries.filter(e => e.beforeResult.isNew).length} |
    Failed: ${entries.filter(e => !e.error && !e.beforeResult.passed).length} |
-   Errors: ${entries.filter(e => e.error).length}</p>
+   Errors: ${entries.filter(e => e.error).length} |
+   Warnings: ${entries.filter(e => e.warnings && e.warnings.length).length}</p>
 <p style="color:#555;font-size:13px">Click any image to open a live slate + image sequence. Click a strip image again to enlarge.</p>
 `;
 
@@ -461,10 +488,10 @@ details { margin: 5px 0; }
         for (let i = 1; i <= MAX_DRAG_PAIRS; i++) {
             html += `<th>Drag ${i} Move</th><th>Drag ${i} Verify</th>`;
         }
-        html += `<th>Status</th></tr>\n`;
+        html += `<th>Warn</th><th>Status</th></tr>\n`;
 
         let dragColCount = MAX_DRAG_PAIRS * 2;
-        let errorColspan = dragColCount + 2;  // +before +status
+        let errorColspan = dragColCount + 3;  // +before +warn +status
 
         for (let entry of catEntries) {
             let statusClass = entry.error ? "error" :
@@ -495,6 +522,10 @@ details { margin: 5px 0; }
                         html += `<td>—</td><td>—</td>`;
                     }
                 }
+                const warns = entry.warnings || [];
+                html += warns.length
+                    ? `<td class="warn" title="${warns.join(" | ").replace(/"/g, "&quot;")}">${warns.length}</td>`
+                    : `<td>-</td>`;
                 html += `<td>${statusText}</td>`;
             }
             html += `</tr>\n`;

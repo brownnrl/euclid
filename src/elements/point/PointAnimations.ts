@@ -97,7 +97,14 @@ export class PointSlideAnimation extends Animation {
                     // Resolve the target element and project it onto the line.
                     const tgt = slate.lookupElement(toName) as PointElement;
                     if (tgt == null || !(tgt instanceof PointElement)) {
-                        console.warn(`[geomlib] Point.slide: target "${toName}" is not a resolvable point — staying put`);
+                        // #154 — was the one site with no typeof-console
+                        // guard; reportDiagnostic owns that check now.
+                        slate.reportDiagnostic({
+                            code: "unresolvable-target",
+                            key: "Point.slide|" + String(toName),
+                            message: `Point.slide: target "${toName}" is not a resolvable point — staying put`,
+                            detail: { animation: "Point.slide", to: String(toName) },
+                        });
                         tx = sx; ty = sy; tz = sz;
                         return;
                     }

@@ -15,7 +15,8 @@ import {Slate} from "./Slate";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
 import {AngleMarkerElement} from "./elements/sector/AngleMarkerElement";
 import {colors, randomColor, lighten, darken, parseColor, anglePalette} from "./Colors";
-import {createControls} from "./SlateControls";
+import {createControls, createDiagnosticBadge} from "./SlateControls";
+import {IDiagnostic, DiagnosticSeverity, worstSeverity} from "./Diagnostics";
 
 export type IndexAllConstructions = AllConstructions;
 export {align  as Align};
@@ -56,6 +57,97 @@ export function highlightByName(name: string, on: boolean = true,
         hits++;
     }
     return hits;
+}
+
+// #154 — check a deck's names at load, not only when a slide runs.
+//
+// Every name in a slide set and every animation target is resolved once
+// here, so a stale reference reports the moment the figure is built.
+// Without this the diagnostic only fires if a viewer actually advances
+// to the offending slide — which is precisely the case that goes
+// unnoticed, and would leave a build-time checker seeing a clean page.
+//
+// Reporting is deduped per slate, so a name the walk later hits again
+// does not report twice.
+function validateSlides(slate: Slate, slides: ISlide[]): void {
+    for (let n = 0; n < slides.length; n++) {
+        const slide = slides[n];
+        for (const field of ["visible", "highlighted"]) {
+            const names = (slide as any)[field] as string[] | undefined;
+            if (names == null) continue;
+            for (const name of names) {
+                if (slate.lookupElement(name) != null) continue;
+                slate.reportDiagnostic({
+                    code: "unknown-slide-name",
+                    key: field + ":" + name,
+                    message: "slide " + (n + 1) + " lists '" + name +
+                        "' in " + field + ", but no element or alias resolves to it \u2014 " +
+                        "the name is ignored. Check for a typo, or for a target left " +
+                        "behind by a figure change.",
+                    detail: { slide: n + 1, field: field, name: name },
+                });
+            }
+        }
+        const anims = slide.transition && slide.transition.animations;
+        if (anims == null) continue;
+        for (const entry of anims) {
+            if (entry.elem == null) continue;
+            if (slate.lookupElement(entry.elem) != null) continue;
+            slate.reportDiagnostic({
+                code: "unknown-element",
+                key: String(entry.elem),
+                message: "slide " + (n + 1) + " animates '" + entry.elem +
+                    "', but no element or alias resolves to it \u2014 the step " +
+                    "is skipped. Check for a typo, or for a target left behind " +
+                    "by a figure change.",
+                detail: { slide: n + 1, elem: entry.elem },
+            });
+        }
+    }
+}
+
+export interface ISlateDiagnostics {
+    canvasid: string | null;
+    index: number;
+    severity: DiagnosticSeverity | null;
+    entries: IDiagnostic[];
+}
+
+/**
+ * Every diagnostic on the page, in one call (#154).
+ *
+ * Exists so a consumer — a static-site generator checking decks at build
+ * time, or a human in a console — can ask "did anything on this page go
+ * wrong?" without reimplementing geomlib's own name-resolution rules.
+ * Only slates that actually reported something are listed.
+ *
+ * `opts.canvasids` scopes the query, mirroring highlightByName's idiom.
+ */
+export function diagnostics(opts?: { canvasids?: string[] }): {
+    severity: DiagnosticSeverity | null;
+    count: number;
+    slates: ISlateDiagnostics[];
+    init: IDiagnostic[];
+} {
+    const ids = opts && opts.canvasids;
+    let worst: DiagnosticSeverity | null = null;
+    let count = 0;
+    const out: ISlateDiagnostics[] = [];
+    for (let i = 0; i < slates.length; i++) {
+        const slate = slates[i];
+        const id = ((slate.canvas as any) && (slate.canvas as any).id) || null;
+        if (ids != null && (id == null || ids.indexOf(id) === -1)) continue;
+        const entries = slate.diagnostics;
+        if (entries.length === 0) continue;
+        worst = worstSeverity(worst, slate.diagnosticSeverity);
+        count += entries.length;
+        out.push({ canvasid: id, index: i, severity: slate.diagnosticSeverity, entries });
+    }
+    for (const d of initDiagnostics) {
+        worst = worstSeverity(worst, d.severity);
+        count++;
+    }
+    return { severity: worst, count, slates: out, init: initDiagnostics.slice() };
 }
 
 export interface IConstructionInfo {
@@ -320,6 +412,45 @@ export function revealNoscriptFallback(canvas: HTMLCanvasElement | null): void {
     }
 }
 
+// #154 — a slate-less record of init() failures. init() throws before any
+// Slate exists in the common case (a wrong canvasid makes `new Slate(null)`
+// throw), so these can't live on a slate and are collected here instead.
+export let initDiagnostics : IDiagnostic[] = [];
+
+/**
+ * Mark a failed init on the page, next to where the diagram would have been.
+ *
+ * Deliberately modest. On the most common failure — a canvasid that matches
+ * nothing — there is no canvas to badge, and a marker floating at some
+ * arbitrary spot is worse than none; the console error plus the revealed
+ * <noscript> image is the indication. So: badge when there is an anchor,
+ * stay silent when there isn't.
+ *
+ * The whole body swallows its own exceptions, matching
+ * revealNoscriptFallback. init()'s catch re-throws the original error, and
+ * a throw from in here would replace it.
+ */
+export function markInitFailure(canvas: HTMLCanvasElement | null, canvasid: string): void {
+    try {
+        if (typeof document === "undefined") return;
+        const anchor = canvas ||
+            (document.getElementById(canvasid) as HTMLCanvasElement | null);
+        if (!anchor) return;
+        const host = anchor.parentElement;
+        if (!host) return;
+        const badge = createDiagnosticBadge("error");
+        // Static, not absolute: createControls is the last statement of
+        // initInner, so on failure the positioned .geomlib-wrapper almost
+        // never exists and there is no containing block to anchor to. An
+        // inline-block sibling just before the canvas lands where the
+        // diagram's top-left would have been.
+        badge.style.position = "static";
+        badge.style.display = "inline-block";
+        badge.style.verticalAlign = "top";
+        host.insertBefore(badge, anchor);
+    } catch (_) { /* never let the badge replace the real error */ }
+}
+
 export function init(i : IInitialization) {
     let canvasid : string = i.canvasid != null ? i.canvasid : "canvasid";
     let canvas = document.getElementById(canvasid) as HTMLCanvasElement;
@@ -331,6 +462,15 @@ export function init(i : IInitialization) {
         // static-image fallback so they at least see the diagram, then
         // re-throw so callers / test harnesses can detect the failure.
         console.error("[geomlib] init failed:", err);
+        initDiagnostics.push({
+            severity: "error", code: "init-failed",
+            message: "init failed: " + String(err),
+            detail: { canvasid: canvasid }, at: Date.now(), count: 1,
+        });
+        // Badge BEFORE revealing the fallback: revealNoscriptFallback sets
+        // canvas.style.display = "none", so inserting first puts the mark
+        // above the static image rather than beside a hidden canvas.
+        markInitFailure(canvas, canvasid);
         revealNoscriptFallback(canvas);
         throw err;
     }
@@ -472,6 +612,7 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
     if (i.slides != null && i.slides.length > 0) {
         slate.slides = i.slides;
+        validateSlides(slate, i.slides);
     }
 
     if (i.resolveJustification != null) {

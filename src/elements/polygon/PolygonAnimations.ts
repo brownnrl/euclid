@@ -143,11 +143,14 @@ export class PolygonSuperposeAnimation extends Animation {
         const ontoName = args && args.onto;
         const onto = ontoName != null ? slate.lookupElement(String(ontoName)) : null;
         if (!(onto instanceof PolygonElement) || onto.V.length !== poly.V.length) {
-            if (typeof console !== "undefined" && console.warn) {
-                console.warn("[geomlib] Polygon.superpose: args.onto ('"
+            slate.reportDiagnostic({
+                code: "bad-animation-args",
+                key: "Polygon.superpose|" + String(poly.name) + "|" + String(ontoName),
+                message: "Polygon.superpose: args.onto ('"
                     + ontoName + "') is not a polygon with "
-                    + poly.V.length + " vertices — skipping");
-            }
+                    + poly.V.length + " vertices — skipping",
+                detail: { animation: "Polygon.superpose", elem: String(poly.name), onto: String(ontoName) },
+            });
             return [{
                 durationMs: 0,
                 tick: () => {},

@@ -101,12 +101,54 @@ npm run test:snapshot    # 700 snapshot tests; auto-creates goldens on first run
 npm test                 # both
 npm run bundle           # dev-mode bundle to dist/bundle.js
 npm run bundle:prod      # production (minified) bundle, ~125 kB
+npm run archive:index    # regenerate view/test/archive-index.json (see below)
 npm publish --dry-run    # preview tarball without publishing
 ```
 
 Goldens under `tests/snapshots/**/*.png` are gitignored — each
 contributor regenerates locally. `npm run snapshots:clean` wipes
 them; the next `npm test` re-creates from scratch.
+
+## Tracing a diagnostic back to its page
+
+geomlib reports what it cannot resolve (#154) — a slide naming a missing
+element, an animation target deleted by a refactor, a param that won't
+parse. During a test or coverage run those arrive as a wall of
+`[geomlib] …` lines, each prefixed with the fixture that produced it:
+
+```
+[geomlib] view/euclid-html/booki/propI4.html: element 'b' failed to construct: Element with name a not found.
+```
+
+To look at the page itself, serve the repo root and open the **archive
+viewer**:
+
+```sh
+python3 -m http.server 8000
+# then: http://localhost:8000/view/test/archive-viewer.html
+```
+
+**Paste the diagnostic output straight into it.** It pulls the paths out,
+groups the messages per page, and gives you a link that loads each one.
+Absolute paths, repo-relative paths and bare filenames all resolve; a path
+it doesn't recognise is listed as skipped rather than dropped. There is
+also a filterable index of every fixture the snapshot suite discovers, and
+`?p=` deep-links a page directly.
+
+Why a viewer is needed at all: the pages under `view/euclid-html/`,
+`view/compass_geometry/` and `view/round_geometry/` are Dr. Joyce's 1996
+originals, kept verbatim as snapshot input. **They cannot load in a
+browser on their own** — each figure is a Java `<applet>`,
+`navigator.javaEnabled()` has been removed from browsers (so the page's own
+`.gif` fallback never swaps in either), and `../elements.js` was never
+mirrored into this repo. The snapshot suite doesn't care: it never executes
+the page, it scrapes the `<param>` tags as text
+(`tests/HtmlParamParser.ts`) and renders through node-canvas. The viewer
+does the same translation in the browser, reading each page **without
+modifying it**.
+
+The index is a generated manifest — a browser can't list a directory — so
+run `npm run archive:index` after adding or removing fixtures.
 
 ## CRITICAL contracts (when touching element code)
 

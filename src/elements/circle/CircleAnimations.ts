@@ -127,10 +127,13 @@ export class CircleCompassTransferAnimation extends Animation {
         // Need a radius defined by two distinct source points (the length to
         // copy), distinct from the centre — i.e. circle;radius;P,C,D.
         if (s0 == null || s1 == null || s0 === P || s1 === P || s0.distance(s1) < 1e-6) {
-            if (typeof console !== "undefined" && console.warn) {
-                console.warn("[geomlib] Circle.compassTransfer: needs a radius defined by two "
-                    + "points distinct from the centre (circle;radius;centre,p1,p2) — skipping");
-            }
+            slate.reportDiagnostic({
+                code: "bad-animation-args",
+                key: "Circle.compassTransfer|" + String(circ.name),
+                message: "Circle.compassTransfer: needs a radius defined by two "
+                    + "points distinct from the centre (circle;radius;centre,p1,p2) — skipping",
+                detail: { animation: "Circle.compassTransfer", elem: String(circ.name) },
+            });
             return instant();
         }
         const plane = (P as any).AP || circ.AP;

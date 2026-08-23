@@ -13,6 +13,7 @@
 import {Slate} from "./Slate";
 import {computeSlideState} from "./slideshow";
 import {ISlideJust} from "./index";
+import {DiagnosticSeverity} from "./Diagnostics";
 
 interface IInitConfig {
     background: string;
@@ -174,6 +175,10 @@ class SlateControls {
         canvasAttrHeight: number;
     } = null;
     private _stopTrackingResize: (() => void) | null = null;
+    // #154 — lazy: a clean diagram adds no DOM at all.
+    private _badge: HTMLDivElement | null = null;
+    private _badgeSeverity: DiagnosticSeverity | null = null;
+    private _stopDiagnostics: (() => void) | null = null;
     private _maximizedOnKey: ((e: KeyboardEvent) => void) | null = null;
 
     // Presentation-mode (slideshow) state. Caption + nav float over
@@ -207,6 +212,43 @@ class SlateControls {
         // flip / column resize, not only while maximized. resizeAndRedraw
         // re-syncs the bitmap, recomputes the fit-scale, and redraws.
         this._stopTrackingResize = trackWindowResize(window, () => this.resizeAndRedraw());
+        // #154 — subscribe, then paint once. The second call matters:
+        // createControls is the LAST statement of initInner, so anything
+        // reported while the figure was being built is already in the log
+        // by the time this badge exists.
+        this._stopDiagnostics = this._slate.onDiagnosticsChanged(() => this.updateBadge());
+        this.updateBadge();
+    }
+
+    // Reconcile the badge with the slate's worst severity. Creates the
+    // node on first need, hides it when the slate is clean, and repaints
+    // in place when a warning escalates to an error.
+    private updateBadge(): void {
+        const severity = this._slate.diagnosticSeverity;
+        if (severity == null) {
+            if (this._badge) this._badge.style.display = "none";
+            this._badgeSeverity = null;
+            return;
+        }
+        if (!this._badge) {
+            this._badge = createDiagnosticBadge(severity);
+            this._badge.style.position = "absolute";
+            // Top-LEFT: the control buttons use style.right, and the
+            // presentation overlay is fixed to the bottom of the viewport,
+            // so nothing else claims this corner. Absolute on the wrapper
+            // means maximize/presentation carry it along for free.
+            this._badge.style.top = BTN_MARGIN + "px";
+            this._badge.style.left = BTN_MARGIN + "px";
+            this._badge.style.zIndex = "1";
+            this._wrapper.appendChild(this._badge);
+            this._badgeSeverity = severity;
+            return;
+        }
+        this._badge.style.display = "";
+        if (severity !== this._badgeSeverity) {
+            paintDiagnosticBadge(this._badge, severity);
+            this._badgeSeverity = severity;
+        }
     }
 
     private createWrapper(): HTMLDivElement {
@@ -324,6 +366,12 @@ class SlateControls {
 
     private onReset(): void {
         this._slate.reset();
+        // #154 — the badge latches until the viewer explicitly resets.
+        // Cleared HERE rather than inside Slate.reset() on purpose:
+        // minimize() and presentation-exit both call reset() internally,
+        // and construction-time diagnostics never fire again, so clearing
+        // there would quietly discard the warnings most worth keeping.
+        this._slate.clearDiagnostics();
     }
 
     private onMaximize(): void {
@@ -1024,6 +1072,115 @@ function drawMinimizeIcon(ctx: CanvasRenderingContext2D, size: number): void {
     ctx.lineTo(bx, by + 5);
     ctx.closePath();
     ctx.fill();
+}
+
+// #154 — the diagnostic badge.
+//
+// A <div>, deliberately NOT a <button>: ensureControlsStyle() hides
+// `.geomlib-wrapper>button` until hover (#69), and a diagnostic that only
+// appears when you already went looking for it is useless. It is also
+// non-interactive — no click handler, no tab stop — so it adds nothing to
+// the keyboard order and never fights the buttons' :focus-within reveal.
+export const BADGE_TOOLTIP = "geomlib generated warnings - check console";
+
+export function createDiagnosticBadge(
+    severity: DiagnosticSeverity,
+    size?: number,
+): HTMLDivElement {
+    const px = size != null ? size : BTN_SIZE;
+    const badge = document.createElement("div");
+    badge.className = "geomlib-badge";
+    badge.setAttribute("role", "img");
+    // Native title attribute, same mechanism as the buttons (btn.title):
+    // no positioning code, and it survives maximize with no z-index fight.
+    badge.title = BADGE_TOOLTIP;
+    badge.setAttribute("aria-label", BADGE_TOOLTIP);
+    badge.style.width = px + "px";
+    badge.style.height = px + "px";
+    badge.style.lineHeight = "0";
+    badge.style.cursor = "default";
+    paintDiagnosticBadge(badge, severity, px);
+    return badge;
+}
+
+// Redraw an existing badge in place, so a warning that escalates to an
+// error swaps its icon without churning the DOM node.
+export function paintDiagnosticBadge(
+    badge: HTMLElement,
+    severity: DiagnosticSeverity,
+    size?: number,
+): void {
+    const px = size != null ? size : BTN_SIZE;
+    let icon = badge.firstChild as HTMLCanvasElement;
+    if (!icon || (icon as any).tagName !== "CANVAS") {
+        badge.innerHTML = "";
+        icon = document.createElement("canvas");
+        badge.appendChild(icon);
+    }
+    icon.width = px;
+    icon.height = px;
+    const ctx = icon.getContext("2d");
+    if (!ctx) return;
+    ctx.clearRect(0, 0, px, px);
+    if (severity === "error") drawErrorIcon(ctx, px);
+    else drawWarningIcon(ctx, px);
+}
+
+// Icons are DRAWN, not text glyphs. A "\u26A0" in a string literal is the
+// mojibake class #142 exists to prevent, and a glyph would drag in a font
+// metric dependency the rest of the icon set doesn't have.
+//
+// Unlike the control icons (a neutral rgba(0,0,0,0.7)), these are
+// coloured: the badge has to read as a diagnostic, not as another
+// control the viewer can press.
+export function drawWarningIcon(ctx: CanvasRenderingContext2D, size: number): void {
+    const pad = size * 0.06;
+    const left = pad, right = size - pad;
+    const top = pad, bottom = size - pad * 1.2;
+    // Amber triangle, apex up.
+    ctx.fillStyle = "#e6a700";
+    ctx.beginPath();
+    ctx.moveTo(size / 2, top);
+    ctx.lineTo(right, bottom);
+    ctx.lineTo(left, bottom);
+    ctx.closePath();
+    ctx.fill();
+    // "!" as a bar plus a dot — no fillText, so no font dependency.
+    const barW = Math.max(1.5, size * 0.11);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(size / 2 - barW / 2, size * 0.34, barW, size * 0.3);
+    ctx.fillRect(size / 2 - barW / 2, size * 0.71, barW, barW);
+}
+
+export function drawErrorIcon(ctx: CanvasRenderingContext2D, size: number): void {
+    // A stop-sign octagon with a white X. Reads as "stop" at 20px in a way
+    // a bare X does not, and its silhouette is distinct from the warning
+    // triangle even before colour registers.
+    const cx = size / 2, cy = size / 2;
+    const r = size * 0.47;
+    ctx.fillStyle = "#d13438";
+    ctx.beginPath();
+    for (let k = 0; k < 8; k++) {
+        // Start at 22.5 degrees so the octagon sits flat-topped, the way a
+        // road sign does, rather than resting on a vertex.
+        const a = Math.PI / 8 + k * Math.PI / 4;
+        const x = cx + r * Math.cos(a);
+        const y = cy + r * Math.sin(a);
+        if (k === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+
+    const pad = size * 0.34;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = Math.max(1.5, size * 0.11);
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(pad, pad);
+    ctx.lineTo(size - pad, size - pad);
+    ctx.moveTo(size - pad, pad);
+    ctx.lineTo(pad, size - pad);
+    ctx.stroke();
 }
 
 function drawPresentIcon(ctx: CanvasRenderingContext2D, size: number): void {
