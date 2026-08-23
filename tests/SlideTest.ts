@@ -5,9 +5,9 @@
 
 import "mocha";
 import * as assert from "assert";
-import {parseCaptionTokens} from "../src/SlateControls";
+import {parseCaptionTokens, justsUseStackedLayout} from "../src/SlateControls";
 import {createCanvas} from "canvas";
-import {init, slates, ISlide, IConstructionInfo} from "../src/index";
+import {init, slates, ISlide, IConstructionInfo, E} from "../src/index";
 import {computeSlideState} from "../src/slideshow";
 
 // Mock the minimum DOM that init() needs.
@@ -280,5 +280,80 @@ describe("parseCaptionTokens (#136)", () => {
         const once = refs("{AB} and {CD}");
         const twice = refs("{AB} and {CD}");
         assert.deepEqual(once, twice);
+    });
+});
+
+// #146 — ISlideJust.claim lets a justification state the step, not just
+// cite it. The I.28 shape: one paragraph, three reasoning steps, each
+// licensed by a different proposition.
+describe("ISlideJust.claim (#146)", () => {
+
+    it("carries the claim through init() onto the slate", () => {
+        const canvas = createCanvas(200, 200) as any;
+        canvas.id = "just-claim";
+        const doc: any = {
+            getElementById: (id: string) => (id === "just-claim" ? canvas : null),
+        };
+        const savedDoc = (global as any).document;
+        (global as any).document = doc;
+        try {
+            init({
+                background: "0,0,100",
+                title: "claims",
+                canvasid: "just-claim",
+                elements: [
+                    { name: "A", construction: E.Point.free, params: [10, 10] },
+                    { name: "B", construction: E.Point.free, params: [90, 90] },
+                ],
+                slides: [{
+                    text: "Reasoning.",
+                    justifications: [
+                        { claim: "angle EGB = angle AGH", ref: "I.15" },
+                        { claim: "angle AGH + angle BGH = 2rt", ref: "I.13" },
+                        { ref: "C.N.3" },
+                    ],
+                }],
+            });
+            const slate = slates[slates.length - 1];
+            const js = slate.slides[0].justifications;
+            assert.equal(js.length, 3);
+            assert.equal(js[0].claim, "angle EGB = angle AGH");
+            assert.equal(js[0].ref, "I.15");
+            assert.equal(js[2].claim, undefined,
+                "a justification without a claim stays a bare citation");
+        } finally {
+            if (savedDoc === undefined) delete (global as any).document;
+            else (global as any).document = savedDoc;
+        }
+    });
+
+    describe("justsUseStackedLayout", () => {
+        it("keeps the dot-separated row when nothing has a claim", () => {
+            assert.equal(
+                justsUseStackedLayout([{ ref: "I.4" }, { ref: "C.N.1" }]), false,
+                "existing decks must render exactly as before");
+        });
+
+        it("stacks as soon as any entry has a claim", () => {
+            assert.equal(
+                justsUseStackedLayout([{ claim: "AB = CD", ref: "I.4" }]), true);
+        });
+
+        it("stacks a mixed slide, so a bare citation isn't stranded mid-row", () => {
+            assert.equal(
+                justsUseStackedLayout([{ claim: "AB = CD", ref: "I.4" }, { ref: "C.N.1" }]),
+                true);
+        });
+
+        it("treats an empty claim as no claim", () => {
+            assert.equal(justsUseStackedLayout([{ claim: "", ref: "I.4" }]), false,
+                "an empty string shouldn't trigger a layout change");
+        });
+
+        it("handles a slide with no justifications at all", () => {
+            assert.equal(justsUseStackedLayout(undefined), false);
+            assert.equal(justsUseStackedLayout(null), false);
+            assert.equal(justsUseStackedLayout([]), false);
+        });
     });
 });

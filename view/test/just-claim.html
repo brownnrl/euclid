@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #146 justification claims</title>
+</head>
+<body>
+<h3 style="font-family: sans-serif;">Justification claims (#146)</h3>
+<p style="font-family: sans-serif; max-width: 720px; color: #444;">
+Press <b>p</b> and step through. The figure is I.28's: transversal <b>EF</b>
+crossing <b>AB</b> at <b>G</b> and <b>CD</b> at <b>H</b> — the deck that filed
+this.
+</p>
+<ul style="font-family: sans-serif; max-width: 720px; color: #444;">
+<li><b>Slide 1</b> — bare citations, no claims. The panel is the same
+    dot-separated row as always.</li>
+<li><b>Slide 2</b> — the same three steps <i>with</i> claims. Each statement
+    sits beside the proposition that licenses it, one per line. This is the
+    content that previously had to be split across three sub-slides so each
+    panel could show a single ref.</li>
+<li><b>Slide 3</b> — a mixed slide: one entry has a claim, one doesn't. It
+    stacks, so the bare citation isn't stranded mid-row.</li>
+</ul>
+<canvas id="canvasId" style="width:360px; height:280px;" tabindex="0"></canvas>
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E;
+    geomlib.init({
+        background: '35,19,100',
+        title: "just-claim",
+        canvasid: "canvasId",
+        resolveJustification: function (ref) {
+            // Stand-in for the site's window.eucrefs map, so the refs render
+            // as links here the way they do on a proposition page.
+            var map = {
+                "I.13": "https://www.euclids-elements.org/elements/books/bookI/propositions/propI13/",
+                "I.15": "https://www.euclids-elements.org/elements/books/bookI/propositions/propI15/",
+                "I.27": "https://www.euclids-elements.org/elements/books/bookI/propositions/propI27/",
+            };
+            return map[ref] || null;
+        },
+        elements: [
+            { name: "A", construction: E.Point.free, params: [40, 100] },
+            { name: "B", construction: E.Point.free, params: [320, 100] },
+            { name: "C", construction: E.Point.free, params: [40, 200] },
+            { name: "D", construction: E.Point.free, params: [320, 200] },
+            { name: "E", construction: E.Point.free, params: [120, 40] },
+            { name: "F", construction: E.Point.free, params: [240, 260] },
+            { name: "AB", construction: E.Line.connect, params: ["A", "B"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            { name: "CD", construction: E.Line.connect, params: ["C", "D"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            { name: "EF", construction: E.Line.connect, params: ["E", "F"],
+              nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            { name: "G", construction: E.Point.intersection, params: ["AB", "EF"] },
+            { name: "H", construction: E.Point.intersection, params: ["CD", "EF"] },
+        ],
+        slides: [
+            { text: "Bare citations: the panel reads as one row.",
+              visible: ["AB", "CD", "EF", "G", "H"],
+              justifications: [{ ref: "I.15" }, { ref: "I.13" }, { ref: "C.N.3" }] },
+            { text: "The same three steps, each stating what it claims.",
+              visible: ["AB", "CD", "EF", "G", "H"],
+              justifications: [
+                  { claim: "angle EGB = angle AGH", ref: "I.15" },
+                  { claim: "angle AGH + angle BGH = 2rt", ref: "I.13" },
+                  { claim: "subtract angle BGH", ref: "C.N.3" },
+              ] },
+            { text: "A mixed slide stacks too.",
+              visible: ["AB", "CD", "EF", "G", "H"],
+              justifications: [
+                  { claim: "alternate angles are equal, so AB is parallel to CD", ref: "I.27" },
+                  { ref: "Q.E.D." },
+              ] },
+        ],
+    });
+</script>
+</body>
+</html>

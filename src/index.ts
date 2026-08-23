@@ -74,6 +74,13 @@ export interface IConstructionInfo {
 // doesn't go stale if a referenced page moves on the consumer site.
 export interface ISlideJust {
     ref: string;
+    // 0.14.0+ — what this step CLAIMS, rendered ahead of the citation as
+    // "claim — ref" (#146). Without it the chip can say which proposition
+    // licenses a step but never what the step asserts, so a slide carrying
+    // several reasoning steps had to be split one-per-sub-slide just to
+    // keep each statement next to its own citation. Plain text; omit it and
+    // the panel renders exactly as before.
+    claim?: string;
 }
 
 // One step in the slideshow / presentation walk-through. The DSL is

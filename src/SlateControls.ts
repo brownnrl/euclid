@@ -12,6 +12,7 @@
 
 import {Slate} from "./Slate";
 import {computeSlideState} from "./slideshow";
+import {ISlideJust} from "./index";
 
 interface IInitConfig {
     background: string;
@@ -129,6 +130,20 @@ export function parseCaptionTokens(text: string): CaptionToken[] {
         out.push({ kind: "text", text: text.slice(lastIndex) });
     }
     return out;
+}
+
+// #146 — how a slide's justification panel should lay out.
+//
+// A bare citation ("I.15") is a chip; several of them read fine as one
+// dot-separated row. A claim turns each entry into a statement
+// ("angle EGB = angle AGH — I.15"), and statements do not read as a row —
+// they want a line each. Mixed slides stack too: an entry without a claim
+// still belongs on its own line next to ones that have them.
+//
+// Pure so the layout rule is testable without a DOM.
+export function justsUseStackedLayout(justs: ISlideJust[] | null | undefined): boolean {
+    if (justs == null) return false;
+    return justs.some((j) => j.claim != null && j.claim !== "");
 }
 
 export function createControls(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig): void {
@@ -739,15 +754,34 @@ class SlateControls {
         if (this._presentationJusts) {
             this._presentationJusts.innerHTML = "";
             const resolve = this._slate.resolveJustification;
-            if (slide.justifications) {
-                for (let i = 0; i < slide.justifications.length; i++) {
-                    if (i > 0) {
+            const justs = slide.justifications;
+            if (justs) {
+                // #146 — a claim makes each entry a statement rather than a
+                // bare citation, and statements don't read as a row joined
+                // by dots. So: any claim on the slide and every entry gets
+                // its own line; no claims and the panel is the same
+                // dot-separated row it has always been.
+                const stacked = justsUseStackedLayout(justs);
+                for (let i = 0; i < justs.length; i++) {
+                    const host = stacked
+                        ? document.createElement("div") : this._presentationJusts;
+                    if (!stacked && i > 0) {
                         const sep = document.createElement("span");
                         sep.textContent = " · ";
                         sep.style.opacity = "0.5";
-                        this._presentationJusts.appendChild(sep);
+                        host.appendChild(sep);
                     }
-                    const ref = slide.justifications[i].ref;
+                    const claim = justs[i].claim;
+                    if (claim != null && claim !== "") {
+                        const c = document.createElement("span");
+                        c.textContent = claim;
+                        host.appendChild(c);
+                        const dash = document.createElement("span");
+                        dash.textContent = " — ";
+                        dash.style.opacity = "0.5";
+                        host.appendChild(dash);
+                    }
+                    const ref = justs[i].ref;
                     const url = resolve ? resolve(ref) : null;
                     if (url) {
                         const a = document.createElement("a");
@@ -756,12 +790,13 @@ class SlateControls {
                         a.target = "_blank";
                         a.rel = "noopener";
                         a.style.color = "#0066cc";
-                        this._presentationJusts.appendChild(a);
+                        host.appendChild(a);
                     } else {
                         const span = document.createElement("span");
                         span.textContent = ref;
-                        this._presentationJusts.appendChild(span);
+                        host.appendChild(span);
                     }
+                    if (stacked) this._presentationJusts.appendChild(host);
                 }
             }
         }
