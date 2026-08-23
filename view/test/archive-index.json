@@ -1,0 +1,4933 @@
+{
+ "generated": 616,
+ "pages": [
+  {
+   "path": "../compass_geometry/compass1.html",
+   "repoPath": "view/compass_geometry/compass1.html",
+   "name": "compass1",
+   "category": "compass",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../compass_geometry/compass2.html",
+   "repoPath": "view/compass_geometry/compass2.html",
+   "name": "compass2",
+   "category": "compass",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../compass_geometry/compass3.html",
+   "repoPath": "view/compass_geometry/compass3.html",
+   "name": "compass3",
+   "category": "compass",
+   "applets": 7,
+   "inits": 0
+  },
+  {
+   "path": "../compass_geometry/compass4.html",
+   "repoPath": "view/compass_geometry/compass4.html",
+   "name": "compass4",
+   "category": "compass",
+   "applets": 5,
+   "inits": 0
+  },
+  {
+   "path": "../compass_geometry/compass5.html",
+   "repoPath": "view/compass_geometry/compass5.html",
+   "name": "compass5",
+   "category": "compass",
+   "applets": 4,
+   "inits": 0
+  },
+  {
+   "path": "../compass_geometry/compass6.html",
+   "repoPath": "view/compass_geometry/compass6.html",
+   "name": "compass6",
+   "category": "compass",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../compass_geometry/compass7.html",
+   "repoPath": "view/compass_geometry/compass7.html",
+   "name": "compass7",
+   "category": "compass",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI10.html",
+   "repoPath": "view/euclid-html/booki/defI10.html",
+   "name": "defI10",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI11.html",
+   "repoPath": "view/euclid-html/booki/defI11.html",
+   "name": "defI11",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI15.html",
+   "repoPath": "view/euclid-html/booki/defI15.html",
+   "name": "defI15",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI19.html",
+   "repoPath": "view/euclid-html/booki/defI19.html",
+   "name": "defI19",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI2.html",
+   "repoPath": "view/euclid-html/booki/defI2.html",
+   "name": "defI2",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI20.html",
+   "repoPath": "view/euclid-html/booki/defI20.html",
+   "name": "defI20",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI22.html",
+   "repoPath": "view/euclid-html/booki/defI22.html",
+   "name": "defI22",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI23.html",
+   "repoPath": "view/euclid-html/booki/defI23.html",
+   "name": "defI23",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI8.html",
+   "repoPath": "view/euclid-html/booki/defI8.html",
+   "name": "defI8",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/defI9.html",
+   "repoPath": "view/euclid-html/booki/defI9.html",
+   "name": "defI9",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/post1.html",
+   "repoPath": "view/euclid-html/booki/post1.html",
+   "name": "post1",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/post2.html",
+   "repoPath": "view/euclid-html/booki/post2.html",
+   "name": "post2",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/post3.html",
+   "repoPath": "view/euclid-html/booki/post3.html",
+   "name": "post3",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/post4.html",
+   "repoPath": "view/euclid-html/booki/post4.html",
+   "name": "post4",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/post5.html",
+   "repoPath": "view/euclid-html/booki/post5.html",
+   "name": "post5",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI1.html",
+   "repoPath": "view/euclid-html/booki/propI1.html",
+   "name": "propI1",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI10.html",
+   "repoPath": "view/euclid-html/booki/propI10.html",
+   "name": "propI10",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI11.html",
+   "repoPath": "view/euclid-html/booki/propI11.html",
+   "name": "propI11",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI12.html",
+   "repoPath": "view/euclid-html/booki/propI12.html",
+   "name": "propI12",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI13.html",
+   "repoPath": "view/euclid-html/booki/propI13.html",
+   "name": "propI13",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI14.html",
+   "repoPath": "view/euclid-html/booki/propI14.html",
+   "name": "propI14",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI15.html",
+   "repoPath": "view/euclid-html/booki/propI15.html",
+   "name": "propI15",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI16.html",
+   "repoPath": "view/euclid-html/booki/propI16.html",
+   "name": "propI16",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI17.html",
+   "repoPath": "view/euclid-html/booki/propI17.html",
+   "name": "propI17",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI18.html",
+   "repoPath": "view/euclid-html/booki/propI18.html",
+   "name": "propI18",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI19.html",
+   "repoPath": "view/euclid-html/booki/propI19.html",
+   "name": "propI19",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI2.html",
+   "repoPath": "view/euclid-html/booki/propI2.html",
+   "name": "propI2",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI20.html",
+   "repoPath": "view/euclid-html/booki/propI20.html",
+   "name": "propI20",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI21.html",
+   "repoPath": "view/euclid-html/booki/propI21.html",
+   "name": "propI21",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI22.html",
+   "repoPath": "view/euclid-html/booki/propI22.html",
+   "name": "propI22",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI23.html",
+   "repoPath": "view/euclid-html/booki/propI23.html",
+   "name": "propI23",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI24.html",
+   "repoPath": "view/euclid-html/booki/propI24.html",
+   "name": "propI24",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI25.html",
+   "repoPath": "view/euclid-html/booki/propI25.html",
+   "name": "propI25",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI26.html",
+   "repoPath": "view/euclid-html/booki/propI26.html",
+   "name": "propI26",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI27.html",
+   "repoPath": "view/euclid-html/booki/propI27.html",
+   "name": "propI27",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI28.html",
+   "repoPath": "view/euclid-html/booki/propI28.html",
+   "name": "propI28",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI29.html",
+   "repoPath": "view/euclid-html/booki/propI29.html",
+   "name": "propI29",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI3.html",
+   "repoPath": "view/euclid-html/booki/propI3.html",
+   "name": "propI3",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI30.html",
+   "repoPath": "view/euclid-html/booki/propI30.html",
+   "name": "propI30",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI31.html",
+   "repoPath": "view/euclid-html/booki/propI31.html",
+   "name": "propI31",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI32.html",
+   "repoPath": "view/euclid-html/booki/propI32.html",
+   "name": "propI32",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI33.html",
+   "repoPath": "view/euclid-html/booki/propI33.html",
+   "name": "propI33",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI34.html",
+   "repoPath": "view/euclid-html/booki/propI34.html",
+   "name": "propI34",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI35.html",
+   "repoPath": "view/euclid-html/booki/propI35.html",
+   "name": "propI35",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI36.html",
+   "repoPath": "view/euclid-html/booki/propI36.html",
+   "name": "propI36",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI37.html",
+   "repoPath": "view/euclid-html/booki/propI37.html",
+   "name": "propI37",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI38.html",
+   "repoPath": "view/euclid-html/booki/propI38.html",
+   "name": "propI38",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI39.html",
+   "repoPath": "view/euclid-html/booki/propI39.html",
+   "name": "propI39",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI4.html",
+   "repoPath": "view/euclid-html/booki/propI4.html",
+   "name": "propI4",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI40.html",
+   "repoPath": "view/euclid-html/booki/propI40.html",
+   "name": "propI40",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI41.html",
+   "repoPath": "view/euclid-html/booki/propI41.html",
+   "name": "propI41",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI42.html",
+   "repoPath": "view/euclid-html/booki/propI42.html",
+   "name": "propI42",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI43.html",
+   "repoPath": "view/euclid-html/booki/propI43.html",
+   "name": "propI43",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI44.html",
+   "repoPath": "view/euclid-html/booki/propI44.html",
+   "name": "propI44",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI45.html",
+   "repoPath": "view/euclid-html/booki/propI45.html",
+   "name": "propI45",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI46.html",
+   "repoPath": "view/euclid-html/booki/propI46.html",
+   "name": "propI46",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI47.html",
+   "repoPath": "view/euclid-html/booki/propI47.html",
+   "name": "propI47",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI48.html",
+   "repoPath": "view/euclid-html/booki/propI48.html",
+   "name": "propI48",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI5.html",
+   "repoPath": "view/euclid-html/booki/propI5.html",
+   "name": "propI5",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI6.html",
+   "repoPath": "view/euclid-html/booki/propI6.html",
+   "name": "propI6",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI7.html",
+   "repoPath": "view/euclid-html/booki/propI7.html",
+   "name": "propI7",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI8.html",
+   "repoPath": "view/euclid-html/booki/propI8.html",
+   "name": "propI8",
+   "category": "euclid/bookI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/booki/propI9.html",
+   "repoPath": "view/euclid-html/booki/propI9.html",
+   "name": "propI9",
+   "category": "euclid/bookI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/defII.html",
+   "repoPath": "view/euclid-html/bookii/defII.html",
+   "name": "defII",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII1.html",
+   "repoPath": "view/euclid-html/bookii/propII1.html",
+   "name": "propII1",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII10.html",
+   "repoPath": "view/euclid-html/bookii/propII10.html",
+   "name": "propII10",
+   "category": "euclid/bookII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII11.html",
+   "repoPath": "view/euclid-html/bookii/propII11.html",
+   "name": "propII11",
+   "category": "euclid/bookII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII12.html",
+   "repoPath": "view/euclid-html/bookii/propII12.html",
+   "name": "propII12",
+   "category": "euclid/bookII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII13.html",
+   "repoPath": "view/euclid-html/bookii/propII13.html",
+   "name": "propII13",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII14.html",
+   "repoPath": "view/euclid-html/bookii/propII14.html",
+   "name": "propII14",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII2.html",
+   "repoPath": "view/euclid-html/bookii/propII2.html",
+   "name": "propII2",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII3.html",
+   "repoPath": "view/euclid-html/bookii/propII3.html",
+   "name": "propII3",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII4.html",
+   "repoPath": "view/euclid-html/bookii/propII4.html",
+   "name": "propII4",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII5.html",
+   "repoPath": "view/euclid-html/bookii/propII5.html",
+   "name": "propII5",
+   "category": "euclid/bookII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII6.html",
+   "repoPath": "view/euclid-html/bookii/propII6.html",
+   "name": "propII6",
+   "category": "euclid/bookII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII7.html",
+   "repoPath": "view/euclid-html/bookii/propII7.html",
+   "name": "propII7",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII8.html",
+   "repoPath": "view/euclid-html/bookii/propII8.html",
+   "name": "propII8",
+   "category": "euclid/bookII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII9.html",
+   "repoPath": "view/euclid-html/bookii/propII9.html",
+   "name": "propII9",
+   "category": "euclid/bookII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookii/propII9a.html",
+   "repoPath": "view/euclid-html/bookii/propII9a.html",
+   "name": "propII9a",
+   "category": "euclid/bookII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/defIII1.html",
+   "repoPath": "view/euclid-html/bookiii/defIII1.html",
+   "name": "defIII1",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/defIII10.html",
+   "repoPath": "view/euclid-html/bookiii/defIII10.html",
+   "name": "defIII10",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/defIII11.html",
+   "repoPath": "view/euclid-html/bookiii/defIII11.html",
+   "name": "defIII11",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/defIII2.html",
+   "repoPath": "view/euclid-html/bookiii/defIII2.html",
+   "name": "defIII2",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/defIII4.html",
+   "repoPath": "view/euclid-html/bookiii/defIII4.html",
+   "name": "defIII4",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/defIII6.html",
+   "repoPath": "view/euclid-html/bookiii/defIII6.html",
+   "name": "defIII6",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII1.html",
+   "repoPath": "view/euclid-html/bookiii/propIII1.html",
+   "name": "propIII1",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII10.html",
+   "repoPath": "view/euclid-html/bookiii/propIII10.html",
+   "name": "propIII10",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII11.html",
+   "repoPath": "view/euclid-html/bookiii/propIII11.html",
+   "name": "propIII11",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII12.html",
+   "repoPath": "view/euclid-html/bookiii/propIII12.html",
+   "name": "propIII12",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII13.html",
+   "repoPath": "view/euclid-html/bookiii/propIII13.html",
+   "name": "propIII13",
+   "category": "euclid/bookIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII14.html",
+   "repoPath": "view/euclid-html/bookiii/propIII14.html",
+   "name": "propIII14",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII15.html",
+   "repoPath": "view/euclid-html/bookiii/propIII15.html",
+   "name": "propIII15",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII16.html",
+   "repoPath": "view/euclid-html/bookiii/propIII16.html",
+   "name": "propIII16",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII17.html",
+   "repoPath": "view/euclid-html/bookiii/propIII17.html",
+   "name": "propIII17",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII18.html",
+   "repoPath": "view/euclid-html/bookiii/propIII18.html",
+   "name": "propIII18",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII19.html",
+   "repoPath": "view/euclid-html/bookiii/propIII19.html",
+   "name": "propIII19",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII2.html",
+   "repoPath": "view/euclid-html/bookiii/propIII2.html",
+   "name": "propIII2",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII20.html",
+   "repoPath": "view/euclid-html/bookiii/propIII20.html",
+   "name": "propIII20",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII21.html",
+   "repoPath": "view/euclid-html/bookiii/propIII21.html",
+   "name": "propIII21",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII22.html",
+   "repoPath": "view/euclid-html/bookiii/propIII22.html",
+   "name": "propIII22",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII23.html",
+   "repoPath": "view/euclid-html/bookiii/propIII23.html",
+   "name": "propIII23",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII24.html",
+   "repoPath": "view/euclid-html/bookiii/propIII24.html",
+   "name": "propIII24",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII25.html",
+   "repoPath": "view/euclid-html/bookiii/propIII25.html",
+   "name": "propIII25",
+   "category": "euclid/bookIII",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII26.html",
+   "repoPath": "view/euclid-html/bookiii/propIII26.html",
+   "name": "propIII26",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII27.html",
+   "repoPath": "view/euclid-html/bookiii/propIII27.html",
+   "name": "propIII27",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII28.html",
+   "repoPath": "view/euclid-html/bookiii/propIII28.html",
+   "name": "propIII28",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII29.html",
+   "repoPath": "view/euclid-html/bookiii/propIII29.html",
+   "name": "propIII29",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII3.html",
+   "repoPath": "view/euclid-html/bookiii/propIII3.html",
+   "name": "propIII3",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII30.html",
+   "repoPath": "view/euclid-html/bookiii/propIII30.html",
+   "name": "propIII30",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII31.html",
+   "repoPath": "view/euclid-html/bookiii/propIII31.html",
+   "name": "propIII31",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII32.html",
+   "repoPath": "view/euclid-html/bookiii/propIII32.html",
+   "name": "propIII32",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII33.html",
+   "repoPath": "view/euclid-html/bookiii/propIII33.html",
+   "name": "propIII33",
+   "category": "euclid/bookIII",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII34.html",
+   "repoPath": "view/euclid-html/bookiii/propIII34.html",
+   "name": "propIII34",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII35.html",
+   "repoPath": "view/euclid-html/bookiii/propIII35.html",
+   "name": "propIII35",
+   "category": "euclid/bookIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII36.html",
+   "repoPath": "view/euclid-html/bookiii/propIII36.html",
+   "name": "propIII36",
+   "category": "euclid/bookIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII37.html",
+   "repoPath": "view/euclid-html/bookiii/propIII37.html",
+   "name": "propIII37",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII4.html",
+   "repoPath": "view/euclid-html/bookiii/propIII4.html",
+   "name": "propIII4",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII5.html",
+   "repoPath": "view/euclid-html/bookiii/propIII5.html",
+   "name": "propIII5",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII6.html",
+   "repoPath": "view/euclid-html/bookiii/propIII6.html",
+   "name": "propIII6",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII7.html",
+   "repoPath": "view/euclid-html/bookiii/propIII7.html",
+   "name": "propIII7",
+   "category": "euclid/bookIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII8.html",
+   "repoPath": "view/euclid-html/bookiii/propIII8.html",
+   "name": "propIII8",
+   "category": "euclid/bookIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiii/propIII9.html",
+   "repoPath": "view/euclid-html/bookiii/propIII9.html",
+   "name": "propIII9",
+   "category": "euclid/bookIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/defIV.html",
+   "repoPath": "view/euclid-html/bookiv/defIV.html",
+   "name": "defIV",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV1.html",
+   "repoPath": "view/euclid-html/bookiv/propIV1.html",
+   "name": "propIV1",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV10.html",
+   "repoPath": "view/euclid-html/bookiv/propIV10.html",
+   "name": "propIV10",
+   "category": "euclid/bookIV",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV11.html",
+   "repoPath": "view/euclid-html/bookiv/propIV11.html",
+   "name": "propIV11",
+   "category": "euclid/bookIV",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV12.html",
+   "repoPath": "view/euclid-html/bookiv/propIV12.html",
+   "name": "propIV12",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV13.html",
+   "repoPath": "view/euclid-html/bookiv/propIV13.html",
+   "name": "propIV13",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV14.html",
+   "repoPath": "view/euclid-html/bookiv/propIV14.html",
+   "name": "propIV14",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV15.html",
+   "repoPath": "view/euclid-html/bookiv/propIV15.html",
+   "name": "propIV15",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV16.html",
+   "repoPath": "view/euclid-html/bookiv/propIV16.html",
+   "name": "propIV16",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV2.html",
+   "repoPath": "view/euclid-html/bookiv/propIV2.html",
+   "name": "propIV2",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV3.html",
+   "repoPath": "view/euclid-html/bookiv/propIV3.html",
+   "name": "propIV3",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV4.html",
+   "repoPath": "view/euclid-html/bookiv/propIV4.html",
+   "name": "propIV4",
+   "category": "euclid/bookIV",
+   "applets": 4,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV5.html",
+   "repoPath": "view/euclid-html/bookiv/propIV5.html",
+   "name": "propIV5",
+   "category": "euclid/bookIV",
+   "applets": 4,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV6.html",
+   "repoPath": "view/euclid-html/bookiv/propIV6.html",
+   "name": "propIV6",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV7.html",
+   "repoPath": "view/euclid-html/bookiv/propIV7.html",
+   "name": "propIV7",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV8.html",
+   "repoPath": "view/euclid-html/bookiv/propIV8.html",
+   "name": "propIV8",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookiv/propIV9.html",
+   "repoPath": "view/euclid-html/bookiv/propIV9.html",
+   "name": "propIV9",
+   "category": "euclid/bookIV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX1.html",
+   "repoPath": "view/euclid-html/bookix/propIX1.html",
+   "name": "propIX1",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX10.html",
+   "repoPath": "view/euclid-html/bookix/propIX10.html",
+   "name": "propIX10",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX11.html",
+   "repoPath": "view/euclid-html/bookix/propIX11.html",
+   "name": "propIX11",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX12.html",
+   "repoPath": "view/euclid-html/bookix/propIX12.html",
+   "name": "propIX12",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX13.html",
+   "repoPath": "view/euclid-html/bookix/propIX13.html",
+   "name": "propIX13",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX14.html",
+   "repoPath": "view/euclid-html/bookix/propIX14.html",
+   "name": "propIX14",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX15.html",
+   "repoPath": "view/euclid-html/bookix/propIX15.html",
+   "name": "propIX15",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX16.html",
+   "repoPath": "view/euclid-html/bookix/propIX16.html",
+   "name": "propIX16",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX17.html",
+   "repoPath": "view/euclid-html/bookix/propIX17.html",
+   "name": "propIX17",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX18.html",
+   "repoPath": "view/euclid-html/bookix/propIX18.html",
+   "name": "propIX18",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX19.html",
+   "repoPath": "view/euclid-html/bookix/propIX19.html",
+   "name": "propIX19",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX2.html",
+   "repoPath": "view/euclid-html/bookix/propIX2.html",
+   "name": "propIX2",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX20.html",
+   "repoPath": "view/euclid-html/bookix/propIX20.html",
+   "name": "propIX20",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX21.html",
+   "repoPath": "view/euclid-html/bookix/propIX21.html",
+   "name": "propIX21",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX22.html",
+   "repoPath": "view/euclid-html/bookix/propIX22.html",
+   "name": "propIX22",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX23.html",
+   "repoPath": "view/euclid-html/bookix/propIX23.html",
+   "name": "propIX23",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX24.html",
+   "repoPath": "view/euclid-html/bookix/propIX24.html",
+   "name": "propIX24",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX25.html",
+   "repoPath": "view/euclid-html/bookix/propIX25.html",
+   "name": "propIX25",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX26.html",
+   "repoPath": "view/euclid-html/bookix/propIX26.html",
+   "name": "propIX26",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX27.html",
+   "repoPath": "view/euclid-html/bookix/propIX27.html",
+   "name": "propIX27",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX28.html",
+   "repoPath": "view/euclid-html/bookix/propIX28.html",
+   "name": "propIX28",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX29.html",
+   "repoPath": "view/euclid-html/bookix/propIX29.html",
+   "name": "propIX29",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX3.html",
+   "repoPath": "view/euclid-html/bookix/propIX3.html",
+   "name": "propIX3",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX30.html",
+   "repoPath": "view/euclid-html/bookix/propIX30.html",
+   "name": "propIX30",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX31.html",
+   "repoPath": "view/euclid-html/bookix/propIX31.html",
+   "name": "propIX31",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX32.html",
+   "repoPath": "view/euclid-html/bookix/propIX32.html",
+   "name": "propIX32",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX33.html",
+   "repoPath": "view/euclid-html/bookix/propIX33.html",
+   "name": "propIX33",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX34.html",
+   "repoPath": "view/euclid-html/bookix/propIX34.html",
+   "name": "propIX34",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX35.html",
+   "repoPath": "view/euclid-html/bookix/propIX35.html",
+   "name": "propIX35",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX36.html",
+   "repoPath": "view/euclid-html/bookix/propIX36.html",
+   "name": "propIX36",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX4.html",
+   "repoPath": "view/euclid-html/bookix/propIX4.html",
+   "name": "propIX4",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX5.html",
+   "repoPath": "view/euclid-html/bookix/propIX5.html",
+   "name": "propIX5",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX6.html",
+   "repoPath": "view/euclid-html/bookix/propIX6.html",
+   "name": "propIX6",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX7.html",
+   "repoPath": "view/euclid-html/bookix/propIX7.html",
+   "name": "propIX7",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX8.html",
+   "repoPath": "view/euclid-html/bookix/propIX8.html",
+   "name": "propIX8",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookix/propIX9.html",
+   "repoPath": "view/euclid-html/bookix/propIX9.html",
+   "name": "propIX9",
+   "category": "euclid/bookIX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/defV1.html",
+   "repoPath": "view/euclid-html/bookv/defV1.html",
+   "name": "defV1",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/defV11.html",
+   "repoPath": "view/euclid-html/bookv/defV11.html",
+   "name": "defV11",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/defV14.html",
+   "repoPath": "view/euclid-html/bookv/defV14.html",
+   "name": "defV14",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/defV17.html",
+   "repoPath": "view/euclid-html/bookv/defV17.html",
+   "name": "defV17",
+   "category": "euclid/bookV",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/defV3.html",
+   "repoPath": "view/euclid-html/bookv/defV3.html",
+   "name": "defV3",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/defV5.html",
+   "repoPath": "view/euclid-html/bookv/defV5.html",
+   "name": "defV5",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/defV8.html",
+   "repoPath": "view/euclid-html/bookv/defV8.html",
+   "name": "defV8",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV1.html",
+   "repoPath": "view/euclid-html/bookv/propV1.html",
+   "name": "propV1",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV10.html",
+   "repoPath": "view/euclid-html/bookv/propV10.html",
+   "name": "propV10",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV11.html",
+   "repoPath": "view/euclid-html/bookv/propV11.html",
+   "name": "propV11",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV12.html",
+   "repoPath": "view/euclid-html/bookv/propV12.html",
+   "name": "propV12",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV13.html",
+   "repoPath": "view/euclid-html/bookv/propV13.html",
+   "name": "propV13",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV14.html",
+   "repoPath": "view/euclid-html/bookv/propV14.html",
+   "name": "propV14",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV15.html",
+   "repoPath": "view/euclid-html/bookv/propV15.html",
+   "name": "propV15",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV16.html",
+   "repoPath": "view/euclid-html/bookv/propV16.html",
+   "name": "propV16",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV17.html",
+   "repoPath": "view/euclid-html/bookv/propV17.html",
+   "name": "propV17",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV18.html",
+   "repoPath": "view/euclid-html/bookv/propV18.html",
+   "name": "propV18",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV19.html",
+   "repoPath": "view/euclid-html/bookv/propV19.html",
+   "name": "propV19",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV2.html",
+   "repoPath": "view/euclid-html/bookv/propV2.html",
+   "name": "propV2",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV20.html",
+   "repoPath": "view/euclid-html/bookv/propV20.html",
+   "name": "propV20",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV21.html",
+   "repoPath": "view/euclid-html/bookv/propV21.html",
+   "name": "propV21",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV22.html",
+   "repoPath": "view/euclid-html/bookv/propV22.html",
+   "name": "propV22",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV23.html",
+   "repoPath": "view/euclid-html/bookv/propV23.html",
+   "name": "propV23",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV24.html",
+   "repoPath": "view/euclid-html/bookv/propV24.html",
+   "name": "propV24",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV25.html",
+   "repoPath": "view/euclid-html/bookv/propV25.html",
+   "name": "propV25",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV3.html",
+   "repoPath": "view/euclid-html/bookv/propV3.html",
+   "name": "propV3",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV4.html",
+   "repoPath": "view/euclid-html/bookv/propV4.html",
+   "name": "propV4",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV5.html",
+   "repoPath": "view/euclid-html/bookv/propV5.html",
+   "name": "propV5",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV6.html",
+   "repoPath": "view/euclid-html/bookv/propV6.html",
+   "name": "propV6",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV7.html",
+   "repoPath": "view/euclid-html/bookv/propV7.html",
+   "name": "propV7",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV8.html",
+   "repoPath": "view/euclid-html/bookv/propV8.html",
+   "name": "propV8",
+   "category": "euclid/bookV",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookv/propV9.html",
+   "repoPath": "view/euclid-html/bookv/propV9.html",
+   "name": "propV9",
+   "category": "euclid/bookV",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/defVI1.html",
+   "repoPath": "view/euclid-html/bookvi/defVI1.html",
+   "name": "defVI1",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/defVI2.html",
+   "repoPath": "view/euclid-html/bookvi/defVI2.html",
+   "name": "defVI2",
+   "category": "euclid/bookVI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/defVI3.html",
+   "repoPath": "view/euclid-html/bookvi/defVI3.html",
+   "name": "defVI3",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/defVI4.html",
+   "repoPath": "view/euclid-html/bookvi/defVI4.html",
+   "name": "defVI4",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI1.html",
+   "repoPath": "view/euclid-html/bookvi/propVI1.html",
+   "name": "propVI1",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI10.html",
+   "repoPath": "view/euclid-html/bookvi/propVI10.html",
+   "name": "propVI10",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI11.html",
+   "repoPath": "view/euclid-html/bookvi/propVI11.html",
+   "name": "propVI11",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI12.html",
+   "repoPath": "view/euclid-html/bookvi/propVI12.html",
+   "name": "propVI12",
+   "category": "euclid/bookVI",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI13.html",
+   "repoPath": "view/euclid-html/bookvi/propVI13.html",
+   "name": "propVI13",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI14.html",
+   "repoPath": "view/euclid-html/bookvi/propVI14.html",
+   "name": "propVI14",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI15.html",
+   "repoPath": "view/euclid-html/bookvi/propVI15.html",
+   "name": "propVI15",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI16.html",
+   "repoPath": "view/euclid-html/bookvi/propVI16.html",
+   "name": "propVI16",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI17.html",
+   "repoPath": "view/euclid-html/bookvi/propVI17.html",
+   "name": "propVI17",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI18.html",
+   "repoPath": "view/euclid-html/bookvi/propVI18.html",
+   "name": "propVI18",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI19.html",
+   "repoPath": "view/euclid-html/bookvi/propVI19.html",
+   "name": "propVI19",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI2.html",
+   "repoPath": "view/euclid-html/bookvi/propVI2.html",
+   "name": "propVI2",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI20.html",
+   "repoPath": "view/euclid-html/bookvi/propVI20.html",
+   "name": "propVI20",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI21.html",
+   "repoPath": "view/euclid-html/bookvi/propVI21.html",
+   "name": "propVI21",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI22.html",
+   "repoPath": "view/euclid-html/bookvi/propVI22.html",
+   "name": "propVI22",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI23.html",
+   "repoPath": "view/euclid-html/bookvi/propVI23.html",
+   "name": "propVI23",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI24.html",
+   "repoPath": "view/euclid-html/bookvi/propVI24.html",
+   "name": "propVI24",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI25.html",
+   "repoPath": "view/euclid-html/bookvi/propVI25.html",
+   "name": "propVI25",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI26.html",
+   "repoPath": "view/euclid-html/bookvi/propVI26.html",
+   "name": "propVI26",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI27.html",
+   "repoPath": "view/euclid-html/bookvi/propVI27.html",
+   "name": "propVI27",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI28.html",
+   "repoPath": "view/euclid-html/bookvi/propVI28.html",
+   "name": "propVI28",
+   "category": "euclid/bookVI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI29.html",
+   "repoPath": "view/euclid-html/bookvi/propVI29.html",
+   "name": "propVI29",
+   "category": "euclid/bookVI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI3.html",
+   "repoPath": "view/euclid-html/bookvi/propVI3.html",
+   "name": "propVI3",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI30.html",
+   "repoPath": "view/euclid-html/bookvi/propVI30.html",
+   "name": "propVI30",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI31.html",
+   "repoPath": "view/euclid-html/bookvi/propVI31.html",
+   "name": "propVI31",
+   "category": "euclid/bookVI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI32.html",
+   "repoPath": "view/euclid-html/bookvi/propVI32.html",
+   "name": "propVI32",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI33.html",
+   "repoPath": "view/euclid-html/bookvi/propVI33.html",
+   "name": "propVI33",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI4.html",
+   "repoPath": "view/euclid-html/bookvi/propVI4.html",
+   "name": "propVI4",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI5.html",
+   "repoPath": "view/euclid-html/bookvi/propVI5.html",
+   "name": "propVI5",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI6.html",
+   "repoPath": "view/euclid-html/bookvi/propVI6.html",
+   "name": "propVI6",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI7.html",
+   "repoPath": "view/euclid-html/bookvi/propVI7.html",
+   "name": "propVI7",
+   "category": "euclid/bookVI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI8.html",
+   "repoPath": "view/euclid-html/bookvi/propVI8.html",
+   "name": "propVI8",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/propVI9.html",
+   "repoPath": "view/euclid-html/bookvi/propVI9.html",
+   "name": "propVI9",
+   "category": "euclid/bookVI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvi/temp.html",
+   "repoPath": "view/euclid-html/bookvi/temp.html",
+   "name": "temp",
+   "category": "euclid/bookVI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/defVII1.html",
+   "repoPath": "view/euclid-html/bookvii/defVII1.html",
+   "name": "defVII1",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/defVII15.html",
+   "repoPath": "view/euclid-html/bookvii/defVII15.html",
+   "name": "defVII15",
+   "category": "euclid/bookVII",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/defVII21.html",
+   "repoPath": "view/euclid-html/bookvii/defVII21.html",
+   "name": "defVII21",
+   "category": "euclid/bookVII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/defVII3.html",
+   "repoPath": "view/euclid-html/bookvii/defVII3.html",
+   "name": "defVII3",
+   "category": "euclid/bookVII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII1.html",
+   "repoPath": "view/euclid-html/bookvii/propVII1.html",
+   "name": "propVII1",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII10.html",
+   "repoPath": "view/euclid-html/bookvii/propVII10.html",
+   "name": "propVII10",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII11.html",
+   "repoPath": "view/euclid-html/bookvii/propVII11.html",
+   "name": "propVII11",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII12.html",
+   "repoPath": "view/euclid-html/bookvii/propVII12.html",
+   "name": "propVII12",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII13.html",
+   "repoPath": "view/euclid-html/bookvii/propVII13.html",
+   "name": "propVII13",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII14.html",
+   "repoPath": "view/euclid-html/bookvii/propVII14.html",
+   "name": "propVII14",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII15.html",
+   "repoPath": "view/euclid-html/bookvii/propVII15.html",
+   "name": "propVII15",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII16.html",
+   "repoPath": "view/euclid-html/bookvii/propVII16.html",
+   "name": "propVII16",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII17.html",
+   "repoPath": "view/euclid-html/bookvii/propVII17.html",
+   "name": "propVII17",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII18.html",
+   "repoPath": "view/euclid-html/bookvii/propVII18.html",
+   "name": "propVII18",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII19.html",
+   "repoPath": "view/euclid-html/bookvii/propVII19.html",
+   "name": "propVII19",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII2.html",
+   "repoPath": "view/euclid-html/bookvii/propVII2.html",
+   "name": "propVII2",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII20.html",
+   "repoPath": "view/euclid-html/bookvii/propVII20.html",
+   "name": "propVII20",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII21.html",
+   "repoPath": "view/euclid-html/bookvii/propVII21.html",
+   "name": "propVII21",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII22.html",
+   "repoPath": "view/euclid-html/bookvii/propVII22.html",
+   "name": "propVII22",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII23.html",
+   "repoPath": "view/euclid-html/bookvii/propVII23.html",
+   "name": "propVII23",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII24.html",
+   "repoPath": "view/euclid-html/bookvii/propVII24.html",
+   "name": "propVII24",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII25.html",
+   "repoPath": "view/euclid-html/bookvii/propVII25.html",
+   "name": "propVII25",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII26.html",
+   "repoPath": "view/euclid-html/bookvii/propVII26.html",
+   "name": "propVII26",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII27.html",
+   "repoPath": "view/euclid-html/bookvii/propVII27.html",
+   "name": "propVII27",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII28.html",
+   "repoPath": "view/euclid-html/bookvii/propVII28.html",
+   "name": "propVII28",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII29.html",
+   "repoPath": "view/euclid-html/bookvii/propVII29.html",
+   "name": "propVII29",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII3.html",
+   "repoPath": "view/euclid-html/bookvii/propVII3.html",
+   "name": "propVII3",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII30.html",
+   "repoPath": "view/euclid-html/bookvii/propVII30.html",
+   "name": "propVII30",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII31.html",
+   "repoPath": "view/euclid-html/bookvii/propVII31.html",
+   "name": "propVII31",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII32.html",
+   "repoPath": "view/euclid-html/bookvii/propVII32.html",
+   "name": "propVII32",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII33.html",
+   "repoPath": "view/euclid-html/bookvii/propVII33.html",
+   "name": "propVII33",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII34.html",
+   "repoPath": "view/euclid-html/bookvii/propVII34.html",
+   "name": "propVII34",
+   "category": "euclid/bookVII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII35.html",
+   "repoPath": "view/euclid-html/bookvii/propVII35.html",
+   "name": "propVII35",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII36.html",
+   "repoPath": "view/euclid-html/bookvii/propVII36.html",
+   "name": "propVII36",
+   "category": "euclid/bookVII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII37.html",
+   "repoPath": "view/euclid-html/bookvii/propVII37.html",
+   "name": "propVII37",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII38.html",
+   "repoPath": "view/euclid-html/bookvii/propVII38.html",
+   "name": "propVII38",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII39.html",
+   "repoPath": "view/euclid-html/bookvii/propVII39.html",
+   "name": "propVII39",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII4.html",
+   "repoPath": "view/euclid-html/bookvii/propVII4.html",
+   "name": "propVII4",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII5.html",
+   "repoPath": "view/euclid-html/bookvii/propVII5.html",
+   "name": "propVII5",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII6.html",
+   "repoPath": "view/euclid-html/bookvii/propVII6.html",
+   "name": "propVII6",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII7.html",
+   "repoPath": "view/euclid-html/bookvii/propVII7.html",
+   "name": "propVII7",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII8.html",
+   "repoPath": "view/euclid-html/bookvii/propVII8.html",
+   "name": "propVII8",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookvii/propVII9.html",
+   "repoPath": "view/euclid-html/bookvii/propVII9.html",
+   "name": "propVII9",
+   "category": "euclid/bookVII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII1.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII1.html",
+   "name": "propVIII1",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII10.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII10.html",
+   "name": "propVIII10",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII11.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII11.html",
+   "name": "propVIII11",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII12.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII12.html",
+   "name": "propVIII12",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII13.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII13.html",
+   "name": "propVIII13",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII14.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII14.html",
+   "name": "propVIII14",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII15.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII15.html",
+   "name": "propVIII15",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII16.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII16.html",
+   "name": "propVIII16",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII17.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII17.html",
+   "name": "propVIII17",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII18.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII18.html",
+   "name": "propVIII18",
+   "category": "euclid/bookVIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII19.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII19.html",
+   "name": "propVIII19",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII2.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII2.html",
+   "name": "propVIII2",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII20.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII20.html",
+   "name": "propVIII20",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII21.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII21.html",
+   "name": "propVIII21",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII22.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII22.html",
+   "name": "propVIII22",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII23.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII23.html",
+   "name": "propVIII23",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII24.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII24.html",
+   "name": "propVIII24",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII25.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII25.html",
+   "name": "propVIII25",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII26.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII26.html",
+   "name": "propVIII26",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII27.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII27.html",
+   "name": "propVIII27",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII3.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII3.html",
+   "name": "propVIII3",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII4.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII4.html",
+   "name": "propVIII4",
+   "category": "euclid/bookVIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII5.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII5.html",
+   "name": "propVIII5",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII6.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII6.html",
+   "name": "propVIII6",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII7.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII7.html",
+   "name": "propVIII7",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII8.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII8.html",
+   "name": "propVIII8",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookviii/propVIII9.html",
+   "repoPath": "view/euclid-html/bookviii/propVIII9.html",
+   "name": "propVIII9",
+   "category": "euclid/bookVIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX1.html",
+   "repoPath": "view/euclid-html/bookx/propX1.html",
+   "name": "propX1",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX10.html",
+   "repoPath": "view/euclid-html/bookx/propX10.html",
+   "name": "propX10",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX100.html",
+   "repoPath": "view/euclid-html/bookx/propX100.html",
+   "name": "propX100",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX101.html",
+   "repoPath": "view/euclid-html/bookx/propX101.html",
+   "name": "propX101",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX102.html",
+   "repoPath": "view/euclid-html/bookx/propX102.html",
+   "name": "propX102",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX103.html",
+   "repoPath": "view/euclid-html/bookx/propX103.html",
+   "name": "propX103",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX104.html",
+   "repoPath": "view/euclid-html/bookx/propX104.html",
+   "name": "propX104",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX105.html",
+   "repoPath": "view/euclid-html/bookx/propX105.html",
+   "name": "propX105",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX106.html",
+   "repoPath": "view/euclid-html/bookx/propX106.html",
+   "name": "propX106",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX107.html",
+   "repoPath": "view/euclid-html/bookx/propX107.html",
+   "name": "propX107",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX108.html",
+   "repoPath": "view/euclid-html/bookx/propX108.html",
+   "name": "propX108",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX109.html",
+   "repoPath": "view/euclid-html/bookx/propX109.html",
+   "name": "propX109",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX11.html",
+   "repoPath": "view/euclid-html/bookx/propX11.html",
+   "name": "propX11",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX110.html",
+   "repoPath": "view/euclid-html/bookx/propX110.html",
+   "name": "propX110",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX111.html",
+   "repoPath": "view/euclid-html/bookx/propX111.html",
+   "name": "propX111",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX112.html",
+   "repoPath": "view/euclid-html/bookx/propX112.html",
+   "name": "propX112",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX113.html",
+   "repoPath": "view/euclid-html/bookx/propX113.html",
+   "name": "propX113",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX114.html",
+   "repoPath": "view/euclid-html/bookx/propX114.html",
+   "name": "propX114",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX115.html",
+   "repoPath": "view/euclid-html/bookx/propX115.html",
+   "name": "propX115",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX12.html",
+   "repoPath": "view/euclid-html/bookx/propX12.html",
+   "name": "propX12",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX13.html",
+   "repoPath": "view/euclid-html/bookx/propX13.html",
+   "name": "propX13",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX14.html",
+   "repoPath": "view/euclid-html/bookx/propX14.html",
+   "name": "propX14",
+   "category": "euclid/bookX",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX15.html",
+   "repoPath": "view/euclid-html/bookx/propX15.html",
+   "name": "propX15",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX16.html",
+   "repoPath": "view/euclid-html/bookx/propX16.html",
+   "name": "propX16",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX17.html",
+   "repoPath": "view/euclid-html/bookx/propX17.html",
+   "name": "propX17",
+   "category": "euclid/bookX",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX18.html",
+   "repoPath": "view/euclid-html/bookx/propX18.html",
+   "name": "propX18",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX19.html",
+   "repoPath": "view/euclid-html/bookx/propX19.html",
+   "name": "propX19",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX2.html",
+   "repoPath": "view/euclid-html/bookx/propX2.html",
+   "name": "propX2",
+   "category": "euclid/bookX",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX20.html",
+   "repoPath": "view/euclid-html/bookx/propX20.html",
+   "name": "propX20",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX21.html",
+   "repoPath": "view/euclid-html/bookx/propX21.html",
+   "name": "propX21",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX22.html",
+   "repoPath": "view/euclid-html/bookx/propX22.html",
+   "name": "propX22",
+   "category": "euclid/bookX",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX23.html",
+   "repoPath": "view/euclid-html/bookx/propX23.html",
+   "name": "propX23",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX24.html",
+   "repoPath": "view/euclid-html/bookx/propX24.html",
+   "name": "propX24",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX25.html",
+   "repoPath": "view/euclid-html/bookx/propX25.html",
+   "name": "propX25",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX26.html",
+   "repoPath": "view/euclid-html/bookx/propX26.html",
+   "name": "propX26",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX27.html",
+   "repoPath": "view/euclid-html/bookx/propX27.html",
+   "name": "propX27",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX28.html",
+   "repoPath": "view/euclid-html/bookx/propX28.html",
+   "name": "propX28",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX29.html",
+   "repoPath": "view/euclid-html/bookx/propX29.html",
+   "name": "propX29",
+   "category": "euclid/bookX",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX3.html",
+   "repoPath": "view/euclid-html/bookx/propX3.html",
+   "name": "propX3",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX30.html",
+   "repoPath": "view/euclid-html/bookx/propX30.html",
+   "name": "propX30",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX31.html",
+   "repoPath": "view/euclid-html/bookx/propX31.html",
+   "name": "propX31",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX32.html",
+   "repoPath": "view/euclid-html/bookx/propX32.html",
+   "name": "propX32",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX33.html",
+   "repoPath": "view/euclid-html/bookx/propX33.html",
+   "name": "propX33",
+   "category": "euclid/bookX",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX34.html",
+   "repoPath": "view/euclid-html/bookx/propX34.html",
+   "name": "propX34",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX35.html",
+   "repoPath": "view/euclid-html/bookx/propX35.html",
+   "name": "propX35",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX36.html",
+   "repoPath": "view/euclid-html/bookx/propX36.html",
+   "name": "propX36",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX37.html",
+   "repoPath": "view/euclid-html/bookx/propX37.html",
+   "name": "propX37",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX38.html",
+   "repoPath": "view/euclid-html/bookx/propX38.html",
+   "name": "propX38",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX39.html",
+   "repoPath": "view/euclid-html/bookx/propX39.html",
+   "name": "propX39",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX4.html",
+   "repoPath": "view/euclid-html/bookx/propX4.html",
+   "name": "propX4",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX40.html",
+   "repoPath": "view/euclid-html/bookx/propX40.html",
+   "name": "propX40",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX41.html",
+   "repoPath": "view/euclid-html/bookx/propX41.html",
+   "name": "propX41",
+   "category": "euclid/bookX",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX42.html",
+   "repoPath": "view/euclid-html/bookx/propX42.html",
+   "name": "propX42",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX43.html",
+   "repoPath": "view/euclid-html/bookx/propX43.html",
+   "name": "propX43",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX44.html",
+   "repoPath": "view/euclid-html/bookx/propX44.html",
+   "name": "propX44",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX45.html",
+   "repoPath": "view/euclid-html/bookx/propX45.html",
+   "name": "propX45",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX46.html",
+   "repoPath": "view/euclid-html/bookx/propX46.html",
+   "name": "propX46",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX47.html",
+   "repoPath": "view/euclid-html/bookx/propX47.html",
+   "name": "propX47",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX48.html",
+   "repoPath": "view/euclid-html/bookx/propX48.html",
+   "name": "propX48",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX49.html",
+   "repoPath": "view/euclid-html/bookx/propX49.html",
+   "name": "propX49",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX5.html",
+   "repoPath": "view/euclid-html/bookx/propX5.html",
+   "name": "propX5",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX50.html",
+   "repoPath": "view/euclid-html/bookx/propX50.html",
+   "name": "propX50",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX51.html",
+   "repoPath": "view/euclid-html/bookx/propX51.html",
+   "name": "propX51",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX52.html",
+   "repoPath": "view/euclid-html/bookx/propX52.html",
+   "name": "propX52",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX53.html",
+   "repoPath": "view/euclid-html/bookx/propX53.html",
+   "name": "propX53",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX54.html",
+   "repoPath": "view/euclid-html/bookx/propX54.html",
+   "name": "propX54",
+   "category": "euclid/bookX",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX55.html",
+   "repoPath": "view/euclid-html/bookx/propX55.html",
+   "name": "propX55",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX56.html",
+   "repoPath": "view/euclid-html/bookx/propX56.html",
+   "name": "propX56",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX57.html",
+   "repoPath": "view/euclid-html/bookx/propX57.html",
+   "name": "propX57",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX58.html",
+   "repoPath": "view/euclid-html/bookx/propX58.html",
+   "name": "propX58",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX59.html",
+   "repoPath": "view/euclid-html/bookx/propX59.html",
+   "name": "propX59",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX6.html",
+   "repoPath": "view/euclid-html/bookx/propX6.html",
+   "name": "propX6",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX60.html",
+   "repoPath": "view/euclid-html/bookx/propX60.html",
+   "name": "propX60",
+   "category": "euclid/bookX",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX61.html",
+   "repoPath": "view/euclid-html/bookx/propX61.html",
+   "name": "propX61",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX62.html",
+   "repoPath": "view/euclid-html/bookx/propX62.html",
+   "name": "propX62",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX63.html",
+   "repoPath": "view/euclid-html/bookx/propX63.html",
+   "name": "propX63",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX64.html",
+   "repoPath": "view/euclid-html/bookx/propX64.html",
+   "name": "propX64",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX65.html",
+   "repoPath": "view/euclid-html/bookx/propX65.html",
+   "name": "propX65",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX66.html",
+   "repoPath": "view/euclid-html/bookx/propX66.html",
+   "name": "propX66",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX67.html",
+   "repoPath": "view/euclid-html/bookx/propX67.html",
+   "name": "propX67",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX68.html",
+   "repoPath": "view/euclid-html/bookx/propX68.html",
+   "name": "propX68",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX69.html",
+   "repoPath": "view/euclid-html/bookx/propX69.html",
+   "name": "propX69",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX7.html",
+   "repoPath": "view/euclid-html/bookx/propX7.html",
+   "name": "propX7",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX70.html",
+   "repoPath": "view/euclid-html/bookx/propX70.html",
+   "name": "propX70",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX71.html",
+   "repoPath": "view/euclid-html/bookx/propX71.html",
+   "name": "propX71",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX72.html",
+   "repoPath": "view/euclid-html/bookx/propX72.html",
+   "name": "propX72",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX73.html",
+   "repoPath": "view/euclid-html/bookx/propX73.html",
+   "name": "propX73",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX74.html",
+   "repoPath": "view/euclid-html/bookx/propX74.html",
+   "name": "propX74",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX75.html",
+   "repoPath": "view/euclid-html/bookx/propX75.html",
+   "name": "propX75",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX76.html",
+   "repoPath": "view/euclid-html/bookx/propX76.html",
+   "name": "propX76",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX77.html",
+   "repoPath": "view/euclid-html/bookx/propX77.html",
+   "name": "propX77",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX78.html",
+   "repoPath": "view/euclid-html/bookx/propX78.html",
+   "name": "propX78",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX79.html",
+   "repoPath": "view/euclid-html/bookx/propX79.html",
+   "name": "propX79",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX8.html",
+   "repoPath": "view/euclid-html/bookx/propX8.html",
+   "name": "propX8",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX80.html",
+   "repoPath": "view/euclid-html/bookx/propX80.html",
+   "name": "propX80",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX81.html",
+   "repoPath": "view/euclid-html/bookx/propX81.html",
+   "name": "propX81",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX82.html",
+   "repoPath": "view/euclid-html/bookx/propX82.html",
+   "name": "propX82",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX83.html",
+   "repoPath": "view/euclid-html/bookx/propX83.html",
+   "name": "propX83",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX84.html",
+   "repoPath": "view/euclid-html/bookx/propX84.html",
+   "name": "propX84",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX85.html",
+   "repoPath": "view/euclid-html/bookx/propX85.html",
+   "name": "propX85",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX86.html",
+   "repoPath": "view/euclid-html/bookx/propX86.html",
+   "name": "propX86",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX87.html",
+   "repoPath": "view/euclid-html/bookx/propX87.html",
+   "name": "propX87",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX88.html",
+   "repoPath": "view/euclid-html/bookx/propX88.html",
+   "name": "propX88",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX89.html",
+   "repoPath": "view/euclid-html/bookx/propX89.html",
+   "name": "propX89",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX9.html",
+   "repoPath": "view/euclid-html/bookx/propX9.html",
+   "name": "propX9",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX90.html",
+   "repoPath": "view/euclid-html/bookx/propX90.html",
+   "name": "propX90",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX91.html",
+   "repoPath": "view/euclid-html/bookx/propX91.html",
+   "name": "propX91",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX92.html",
+   "repoPath": "view/euclid-html/bookx/propX92.html",
+   "name": "propX92",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX93.html",
+   "repoPath": "view/euclid-html/bookx/propX93.html",
+   "name": "propX93",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX94.html",
+   "repoPath": "view/euclid-html/bookx/propX94.html",
+   "name": "propX94",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX95.html",
+   "repoPath": "view/euclid-html/bookx/propX95.html",
+   "name": "propX95",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX96.html",
+   "repoPath": "view/euclid-html/bookx/propX96.html",
+   "name": "propX96",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX97.html",
+   "repoPath": "view/euclid-html/bookx/propX97.html",
+   "name": "propX97",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX98.html",
+   "repoPath": "view/euclid-html/bookx/propX98.html",
+   "name": "propX98",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookx/propX99.html",
+   "repoPath": "view/euclid-html/bookx/propX99.html",
+   "name": "propX99",
+   "category": "euclid/bookX",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/defXI11.html",
+   "repoPath": "view/euclid-html/bookxi/defXI11.html",
+   "name": "defXI11",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/defXI12.html",
+   "repoPath": "view/euclid-html/bookxi/defXI12.html",
+   "name": "defXI12",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/defXI14.html",
+   "repoPath": "view/euclid-html/bookxi/defXI14.html",
+   "name": "defXI14",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/defXI18.html",
+   "repoPath": "view/euclid-html/bookxi/defXI18.html",
+   "name": "defXI18",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/defXI21.html",
+   "repoPath": "view/euclid-html/bookxi/defXI21.html",
+   "name": "defXI21",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/defXI24.html",
+   "repoPath": "view/euclid-html/bookxi/defXI24.html",
+   "name": "defXI24",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/defXI9.html",
+   "repoPath": "view/euclid-html/bookxi/defXI9.html",
+   "name": "defXI9",
+   "category": "euclid/bookXI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI1.html",
+   "repoPath": "view/euclid-html/bookxi/propXI1.html",
+   "name": "propXI1",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI10.html",
+   "repoPath": "view/euclid-html/bookxi/propXI10.html",
+   "name": "propXI10",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI11.html",
+   "repoPath": "view/euclid-html/bookxi/propXI11.html",
+   "name": "propXI11",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI12.html",
+   "repoPath": "view/euclid-html/bookxi/propXI12.html",
+   "name": "propXI12",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI13.html",
+   "repoPath": "view/euclid-html/bookxi/propXI13.html",
+   "name": "propXI13",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI14.html",
+   "repoPath": "view/euclid-html/bookxi/propXI14.html",
+   "name": "propXI14",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI15.html",
+   "repoPath": "view/euclid-html/bookxi/propXI15.html",
+   "name": "propXI15",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI16.html",
+   "repoPath": "view/euclid-html/bookxi/propXI16.html",
+   "name": "propXI16",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI17.html",
+   "repoPath": "view/euclid-html/bookxi/propXI17.html",
+   "name": "propXI17",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI18.html",
+   "repoPath": "view/euclid-html/bookxi/propXI18.html",
+   "name": "propXI18",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI19.html",
+   "repoPath": "view/euclid-html/bookxi/propXI19.html",
+   "name": "propXI19",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI2.html",
+   "repoPath": "view/euclid-html/bookxi/propXI2.html",
+   "name": "propXI2",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI20.html",
+   "repoPath": "view/euclid-html/bookxi/propXI20.html",
+   "name": "propXI20",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI21.html",
+   "repoPath": "view/euclid-html/bookxi/propXI21.html",
+   "name": "propXI21",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI22.html",
+   "repoPath": "view/euclid-html/bookxi/propXI22.html",
+   "name": "propXI22",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI23.html",
+   "repoPath": "view/euclid-html/bookxi/propXI23.html",
+   "name": "propXI23",
+   "category": "euclid/bookXI",
+   "applets": 4,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI24.html",
+   "repoPath": "view/euclid-html/bookxi/propXI24.html",
+   "name": "propXI24",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI25.html",
+   "repoPath": "view/euclid-html/bookxi/propXI25.html",
+   "name": "propXI25",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI26.html",
+   "repoPath": "view/euclid-html/bookxi/propXI26.html",
+   "name": "propXI26",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI27.html",
+   "repoPath": "view/euclid-html/bookxi/propXI27.html",
+   "name": "propXI27",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI28.html",
+   "repoPath": "view/euclid-html/bookxi/propXI28.html",
+   "name": "propXI28",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI29.html",
+   "repoPath": "view/euclid-html/bookxi/propXI29.html",
+   "name": "propXI29",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI3.html",
+   "repoPath": "view/euclid-html/bookxi/propXI3.html",
+   "name": "propXI3",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI30.html",
+   "repoPath": "view/euclid-html/bookxi/propXI30.html",
+   "name": "propXI30",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI31.html",
+   "repoPath": "view/euclid-html/bookxi/propXI31.html",
+   "name": "propXI31",
+   "category": "euclid/bookXI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI32.html",
+   "repoPath": "view/euclid-html/bookxi/propXI32.html",
+   "name": "propXI32",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI33.html",
+   "repoPath": "view/euclid-html/bookxi/propXI33.html",
+   "name": "propXI33",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI34.html",
+   "repoPath": "view/euclid-html/bookxi/propXI34.html",
+   "name": "propXI34",
+   "category": "euclid/bookXI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI35.html",
+   "repoPath": "view/euclid-html/bookxi/propXI35.html",
+   "name": "propXI35",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI36.html",
+   "repoPath": "view/euclid-html/bookxi/propXI36.html",
+   "name": "propXI36",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI37.html",
+   "repoPath": "view/euclid-html/bookxi/propXI37.html",
+   "name": "propXI37",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI38.html",
+   "repoPath": "view/euclid-html/bookxi/propXI38.html",
+   "name": "propXI38",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI39.html",
+   "repoPath": "view/euclid-html/bookxi/propXI39.html",
+   "name": "propXI39",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI4.html",
+   "repoPath": "view/euclid-html/bookxi/propXI4.html",
+   "name": "propXI4",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI5.html",
+   "repoPath": "view/euclid-html/bookxi/propXI5.html",
+   "name": "propXI5",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI6.html",
+   "repoPath": "view/euclid-html/bookxi/propXI6.html",
+   "name": "propXI6",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI7.html",
+   "repoPath": "view/euclid-html/bookxi/propXI7.html",
+   "name": "propXI7",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI8.html",
+   "repoPath": "view/euclid-html/bookxi/propXI8.html",
+   "name": "propXI8",
+   "category": "euclid/bookXI",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxi/propXI9.html",
+   "repoPath": "view/euclid-html/bookxi/propXI9.html",
+   "name": "propXI9",
+   "category": "euclid/bookXI",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII1.html",
+   "repoPath": "view/euclid-html/bookxii/propXII1.html",
+   "name": "propXII1",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII10.html",
+   "repoPath": "view/euclid-html/bookxii/propXII10.html",
+   "name": "propXII10",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII11.html",
+   "repoPath": "view/euclid-html/bookxii/propXII11.html",
+   "name": "propXII11",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII12.html",
+   "repoPath": "view/euclid-html/bookxii/propXII12.html",
+   "name": "propXII12",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII13.html",
+   "repoPath": "view/euclid-html/bookxii/propXII13.html",
+   "name": "propXII13",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII14.html",
+   "repoPath": "view/euclid-html/bookxii/propXII14.html",
+   "name": "propXII14",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII15.html",
+   "repoPath": "view/euclid-html/bookxii/propXII15.html",
+   "name": "propXII15",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII16.html",
+   "repoPath": "view/euclid-html/bookxii/propXII16.html",
+   "name": "propXII16",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII17.html",
+   "repoPath": "view/euclid-html/bookxii/propXII17.html",
+   "name": "propXII17",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII18.html",
+   "repoPath": "view/euclid-html/bookxii/propXII18.html",
+   "name": "propXII18",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII2.html",
+   "repoPath": "view/euclid-html/bookxii/propXII2.html",
+   "name": "propXII2",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII3.html",
+   "repoPath": "view/euclid-html/bookxii/propXII3.html",
+   "name": "propXII3",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII4.html",
+   "repoPath": "view/euclid-html/bookxii/propXII4.html",
+   "name": "propXII4",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII5.html",
+   "repoPath": "view/euclid-html/bookxii/propXII5.html",
+   "name": "propXII5",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII6.html",
+   "repoPath": "view/euclid-html/bookxii/propXII6.html",
+   "name": "propXII6",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII7.html",
+   "repoPath": "view/euclid-html/bookxii/propXII7.html",
+   "name": "propXII7",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII8.html",
+   "repoPath": "view/euclid-html/bookxii/propXII8.html",
+   "name": "propXII8",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxii/propXII9.html",
+   "repoPath": "view/euclid-html/bookxii/propXII9.html",
+   "name": "propXII9",
+   "category": "euclid/bookXII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII1.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII1.html",
+   "name": "propXIII1",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII10.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII10.html",
+   "name": "propXIII10",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII11.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII11.html",
+   "name": "propXIII11",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII12.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII12.html",
+   "name": "propXIII12",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII13.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII13.html",
+   "name": "propXIII13",
+   "category": "euclid/bookXIII",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII14.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII14.html",
+   "name": "propXIII14",
+   "category": "euclid/bookXIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII15.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII15.html",
+   "name": "propXIII15",
+   "category": "euclid/bookXIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII16.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII16.html",
+   "name": "propXIII16",
+   "category": "euclid/bookXIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII17.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII17.html",
+   "name": "propXIII17",
+   "category": "euclid/bookXIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII18.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII18.html",
+   "name": "propXIII18",
+   "category": "euclid/bookXIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII2.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII2.html",
+   "name": "propXIII2",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII3.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII3.html",
+   "name": "propXIII3",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII4.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII4.html",
+   "name": "propXIII4",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII5.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII5.html",
+   "name": "propXIII5",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII6.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII6.html",
+   "name": "propXIII6",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII7.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII7.html",
+   "name": "propXIII7",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII8.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII8.html",
+   "name": "propXIII8",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/propXIII9.html",
+   "repoPath": "view/euclid-html/bookxiii/propXIII9.html",
+   "name": "propXIII9",
+   "category": "euclid/bookXIII",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../euclid-html/bookxiii/temp.html",
+   "repoPath": "view/euclid-html/bookxiii/temp.html",
+   "name": "temp",
+   "category": "euclid/bookXIII",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/a.html",
+   "repoPath": "view/round_geometry/a.html",
+   "name": "a",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/b.html",
+   "repoPath": "view/round_geometry/b.html",
+   "name": "b",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/compass.html",
+   "repoPath": "view/round_geometry/compass.html",
+   "name": "compass",
+   "category": "round",
+   "applets": 5,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/conway.html",
+   "repoPath": "view/round_geometry/conway.html",
+   "name": "conway",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/decagon.html",
+   "repoPath": "view/round_geometry/decagon.html",
+   "name": "decagon",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/desargues.html",
+   "repoPath": "view/round_geometry/desargues.html",
+   "name": "desargues",
+   "category": "round",
+   "applets": 4,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/harmonic.html",
+   "repoPath": "view/round_geometry/harmonic.html",
+   "name": "harmonic",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/menelaus.html",
+   "repoPath": "view/round_geometry/menelaus.html",
+   "name": "menelaus",
+   "category": "round",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/pappus.html",
+   "repoPath": "view/round_geometry/pappus.html",
+   "name": "pappus",
+   "category": "round",
+   "applets": 4,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/ptolemy.html",
+   "repoPath": "view/round_geometry/ptolemy.html",
+   "name": "ptolemy",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/round1.html",
+   "repoPath": "view/round_geometry/round1.html",
+   "name": "round1",
+   "category": "round",
+   "applets": 4,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/round2.html",
+   "repoPath": "view/round_geometry/round2.html",
+   "name": "round2",
+   "category": "round",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/round2x.html",
+   "repoPath": "view/round_geometry/round2x.html",
+   "name": "round2x",
+   "category": "round",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/round3.html",
+   "repoPath": "view/round_geometry/round3.html",
+   "name": "round3",
+   "category": "round",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/round4.html",
+   "repoPath": "view/round_geometry/round4.html",
+   "name": "round4",
+   "category": "round",
+   "applets": 3,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/round6.html",
+   "repoPath": "view/round_geometry/round6.html",
+   "name": "round6",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/seventen.html",
+   "repoPath": "view/round_geometry/seventen.html",
+   "name": "seventen",
+   "category": "round",
+   "applets": 2,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/sixeight.html",
+   "repoPath": "view/round_geometry/sixeight.html",
+   "name": "sixeight",
+   "category": "round",
+   "applets": 5,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/test.html",
+   "repoPath": "view/round_geometry/test.html",
+   "name": "test",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/test1.html",
+   "repoPath": "view/round_geometry/test1.html",
+   "name": "test1",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/test2.html",
+   "repoPath": "view/round_geometry/test2.html",
+   "name": "test2",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/test3.html",
+   "repoPath": "view/round_geometry/test3.html",
+   "name": "test3",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/testa.html",
+   "repoPath": "view/round_geometry/testa.html",
+   "name": "testa",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/testb.html",
+   "repoPath": "view/round_geometry/testb.html",
+   "name": "testb",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../round_geometry/twelvetwenty.html",
+   "repoPath": "view/round_geometry/twelvetwenty.html",
+   "name": "twelvetwenty",
+   "category": "round",
+   "applets": 1,
+   "inits": 0
+  },
+  {
+   "path": "../test/archive-viewer.html",
+   "repoPath": "view/test/archive-viewer.html",
+   "name": "archive-viewer",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/caption-phrase-ref.html",
+   "repoPath": "view/test/caption-phrase-ref.html",
+   "name": "caption-phrase-ref",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/circle/circle.html",
+   "repoPath": "view/test/circle/circle.html",
+   "name": "circle",
+   "category": "test/circle",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/circle/circumcircle.html",
+   "repoPath": "view/test/circle/circumcircle.html",
+   "name": "circumcircle",
+   "category": "test/circle",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/circle/intersection.html",
+   "repoPath": "view/test/circle/intersection.html",
+   "name": "intersection",
+   "category": "test/circle",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/circle/radius3pt.html",
+   "repoPath": "view/test/circle/radius3pt.html",
+   "name": "radius3pt",
+   "category": "test/circle",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/circumcenter_lineperp.html",
+   "repoPath": "view/test/circumcenter_lineperp.html",
+   "name": "circumcenter_lineperp",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/color-swatches.html",
+   "repoPath": "view/test/color-swatches.html",
+   "name": "color-swatches",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/cross-canvas-highlight.html",
+   "repoPath": "view/test/cross-canvas-highlight.html",
+   "name": "cross-canvas-highlight",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/curved-triangle.html",
+   "repoPath": "view/test/curved-triangle.html",
+   "name": "curved-triangle",
+   "category": "test",
+   "applets": 0,
+   "inits": 2
+  },
+  {
+   "path": "../test/deferred-point-reveal.html",
+   "repoPath": "view/test/deferred-point-reveal.html",
+   "name": "deferred-point-reveal",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/diagnostics-badge.html",
+   "repoPath": "view/test/diagnostics-badge.html",
+   "name": "diagnostics-badge",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/escape-exit.html",
+   "repoPath": "view/test/escape-exit.html",
+   "name": "escape-exit",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/highlight-event.html",
+   "repoPath": "view/test/highlight-event.html",
+   "name": "highlight-event",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/highlight-on-top.html",
+   "repoPath": "view/test/highlight-on-top.html",
+   "name": "highlight-on-top",
+   "category": "test",
+   "applets": 0,
+   "inits": 2
+  },
+  {
+   "path": "../test/icosahedron.html",
+   "repoPath": "view/test/icosahedron.html",
+   "name": "icosahedron",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/init-failure/index.html",
+   "repoPath": "view/test/init-failure/index.html",
+   "name": "index",
+   "category": "test/init-failure",
+   "applets": 0,
+   "inits": 7
+  },
+  {
+   "path": "../test/just-claim.html",
+   "repoPath": "view/test/just-claim.html",
+   "name": "just-claim",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/angleBisector.html",
+   "repoPath": "view/test/line/angleBisector.html",
+   "name": "angleBisector",
+   "category": "test/line",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/bichord.html",
+   "repoPath": "view/test/line/bichord.html",
+   "name": "bichord",
+   "category": "test/line",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/chord.html",
+   "repoPath": "view/test/line/chord.html",
+   "name": "chord",
+   "category": "test/line",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/cutoff.html",
+   "repoPath": "view/test/line/cutoff.html",
+   "name": "cutoff",
+   "category": "test/line",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/foot.html",
+   "repoPath": "view/test/line/foot.html",
+   "name": "foot",
+   "category": "test/line",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/parallel.html",
+   "repoPath": "view/test/line/parallel.html",
+   "name": "parallel",
+   "category": "test/line",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/perpendicular.html",
+   "repoPath": "view/test/line/perpendicular.html",
+   "name": "perpendicular",
+   "category": "test/line",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/planeFoot.html",
+   "repoPath": "view/test/line/planeFoot.html",
+   "name": "planeFoot",
+   "category": "test/line",
+   "applets": 1,
+   "inits": 1
+  },
+  {
+   "path": "../test/line/similar.html",
+   "repoPath": "view/test/line/similar.html",
+   "name": "similar",
+   "category": "test/line",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/mobile-3d.html",
+   "repoPath": "view/test/mobile-3d.html",
+   "name": "mobile-3d",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/mobile-scaling.html",
+   "repoPath": "view/test/mobile-scaling.html",
+   "name": "mobile-scaling",
+   "category": "test",
+   "applets": 0,
+   "inits": 2
+  },
+  {
+   "path": "../test/open-path.html",
+   "repoPath": "view/test/open-path.html",
+   "name": "open-path",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/plane/3points.html",
+   "repoPath": "view/test/plane/3points.html",
+   "name": "3points",
+   "category": "test/plane",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/plane/parallel.html",
+   "repoPath": "view/test/plane/parallel.html",
+   "name": "parallel",
+   "category": "test/plane",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/foot.html",
+   "repoPath": "view/test/point/foot.html",
+   "name": "foot",
+   "category": "test/point",
+   "applets": 1,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/harmonic.html",
+   "repoPath": "view/test/point/harmonic.html",
+   "name": "harmonic",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/intersection.html",
+   "repoPath": "view/test/point/intersection.html",
+   "name": "intersection",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/invert.html",
+   "repoPath": "view/test/point/invert.html",
+   "name": "invert",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/meanProportional.html",
+   "repoPath": "view/test/point/meanProportional.html",
+   "name": "meanProportional",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/parallelogram.html",
+   "repoPath": "view/test/point/parallelogram.html",
+   "name": "parallelogram",
+   "category": "test/point",
+   "applets": 1,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/pivot.html",
+   "repoPath": "view/test/point/pivot.html",
+   "name": "pivot",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/planeFoot.html",
+   "repoPath": "view/test/point/planeFoot.html",
+   "name": "planeFoot",
+   "category": "test/point",
+   "applets": 1,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/planeSlider.html",
+   "repoPath": "view/test/point/planeSlider.html",
+   "name": "planeSlider",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/propI2-L-drag.html",
+   "repoPath": "view/test/point/propI2-L-drag.html",
+   "name": "propI2-L-drag",
+   "category": "test/point",
+   "applets": 1,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/proportion.html",
+   "repoPath": "view/test/point/proportion.html",
+   "name": "proportion",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/similar.html",
+   "repoPath": "view/test/point/similar.html",
+   "name": "similar",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/sphereSlider.html",
+   "repoPath": "view/test/point/sphereSlider.html",
+   "name": "sphereSlider",
+   "category": "test/point",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/point/vertex.html",
+   "repoPath": "view/test/point/vertex.html",
+   "name": "vertex",
+   "category": "test/point",
+   "applets": 1,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/application.html",
+   "repoPath": "view/test/poly/application.html",
+   "name": "application",
+   "category": "test/poly",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/equilateralTriangle.html",
+   "repoPath": "view/test/poly/equilateralTriangle.html",
+   "name": "equilateralTriangle",
+   "category": "test/poly",
+   "applets": 1,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/octagon.html",
+   "repoPath": "view/test/poly/octagon.html",
+   "name": "octagon",
+   "category": "test/poly",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/parallelogram.html",
+   "repoPath": "view/test/poly/parallelogram.html",
+   "name": "parallelogram",
+   "category": "test/poly",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/quadrilateral.html",
+   "repoPath": "view/test/poly/quadrilateral.html",
+   "name": "quadrilateral",
+   "category": "test/poly",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/regularPolygon.html",
+   "repoPath": "view/test/poly/regularPolygon.html",
+   "name": "regularPolygon",
+   "category": "test/poly",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/similar.html",
+   "repoPath": "view/test/poly/similar.html",
+   "name": "similar",
+   "category": "test/poly",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/square.html",
+   "repoPath": "view/test/poly/square.html",
+   "name": "square",
+   "category": "test/poly",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/poly/triangle.html",
+   "repoPath": "view/test/poly/triangle.html",
+   "name": "triangle",
+   "category": "test/poly",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/polyhedron/prism.html",
+   "repoPath": "view/test/polyhedron/prism.html",
+   "name": "prism",
+   "category": "test/polyhedron",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/polyhedron/pyramid.html",
+   "repoPath": "view/test/polyhedron/pyramid.html",
+   "name": "pyramid",
+   "category": "test/polyhedron",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/present-centring-bounds.html",
+   "repoPath": "view/test/present-centring-bounds.html",
+   "name": "present-centring-bounds",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/propI23-transfer.html",
+   "repoPath": "view/test/propI23-transfer.html",
+   "name": "propI23-transfer",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/quad_line.html",
+   "repoPath": "view/test/quad_line.html",
+   "name": "quad_line",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/recenter-maximize.html",
+   "repoPath": "view/test/recenter-maximize.html",
+   "name": "recenter-maximize",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/sample_page/index.html",
+   "repoPath": "view/test/sample_page/index.html",
+   "name": "index",
+   "category": "test/sample_page",
+   "applets": 0,
+   "inits": 2
+  },
+  {
+   "path": "../test/sector/angle-marker.html",
+   "repoPath": "view/test/sector/angle-marker.html",
+   "name": "angle-marker",
+   "category": "test/sector",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/sector/arc.html",
+   "repoPath": "view/test/sector/arc.html",
+   "name": "arc",
+   "category": "test/sector",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/sector/sector.html",
+   "repoPath": "view/test/sector/sector.html",
+   "name": "sector",
+   "category": "test/sector",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/slide-to-point.html",
+   "repoPath": "view/test/slide-to-point.html",
+   "name": "slide-to-point",
+   "category": "test",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/slideshow/autoplace-probe.html",
+   "repoPath": "view/test/slideshow/autoplace-probe.html",
+   "name": "autoplace-probe",
+   "category": "test/slideshow",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/slideshow/propI1.html",
+   "repoPath": "view/test/slideshow/propI1.html",
+   "name": "propI1",
+   "category": "test/slideshow",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/slideshow/translate-slide.html",
+   "repoPath": "view/test/slideshow/translate-slide.html",
+   "name": "translate-slide",
+   "category": "test/slideshow",
+   "applets": 0,
+   "inits": 1
+  },
+  {
+   "path": "../test/transfer-animations.html",
+   "repoPath": "view/test/transfer-animations.html",
+   "name": "transfer-animations",
+   "category": "test",
+   "applets": 0,
+   "inits": 4
+  },
+  {
+   "path": "../test/two_canvas.html",
+   "repoPath": "view/test/two_canvas.html",
+   "name": "two_canvas",
+   "category": "test",
+   "applets": 0,
+   "inits": 2
+  }
+ ]
+}

@@ -1,0 +1,374 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Archive viewer — original applet pages, rendered by geomlib</title>
+<style>
+  body { font-family: sans-serif; margin: 0; color: #222; }
+  header { padding: 10px 16px; background: #f6f6f6; border-bottom: 1px solid #ddd;
+           position: sticky; top: 0; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  header input { font-family: ui-monospace, monospace; font-size: 13px; padding: 4px 6px;
+                 width: 42rem; max-width: 60vw; }
+  header button { padding: 4px 10px; }
+  .note { font-size: 12px; color: #666; padding: 6px 16px; background: #fffbe6;
+          border-bottom: 1px solid #f0e2a8; }
+  main { padding: 16px; max-width: 60rem; }
+  figure.applet { margin: 16px 0; }
+  figure.applet figcaption { font-size: 12px; color: #666; font-family: ui-monospace, monospace; }
+  .fail { background: #f8d7da; color: #721c24; padding: 8px 10px; border-radius: 4px;
+          font-family: ui-monospace, monospace; font-size: 12px; white-space: pre-wrap; }
+  #diag { font-family: ui-monospace, monospace; font-size: 12px; background: #f6f6f6;
+          padding: 10px; margin: 16px; white-space: pre-wrap; }
+  .panel { margin: 16px; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+  .panel h3 { margin: 0 0 8px; font-size: 14px; }
+  .panel p.hint { margin: 0 0 8px; font-size: 12px; color: #666; }
+  textarea { width: 100%; height: 8rem; font-family: ui-monospace, monospace;
+             font-size: 12px; padding: 6px; box-sizing: border-box; }
+  ul.hits { list-style: none; padding: 0; margin: 10px 0 0; }
+  ul.hits li { padding: 6px 0; border-top: 1px solid #eee; }
+  ul.hits a { font-family: ui-monospace, monospace; font-size: 13px; }
+  ul.hits .msgs { font-family: ui-monospace, monospace; font-size: 11px; color: #666;
+                  margin: 4px 0 0 1rem; white-space: pre-wrap; }
+  .count { display: inline-block; background: #fff3cd; color: #7a5c00; font-weight: 600;
+           border-radius: 10px; padding: 0 7px; font-size: 11px; margin-left: 6px; }
+  .miss { color: #a33; font-size: 12px; }
+  #idxFilter { width: 22rem; font-family: ui-monospace, monospace; font-size: 13px; padding: 4px 6px; }
+  #idxList { max-height: 18rem; overflow-y: auto; margin-top: 8px; }
+  #idxList a { display: inline-block; font-family: ui-monospace, monospace; font-size: 12px; }
+  #idxList div { padding: 2px 0; }
+  #idxList .cat { color: #888; font-size: 11px; margin-left: 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <label for="path"><b>fixture</b></label>
+  <input id="path" value="../euclid-html/booki/defI20.html">
+  <button id="go">Load</button>
+  <span style="font-size:12px;color:#666">serve the repo root, e.g. <code>python3 -m http.server 8000</code>, then open this page</span>
+</header>
+
+<p class="note">
+These are Dr. Joyce's original 1996 pages, kept verbatim as snapshot-test input.
+They cannot load on their own in a modern browser for three separate reasons:
+<b>(1)</b> each figure is a Java <code>&lt;applet&gt;</code>;
+<b>(2)</b> <code>navigator.javaEnabled()</code> was removed from browsers, so the
+page's own <code>.gif</code> fallback never swaps in either;
+<b>(3)</b> <code>../elements.js</code> (Joyce's nav chrome) was never mirrored into
+this repo &mdash; only the HTML and its <code>.gif</code>s were, since that is all
+the snapshot parser needs.
+This viewer reads a page <i>without modifying it</i>, and rebuilds each applet as a
+geomlib canvas from that applet's own <code>&lt;param&gt;</code> tags.
+</p>
+
+<section class="panel">
+  <h3>Paste diagnostics &rarr; jump to the page</h3>
+  <p class="hint">Paste any <code>[geomlib]</code> output &mdash; a coverage run, a test
+  log, a browser console. Paths are pulled out, grouped, and turned into links that
+  load the fixture below. Absolute paths, repo-relative paths and bare filenames all
+  work; anything not in the index is listed so you know it was skipped.</p>
+  <textarea id="paste" placeholder="[geomlib] /path/to/view/euclid-html/booki/defI20.html: element 'A3' failed to construct: ..."></textarea>
+  <div style="margin-top:8px">
+    <button id="parse">Find pages</button>
+    <button id="clearPaste">Clear</button>
+  </div>
+  <ul class="hits" id="hits"></ul>
+</section>
+
+<section class="panel">
+  <h3>Index <span id="idxCount" style="font-weight:normal;color:#888;font-size:12px"></span></h3>
+  <p class="hint">Every fixture the snapshot suite discovers. Filter by name, book or
+  category &mdash; e.g. <code>propI4</code>, <code>bookiv</code>, <code>compass</code>.
+  Regenerate with <code>npm run archive:index</code> after adding fixtures.</p>
+  <input id="idxFilter" placeholder="filter...">
+  <div id="idxList"></div>
+</section>
+
+<main id="out"></main>
+<div id="diag"></div>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+(function () {
+    var out = document.getElementById("out");
+    var diag = document.getElementById("diag");
+
+    // Joyce's param colours include the literal "random"; the snapshot parser
+    // substitutes a fixed palette so runs are deterministic. Same idea here so
+    // what you see matches what the goldens capture.
+    var PALETTE = ["200,70,90", "70,140,200", "90,170,90", "190,140,60",
+                   "150,90,180", "80,170,170"];
+    var paletteIdx = 0;
+    function substituteRandom(v) {
+        return v.replace(/random/g, function () {
+            return PALETTE[paletteIdx++ % PALETTE.length];
+        });
+    }
+
+    function appletParams(applet) {
+        // <param name=e[1] value="A;point;free;10,20">  (also plain eN)
+        var byIndex = [], meta = {};
+        var params = applet.getElementsByTagName("param");
+        for (var i = 0; i < params.length; i++) {
+            var name = (params[i].getAttribute("name") || "").trim();
+            var value = params[i].getAttribute("value");
+            if (value == null) continue;
+            var m = name.match(/^e\[?(\d+)\]?$/i);
+            if (m) byIndex.push([parseInt(m[1], 10), value]);
+            else meta[name.toLowerCase()] = value;
+        }
+        // Sort by the declared index, NOT document order — some pages are
+        // hand-numbered out of order, which is itself a real defect worth
+        // seeing (booki/propI4.html numbers 'a' as e[18] but references it
+        // from e[14], so 'a' is built after the elements that need it).
+        byIndex.sort(function (a, b) { return a[0] - b[0]; });
+        return { elements: byIndex.map(function (p) { return p[1]; }), meta: meta };
+    }
+
+    function render(html, base) {
+        out.innerHTML = "";
+        diag.textContent = "";
+        paletteIdx = 0;
+
+        var doc = new DOMParser().parseFromString(html, "text/html");
+        // Drop the page's own scripts: they call loadHeader()/loadFooter()
+        // from the un-mirrored elements.js, and navigator.javaEnabled().
+        var scripts = doc.getElementsByTagName("script");
+        while (scripts.length) scripts[0].parentNode.removeChild(scripts[0]);
+
+        // Rewrite relative image srcs so the .gif fallbacks still resolve.
+        var imgs = doc.getElementsByTagName("img");
+        for (var i = 0; i < imgs.length; i++) {
+            var src = imgs[i].getAttribute("src");
+            if (src && !/^(https?:)?\//.test(src)) imgs[i].setAttribute("src", base + src);
+        }
+
+        var applets = [].slice.call(doc.getElementsByTagName("applet"));
+        var specs = [];
+        applets.forEach(function (applet, n) {
+            var id = "arc_canvas_" + n;
+            var p = appletParams(applet);
+            var fig = doc.createElement("figure");
+            fig.className = "applet";
+            var cv = doc.createElement("canvas");
+            cv.id = id;
+            cv.setAttribute("tabindex", "0");
+            cv.style.width = (applet.getAttribute("width") || 400) + "px";
+            cv.style.height = (applet.getAttribute("height") || 300) + "px";
+            fig.appendChild(cv);
+            var cap = doc.createElement("figcaption");
+            cap.textContent = "applet " + (n + 1) + " — " + p.elements.length + " elements";
+            fig.appendChild(cap);
+            applet.parentNode.replaceChild(fig, applet);
+            specs.push({ id: id, p: p,
+                         w: parseInt(applet.getAttribute("width") || 400, 10),
+                         h: parseInt(applet.getAttribute("height") || 300, 10) });
+        });
+
+        out.appendChild(doc.body);
+
+        // Now that the nodes are in the live document, init each canvas.
+        specs.forEach(function (s) {
+            try {
+                geomlib.init({
+                    canvasid: s.id,
+                    width: s.w, height: s.h,
+                    background: s.p.meta.background || "0,0,100",
+                    title: s.p.meta.title || s.id,
+                    pivot: s.p.meta.pivot,
+                    elements: s.p.elements.map(substituteRandom),
+                });
+            } catch (err) {
+                var box = document.createElement("div");
+                box.className = "fail";
+                box.textContent = "geomlib.init failed for " + s.id + ":\n" + err;
+                var cv = document.getElementById(s.id);
+                if (cv && cv.parentNode) cv.parentNode.appendChild(box);
+            }
+        });
+
+        var d = geomlib.diagnostics();
+        diag.textContent = d.count
+            ? "geomlib.diagnostics() — " + d.count + " on this page:\n\n" +
+              d.slates.map(function (sl) {
+                  return sl.canvasid + "  [" + sl.severity + "]\n" +
+                      sl.entries.map(function (e) { return "    " + e.code + ": " + e.message; }).join("\n");
+              }).join("\n\n")
+            : "geomlib.diagnostics() — clean, nothing reported.";
+    }
+
+    function load() {
+        var path = document.getElementById("path").value.trim();
+        var base = path.replace(/[^\/]*$/, "");
+        fetch(path).then(function (r) {
+            if (!r.ok) throw new Error(r.status + " " + r.statusText + " for " + path);
+            return r.text();
+        }).then(function (html) { render(html, base); })
+          .catch(function (err) {
+            out.innerHTML = "";
+            var box = document.createElement("div");
+            box.className = "fail";
+            box.textContent = String(err);
+            out.appendChild(box);
+        });
+    }
+
+    // ---- index -------------------------------------------------------
+    var INDEX = [];
+    // Look-up keys for a pasted path: the viewer-relative path, the
+    // repo-relative path, and the bare filename.
+    var byKey = {};
+
+    function indexPage(pg) {
+        byKey[pg.repoPath] = pg;
+        byKey[pg.path] = pg;
+        var base = pg.repoPath.replace(/^.*\//, "");
+        // A bare filename can be ambiguous (propI4.html exists once, but
+        // guard anyway) — first one wins, and the full path always matches.
+        if (!(base in byKey)) byKey[base] = pg;
+    }
+
+    function resolvePath(raw) {
+        var cleaned = raw.trim().replace(/^["'(<]+|["')>]+$/g, "");
+        if (byKey[cleaned]) return byKey[cleaned];
+        // Absolute or otherwise-prefixed: keep from "view/" onward.
+        var i = cleaned.indexOf("view/");
+        if (i >= 0) {
+            var rel = cleaned.slice(i);
+            if (byKey[rel]) return byKey[rel];
+        }
+        var base = cleaned.replace(/^.*\//, "");
+        return byKey[base] || null;
+    }
+
+    function renderIndex(filter) {
+        var host = document.getElementById("idxList");
+        var f = (filter || "").toLowerCase();
+        var shown = INDEX.filter(function (pg) {
+            return !f || pg.repoPath.toLowerCase().indexOf(f) >= 0
+                      || pg.category.toLowerCase().indexOf(f) >= 0;
+        });
+        host.innerHTML = "";
+        shown.slice(0, 400).forEach(function (pg) {
+            var row = document.createElement("div");
+            var a = document.createElement("a");
+            a.href = "#";
+            a.textContent = pg.repoPath;
+            a.addEventListener("click", function (ev) {
+                ev.preventDefault();
+                document.getElementById("path").value = pg.path;
+                load();
+            });
+            row.appendChild(a);
+            var cat = document.createElement("span");
+            cat.className = "cat";
+            cat.textContent = pg.category + " \u00b7 " + pg.applets + " applet(s)";
+            row.appendChild(cat);
+            host.appendChild(row);
+        });
+        document.getElementById("idxCount").textContent =
+            shown.length + " of " + INDEX.length +
+            (shown.length > 400 ? " (showing first 400)" : "");
+    }
+
+    fetch("archive-index.json").then(function (r) { return r.json(); })
+        .then(function (d) {
+            INDEX = d.pages;
+            INDEX.forEach(indexPage);
+            renderIndex("");
+        })
+        .catch(function () {
+            document.getElementById("idxList").innerHTML =
+                '<span class="miss">archive-index.json not found \u2014 run ' +
+                '<code>npm run archive:index</code></span>';
+        });
+
+    document.getElementById("idxFilter").addEventListener("input", function (e) {
+        renderIndex(e.target.value);
+    });
+
+    // ---- paste diagnostics -> pages ------------------------------------
+    function parsePaste() {
+        var text = document.getElementById("paste").value;
+        var lines = text.split(/\r?\n/);
+        var groups = [];      // preserve first-seen order
+        var index = {};
+        var missing = {};
+        var pendingPath = null;
+
+        lines.forEach(function (line) {
+            // "[geomlib] <path>: <message>" — the message itself can contain
+            // colons, so split on the FIRST ": " after a .html path.
+            var m = line.match(/\[geomlib\]\s*(.*?\.html)\s*:\s*([\s\S]*)$/);
+            if (!m) {
+                // A param can carry a newline (booki/defI20.html), so a
+                // message may continue onto the next line — attach it.
+                if (pendingPath && line.trim() && index[pendingPath]) {
+                    var g = index[pendingPath];
+                    g.messages[g.messages.length - 1] += "\n" + line.trim();
+                }
+                return;
+            }
+            var pg = resolvePath(m[1]);
+            if (!pg) { missing[m[1]] = (missing[m[1]] || 0) + 1; pendingPath = null; return; }
+            pendingPath = pg.repoPath;
+            if (!index[pg.repoPath]) {
+                index[pg.repoPath] = { pg: pg, messages: [] };
+                groups.push(index[pg.repoPath]);
+            }
+            index[pg.repoPath].messages.push(m[2].trim());
+        });
+
+        var host = document.getElementById("hits");
+        host.innerHTML = "";
+        if (!groups.length && !Object.keys(missing).length) {
+            host.innerHTML = '<li class="miss">No [geomlib] lines with a .html path found.</li>';
+            return;
+        }
+        groups.forEach(function (g) {
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            a.href = "#";
+            a.textContent = g.pg.repoPath;
+            a.addEventListener("click", function (ev) {
+                ev.preventDefault();
+                document.getElementById("path").value = g.pg.path;
+                load();
+                document.getElementById("out").scrollIntoView({ behavior: "smooth" });
+            });
+            li.appendChild(a);
+            var badge = document.createElement("span");
+            badge.className = "count";
+            badge.textContent = g.messages.length;
+            li.appendChild(badge);
+            var msgs = document.createElement("div");
+            msgs.className = "msgs";
+            msgs.textContent = g.messages.join("\n");
+            li.appendChild(msgs);
+            host.appendChild(li);
+        });
+        Object.keys(missing).forEach(function (k) {
+            var li = document.createElement("li");
+            li.className = "miss";
+            li.textContent = "not in the index (skipped): " + k;
+            host.appendChild(li);
+        });
+    }
+
+    document.getElementById("parse").addEventListener("click", parsePaste);
+    document.getElementById("clearPaste").addEventListener("click", function () {
+        document.getElementById("paste").value = "";
+        document.getElementById("hits").innerHTML = "";
+    });
+
+    document.getElementById("go").addEventListener("click", load);
+    document.getElementById("path").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") load();
+    });
+    // ?p=... lets you deep-link a fixture.
+    var q = new URLSearchParams(location.search).get("p");
+    if (q) document.getElementById("path").value = q;
+    load();
+})();
+</script>
+</body>
+</html>

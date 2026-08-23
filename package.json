@@ -34,7 +34,8 @@
     "coverage:unit": "c8 mocha --reporter min tests/AnimationTest.ts tests/CircleTest.ts tests/DiagnosticsTest.ts tests/ColorsTest.ts tests/HighlightByNameTest.ts tests/HighlightTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateAnimatorTest.ts tests/SlateTest.ts tests/SlideTest.ts tests/SourceHygieneTest.ts tests/SphereTest.ts tests/VisibilityTest.ts",
     "coverage:report": "c8 report --reporter=html",
     "snapshots:clean": "rm -rf tests/snapshots && mkdir -p tests/snapshots && touch tests/snapshots/.gitkeep",
-    "prepublishOnly": "npm run test:unit && npm run bundle:prod && npm run check:bundle"
+    "prepublishOnly": "npm run test:unit && npm run bundle:prod && npm run check:bundle",
+    "archive:index": "node scripts/build-archive-index.js"
   },
   "repository": {
     "type": "git",
