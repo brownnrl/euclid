@@ -5,6 +5,12 @@ tests/snapshots/report.html
 .idea/
 dist/
 *.js
+# ...but the repo's own tooling is source, not build output. Without this
+# the blanket *.js above silently swallowed scripts/, so `check:bundle`
+# (which prepublishOnly runs) and `archive:index` pointed at files that
+# were never committed — a fresh clone could not publish.
+!scripts/*.js
+!webpack.config.js
 *.map
 *.swp
 *.tsbuildinfo
