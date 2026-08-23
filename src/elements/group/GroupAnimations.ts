@@ -98,18 +98,24 @@ function resolveSources(slate: Slate, include: any): GeomElement[] {
 }
 
 // Snapshot the figure's current geometry into bare render-copies.
-let warnedUnsupported = false;
-function snapshotSources(sources: GeomElement[]): { ghosts: GeomElement[], pts: ClonePoint[] } {
+//
+// Takes the slate purely so an unsupported element can be reported
+// against it (#154). It used to latch a module-global boolean, which hid
+// the 2nd..Nth distinct unsupported element even within one figure, and
+// silenced the warning entirely for every later figure on the page.
+function snapshotSources(sources: GeomElement[], slate: Slate): { ghosts: GeomElement[], pts: ClonePoint[] } {
     const ghosts: GeomElement[] = [];
     const pts: ClonePoint[] = [];
     for (const el of sources) {
         const snap = snapshotElement(el);
         if (snap == null) {
-            if (!warnedUnsupported && typeof console !== "undefined" && console.warn) {
-                console.warn("[geomlib] Group.cloneAside: skipping unsupported "
-                    + "element type (" + el.name + ")");
-                warnedUnsupported = true;
-            }
+            slate.reportDiagnostic({
+                code: "unsupported-element",
+                key: String(el.name),
+                message: "Group.cloneAside: skipping unsupported "
+                    + "element type (" + el.name + ")",
+                detail: { animation: "Group.cloneAside", elem: String(el.name) },
+            });
             continue;
         }
         ghosts.push(snap.ghost);
@@ -255,7 +261,7 @@ export class GroupCloneAsideAnimation extends Animation {
                 const snaps: { ghosts: GeomElement[], pts: ClonePoint[], bbox: Bounds, prefer?: Side }[] = [];
                 for (const variant of variants) {
                     const restore = applyVary(slate, variant && variant.vary);
-                    const snap = snapshotSources(sources);
+                    const snap = snapshotSources(sources, slate);
                     if (restore) restore();
                     if (snap.pts.length === 0) continue;
                     snaps.push({
@@ -365,7 +371,7 @@ export class GroupCloneAsideAnimation extends Animation {
                 target.drawProgress = 1;
                 target.visible = true;
                 const restore = applyVary(slate, vary);
-                const snap = snapshotSources(sources);
+                const snap = snapshotSources(sources, slate);
                 if (restore) restore();
                 const temp = snap.ghosts;
                 const pts = snap.pts;

@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #154 diagnostic badge</title>
+</head>
+<body>
+<h3 style="font-family: sans-serif;">On-canvas diagnostic badge (#154)</h3>
+<p style="font-family: sans-serif; max-width: 760px; color: #444;">
+geomlib skips what it cannot resolve and keeps rendering — the right call,
+but it used to mean the only evidence was a console line nobody has open.
+A canvas that reported anything now carries a small mark in its
+<b>upper-left</b> corner. Hover it for the tooltip.
+</p>
+<ul style="font-family: sans-serif; max-width: 760px; color: #444;">
+<li><b>Clean</b> — no badge at all, and no extra DOM node is even created.</li>
+<li><b>Warning</b> — amber triangle. This deck animates <code>GHOST</code>,
+    which no element or alias resolves to.</li>
+<li><b>Error</b> — red X. Same figure, but something reported at error
+    severity; error supersedes warning when both are present.</li>
+</ul>
+<p style="font-family: sans-serif; max-width: 760px; color: #444;">
+Things worth checking by hand:
+<b>(1)</b> the badge is visible <i>without</i> hovering — unlike the
+reset/maximize controls, which fade in on hover (#69);
+<b>(2)</b> press <b>p</b> to present, or maximize: the badge rides along to
+the viewport's upper-left and does not collide with the caption or nav;
+<b>(3)</b> press <b>r</b> (reset) — the badge clears, because reset is the
+deliberate "I've seen it" gesture;
+<b>(4)</b> the warning canvas and the clean canvas are independent: a
+warning on one must never badge the other.
+</p>
+
+<table style="font-family: sans-serif; border-collapse: collapse;">
+<tr>
+  <td style="padding:0 12px 6px 0; color:#666;">clean — no badge</td>
+  <td style="padding:0 12px 6px 0; color:#666;">warning</td>
+  <td style="padding:0 0 6px 12px; color:#666;">error</td>
+</tr>
+<tr>
+  <td style="padding-right:12px;"><canvas id="cClean" style="width:240px; height:200px;" tabindex="0"></canvas></td>
+  <td style="padding-right:12px;"><canvas id="cWarn"  style="width:240px; height:200px;" tabindex="0"></canvas></td>
+  <td style="padding-left:12px;"><canvas id="cErr"   style="width:240px; height:200px;" tabindex="0"></canvas></td>
+</tr>
+</table>
+
+<p style="font-family: sans-serif; max-width: 760px; color: #444;">
+Page-wide, for a consumer (or you, in the console):
+<code>geomlib.diagnostics()</code> — the result is printed below on load.
+</p>
+<pre id="out" style="font-family: ui-monospace, monospace; font-size: 12px;
+     background:#f6f6f6; padding:10px; max-width:740px; overflow-x:auto;"></pre>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    let E = geomlib.E, A = geomlib.A;
+
+    function triangle(canvasid, slides) {
+        geomlib.init({
+            background: '35,19,100',
+            title: canvasid,
+            canvasid: canvasid,
+            elements: [
+                { name: "A", construction: E.Point.free, params: [60, 40] },
+                { name: "B", construction: E.Point.free, params: [40, 160] },
+                { name: "C", construction: E.Point.free, params: [200, 160] },
+                { name: "AB", construction: E.Line.connect, params: ["A", "B"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+                { name: "BC", construction: E.Line.connect, params: ["B", "C"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+                { name: "AC", construction: E.Line.connect, params: ["A", "C"],
+                  nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            ],
+            slides: slides,
+        });
+    }
+
+    // 1. Clean: nothing resolves badly, so nothing is reported.
+    triangle("cClean", [
+        { text: "A clean figure reports nothing.", visible: ["AB", "BC", "AC"] },
+        { text: "Join {AC}.", visible: ["AB", "BC", "AC"], highlighted: ["AC"] },
+    ]);
+
+    // 2. Warning: an animation target that no element or alias resolves to —
+    //    the shape of a stale target left behind by a figure refactor.
+    triangle("cWarn", [
+        { text: "This deck animates an element that no longer exists.",
+          visible: ["AB", "BC", "AC"] },
+        { text: "Advance to trigger it.", visible: ["AB", "BC", "AC"],
+          transition: { animations: [
+              { elem: "GHOST", name: A.Line.straightEdgeConnect },
+          ] } },
+    ]);
+
+    // 3. Error: reported directly at error severity on the third slate.
+    triangle("cErr", [
+        { text: "This one reports at error severity.", visible: ["AB", "BC", "AC"] },
+    ]);
+    (function () {
+        var errSlate = geomlib.slates[geomlib.slates.length - 1];
+        errSlate.reportDiagnostic({
+            code: "demo-error",
+            message: "demo: something failed at error severity",
+            severity: "error",
+        });
+        // A warning too, to show that error supersedes it.
+        errSlate.reportDiagnostic({
+            code: "demo-warning",
+            message: "demo: a warning alongside the error",
+        });
+    })();
+
+    // Page-wide view, the call a build-time checker would make.
+    window.addEventListener("load", function () {
+        var d = geomlib.diagnostics();
+        document.getElementById("out").textContent = JSON.stringify({
+            severity: d.severity,
+            count: d.count,
+            slates: d.slates.map(function (s) {
+                return { canvasid: s.canvasid, severity: s.severity,
+                         messages: s.entries.map(function (e) { return e.code; }) };
+            }),
+        }, null, 2);
+    });
+
+    // The push-style hook a consuming page would use.
+    document.addEventListener("geomlib:diagnostic", function (ev) {
+        if (ev.detail && ev.detail.diagnostic) {
+            console.log("[page] geomlib:diagnostic ->",
+                ev.detail.severity, ev.detail.diagnostic.code);
+        }
+    });
+</script>
+</body>
+</html>

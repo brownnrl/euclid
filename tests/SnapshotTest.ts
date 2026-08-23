@@ -15,6 +15,7 @@ import {
     drawVerificationImage, assertSnapshot, saveVerificationImage,
     ReportEntry, countDiffPixels, capturePixels
 } from "./SnapshotHelper";
+import {Slate} from "../src/Slate";
 import {reportEntries, ensureReportFlushed} from "./sharedSnapshotReport";
 
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -57,9 +58,10 @@ describe("snapshot verification", function() {
                     dragResults: [],
                 };
 
+                let slate: Slate | null = null;
                 try {
                     // Build and render the scene
-                    let slate = buildScene(config);
+                    slate = buildScene(config);
                     let canvas = renderScene(slate);
 
                     // Snapshot the initial state
@@ -160,6 +162,9 @@ describe("snapshot verification", function() {
                     }
                     throw e;
                 } finally {
+                    // #154 — attribute whatever the slate complained about to
+                    // this scene, so report.html can show it per row.
+                    if (slate) entry.warnings = slate.diagnostics.map((d) => d.message);
                     reportEntries.push(entry);
                 }
             });

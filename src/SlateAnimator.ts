@@ -111,30 +111,43 @@ export class SlateAnimator {
                 // #151 — say so. A silent skip here is how a stale target
                 // survives a figure refactor: the animation entry stays in
                 // the deck, resolves to nothing, and simply never plays.
-                if (typeof console !== "undefined" && console.warn) {
-                    console.warn(
-                        "[geomlib] animation targets '" + entry.elem +
-                        "', but no element or alias resolves to it — " +
+                this.slate.reportDiagnostic({
+                    code: "unknown-element",
+                    key: String(entry.elem),
+                    message: "animation targets '" + entry.elem +
+                        "', but no element or alias resolves to it \u2014 " +
                         "the step is skipped. Check for a typo, or for a " +
-                        "target left behind by a figure change."
-                    );
-                }
+                        "target left behind by a figure change.",
+                    detail: { elem: entry.elem },
+                });
                 continue;
             }
             const animation: Animation | null = findAnimation(entry.name);
-            if (animation == null) continue;
+            if (animation == null) {
+                // #154 — reported here rather than inside findAnimation,
+                // which has no slate to attribute it to.
+                this.slate.reportDiagnostic({
+                    code: "unknown-animation",
+                    key: String(entry.name),
+                    message: "unknown animation '" + String(entry.name) +
+                        "' \u2014 falling back to instant",
+                    detail: { name: String(entry.name), elem: entry.elem },
+                });
+                continue;
+            }
             // Type guard: console.warn-and-skip when the animation's
             // elementType doesn't match the actual target class.
             if (!(target instanceof (animation.elementType as any))) {
-                if (typeof console !== "undefined" && console.warn) {
-                    console.warn(
-                        "[geomlib] animation '" + animation.name +
+                this.slate.reportDiagnostic({
+                    code: "animation-type-mismatch",
+                    key: String(animation.name) + "|" + String(entry.elem),
+                    message: "animation '" + animation.name +
                         "' targets " + (animation.elementType as any).name +
                         " but element '" + entry.elem + "' is " +
                         (target.constructor as any).name +
-                        " — falling back to instant"
-                    );
-                }
+                        " \u2014 falling back to instant",
+                    detail: { animation: String(animation.name), elem: entry.elem },
+                });
                 target.drawProgress = 1;
                 target.visible = true;
                 continue;

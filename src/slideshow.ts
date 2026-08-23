@@ -21,19 +21,6 @@ import {ISlide} from "./index";
 // and watched `{FC}` light from the prose had every reason to expect "FC" to
 // work in a slide set too.
 
-// Names already reported per slate, so a warning fires once rather than on
-// every redraw of every slide. Keyed weakly so a discarded slate doesn't
-// pin its strings.
-const warnedNames: WeakMap<Slate, {[key: string]: boolean}> = new WeakMap();
-
-function warnOnce(slate: Slate, key: string, message: string): void {
-    let seen = warnedNames.get(slate);
-    if (seen == null) { seen = {}; warnedNames.set(slate, seen); }
-    if (seen[key]) return;
-    seen[key] = true;
-    if (typeof console !== "undefined" && console.warn) console.warn(message);
-}
-
 /**
  * Map slide-set names onto the element names the renderers actually compare
  * against, following one alias hop via `lookupElement`.
@@ -122,10 +109,16 @@ function reportUnmatched(
     field: string,
 ): void {
     for (const name of unmatched) {
-        warnOnce(slate, field + ":" + name,
-            "[geomlib] slide " + (slideIndex + 1) + " lists '" + name +
-            "' in " + field + ", but no element or alias resolves to it — " +
-            "the name is ignored. Check for a typo, or for a target left " +
-            "behind by a figure change.");
+        // #154 — reported through the slate so the canvas can badge it;
+        // reportDiagnostic owns the dedupe that warnOnce used to do.
+        slate.reportDiagnostic({
+            code: "unknown-slide-name",
+            key: field + ":" + name,
+            message: "slide " + (slideIndex + 1) + " lists '" + name +
+                "' in " + field + ", but no element or alias resolves to it — " +
+                "the name is ignored. Check for a typo, or for a target left " +
+                "behind by a figure change.",
+            detail: { slide: slideIndex + 1, field: field, name: name },
+        });
     }
 }

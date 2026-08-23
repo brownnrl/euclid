@@ -18,6 +18,7 @@ import "mocha";
 import * as path from "path";
 import {assertSnapshot, buildScene, ReportEntry} from "./SnapshotHelper";
 import {SlateConfig} from "./HtmlParamParser";
+import {Slate} from "../src/Slate";
 import {reportEntries, ensureReportFlushed} from "./sharedSnapshotReport";
 
 const SNAPSHOT_DIR = path.join(__dirname, "snapshots");
@@ -137,8 +138,9 @@ describe("highlight snapshot (issue #72)", function() {
                 dragResults: [],
             };
 
+            let slate: Slate | null = null;
             try {
-                const slate = buildScene(config);
+                slate = buildScene(config);
                 if (scenario.highlightOnTop != null) {
                     slate.highlightOnTop = scenario.highlightOnTop;
                 }
@@ -162,6 +164,9 @@ describe("highlight snapshot (issue #72)", function() {
                 entry.error = (e as Error).message;
                 throw e;
             } finally {
+                // #154 — attribute whatever the slate complained about to
+                // this scene, so report.html can show it per row.
+                if (slate) entry.warnings = slate.diagnostics.map((d) => d.message);
                 reportEntries.push(entry);
             }
         });
