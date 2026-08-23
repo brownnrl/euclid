@@ -352,6 +352,15 @@ export interface ReportEntry {
 }
 
 export function generateReport(entries: ReportEntry[]): void {
+    // #67 — where the report should load geomlib from. The default is
+    // relative to tests/snapshots/, which is the only place the report
+    // normally lives. When the report is PUBLISHED somewhere else that path
+    // no longer resolves (on the site today it points at /dist/bundle.js,
+    // which 404s, so the live-slate modal silently fails), hence the
+    // override: the publish step ships a copy of the bundle beside
+    // report.html and sets this to "bundle.js".
+    const bundleSrc = process.env.GEOMLIB_REPORT_BUNDLE_SRC || "../../dist/bundle.js";
+
     // Group by category
     let categories: {[key: string]: ReportEntry[]} = {};
     for (let entry of entries) {
@@ -553,7 +562,7 @@ details { margin: 5px 0; }
   <img id="lightboxImg" alt="">
 </div>
 
-<script src="../../dist/bundle.js"></script>
+<script src="${bundleSrc}"></script>
 <script>
 const CONFIGS = ${JSON.stringify(configMap)};
 const ENTRIES = ${JSON.stringify(entries.map(e => ({
