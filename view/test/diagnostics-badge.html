@@ -14,9 +14,13 @@ A canvas that reported anything now carries a small mark in its
 <ul style="font-family: sans-serif; max-width: 760px; color: #444;">
 <li><b>Clean</b> — no badge at all, and no extra DOM node is even created.</li>
 <li><b>Warning</b> — amber triangle. This deck animates <code>GHOST</code>,
-    which no element or alias resolves to.</li>
-<li><b>Error</b> — red X. Same figure, but something reported at error
-    severity; error supersedes warning when both are present.</li>
+    which no element or alias resolves to. The badge appears
+    <b>on load</b>: decks are checked when the figure is built, so a dead
+    target does not stay hidden until someone happens to advance to the
+    slide that uses it.</li>
+<li><b>Error</b> — a red stop-sign octagon. Same figure, but something
+    reported at error severity; error supersedes warning when both are
+    present (this canvas reports one of each).</li>
 </ul>
 <p style="font-family: sans-serif; max-width: 760px; color: #444;">
 Things worth checking by hand:
@@ -85,7 +89,8 @@ Page-wide, for a consumer (or you, in the console):
     triangle("cWarn", [
         { text: "This deck animates an element that no longer exists.",
           visible: ["AB", "BC", "AC"] },
-        { text: "Advance to trigger it.", visible: ["AB", "BC", "AC"],
+        { text: "The target is checked at load, so the badge is already showing.",
+          visible: ["AB", "BC", "AC"],
           transition: { animations: [
               { elem: "GHOST", name: A.Line.straightEdgeConnect },
           ] } },

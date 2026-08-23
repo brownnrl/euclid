@@ -1153,15 +1153,27 @@ export function drawWarningIcon(ctx: CanvasRenderingContext2D, size: number): vo
 }
 
 export function drawErrorIcon(ctx: CanvasRenderingContext2D, size: number): void {
-    // A light plate first so the mark reads on any canvas background,
-    // mirroring the buttons' rgba(0,0,0,0.12) chip.
-    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    // A stop-sign octagon with a white X. Reads as "stop" at 20px in a way
+    // a bare X does not, and its silhouette is distinct from the warning
+    // triangle even before colour registers.
+    const cx = size / 2, cy = size / 2;
+    const r = size * 0.47;
+    ctx.fillStyle = "#d13438";
     ctx.beginPath();
-    ctx.arc(size / 2, size / 2, size * 0.46, 0, Math.PI * 2);
+    for (let k = 0; k < 8; k++) {
+        // Start at 22.5 degrees so the octagon sits flat-topped, the way a
+        // road sign does, rather than resting on a vertex.
+        const a = Math.PI / 8 + k * Math.PI / 4;
+        const x = cx + r * Math.cos(a);
+        const y = cy + r * Math.sin(a);
+        if (k === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
     ctx.fill();
-    const pad = size * 0.3;
-    ctx.strokeStyle = "#d13438";
-    ctx.lineWidth = Math.max(2, size * 0.13);
+
+    const pad = size * 0.34;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = Math.max(1.5, size * 0.11);
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(pad, pad);

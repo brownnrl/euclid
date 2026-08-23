@@ -668,8 +668,8 @@ class Slate {
 ```
 
 **The badge.** A canvas that has reported anything shows a small mark in
-its **upper-left** corner — an amber `!` triangle for warnings, a red ✕
-when anything reached error severity (error supersedes warning). Tooltip:
+its **upper-left** corner — an amber `!` triangle for warnings, a red stop-sign
+octagon when anything reached error severity (error supersedes warning). Tooltip:
 `geomlib generated warnings - check console`. A clean diagram shows
 nothing and does not even create the element.
 
@@ -685,6 +685,13 @@ so it cannot scroll past unnoticed. It clears on the **reset** control
 *not* `Slate.reset()`: minimize and presentation-exit both call that
 internally, and construction-time diagnostics never fire again, so
 clearing there would discard exactly the warnings worth keeping.
+
+**Decks are checked at load.** Every name in a slide's `visible` /
+`highlighted` set and every animation `elem:` is resolved once when the
+figure is built, so a stale reference reports immediately. Without that
+the diagnostic would only fire if a viewer actually advanced to the
+offending slide — the case that goes unnoticed, and one that would leave
+a build-time checker seeing a clean page.
 
 **Per canvas.** Diagnostics belong to the slate that produced them, so on
 a page of many figures each badge reflects only its own canvas. (Before

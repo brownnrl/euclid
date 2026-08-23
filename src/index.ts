@@ -59,6 +59,53 @@ export function highlightByName(name: string, on: boolean = true,
     return hits;
 }
 
+// #154 — check a deck's names at load, not only when a slide runs.
+//
+// Every name in a slide set and every animation target is resolved once
+// here, so a stale reference reports the moment the figure is built.
+// Without this the diagnostic only fires if a viewer actually advances
+// to the offending slide — which is precisely the case that goes
+// unnoticed, and would leave a build-time checker seeing a clean page.
+//
+// Reporting is deduped per slate, so a name the walk later hits again
+// does not report twice.
+function validateSlides(slate: Slate, slides: ISlide[]): void {
+    for (let n = 0; n < slides.length; n++) {
+        const slide = slides[n];
+        for (const field of ["visible", "highlighted"]) {
+            const names = (slide as any)[field] as string[] | undefined;
+            if (names == null) continue;
+            for (const name of names) {
+                if (slate.lookupElement(name) != null) continue;
+                slate.reportDiagnostic({
+                    code: "unknown-slide-name",
+                    key: field + ":" + name,
+                    message: "slide " + (n + 1) + " lists '" + name +
+                        "' in " + field + ", but no element or alias resolves to it \u2014 " +
+                        "the name is ignored. Check for a typo, or for a target left " +
+                        "behind by a figure change.",
+                    detail: { slide: n + 1, field: field, name: name },
+                });
+            }
+        }
+        const anims = slide.transition && slide.transition.animations;
+        if (anims == null) continue;
+        for (const entry of anims) {
+            if (entry.elem == null) continue;
+            if (slate.lookupElement(entry.elem) != null) continue;
+            slate.reportDiagnostic({
+                code: "unknown-element",
+                key: String(entry.elem),
+                message: "slide " + (n + 1) + " animates '" + entry.elem +
+                    "', but no element or alias resolves to it \u2014 the step " +
+                    "is skipped. Check for a typo, or for a target left behind " +
+                    "by a figure change.",
+                detail: { slide: n + 1, elem: entry.elem },
+            });
+        }
+    }
+}
+
 export interface ISlateDiagnostics {
     canvasid: string | null;
     index: number;
@@ -565,6 +612,7 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
     if (i.slides != null && i.slides.length > 0) {
         slate.slides = i.slides;
+        validateSlides(slate, i.slides);
     }
 
     if (i.resolveJustification != null) {

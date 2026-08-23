@@ -9,7 +9,7 @@ import "mocha";
 import * as assert from "assert";
 import {createCanvas} from "canvas";
 import {Slate} from "../src/Slate";
-import {E} from "../src/index";
+import {E, init, slates} from "../src/index";
 import {
     DiagnosticLog, worstSeverity, dedupeKeyOf, diagnosticEventDetail,
 } from "../src/Diagnostics";
@@ -247,6 +247,107 @@ describe("diagnostics (#154)", () => {
             assert.equal(a.diagnostics.length, 1, "A owns the bad target");
             assert.equal(a.diagnostics[0].code, "unknown-element");
             assert.equal(b.diagnostics.length, 0, "B never mentioned it");
+        });
+    });
+
+
+    // The gap the demo page exposed: a dead animation target used to stay
+    // invisible until a viewer advanced to the offending slide, which is
+    // exactly the case nobody notices. Decks are now checked at load.
+    describe("init-time deck validation", () => {
+
+        function initWith(canvasid: string, slides: any[]): Slate {
+            const canvas: any = createCanvas(200, 200);
+            canvas.id = canvasid;
+            const savedDoc = (global as any).document;
+            (global as any).document = {
+                getElementById: (id: string) => (id === canvasid ? canvas : null),
+            };
+            try {
+                init({
+                    background: "0,0,100", title: canvasid, canvasid: canvasid,
+                    elements: [
+                        { name: "A", construction: E.Point.free, params: [10, 10] },
+                        { name: "B", construction: E.Point.free, params: [90, 90] },
+                        { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+                    ],
+                    slides: slides,
+                });
+                return slates[slates.length - 1];
+            } finally {
+                if (savedDoc === undefined) delete (global as any).document;
+                else (global as any).document = savedDoc;
+            }
+        }
+
+        it("reports a dead animation target at load, before any slide runs", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWith("d1", [
+                    { text: "one", visible: ["AB"] },
+                    { text: "two", visible: ["AB"], transition: { animations: [
+                        { elem: "GHOST", name: "Line.straightEdgeConnect" },
+                    ] } },
+                ]);
+            });
+            assert.equal(s.diagnostics.length, 1,
+                "the badge must appear on load, not only once someone presses p");
+            assert.equal(s.diagnostics[0].code, "unknown-element");
+            assert.ok(s.diagnostics[0].message.indexOf("slide 2") >= 0,
+                "and it should say which slide: " + s.diagnostics[0].message);
+        });
+
+        it("reports an unresolvable name in a slide set at load", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWith("d2", [{ text: "one", visible: ["AB"], highlighted: ["NOPE"] }]);
+            });
+            assert.equal(s.diagnostics.length, 1);
+            assert.equal(s.diagnostics[0].code, "unknown-slide-name");
+        });
+
+        it("stays silent for a deck whose names all resolve", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWith("d3", [
+                    { text: "one", visible: ["A", "B", "AB"], highlighted: ["AB"] },
+                    { text: "two", visible: ["A", "B", "AB"], transition: { animations: [
+                        { elem: "AB", name: "Line.straightEdgeConnect" },
+                    ] } },
+                ]);
+            });
+            assert.equal(s.diagnostics.length, 0, "a clean deck must stay clean");
+            assert.equal(s.diagnosticSeverity, null, "so no badge is created at all");
+        });
+
+        it("resolves aliases, so a valid alias is not flagged", () => {
+            let s!: Slate;
+            capture(() => {
+                const canvas: any = createCanvas(200, 200);
+                canvas.id = "d4";
+                const savedDoc = (global as any).document;
+                (global as any).document = {
+                    getElementById: (id: string) => (id === "d4" ? canvas : null),
+                };
+                try {
+                    init({
+                        background: "0,0,100", title: "d4", canvasid: "d4",
+                        elements: [
+                            { name: "A", construction: E.Point.free, params: [10, 10] },
+                            { name: "B", construction: E.Point.free, params: [90, 90] },
+                            { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+                        ],
+                        aliases: { "BA": "AB" },
+                        slides: [{ text: "one", visible: ["BA"], highlighted: ["BA"] }],
+                    });
+                    s = slates[slates.length - 1];
+                } finally {
+                    if (savedDoc === undefined) delete (global as any).document;
+                    else (global as any).document = savedDoc;
+                }
+            });
+            assert.equal(s.diagnostics.length, 0,
+                "aliases resolve in slide sets since #151; the checker must agree");
         });
     });
 
