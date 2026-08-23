@@ -107,7 +107,20 @@ export class SlateAnimator {
         const reduced = config.reducedMotion === true || speedMul === 0;
         for (const entry of slideAnimations || []) {
             const target = this.slate.lookupElement(entry.elem);
-            if (target == null) continue;
+            if (target == null) {
+                // #151 — say so. A silent skip here is how a stale target
+                // survives a figure refactor: the animation entry stays in
+                // the deck, resolves to nothing, and simply never plays.
+                if (typeof console !== "undefined" && console.warn) {
+                    console.warn(
+                        "[geomlib] animation targets '" + entry.elem +
+                        "', but no element or alias resolves to it — " +
+                        "the step is skipped. Check for a typo, or for a " +
+                        "target left behind by a figure change."
+                    );
+                }
+                continue;
+            }
             const animation: Animation | null = findAnimation(entry.name);
             if (animation == null) continue;
             // Type guard: console.warn-and-skip when the animation's

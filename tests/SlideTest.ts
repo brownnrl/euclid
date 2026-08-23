@@ -7,8 +7,9 @@ import "mocha";
 import * as assert from "assert";
 import {parseCaptionTokens, justsUseStackedLayout} from "../src/SlateControls";
 import {createCanvas} from "canvas";
-import {init, slates, ISlide, IConstructionInfo, E} from "../src/index";
-import {computeSlideState} from "../src/slideshow";
+import {init, slates, ISlide, IConstructionInfo, E, parseParam} from "../src/index";
+import {computeSlideState, canonicaliseSlideNames} from "../src/slideshow";
+import {Slate} from "../src/Slate";
 
 // Mock the minimum DOM that init() needs.
 function withFakeDOM<T>(fn: (canvasId: string) => T): T {
@@ -354,6 +355,109 @@ describe("ISlideJust.claim (#146)", () => {
             assert.equal(justsUseStackedLayout(undefined), false);
             assert.equal(justsUseStackedLayout(null), false);
             assert.equal(justsUseStackedLayout([]), false);
+        });
+    });
+});
+
+// #151 — aliases in slide sets, and a warning for names that match nothing.
+describe("slide-set alias resolution (#151)", () => {
+
+    // A line declared as CF, which the prose also calls FC.
+    function scene(): Slate {
+        const slate = new Slate(createCanvas(200, 200) as any);
+        slate.inTest = true;
+        for (const spec of ["C;point;free;10,10", "F;point;free;90,90"]) {
+            const i = parseParam(spec);
+            slate.createElement(i.construction, i.params, i.name);
+        }
+        const l = parseParam("CF;line;connect;C,F");
+        slate.createElement(l.construction, l.params, l.name);
+        slate.addAliases({ "FC": "CF" });
+        slate.update();
+        return slate;
+    }
+
+    function captureWarnings<T>(fn: () => T): {result: T, warnings: string[]} {
+        const warnings: string[] = [];
+        const saved = console.warn;
+        console.warn = (...args: any[]) => { warnings.push(args.join(" ")); };
+        try { return {result: fn(), warnings}; }
+        finally { console.warn = saved; }
+    }
+
+    it("canonicalises an alias used in highlighted", () => {
+        const slate = scene();
+        const st = computeSlideState(slate, [
+            { text: "", visible: ["CF"], highlighted: ["FC"] },
+        ], 0);
+        assert.ok(st.highlighted.has("CF"),
+            "the renderers compare against e.name, so the set must hold the " +
+            "declared name — an alias here used to be silently ignored");
+    });
+
+    it("canonicalises an alias used in visible", () => {
+        const slate = scene();
+        const st = computeSlideState(slate, [
+            { text: "", visible: ["FC"] },
+        ], 0);
+        assert.ok(st.visible.has("CF"));
+    });
+
+    it("leaves an already-canonical name alone", () => {
+        const slate = scene();
+        const st = computeSlideState(slate, [
+            { text: "", visible: ["CF"], highlighted: ["CF"] },
+        ], 0);
+        assert.ok(st.visible.has("CF") && st.highlighted.has("CF"));
+    });
+
+    it("warns once for a name that resolves to nothing", () => {
+        const slate = scene();
+        const slides = [{ text: "", visible: ["CF"], highlighted: ["ZZ"] }];
+        const {warnings} = captureWarnings(() => {
+            computeSlideState(slate, slides, 0);
+            computeSlideState(slate, slides, 0);   // redraw — must not re-warn
+            computeSlideState(slate, slides, 0);
+        });
+        assert.equal(warnings.length, 1, "one warning per name per slate, not per redraw");
+        assert.ok(warnings[0].indexOf("ZZ") >= 0, warnings[0]);
+        assert.ok(warnings[0].indexOf("highlighted") >= 0, warnings[0]);
+    });
+
+    it("names the slide number in the warning", () => {
+        const slate = scene();
+        const {warnings} = captureWarnings(() =>
+            computeSlideState(slate, [
+                { text: "", visible: ["CF"] },
+                { text: "", highlighted: ["nope"] },
+            ], 1));
+        assert.equal(warnings.length, 1);
+        assert.ok(warnings[0].indexOf("slide 2") >= 0,
+            "1-based, matching the slide counter the viewer sees: " + warnings[0]);
+    });
+
+    it("does not warn for a valid alias", () => {
+        const slate = scene();
+        const {warnings} = captureWarnings(() =>
+            computeSlideState(slate, [{ text: "", highlighted: ["FC"] }], 0));
+        assert.deepEqual(warnings, []);
+    });
+
+    describe("canonicaliseSlideNames", () => {
+        it("reports which names matched nothing", () => {
+            const slate = scene();
+            const r = canonicaliseSlideNames(slate, ["FC", "CF", "ghost"]);
+            assert.deepEqual(r.unmatched, ["ghost"]);
+            assert.ok(r.canonical.has("CF"));
+            assert.ok(r.canonical.has("ghost"),
+                "an unmatched name is kept as authored — dropping it would " +
+                "change nothing on screen and lose what the slide asked for");
+        });
+
+        it("handles an empty / missing list", () => {
+            const slate = scene();
+            assert.deepEqual(canonicaliseSlideNames(slate, []).unmatched, []);
+            assert.deepEqual(canonicaliseSlideNames(slate, null as any).unmatched, []);
         });
     });
 });

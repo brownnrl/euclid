@@ -363,6 +363,28 @@ synonyms — Joyce's prose refers to the same circle as both *BCD* and
 alias map once. Aliases never appear in `_elements`; the slate stays
 the same size whether or not you register them.
 
+**Aliases work in slide sets too (#151, 0.14.0+).** `visible`,
+`highlighted` and an animation's `elem:` all accept either the declared
+name or any alias of it. Before 0.14.0 the slide sets were passed through
+verbatim while the renderers compared against the element's own `name`, so
+an alias there matched nothing and was **silently ignored** — the element
+simply never lit. (An audit of the Elements decks found 33 such inert names
+across 17 canvases.)
+
+**A name matching no element is now reported.** `computeSlideState` warns
+once per slate, naming the slide number and the field:
+
+```
+[geomlib] slide 4 lists 'FC' in highlighted, but no element or alias
+resolves to it — the name is ignored. Check for a typo, or for a target
+left behind by a figure change.
+```
+
+An animation whose `elem:` resolves to nothing warns similarly instead of
+skipping in silence. That second case catches **stale targets**: entries
+left in a deck after the figure they pointed at was refactored away, which
+otherwise never play and never complain.
+
 ### Slideshow data on `init()`
 
 ```typescript
