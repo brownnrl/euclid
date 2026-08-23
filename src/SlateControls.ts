@@ -82,6 +82,55 @@ export function escapeAction(state: {presenting: boolean; maximized: boolean}): 
     return "none";
 }
 
+// One piece of a rendered caption: literal text, or a reference that binds
+// `display` to the slate element named `target`.
+export type CaptionToken =
+    | { kind: "text"; text: string }
+    | { kind: "ref"; display: string; target: string };
+
+// Caption token grammar.
+//
+//   {AB}                        — display and element name are the same
+//   {ABC|angBint}               — display override (#90): render "ABC" but
+//                                 bind to angBint, for prose names that
+//                                 collide with another element's name
+//   {the side from D to A|sideDA}
+//                               — #136: the DISPLAY half may be a phrase.
+//
+// The two halves have deliberately different grammars. The element name
+// stays strict (identifier-ish), because it has to resolve against the
+// slate. The display half is anything up to the closing brace — it is
+// prose, and restricting it to a single word forced authors to bind one
+// keyword inside a phrase (`the {side|sideDA} from D to A`) when what they
+// meant was to light the whole phrase.
+const CAPTION_NAME = "[A-Za-z][A-Za-z0-9'\\-]*";
+const CAPTION_RE = new RegExp(
+    "\\{([^{}|]+)\\|(" + CAPTION_NAME + ")\\}" +   // {display|element}
+    "|\\{(" + CAPTION_NAME + ")\\}",                 // {element}
+    "g");
+
+export function parseCaptionTokens(text: string): CaptionToken[] {
+    const out: CaptionToken[] = [];
+    const re = new RegExp(CAPTION_RE.source, "g");
+    let lastIndex = 0;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+        if (m.index > lastIndex) {
+            out.push({ kind: "text", text: text.slice(lastIndex, m.index) });
+        }
+        // Piped form fills groups 1-2; bare form fills group 3.
+        const piped = m[2] != null;
+        const display = piped ? m[1] : m[3];
+        const target = piped ? m[2] : m[3];
+        out.push({ kind: "ref", display: display, target: target });
+        lastIndex = m.index + m[0].length;
+    }
+    if (lastIndex < text.length) {
+        out.push({ kind: "text", text: text.slice(lastIndex) });
+    }
+    return out;
+}
+
 export function createControls(slate: Slate, canvas: HTMLCanvasElement, config: IInitConfig): void {
     // Skip in headless/test environments
     if (!canvas.parentElement) return;
@@ -728,30 +777,23 @@ class SlateControls {
     // Display override (#90): {DISPLAY|element} renders DISPLAY but
     // binds the highlight to `element` — for prose names that collide
     // with another element's name, e.g. "the angle {ABC|angBint}"
-    // where the bare token would resolve to the triangle ABC.
+    // where the bare token would resolve to the triangle ABC. Since #136
+    // the DISPLAY half may be a whole phrase; see parseCaptionTokens.
     private renderCaptionText(host: HTMLElement, text: string): void {
         host.innerHTML = "";
-        const re = /\{([A-Za-z][A-Za-z0-9'\-]*)(?:\|([A-Za-z][A-Za-z0-9'\-]*))?\}/g;
-        let lastIndex = 0;
-        let m: RegExpExecArray | null;
-        while ((m = re.exec(text)) !== null) {
-            if (m.index > lastIndex) {
-                host.appendChild(document.createTextNode(text.slice(lastIndex, m.index)));
+        for (const tok of parseCaptionTokens(text)) {
+            if (tok.kind === "text") {
+                host.appendChild(document.createTextNode(tok.text));
+                continue;
             }
-            const display = m[1];
-            const target = m[2] != null ? m[2] : m[1];
-            const elem = this._slate.lookupElement(target);
+            const elem = this._slate.lookupElement(tok.target);
             if (elem) {
-                host.appendChild(this.buildCaptionRef(display, elem));
+                host.appendChild(this.buildCaptionRef(tok.display, elem));
             } else {
                 // Unknown — render plain so a typo doesn't surface as
                 // raw "{XYZ}" to the reader.
-                host.appendChild(document.createTextNode(display));
+                host.appendChild(document.createTextNode(tok.display));
             }
-            lastIndex = m.index + m[0].length;
-        }
-        if (lastIndex < text.length) {
-            host.appendChild(document.createTextNode(text.slice(lastIndex)));
         }
     }
 
