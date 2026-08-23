@@ -61,7 +61,7 @@ describe("snapshot verification", function() {
                 let slate: Slate | null = null;
                 try {
                     // Build and render the scene
-                    slate = buildScene(config);
+                    slate = buildScene(config, fileResult.filePath);
                     let canvas = renderScene(slate);
 
                     // Snapshot the initial state

@@ -26,9 +26,13 @@ const FAIL_PERCENT = 0.5;
 // -----------------------------------------------------------------
 // Build a Slate from a SlateConfig (parsed from HTML)
 // -----------------------------------------------------------------
-export function buildScene(config: SlateConfig): Slate {
+export function buildScene(config: SlateConfig, label?: string): Slate {
     let canvas = createCanvas(config.width, config.height);
     let slate = new Slate(canvas as unknown as HTMLCanvasElement);
+    // #154 — the fixture this scene came from. Diagnostics are mirrored to
+    // the console during a test run, where "element 'b' failed to construct"
+    // is unactionable without knowing which of ~650 fixtures produced it.
+    const scene = label != null ? label + ": " : "";
 
     // Parse background
     let bgcolor = parseColor(config.background, "#ffffff", "#ffffff");
@@ -49,7 +53,7 @@ export function buildScene(config: SlateConfig): Slate {
             slate.reportDiagnostic({
                 code: "unparseable-element",
                 key: String(paramStr),
-                message: "could not parse element param: " + String(paramStr),
+                message: scene + "could not parse element param: " + String(paramStr),
                 detail: { param: String(paramStr) },
             });
             continue;
@@ -64,7 +68,7 @@ export function buildScene(config: SlateConfig): Slate {
             slate.reportDiagnostic({
                 code: "construction-failed",
                 key: String(param.name),
-                message: "element '" + String(param.name) + "' failed to construct: "
+                message: scene + "element '" + String(param.name) + "' failed to construct: "
                     + String((e as Error).message),
                 detail: { elem: String(param.name) },
             });
