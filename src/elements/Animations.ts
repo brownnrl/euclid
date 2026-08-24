@@ -25,6 +25,7 @@ export enum AllAnimations {
     POINT_APPEAR,
     POINT_INTERSECT,                 // future
     POINT_SLIDE,
+    POINT_FOLLOW_PATH,
     LINE_STRAIGHT_EDGE_CONNECT,
     LINE_STRAIGHT_EDGE_EXTEND,
     LINE_COMPASS_TRANSFER,           // future
@@ -46,6 +47,7 @@ export const A = {
         appear:              AllAnimations.POINT_APPEAR,
         intersect:           AllAnimations.POINT_INTERSECT,           // future
         slide:               AllAnimations.POINT_SLIDE,
+        followPath:          AllAnimations.POINT_FOLLOW_PATH,
     },
     Line: {
         straightEdgeConnect: AllAnimations.LINE_STRAIGHT_EDGE_CONNECT,
