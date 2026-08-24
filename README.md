@@ -1,5 +1,9 @@
 # geomlib
 
+[![tests](https://github.com/brownnrl/euclid/actions/workflows/test.yml/badge.svg)](https://github.com/brownnrl/euclid/actions/workflows/test.yml)
+[![CodeQL](https://github.com/brownnrl/euclid/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/brownnrl/euclid/actions/workflows/github-code-scanning/codeql)
+[![npm](https://img.shields.io/npm/v/@brownnrl/geomlib.svg)](https://www.npmjs.com/package/@brownnrl/geomlib)
+
 A TypeScript port of Dr. David E. Joyce's *Geometry Applet* (Clark
 University, 1996, Java version 2.2). `geomlib` renders interactive
 Euclidean geometry diagrams on an HTML5 `<canvas>`: drag a point, and
@@ -107,7 +111,7 @@ npm install              # install dependencies (once)
 npm run build            # compile TypeScript (no emit; type-check only)
 npm test                 # run the full Mocha suite (unit + snapshot)
 npm run test:unit        # unit tests only
-npm run test:snapshot    # 700 rendered-pixel snapshot tests
+npm run test:snapshot    # 705 rendered-pixel snapshot tests
 npm run coverage         # tests + c8 code coverage report
 npm run bundle           # webpack dev-mode bundle to dist/bundle.js
 npm run bundle:prod      # webpack production (minified) bundle
@@ -117,6 +121,23 @@ python3 -m http.server   # serve view/test/* pages in a browser
 `npm publish` runs `test:unit` + `bundle:prod` via `prepublishOnly`,
 so the tarball always contains a fresh production-built bundle. Run
 `npm publish --dry-run` to preview what would ship without publishing.
+
+## Reports
+
+Regenerated and republished on each `npm publish`, so they track the
+released version rather than whatever was last run by hand.
+
+| Report | What it shows |
+|---|---|
+| [Code coverage](https://brownnrl.github.io/geomlib-reports/coverage/) | `c8` line/branch coverage of the TypeScript source. |
+| [Snapshot regression](https://brownnrl.github.io/geomlib-reports/snapshots/report.html) | Every construction scene the library renders, with drag interactions. Click a thumbnail for a live, draggable slate. |
+
+Both are generated locally (`npm run reports:build`) and pushed to
+[brownnrl/geomlib-reports](https://github.com/brownnrl/geomlib-reports),
+which GitHub Pages serves. They live in their own repository on purpose:
+the snapshot report is ~42 MB of PNGs, several times the size of this
+repository's entire history, and `git clone` fetches every branch by
+default — keeping it out means a clone of `euclid` stays small.
 
 ## Origin
 

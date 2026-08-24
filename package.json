@@ -35,7 +35,10 @@
     "coverage:report": "c8 report --reporter=html",
     "snapshots:clean": "rm -rf tests/snapshots && mkdir -p tests/snapshots && touch tests/snapshots/.gitkeep",
     "prepublishOnly": "npm run test:unit && npm run bundle:prod && npm run check:bundle",
-    "archive:index": "node scripts/build-archive-index.js"
+    "archive:index": "node scripts/build-archive-index.js",
+    "reports:build": "npm run coverage && npm run test:snapshot",
+    "reports:publish": "node scripts/publish-reports.js",
+    "postpublish": "npm run reports:publish"
   },
   "repository": {
     "type": "git",
