@@ -130,6 +130,8 @@ export function getConstructionName(cm: AllConstructions) : String {
         return "Point." + PointConstructions[cm];
     } else if (100 < cm && cm < 200) {
         return "Line." + LineConstructions[cm];
+    } else if (200 < cm && cm < 300) {
+        return "Circle." + CircleConstructions[cm];
     } else if (300 < cm && cm < 400) {
         return "Polygon." + PolygonConstructions[cm];
     } else if (400 < cm && cm < 500) {
