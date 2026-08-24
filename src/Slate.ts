@@ -538,7 +538,11 @@ export class Slate {
      * exactly as before. This only catches the pathological case.
      */
     private _isCentringOutlier(elem: GeomElement) : boolean {
-        const w = this._logicalWidth, h = this._logicalHeight;
+        // The GETTERS, not the private fields: _logicalWidth is 0 until
+        // init() sets it, and the getters fall back to the canvas bitmap.
+        // Reading the fields made this a silent no-op on any slate built
+        // without an explicit size — including the whole snapshot path.
+        const w = this.logicalWidth, h = this.logicalHeight;
         if (!(w > 0) || !(h > 0)) return false;   // no frame of reference
         const b = this._elementBounds(elem);
         if (b == null) return false;

@@ -346,10 +346,10 @@ describe("slate", () => {
 
         // A small figure plus one runaway circle, in a 500x320 frame.
         function scene(runawayRadius: number | null): Slate {   // arg only toggles the degenerate circle
+            // Deliberately NOT setting _logicalWidth/_logicalHeight: a
+            // 500x320 canvas is the frame of reference via the getters.
             const slate = new Slate(createCanvas(500, 320));
             slate.inTest = true;
-            (slate as any)._logicalWidth = 500;
-            (slate as any)._logicalHeight = 320;
             const mk = (spec: string) => {
                 const i = parseParam(spec);
                 const el = slate.createElement(i.construction, i.params, i.name);
@@ -451,6 +451,20 @@ describe("slate", () => {
             slate.captureCentringBounds();
             assert.equal(slate.centringOutliers.length, 1,
                 "a second capture must not accumulate duplicates");
+        });
+
+
+        it("works on a slate with no explicitly-set logical size", () => {
+            // The private _logicalWidth is 0 until init() sets it; the
+            // GETTER falls back to the canvas bitmap. Reading the field made
+            // this whole check a silent no-op on any slate built without an
+            // explicit size — which is every scene the snapshot suite builds.
+            const slate = scene(12000);
+            assert.equal((slate as any)._logicalWidth, 0,
+                "precondition: nothing set the logical size");
+            slate.captureCentringBounds();
+            assert.ok(slate.centringOutliers.indexOf("BIG") >= 0,
+                "the canvas bitmap must serve as the frame of reference");
         });
 
         it("centringOutliers hands back a copy", () => {
