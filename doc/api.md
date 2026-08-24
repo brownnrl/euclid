@@ -574,12 +574,28 @@ inflates the box until the centre transform pushes the real geometry off
 canvas (a blank slideshow; hit on I.35, I.42 and I.43).
 
 `captureCentringBounds()` measures only elements that actually **paint**,
-and stores the result; `centringBounds` reads it back and
+skips those with **runaway extent** (#162 — see below), and stores the
+result; `centringBounds` reads it back and
 `clearCentringBounds()` drops it. The test is per element type, because a
 colour slot an element never uses tells you nothing — `PointElement`'s
 `drawEdge`/`drawFace` are no-ops, so a point's `edgeColor` (which defaults
 to black when the author omits the field) is not ink. It falls back to the
 all-elements box if nothing paints at all.
+
+**Runaway elements are skipped (#162, 0.15.0+).** An element can paint *and*
+have unbounded extent: a circumcircle through near-collinear points grows
+without limit, and on the hyperbolic Desargues figure one reached a radius of
+~11,300 on a 500×320 canvas — a bounding box of roughly 22,600 × 23,100, so
+maximizing translated the figure into blank space. Only the sliver crossing
+the canvas is ever seen, so an element wider or taller than **10×** the
+authored canvas is left out of the centring measurement. The threshold is
+deliberately generous: real figures spill past their canvas by 2–4× and
+centre exactly as before. `figureBounds()` is **unchanged** — it still
+reports what the model contains; only the centring measurement is
+opinionated. `slate.centringOutliers` names what was left out, so a deck
+checker can surface a near-degenerate construction; nothing is reported as a
+diagnostic, because after this the figure centres correctly and badging it
+would flag a page that works.
 
 The box is captured **once** on entering the maximized view rather than
 recomputed: a resize mid-walk must re-centre on the frame the walk started

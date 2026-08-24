@@ -332,6 +332,135 @@ describe("slate", () => {
         });
     });
 
+
+    // #162 — an element can PAINT and still be pathologically large.
+    //
+    // #138 stopped an inkless off-canvas helper from dragging the centre
+    // away. This is the other half: a circumcircle through near-collinear
+    // points is unbounded, and on the hyperbolic Desargues figure one
+    // reached radius ~11,300 on a 500x320 canvas — bounds of roughly
+    // 22,600 x 23,100, so maximizing translated the figure into blank space.
+    // Only the sliver crossing the canvas is ever seen, so such an element
+    // must not decide where the centre is.
+    describe("centring outliers (#162)", () => {
+
+        // A small figure plus one runaway circle, in a 500x320 frame.
+        function scene(runawayRadius: number | null): Slate {   // arg only toggles the degenerate circle
+            const slate = new Slate(createCanvas(500, 320));
+            slate.inTest = true;
+            (slate as any)._logicalWidth = 500;
+            (slate as any)._logicalHeight = 320;
+            const mk = (spec: string) => {
+                const i = parseParam(spec);
+                const el = slate.createElement(i.construction, i.params, i.name);
+                el.nameColor = parseColor(i.nameColor, "black", "white");
+                el.vertexColor = parseColor(i.vertexColor, "red", "white");
+                el.edgeColor = parseColor(i.edgeColor, "black", "white");
+                return el;
+            };
+            mk("A;point;free;100,100");
+            mk("B;point;free;300,200");
+            mk("AB;line;connect;A,B");
+            if (runawayRadius != null) {
+                // The real shape of the bug: a circumcircle through THREE
+                // NEAR-COLLINEAR points. Its centre is computed internally
+                // (not a painted element), so the only thing that grows is
+                // the circle's own extent — which is exactly what #162 has
+                // to notice. The nearer to collinear, the larger the radius.
+                mk("N1;point;free;120,100");
+                mk("N2;point;free;260,100");
+                mk("N3;point;free;400,101");     // ~0.4 degrees off the line
+                mk("BIG;circle;circumcircle;N1,N2,N3");
+            }
+            slate.update();
+            return slate;
+        }
+
+        it("excludes an element far larger than the canvas", () => {
+            const slate = scene(12000);
+            const b = slate.captureCentringBounds()!;
+            assert.ok(b.maxX - b.minX < 500 * 10,
+                `centring box should not follow the runaway circle, got ` +
+                `${Math.round(b.maxX - b.minX)} wide`);
+            assert.ok(slate.centringOutliers.indexOf("BIG") >= 0,
+                "and it should say which element it left out");
+        });
+
+        it("leaves figureBounds() untouched", () => {
+            // The public bounds API still reports what the model contains;
+            // only the CENTRING measurement is opinionated.
+            const slate = scene(12000);
+            slate.captureCentringBounds();
+            const fb = slate.figureBounds()!;
+            assert.ok(fb.maxX - fb.minX > 500 * 10,
+                "figureBounds must still see the whole model");
+        });
+
+        it("does NOT exclude a figure that merely spills past its canvas", () => {
+            // Real decks run to ~2-4x their canvas and must centre exactly as
+            // before — the threshold is deliberately generous.
+            const slate = scene(null);
+            const mk = (spec: string) => {
+                const i = parseParam(spec);
+                const el = slate.createElement(i.construction, i.params, i.name);
+                el.edgeColor = "black"; el.nameColor = null; el.vertexColor = null;
+                return el;
+            };
+            mk("Wide;point;free;-600,-400");
+            mk("Wide2;point;free;1100,700");
+            mk("WW;line;connect;Wide,Wide2");
+            slate.update();
+            const b = slate.captureCentringBounds()!;
+            assert.deepEqual(slate.centringOutliers, [],
+                "a 1700x1100 figure on a 500x320 canvas is normal, not pathological");
+            assert.ok(b.minX <= -600 && b.maxX >= 1100,
+                "so it must still be measured in full");
+        });
+
+        it("reports no outliers on an ordinary figure", () => {
+            const slate = scene(null);
+            slate.captureCentringBounds();
+            assert.deepEqual(slate.centringOutliers, []);
+        });
+
+        it("still centres when EVERY element is an outlier", () => {
+            // Refusing to centre would be worse than centring on a runaway
+            // figure, so the fallback must always produce a box.
+            const slate = new Slate(createCanvas(500, 320));
+            slate.inTest = true;
+            (slate as any)._logicalWidth = 500;
+            (slate as any)._logicalHeight = 320;
+            const i = parseParam("P;point;free;0,0");
+            const p = slate.createElement(i.construction, i.params, i.name);
+            p.vertexColor = "red";
+            const j = parseParam("Q;point;free;99999,99999");
+            const q = slate.createElement(j.construction, j.params, j.name);
+            q.vertexColor = "red";
+            const k = parseParam("PQ;line;connect;P,Q");
+            const l = slate.createElement(k.construction, k.params, k.name);
+            l.edgeColor = "black"; l.nameColor = null; l.vertexColor = null;
+            slate.update();
+            const b = slate.captureCentringBounds();
+            assert.ok(b != null, "must never refuse to produce a centring box");
+        });
+
+        it("outliers are recomputed on each capture", () => {
+            const slate = scene(12000);
+            slate.captureCentringBounds();
+            assert.equal(slate.centringOutliers.length, 1);
+            slate.captureCentringBounds();
+            assert.equal(slate.centringOutliers.length, 1,
+                "a second capture must not accumulate duplicates");
+        });
+
+        it("centringOutliers hands back a copy", () => {
+            const slate = scene(12000);
+            slate.captureCentringBounds();
+            slate.centringOutliers.length = 0;
+            assert.equal(slate.centringOutliers.length, 1);
+        });
+    });
+
     describe("drag coordinates: 2D pivot scene", () => {
 
         it("should rotate non-pivot elements around F when dragging a derived point", () => {
