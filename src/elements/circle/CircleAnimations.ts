@@ -116,6 +116,16 @@ export class CircleCompassTransferAnimation extends Animation {
     public defaultRate = CIRCLE_TRANSFER_SWEEP_RATE;
     public defaultDurationMs = DEFAULT_CIRCLE_FILL_MS;
 
+    // #159 — keepCircles names are registered inside step1.setup, i.e. when
+    // the transfer runs. Declaring them here so deck validation accepts them
+    // at build time; without it, I.23's ten-circle count slide (the whole
+    // reason keepCircles exists) reports 24 diagnostics on a correct deck.
+    public declaredNames(args: any): string[] {
+        return (args && Array.isArray(args.keepCircles))
+            ? args.keepCircles.filter((n: any) => typeof n === "string" && n !== "")
+            : [];
+    }
+
     public build(target: GeomElement, slate: Slate, args: any): IAnimationStep[] {
         const circ = target as CircleElement;
         const P = circ.Center;

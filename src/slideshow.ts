@@ -40,6 +40,11 @@ export function canonicaliseSlideNames(
         const elem = slate.lookupElement(name);
         if (elem != null && elem.name != null) {
             canonical.add(elem.name);
+        } else if (slate.isDeferredName(name)) {
+            // #159 — a macro will create this name later in the walk. Keep it
+            // in the set (it matches nothing yet, which is correct) but do
+            // not report it: jumping straight to a late slide is not an error.
+            canonical.add(name);
         } else {
             canonical.add(name);
             unmatched.push(name);

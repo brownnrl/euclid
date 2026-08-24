@@ -122,6 +122,19 @@ export abstract class Animation {
     public defaultRate?: number;
 
     public abstract build(target: GeomElement, slate: Slate, args: any): IAnimationStep[];
+
+    // #159 — names this animation CREATES at run time, given its args.
+    //
+    // A macro animation can register new, name-addressable elements partway
+    // through a walk: compassTransfer's `keepCircles` is the case in point,
+    // and a later slide legitimately addresses those names. Deck validation
+    // (#154) runs when the figure is BUILT, so without this those names look
+    // like typos and a correct deck gets a warning badge.
+    //
+    // Declaring them here lets the validator accept a name before it exists,
+    // while still catching genuine typos and stale targets. Default: none,
+    // so an animation that creates nothing needs no change.
+    public declaredNames(args: any): string[] { return []; }
 }
 
 // InstantAnimation — the registry's fallback. Used explicitly via
