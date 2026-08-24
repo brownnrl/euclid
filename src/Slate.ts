@@ -110,6 +110,11 @@ export class Slate {
     // can't drift as slides reveal and hide elements, and so cloneAside's
     // centre phase (#99) eases to exactly the same target.
     private _centringBounds : { minX: number, maxX: number, minY: number, maxY: number } | null = null;
+    // #162 — an element wider or taller than this many canvases is treated
+    // as unbounded for centring purposes. Generous on purpose: real figures
+    // spill past their canvas by ~2x and must be unaffected.
+    private static readonly CENTRING_OUTLIER_FACTOR = 10;
+    private _centringOutliers : string[] = [];
     private _viewOffsetX : number = 0;
     private _viewOffsetY : number = 0;
     private _viewScale : number = 1;
@@ -496,9 +501,61 @@ export class Slate {
     // all (a figure built entirely from helpers), so the caller always gets
     // the same shape of answer as before.
     captureCentringBounds() : { minX: number, maxX: number, minY: number, maxY: number } | null {
-        const inked = this._bounds(false, (e) => this._paintsInk(e));
-        this._centringBounds = inked != null ? inked : this._bounds(false);
+        this._centringOutliers = [];
+        const inked = this._bounds(false, (e) => {
+            if (!this._paintsInk(e)) return false;
+            if (this._isCentringOutlier(e)) {
+                if (e.name != null) this._centringOutliers.push(e.name);
+                return false;
+            }
+            return true;
+        });
+        // Everything was an outlier (or nothing paints) — better to centre on
+        // a runaway figure than to refuse to centre at all.
+        this._centringBounds = inked != null
+            ? inked
+            : (this._bounds(false, (e) => this._paintsInk(e)) || this._bounds(false));
         return this._centringBounds;
+    }
+
+    /**
+     * Should this element be left out of the centring box (#162)?
+     *
+     * #138 stopped an element that paints *nothing* from dragging the centre
+     * off-canvas. This is the other half: an element that legitimately paints
+     * but has runaway extent. A circumcircle through near-collinear points is
+     * unbounded, and on the hyperbolic Desargues figure one reached a radius
+     * of ~11,300 on a 500x320 canvas — bounds of roughly 22,600 x 23,100, so
+     * maximizing translated the whole figure into blank space.
+     *
+     * That is not an authoring mistake: Desargues' theorem is *about*
+     * collinearity, so constructions of that kind keep producing
+     * near-degenerate circles. Only the sliver crossing the canvas is ever
+     * seen, so such an element should not decide where the centre is.
+     *
+     * The threshold is deliberately generous — figures legitimately spill
+     * past their canvas (a Book I deck runs to ~2x) and must keep centring
+     * exactly as before. This only catches the pathological case.
+     */
+    private _isCentringOutlier(elem: GeomElement) : boolean {
+        const w = this._logicalWidth, h = this._logicalHeight;
+        if (!(w > 0) || !(h > 0)) return false;   // no frame of reference
+        const b = this._elementBounds(elem);
+        if (b == null) return false;
+        return (b.maxX - b.minX) > w * Slate.CENTRING_OUTLIER_FACTOR
+            || (b.maxY - b.minY) > h * Slate.CENTRING_OUTLIER_FACTOR;
+    }
+
+    /**
+     * Names of elements left out of the last centring measurement (#162).
+     *
+     * Exposed rather than reported: after this fix the figure centres
+     * correctly, so badging it would flag a page that now works. A deck
+     * checker can still surface these to point at a near-degenerate
+     * construction the author may want to know about.
+     */
+    get centringOutliers() : string[] {
+        return this._centringOutliers.slice();
     }
 
     get centringBounds() : { minX: number, maxX: number, minY: number, maxY: number } | null {
@@ -509,29 +566,44 @@ export class Slate {
         this._centringBounds = null;
     }
 
-    private _bounds(visibleOnly: boolean,
-                    accept?: (e: GeomElement) => boolean) : { minX: number, maxX: number, minY: number, maxY: number } | null {
+    // One element's axis-aligned extent, or null when it contributes none.
+    // Split out of _bounds (#162) so an element can be judged on its own
+    // size before it is allowed to influence the figure's centre.
+    private _elementBounds(elem: GeomElement) : { minX: number, maxX: number, minY: number, maxY: number } | null {
         let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
         const add = (x: number, y: number) => {
             if (x < minX) minX = x; if (x > maxX) maxX = x;
             if (y < minY) minY = y; if (y > maxY) maxY = y;
         };
+        if (elem instanceof PolygonElement) {
+            for (let v of elem.V) add(v.x, v.y);
+        } else if (elem instanceof CircleElement) {
+            const r = elem.radius;
+            add(elem.Center.x - r, elem.Center.y - r);
+            add(elem.Center.x + r, elem.Center.y + r);
+        } else if (elem instanceof LineElement) {
+            add(elem.A.x, elem.A.y);
+            add(elem.B.x, elem.B.y);
+        } else if (elem instanceof PointElement) {
+            add(elem.x, elem.y);
+        }
+        if (minX === Infinity) return null;
+        return { minX, maxX, minY, maxY };
+    }
+
+    private _bounds(visibleOnly: boolean,
+                    accept?: (e: GeomElement) => boolean) : { minX: number, maxX: number, minY: number, maxY: number } | null {
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
         for (let elem of this._elements) {
             if (elem.name == null || elem.name.startsWith("screen")) continue;
             if (visibleOnly && !elem.visible) continue;
             if (accept != null && !accept(elem)) continue;
-            if (elem instanceof PolygonElement) {
-                for (let v of elem.V) add(v.x, v.y);
-            } else if (elem instanceof CircleElement) {
-                const r = elem.radius;
-                add(elem.Center.x - r, elem.Center.y - r);
-                add(elem.Center.x + r, elem.Center.y + r);
-            } else if (elem instanceof LineElement) {
-                add(elem.A.x, elem.A.y);
-                add(elem.B.x, elem.B.y);
-            } else if (elem instanceof PointElement) {
-                add(elem.x, elem.y);
-            }
+            const b = this._elementBounds(elem);
+            if (b == null) continue;
+            if (b.minX < minX) minX = b.minX;
+            if (b.maxX > maxX) maxX = b.maxX;
+            if (b.minY < minY) minY = b.minY;
+            if (b.maxY > maxY) maxY = b.maxY;
         }
         if (minX === Infinity) return null;
         return { minX, maxX, minY, maxY };
