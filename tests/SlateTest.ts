@@ -475,6 +475,159 @@ describe("slate", () => {
         });
     });
 
+
+    // #164 — the author names the centring target.
+    //
+    // #162 makes the DEFAULT robust: a pathological element can no longer
+    // ruin an ordinary figure. This is the other half — the case where no
+    // automatic rule can be right. Hyperbolic geodesics ARE large circles,
+    // so the Desargues figure's bounds cannot be made to match its canvas by
+    // any arrangement of its points; the author knows the centre and until
+    // now had no way to say so.
+    describe("centerOn (#164)", () => {
+
+        // A figure whose bounds centre (250, 250) is deliberately NOT the
+        // interesting centre — the marker sits well off to one side.
+        function scene(): Slate {
+            const slate = new Slate(createCanvas(500, 320));
+            slate.inTest = true;
+            const mk = (spec: string) => {
+                const i = parseParam(spec);
+                const el = slate.createElement(i.construction, i.params, i.name);
+                el.nameColor = parseColor(i.nameColor, "black", "white");
+                el.vertexColor = parseColor(i.vertexColor, "red", "white");
+                el.edgeColor = parseColor(i.edgeColor, "black", "white");
+                return el;
+            };
+            mk("A;point;free;0,0");
+            mk("B;point;free;500,500");
+            mk("AB;line;connect;A,B");
+            // The target: addressable, but carries no label and paints no
+            // ink of its own — the shape `diskcenter` takes on the real page.
+            const m = mk("mark;point;free;400,100");
+            m.nameColor = null;
+            m.vertexColor = null;
+            slate.update();
+            return slate;
+        }
+
+        it("centres the box on the named element", () => {
+            const slate = scene();
+            const before = slate.captureCentringBounds()!;
+            assert.equal((before.minX + before.maxX) / 2, 250,
+                "precondition: bounds centre is the midpoint of A..B");
+
+            slate.clearCentringBounds();
+            slate.setCenterOn("mark");
+            const b = slate.captureCentringBounds()!;
+            assert.equal((b.minX + b.maxX) / 2, 400);
+            assert.equal((b.minY + b.maxY) / 2, 100);
+        });
+
+        it("works on an element with no label and no ink", () => {
+            // The Desargues target (`diskcenter`) is drawn with nameColor 0.
+            // Lookup must not assume a labelled or painting element.
+            const slate = scene();
+            assert.equal(slate.lookupElement("mark")!.nameColor, null,
+                "precondition: the target carries no label");
+            slate.setCenterOn("mark");
+            const b = slate.captureCentringBounds()!;
+            assert.equal((b.minX + b.maxX) / 2, 400);
+        });
+
+        it("preserves the box's extent, shifting only the centre", () => {
+            // cloneAside sizes its aside from this box, so the extent has to
+            // survive — only the centre is the author's to override.
+            const slate = scene();
+            const before = slate.captureCentringBounds()!;
+            const w = before.maxX - before.minX, h = before.maxY - before.minY;
+            slate.clearCentringBounds();
+            slate.setCenterOn("mark");
+            const after = slate.captureCentringBounds()!;
+            assert.equal(after.maxX - after.minX, w);
+            assert.equal(after.maxY - after.minY, h);
+        });
+
+        it("uses an element's own centre when it has extent", () => {
+            const slate = scene();
+            const i = parseParam("Cc;point;free;100,100");
+            slate.createElement(i.construction, i.params, i.name);
+            const j = parseParam("K;circle;radius;Cc,A");
+            const k = slate.createElement(j.construction, j.params, j.name);
+            k.edgeColor = "black";
+            slate.update();
+            slate.setCenterOn("K");
+            const b = slate.captureCentringBounds()!;
+            assert.equal((b.minX + b.maxX) / 2, 100, "a circle centres on its centre");
+            assert.equal((b.minY + b.maxY) / 2, 100);
+        });
+
+        it("resolves through the alias table", () => {
+            const slate = scene();
+            slate.addAlias("theCentre", "mark");
+            slate.setCenterOn("theCentre");
+            const b = slate.captureCentringBounds()!;
+            assert.equal((b.minX + b.maxX) / 2, 400);
+        });
+
+        it("reports an unresolvable name and falls back to bounds", () => {
+            const slate = scene();
+            slate.setCenterOn("nope");
+            const codes = slate.diagnostics.map((d) => d.code);
+            assert.ok(codes.indexOf("unknown-center-on") >= 0,
+                "a typo must not be swallowed: " + JSON.stringify(codes));
+            const b = slate.captureCentringBounds()!;
+            assert.equal((b.minX + b.maxX) / 2, 250,
+                "and the figure still centres the old way");
+        });
+
+        it("changes nothing when it is not set", () => {
+            // The default path must be untouched — every existing deck.
+            const slate = scene();
+            assert.equal(slate.centerOn, null);
+            const b = slate.captureCentringBounds()!;
+            assert.equal((b.minX + b.maxX) / 2, 250);
+            assert.deepEqual(slate.diagnostics.map((d) => d.code), []);
+        });
+
+        it("setCenterOn(null) goes back to bounds centring", () => {
+            const slate = scene();
+            slate.setCenterOn("mark");
+            slate.setCenterOn(null);
+            assert.equal(slate.centerOn, null);
+            const b = slate.captureCentringBounds()!;
+            assert.equal((b.minX + b.maxX) / 2, 250);
+        });
+
+        it("survives clearCentringBounds — it is config, not measurement", () => {
+            const slate = scene();
+            slate.setCenterOn("mark");
+            slate.captureCentringBounds();
+            slate.clearCentringBounds();
+            assert.equal(slate.centerOn, "mark");
+            const b = slate.captureCentringBounds()!;
+            assert.equal((b.minX + b.maxX) / 2, 400,
+                "leaving and re-entering the maximized view must re-apply it");
+        });
+
+        it("still honours the #162 outlier exclusion", () => {
+            // The two features compose: the runaway circle neither defines
+            // the extent nor drags the centre.
+            const slate = scene();
+            const i = parseParam("Far;point;free;-12000,0");
+            slate.createElement(i.construction, i.params, i.name);
+            const j = parseParam("BIG;circle;radius;Far,A");
+            const k = slate.createElement(j.construction, j.params, j.name);
+            k.edgeColor = "black";
+            slate.update();
+            slate.setCenterOn("mark");
+            const b = slate.captureCentringBounds()!;
+            assert.ok(slate.centringOutliers.indexOf("BIG") >= 0);
+            assert.equal((b.minX + b.maxX) / 2, 400);
+            assert.ok(b.maxX - b.minX < 500 * 10, "extent stays sane too");
+        });
+    });
+
     describe("drag coordinates: 2D pivot scene", () => {
 
         it("should rotate non-pivot elements around F when dragging a derived point", () => {

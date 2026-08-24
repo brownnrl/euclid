@@ -86,6 +86,7 @@ interface IInitialization {
     align? : Align;
     canvasid? : string;
     pivot?: string;
+    centerOn?: string;
     font?: string;
     fontsize?: number;
     elements: (IConstructionInfo | string)[];
@@ -114,6 +115,7 @@ interface IInitialization {
 | `align` | `align` | `Align.CENTRAL` | Default label placement applied to every element. CENTRAL chooses ABOVE/BELOW/LEFT/RIGHT dynamically based on the label's quadrant relative to the canvas center. |
 | `canvasid` | (none — applet's host element) | `"canvasid"` | DOM `id` of the `<canvas>` to draw into. |
 | `pivot` | `pivot` | (no pivot) | Name of a point used as the rotation/scale center when the user drags a non-draggable point. Two-part form `"P,plane"` pivots on a non-screen plane (3D). See [Drag pipeline](architecture.md#drag-pipeline-movepick--translatecoordinates--rotatecoordinates). |
+| `centerOn` | (none) | (bounds-derived) | Name of the element the maximized / presentation view centres on, instead of deriving the centre from the figure's bounds. Resolved through the alias table; the element needs no label and need not be visible. An unresolvable name is reported through [diagnostics](#diagnostics) and the view falls back to bounds centring. Use it where no automatic rule can be right — a figure built from hyperbolic geodesics has bounds several times its canvas whatever its points do. Often takes the same value as `pivot`. |
 | `font` | `font` | `"Times New Roman"` | Font family for element labels. Set globally on `GeomElement` via `GeomElement.setFont()`. Java default is `"TimesRoman"`. |
 | `fontsize` | `fontsize` | `18` | Pixel size for the label font. |
 | `elements` | `e[1]`, `e[2]`, … | (required) | Ordered list of element specs. May mix `IConstructionInfo` objects and Java param strings. |
@@ -1156,6 +1158,8 @@ The publicly-useful methods, all defined in
 | `slate.update()` | Walk `_elements` calling `update()`, then redraw. Use after directly mutating an element's coords. |
 | `slate.reset()` | Restore every element to its construction-time position (sliders rewind to their initial coords) and redraw. Same action as the SlateControls reset button (`r` / `space`). |
 | `slate.setPivot(name)` | Set the rotation pivot. `"P"` for screen-plane pivot, `"P,plane"` for a 3D pivot on a non-screen plane. See [Drag pipeline](architecture.md#drag-pipeline-movepick--translatecoordinates--rotatecoordinates). |
+| `slate.setCenterOn(name)` | Set (or clear, with `null`) the element the maximized / presentation view centres on. Reports an unresolvable name immediately rather than on first maximize. |
+| `slate.centerOn` | The current centring target's name, or `null` for bounds-derived centring. |
 | `slate.bgcolor` | Get or set the canvas background color. |
 
 Lower-level methods (`createElement`, `convertParams`, `findConstruction`,

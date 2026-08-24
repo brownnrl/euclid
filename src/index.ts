@@ -251,6 +251,9 @@ export interface IInitialization {
     align? : align;
     canvasid? : string;
     pivot?: string;
+    // #164 — element the maximized / presentation view centres on. Absent or
+    // unresolvable falls back to bounds-derived centring.
+    centerOn?: string;
     font?: string;
     fontsize?: number;
     // Authored logical coordinate size (#71). Optional — normally inferred
@@ -638,6 +641,12 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
         slate.animationConfig = i.animationConfig;
     }
 
+    if (i.centerOn != null) {
+        // After the elements are built, so the name can be resolved (and an
+        // unresolvable one reported) at load time rather than on first
+        // maximize — a badge nobody sees until then is a badge too late.
+        slate.setCenterOn(i.centerOn);
+    }
     if(i.pivot != null) {
         slate.setPivot(i.pivot);
     }
