@@ -129,6 +129,10 @@ export class Slate {
     // every other figure on the page.
     private _diagnostics : DiagnosticLog = new DiagnosticLog();
     private _diagnosticListeners : Array<(s: Slate) => void> = [];
+    // #159 — names a macro animation will create partway through the walk
+    // (compassTransfer's keepCircles). They do not exist at build time, so
+    // both deck validators consult this before calling a name unresolvable.
+    private _deferredNames : Set<string> = new Set();
     protected _screen : PlaneElement;
     protected _pick : PointElement;
     protected _canvas : SlateCanvas;
@@ -803,6 +807,25 @@ export class Slate {
         }
         this._dispatchDiagnostic(rec);
         this._notifyDiagnosticListeners();
+    }
+
+    /**
+     * Register names that an animation will create later in the walk (#159).
+     *
+     * Deck validation runs when the figure is built, so a name a macro has
+     * yet to register would otherwise look like a typo. This does NOT create
+     * the elements — lookupElement still returns null until the animation
+     * runs; it only tells the validators that the name is accounted for.
+     */
+    declareDeferredNames(names: string[]) : void {
+        for (const n of names || []) {
+            if (typeof n === "string" && n !== "") this._deferredNames.add(n);
+        }
+    }
+
+    /** True when some animation on this slate has claimed the name (#159). */
+    isDeferredName(name: string) : boolean {
+        return this._deferredNames.has(name);
     }
 
     /** Everything this slate has reported, oldest first. */

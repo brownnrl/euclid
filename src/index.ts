@@ -1,6 +1,6 @@
 import {GeomElement, Align as align} from "./elements/GeomElement"
 import {AllConstructions, E as e} from "./elements/Constructions"
-import {AllAnimations, A} from "./elements/Animations"
+import {AllAnimations, A, findAnimation} from "./elements/Animations"
 // Per-type animation modules — imported for side effects so each
 // Animation subclass registers with the registry at module load. Adding
 // a new animation file is a one-line `import "./elements/.../X"` here.
@@ -70,6 +70,19 @@ export function highlightByName(name: string, on: boolean = true,
 // Reporting is deduped per slate, so a name the walk later hits again
 // does not report twice.
 function validateSlides(slate: Slate, slides: ISlide[]): void {
+    // #159 — first pass: let each animation declare the names it will create
+    // at run time, so a later slide addressing them is not mistaken for a
+    // typo. compassTransfer's keepCircles is the motivating case.
+    for (const slide of slides) {
+        const anims = slide.transition && slide.transition.animations;
+        if (anims == null) continue;
+        for (const entry of anims) {
+            const animation = findAnimation(entry.name);
+            if (animation == null) continue;
+            slate.declareDeferredNames(animation.declaredNames(entry.args));
+        }
+    }
+
     for (let n = 0; n < slides.length; n++) {
         const slide = slides[n];
         for (const field of ["visible", "highlighted"]) {
@@ -77,6 +90,7 @@ function validateSlides(slate: Slate, slides: ISlide[]): void {
             if (names == null) continue;
             for (const name of names) {
                 if (slate.lookupElement(name) != null) continue;
+                if (slate.isDeferredName(name)) continue;   // #159
                 slate.reportDiagnostic({
                     code: "unknown-slide-name",
                     key: field + ":" + name,
@@ -93,6 +107,7 @@ function validateSlides(slate: Slate, slides: ISlide[]): void {
         for (const entry of anims) {
             if (entry.elem == null) continue;
             if (slate.lookupElement(entry.elem) != null) continue;
+            if (slate.isDeferredName(entry.elem)) continue;   // #159
             slate.reportDiagnostic({
                 code: "unknown-element",
                 key: String(entry.elem),

@@ -688,7 +688,19 @@ clearing there would discard exactly the warnings worth keeping.
 
 **Decks are checked at load.** Every name in a slide's `visible` /
 `highlighted` set and every animation `elem:` is resolved once when the
-figure is built, so a stale reference reports immediately. Without that
+figure is built, so a stale reference reports immediately.
+
+**Names a macro creates are exempt (#159, 0.15.0+).** An animation can
+register new, name-addressable elements partway through a walk —
+`A.Circle.compassTransfer`'s `keepCircles` is the case in point, and a later
+slide legitimately addresses those names. Because validation runs at build
+time, such a name would otherwise look like a typo. An animation declares
+what it will create by overriding `declaredNames(args)`, and the slate
+records those via `declareDeferredNames()`; both the load-time and runtime
+validators consult `isDeferredName()` before reporting. Declaring a name does
+**not** create the element — `lookupElement` still returns null until the
+animation runs. Names no animation claims are still reported, so genuine
+typos and stale targets are unaffected. Without that
 the diagnostic would only fire if a viewer actually advanced to the
 offending slide — the case that goes unnoticed, and one that would leave
 a build-time checker seeing a clean page.

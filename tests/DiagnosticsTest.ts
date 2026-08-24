@@ -10,6 +10,8 @@ import * as assert from "assert";
 import {createCanvas} from "canvas";
 import {Slate} from "../src/Slate";
 import {E, init, slates} from "../src/index";
+import {A, findAnimation} from "../src/elements/Animations";
+import {computeSlideState} from "../src/slideshow";
 import {
     DiagnosticLog, worstSeverity, dedupeKeyOf, diagnosticEventDetail,
 } from "../src/Diagnostics";
@@ -348,6 +350,140 @@ describe("diagnostics (#154)", () => {
             });
             assert.equal(s.diagnostics.length, 0,
                 "aliases resolve in slide sets since #151; the checker must agree");
+        });
+    });
+
+
+    // #159 — names a MACRO animation creates at run time.
+    //
+    // compassTransfer's `keepCircles` registers its circles inside the
+    // animation's own setup, so they do not exist when the figure is built.
+    // Deck validation runs at build time, so without a declaration those
+    // names look like typos and a correct deck gets a warning badge — which
+    // is exactly what happened to I.23's ten-circle count slide, the whole
+    // reason keepCircles exists. The danger was that the obvious "fix" is to
+    // delete the names, which breaks the deck.
+    describe("deferred macro names (#159)", () => {
+
+        function initWith(canvasid: string, extra: any): Slate {
+            const canvas: any = createCanvas(300, 300);
+            canvas.id = canvasid;
+            const savedDoc = (global as any).document;
+            (global as any).document = {
+                getElementById: (id: string) => (id === canvasid ? canvas : null),
+            };
+            try {
+                init(Object.assign({
+                    background: "0,0,100", title: canvasid, canvasid: canvasid,
+                    elements: [
+                        { name: "P", construction: E.Point.free, params: [60, 200] },
+                        { name: "C", construction: E.Point.free, params: [160, 200] },
+                        { name: "D", construction: E.Point.free, params: [220, 180] },
+                        { name: "K", construction: E.Circle.radius, params: ["P", "C", "D"] },
+                    ],
+                }, extra));
+                return slates[slates.length - 1];
+            } finally {
+                if (savedDoc === undefined) delete (global as any).document;
+                else (global as any).document = savedDoc;
+            }
+        }
+
+        // A deck shaped like I.23: a transfer that keeps its circles, and a
+        // later slide that addresses them.
+        const KEPT = ["Ka", "Kc", "Kc2", "KT"];
+        const transferSlides = (lateNames: string[]) => [
+            { text: "one", visible: ["K"] },
+            { text: "transfer", visible: ["K"], transition: { animations: [
+                { elem: "K", name: A.Circle.compassTransfer,
+                  args: { keepCircles: KEPT } },
+            ] } },
+            { text: "count them", visible: ["K"].concat(lateNames),
+              highlighted: lateNames },
+        ];
+
+        it("an animation declares nothing by default", () => {
+            const anim = findAnimation(A.Line.straightEdgeConnect)!;
+            assert.deepEqual(anim.declaredNames({}), [],
+                "only a macro that creates elements needs to opt in");
+        });
+
+        it("compassTransfer declares its keepCircles", () => {
+            const anim = findAnimation(A.Circle.compassTransfer)!;
+            assert.deepEqual(anim.declaredNames({ keepCircles: KEPT }), KEPT);
+            assert.deepEqual(anim.declaredNames({}), [],
+                "no keepCircles means nothing is claimed");
+        });
+
+        it("ignores empty or non-string entries in keepCircles", () => {
+            const anim = findAnimation(A.Circle.compassTransfer)!;
+            assert.deepEqual(
+                anim.declaredNames({ keepCircles: ["Ka", "", null, 7, "KT"] }),
+                ["Ka", "KT"]);
+        });
+
+        it("the slate records and reports declared names", () => {
+            const s = new Slate(createCanvas(100, 100) as any);
+            s.inTest = true;
+            assert.equal(s.isDeferredName("Ka"), false);
+            s.declareDeferredNames(["Ka", "KT"]);
+            assert.ok(s.isDeferredName("Ka"));
+            assert.ok(s.isDeferredName("KT"));
+            assert.equal(s.isDeferredName("nope"), false);
+            assert.equal(s.lookupElement("Ka"), null,
+                "declaring a name must NOT conjure the element — only the " +
+                "validators are told, the slate stays honest");
+        });
+
+        it("a later slide may address the kept names without a warning", () => {
+            let s!: Slate;
+            capture(() => { s = initWith("m1", { slides: transferSlides(KEPT) }); });
+            assert.deepEqual(s.diagnostics.map((d) => d.message), [],
+                "this is the I.23 case: the deck is correct and must stay quiet");
+        });
+
+        it("an animation may target a kept name without a warning", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWith("m2", { slides: [
+                    { text: "one", visible: ["K"] },
+                    { text: "transfer", visible: ["K"], transition: { animations: [
+                        { elem: "K", name: A.Circle.compassTransfer,
+                          args: { keepCircles: KEPT } },
+                    ] } },
+                    { text: "re-show one", visible: ["K", "Ka"],
+                      transition: { animations: [
+                          { elem: "Ka", name: A.Circle.compass },
+                      ] } },
+                ] });
+            });
+            assert.deepEqual(s.diagnostics.map((d) => d.code), []);
+        });
+
+        it("STILL reports a name no macro claimed", () => {
+            // The fix must not become a blanket amnesty: a real typo in the
+            // same deck has to survive it.
+            let s!: Slate;
+            capture(() => {
+                s = initWith("m3", { slides: transferSlides(["Ka", "Kc", "TYPO"]) });
+            });
+            const names = s.diagnostics.map((d) => (d.detail as any).name);
+            assert.ok(names.indexOf("TYPO") >= 0,
+                "an unclaimed name must still be reported: " + JSON.stringify(names));
+            assert.equal(names.indexOf("Ka"), -1, "but the claimed ones stay quiet");
+        });
+
+        it("computeSlideState does not report a deferred name either", () => {
+            // A viewer can jump straight to a late slide, before the macro
+            // that creates the names has run.
+            const s = new Slate(createCanvas(200, 200) as any);
+            s.inTest = true;
+            s.createElement(E.Point.free, [10, 10], "A");
+            s.update();
+            s.declareDeferredNames(["Ka"]);
+            const { warns } = capture(() =>
+                computeSlideState(s, [{ text: "", visible: ["A", "Ka"] }], 0));
+            assert.deepEqual(warns, []);
         });
     });
 
