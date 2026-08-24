@@ -110,6 +110,10 @@ export class Slate {
     // can't drift as slides reveal and hide elements, and so cloneAside's
     // centre phase (#99) eases to exactly the same target.
     private _centringBounds : { minX: number, maxX: number, minY: number, maxY: number } | null = null;
+    // #164 — author-named element the maximized / presentation view centres
+    // on, instead of deriving the centre from the figure's bounds. Config,
+    // not measurement: clearCentringBounds() must NOT drop it.
+    private _centerOnName : string | null = null;
     // #162 — an element wider or taller than this many canvases is treated
     // as unbounded for centring purposes. Generous on purpose: real figures
     // spill past their canvas by ~2x and must be unaffected.
@@ -512,10 +516,73 @@ export class Slate {
         });
         // Everything was an outlier (or nothing paints) — better to centre on
         // a runaway figure than to refuse to centre at all.
-        this._centringBounds = inked != null
+        this._centringBounds = this._recentreOnTarget(inked != null
             ? inked
-            : (this._bounds(false, (e) => this._paintsInk(e)) || this._bounds(false));
+            : (this._bounds(false, (e) => this._paintsInk(e)) || this._bounds(false)));
         return this._centringBounds;
+    }
+
+    /**
+     * Name the element the maximized / presentation view centres on (#164).
+     *
+     * Bounds-derived centring stays the default and is right for nearly every
+     * figure. It cannot be right for some: the hyperbolic Desargues figure is
+     * built from geodesics, which ARE large circles, so no arrangement of its
+     * points makes its bounds match its canvas. #162 keeps such a figure from
+     * landing off-screen; this lets the author say where the centre actually
+     * is. Sits beside `pivot`, and often takes the same value.
+     *
+     * The name is resolved through the alias table and needs no label and no
+     * visibility — a zero-colour marker point is a perfectly good target, and
+     * is exactly what the Desargues page uses (`diskcenter`). An unresolvable
+     * name is reported (#154) and the figure falls back to bounds centring.
+     */
+    setCenterOn(name: string | null) : void {
+        this._centerOnName =
+            (typeof name === "string" && name !== "") ? name : null;
+        if (this._centerOnName != null
+                && this.lookupElement(this._centerOnName) == null) {
+            this.reportDiagnostic({
+                code: "unknown-center-on",
+                key: this._centerOnName,
+                message: "centerOn names '" + this._centerOnName +
+                    "', but no element or alias resolves to it \u2014 the " +
+                    "maximized view falls back to centring on the figure's " +
+                    "bounds. Check for a typo, or for a target left behind " +
+                    "by a figure change.",
+                detail: { centerOn: this._centerOnName },
+            });
+        }
+    }
+
+    /** The element name the view centres on, or null for bounds centring. */
+    get centerOn() : string | null {
+        return this._centerOnName;
+    }
+
+    /**
+     * Slide a measured box so its midpoint is the centerOn element's centre.
+     *
+     * Shifted rather than replaced: the box's EXTENT is still meaningful to
+     * other callers — cloneAside sizes its aside from it — so only the centre
+     * is overridden. For an element with extent, its own bounding-box centre
+     * is the natural reading of "centre on this".
+     */
+    private _recentreOnTarget(
+            b: { minX: number, maxX: number, minY: number, maxY: number } | null
+        ) : { minX: number, maxX: number, minY: number, maxY: number } | null {
+        if (this._centerOnName == null) return b;
+        const elem = this.lookupElement(this._centerOnName);
+        if (elem == null) return b;          // reported in setCenterOn
+        const eb = this._elementBounds(elem);
+        if (eb == null) return b;
+        const cx = (eb.minX + eb.maxX) / 2, cy = (eb.minY + eb.maxY) / 2;
+        // Nothing painted at all — centre on the target with no extent.
+        if (b == null) return { minX: cx, maxX: cx, minY: cy, maxY: cy };
+        const dx = cx - (b.minX + b.maxX) / 2;
+        const dy = cy - (b.minY + b.maxY) / 2;
+        return { minX: b.minX + dx, maxX: b.maxX + dx,
+                 minY: b.minY + dy, maxY: b.maxY + dy };
     }
 
     /**

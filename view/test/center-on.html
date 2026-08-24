@@ -1,0 +1,154 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #164 centerOn names the centring target</title>
+<style>
+  body { font-family: sans-serif; }
+  p { max-width: 760px; color: #444; }
+  .pair { display: flex; gap: 28px; flex-wrap: wrap; }
+  .pair figure { margin: 0; }
+  figcaption { font-size: 13px; color: #555; max-width: 500px; margin-top: 6px; }
+  canvas { border: 1px solid #ccc; }
+  code { background: #f4f4f4; padding: 1px 4px; }
+</style>
+</head>
+<body>
+<h3>An author-named centring target (#164)</h3>
+
+<p>
+Both figures below are the <b>same construction</b>, built from the element
+strings of <code>view/round_geometry/desargues.html</code> applet&nbsp;3 —
+Desargues' theorem in the hyperbolic plane, in Dr. Joyce's original 1996
+coordinates. Only the <code>centerOn</code> option differs.
+</p>
+
+<p>
+The subject of this figure is the Poincar&eacute; disk: everything that matters
+happens inside it. But the construction also contains circumcircles through
+near-collinear points, and a hyperbolic geodesic <i>is</i> a large circle — so
+the figure's bounding box is several times its canvas no matter where the points
+are put. <b>#162</b> keeps the worst of them from defining the frame, which stops
+the figure landing off-screen; it cannot make the bounds-derived centre be the
+<i>disk's</i> centre, because that is not what the bounds describe.
+</p>
+
+<p>
+<b>Press <code>m</code> on each canvas</b> (or use the maximize control) — the
+centring transform only applies in the maximized view. On the left the disk
+drifts off toward one side; on the right it sits in the middle of the frame.
+</p>
+
+<div class="pair">
+  <figure>
+    <canvas id="cvDefault" style="width:500px; height:320px;" tabindex="0"></canvas>
+    <figcaption><b>Default</b> — centre derived from the figure's bounds.
+    Correct behaviour, and right for nearly every figure; here the bounds are
+    dominated by arcs that reach well outside the disk.</figcaption>
+  </figure>
+  <figure>
+    <canvas id="cvCentered" style="width:500px; height:320px;" tabindex="0"></canvas>
+    <figcaption><b><code>centerOn: "diskcenter"</code></b> — the disk centre
+    lands at the canvas centre. Note that <code>diskcenter</code> is authored
+    with <code>nameColor&nbsp;0</code>: it carries no label, and the option does
+    not require one.</figcaption>
+  </figure>
+</div>
+
+<p id="readout" style="color:#666; font-family: monospace; font-size: 12px;"></p>
+
+<p>
+A misspelled target is not swallowed. The third canvas asks for
+<code>centerOn: "diskcentre"</code> — the British spelling, which no element
+answers to — so it reports through the #154 diagnostics (watch for the badge)
+and falls back to bounds centring rather than silently doing nothing.
+</p>
+
+<figure>
+  <canvas id="cvTypo" style="width:500px; height:320px;" tabindex="0"></canvas>
+  <figcaption><code>centerOn: "diskcentre"</code> &mdash; unresolvable.</figcaption>
+</figure>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    // Verbatim from view/round_geometry/desargues.html, applet 3, except that
+    // the disk's two "random" colours are pinned so the page renders the same
+    // way every time.
+    var ELEMENTS = [
+        "diskcenter;point;fixed;200,160;0;orange",
+        "diskradius;point;free;355,150;0;orange",
+        "disk;circle;radius;diskcenter,diskradius;0;0;navy;0",
+        "A;point;free;200,210",
+        "B;point;free;290,190",
+        "C;point;free;275,130",
+        "A*;point;invert;A,disk",
+        "B*;point;invert;B,disk",
+        "C*;point;invert;C,disk",
+        "AB;circle;circumcircle;A,B,A*;0;0;red;0",
+        "BC;circle;circumcircle;B,C,B*;0;0;red;0",
+        "CA;circle;circumcircle;C,A,C*;0;0;red;0",
+        "P;point;free;100,130",
+        "P*;point;invert;P,disk;0;0",
+        "AP;circle;circumcircle;A,A*,P;0;0;black;0",
+        "BP;circle;circumcircle;B,B*,P;0;0;black;0",
+        "CP;circle;circumcircle;C,C*,P;0;0;black;0",
+        "D;point;circleSlider;AP,200,160",
+        "D*;point;invert;D,disk;0;0",
+        "E;point;circleSlider;BP,140,160",
+        "E*;point;invert;E,disk;0;0",
+        "F;point;circleSlider;CP,170,160",
+        "F*;point;invert;F,disk;0;0",
+        "DE;circle;circumcircle;D,E,D*;0;0;green;0",
+        "EF;circle;circumcircle;E,F,E*;0;0;green;0",
+        "FD;circle;circumcircle;F,D,F*;0;0;green;0",
+        "GG*;line;bichord;AB,DE;0;0;0",
+        "HH*;line;bichord;BC,EF;0;0;0",
+        "KK*;line;bichord;CA,FD;0;0;0",
+        "G*;point;first;GG*",
+        "G;point;last;GG*",
+        "H*;point;first;HH*",
+        "H;point;last;HH*",
+        "K;point;first;KK*",
+        "K*;point;last;KK*",
+        "GHK;circle;circumcircle;G,H,K;0;0;blue;0"
+    ];
+
+    function build(canvasid, centerOn) {
+        geomlib.init({
+            background: "0,0,100",
+            title: "Desargues Theorem in Hyperbolic Geometry",
+            canvasid: canvasid,
+            width: 500, height: 320,
+            pivot: "diskcenter",
+            centerOn: centerOn,
+            elements: ELEMENTS.map(geomlib.parseParam)
+        });
+        return geomlib.slates[geomlib.slates.length - 1];
+    }
+
+    var plain = build("cvDefault", undefined);
+    var named = build("cvCentered", "diskcenter");
+    build("cvTypo", "diskcentre");
+
+    // Show what each one would centre on, without needing to maximize.
+    function describe(label, slate) {
+        var b = slate.captureCentringBounds();
+        slate.clearCentringBounds();
+        if (b == null) return label + ": nothing to centre on";
+        var cx = Math.round((b.minX + b.maxX) / 2),
+            cy = Math.round((b.minY + b.maxY) / 2);
+        var out = label + ": centre (" + cx + ", " + cy + ")" +
+                  "  box " + Math.round(b.maxX - b.minX) + "x" +
+                  Math.round(b.maxY - b.minY);
+        if (slate.centringOutliers.length > 0) {
+            out += "  excluded " + JSON.stringify(slate.centringOutliers);
+        }
+        return out;
+    }
+    document.getElementById("readout").textContent =
+        [describe("default", plain),
+         describe("centerOn diskcenter", named),
+         "canvas centre is (250, 160); the disk centre is (200, 160)"].join("\n");
+    document.getElementById("readout").style.whiteSpace = "pre";
+</script>
+</body>
+</html>
