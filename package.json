@@ -1,7 +1,7 @@
 {
   "name": "@brownnrl/geomlib",
   "version": "0.14.0",
-  "description": "Interactive Euclidean geometry constructions in the browser — a TypeScript port of David E. Joyce's 1996 Java Geometry Applet.",
+  "description": "Interactive Euclidean geometry constructions in the browser \u2014 a TypeScript port of David E. Joyce's 1996 Java Geometry Applet.",
   "keywords": [
     "euclid",
     "elements",
@@ -29,9 +29,9 @@
     "check:bundle": "node scripts/check-bundle-ascii.js",
     "test": "npm run test:snapshot && npm run test:unit",
     "test:snapshot": "npm run bundle && mocha --reporter min tests/SnapshotTest.ts tests/HighlightSnapshotTest.ts tests/VisibilitySnapshotTest.ts tests/AnimationSnapshotTest.ts",
-    "test:unit": "mocha tests/AnimationTest.ts tests/CircleTest.ts tests/DiagnosticsTest.ts tests/ColorsTest.ts tests/HighlightByNameTest.ts tests/HighlightTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateAnimatorTest.ts tests/SlateTest.ts tests/SlideTest.ts tests/SourceHygieneTest.ts tests/SphereTest.ts tests/VisibilityTest.ts",
-    "coverage": "c8 mocha --reporter min tests/SnapshotTest.ts tests/AnimationTest.ts tests/CircleTest.ts tests/DiagnosticsTest.ts tests/ColorsTest.ts tests/HighlightByNameTest.ts tests/HighlightTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateAnimatorTest.ts tests/SlateTest.ts tests/SlideTest.ts tests/SourceHygieneTest.ts tests/SphereTest.ts tests/VisibilityTest.ts",
-    "coverage:unit": "c8 mocha --reporter min tests/AnimationTest.ts tests/CircleTest.ts tests/DiagnosticsTest.ts tests/ColorsTest.ts tests/HighlightByNameTest.ts tests/HighlightTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateAnimatorTest.ts tests/SlateTest.ts tests/SlideTest.ts tests/SourceHygieneTest.ts tests/SphereTest.ts tests/VisibilityTest.ts",
+    "test:unit": "mocha tests/AnimationTest.ts tests/CircleTest.ts tests/DiagnosticsTest.ts tests/ColorsTest.ts tests/ConstructionNameTest.ts tests/HighlightByNameTest.ts tests/HighlightTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateAnimatorTest.ts tests/SlateTest.ts tests/SlideTest.ts tests/SourceHygieneTest.ts tests/SphereTest.ts tests/VisibilityTest.ts",
+    "coverage": "c8 mocha --reporter min tests/SnapshotTest.ts tests/AnimationTest.ts tests/CircleTest.ts tests/DiagnosticsTest.ts tests/ColorsTest.ts tests/ConstructionNameTest.ts tests/HighlightByNameTest.ts tests/HighlightTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateAnimatorTest.ts tests/SlateTest.ts tests/SlideTest.ts tests/SourceHygieneTest.ts tests/SphereTest.ts tests/VisibilityTest.ts",
+    "coverage:unit": "c8 mocha --reporter min tests/AnimationTest.ts tests/CircleTest.ts tests/DiagnosticsTest.ts tests/ColorsTest.ts tests/ConstructionNameTest.ts tests/HighlightByNameTest.ts tests/HighlightTest.ts tests/LineTest.ts tests/ParseParamTest.ts tests/PlaneTest.ts tests/PointTest.ts tests/PolygonTest.ts tests/PolyhedronTest.ts tests/SectorTest.ts tests/SlateAnimatorTest.ts tests/SlateTest.ts tests/SlideTest.ts tests/SourceHygieneTest.ts tests/SphereTest.ts tests/VisibilityTest.ts",
     "coverage:report": "c8 report --reporter=html",
     "snapshots:clean": "rm -rf tests/snapshots && mkdir -p tests/snapshots && touch tests/snapshots/.gitkeep",
     "prepublishOnly": "npm run test:unit && npm run bundle:prod && npm run check:bundle",
