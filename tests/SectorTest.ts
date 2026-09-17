@@ -480,3 +480,66 @@ function recordingArcs(slate: Slate) {
     });
     return { canvas: { getContext: () => ctx } as any, arcs };
 }
+
+// #175 — same-vertex ring order was decided before update() placed the
+// figure, so a marker whose vertex or arm is a DERIVED point (midpoint,
+// intersection, …) was measured at garbage coordinates. III.1's vertex D
+// is a midpoint: its 90° right angle nested inside the 72° angle it
+// contains. Figures built only on free points came out right by luck —
+// free points have coordinates at construction — which is how it hid.
+describe("same-vertex ring order with derived points (#175)", () => {
+
+    function markersOf(slate: Slate): AngleMarkerElement[] {
+        return slate.elements.filter((e) => e instanceof AngleMarkerElement) as AngleMarkerElement[];
+    }
+
+    function initWith(id: string, elements: IConstructionInfo[]): Slate {
+        const canvas: any = createCanvas(400, 300);
+        canvas.parentElement = null;
+        const savedDoc = (global as any).document;
+        (global as any).document = { getElementById: (q: string) => (q === id ? canvas : null) };
+        try {
+            init({ background: "0,0,100", title: id, canvasid: id, elements });
+            return slates[slates.length - 1];
+        } finally {
+            if (savedDoc === undefined) delete (global as any).document;
+            else (global as any).document = savedDoc;
+        }
+    }
+
+    // III.1's shape: D is the midpoint of AB; G sits 72° above DB.
+    // Declared with the right angle FIRST so a pre-placement sort has
+    // something to get wrong.
+    const derivedVertex: IConstructionInfo[] = [
+        { name: "A", construction: E.Point.free,     params: [100, 200] },
+        { name: "B", construction: E.Point.free,     params: [300, 200] },
+        { name: "D", construction: E.Point.midpoint, params: ["A", "B"] },          // (200,200)
+        { name: "F", construction: E.Point.free,     params: [200, 100] },          // 90° from DB
+        { name: "G", construction: E.Point.free,     params: [230.9, 104.9] },      // 72° from DB
+        { name: "angFDB", construction: E.Sector.angleMarker, params: ["D", "F", "B"] },   // 90°
+        { name: "angGDB", construction: E.Sector.angleMarker, params: ["D", "G", "B"] },   // 72°
+        { name: "angADG", construction: E.Sector.angleMarker, params: ["D", "A", "G"] },   // 108°
+    ];
+
+    it("nests smallest-innermost when the vertex is a midpoint", () => {
+        const slate = initWith("ring175", derivedVertex);
+        const ms = markersOf(slate);
+        assert.equal(ms.length, 3);
+        const bySpan = ms.slice().sort((a, b) => a.spanRadians() - b.spanRadians());
+        const deg = bySpan.map((m) => Math.round(m.spanRadians() * 180 / Math.PI));
+        assert.deepEqual(deg, [72, 90, 108], "precondition: spans measured after placement");
+        assert.deepEqual(bySpan.map((m) => m.name), ["angGDB", "angFDB", "angADG"]);
+        assert.deepEqual(bySpan.map((m) => m.ringIndex), [0, 1, 2],
+            "ring order must follow span: " + bySpan.map((m) => m.name + "=" + m.ringIndex).join(" "));
+    });
+
+    it("still nests correctly on a free-point vertex (the case that always worked)", () => {
+        const freeVertex = derivedVertex
+            .filter((e) => e.name !== "D")
+            .map((e) => e.name === "A" ? e : e);
+        freeVertex.splice(2, 0, { name: "D", construction: E.Point.free, params: [200, 200] });
+        const slate = initWith("ring175free", freeVertex);
+        const bySpan = markersOf(slate).slice().sort((a, b) => a.spanRadians() - b.spanRadians());
+        assert.deepEqual(bySpan.map((m) => m.ringIndex), [0, 1, 2]);
+    });
+});

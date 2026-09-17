@@ -591,7 +591,16 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
     // step each one's radius into a concentric ring (smallest interior
     // angle innermost), with distinct palette colors within the group,
     // so they don't overlap. Author radiusPx overrides opt out of the
-    // ring-stepping. Runs before update() places the arc endpoints. (#103)
+    // ring-stepping. (#103)
+    //
+    // #175 — place the figure FIRST. The sort reads spanRadians(), which
+    // measures the arms at their current coordinates; a derived point
+    // (midpoint, intersection, …) has none until update() runs, so a
+    // marker on such a vertex or arm sorted on garbage — III.1's right
+    // angle nested inside the 72° angle it contains. Free points happen
+    // to have coordinates at construction, which is how this hid. The
+    // update() further down re-places the arcs with the ring radii.
+    slate.update();
     {
         const byVertex = new Map<PointElement, AngleMarkerElement[]>();
         for (let elem of slate.elements) {
