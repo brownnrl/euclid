@@ -30,6 +30,9 @@ interface ActiveStep {
 interface ActiveGroup {
     target: GeomElement;
     steps: ActiveStep[];
+    // #171 — the slide's highlight for this target, applied when its own
+    // first step starts (or on any exit path), never at run start.
+    highlight: boolean;
     currentIndex: number;        // which step is in flight; advances as each finalises
     finishedAtMs?: number;       // when the last step finalised (for cascadeGapMs pacing)
 }
@@ -170,7 +173,7 @@ export class SlateAnimator {
                 started: false,
                 finalised: false,
             }));
-            groups.push({ target, steps: resolvedSteps, currentIndex: 0 });
+            groups.push({ target, steps: resolvedSteps, currentIndex: 0, highlight: false });
         }
 
         // Visibility / highlight target state always applies — the
@@ -192,7 +195,13 @@ export class SlateAnimator {
                 // earlier cascade steps play. _startStep flips it
                 // visible; finalise() restores the final state on
                 // every exit path.
-                e.shouldHighlight = willBeHighlighted;
+                //
+                // #171 — shouldHighlight is deferred the same way. The
+                // draw guard is `!visible && !shouldHighlight &&
+                // emphasisAmount <= 0`, so a highlighted-but-hidden
+                // target drew fully from t=0 — the same hole #104 closed
+                // for emphasis. Cleared here, applied in _startStep.
+                e.shouldHighlight = false;
                 e.drawProgress = 0;
                 e.visible = false;
             } else {
@@ -203,11 +212,18 @@ export class SlateAnimator {
             }
         }
 
+        // #171 — record each animated target's slide highlight on its
+        // group; _startStep applies it when the target's turn comes.
+        for (const g of groups) {
+            g.highlight = g.target.name != null && targetHighlighted.has(g.target.name);
+        }
+
         // Reduced motion / speedMultiplier 0 / no groups: fast path.
         // Finalise everything synchronously and return a resolved
         // promise so the controller can flip the caption immediately.
         if (reduced || groups.length === 0) {
             for (const g of groups) {
+                g.target.shouldHighlight = g.highlight;   // #171
                 for (const as of g.steps) {
                     if (as.step.setup && !as.started) as.step.setup();
                     as.step.finalise();
@@ -255,6 +271,7 @@ export class SlateAnimator {
     cancel(): void {
         if (this.groups.length === 0) return;
         for (const g of this.groups) {
+            g.target.shouldHighlight = g.highlight;   // #171 — never-started targets too
             for (let i = 0; i < g.steps.length; i++) {
                 const as = g.steps[i];
                 if (as.finalised) continue;
@@ -316,6 +333,7 @@ export class SlateAnimator {
         if (stepIdx === 0) {
             g.target.visible = true;
             g.target.emphasized = true;
+            g.target.shouldHighlight = g.highlight;   // #171
         }
         if (as.step.setup) as.step.setup();
         as.started = true;

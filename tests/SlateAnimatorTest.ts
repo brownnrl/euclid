@@ -194,6 +194,72 @@ describe("SlateAnimator (issue #78)", () => {
             assert.strictEqual(bcd.visible, true);
         });
 
+        // #171 — the highlight counterpart of the two tests above. The
+        // draw guard treats shouldHighlight as a reason to draw, so a
+        // pending cascade target that is also in the slide's highlighted
+        // set rendered its face fill and label from t=0 (II.1, three
+        // rectangles cascading outlineAndFill, all painted at once).
+        it("defers a pending cascade target's highlight until its own step", async () => {
+            const slate = buildSlate(propI1);
+            slate.animationConfig = {};
+            const ab = slate.lookupElement("AB") as LineElement;
+            const bcd = slate.lookupElement("BCD") as CircleElement;
+            ab.visible = false; bcd.visible = false;
+            const p = slate.animateTo(
+                new Set(["A","B","AB","BCD"]),
+                new Set(["AB","BCD"]),
+                [
+                    { elem: "AB",  name: A.Line.straightEdgeConnect },
+                    { elem: "BCD", name: A.Circle.compass },
+                ],
+                "cascade",
+            );
+            assert.strictEqual(ab.shouldHighlight, true, "active target carries its highlight");
+            assert.strictEqual(bcd.shouldHighlight, false,
+                "pending target must NOT be highlighted yet — with visible=false that is the only " +
+                "thing keeping it off the canvas");
+            assert.strictEqual(bcd.visible, false);
+            slate.animator!.cancel();
+            await p;
+            assert.strictEqual(bcd.shouldHighlight, true, "cancel must still land the slide's highlight");
+            assert.strictEqual(bcd.visible, true);
+        });
+
+        it("clears a stale highlight on a pending target at run start", async () => {
+            // Highlighted on the previous slide, animated on this one: the
+            // old flag must not keep it drawing while it waits its turn.
+            const slate = buildSlate(propI1);
+            slate.animationConfig = {};
+            const bcd = slate.lookupElement("BCD") as CircleElement;
+            bcd.visible = false; bcd.shouldHighlight = true;
+            const p = slate.animateTo(
+                new Set(["A","B","AB","BCD"]), new Set(["BCD"]),
+                [
+                    { elem: "AB",  name: A.Line.straightEdgeConnect },
+                    { elem: "BCD", name: A.Circle.compass },
+                ],
+                "cascade",
+            );
+            assert.strictEqual(bcd.shouldHighlight, false, "stale highlight cleared while pending");
+            slate.animator!.cancel();
+            await p;
+            assert.strictEqual(bcd.shouldHighlight, true);
+        });
+
+        it("applies the highlight on the reduced-motion fast path", async () => {
+            const slate = buildSlate(propI1);
+            slate.animationConfig = { reducedMotion: true };
+            const bcd = slate.lookupElement("BCD") as CircleElement;
+            bcd.visible = false;
+            await slate.animateTo(
+                new Set(["A","B","AB","BCD"]), new Set(["BCD"]),
+                [ { elem: "BCD", name: A.Circle.compass } ],
+                "cascade",
+            );
+            assert.strictEqual(bcd.shouldHighlight, true);
+            assert.strictEqual(bcd.visible, true);
+        });
+
         it("reveals every target up front in parallel mode", async () => {
             const slate = buildSlate(propI1);
             slate.animationConfig = {};
