@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #179 rgb()/rgba() colours, and a typo that says so</title>
+<style>
+  body { font-family: sans-serif; }
+  p { max-width: 740px; color: #444; }
+  canvas { border: 1px solid #ccc; }
+</style>
+</head>
+<body>
+<h3>CSS functional colours, and a typo that says so (#179)</h3>
+<p>
+<code>parseColor</code> took colour names, hex and H,S,B triples; anything else &mdash;
+including <code>rgb()</code> / <code>rgba()</code> &mdash; fell through to <b>transparent, in
+silence</b>. Now the functional forms pass straight through to the canvas, and a string nothing
+recognises is reported (badge, console, <code>geomlib.diagnostics()</code>) while still drawing
+transparent.
+</p>
+<p>
+<b>Left</b> triangle: <code>rgb(120,180,210)</code>. <b>Middle</b>: <code>rgba(210,150,120,0.5)</code>
+drawn over a black segment &mdash; the segment shows through, which is the alpha working.
+<b>Right</b>: <code>faceColor: "lighgtblue"</code>, a typo &mdash; the face is transparent as
+before, but the badge in the corner now says why. Press <b>p</b> to see a face fade
+(<code>outlineAndFill</code>) compose with the rgba alpha rather than fight it.
+</p>
+
+<canvas id="colorsId" width="640" height="220" tabindex="0"></canvas>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var E = geomlib.E, A = geomlib.A;
+    var pt = function (n, x, y) { return { name: n, construction: E.Point.free, params: [x, y], nameColor: 0, vertexColor: 0 }; };
+    geomlib.init({
+        background: "0,0,100", title: "css colours", canvasid: "colorsId",
+        elements: [
+            pt("A1", 20, 200), pt("B1", 200, 200), pt("C1", 110, 30),
+            pt("A2", 230, 200), pt("B2", 410, 200), pt("C2", 320, 30),
+            pt("L1", 215, 120), pt("L2", 425, 120),
+            pt("A3", 440, 200), pt("B3", 620, 200), pt("C3", 530, 30),
+            { name: "under", construction: E.Line.connect, params: ["L1", "L2"], nameColor: 0, vertexColor: 0, edgeColor: "black" },
+            { name: "P1", construction: E.Polygon.triangle, params: ["A1", "B1", "C1"], nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgb(120,180,210)" },
+            { name: "P2", construction: E.Polygon.triangle, params: ["A2", "B2", "C2"], nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "rgba(210,150,120,0.5)" },
+            { name: "P3", construction: E.Polygon.triangle, params: ["A3", "B3", "C3"], nameColor: 0, vertexColor: 0, edgeColor: "black", faceColor: "lighgtblue" }
+        ],
+        slides: [
+            { text: "rgb() | rgba() over a segment | a typo, reported.", visible: ["under", "P1", "P2", "P3"] },
+            { text: "Hidden.", visible: ["under"] },
+            { text: "outlineAndFill: the fade-in multiplies the rgba alpha - the middle face ends at 0.5, not 1.",
+              visible: ["under", "P1", "P2", "P3"],
+              transition: { mode: "cascade", animations: [
+                  { elem: "P1", name: A.Polygon.outlineAndFill },
+                  { elem: "P2", name: A.Polygon.outlineAndFill },
+                  { elem: "P3", name: A.Polygon.outlineAndFill } ] } }
+        ]
+    });
+</script>
+</body>
+</html>

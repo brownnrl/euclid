@@ -487,6 +487,45 @@ describe("diagnostics (#154)", () => {
         });
     });
 
+    // #179 — an unrecognised colour is reported at load, not swallowed.
+    describe("unknown colours (#179)", () => {
+        function initColors(canvasid: string, elements: any[]): Slate {
+            const canvas: any = createCanvas(200, 200);
+            canvas.id = canvasid;
+            const savedDoc = (global as any).document;
+            (global as any).document = { getElementById: (id: string) => (id === canvasid ? canvas : null) };
+            try {
+                init({ background: "0,0,100", title: canvasid, canvasid, elements });
+                return slates[slates.length - 1];
+            } finally {
+                if (savedDoc === undefined) delete (global as any).document;
+                else (global as any).document = savedDoc;
+            }
+        }
+        const tri = (face: any) => [
+            { name: "A", construction: E.Point.free, params: [20, 20] },
+            { name: "B", construction: E.Point.free, params: [180, 20] },
+            { name: "C", construction: E.Point.free, params: [100, 180] },
+            { name: "T", construction: E.Polygon.triangle, params: ["A", "B", "C"], faceColor: face },
+        ];
+
+        it("reports a colour nothing recognises, naming the element and field", () => {
+            let s!: Slate;
+            capture(() => { s = initColors("col1", tri("lighgtblue")); });
+            const d = s.diagnostics.filter((x) => x.code === "unknown-color");
+            assert.equal(d.length, 1);
+            assert.deepEqual(d[0].detail, { name: "T", field: "faceColor", value: "lighgtblue" });
+            assert.equal(s.lookupElement("T")!.faceColor, null, "and it is still drawn transparent");
+        });
+
+        it("accepts rgba() with no diagnostic and keeps it verbatim", () => {
+            let s!: Slate;
+            capture(() => { s = initColors("col2", tri("rgba(120,180,210,0.6)")); });
+            assert.deepEqual(s.diagnostics.map((x) => x.code), []);
+            assert.equal(s.lookupElement("T")!.faceColor, "rgba(120,180,210,0.6)");
+        });
+    });
+
     describe("event payload", () => {
         it("carries the record, the worst severity and the count", () => {
             const log = new DiagnosticLog();
