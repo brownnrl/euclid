@@ -31,6 +31,11 @@ Press <b>p</b>, then <b>&rarr;</b>. Before the fix, the middle and right arcs op
 complete and close down. After, all three grow from their first arm. The table reads each
 sector's drawn sweep (<code>arcSpan()</code>) off the slate &mdash; note the 270&deg;.
 </p>
+<p>
+The last slide passes <code>args: { reverse: true }</code>: the same three arcs, grown from
+their <i>second</i> arm back toward the first &mdash; for a walk that wants the sweep to start
+at a particular arm without re-ordering the sector (which would change the side).
+</p>
 
 <canvas id="sweepId" width="660" height="240" tabindex="0"></canvas>
 <table id="out"></table>
@@ -64,7 +69,14 @@ sector's drawn sweep (<code>arcSpan()</code>) off the slate &mdash; note the 270
               transition: { mode: "cascade", animations: [
                   { elem: "sector 90 (G,P,Q)", name: A.Sector.sweep },
                   { elem: "sector 90 (G,Q,P)", name: A.Sector.sweep },
-                  { elem: "semicircle 180",    name: A.Sector.sweep } ] } }
+                  { elem: "semicircle 180",    name: A.Sector.sweep } ] } },
+            { text: "Hidden again.", visible: [] },
+            { text: "reverse: true - each arc grows from its SECOND arm back toward the first. Same finished arc.",
+              visible: ["sector 90 (G,P,Q)", "sector 90 (G,Q,P)", "semicircle 180"],
+              transition: { mode: "parallel", animations: [
+                  { elem: "sector 90 (G,P,Q)", name: A.Sector.sweep, args: { reverse: true } },
+                  { elem: "sector 90 (G,Q,P)", name: A.Sector.sweep, args: { reverse: true } },
+                  { elem: "semicircle 180",    name: A.Sector.sweep, args: { reverse: true } } ] } }
         ]
     });
     var slate = geomlib.slates[geomlib.slates.length - 1];

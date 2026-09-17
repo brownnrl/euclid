@@ -118,12 +118,26 @@ export class SectorElement extends GeomElement {
         // the fixed direction, the drawn arc is the complement, and scaling
         // the signed angle made it open as a full circle and shrink.
         const acw = this._anticlockwise();
-        let endAngle = this.drawProgress >= 1
-            ? startAngle + arcAngle
-            : startAngle + (acw ? -1 : 1) * this._drawnSweep() * this.drawProgress;
-        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, acw);
+        let from = startAngle, flag = acw, endAngle: number;
+        if (this.drawProgress >= 1) {
+            endAngle = startAngle + arcAngle;
+        } else if (!this.sweepReverse) {
+            endAngle = startAngle + (acw ? -1 : 1) * this._drawnSweep() * this.drawProgress;
+        } else {
+            // Grow from the B arm back toward A: the same arc, traced the
+            // other way. Start at B and go against the drawing direction.
+            from = Math.atan2(this._B.y - this._Center.y, this._B.x - this._Center.x);
+            flag = !acw;
+            endAngle = from + (acw ? 1 : -1) * this._drawnSweep() * this.drawProgress;
+        }
+        ctx.arc(this._Center.x, this._Center.y, r, from, endAngle, flag);
         ctx.stroke();
     }
+
+    // Mid-sweep only: grow the arc from the B arm toward A instead of from
+    // A toward B (#172). Set by A.Sector.sweep's `reverse` arg for the run
+    // and cleared on finalise; the finished arc is the same either way.
+    public sweepReverse: boolean = false;
 
     // The sweep ctx.arc actually traces from the A arm to the B arm: a
     // non-negative magnitude in the _anticlockwise() direction (#172).

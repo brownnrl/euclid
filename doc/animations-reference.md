@@ -85,7 +85,7 @@ Rates are in `px/ms` for linear traces and `rad/ms` for arc sweeps.
 
 | Name | Status | Target | Args | Default | Visual |
 |---|---|---|---|---|---|
-| `A.Sector.sweep` | **IMPL** | `SectorElement` (incl. `ArcElement`) | — | rate `0.003 rad/ms`, min `250 ms`, fill cap `500 ms` | The arc grows from the A arm toward the B arm (`drawProgress: 0 → 1`) — the angle-marker reveal. Two-step (sweep then face fade) when the sector has a face; a face-less sector skips the fill step. Zero-color sectors render in the gold emphasis stroke only while animating — the invisible angle-marker pattern. |
+| `A.Sector.sweep` | **IMPL** | `SectorElement` (incl. `ArcElement`) | `reverse?: boolean` — grow from the B arm toward A instead (same finished arc) | rate `0.003 rad/ms`, min `250 ms`, fill cap `500 ms` | The arc grows from the A arm toward the B arm (`drawProgress: 0 → 1`) — the angle-marker reveal. The sweep is monotonic for either arm order; for the order that draws the complement it is timed for the arc actually traced (#172). Two-step (sweep then face fade) when the sector has a face; a face-less sector skips the fill step. Zero-color sectors render in the gold emphasis stroke only while animating — the invisible angle-marker pattern. |
 
 ## Group animations
 
