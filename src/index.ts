@@ -517,6 +517,22 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
     // Cycles the angle-marker palette in construction order (#91) so
     // concurrent markers get distinct colors.
     let angleMarkerCount = 0;
+    // #179 — a colour string nothing recognises used to become transparent
+    // in silence. Same result, but now it is reported, so a typo shows up
+    // on the badge instead of as a face that is mysteriously not there.
+    const color = (elemName: string, field: string, value: string | number, dfault: string): string =>
+        parseColor(value, dfault, slate.bgcolor, (rawColor) => {
+            slate.reportDiagnostic({
+                code: "unknown-color",
+                key: elemName + ":" + field,
+                message: "element '" + elemName + "' has " + field + " '" + rawColor +
+                    "', which is not a colour geomlib recognises \u2014 it is drawn " +
+                    "transparent. Use a CSS colour name, hex, rgb()/rgba(), hsl()/hsla(), " +
+                    "or an H,S,B triple.",
+                detail: { name: elemName, field: field, value: rawColor },
+            });
+        });
+
     for(let raw of i.elements) {
         let param: IConstructionInfo = typeof raw === "string" ? parseParam(raw) : raw;
         let element = slate.createElement(param.construction, param.params, param.name);
@@ -525,16 +541,16 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
         // Angle markers default to a translucent palette fill + solid
         // colored edge instead of the dim2 lighten-bg face / black edge.
-        // The rgba face is set directly (it wouldn't survive parseColor)
-        // unless the author supplies an explicit faceColor param.
+        // The rgba face is set directly unless the author supplies an
+        // explicit faceColor param (which may itself be rgba() since #179).
         if (element instanceof AngleMarkerElement) {
             const swatch = anglePalette[angleMarkerCount % anglePalette.length];
             angleMarkerCount++;
-            element.nameColor = parseColor(param.nameColor, null, slate.bgcolor);
-            element.vertexColor = parseColor(param.vertexColor, null, slate.bgcolor);
-            element.edgeColor = parseColor(param.edgeColor, swatch.edge, slate.bgcolor);
+            element.nameColor = color(param.name, "nameColor", param.nameColor, null);
+            element.vertexColor = color(param.name, "vertexColor", param.vertexColor, null);
+            element.edgeColor = color(param.name, "edgeColor", param.edgeColor, swatch.edge);
             if (param.faceColor != null) {
-                element.faceColor = parseColor(param.faceColor, swatch.edge, slate.bgcolor);
+                element.faceColor = color(param.name, "faceColor", param.faceColor, swatch.edge);
             } else {
                 element.faceColor = swatch.face;
             }
@@ -543,19 +559,19 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
 
         // Name string
         let defaultNameColor = element instanceof PointElement ? "black" : null;
-        element.nameColor = parseColor(param.nameColor, defaultNameColor, slate.bgcolor);
+        element.nameColor = color(param.name, "nameColor", param.nameColor, defaultNameColor);
 
         let defaultVertexColor = element.draggable ?
             ((element instanceof PlaneSlider) ?
                 'red' : 'orange')
             : 'black';
-        element.vertexColor = parseColor(param.vertexColor, defaultVertexColor, slate.bgcolor);
+        element.vertexColor = color(param.name, "vertexColor", param.vertexColor, defaultVertexColor);
 
-        element.edgeColor = parseColor(param.edgeColor, "black", slate.bgcolor);
+        element.edgeColor = color(param.name, "edgeColor", param.edgeColor, "black");
 
         let lighterColor = lighten(slate.bgcolor);
         let defaultFaceColor = element.dimension == 2 ? lighterColor : null;
-        element.faceColor = parseColor(param.faceColor, defaultFaceColor, slate.bgcolor);
+        element.faceColor = color(param.name, "faceColor", param.faceColor, defaultFaceColor);
     }
 
     if (i.aliases != null) {

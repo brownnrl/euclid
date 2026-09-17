@@ -136,7 +136,18 @@ export const anglePalette : {edge: string, face: string}[] =
     { edge: "rgb(163,60,122)",  face: "rgba(163,60,122,0.30)"  }   // magenta
 ];
 
-export function parseColor(val: string | number, dfault: string, bgcolor: string) : string {
+// A CSS functional colour the canvas takes as-is: rgb(), rgba(), hsl(),
+// hsla(). Strict enough that garbage can't ride through on the prefix.
+const CSS_FUNCTIONAL = /^(rgba?|hsla?)\(\s*[\d.]+%?\s*,\s*[\d.]+%?\s*,\s*[\d.]+%?\s*(,\s*[\d.]+%?\s*)?\)$/i;
+
+/**
+ * Resolve an authored colour to something the canvas accepts, or null for
+ * transparent. `onUnknown` (#179) is called with the raw string when nothing
+ * recognises it — the result is still null, but a caller with a slate can
+ * report it instead of letting a typo paint nothing in silence.
+ */
+export function parseColor(val: string | number, dfault: string, bgcolor: string,
+                           onUnknown?: (raw: string) => void) : string {
     // Handle numeric 0 (from IConstructionInfo where vertexColor: 0)
     if (val === 0) return null;
     // Handle null/undefined → use default
@@ -180,7 +191,11 @@ export function parseColor(val: string | number, dfault: string, bgcolor: string
             return `rgb(${c.r},${c.g},${c.b})`;
         }
     }
-    // Fallback — unrecognized
+    // CSS functional colours pass straight through — the canvas accepts
+    // them natively, and rgba() is the one form that carries alpha. (#179)
+    if (CSS_FUNCTIONAL.test(str)) return str;
+    // Fallback — unrecognized. Transparent, as before; but say so.
+    if (onUnknown) onUnknown(str);
     return null;
 }
 

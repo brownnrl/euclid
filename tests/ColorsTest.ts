@@ -1,5 +1,8 @@
 import "mocha";
 import * as assert from "assert";
+import {createCanvas} from "canvas";
+import {Slate} from "../src/Slate";
+import {parseParam} from "../src/index";
 import {parseColor, brighter, darker, darken} from "../src/Colors";
 
 describe("parseColor", () => {
@@ -199,5 +202,65 @@ describe("brighter / darker", () => {
     it("brighter() should return the input unchanged when it's unparseable", () => {
         // parseRGB returns null → brighter returns col unchanged.
         assert.equal(brighter("not-a-color"), "not-a-color");
+    });
+});
+
+// #179 — CSS functional colours, and saying so when nothing is recognised.
+describe("CSS functional colours (#179)", () => {
+    const bg = "#ffffff";
+
+    for (const c of ["rgb(120,180,210)", "rgba(120,180,210,0.6)", "RGBA(0, 0, 255, .5)",
+                     "hsl(200,50%,60%)", "hsla(200, 50%, 60%, 0.4)"]) {
+        it("passes " + c + " through untouched", () => {
+            let unknown: string | null = null;
+            assert.equal(parseColor(c, "black", bg, (r) => { unknown = r; }), c);
+            assert.equal(unknown, null, "must not be reported as unknown");
+        });
+    }
+
+    it("does not let garbage ride through on the prefix", () => {
+        let unknown: string | null = null;
+        assert.equal(parseColor("rgb(oops)", "black", bg, (r) => { unknown = r; }), null);
+        assert.equal(unknown, "rgb(oops)");
+    });
+
+    it("still returns null for an unrecognised string, but reports it", () => {
+        let unknown: string | null = null;
+        assert.equal(parseColor("lighgtblue", "black", bg, (r) => { unknown = r; }), null);
+        assert.equal(unknown, "lighgtblue");
+    });
+
+    it("does not report recognised forms", () => {
+        const seen: string[] = [];
+        const note = (r: string) => { seen.push(r); };
+        parseColor("lightblue", "black", bg, note);
+        parseColor("#ffe9cd", "black", bg, note);
+        parseColor("35,19,100", "black", bg, note);
+        parseColor("none", "black", bg, note);
+        parseColor("random", "black", bg, note);
+        parseColor(null, "black", bg, note);
+        assert.deepEqual(seen, []);
+    });
+
+    it("an rgba() face's own alpha composes with faceAlpha", () => {
+        // The ticket's open question: the fill's alpha and the sweep-fade
+        // globalAlpha multiply rather than fight.
+        const build = (faceAlpha: number) => {
+            const canvas: any = createCanvas(200, 200);
+            const slate = new Slate(canvas); slate.inTest = true;
+            const mk = (spec: string) => { const i = parseParam(spec);
+                const el = slate.createElement(i.construction, i.params, i.name);
+                el.nameColor = null; el.vertexColor = null; el.edgeColor = null; return el; };
+            mk("A;point;free;20,20"); mk("B;point;free;180,20"); mk("C;point;free;100,180");
+            const t: any = mk("T;polygon;triangle;A,B,C");
+            t.faceColor = parseColor("rgba(0,0,255,0.5)", null, bg);
+            slate.update();
+            t.faceAlpha = faceAlpha;
+            t.drawFace(canvas);
+            return canvas.getContext("2d").getImageData(100, 80, 1, 1).data[3];   // alpha at centre
+        };
+        const full = build(1), half = build(0.5);
+        assert.ok(Math.abs(full - 128) <= 2, "rgba alpha 0.5 alone -> ~128, got " + full);
+        assert.ok(Math.abs(half - 64) <= 2, "x faceAlpha 0.5 -> ~64, got " + half);
     });
 });
