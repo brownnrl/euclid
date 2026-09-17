@@ -12,6 +12,7 @@ import "./elements/sector/SectorAnimations";
 import "./elements/group/GroupAnimations";
 import {PointElement} from "./elements/point/PointElement";
 import {Slate} from "./Slate";
+import {syncBitmapToDisplaySize, currentDpr} from "./CanvasSizing";
 import {PlaneSlider} from "./elements/point/PlaneSlider";
 import {AngleMarkerElement} from "./elements/sector/AngleMarkerElement";
 import {colors, randomColor, lighten, darken, parseColor, anglePalette} from "./Colors";
@@ -379,16 +380,10 @@ function authoredLogicalSize(i: IInitialization, canvas: HTMLCanvasElement) : [n
 // renders crisp on HiDPI / retina (#71). The construction coordinate space
 // stays in CSS px (clientWidth/Height); drawElements scales the context by
 // dpr. Headless / no window → dpr 1, so node rendering is unchanged.
-// see https://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5
+// #173 — an attribute-sized canvas's CSS box follows the bitmap, so the
+// shared helper pins the box when it sees it move.
 function resizeCanvasToDisplaySize(canvas: HTMLCanvasElement) : void {
-    const dpr = (typeof window !== "undefined" && window.devicePixelRatio) || 1;
-    const width = Math.round(canvas.clientWidth * dpr);
-    const height = Math.round(canvas.clientHeight * dpr);
-
-    if (canvas.width != width || canvas.height != height) {
-        canvas.width = width;
-        canvas.height = height;
-    }
+    syncBitmapToDisplaySize(canvas, currentDpr());
 }
 
 /**
