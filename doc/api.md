@@ -306,6 +306,8 @@ has no `align` field). Tracked under platform TODOs in
 | Named color (`"black"`, `"red"`, `"crimson"`, `"teal"`, `"steelblue"`, …) | The full **W3C/CSS** named-color set, looked up **case-insensitively** (0.13.0+, #125). **Five names keep their historical Java AWT values** instead of the CSS ones — `green` (`0,255,0`), `orange` (`255,200,0`), `pink` (`255,175,175`), `darkGray`/`darkgray` (`64,64,64`), `lightGray`/`lightgray` (`192,192,192`). `grey`-spelling aliases are accepted. |
 | 6-hex-digit `#rrggbb` or `rrggbb` | The exact RGB. |
 | Comma-triple `"H,S,B"` (e.g. `"35,19,100"`) | HSB; H ∈ 0–360, S/B ∈ 0–100. Matches the Java applet's `Color.getHSBColor()` semantics. |
+| CSS functional `rgb()` / `rgba()` / `hsl()` / `hsla()` (e.g. `"rgba(120,180,210,0.6)"`) | Passed to the canvas as written (0.16.0+, #179). `rgba()`'s alpha composes with a fill fade (`faceAlpha`) rather than replacing it. |
+| Anything else | Drawn **transparent**, and reported as an `unknown-color` diagnostic on the badge / `geomlib.diagnostics()` (0.16.0+, #179). |
 | `"random"` | Random pastel each call. |
 | `"background"` | `bgcolor`. |
 | `"brighter"` | `lighten(bgcolor)` — Java's `Color.brighter()`, factor 0.7. |
