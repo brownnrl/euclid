@@ -92,6 +92,8 @@ individually.</p>
       <td><code>centerOn</code> names the element the maximized view centres on. Joyce's hyperbolic Desargues figure, default vs named: bounds centring puts the disk off to one side, because hyperbolic geodesics <i>are</i> large circles and no arrangement of points fixes that. A misspelled target reports and falls back.</td><td>#164</td></tr>
   <tr><td><a href="hidpi-attr-sized.html">hidpi-attr-sized.html</a></td>
       <td>An attribute-sized canvas (no CSS size — how the site emits every figure) beside a CSS-pinned one. On a HiDPI display the left one used to render 1.5&times; and refuse to drag, growing on every resize; now both read <code>bitmap = client &times; dpr</code>. Only shows anything at dpr &ne; 1.</td><td>#173</td></tr>
+  <tr><td><a href="ring-order-derived-vertex.html">ring-order-derived-vertex.html</a></td>
+      <td>Three same-vertex angle markers (72&deg; / 90&deg; / 108&deg;) on a <code>midpoint</code> vertex beside the same on a free point. The ring sort used to run before the figure was placed, so on a derived vertex the right angle nested <i>inside</i> the 72&deg; angle it contains (III.1). Tables read <code>ringIndex</code> off the slate.</td><td>#175</td></tr>
 </table>
 
 <h2>Responsive / 3D</h2>
