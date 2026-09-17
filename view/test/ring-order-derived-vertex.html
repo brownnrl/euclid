@@ -55,6 +55,9 @@ accidentally produce the correct result. The tables read <code>ringIndex</code> 
     function figure(id, dElement) {
         geomlib.init({
             background: "0,0,100", title: "ring order " + id, canvasid: id,
+            // Markers start hidden in a static figure (Euclid's diagrams draw
+            // no angle arcs; slides reveal them). This page has no slides.
+            showAngles: true,
             elements: [
                 { name: "A", construction: E.Point.free, params: [100, 200] },
                 { name: "B", construction: E.Point.free, params: [300, 200] },
