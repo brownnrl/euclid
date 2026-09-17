@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #172 sector sweep grows for either arm order</title>
+<style>
+  body { font-family: sans-serif; }
+  p { max-width: 760px; color: #444; }
+  canvas { border: 1px solid #ccc; }
+  table { font: 12px/1.5 monospace; border-collapse: collapse; margin-top: 8px; }
+  td, th { padding: 2px 14px 2px 0; text-align: left; }
+</style>
+</head>
+<body>
+<h3>A sector sweep grows for either arm order (#172)</h3>
+<p>
+Three sectors, revealed by <code>A.Sector.sweep</code>. <b>Left</b>: a 90&deg; sector with
+arms <code>G,P,Q</code>. <b>Middle</b>: the <i>same</i> sector with the arms swapped,
+<code>G,Q,P</code>. <b>Right</b>: a 180&deg; semicircle &mdash; II.14's <b>BHF</b>.
+</p>
+<p>
+The arc always goes one rotational direction from the first arm to the second &mdash; the
+original applet's contract (<code>SectorElement.java</code> adds 360&deg; to a negative
+sweep) &mdash; so swapping the arms picks the <i>other side</i>: the middle sector draws the
+270&deg; complement, on purpose. That part is unchanged. What was wrong is how the animation
+got there: it scaled the <i>signed</i> angle, so for the arm order whose sign opposes the
+drawing direction the arc opened as a near-complete circle and <b>shrank</b> to its span. The
+semicircle showed it most plainly &mdash; a full circle unwinding to a half.
+</p>
+<p>
+Press <b>p</b>, then <b>&rarr;</b>. Before the fix, the middle and right arcs open almost
+complete and close down. After, all three grow from their first arm. The table reads each
+sector's drawn sweep (<code>arcSpan()</code>) off the slate &mdash; note the 270&deg;.
+</p>
+<p>
+The last slide passes <code>args: { reverse: true }</code>: the same three arcs, grown from
+their <i>second</i> arm back toward the first &mdash; for a walk that wants the sweep to start
+at a particular arm without re-ordering the sector (which would change the side).
+</p>
+
+<canvas id="sweepId" width="660" height="240" tabindex="0"></canvas>
+<table id="out"></table>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var A = geomlib.A;
+    var S = [
+        "G1;point;free;110,130;0;0", "P1;point;free;200,130;0;0", "Q1;point;free;110,40;0;0",
+        "G2;point;free;330,130;0;0", "P2;point;free;420,130;0;0", "Q2;point;free;330,40;0;0",
+        "G3;point;free;550,130;0;0", "P3;point;free;640,130;0;0", "R3;point;free;460,130;0;0",
+        "sector 90 (G,P,Q);sector;sector;G1,P1,Q1;0;0;black;0",
+        "sector 90 (G,Q,P);sector;sector;G2,Q2,P2;0;0;black;0",
+        "semicircle 180;sector;sector;G3,P3,R3;0;0;black;0"
+    ];
+    geomlib.init({
+        background: "0,0,100", title: "sector sweep", canvasid: "sweepId",
+        elements: S.map(geomlib.parseParam),
+        initiallyHidden: ["sector 90 (G,P,Q)", "sector 90 (G,Q,P)", "semicircle 180"],
+        slides: [
+            { text: "Three hidden sectors. Step forward to sweep them.", visible: [] },
+            { text: "All three sweep together. Each arc should GROW from its first arm - none should open complete and shrink.",
+              visible: ["sector 90 (G,P,Q)", "sector 90 (G,Q,P)", "semicircle 180"],
+              transition: { mode: "parallel", animations: [
+                  { elem: "sector 90 (G,P,Q)", name: A.Sector.sweep },
+                  { elem: "sector 90 (G,Q,P)", name: A.Sector.sweep },
+                  { elem: "semicircle 180",    name: A.Sector.sweep } ] } },
+            { text: "Hidden again.", visible: [] },
+            { text: "One at a time (cascade), so each can be watched on its own.",
+              visible: ["sector 90 (G,P,Q)", "sector 90 (G,Q,P)", "semicircle 180"],
+              transition: { mode: "cascade", animations: [
+                  { elem: "sector 90 (G,P,Q)", name: A.Sector.sweep },
+                  { elem: "sector 90 (G,Q,P)", name: A.Sector.sweep },
+                  { elem: "semicircle 180",    name: A.Sector.sweep } ] } },
+            { text: "Hidden again.", visible: [] },
+            { text: "reverse: true - each arc grows from its SECOND arm back toward the first. Same finished arc.",
+              visible: ["sector 90 (G,P,Q)", "sector 90 (G,Q,P)", "semicircle 180"],
+              transition: { mode: "parallel", animations: [
+                  { elem: "sector 90 (G,P,Q)", name: A.Sector.sweep, args: { reverse: true } },
+                  { elem: "sector 90 (G,Q,P)", name: A.Sector.sweep, args: { reverse: true } },
+                  { elem: "semicircle 180",    name: A.Sector.sweep, args: { reverse: true } } ] } }
+        ]
+    });
+    var slate = geomlib.slates[geomlib.slates.length - 1];
+    var rows = "<tr><th>sector</th><th>arms</th><th>drawn sweep</th></tr>";
+    slate.elements.forEach(function (e) {
+        if (typeof e.arcSpan !== "function") return;
+        rows += "<tr><td>" + e.name + "</td><td>" + e.name.replace(/.*\((.*)\).*/, "$1").replace(/semicircle 180/, "G,P,R") +
+                "</td><td>" + Math.round(e.arcSpan() * 180 / Math.PI) + "&deg;</td></tr>";
+    });
+    document.getElementById("out").innerHTML = rows;
+</script>
+</body>
+</html>

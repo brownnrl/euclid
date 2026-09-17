@@ -110,10 +110,49 @@ export class SectorElement extends GeomElement {
         let arcAngle = this._arcAngle();
         // Partial sweep for slide-transition animation: the arc grows
         // from the A arm toward the B arm as drawProgress goes 0 → 1.
-        // Default progress = 1 reproduces the full arc bit-for-bit.
-        let endAngle = startAngle + arcAngle * this.drawProgress;
-        ctx.arc(this._Center.x, this._Center.y, r, startAngle, endAngle, this._anticlockwise());
+        // Default progress = 1 reproduces the full arc bit-for-bit — the
+        // original expression is kept for it so no golden can move.
+        //
+        // #172 — mid-sweep, scale the sweep ctx.arc actually traces, not
+        // the signed angle. For the arm order whose signed angle opposes
+        // the fixed direction, the drawn arc is the complement, and scaling
+        // the signed angle made it open as a full circle and shrink.
+        const acw = this._anticlockwise();
+        let from = startAngle, flag = acw, endAngle: number;
+        if (this.drawProgress >= 1) {
+            endAngle = startAngle + arcAngle;
+        } else if (!this.sweepReverse) {
+            endAngle = startAngle + (acw ? -1 : 1) * this._drawnSweep() * this.drawProgress;
+        } else {
+            // Grow from the B arm back toward A: the same arc, traced the
+            // other way. Start at B and go against the drawing direction.
+            from = Math.atan2(this._B.y - this._Center.y, this._B.x - this._Center.x);
+            flag = !acw;
+            endAngle = from + (acw ? 1 : -1) * this._drawnSweep() * this.drawProgress;
+        }
+        ctx.arc(this._Center.x, this._Center.y, r, from, endAngle, flag);
         ctx.stroke();
+    }
+
+    // Mid-sweep only: grow the arc from the B arm toward A instead of from
+    // A toward B (#172). Set by A.Sector.sweep's `reverse` arg for the run
+    // and cleared on finalise; the finished arc is the same either way.
+    public sweepReverse: boolean = false;
+
+    // The sweep ctx.arc actually traces from the A arm to the B arm: a
+    // non-negative magnitude in the _anticlockwise() direction (#172).
+    //
+    // The direction is fixed and the angle is signed, so for one arm order
+    // the arc drawn is the COMPLEMENT of the signed angle. That is the
+    // original applet's contract — SectorElement.java normalises a negative
+    // sweep by adding 360° — and the author orders the arms to pick the
+    // side. Static renders are identical either way; this only decides how
+    // the animation gets there.
+    protected _drawnSweep(): number {
+        const a = this._arcAngle();
+        let s = this._anticlockwise() ? -a : a;
+        if (s < 0) s += 2 * Math.PI;
+        return s;
     }
 
     // The signed arc to sweep from the A arm to the B arm, in radians.
@@ -135,7 +174,9 @@ export class SectorElement extends GeomElement {
     // animation duration to what's actually drawn (so a reflex marker
     // doesn't sweep a big arc in a tiny time).
     public arcSpan(): number {
-        return Math.abs(this._arcAngle());
+        // #172 — the DRAWN sweep, so the complement case (a 270° arc from
+        // a 90° signed angle) is timed for what it traces.
+        return this._drawnSweep();
     }
 
     // Trace the closed wedge path (arc + the two radii back to centre)

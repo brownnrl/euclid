@@ -14,7 +14,11 @@ const MIN_SWEEP_MS = 250;
 const DEFAULT_SECTOR_FILL_MS = 500;
 
 // A.Sector.sweep — the arc grows from the A arm toward the B arm by
-// driving drawProgress. Args: none. Duration = |arcAngle| / rate.
+// driving drawProgress. Duration = drawn sweep / rate.
+//
+// Args: `reverse: true` grows it from the B arm toward A instead — the
+// same arc, traced the other way — for a walk that wants the sweep to
+// start at a particular arm without re-ordering the sector (#172).
 //
 // Two-step when the sector has a face (sweep then face fade-in,
 // mirroring Circle.compass); a face-less sector skips the fill step
@@ -33,9 +37,11 @@ export class SectorSweepAnimation extends Animation {
         // reflex marker), so the duration matches the visible sweep.
         const arcAngle = sector.arcSpan();
         const sweepMs = Math.max(MIN_SWEEP_MS, arcAngle / this.defaultRate);
+        const reverse = !!(args && args.reverse === true);
         const fullRestore = () => {
             sector.faceAlpha = 1;
             sector.drawProgress = 1;
+            sector.sweepReverse = false;
             sector.visible = true;
         };
         const sweep: IAnimationStep = {
@@ -43,9 +49,10 @@ export class SectorSweepAnimation extends Animation {
             setup: () => {
                 sector.faceAlpha = 0;
                 sector.drawProgress = 0;
+                sector.sweepReverse = reverse;
             },
             tick: (progress) => { sector.drawProgress = progress; },
-            finalise: () => { sector.drawProgress = 1; },
+            finalise: () => { sector.drawProgress = 1; sector.sweepReverse = false; },
         };
         if (sector.faceColor == null) {
             sweep.finalise = fullRestore;

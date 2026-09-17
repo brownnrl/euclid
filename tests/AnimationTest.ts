@@ -521,9 +521,21 @@ describe("sector sweep + polygon superposition (issue #86)", () => {
             const full = rFull.recorded.arcs[0];
             assert.ok(approx(a.startAngle!, full.startAngle!),
                 `start angles differ: ${a.startAngle} vs ${full.startAngle}`);
-            const half = full.startAngle! + (full.endAngle! - full.startAngle!) / 2;
-            assert.ok(approx(a.endAngle!, half),
-                `endAngle at 0.5: ${a.endAngle} (expected ${half})`);
+            // #172 — half-way means half the sweep ctx.arc actually
+            // traces, in the direction it traces it. This sector is drawn
+            // anticlockwise (decreasing canvas angle) as the 270°
+            // complement of its +90° signed angle, so the half-way arc is
+            // 135° anticlockwise from the start — NOT start + 45°, which
+            // anticlockwise is a 315° arc (the "opens complete and shrinks"
+            // bug this test used to pin).
+            const TAU = 2 * Math.PI;
+            const acwSpan = (s0: number, e: number) => ((s0 - e) % TAU + TAU) % TAU;
+            const fullSpan = acwSpan(full.startAngle!, full.endAngle!);
+            const halfSpan = acwSpan(a.startAngle!, a.endAngle!);
+            assert.ok(approx(fullSpan, 3 * Math.PI / 2),
+                `full sweep should be the 270° complement, got ${fullSpan}`);
+            assert.ok(approx(halfSpan, fullSpan / 2),
+                `half-way sweep ${halfSpan} should be half of ${fullSpan}`);
         });
 
         it("renders nothing with null edgeColor and no emphasis", () => {
