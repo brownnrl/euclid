@@ -11,6 +11,7 @@
 +----------------------------------------------------------------------*/
 
 import {Slate} from "./Slate";
+import {syncBitmapToDisplaySize, currentDpr} from "./CanvasSizing";
 import {computeSlideState} from "./slideshow";
 import {ISlideJust} from "./index";
 import {DiagnosticSeverity} from "./Diagnostics";
@@ -501,14 +502,9 @@ class SlateControls {
     private resizeAndRedraw(): void {
         // Sync the canvas BITMAP to CSS size × dpr so it stays crisp on
         // HiDPI and after CSS scaling (#71). drawElements scales the context
-        // by dpr; coordinates stay in CSS px.
-        const dpr = (typeof window !== "undefined" && window.devicePixelRatio) || 1;
-        let w = Math.round(this._canvas.clientWidth * dpr);
-        let h = Math.round(this._canvas.clientHeight * dpr);
-        if (this._canvas.width !== w || this._canvas.height !== h) {
-            this._canvas.width = w;
-            this._canvas.height = h;
-        }
+        // by dpr; coordinates stay in CSS px. #173 — the helper pins an
+        // attribute-sized box so this can't compound on every resize.
+        syncBitmapToDisplaySize(this._canvas, currentDpr());
         this._slate.recomputeFitScale();   // #71 — F = min(1, display/logical)
         this._applyCentring();
         this._slate.update();
