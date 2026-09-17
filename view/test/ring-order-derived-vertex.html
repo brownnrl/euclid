@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #175 marker ring order on a derived vertex</title>
+<style>
+  body { font-family: sans-serif; }
+  p { max-width: 740px; color: #444; }
+  .pair { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; }
+  figure { margin: 0; }
+  figcaption { font-size: 13px; color: #555; max-width: 400px; margin-top: 6px; }
+  canvas { border: 1px solid #ccc; }
+  table { font: 12px/1.5 monospace; border-collapse: collapse; margin-top: 6px; }
+  td, th { padding: 2px 10px 2px 0; text-align: left; }
+  .bad { color: #a33; font-weight: bold; }
+  .ok { color: #2a6; font-weight: bold; }
+</style>
+</head>
+<body>
+<h3>Same-vertex marker rings on a derived vertex (#175)</h3>
+<p>
+Three angle markers share the vertex <b>D</b>: <b>GDB</b> at 72°, <b>FDB</b> at 90°,
+and <b>ADG</b> at 108°. Auto-nesting (#103) should put the smallest innermost, so the
+right angle sits <i>between</i> the other two.
+</p>
+<p>
+On the <b>left</b>, <b>D</b> is the <code>midpoint</code> of <b>AB</b> — III.1's shape.
+The ring sort used to run before <code>update()</code> had placed the figure, so a
+midpoint (or intersection, or any derived point) was measured at garbage coordinates:
+the 90° marker took ring 0 and nested <i>inside</i> the 72° angle it contains. On the
+<b>right</b>, <b>D</b> is a free point, which always came out right — free points have
+coordinates from construction, which is how this hid.
+</p>
+<p>
+The markers are declared with the right angle <b>first</b>, so declaration order can't
+accidentally produce the correct result. The tables read <code>ringIndex</code> and
+<code>spanRadians()</code> straight off the slate.
+</p>
+
+<div class="pair">
+  <figure>
+    <canvas id="derived" width="400" height="300" tabindex="0"></canvas>
+    <figcaption><b>D = midpoint(A, B)</b> — the case that was wrong.</figcaption>
+    <table id="derivedOut"></table>
+  </figure>
+  <figure>
+    <canvas id="free" width="400" height="300" tabindex="0"></canvas>
+    <figcaption><b>D free</b> — the control that always worked.</figcaption>
+    <table id="freeOut"></table>
+  </figure>
+</div>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var E = geomlib.E;
+    function figure(id, dElement) {
+        geomlib.init({
+            background: "0,0,100", title: "ring order " + id, canvasid: id,
+            // Markers start hidden in a static figure (Euclid's diagrams draw
+            // no angle arcs; slides reveal them). This page has no slides.
+            showAngles: true,
+            elements: [
+                { name: "A", construction: E.Point.free, params: [100, 200] },
+                { name: "B", construction: E.Point.free, params: [300, 200] },
+                dElement,
+                { name: "F", construction: E.Point.free, params: [200, 100] },
+                { name: "G", construction: E.Point.free, params: [230.9, 104.9] },
+                { name: "AB", construction: E.Line.connect, params: ["A", "B"] },
+                { name: "DF", construction: E.Line.connect, params: ["D", "F"] },
+                { name: "DG", construction: E.Line.connect, params: ["D", "G"] },
+                // Right angle declared first, on purpose.
+                { name: "angFDB", construction: E.Sector.angleMarker, params: ["D", "F", "B"] },
+                { name: "angGDB", construction: E.Sector.angleMarker, params: ["D", "G", "B"] },
+                { name: "angADG", construction: E.Sector.angleMarker, params: ["D", "A", "G"] }
+            ]
+        });
+        return geomlib.slates[geomlib.slates.length - 1];
+    }
+    var derived = figure("derived", { name: "D", construction: E.Point.midpoint, params: ["A", "B"] });
+    var free    = figure("free",    { name: "D", construction: E.Point.free,     params: [200, 200] });
+
+    function report(slate, outId) {
+        var ms = slate.elements.filter(function (e) { return typeof e.spanRadians === "function"; });
+        ms.sort(function (a, b) { return a.spanRadians() - b.spanRadians(); });
+        var ok = ms.every(function (m, i) { return m.ringIndex === i; });
+        var rows = "<tr><th>marker</th><th>span</th><th>ringIndex</th><th>radius</th></tr>";
+        ms.forEach(function (m) {
+            rows += "<tr><td>" + m.name + "</td><td>" + Math.round(m.spanRadians() * 180 / Math.PI) +
+                    "&deg;</td><td>" + m.ringIndex + "</td><td>" + m.radius().toFixed(1) + "</td></tr>";
+        });
+        rows += "<tr><td colspan=4 class='" + (ok ? "ok'>smallest innermost" : "bad'>OUT OF ORDER") + "</td></tr>";
+        document.getElementById(outId).innerHTML = rows;
+    }
+    report(derived, "derivedOut");
+    report(free, "freeOut");
+</script>
+</body>
+</html>
