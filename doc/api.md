@@ -307,7 +307,6 @@ has no `align` field). Tracked under platform TODOs in
 | 6-hex-digit `#rrggbb` or `rrggbb` | The exact RGB. |
 | Comma-triple `"H,S,B"` (e.g. `"35,19,100"`) | HSB; H ∈ 0–360, S/B ∈ 0–100. Matches the Java applet's `Color.getHSBColor()` semantics. |
 | CSS functional `rgb()` / `rgba()` / `hsl()` / `hsla()` (e.g. `"rgba(120,180,210,0.6)"`) | Passed to the canvas as written (0.16.0+, #179). `rgba()`'s alpha composes with a fill fade (`faceAlpha`) rather than replacing it. |
-| Anything else | Drawn **transparent**, and reported as an `unknown-color` diagnostic on the badge / `geomlib.diagnostics()` (0.16.0+, #179). |
 | `"random"` | Random pastel each call. |
 | `"background"` | `bgcolor`. |
 | `"brighter"` | `lighten(bgcolor)` — Java's `Color.brighter()`, factor 0.7. |
@@ -315,6 +314,7 @@ has no `align` field). Tracked under platform TODOs in
 | `"none"` | `null` (the corresponding draw layer is skipped). |
 | Number `0` | `null` (the Java applet's "transparent" sentinel). |
 | `null` / `undefined` | `defaultColor`. |
+| Anything else | Drawn **transparent**, and reported as an `unknown-color` diagnostic on the badge / `geomlib.diagnostics()` (0.16.0+, #179). |
 
 Each element has four color slots: name, vertex, edge, face. A `null`
 value means "skip drawing this layer." The default for face on
