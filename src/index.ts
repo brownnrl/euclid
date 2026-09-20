@@ -343,10 +343,17 @@ export function parseParam(value: string): IConstructionInfo {
         throw new Error(`parseParam: unknown construction "${type};${construction}" in "${value}"`);
     }
 
-    // Parse params: split on comma, convert numeric strings to numbers
+    // Parse params: split on comma, convert numeric strings to numbers.
+    // Java tried Integer.parseInt(token) first and fell through to
+    // lookupElement on NumberFormatException (Slate.java selectDataChoice).
+    // parseInt rejects surrounding whitespace, so an element named "1 "
+    // (trailing space — view/round_geometry/seventen.html) was a name, not
+    // the integer 1. JS Number() trims, which is how those references were
+    // lost (#155). Coerce only tokens with no surrounding whitespace; the
+    // rest stay strings for Slate.convertParams to resolve by name.
     let params: any[] = data.split(",").map(s => {
         let n = Number(s);
-        return (s !== "" && !isNaN(n)) ? n : s;
+        return (s !== "" && s === s.trim() && !isNaN(n)) ? n : s;
     });
 
     // Parse optional color fields (positions 4-7)
