@@ -776,8 +776,19 @@ export class Slate {
             switch(typeof(param)) {
                 case "string":
                     let g : GeomElement = this.lookupElement(param);
-                    if ( g == null )
+                    if ( g == null ) {
+                        // #155 — a string that names nothing but reads as a
+                        // number is an integer arg (parseParam leaves
+                        // whitespace-padded numerics as strings; programmatic
+                        // callers may pass "50"). Name lookup wins when both
+                        // apply, so an element named "1 " is still reachable.
+                        let n = Number(param);
+                        if (param.trim() !== "" && !isNaN(n)) {
+                            N.push(n);
+                            break;
+                        }
                         throw new TypeError(`Element with name ${param} not found.`);
+                    }
                     if (g instanceof PointElement) {
                         P.push(g);
                     } else if (g instanceof LineElement && !keepLineElements) {

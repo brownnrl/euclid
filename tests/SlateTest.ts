@@ -80,6 +80,38 @@ describe("slate", () => {
             TypeError);
     });
 
+    // #155 — an element whose name looks numeric must be reachable by that
+    // name. Java resolved "1 " (trailing space) as a lookup because
+    // Integer.parseInt rejected it; the port coerced it to 1 and lost it.
+    it("convertParams should resolve a numeric-looking element name before coercing", () => {
+        let slate = new Slate(createCanvas(400, 300));
+        toElements(slate, [
+            parseParam("1 ;point;free;50,250"),
+            parseParam("2 ;point;free;220,50"),
+            parseParam("A;line;connect;1 ,2 "),
+            parseParam("3 ;point;lineSlider;160,100,A"),
+        ]);
+        let A = slate.lookupElement("A");
+        assert(A != null, "line A should construct from points named '1 ' and '2 '");
+        assert.strictEqual(slate.lookupElement("3 ").visible, true);
+        // The unpadded coordinates 160,100 still arrived as integers.
+        let sp = slate.convertParams([160, 100, "A"]);
+        assert.deepEqual(sp.N, [160, 100]);
+        assert.equal(sp.P.length, 2);
+    });
+
+    it("convertParams should coerce a numeric string that names no element", () => {
+        let slate = new Slate(createCanvas(100, 100));
+        slate.createElement(E.Point.free, [10, 10], "A");
+        // Programmatic caller passing coordinates as strings — Java-style
+        // number-first behaviour is preserved on a lookup miss.
+        let sp = slate.convertParams(["A", "50", " 60"]);
+        assert.equal(sp.P.length, 1);
+        assert.deepEqual(sp.N, [50, 60]);
+        // A non-numeric miss still throws.
+        assert.throws(() => slate.convertParams(["nope"]), /not found/);
+    });
+
     it("createElement should throw a descriptive TypeError when no construction matches", () => {
         let slate = new Slate(createCanvas(100, 100));
         // No construction takes zero points → findConstruction returns null.

@@ -95,6 +95,19 @@ describe("parseParam", () => {
         assert.equal(p.vertexColor, undefined);
     });
 
+    // #155 — Java's Integer.parseInt rejected surrounding whitespace, so a
+    // token like "1 " was an element name, never the integer 1.
+    it("should keep whitespace-padded numeric tokens as strings", () => {
+        let p = parseParam("A;line;connect;1 ,2 ");
+        assert.deepEqual(p.params, ["1 ", "2 "]);
+        assert.equal(typeof p.params[0], "string");
+    });
+
+    it("should still coerce unpadded numeric tokens alongside padded names", () => {
+        let p = parseParam("3 ;point;lineSlider;160,100,A");
+        assert.deepEqual(p.params, [160, 100, "A"]);
+    });
+
     it("should throw on unknown element type", () => {
         assert.throws(() => parseParam("A;bogus;free;60,100"), /unknown element type/);
     });

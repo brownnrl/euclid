@@ -223,8 +223,16 @@ identifiers can't start with a digit.
 ### Args parsing
 
 Each CSV entry in field 3 is converted: numeric strings (per
-`Number()`) become `number`s, everything else stays a `string`. So
-`"A,B,150,140"` becomes `["A","B",150,140]`.
+`Number()`, with no surrounding whitespace) become `number`s,
+everything else stays a `string`. So `"A,B,150,140"` becomes
+`["A","B",150,140]`.
+
+A string that doesn't name an element but still reads as a number
+(`"150"`, `" 150"`) is treated as a number when the construction is
+built. This mirrors the Java applet's `Integer.parseInt`-then-lookup
+order and means an element may be *named* with digits — `"1 "`
+(trailing space) is a legal name and is resolved before any numeric
+coercion. Only exact, unpadded numerics are always numbers.
 
 ### Mixing object and string forms
 
