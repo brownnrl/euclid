@@ -1,6 +1,6 @@
 # Contributing to geomlib
 
-Thanks for your interest. This file covers the mechanics — setup, tests, and
+Thanks for your interest. This file covers the mechanics: setup, tests, and
 what a pull request should carry. The project's principles and roadmap, and
 where a given kind of contribution belongs, are in
 [doc/roadmap.md](doc/roadmap.md).
@@ -16,7 +16,7 @@ That's it.
 ## Running tests
 
 ```sh
-npm run test:unit      # unit tests — fast
+npm run test:unit      # unit tests, fast
 npm run test:snapshot  # visual-regression tests against snapshot goldens
 npm test               # both (snapshot then unit)
 ```
@@ -38,7 +38,7 @@ npm test
 ## How a contribution works
 
 **Start from an issue.** One issue per pull request. If there is no issue for
-what you want to change, open one first — even a small one — so the reasoning
+what you want to change, open one first, even a small one, so the reasoning
 has a home. A first PR is best kept small; it lets both sides see how the other
 works before anything larger.
 
@@ -50,7 +50,7 @@ history is yours to arrange; the PR title becomes the commit subject on `main`.
 **What a pull request carries.**
 
 - *The cause, not just the change.* Say what was wrong and why, in the PR
-  body. When the fix diverges from what the issue proposed, say why — the Java
+  body. When the fix diverges from what the issue proposed, say why; the Java
   source under `geom_applet/source/` is the reference when the original
   applet's behaviour is the question.
 - *Tests that were red first.* State that the new test fails without the fix.
@@ -68,8 +68,8 @@ history is yours to arrange; the PR title becomes the commit subject on `main`.
 **Commit messages** are a subject line; a simple change needs no body. No
 trailers.
 
-**Content, decks and captions** — anything about a page on the site rather
-than the library — belong in
+**Content, decks and captions**, anything about a page on the site rather
+than the library, belong in
 [euclids-elements-lektor](https://github.com/brownnrl/euclids-elements-lektor);
 see its [doc/process.md](https://github.com/brownnrl/euclids-elements-lektor/blob/main/doc/process.md)
 for how a deck is built and reviewed.

@@ -1,7 +1,7 @@
 # Philosophy and roadmap
 
 Where this project comes from, the principles it works by, and where it is
-going — for anyone deciding whether and how to contribute. The mechanics of a
+going, for anyone deciding whether and how to contribute. The mechanics of a
 pull request are in [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## What this is
@@ -15,7 +15,7 @@ Two repositories carry the work:
 
 | Repository | What it holds |
 |---|---|
-| **euclid** (this one) — `@brownnrl/geomlib` | A TypeScript port of the applet's construction model, rendering on an HTML5 canvas, with a slideshow layer for walking a proof step by step. |
+| **euclid** (this one), published as `@brownnrl/geomlib` | A TypeScript port of the applet's construction model, rendering on an HTML5 canvas, with a slideshow layer for walking a proof step by step. |
 | [**euclids-elements-lektor**](https://github.com/brownnrl/euclids-elements-lektor) | The site at [euclids-elements.org](https://www.euclids-elements.org/): Dr. Joyce's text and figures for all thirteen books, plus the proposition slide decks that use the library. |
 
 A library issue belongs here; a page, a deck, or a caption belongs there. The
@@ -27,8 +27,8 @@ site pin bump within days.
 **Fidelity to the source.** Every page's text and every figure's construction
 originate in Dr. Joyce's site. The library reproduces the original Geometry
 Applet's construction model rather than reinterpreting it, and when behaviour
-is in doubt the Java source under `geom_applet/source/` — and the `harness/propI4`
-branch, which can still run the Java 8 applet — are the reference. Divergences
+is in doubt the reference is the Java source under `geom_applet/source/`,
+together with the `harness/propI4` branch, which can still run the Java 8 applet. Divergences
 are deliberate and written down. When a bug report proposed changing which side
 of a sector an arm order draws (#172), the Java source showed that arm order
 picking the side was the applet's contract, and the fix left it alone.
@@ -36,13 +36,13 @@ picking the side was the applet's contract, and the fix left it alone.
 **Preserve first, modernize on top.** Every addition is additive and default-off.
 A figure at rest renders bit-for-bit as it did before the change (to the best
 of our ability to do so, and faithful to the source texts); the snapshot
-goldens enforce that on every pull request. New capability — animation,
-diagnostics, centring, responsive sizing — attaches beside the original
+goldens enforce that on every pull request. New capability (animation,
+diagnostics, centring, responsive sizing) attaches beside the original
 behaviour, never in place of it. This ordering is also the roadmap's: the corpus
 is made complete and stable before anything is built on top of it.
 
 **Everything AI touches is reviewed by a person.** AI assistance is used
-throughout — in converting pages, in authoring decks, in the library itself.
+throughout: in converting pages, in authoring decks, in the library itself.
 The guardrails are fixed: content comes only from the source text; every
 converted page and every deck gets human review before it is published; guides
 and commentary are written by a person. In the library, the arbiter is the
@@ -51,26 +51,28 @@ under `view/test/`, and a claim about rendering is measured outside the browser
 rather than taken from a screenshot.
 
 **What is canonical, and what is presentation.** The arrangement of a figure
-and the written words stay canonical to the source texts. Presentation — label
-size, how a point is labelled, colour, what is highlighted when — may change to
-convey intent, and should. The pages under `view/euclid-html/`,
+and the written words stay canonical to the source texts. Presentation, such as
+label size, how a point is labelled, colour, or what is highlighted when, may
+change where it gets in the way of conveying intent. That is an editorial
+decision made by a human reviewer, and it is limited to matters the reviewer
+judges trivial. The pages under `view/euclid-html/`,
 `view/compass_geometry/` and `view/round_geometry/` are Dr. Joyce's originals,
 kept as snapshot input; where one carries a defect from 1996 (#156), repairing
 it is allowed, but it is a decision a person makes and records, not something a
 tool applies in passing.
 
-**Diagnostics over silence.** When the library cannot resolve something — a
+**Diagnostics over silence.** When the library cannot resolve something (a
 name a slide refers to, a colour it does not recognise, an animation target a
-refactor left behind — it says so, on the canvas and in the console, rather
+refactor left behind), it says so, on the canvas and in the console, rather
 than drawing nothing (#154). A deck author should never have to guess why a
 figure is blank.
 
 ## Roadmap
 
-### Near term — preservation
+### Near term: preservation
 
 - **Slide decks for Books III–XIII, a book at a time.** All thirteen books are
-  converted and every figure is already live on the site — drag a point and the
+  converted and every figure is already live on the site; drag a point and the
   construction follows. What remains is the *walk*: the step-through of each
   proof, with its captions and transitions, that a figure plays in the
   presentation view. Books I and II have theirs; Book III is underway. This is
@@ -83,10 +85,10 @@ figure is blank.
   decision, and settle the default label size (#70), which is presentation and
   free to change.
 
-### Longer term — modernization, discussed first
+### Longer term: modernization, discussed first
 
 Each of these is a design conversation in its issue before it is code. The
-principle above — additive, default-off, static renders unchanged — applies to
+principle above (additive, default-off, static renders unchanged) applies to
 all of them.
 
 - **Touch gestures** (#57): two-finger rotate and pinch. The mechanics are
@@ -103,8 +105,8 @@ all of them.
 
 ### Beyond Euclid
 
-The same approach — a faithful conversion of a source text, live figures,
-human-written guides — is intended for other classical texts, in roughly this
+The same approach, a faithful conversion of a source text with live figures
+and human-written guides, is intended for other classical texts, in roughly this
 order:
 
 1. Apollonius of Perga, *Conics* (Heath's translation).
@@ -116,7 +118,7 @@ write it. Then other texts, by the same process.
 
 ## Getting involved
 
-- **A first pull request should be small** — one issue, a clear cause, a test
+- **A first pull request should be small**: one issue, a clear cause, a test
   that was red before the fix. It is the fastest way for both sides to see how
   the other works.
 - **Preservation issues are open to anyone**: the issue list is the queue, and
@@ -124,7 +126,7 @@ write it. Then other texts, by the same process.
 - **Modernization issues want a conversation first**: propose the design in
   the issue and wait for agreement before writing code.
 - **Reviewing decks or content, or learning to convert a text**, happens in
-  the site repository — start with its
+  the site repository; start with its
   [deck process](https://github.com/brownnrl/euclids-elements-lektor/blob/main/doc/process.md)
   and [conventions](https://github.com/brownnrl/euclids-elements-lektor/blob/main/doc/conventions.md).
   Students interested in the history of mathematics are welcome there; no

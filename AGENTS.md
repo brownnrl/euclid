@@ -99,7 +99,7 @@ dist/                     Webpack output (gitignored, shipped to npm)
 ```sh
 npm install              # one-time
 npm run build            # tsc --noEmit (typecheck only)
-npm run test:unit        # unit tests — fast
+npm run test:unit        # unit tests, fast
 npm run test:snapshot    # snapshot tests; auto-creates goldens on first run
 npm test                 # both
 npm run bundle           # dev-mode bundle to dist/bundle.js
