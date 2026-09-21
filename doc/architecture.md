@@ -159,13 +159,13 @@ geomlib.init({ canvasid, elements: [...], pivot?, background?, title?, … })
               │                              first whose validateSignature() matches
               │                              by type counts (and elementTypes if set)
               └─ Construction.construct(screen, P, E, N)
-                   └─ returns [elementsForUpdate, newElement]
-                        ├─ elementsForUpdate → pushed onto slate._elementsForUpdate
+                   └─ returns [dependencyElements, newElement]
+                        ├─ dependencyElements → each pushed onto slate._elements (if not already there)
                         └─ newElement        → pushed onto slate._elements
 
   ├─ if config.pivot: slate.setPivot(config.pivot)
   ├─ slate.update()
-  │     ├─ for each elem in _elementsForUpdate: elem.update()
+  │     ├─ for each elem in _elements: elem.update()
   │     └─ drawElements()
   │          ├─ for each elem in _elements:
   │          │    elem.drawFace() → elem.drawEdge() → elem.drawVertex() → elem.drawName()
