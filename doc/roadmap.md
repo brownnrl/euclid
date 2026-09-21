@@ -16,7 +16,7 @@ Two repositories carry the work:
 | Repository | What it holds |
 |---|---|
 | **euclid** (this one), published as `@brownnrl/geomlib` | A TypeScript port of the applet's construction model, rendering on an HTML5 canvas, with a slideshow layer for walking a proof step by step. |
-| [**euclids-elements-lektor**](https://github.com/brownnrl/euclids-elements-lektor) | The site at [euclids-elements.org](https://www.euclids-elements.org/): Dr. Joyce's text and figures for all thirteen books, plus the proposition slide decks that use the library. |
+| [**euclids-elements-lektor**](https://github.com/brownnrl/euclids-elements-lektor) | The site at [euclids-elements.org](https://www.euclids-elements.org/): the source text and figures for all thirteen books, plus the proposition slide decks that use the library. |
 
 A library issue belongs here; a page, a deck, or a caption belongs there. The
 two are developed side by side, and a library release is usually followed by a
@@ -25,10 +25,12 @@ site pin bump within days.
 ## Principles
 
 **Fidelity to the source.** Every page's text and every figure's construction
-originate in Dr. Joyce's site. The library reproduces the original Geometry
-Applet's construction model rather than reinterpreting it, and when behaviour
-is in doubt the reference is the Java source under `geom_applet/source/`,
-together with the `harness/propI4` branch, which can still run the Java 8 applet. Divergences
+originate in a source text. Nothing is invented; a guide or commentary is
+written by a person and marked as such. For the *Elements*, the library
+reproduces the original Geometry Applet's construction model rather than
+reinterpreting it, and when behaviour is in doubt the reference is the Java
+source under `geom_applet/source/`, together with the `harness/propI4` branch,
+which can still run the Java 8 applet. Divergences
 are deliberate and written down. When a bug report proposed changing which side
 of a sector an arm order draws (#172), the Java source showed that arm order
 picking the side was the applet's contract, and the fix left it alone.
@@ -56,8 +58,8 @@ label size, how a point is labelled, colour, or what is highlighted when, may
 change where it gets in the way of conveying intent. That is an editorial
 decision made by a human reviewer, and it is limited to matters the reviewer
 judges trivial. The pages under `view/euclid-html/`,
-`view/compass_geometry/` and `view/round_geometry/` are Dr. Joyce's originals,
-kept as snapshot input; where one carries a defect from 1996 (#156), repairing
+`view/compass_geometry/` and `view/round_geometry/` are the original 1996
+pages, kept as snapshot input; where one carries a defect from 1996 (#156), repairing
 it is allowed, but it is a decision a person makes and records, not something a
 tool applies in passing.
 
@@ -130,4 +132,4 @@ write it. Then other texts, by the same process.
   [deck process](https://github.com/brownnrl/euclids-elements-lektor/blob/main/doc/process.md)
   and [conventions](https://github.com/brownnrl/euclids-elements-lektor/blob/main/doc/conventions.md).
   Students interested in the history of mathematics are welcome there; no
-  programming is needed to review a deck against Dr. Joyce's text.
+  programming is needed to review a deck against the source text.
