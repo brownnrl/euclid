@@ -19,6 +19,11 @@ for constructions; the two registries are independent (a Construction
 builds an element once at init-time, an Animation describes how to
 *reveal* it on a slide transition).
 
+Each entry is also addressable by its registry name as a plain string —
+`"Line.straightEdgeConnect"` for `A.Line.straightEdgeConnect`, `"instant"`
+for `A.instant` — which is the form a deck stored as data uses. See
+[api.md § String names](api.md#string-names) for the full table.
+
 The reserved bare name `A.instant` (no `Type` namespace) means
 "no animation, finalise immediately" — use it on a slide entry to
 suppress an inherited animation.
