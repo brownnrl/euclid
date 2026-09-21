@@ -66,7 +66,7 @@ figure is blank.
 ### Near term — preservation
 
 - **Publish Books II–XIII as decks, a book at a time.** Book I is complete and
-  published; Book II is complete; Book III is underway. This is the site
+  published; Book II's decks are done; Book III is underway. This is the site
   repository's work, and each book tends to surface a few library issues, which
   are fixed and released as they come.
 - **Close the diagnostics gaps the decks keep finding**: the default opaque
