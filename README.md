@@ -102,6 +102,7 @@ step-by-step walkthrough of this example, see
 | [doc/creating-animations.md](doc/creating-animations.md) | Adding a new slide-transition animation. |
 | [doc/constructions-reference.md](doc/constructions-reference.md) | Per-construction priority and usage frequency across Books I–III. |
 | [doc/animations-reference.md](doc/animations-reference.md) | Catalog of every `A.*` animation — defaults, args, visual behaviour. |
+| [doc/roadmap.md](doc/roadmap.md) | Contributors. The principles the project works by, the roadmap, and where a given kind of contribution belongs. |
 | [doc/historical/](doc/historical/) | Project journal and the Java-to-TypeScript porting record. |
 
 ## Build, test, develop

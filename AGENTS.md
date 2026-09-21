@@ -54,7 +54,10 @@ polish. Approach those like normal feature work (branch, PR, review)
 - [doc/constructions-reference.md](doc/constructions-reference.md) +
   [doc/animations-reference.md](doc/animations-reference.md) —
   catalogs of every `E.*` construction and `A.*` animation.
-- [CONTRIBUTING.md](CONTRIBUTING.md) — test/snapshot/bundle commands.
+- [CONTRIBUTING.md](CONTRIBUTING.md) — test/snapshot/bundle commands and
+  what a pull request carries.
+- [doc/roadmap.md](doc/roadmap.md) — principles (fidelity, preserve-first,
+  human review), the roadmap, and the split between this repo and the site.
 - [NOTICE.md](NOTICE.md) — Dr. Joyce's permission + license posture.
 
 The porting-era trackers and the dated session journal live under
