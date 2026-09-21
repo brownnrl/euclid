@@ -112,7 +112,7 @@ npm install              # install dependencies (once)
 npm run build            # compile TypeScript (no emit; type-check only)
 npm test                 # run the full Mocha suite (unit + snapshot)
 npm run test:unit        # unit tests only
-npm run test:snapshot    # 705 rendered-pixel snapshot tests
+npm run test:snapshot    # rendered-pixel snapshot tests
 npm run coverage         # tests + c8 code coverage report
 npm run bundle           # webpack dev-mode bundle to dist/bundle.js
 npm run bundle:prod      # webpack production (minified) bundle

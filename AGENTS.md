@@ -14,7 +14,7 @@ Library is **post-porting, publish-ready**. There is no longer a
 "next construction to port" backlog or session-startup ritual.
 
 - All 69 construction methods (with 19 3D variants) are implemented.
-- 469 unit tests + 705 snapshot tests pass.
+- The unit and snapshot suites pass (`npm test`).
 - 0.4.0 shipped cross-highlighting (`emphasized` / `emphasisAmount`
   + `lookupElement`); 0.5.0 shipped the slideshow surface
   (`slides`, `setVisibleNames`, `addAlias`, `resolveJustification`,
@@ -75,7 +75,7 @@ src/                      TypeScript library source (54 files)
   index.ts                Public API — init(), parseParam(), E, Align, Color
 
 tests/                    Mocha suites
-  {Type}Test.ts           Per-element unit tests (137 cases total)
+  {Type}Test.ts           Per-element unit tests
   SnapshotTest.ts         Auto-discovers HTML scenes, renders, diffs PNGs
   HtmlParamParser.ts      Parses <applet> blocks from HTML test fixtures
 
@@ -99,8 +99,8 @@ dist/                     Webpack output (gitignored, shipped to npm)
 ```sh
 npm install              # one-time
 npm run build            # tsc --noEmit (typecheck only)
-npm run test:unit        # 469 unit tests (~220 ms)
-npm run test:snapshot    # 705 snapshot tests; auto-creates goldens on first run
+npm run test:unit        # unit tests — fast
+npm run test:snapshot    # snapshot tests; auto-creates goldens on first run
 npm test                 # both
 npm run bundle           # dev-mode bundle to dist/bundle.js
 npm run bundle:prod      # production (minified) bundle, ~125 kB

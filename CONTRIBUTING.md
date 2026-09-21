@@ -16,8 +16,8 @@ That's it.
 ## Running tests
 
 ```sh
-npm run test:unit      # 469 unit tests — fast (~220 ms)
-npm run test:snapshot  # 705 visual-regression tests against snapshot goldens
+npm run test:unit      # unit tests — fast
+npm run test:snapshot  # visual-regression tests against snapshot goldens
 npm test               # both (snapshot then unit)
 ```
 
@@ -64,9 +64,6 @@ history is yours to arrange; the PR title becomes the commit subject on `main`.
   alters a figure at rest needs a reason in the PR.
 - *Docs in the same PR.* `doc/api.md`, `doc/animations-reference.md` and the
   others describe the code as it is; when the code moves, they move with it.
-
-**Test counts** in `AGENTS.md`, `CONTRIBUTING.md` and `README.md` are updated at
-release time, not per PR.
 
 **Commit messages** are a subject line; a simple change needs no body. No
 trailers.
