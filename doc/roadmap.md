@@ -65,10 +65,13 @@ figure is blank.
 
 ### Near term — preservation
 
-- **Publish Books II–XIII as decks, a book at a time.** Book I is complete and
-  published; Book II's decks are done; Book III is underway. This is the site
-  repository's work, and each book tends to surface a few library issues, which
-  are fixed and released as they come.
+- **Slide decks for Books III–XIII, a book at a time.** All thirteen books are
+  converted and every figure is already live on the site — drag a point and the
+  construction follows. What remains is the *walk*: the step-through of each
+  proof, with its captions and transitions, that a figure plays in the
+  presentation view. Books I and II have theirs; Book III is underway. This is
+  the site repository's work, and each book tends to surface a few library
+  issues, which are fixed and released as they come.
 - **Close the diagnostics gaps the decks keep finding**: the default opaque
   face that whites out neighbours when highlighted (#182), a slideshow title
   (#187), whatever the next book turns up.
