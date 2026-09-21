@@ -882,6 +882,53 @@ Cascade order = array order. An element revealed by the slide but
 behaviour). The slate-level animationConfig has no "default per
 element type" hook — animations are strictly opt-in per slide.
 
+### String names
+
+Every animation is also addressable by its registry name — the
+`A.{Type}.{name}` path as a string, `"Line.straightEdgeConnect"` —
+and a slide entry may use either form:
+
+```javascript
+transition: {
+    animations: [
+        { elem: "BCD", name: "Circle.compass" },           // string
+        { elem: "CE",  name: A.Line.straightEdgeConnect }, // enum — same animation
+        { elem: "C",   name: "instant" }                   // bare, no namespace
+    ]
+}
+```
+
+Both forms go through the same lookup (`findAnimation`), at run time
+and in the load-time deck validation, so an unknown string name is
+reported as a diagnostic exactly like an unknown enum. The string form
+is what a deck needs when it is stored as data rather than as
+JavaScript — `JSON.parse`, a generator that `json.dumps` its slides, a
+schema check — since an enum value does not survive serialization.
+
+Registered names, as of 0.16.0:
+
+| String | Enum |
+|---|---|
+| `"instant"` | `A.instant` |
+| `"Point.appear"` | `A.Point.appear` |
+| `"Point.slide"` | `A.Point.slide` |
+| `"Point.followPath"` | `A.Point.followPath` |
+| `"Line.straightEdgeConnect"` | `A.Line.straightEdgeConnect` |
+| `"Line.straightEdgeExtend"` | `A.Line.straightEdgeExtend` |
+| `"Circle.compass"` | `A.Circle.compass` |
+| `"Circle.compassTransfer"` | `A.Circle.compassTransfer` |
+| `"Polygon.outline"` | `A.Polygon.outline` |
+| `"Polygon.outlineAndFill"` | `A.Polygon.outlineAndFill` |
+| `"Polygon.equilateralBuild"` | `A.Polygon.equilateralBuild` |
+| `"Polygon.superpose"` | `A.Polygon.superpose` |
+| `"Sector.sweep"` | `A.Sector.sweep` |
+| `"Group.cloneAside"` | `A.Group.cloneAside` |
+
+The string is the `name` each animation registers with
+(`registerAnimation` in `src/elements/Animations.ts`); the table in
+[animations-reference.md](animations-reference.md) is keyed by the
+enum form.
+
 ### `IAnimationConfig`
 
 ```typescript
