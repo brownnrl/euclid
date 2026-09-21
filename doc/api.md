@@ -111,13 +111,14 @@ interface IInitialization {
 | Field | Java applet param | Default | Description |
 |---|---|---|---|
 | `background` | `background` | `"#ffffff"` | Canvas fill. Same string grammar as element colors — see [Colors](#colors). HSB triples like `"35,19,100"` are valid. |
-| `title` | `title` | `""` | A label for the diagram. Stored on the Slate; not currently rendered on the canvas itself. |
+| `title` | `title` | (required by the type) | A label for the diagram, kept for parity with the applet param. Not read by the library — it is neither stored on the Slate nor rendered. Treat it as a human-facing label in the source. |
 | `align` | `align` | `Align.CENTRAL` | Default label placement applied to every element. CENTRAL chooses ABOVE/BELOW/LEFT/RIGHT dynamically based on the label's quadrant relative to the canvas center. |
 | `canvasid` | (none — applet's host element) | `"canvasid"` | DOM `id` of the `<canvas>` to draw into. |
 | `pivot` | `pivot` | (no pivot) | Name of a point used as the rotation/scale center when the user drags a non-draggable point. Two-part form `"P,plane"` pivots on a non-screen plane (3D). See [Drag pipeline](architecture.md#drag-pipeline-movepick--translatecoordinates--rotatecoordinates). |
 | `centerOn` | (none) | (bounds-derived) | Name of the element the maximized / presentation view centres on, instead of deriving the centre from the figure's bounds. Resolved through the alias table; the element needs no label and need not be visible. An unresolvable name is reported through [diagnostics](#diagnostics-and-the-on-canvas-badge-154-0140) and the view falls back to bounds centring. Use it where no automatic rule can be right — a figure built from hyperbolic geodesics has bounds several times its canvas whatever its points do. Often takes the same value as `pivot`. |
 | `font` | `font` | `"Times New Roman"` | Font family for element labels. Set globally on `GeomElement` via `GeomElement.setFont()`. Java default is `"TimesRoman"`. |
 | `fontsize` | `fontsize` | `18` | Pixel size for the label font. |
+| `width`, `height` | (canvas `width` / `height` attrs) | inferred | 0.13.0+ (#71). Authored logical coordinate size. Normally inferred from the canvas's CSS style px or its `width`/`height` attributes; set explicitly to pin the coordinate space when neither is declared, or to override. |
 | `elements` | `e[1]`, `e[2]`, … | (required) | Ordered list of element specs. May mix `IConstructionInfo` objects and Java param strings. |
 | `aliases` | — | `{}` | Secondary element names that resolve to a canonical element. See [Slides & visibility](#slides--visibility). |
 | `deferDraggables` | — | `[]` | 0.7.1+. Draggable element names excluded from the slideshow's every-slide auto-union — they follow slide `visible` sets like any other element. For draggables the proof introduces mid-walk. |
@@ -886,28 +887,42 @@ element type" hook — animations are strictly opt-in per slide.
 
 ```typescript
 interface IAnimationConfig {
-    rates?:   { [animationName: string]: number };  // px/ms or rad/ms
-    durations?: { [animationName: string]: number };
+    durations?: { [animationName: string]: number };  // ms, keyed by string name
+    rates?:   { [animationName: string]: number };  // reserved — declared, not yet read
     cascadeGapMs?: number;       // pause between cascaded steps; default 0
     speedMultiplier?: number;    // 1.0 default; 0 = jump-to-final
-    reducedMotion?: boolean;     // default reads prefers-reduced-motion CSS
+    reducedMotion?: boolean;     // default false
 }
 ```
 
-Lets a consumer dial all `Circle.compass` animations 30% slower
-without touching individual slides:
+Lets a consumer set every `Circle.compass` reveal to 900 ms without
+touching individual slides. The map is keyed by the animation's
+**string name** (`"Circle.compass"`, the name it registers with) — an enum value
+used as a computed key would produce a numeric key that never matches:
 
 ```javascript
-animationConfig: { rates: { [A.Circle.compass]: 0.0021 } }
+animationConfig: { durations: { "Circle.compass": 900 } }
 ```
 
-Resolution chain for an animation step's effective duration:
-slide-entry `durationMs` → `config.durations[name]` →
-`config.rates[name] × geometry` → animation's `defaultDurationMs` →
-animation's `defaultRate × geometry`.
+Resolution chain for an animation step's effective duration, as
+implemented in `SlateAnimator.run`:
+slide-entry `durationMs` → `config.durations[name]` → the duration the
+animation's own `build()` assigned from its `defaultDurationMs` /
+`defaultRate × geometry`.
+
+`rates` is declared on the interface and mentioned in comments, but
+nothing reads it yet; setting it has no effect.
 
 `reducedMotion: true` (or `speedMultiplier === 0`) short-circuits to
-synchronous finalise — every animation jumps to its end state.
+synchronous finalise — every animation jumps to its end state. The
+library does not consult the `prefers-reduced-motion` media query
+itself; a consumer that wants to honour it passes the result in:
+
+```javascript
+animationConfig: {
+    reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+}
+```
 
 ### Per-element animation properties
 
