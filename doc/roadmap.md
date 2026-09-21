@@ -34,7 +34,8 @@ of a sector an arm order draws (#172), the Java source showed that arm order
 picking the side was the applet's contract, and the fix left it alone.
 
 **Preserve first, modernize on top.** Every addition is additive and default-off.
-A figure at rest renders bit-for-bit as it did before the change; 705 snapshot
+A figure at rest renders bit-for-bit as it did before the change (to the best
+of our ability to do so, and faithful to the source texts); the snapshot
 goldens enforce that on every pull request. New capability — animation,
 diagnostics, centring, responsive sizing — attaches beside the original
 behaviour, never in place of it. This ordering is also the roadmap's: the corpus
