@@ -50,10 +50,14 @@ test: a fix is shown red before it is shown green, anything visible gets a page
 under `view/test/`, and a claim about rendering is measured outside the browser
 rather than taken from a screenshot.
 
-**Archival fixtures are mirrors, not ours to tidy.** The pages under
-`view/euclid-html/`, `view/compass_geometry/` and `view/round_geometry/` are
-Dr. Joyce's originals, kept verbatim as snapshot input. Where one carries a
-defect from 1996 (#156), it is documented, not silently repaired.
+**What is canonical, and what is presentation.** The arrangement of a figure
+and the written words stay canonical to the source texts. Presentation — label
+size, how a point is labelled, colour, what is highlighted when — may change to
+convey intent, and should. The pages under `view/euclid-html/`,
+`view/compass_geometry/` and `view/round_geometry/` are Dr. Joyce's originals,
+kept as snapshot input; where one carries a defect from 1996 (#156), repairing
+it is allowed, but it is a decision a person makes and records, not something a
+tool applies in passing.
 
 **Diagnostics over silence.** When the library cannot resolve something — a
 name a slide refers to, a colour it does not recognise, an animation target a
@@ -75,8 +79,9 @@ figure is blank.
 - **Close the diagnostics gaps the decks keep finding**: the default opaque
   face that whites out neighbours when highlighted (#182), a slideshow title
   (#187), whatever the next book turns up.
-- **Decide the archival-defect policy** (#156) and the default label size
-  (#70): both are questions of what fidelity means, not of code.
+- **Work through the archival defects** (#156), each repair a reviewed
+  decision, and settle the default label size (#70), which is presentation and
+  free to change.
 
 ### Longer term — modernization, discussed first
 
