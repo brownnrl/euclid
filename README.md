@@ -102,6 +102,7 @@ step-by-step walkthrough of this example, see
 | [doc/creating-animations.md](doc/creating-animations.md) | Adding a new slide-transition animation. |
 | [doc/constructions-reference.md](doc/constructions-reference.md) | Per-construction priority and usage frequency across Books I–III. |
 | [doc/animations-reference.md](doc/animations-reference.md) | Catalog of every `A.*` animation — defaults, args, visual behaviour. |
+| [doc/roadmap.md](doc/roadmap.md) | Contributors. The principles the project works by, the roadmap, and where a given kind of contribution belongs. |
 | [doc/historical/](doc/historical/) | Project journal and the Java-to-TypeScript porting record. |
 
 ## Build, test, develop
@@ -111,7 +112,7 @@ npm install              # install dependencies (once)
 npm run build            # compile TypeScript (no emit; type-check only)
 npm test                 # run the full Mocha suite (unit + snapshot)
 npm run test:unit        # unit tests only
-npm run test:snapshot    # 705 rendered-pixel snapshot tests
+npm run test:snapshot    # rendered-pixel snapshot tests
 npm run coverage         # tests + c8 code coverage report
 npm run bundle           # webpack dev-mode bundle to dist/bundle.js
 npm run bundle:prod      # webpack production (minified) bundle
