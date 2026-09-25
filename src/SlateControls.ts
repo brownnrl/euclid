@@ -73,6 +73,38 @@ export function trackWindowResize(target: IResizeTarget, callback: () => void): 
     return () => target.removeEventListener("resize", handler);
 }
 
+// Which action a keypress on the canvas should take. Space is claimed by
+// two handlers: this one (reset, the applet's shortcut) and, while a walk
+// is running, the document-level presentation handler (next slide). Neither
+// stops propagation, so without this routing one press during a walk both
+// resets the slate — discarding the viewer's drags and clearing the
+// diagnostics badge — and steps the walk forward. The walk wins; `r` still
+// resets, since nothing else claims it.
+//
+// Pure, like escapeAction (#139), so the semantics can be pinned without a DOM.
+export type CanvasKeyAction = "reset" | "maximize" | "present" | "none";
+
+export function canvasKeyAction(
+    key: string,
+    state: {presenting: boolean; hasSlides: boolean},
+): CanvasKeyAction {
+    switch (key) {
+        case "r":
+        case "R":
+            return "reset";
+        case " ":
+            return state.presenting ? "none" : "reset";
+        case "m":
+        case "M":
+            return "maximize";
+        case "p":
+        case "P":
+            return state.hasSlides ? "present" : "none";
+        default:
+            return "none";
+    }
+}
+
 // #139 — what one Escape press should do. Escape peels off ONE layer of
 // takeover at a time: a slideshow exits to the maximized view it opened in
 // (#115 — the viewer keeps their manipulation), and a second press leaves
@@ -342,25 +374,16 @@ class SlateControls {
 
     private addKeyboardShortcuts(): void {
         this._canvas.addEventListener("keydown", (e: KeyboardEvent) => {
-            switch (e.key) {
-                case "r":
-                case "R":
-                case " ":
-                    e.preventDefault();
-                    this.onReset();
-                    break;
-                case "m":
-                case "M":
-                    e.preventDefault();
-                    this.onMaximize();
-                    break;
-                case "p":
-                case "P":
-                    if (this._slate.slides.length > 0) {
-                        e.preventDefault();
-                        this.onPresent();
-                    }
-                    break;
+            const action = canvasKeyAction(e.key, {
+                presenting: this._presenting,
+                hasSlides: this._slate.slides.length > 0,
+            });
+            if (action === "none") return;
+            e.preventDefault();
+            switch (action) {
+                case "reset":    this.onReset();    break;
+                case "maximize": this.onMaximize(); break;
+                case "present":  this.onPresent();  break;
             }
         });
     }

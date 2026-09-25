@@ -5,7 +5,7 @@ import {E, IConstructionInfo, init, slates, revealNoscriptFallback, parseParam} 
 import {PlaneSlider} from "../src/elements/point/PlaneSlider";
 import {PointElement} from "../src/elements/point/PointElement";
 import {GeomElement} from "../src/elements/GeomElement";
-import {trackWindowResize, escapeAction} from "../src/SlateControls";
+import {trackWindowResize, escapeAction, canvasKeyAction} from "../src/SlateControls";
 import {createCanvas} from "canvas";
 import {almostEqual, toElements} from "./shared/testHelpers";
 import {parseColor} from "../src/Colors";
@@ -1027,6 +1027,46 @@ describe("slate", () => {
             assert.equal(removed[0].type, "resize");
             assert.equal(removed[0].fn, attached[0].fn,
                 "teardown must pass the original handler so removeEventListener actually unregisters it");
+        });
+    });
+
+    // Space is bound in two places: the canvas handler (reset) and, while a
+    // walk is running, the document handler (next slide). Pure routing
+    // decision, the same shape as escapeAction below.
+    describe("canvasKeyAction", () => {
+
+        it("resets on Space for an inline diagram", () => {
+            assert.equal(
+                canvasKeyAction(" ", {presenting: false, hasSlides: false}), "reset",
+                "Space is the applet's reset shortcut and must keep working outside a walk");
+        });
+
+        it("leaves Space to the slideshow while presenting", () => {
+            assert.equal(
+                canvasKeyAction(" ", {presenting: true, hasSlides: true}), "none",
+                "during a walk the document handler advances the slide on Space — if the " +
+                "canvas also reset here, one press would discard the viewer's drags AND " +
+                "step the walk forward");
+        });
+
+        it("still resets on an explicit r during a walk", () => {
+            assert.equal(
+                canvasKeyAction("r", {presenting: true, hasSlides: true}), "reset",
+                "r is unambiguous — only Space is claimed by two handlers");
+        });
+
+        it("offers present only when the slate carries slides", () => {
+            assert.equal(canvasKeyAction("p", {presenting: false, hasSlides: true}), "present");
+            assert.equal(
+                canvasKeyAction("p", {presenting: false, hasSlides: false}), "none",
+                "a figure with no deck has no presentation to enter");
+        });
+
+        it("ignores keys it does not own", () => {
+            assert.equal(canvasKeyAction("x", {presenting: false, hasSlides: true}), "none");
+            assert.equal(
+                canvasKeyAction("Escape", {presenting: true, hasSlides: true}), "none",
+                "Escape belongs to the maximized-state handler (#139)");
         });
     });
 
