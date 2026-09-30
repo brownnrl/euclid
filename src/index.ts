@@ -104,6 +104,34 @@ function validateSlides(slate: Slate, slides: ISlide[]): void {
             }
         }
         const anims = slide.transition && slide.transition.animations;
+        // #182 — an element promoted to draw last (#140) while carrying the
+        // dim-2 default face paints an opaque near-white region over its
+        // neighbours. Promotion happens for a slide's `highlighted` set and
+        // for any animation target, so both are checked here; the element
+        // itself is fine at rest, hence a warning rather than an error.
+        const promoted: string[] = [];
+        if (slide.highlighted != null) promoted.push(...slide.highlighted);
+        if (anims != null) {
+            for (const entry of anims) if (entry.elem != null) promoted.push(entry.elem);
+        }
+        for (const name of promoted) {
+            const elem = slate.lookupElement(name);
+            if (elem == null) continue;                  // already reported above
+            if (elem.dimension != 2) continue;           // no face to paint with
+            if (elem.faceColor == null) continue;        // explicitly transparent
+            if (!elem.faceIsDefault) continue;           // the author chose this face
+            slate.reportDiagnostic({
+                code: "default-face-highlighted",
+                key: String(elem.name),
+                message: "slide " + (n + 1) + " promotes '" + name + "', which carries the " +
+                    "default opaque face — it will paint a near-white region over " +
+                    "whatever lies beneath it. Give it an explicit faceColor (a translucent " +
+                    "rgba() works since #179) or ';0' for a true outline.",
+                detail: { slide: n + 1, name: String(elem.name) },
+            });
+        }
+
+
         if (anims == null) continue;
         for (const entry of anims) {
             if (entry.elem == null) continue;
@@ -579,6 +607,10 @@ function initInner(i: IInitialization, canvas: HTMLCanvasElement) {
         let lighterColor = lighten(slate.bgcolor);
         let defaultFaceColor = element.dimension == 2 ? lighterColor : null;
         element.faceColor = color(param.name, "faceColor", param.faceColor, defaultFaceColor);
+        // #182 — remember that nobody asked for this face. Angle markers are
+        // excluded above: their default is the translucent palette swatch,
+        // which is safe to promote.
+        element.faceIsDefault = param.faceColor == null && defaultFaceColor != null;
     }
 
     if (i.aliases != null) {

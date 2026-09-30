@@ -45,6 +45,14 @@ export abstract class GeomElement {
     protected _vertexColor : string = null;
     private _edgeColor : string = null;
     private _faceColor : string = null;
+    // #182 — true when this element's face is the dim-2 default
+    // (lighten(bgcolor), opaque) rather than a face the author asked for.
+    // Harmless at rest; #140 promotes a highlighted or animated element to
+    // draw last within its pass, at which point an opaque near-white face
+    // paints over whatever is beneath it. Recorded at construction because
+    // the default is a computed colour string, so comparing colours later
+    // could not tell "author asked for this" from "we filled it in".
+    public faceIsDefault : boolean = false;
 
     // Highlight defaults pick high-contrast values that read on the typical
     // cream / white backgrounds the library is used against. The previous

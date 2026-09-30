@@ -719,6 +719,18 @@ clearing there would discard exactly the warnings worth keeping.
 `highlighted` set and every animation `elem:` is resolved once when the
 figure is built, so a stale reference reports immediately.
 
+**A default opaque face on a promoted element is reported (#182, 0.17.0+).**
+A 2-D element declared with only four fields takes the dim-2 default face,
+`lighten(bgcolor)` — near-white and opaque. At rest that is invisible against
+the page, but a highlighted or animated element is promoted to draw last
+within its pass (#140), and the face then paints over every region beneath
+it. That is the I.41 / I.43 / I.44 / I.47 white-out. Every name in a slide's
+`highlighted` set and every animation target is checked at load; a hit reports
+`default-face-highlighted` at warning severity, once per element. The fix is
+an explicit `faceColor` — a translucent `rgba()` (accepted since #179) to keep
+a visible fill, or `0` for a true outline. Elements that are never promoted
+are not reported: at rest the default face does no harm.
+
 **Names a macro creates are exempt (#159, 0.15.0+).** An animation can
 register new, name-addressable elements partway through a walk —
 `A.Circle.compassTransfer`'s `keepCircles` is the case in point, and a later

@@ -363,6 +363,120 @@ describe("diagnostics (#154)", () => {
     // is exactly what happened to I.23's ten-circle count slide, the whole
     // reason keepCircles exists. The danger was that the obvious "fix" is to
     // delete the names, which breaks the deck.
+    // #182 — a 2-D element that nobody gave a faceColor gets the dim-2
+    // default, lighten(bgcolor): near-white and OPAQUE. Harmless at rest,
+    // but #140 promotes a highlighted or animated element to draw last in
+    // its pass, so the face paints over everything beneath it. That is the
+    // I.41 / I.43 / I.44 / I.47 white-out.
+    describe("default opaque face on a promoted element (#182)", () => {
+
+        // A triangle declared the short way (no faceColor) plus one declared
+        // with an explicit transparent face, so a test can highlight either.
+        function initWithPolys(canvasid: string, slides: any[]): Slate {
+            const canvas: any = createCanvas(200, 200);
+            canvas.id = canvasid;
+            const savedDoc = (global as any).document;
+            (global as any).document = {
+                getElementById: (id: string) => (id === canvasid ? canvas : null),
+            };
+            try {
+                init({
+                    background: "0,0,100", title: canvasid, canvasid: canvasid,
+                    elements: [
+                        "A;point;free;10,10",
+                        "B;point;free;90,10",
+                        "C;point;free;50,90",
+                        // Four fields: the library fills in the face.
+                        "ABC;polygon;triangle;A,B,C",
+                        // Explicit transparent face — the documented fix.
+                        "ABCout;polygon;triangle;A,B,C;0;0;black;0",
+                        "AB;line;connect;A,B",
+                    ],
+                    slides: slides,
+                });
+                return slates[slates.length - 1];
+            } finally {
+                if (savedDoc === undefined) delete (global as any).document;
+                else (global as any).document = savedDoc;
+            }
+        }
+
+        const codes = (s: Slate) => s.diagnostics.map(d => d.code);
+
+        it("warns when a default-faced polygon is highlighted", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWithPolys("df1", [
+                    { text: "one", visible: ["ABC"], highlighted: ["ABC"] },
+                ]);
+            });
+            const hit = s.diagnostics.filter(d => d.code === "default-face-highlighted");
+            assert.equal(hit.length, 1, "the white-out case must be reported");
+            assert.equal(hit[0].severity, "warning", "the page still works — warning, not error");
+            assert.equal(hit[0].detail.name, "ABC");
+        });
+
+        it("warns when a default-faced polygon is animated", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWithPolys("df2", [
+                    { text: "one", visible: ["ABC"], transition: { animations: [
+                        { elem: "ABC", name: "Polygon.outline" },
+                    ] } },
+                ]);
+            });
+            assert(codes(s).includes("default-face-highlighted"),
+                "an animated element is promoted the same way a highlighted one is");
+        });
+
+        it("reports once per element, however many slides highlight it", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWithPolys("df3", [
+                    { text: "one",   visible: ["ABC"], highlighted: ["ABC"] },
+                    { text: "two",   visible: ["ABC"], highlighted: ["ABC"] },
+                    { text: "three", visible: ["ABC"], highlighted: ["ABC"] },
+                ]);
+            });
+            const hit = s.diagnostics.filter(d => d.code === "default-face-highlighted");
+            assert.equal(hit.length, 1, "one element, one report");
+            assert.equal(hit[0].count, 3, "but the count records every slide that hit it");
+        });
+
+        it("stays silent for an explicit transparent face", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWithPolys("df4", [
+                    { text: "one", visible: ["ABCout"], highlighted: ["ABCout"] },
+                ]);
+            });
+            assert(!codes(s).includes("default-face-highlighted"),
+                "';0' is the documented fix — it must not be flagged");
+        });
+
+        it("stays silent for a default-faced element that is never promoted", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWithPolys("df5", [
+                    { text: "one", visible: ["ABC"] },
+                ]);
+            });
+            assert(!codes(s).includes("default-face-highlighted"),
+                "at rest the default face is invisible — only promotion makes it a hazard");
+        });
+
+        it("stays silent for a 1-D element, which has no face", () => {
+            let s!: Slate;
+            capture(() => {
+                s = initWithPolys("df6", [
+                    { text: "one", visible: ["AB"], highlighted: ["AB"] },
+                ]);
+            });
+            assert(!codes(s).includes("default-face-highlighted"),
+                "a line never gets the dim-2 default");
+        });
+    });
+
     describe("deferred macro names (#159)", () => {
 
         function initWith(canvasid: string, extra: any): Slate {
@@ -379,7 +493,10 @@ describe("diagnostics (#154)", () => {
                         { name: "P", construction: E.Point.free, params: [60, 200] },
                         { name: "C", construction: E.Point.free, params: [160, 200] },
                         { name: "D", construction: E.Point.free, params: [220, 180] },
-                        { name: "K", construction: E.Circle.radius, params: ["P", "C", "D"] },
+                        // faceColor 0: an outline circle. Without it this fixture
+                        // trips the #182 default-opaque-face warning, since slide 2
+                        // animates K — which is exactly the hazard that check is for.
+                        { name: "K", construction: E.Circle.radius, params: ["P", "C", "D"], faceColor: 0 },
                     ],
                 }, extra));
                 return slates[slates.length - 1];
