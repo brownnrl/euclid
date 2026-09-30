@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #182 the default opaque face on a promoted element</title>
+<style>
+  body { font-family: sans-serif; }
+  p { max-width: 760px; color: #444; }
+  .pair { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; }
+  figure { margin: 0; }
+  figcaption { font-size: 13px; color: #555; max-width: 380px; margin-top: 6px; }
+  canvas { border: 1px solid #ccc; }
+  pre { font: 12px/1.5 monospace; background: #f4f4f4; padding: 8px 10px; max-width: 380px; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<h3>The default opaque face on a promoted element (#182)</h3>
+<p>
+Both figures are a triangle <b>ABC</b> drawn over a black segment <b>PQ</b> that
+crosses it. The <b>left</b> triangle is declared with four fields
+(<code>ABC;polygon;triangle;A,B,C</code>), so the library fills in the default
+face: <code>lighten(bgcolor)</code>, near-white and <i>opaque</i>. The <b>right</b>
+triangle says <code>;0;0;black;0</code>, an explicit transparent face.
+</p>
+<p>
+At rest they look the same, because the default face is the page colour and the
+segment is drawn on top of it. Now press <b>p</b> and step to slide 2, which
+highlights the triangle. #140 promotes a highlighted element to draw last, and on
+the left the opaque face paints over the segment: that is the I.41 / I.43 / I.44 /
+I.47 white-out. On the right the segment stays visible.
+</p>
+<p>
+What #182 adds is the <b>badge</b> in the left canvas's corner, lit at load: the
+deck promotes an element nobody gave a face, and the library now says so instead
+of waiting for someone to notice a missing line. The right canvas is clean. The
+readouts below print <code>geomlib.diagnostics()</code> for each.
+</p>
+
+<div class="pair">
+  <figure>
+    <canvas id="defaultFace" width="360" height="260" tabindex="0"></canvas>
+    <figcaption><b>Four fields</b>: default opaque face, promoted on slide 2. Badge lit.</figcaption>
+    <pre id="outDefault"></pre>
+  </figure>
+  <figure>
+    <canvas id="explicitFace" width="360" height="260" tabindex="0"></canvas>
+    <figcaption><b><code>;0</code> face</b>: the documented fix. Clean.</figcaption>
+    <pre id="outExplicit"></pre>
+  </figure>
+</div>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function figure(id, triangleSpec) {
+        geomlib.init({
+            background: "35,19,100", title: "default face " + id, canvasid: id,
+            elements: [
+                "A;point;free;60,220", "B;point;free;300,220", "C;point;free;180,40",
+                "P;point;free;30,140;0;0", "Q;point;free;330,140;0;0",
+                "PQ;line;connect;P,Q;0;0;black;0",
+                triangleSpec
+            ].map(geomlib.parseParam),
+            slides: [
+                { text: "At rest: the triangle over segment {PQ}. Both figures look the same.",
+                  visible: ["PQ", "ABC"] },
+                { text: "Highlighted. Left: the default opaque face covers {PQ}. Right: {PQ} shows through.",
+                  visible: ["PQ", "ABC"], highlighted: ["ABC"] },
+                { text: "Animated (outlineAndFill) promotes the same way.",
+                  visible: ["PQ", "ABC"],
+                  transition: { animations: [{ elem: "ABC", name: geomlib.A.Polygon.outlineAndFill }] } }
+            ]
+        });
+    }
+    figure("defaultFace",  "ABC;polygon;triangle;A,B,C");
+    figure("explicitFace", "ABC;polygon;triangle;A,B,C;0;0;black;0");
+
+    function report(id, outId) {
+        var d = geomlib.diagnostics({ canvasids: [id] });
+        var lines = [];
+        (d.slates || []).forEach(function (s) {
+            (s.diagnostics || []).forEach(function (x) {
+                lines.push("[" + x.severity + "] " + x.code + " (x" + x.count + ")\n  " + x.message);
+            });
+        });
+        document.getElementById(outId).textContent =
+            lines.length ? lines.join("\n") : "geomlib.diagnostics(): clean";
+    }
+    report("defaultFace", "outDefault");
+    report("explicitFace", "outExplicit");
+</script>
+</body>
+</html>
