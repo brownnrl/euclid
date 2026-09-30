@@ -74,6 +74,26 @@ than the library, belong in
 see its [doc/process.md](https://github.com/brownnrl/euclids-elements-lektor/blob/main/doc/process.md)
 for how a deck is built and reviewed.
 
+## Cutting a release
+
+A release is a version-only PR (`npm version x.y.z --no-git-tag-version` on a
+`release/x.y.z` branch). The order matters:
+
+1. Merge the release PR.
+2. `git checkout main && git pull --ff-only`.
+3. `npm publish` from `main`.
+4. Tag the merge commit: `git tag vx.y.z && git push origin vx.y.z`.
+
+`prepublishOnly` refuses to publish unless the checkout is `main`, clean, in
+sync with `origin/main`, and the version is not already tagged. Publishing from
+the release branch before it merges can leave out anything that reached `main`
+in the meantime, which is how 0.17.0 shipped without #193. For a genuine
+emergency, `GEOMLIB_PUBLISH_FROM_BRANCH=1` overrides the guard.
+
+The reports at brownnrl.github.io/geomlib-reports republish automatically after
+a successful publish (`postpublish`); run `npm run reports:build` first so they
+match what shipped.
+
 ## Adding a new construction
 
 See [doc/creating-constructions.md](doc/creating-constructions.md)
