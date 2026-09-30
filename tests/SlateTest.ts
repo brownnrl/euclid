@@ -449,6 +449,45 @@ describe("slate", () => {
                 "so it must still be measured in full");
         });
 
+        it("excludes an element lying entirely outside the canvas (#193)", () => {
+            // The converted applets' slider anchors: a default vertex dot at
+            // x = ±1000, letter suppressed. They paint, and at under three
+            // canvases out they are not #162 outliers — but they are not
+            // part of the figure and must not drag its centre to x = 0.
+            const slate = scene(null);
+            const mk = (spec: string) => {
+                const i = parseParam(spec);
+                const el = slate.createElement(i.construction, i.params, i.name);
+                el.vertexColor = "red"; el.nameColor = null; el.edgeColor = null;
+                return el;
+            };
+            mk("A0;point;free;-1000,40");
+            mk("A3;point;free;1000,40");
+            slate.update();
+            const b = slate.captureCentringBounds()!;
+            assert.ok(b.minX >= 100 && b.maxX <= 300,
+                `centring box must be the on-canvas figure, got [${b.minX}, ${b.maxX}]`);
+            assert.deepEqual(slate.centringOutliers.sort(), ["A0", "A3"],
+                "and both anchors are reported as left out");
+        });
+
+        it("keeps an element that spills past the edge but reaches the canvas (#193)", () => {
+            const slate = scene(null);
+            const mk = (spec: string) => {
+                const i = parseParam(spec);
+                const el = slate.createElement(i.construction, i.params, i.name);
+                el.edgeColor = "black"; el.nameColor = null; el.vertexColor = null;
+                return el;
+            };
+            mk("P;point;free;-200,150");
+            mk("Q;point;free;250,150");
+            mk("PQ;line;connect;P,Q");
+            slate.update();
+            const b = slate.captureCentringBounds()!;
+            assert.deepEqual(slate.centringOutliers, []);
+            assert.ok(b.minX <= -200, "a line entering the canvas is measured in full");
+        });
+
         it("reports no outliers on an ordinary figure", () => {
             const slate = scene(null);
             slate.captureCentringBounds();

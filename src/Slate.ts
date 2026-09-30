@@ -508,7 +508,7 @@ export class Slate {
         this._centringOutliers = [];
         const inked = this._bounds(false, (e) => {
             if (!this._paintsInk(e)) return false;
-            if (this._isCentringOutlier(e)) {
+            if (this._isCentringOutlier(e) || this._isOffCanvas(e)) {
                 if (e.name != null) this._centringOutliers.push(e.name);
                 return false;
             }
@@ -604,6 +604,22 @@ export class Slate {
      * past their canvas (a Book I deck runs to ~2x) and must keep centring
      * exactly as before. This only catches the pathological case.
      */
+    // #193 — an element lying ENTIRELY outside the logical canvas box is not
+    // part of the figure the reader sees at rest, so it must not define the
+    // centring frame. The converted applets park slider anchors at x = ±1000
+    // with a default vertex dot; they pass the paints test and, at under
+    // three canvases out, the factor-10 outlier test, and pulled every such
+    // figure's "centre" to x = 0 — off-centre by half a figure on a phone.
+    // An element that merely spills past the edge still intersects the box
+    // and is measured in full, as before.
+    private _isOffCanvas(elem: GeomElement) : boolean {
+        const w = this.logicalWidth, h = this.logicalHeight;
+        if (!(w > 0) || !(h > 0)) return false;
+        const b = this._elementBounds(elem);
+        if (b == null) return false;
+        return b.maxX < 0 || b.minX > w || b.maxY < 0 || b.minY > h;
+    }
+
     private _isCentringOutlier(elem: GeomElement) : boolean {
         // The GETTERS, not the private fields: _logicalWidth is 0 until
         // init() sets it, and the getters fall back to the canvas bitmap.
