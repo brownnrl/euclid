@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #193 off-canvas anchors do not define the centring frame</title>
+<style>
+  body { font-family: sans-serif; }
+  p { max-width: 760px; color: #444; }
+  canvas { border: 1px solid #ccc; }
+  pre { font: 12px/1.5 monospace; background: #f4f4f4; padding: 8px 10px; max-width: 560px; }
+</style>
+</head>
+<body>
+<h3>Off-canvas anchors do not define the centring frame (#193)</h3>
+<p>
+II.6's shape, as the converter emits it: two slider anchors <b>A0</b> and <b>A3</b> at
+<code>x = &plusmn;1000</code> with the letter suppressed but the <i>default vertex dot still
+on</i> (<code>A0;point;free;-1000,40;0</code>). They paint, so the #138 ink test keeps
+them; at under three canvases out they are not #162 outliers either. So the maximized
+centring frame ran x&nbsp;&isin;&nbsp;[&minus;1000, 1000] and the figure's centre was
+x&nbsp;=&nbsp;0. A wide desktop canvas hides a 185&thinsp;px offset; a 412&thinsp;px phone
+puts the figure in the right half.
+</p>
+<p>
+Now an element lying <b>entirely outside</b> the logical canvas box is left out of the
+frame, and named in <code>centringOutliers</code>. One that spills past an edge but reaches
+the canvas is still measured in full. Press <b>m</b> or <b>p</b>: the figure should sit in
+the middle. Narrow the window to phone width to see the case that was reported.
+</p>
+
+<canvas id="offcanvasId" width="370" height="240" tabindex="0"></canvas>
+<pre id="out"></pre>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    // Elements lifted from euclids-elements.org II.6 canvas_0.
+    var ELEMENTS = [
+        "A0;point;free;-1000,40;0", "A3;point;free;1000,40;0",
+        "A;point;lineSlider;A0,A3,40,40", "B;point;lineSlider;A0,A3,220,40",
+        "C;point;midpoint;A,B", "D;point;lineSlider;A0,A3,330,40",
+        "AB;line;connect;A,B", "BD;line;connect;B,D",
+        "E;point;perpendicular;A0,A3,C,180", "CE;line;connect;C,E",
+        "F;point;perpendicular;A0,A3,D,220", "DF;line;connect;D,F",
+        "AD;line;connect;A,D", "AF;line;connect;A,F", "EF;line;connect;E,F",
+        "DCEF;polygon;parallelogram;D,C,E,F;0;0;black;0"
+    ];
+    geomlib.init({
+        background: "35,19,100", title: "II.6 centring", canvasid: "offcanvasId",
+        elements: ELEMENTS.map(geomlib.parseParam),
+        slides: [
+            { text: "II.6's figure. {A0} and {A3} are 1000px off either side and still paint a dot.",
+              visible: ["AB", "BD", "CE", "DF", "AD", "AF", "EF", "DCEF"] },
+            { text: "Maximized centring now ignores them: the frame is the figure you can see.",
+              visible: ["AB", "BD", "CE", "DF", "AD", "AF", "EF", "DCEF"], highlighted: ["DCEF"] }
+        ]
+    });
+    var s = geomlib.slates[geomlib.slates.length - 1];
+    var b = s.captureCentringBounds(); s.clearCentringBounds();
+    document.getElementById("out").textContent =
+        "logical  " + s.logicalWidth + " x " + s.logicalHeight + "   canvas centre x = " + (s.logicalWidth / 2) + "\n" +
+        "frame    x[" + Math.round(b.minX) + ", " + Math.round(b.maxX) + "]  y[" + Math.round(b.minY) + ", " + Math.round(b.maxY) + "]" +
+        "   centre x = " + Math.round((b.minX + b.maxX) / 2) + "\n" +
+        "left out " + JSON.stringify(s.centringOutliers) + "\n" +
+        "(before #193: frame x[-1000, 1000], centre x = 0, left out [])";
+</script>
+</body>
+</html>
