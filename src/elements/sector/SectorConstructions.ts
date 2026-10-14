@@ -111,6 +111,37 @@ export class AngleMarkerReflexRadiusConstruction extends Construction {
     }
 }
 
+// angleMarkerRight — the conventional right-angle mark: a small square at
+// the vertex with sides parallel to the arms, instead of a sector (#201).
+// Opt-in, and drawn whatever the measured angle is, so a reductio figure
+// can assert a right angle by hypothesis. Same radius (side length),
+// clamp, override, palette and ring stepping as angleMarker.
+export class AngleMarkerRightConstruction extends Construction {
+    constructionMethod: AllConstructions = SectorConstructionsEnum.angleMarkerRight;
+    signature: ConstructionSignature = { points: 3, elements: 0, integers: 0 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 0 && sp.E.length === 0;
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let g = new AngleMarkerElement(P[0], P[1], P[2], screen, undefined, false, true);
+        return [[g], g];
+    }
+}
+
+export class AngleMarkerRightRadiusConstruction extends Construction {
+    constructionMethod: AllConstructions = SectorConstructionsEnum.angleMarkerRight;
+    signature: ConstructionSignature = { points: 3, elements: 0, integers: 1 };
+    public validateSignature(cm: AllConstructions, sp: SortedParams): boolean {
+        if (cm !== this.constructionMethod) return false;
+        return sp.P.length === 3 && sp.N.length === 1 && sp.E.length === 0;
+    }
+    construct(screen: PlaneElement, P: PointElement[], E: GeomElement[], N: number[]): [GeomElementsForUpdate, GeomElement] {
+        let g = new AngleMarkerElement(P[0], P[1], P[2], screen, N[0], false, true);
+        return [[g], g];
+    }
+}
+
 export const sectorConstructions: Construction[] = [
     new SectorConstruction(),
     new ArcConstruction(),
@@ -118,4 +149,6 @@ export const sectorConstructions: Construction[] = [
     new AngleMarkerRadiusConstruction(),
     new AngleMarkerReflexConstruction(),
     new AngleMarkerReflexRadiusConstruction(),
+    new AngleMarkerRightConstruction(),
+    new AngleMarkerRightRadiusConstruction(),
 ];

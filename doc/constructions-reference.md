@@ -118,6 +118,7 @@ must reflect these post-expansion types, not the raw HTML param count.
 | `arc` | IMPL | `Arc.java` | `Point A, M, B [, Plane]` | Arc of circle passing through A, M, B (M is on the arc, 2D + 3D) | ~20 | I.4 |
 | `angleMarker` | IMPL | — (geomlib 0.8.0) | `Point V, P1, P2 [, int radiusPx]` | Interior angle marker at V — element-chosen radius (default 22px, clamped to 0.45× shorter arm), auto-interior, translucent palette fill | slideshows | I.5 |
 | `angleMarkerReflex` | IMPL | — (geomlib 0.8.0) | `Point V, P1, P2 [, int radiusPx]` | As `angleMarker` but the major (reflex, >180°) arc; for rare teaching cases | rare | III.20 |
+| `angleMarkerRight` | IMPL | — (geomlib 0.18.0) | `Point V, P1, P2 [, int radiusPx]` | The conventional right-angle mark: a square at V with sides along the arms, its corner at radiusPx from V; opt-in, drawn whatever the measured angle | slideshows | III.31, I.47 |
 
 ---
 

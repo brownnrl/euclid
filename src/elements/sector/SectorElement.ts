@@ -102,8 +102,14 @@ export class SectorElement extends GeomElement {
             const baseW = this.shouldHighlight ? 3 : 1;
             ctx.lineWidth = (baseW + this.emphasisAmount * (6 - baseW)) * GeomElement.styleScale;
         }
+        this._traceEdge(ctx, this.radius());
+    }
+
+    // Trace and stroke the edge at radius r. The sector's edge is its arc;
+    // a right-angle marker (#201) overrides this to draw the square corner
+    // instead, keeping the colour / width / visibility preamble above.
+    protected _traceEdge(ctx: CanvasRenderingContext2D, r: number): void {
         ctx.beginPath();
-        let r = this.radius();
         let startAngle = Math.atan2(
             this._A.y - this._Center.y,
             this._A.x - this._Center.x);

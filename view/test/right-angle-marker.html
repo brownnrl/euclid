@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Test View — #201 a right angle drawn as a square corner</title>
+<style>
+  body { font-family: sans-serif; }
+  p { max-width: 760px; color: #444; }
+  .row { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  figure { margin: 0; }
+  figcaption { font-size: 13px; color: #555; max-width: 300px; margin-top: 6px; }
+  canvas { border: 1px solid #ccc; }
+</style>
+</head>
+<body>
+<h3>A right angle drawn as a square corner (#201)</h3>
+<p>
+III.31's figure, from the site: the angle in the semicircle. <b>BAC</b> is right (Thales),
+<b>ABC</b> in the greater segment is less than right, <b>ADC</b> in the less segment is
+greater. On the <b>left</b> the deck's current red marker, <code>sector;angleMarker</code>:
+a sector of about the same size as its neighbours, so "right" rides on colour alone. On the
+<b>right</b> the same element string with <code>sector;angleMarkerRight</code>: the
+conventional square corner. <b>Drag A round the semicircle</b>; the square stays square
+because the angle stays right. The radius (34 here) is the distance to the square's corner,
+so the mark has the same footprint as the sector it replaces and reads a little smaller, as a
+right-angle box conventionally does; clamp, override, palette, ring stepping and
+<code>showAngles</code> all behave as before.
+</p>
+<p>
+Press <b>p</b> on the right canvas: <code>A.Sector.sweep</code> draws the two sides in turn,
+timed as a 90&deg; sweep, and <code>reverse: true</code> starts from the other arm.
+</p>
+
+<div class="row">
+  <figure>
+    <canvas id="sectorId" width="280" height="280" tabindex="0"></canvas>
+    <figcaption><b>angleMarker</b> (the deck today): BAC as a red sector.</figcaption>
+  </figure>
+  <figure>
+    <canvas id="squareId" width="280" height="280" tabindex="0"></canvas>
+    <figcaption><b>angleMarkerRight</b>: BAC as a square. Drag A; press p to sweep.</figcaption>
+  </figure>
+  <figure>
+    <canvas id="hypId" width="280" height="200" tabindex="0"></canvas>
+    <figcaption><b>Right by hypothesis</b> (III.16's shape): the angle is drawn at about
+    100&deg;, and the mark is a rhombus with sides along the arms. Nothing checks for
+    90&deg;, so the mark asserts what the text asserts and a dragged figure never flickers
+    between shapes.</figcaption>
+  </figure>
+</div>
+
+<script src="../../dist/bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var A = geomlib.A;
+    // Lifted from euclids-elements.org III.31 canvas_0, trimmed to the three
+    // angles the proposition names.
+    function iii31(id, bacMarker) {
+        geomlib.init({
+            canvasid: id, background: "35,19,100", title: "III.31", pivot: "E",
+            showAngles: true,
+            elements: [
+                "B;point;free;130,240", "C;point;free;210,40", "BC;line;connect;B,C",
+                "E;point;midpoint;BC;black;green",
+                "ABCD;circle;radius;E,B;0;0;0,0,0;0",
+                "A;point;circleSlider;ABCD,60,90", "D;point;circleSlider;ABCD,80,40",
+                "AB;line;connect;A,B", "AC;line;connect;A,C", "AD;line;connect;A,D", "CD;line;connect;C,D",
+                bacMarker,
+                "angABC;sector;angleMarker;B,A,C;0;0;3b6ea5;9ec5e8",
+                "angADC;sector;angleMarker;D,A,C;0;0;7a4fa3;cdb8e6"
+            ].map(geomlib.parseParam),
+            slides: [
+                { text: "{BAC} is right; {ABC} and {ADC} are not. Drag {A}.",
+                  visible: ["BC", "ABCD", "AB", "AC", "AD", "CD", "angBAC", "angABC", "angADC"] },
+                { text: "Sweep: the mark draws from BA toward AC.",
+                  visible: ["BC", "ABCD", "AB", "AC", "AD", "CD", "angBAC", "angABC", "angADC"],
+                  highlighted: ["angBAC"],
+                  transition: { animations: [{ elem: "angBAC", name: A.Sector.sweep }] } },
+                { text: "Hidden.", visible: ["BC", "ABCD", "AB", "AC", "AD", "CD"] },
+                { text: "reverse: true - from AC toward BA.",
+                  visible: ["BC", "ABCD", "AB", "AC", "AD", "CD", "angBAC", "angABC", "angADC"],
+                  highlighted: ["angBAC"],
+                  transition: { animations: [{ elem: "angBAC", name: A.Sector.sweep, args: { reverse: true } }] } }
+            ]
+        });
+    }
+    iii31("sectorId", "angBAC;sector;angleMarker;A,B,C,34;0;0;red;red");
+    iii31("squareId", "angBAC;sector;angleMarkerRight;A,B,C,34;0;0;red;red");
+
+    geomlib.init({
+        canvasid: "hypId", background: "35,19,100", title: "hypothesis", showAngles: true,
+        elements: [
+            "G;point;free;120,150", "A;point;free;120,40", "D;point;free;250,172",
+            "GA;line;connect;G,A", "GD;line;connect;G,D",
+            "angAGD;sector;angleMarkerRight;G,A,D,26;0;0;red;rgba(255,0,0,0.25)"
+        ].map(geomlib.parseParam)
+    });
+</script>
+</body>
+</html>
