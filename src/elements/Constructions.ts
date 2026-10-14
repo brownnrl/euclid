@@ -104,7 +104,8 @@ export enum SectorConstructions {
     sector = 401,
     arc = 402,
     angleMarker = 403,
-    angleMarkerReflex = 404
+    angleMarkerReflex = 404,
+    angleMarkerRight = 405
 }
 
 export enum PlaneConstructions {

@@ -1,7 +1,7 @@
 import "mocha";
 import * as assert from "assert";
 import {Slate} from "../src/Slate";
-import {E, IConstructionInfo, init, slates} from "../src/index";
+import {E, IConstructionInfo, init, slates, parseParam} from "../src/index";
 import {PointElement} from "../src/elements/point/PointElement";
 import {ArcElement} from "../src/elements/sector/ArcElement";
 import {AngleMarkerElement, DEFAULT_ANGLE_MARKER_RADIUS_PX,
@@ -541,5 +541,154 @@ describe("same-vertex ring order with derived points (#175)", () => {
         const slate = initWith("ring175free", freeVertex);
         const bySpan = markersOf(slate).slice().sort((a, b) => a.spanRadians() - b.spanRadians());
         assert.deepEqual(bySpan.map((m) => m.ringIndex), [0, 1, 2]);
+    });
+});
+
+// #201 — a right angle drawn as the conventional square corner. Opt-in via
+// angleMarkerRight; side length is the marker radius; drawn whatever the
+// measured angle is, so a reductio figure can assert "right" by hypothesis.
+describe("right-angle marker (#201)", () => {
+
+    // Vertex B at (100,260); A straight up (100,60); Cfar straight right
+    // (560,260): a true right angle. Q at (200,160) makes 45° with BA.
+    function rightSlate(extra: IConstructionInfo[]): Slate {
+        const slate = new Slate(createCanvas(600, 320));
+        slate.inTest = true;
+        toElements(slate, [
+            { name: "A",    construction: E.Point.free, params: [100, 60] },
+            { name: "B",    construction: E.Point.free, params: [100, 260] },
+            { name: "Cfar", construction: E.Point.free, params: [560, 260] },
+            { name: "Q",    construction: E.Point.free, params: [200, 160] },
+            ...extra,
+        ]);
+        slate.elements.forEach(e => e.update());
+        return slate;
+    }
+    function ink(canvas: any, x: number, y: number, half = 2): number {
+        const d = canvas.getContext("2d").getImageData(Math.round(x) - half, Math.round(y) - half, 2 * half + 1, 2 * half + 1).data;
+        let n = 0;
+        for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 0 && (d[i] < 200 || d[i + 1] < 200 || d[i + 2] < 200)) n++;
+        return n;
+    }
+    function edgeCanvas(m: AngleMarkerElement, progress = 1, reverse = false): any {
+        const c: any = createCanvas(600, 320);
+        m.edgeColor = "black"; m.faceColor = null; m.nameColor = null; m.vertexColor = null;
+        m.drawProgress = progress; m.sweepReverse = reverse;
+        m.drawEdge(c);
+        return c;
+    }
+
+    it("parses sector;angleMarkerRight, with and without a radius", () => {
+        const p = (parseParam as any)("m;sector;angleMarkerRight;B,A,Cfar");
+        assert.equal(p.construction, E.Sector.angleMarkerRight);
+        const slate = rightSlate([
+            { name: "m",  construction: E.Sector.angleMarkerRight, params: ["B", "A", "Cfar"] },
+            { name: "m2", construction: E.Sector.angleMarkerRight, params: ["B", "A", "Cfar", 34] },
+        ]);
+        const m = slate.lookupElement("m") as AngleMarkerElement;
+        const m2 = slate.lookupElement("m2") as AngleMarkerElement;
+        assert.equal(m.right, true); assert.equal(m.reflex, false);
+        almostEqual(m.radius(), DEFAULT_ANGLE_MARKER_RADIUS_PX, 0.001);
+        almostEqual(m2.radius(), 34, 0.001);
+        assert.equal(m2.hasRadiusOverride, true);
+    });
+
+    it("the square's corner is side-length along each arm from the vertex", () => {
+        const slate = rightSlate([
+            { name: "m", construction: E.Sector.angleMarkerRight, params: ["B", "A", "Cfar"] },
+        ]);
+        const m = slate.lookupElement("m") as AngleMarkerElement;
+        const r = m.radius(), K = m.squareCorner();
+        almostEqual(K.x, 100 + r, 0.001);
+        almostEqual(K.y, 260 - r, 0.001);
+    });
+
+    it("ring stepping and the radius override set the side length", () => {
+        const slate = rightSlate([
+            { name: "m", construction: E.Sector.angleMarkerRight, params: ["B", "A", "Cfar", 30] },
+        ]);
+        const m = slate.lookupElement("m") as AngleMarkerElement;
+        m.ringIndex = 1; m.update();
+        almostEqual(m.squareCorner().x, 100 + 30 + ANGLE_MARKER_RING_STEP, 0.001);
+    });
+
+    it("draws the corner and no arc", () => {
+        const sq = rightSlate([{ name: "m", construction: E.Sector.angleMarkerRight, params: ["B", "A", "Cfar"] }]);
+        const se = rightSlate([{ name: "m", construction: E.Sector.angleMarker,      params: ["B", "A", "Cfar"] }]);
+        const r = DEFAULT_ANGLE_MARKER_RADIUS_PX;
+        const cSq = edgeCanvas(sq.lookupElement("m") as AngleMarkerElement);
+        const cSe = edgeCanvas(se.lookupElement("m") as AngleMarkerElement);
+        const arcMid = { x: 100 + r * Math.SQRT1_2, y: 260 - r * Math.SQRT1_2 };
+        assert.ok(ink(cSq, 100 + r, 260 - r) > 0, "square: ink at the outer corner");
+        assert.equal(ink(cSq, arcMid.x, arcMid.y), 0, "square: nothing on the arc's path");
+        assert.ok(ink(cSe, arcMid.x, arcMid.y) > 0, "sector: ink on the arc (control)");
+        assert.equal(ink(cSe, 100 + r, 260 - r), 0, "sector: nothing at the corner (control)");
+    });
+
+    it("draws for a non-right angle too, as a rhombus along the arms (no 90° gate)", () => {
+        const slate = rightSlate([
+            { name: "m", construction: E.Sector.angleMarkerRight, params: ["B", "A", "Q"] },
+        ]);
+        const m = slate.lookupElement("m") as AngleMarkerElement;
+        const r = m.radius(), K = m.squareCorner();
+        // A' = (100, 260-r); Q' = B + r·(1,-1)/√2
+        almostEqual(K.x, 100 + r * Math.SQRT1_2, 0.001);
+        almostEqual(K.y, 260 - r - r * Math.SQRT1_2, 0.001);
+        assert.ok(ink(edgeCanvas(m), K.x, K.y) > 0, "the mark is drawn regardless of the measured angle");
+    });
+
+    it("sweeps the two sides in turn, and in reverse from the other arm", () => {
+        const slate = rightSlate([{ name: "m", construction: E.Sector.angleMarkerRight, params: ["B", "A", "Cfar"] }]);
+        const m = slate.lookupElement("m") as AngleMarkerElement;
+        const r = m.radius(), A = m._A, B = m._B, K = m.squareCorner();
+        const midAK = { x: (A.x + K.x) / 2, y: (A.y + K.y) / 2 };
+        const midKB = { x: (K.x + B.x) / 2, y: (K.y + B.y) / 2 };
+        const half = edgeCanvas(m, 0.5);
+        assert.ok(ink(half, midAK.x, midAK.y) > 0, "at 0.5 the first side is drawn");
+        assert.equal(ink(half, midKB.x, midKB.y), 0, "and the second is not");
+        const halfRev = edgeCanvas(m, 0.5, true);
+        assert.ok(ink(halfRev, midKB.x, midKB.y) > 0, "reverse: the B side first");
+        assert.equal(ink(halfRev, midAK.x, midAK.y), 0);
+        const total = (c: any) => { const d = c.getContext("2d").getImageData(0, 0, 600, 320).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i] > 0) n++; return n; };
+        const seq = [0, 0.25, 0.5, 0.75, 1].map(p => total(edgeCanvas(m, p)));
+        for (let k = 1; k < seq.length; k++) assert.ok(seq[k] >= seq[k - 1], "monotonic: " + JSON.stringify(seq));
+        assert.ok(seq[4] > seq[2], JSON.stringify(seq));
+        assert.equal(total(edgeCanvas(m, 1, true)), total(edgeCanvas(m, 1)), "finished mark is direction-independent");
+        almostEqual(m.arcSpan(), Math.PI / 2, 1e-9);
+    });
+
+    it("fills the square as its face", () => {
+        const slate = rightSlate([{ name: "m", construction: E.Sector.angleMarkerRight, params: ["B", "A", "Cfar"] }]);
+        const m = slate.lookupElement("m") as AngleMarkerElement;
+        m.faceColor = "red"; m.edgeColor = null;
+        const c: any = createCanvas(600, 320);
+        m.drawFace(c);
+        const r = m.radius();
+        const px = c.getContext("2d").getImageData(Math.round(100 + r / 2), Math.round(260 - r / 2), 1, 1).data;
+        assert.ok(px[0] > 200 && px[1] < 60 && px[3] > 0, "centre of the square is filled red");
+        const outside = c.getContext("2d").getImageData(Math.round(100 + r * 1.3), Math.round(260 - r * 1.3), 1, 1).data;
+        assert.equal(outside[3], 0, "beyond the corner is not");
+    });
+
+    it("is an angle marker to init(): palette, nesting and showAngles apply", () => {
+        const canvas: any = createCanvas(600, 320);
+        canvas.id = "right201"; canvas.parentElement = null;
+        const savedDoc = (global as any).document;
+        (global as any).document = { getElementById: (id: string) => (id === "right201" ? canvas : null) };
+        try {
+            init({ background: "0,0,100", title: "r", canvasid: "right201", elements: [
+                "A;point;free;100,60", "B;point;free;100,260", "Cfar;point;free;560,260", "Q;point;free;200,160",
+                "sq;sector;angleMarkerRight;B,A,Cfar",
+                "ang;sector;angleMarker;B,A,Q",
+            ] });
+            const s = slates[slates.length - 1];
+            const sq = s.lookupElement("sq") as AngleMarkerElement, ang = s.lookupElement("ang") as AngleMarkerElement;
+            assert.equal(sq.visible, false, "hidden in the static figure like any marker");
+            assert.ok(anglePalette.some(p => p.face === sq.faceColor), "palette face applied");
+            assert.notEqual(sq.ringIndex, ang.ringIndex, "nested with the sector at the same vertex");
+            assert.equal(ang.ringIndex, 0, "the 45° sector is innermost, the right angle outside it");
+        } finally {
+            if (savedDoc === undefined) delete (global as any).document; else (global as any).document = savedDoc;
+        }
     });
 });

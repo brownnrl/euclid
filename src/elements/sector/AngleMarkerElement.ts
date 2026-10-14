@@ -7,6 +7,7 @@
 import {SectorElement} from "./SectorElement";
 import {PointElement} from "../point/PointElement";
 import {PlaneElement} from "../plane/PlaneElement";
+import {SlateCanvas} from "../../Slate";
 
 // A small sector drawn at a vertex to mark the interior angle between
 // two arms. Unlike a plain `sector;sector` (whose radius is the
@@ -45,8 +46,21 @@ export class AngleMarkerElement extends SectorElement {
     // (e.g. a III.20-style central angle).
     public reflex : boolean = false;
 
+    // Draw the conventional right-angle mark — a small square at the
+    // vertex with sides parallel to the arms — instead of a sector (#201).
+    // Opt-in via the `angleMarkerRight` construction, and drawn whatever
+    // the measured angle is: a reductio figure asserts "right" by
+    // hypothesis in a drawing where it is not, and the mark should say
+    // what the text says. The sides lie along the arms, so the mark is a
+    // true square exactly when the angle is right and a rhombus
+    // otherwise; nothing checks for 90°, so a dragged figure never
+    // flickers between shapes. Side length is radius(): the same default,
+    // clamp, override and ring stepping as the sector.
+    public right : boolean = false;
+
     constructor(vertex: PointElement, arm1: PointElement, arm2: PointElement,
-                plane: PlaneElement, radiusOverride?: number, reflex?: boolean) {
+                plane: PlaneElement, radiusOverride?: number, reflex?: boolean,
+                right?: boolean) {
         super();
         this.dimension = 2;
         this._Center = vertex;
@@ -55,6 +69,7 @@ export class AngleMarkerElement extends SectorElement {
         this._P = plane;
         this._radiusOverride = radiusOverride != null ? radiusOverride : null;
         this.reflex = reflex === true;
+        this.right = right === true;
         // Internal arc endpoints — placed in update().
         this._A = new PointElement();
         this._B = new PointElement();
@@ -94,6 +109,58 @@ export class AngleMarkerElement extends SectorElement {
     // emphasis bump), not just the edge.
     protected _flashFace(): boolean {
         return true;
+    }
+
+    // The square's outer corner: the arm corners _A and _B are already at
+    // the side length along each arm, so the fourth vertex is A + B − V.
+    squareCorner(): {x: number, y: number} {
+        return { x: this._A.x + this._B.x - this._Center.x,
+                 y: this._A.y + this._B.y - this._Center.y };
+    }
+
+    // A right-angle mark sweeps two sides in turn under A.Sector.sweep:
+    // from the A arm's corner to the outer corner, then on to the B arm's
+    // corner (or the reverse with `reverse: true`). The finished mark is
+    // the same either way.
+    protected _traceEdge(ctx: CanvasRenderingContext2D, r: number): void {
+        if (!this.right) { super._traceEdge(ctx, r); return; }
+        const K = this.squareCorner();
+        const p = this.drawProgress >= 1 ? 1 : (this.drawProgress <= 0 ? 0 : this.drawProgress);
+        const s = this.sweepReverse ? this._B : this._A;
+        const e = this.sweepReverse ? this._A : this._B;
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        if (p >= 1) {
+            ctx.lineTo(K.x, K.y);
+            ctx.lineTo(e.x, e.y);
+        } else if (p <= 0.5) {
+            const t = p * 2;
+            ctx.lineTo(s.x + (K.x - s.x) * t, s.y + (K.y - s.y) * t);
+        } else {
+            const t = (p - 0.5) * 2;
+            ctx.lineTo(K.x, K.y);
+            ctx.lineTo(K.x + (e.x - K.x) * t, K.y + (e.y - K.y) * t);
+        }
+        ctx.stroke();
+    }
+
+    // The face (fill and transition flash) of a right-angle mark is the
+    // square itself.
+    protected _traceWedge(ctx: CanvasRenderingContext2D, r: number): void {
+        if (!this.right) { super._traceWedge(ctx, r); return; }
+        const K = this.squareCorner();
+        ctx.beginPath();
+        ctx.moveTo(this._Center.x, this._Center.y);
+        ctx.lineTo(this._A.x, this._A.y);
+        ctx.lineTo(K.x, K.y);
+        ctx.lineTo(this._B.x, this._B.y);
+        ctx.lineTo(this._Center.x, this._Center.y);
+    }
+
+    // Timed as the right angle it marks, so a deck that converts a red
+    // sector to a square keeps the same sweep duration.
+    public arcSpan(): number {
+        return this.right ? Math.PI / 2 : super.arcSpan();
     }
 
     radius() : number {
