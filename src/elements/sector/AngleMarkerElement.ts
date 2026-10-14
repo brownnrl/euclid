@@ -54,8 +54,11 @@ export class AngleMarkerElement extends SectorElement {
     // what the text says. The sides lie along the arms, so the mark is a
     // true square exactly when the angle is right and a rhombus
     // otherwise; nothing checks for 90°, so a dragged figure never
-    // flickers between shapes. Side length is radius(): the same default,
-    // clamp, override and ring stepping as the sector.
+    // flickers between shapes. radius() is the distance from the vertex to
+    // the square's outer corner, so the mark has the same footprint as the
+    // sector it replaces (its corner sits on the arc the sector would draw)
+    // and reads smaller, as a right-angle box conventionally does. The
+    // default, clamp, override and ring stepping are the sector's.
     public right : boolean = false;
 
     constructor(vertex: PointElement, arm1: PointElement, arm2: PointElement,
@@ -163,6 +166,12 @@ export class AngleMarkerElement extends SectorElement {
         return this.right ? Math.PI / 2 : super.arcSpan();
     }
 
+    // How far along each arm the mark reaches: the radius for a sector,
+    // radius/√2 for a square so that its corner lands at the radius.
+    sideLength() : number {
+        return this.right ? this.radius() * Math.SQRT1_2 : this.radius();
+    }
+
     radius() : number {
         const a1 = this._Center.distance(this._arm1);
         const a2 = this._Center.distance(this._arm2);
@@ -193,7 +202,7 @@ export class AngleMarkerElement extends SectorElement {
     }
 
     update() : void {
-        const r = this.radius();
+        const r = this.sideLength();
         this._place(this._A, this._arm1, r);
         this._place(this._B, this._arm2, r);
         // Auto-interior: PointElement.angle is signed (−π..π) and atan2

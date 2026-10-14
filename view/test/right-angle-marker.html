@@ -20,8 +20,10 @@ greater. On the <b>left</b> the deck's current red marker, <code>sector;angleMar
 a sector of about the same size as its neighbours, so "right" rides on colour alone. On the
 <b>right</b> the same element string with <code>sector;angleMarkerRight</code>: the
 conventional square corner. <b>Drag A round the semicircle</b>; the square stays square
-because the angle stays right. Side length is the marker's radius (34 here), so clamp,
-override, palette, ring stepping and <code>showAngles</code> all behave as before.
+because the angle stays right. The radius (34 here) is the distance to the square's corner,
+so the mark has the same footprint as the sector it replaces and reads a little smaller, as a
+right-angle box conventionally does; clamp, override, palette, ring stepping and
+<code>showAngles</code> all behave as before.
 </p>
 <p>
 Press <b>p</b> on the right canvas: <code>A.Sector.sweep</code> draws the two sides in turn,
